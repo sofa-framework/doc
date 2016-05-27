@@ -12,9 +12,7 @@ Good Behavior
 4.  When you push commits to the repository on the GForge, you **must**
     monitor the Sofa [Dashboard](http://sofa-framework.org/dash). It is
     **your** responsibility to make sure Sofa continues to compile and
-    work on all the tested platforms. If you need help, feel free to ask
-    for some on the development mailing-list
-    ([sofa-devel](mailto:sofa-devel@lists.gforge.inria.fr)).
+    work on all the tested platforms.
 
 Coding Rules
 ------------
