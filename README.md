@@ -1,7 +1,7 @@
 SOFA Documentation
 ==================
 
-This documentation contains all informations about SOFA, from historic presentation to developper instructions.
+This documentation contains all informations about SOFA, from historical presentation to developper instructions.  
 It is automatically rendered in SOFA website: https://www.sofa-framework.org/doc
 
 
@@ -15,8 +15,7 @@ It is automatically rendered in SOFA website: https://www.sofa-framework.org/doc
 
 
 ## Contribution ##
-Anyone is very welcome to contribute to this documentation. Here are some information you have to read.
-
+Everyone is very welcome to contribute to this documentation. Here are some information you have to read.  
 Files are written in Markdown. If you don't understand the syntax, you can refer to [this usefull cheatsheet] (https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet).
 
 ### Order ###
@@ -37,10 +36,7 @@ Will become
   - File BA
   
 ### Naming ###
-Page title and URL depend on file name.
-
-File name become page title following this principles: 10_Folder_A -> Folder A  and  10_File_AA.md -> File AA
-
-File name become page url following this principles: 10_Folder_A -> folder-a  and  10_File_AA.md -> file-aa
-
+Page title and URL depend on file name.  
+File name become page title following this principles: 10_Folder_A -> Folder A  and  10_File_AA.md -> File AA  
+File name become page url following this principles: 10_Folder_A -> folder-a  and  10_File_AA.md -> file-aa  
 WARNING: Changing file or folder names (except numbers and case) will change page URL. Use with caution.
