@@ -4,7 +4,7 @@ Let's take some examples!
 
 <div style="text-align:center;width:20%;margin: 0 40% 0;">
 
-<figure>![](img/Images-tuto.001.jpg)
+<figure>![](https://www.sofa-framework.org/wp-content/uploads/2016/05/Images-tuto.001.jpg)
 
 <figcaption>Fig. 1 - A graph with one single child node</figcaption>
 
@@ -18,7 +18,7 @@ The scene starts from a parent node, called the "Root" node. All other nodes (ca
 
 <div style="text-align:center;width: 28%;margin: 0 35% 0;">
 
-<figure>![](img/Images-tuto.002.jpg)
+<figure>![](https://www.sofa-framework.org/wp-content/uploads/2016/05/Images-tuto.002.jpg)
 
 <figcaption>Fig. 2 - A graph with one object and its two representations (mechanics and visual)</figcaption>
 
@@ -30,7 +30,7 @@ As illustrated in figure 2, nodes can be structured serially in the graph. Such 
 
 <div style="text-align:center;width:25%;margin: 0 37% 0;">
 
-<figure>![](img/Images-tuto.003.jpg)
+<figure>![](https://www.sofa-framework.org/wp-content/uploads/2016/05/Images-tuto.003.jpg)
 
 <figcaption>Fig. 3 - A graph including two different objects computed in the same aimulation</figcaption>
 
@@ -61,7 +61,7 @@ Acculating forces is used to compute all the forces (internal or external) appli
 
 <div style="text-align:center;width:20%;margin: 0 40% 0;">
 
-<figure>![](img/Images-tuto.0010.jpg)
+<figure>![](https://www.sofa-framework.org/wp-content/uploads/2016/05/Images-tuto.0010.jpg)
 
 <figcaption>Fig. 3 - A graph including two different objects computed in the same aimulation</figcaption>
 
