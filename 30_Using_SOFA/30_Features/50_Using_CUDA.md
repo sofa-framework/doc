@@ -121,7 +121,7 @@ instructions define above.
 To begin using the Cuda components, you need to change the template of
 the Mechanical Object in your scene. Consider the following scene:
 
-``` {.lang:xhtml .decode:true}
+```xml
 <Node name="root" dt="0.04" showBehaviorModels="0" showCollisionModels="0" showMappings="0" showForceFields="1">
   <Node name="M1">
     <MeshVTKLoader name="volume" filename="mesh/raptorTetra_19409.vtu" onlyAttachedPoints="false" />
@@ -147,7 +147,7 @@ the Mechanical Object in your scene. Consider the following scene:
 To use the Cuda components that are available for this scene, there are
 two steps: Add:
 
-``` {.lang:xhtml .decode:true}
+```xml
 <RequiredPlugin name="CUDA computing" pluginName="SofaCUDA" />
 ```
 
@@ -160,7 +160,7 @@ standard cpu implementation. In this scene, this includes components
 such as BoxROI, TetrahedronFEMForceField and UniformMass. This leaves us
 with the scene:
 
-``` {.lang:xhtml .decode:true}
+```xml
 <Node name="root" dt="0.04" showBehaviorModels="0" showCollisionModels="0" showMappings="0" showForceFields="1">
     <RequiredPlugin name="CUDA computing" pluginName="SofaCUDA" />
   <Node name="M1">

@@ -6,25 +6,25 @@ changed through a light manager object and a certain number of lights
 (limited by OpenGL). The first step is to add the object called
 LightManager, preferably at the top of the scene file.
 
-``` {.lang:xhtml .decode:true}
+```xml
 ```
 
 After that, we can add 3 different kinds of lights :
 
 -   a positional light (parameters : color, position) ;
 
-    ``` {.lang:xhtml .decode:true}
+    ```xml
     ```
 
 -   a directional light (parameters : color, direction) ;
 
-    ``` {.lang:xhtml .decode:true}
+    ```xml
     ```
 
 -   a spotlight (parameters : color, position, direction, cut off,
     exponent, attenuation)
 
-    ``` {.lang:xhtml .decode:true}
+    ```xml
     ```
 
 <!-- -->

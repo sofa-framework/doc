@@ -42,7 +42,7 @@ scene has two main objects. A long curved tool is controlled by the
 Omni, and a simple box serves as something for us to feel. Taking a look
 at the scene in more detail, we see our collision pipeline:
 
-``` {.lang:xhtml .decode:true}
+```xml
 <CollisionPipeline name="pipeline" depth="6" verbose="0"/>
 <BruteForceDetection name="detection" />
 <CollisionResponse name="response" response="default" />
@@ -52,7 +52,7 @@ at the scene in more detail, we see our collision pipeline:
 This is what does the collision detection for the scene. Next, we see
 our **NewOmniDriver**:
 
-``` {.lang:xhtml .decode:true}
+```xml
 <NewOmniDriver name="Omni Driver"  listening="true" tags="Omni" forceScale="0.5" scale="500"  permanent="true" />
 ```
 
@@ -64,7 +64,7 @@ by looking for the components that have the same tag as in, in this case
 **Omni**. Next we see the **Instrument** node. First we see the
 MechancialObject:
 
-``` {.lang:xhtml .decode:true}
+```xml
 <MechanicalObject template="Rigid" name="instrumentState" tags="Omni"  />
 ```
 
@@ -76,7 +76,7 @@ simply gives the MechanicalObject some mass. In the **VisualModel**
 node, the **OglModel** loads the mesh that is used to visualize the
 instrument.
 
-``` {.lang:xhtml .decode:true}
+```xml
 <OglModel template="ExtVec3f" name="InstrumentVisualModel"  fileMesh="data/mesh/dental_instrument.obj" scale3d="10 10 10" translation="-2.12256 1.32361 35.5" rotation="180 0 150" material="Default Diffuse 1 1 0.2 0.2 1 Ambient 1 0.2 0.04 0.04 1 Specular 0 1 0.2 0.2 1 Emissive 0 1 0.2 0.2 1 Shininess 0 45" />
 ```
 
@@ -87,7 +87,7 @@ earlier with the OglModel. This keeps the visualization of the
 instrument in sync with the movement of the Omni. In the **Collision
 Model** node, there are a number of important details.
 
-``` {.lang:xhtml .decode:true}
+```xml
 <MechanicalObject template="Vec3d" name="Particle" position="0 0 0" />
 <Point name="ParticleModel" contactStiffness="2" />
 <RigidMapping template="MechanicalMapping&lt;Rigid,Vec3d&gt;" name="MM->CM mapping"  object1="instrumentState"  object2="Particles" />
@@ -115,7 +115,7 @@ that again the tag attribute matches that of the NewOmniDriver. The
 **Box** node also has a visual model and a collision model. In this
 case, the same mesh is used in both models. Here, the **DistanceGrid**
 is the collision model for the box.
-[](){#Example_Scene_2_-_Using_the_Triangle_Collision_Model}
+
 
 #### Example Scene 2 - Using the Triangle Collision Model
 
@@ -125,7 +125,7 @@ type. There are two key differences in this example:
 
 -   The DistanceGrid component is replaced by
 
-    ``` {.lang:xhtml .decode:true}
+    ```xml
     <Triangle />
     ```
 
@@ -136,7 +136,7 @@ The useSurfaceNormals attribute tells the MinProximityIntersection to
 use normals from the Triangle collision model when creating the
 collision information, which is then used by the
 EnslavementForceFeedback to correctly compute the force feedback.
-[](){#Method_2}
+
 
 ### Method 2
 
@@ -150,7 +150,7 @@ scene as the above examples, but using a spring to link the rigid body
 and the Omni instead of directly controlling it. The Collision Pipeline
 is slightly different:
 
-``` {.lang:xhtml .decode:true}
+```xml
 <CollisionPipeline depth="8" />
 <BruteForceDetection name="N2" />
 <LocalMinDistance name="Proximity" alarmDistance="0.6" contactDistance="0.3" />
@@ -165,7 +165,7 @@ contains the NewOmniDriver. Just like in Method 1, we use the **tags**
 attribute to match up the NewOmniDriver, the mechanical object, and the
 ForceFeedback (which will show up later).
 
-``` {.lang:xhtml .decode:true}
+```xml
 <Node name="OmniObject">
     <Node name="RigidLayer">
         <MechanicalObject name="ToolRealPosition" tags="Omni" template="Rigid" />
@@ -181,7 +181,7 @@ ForceFeedback (which will show up later).
 Then we create our actual tool that will interact with the scene. First
 we need solvers to allow for collision detection:
 
-``` {.lang:xhtml .decode:true}
+```xml
 <Node name="Tool">
     <EulerImplicit />
     <CGLinearSolver />
@@ -189,7 +189,7 @@ we need solvers to allow for collision detection:
 
 Next we create our rigid object:
 
-``` {.lang:xhtml .decode:true}
+```xml
 <MechanicalObject name="ms" template="Rigid"/>
 <UniformMass totalmass="0.1" />
 ```
@@ -197,14 +197,14 @@ Next we create our rigid object:
 And we provide a ForceFeedback component to calculate the force feedback
 to the Omni:
 
-``` {.lang:xhtml .decode:true}
+```xml
 <LCPForceFeedback activate="true" tags="Omni" forceCoef="0.001" />
 ```
 
 Next we create the Collision Model, and map it to the rigid model we
 created above:
 
-``` {.lang:xhtml .decode:true}
+```xml
 <Node name="ToolCollision">
     <MechanicalObject name="CM" position="0 0 0"/>
     <Point bothSide="true" group="1" />
@@ -215,7 +215,7 @@ created above:
 Now we need a Visual Model, also mapped to the rigid model we create
 above:
 
-``` {.lang:xhtml .decode:true}
+```xml
 <Node name="ToolVisual">
     <OglModel template="ExtVec3f" name="VisualModel" fileMesh="data/mesh/dental_instrument.obj" scale3d="10 10 10" translation="-2.12256 1.32361 35.5" rotation="180 0 150" />
     <RigidMapping template="Mapping<Rigid,ExtVec3f>" name="MM->VM mapping" object1="ms" object2="VisualModel" />
@@ -225,7 +225,7 @@ above:
 Finally, we add the components to link the tool we created with the
 representation of the Omni's position:
 
-``` {.lang:xhtml .decode:true}
+```xml
     <RestShapeSpringsForceField template="Rigid" stiffness="1000000" angularStiffness="200000000" external_rest_shape="../OmniObject/RigidLayer/Tool1/RealPosition" />
     <UncoupledConstraintCorrection compliance="0.001   0.00003 0 0   0.00003 0   0.00003" />
 </Node>

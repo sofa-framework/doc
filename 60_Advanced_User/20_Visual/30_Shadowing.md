@@ -20,7 +20,7 @@ coded :
 First, you have a light in your scene in order to have shadows
 (obviously). And you will need two more objects :
 
-``` {.lang:xhtml .decode:true}
+```xml
  
 ```
 
@@ -38,7 +38,7 @@ Default parameters may be not sufficient for your needs (speed,
 rendering quality). One important parameter located in Light\* object is
 the texture size, which is used in shadow mapping algorithm.
 
-``` {.lang:xhtml .decode:true}
+```xml
 ```
 
 For hard shadows, greater the number is, **more precise** the shadow

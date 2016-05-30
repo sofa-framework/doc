@@ -1,8 +1,6 @@
 Prerequisites for Windows
 =========================
 
-<div class="text-block">
-
 #### Compiler
 
 You need to have Visual Studio 2008 or higher installed. We recommend
@@ -12,9 +10,6 @@ Dashboard](http://www.sofa-framework.org/dash/)) or Visual Studio 2013
 Studio downloads
 page](https://www.visualstudio.com/fr-fr/downloads/download-visual-studio-vs.aspx).
 
-</div>
-
-<div class="text-block">
 
 #### CMake: Makefile generator
 
@@ -22,9 +17,6 @@ You need to have CMake 2.8.8 or higher installed. The easiest way to do
 this is to get the installer from the [CMake download
 page](https://cmake.org/download/).
 
-</div>
-
-<div class="text-block">
 
 #### Required dependencies
 
@@ -65,9 +57,7 @@ Finally, SOFA requires some specific dependencies:
     You will unzip them in your sources folder (e.g. sofa/v15.12/src/)
     after cloning SOFA (see below).
 
-</div>
 
-<div class="text-block">
 
 #### PATH
 
@@ -75,14 +65,10 @@ To complete the dependencies integration, you can add Boost and Qt to
 your PATH. Boost: add `your/boost/path/libXX-msvc-XX` Qt: add
 `your/Qt/path/msvcXXXX_XX/bin` and `your/Qt/path/msvcXXXX_XX/lib`
 
-</div>
-
-\[hr style="3"\]
 
 Building on Windows
 ===================
 
-<div class="text-block">
 
 ### Setting up your source and build directories
 
@@ -123,9 +109,7 @@ you downloaded before.
 ![sofa\_files](https://www.sofa-framework.org/wp-content/uploads/2015/11/sofa_files.png){.alignnone
 .size-medium .wp-image-5800 height="500"}
 
-</div>
 
-<div class="text-block">
 
 ### Generate a Makefile with CMake
 
@@ -189,9 +173,7 @@ C:/boost/ :
 When you are ready, press **Generate**. This will create your Visual
 Studio solution.
 
-</div>
 
-<div class="text-block">
 
 ### Compile
 
@@ -201,4 +183,3 @@ solution.
 
 Time for a coffee !
 
-</div>

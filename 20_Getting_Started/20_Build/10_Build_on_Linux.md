@@ -7,7 +7,7 @@ following requirements.
 
 
 
-#### Compiler meta-package {#compiler-meta-package style="text-align: left;"}
+#### Compiler meta-package
 
 To get the meta-package required to compile SOFA, first execute:
 
@@ -16,7 +16,7 @@ sudo apt-get install cmake build-essential
 ```
 
 
-#### CMake: Makefile generator {#cmake-makefile-generator style="text-align: left;"}
+#### CMake: Makefile generator
 
 SOFA requires at least CMake 2.8.8. To get CMake, execute the usual
 command:
@@ -36,7 +36,7 @@ sudo apt-get install cmake cmake-qt-gui cmake-curses-gui
 ```
 
 
-#### Ccache: Speed-up your compilation {#ccache-speed-up-your-compilation style="text-align: left;"}
+#### Ccache: Speed-up your compilation
 
 If you work on Linux, we advise you to use *ccache*. It is by no means
 mandatory, but it will dramatically improve the compilation time if you
@@ -55,7 +55,7 @@ sudo apt-get install ccache
 ```
 
 
-#### Required dependencies {#required-dependencies style="text-align: left;"}
+#### Required dependencies
 
 Finally, SOFA requires some libraries:
 
@@ -85,13 +85,12 @@ install them all and not worry about it later:
 [optional] sudo apt-get install python2.7-dev libxml2-dev libcgal-dev libblas-dev liblapack-dev libsuitesparse-dev libassimp-dev freeglut3-dev
 ```
 
-\[hr style="3"\]
 
 Building on Linux
 =================
 
 
-#### Setting up your source and build directories {#setting-up-your-source-and-build-directories style="text-align: left;"}
+#### Setting up your source and build directories
 
 To set up clean repositories, we propose to arrange the SOFA directories
 as follows:
@@ -140,7 +139,7 @@ gcc is used but Clang can be prefered for a faster compilation (see the
 paragraph below).
 
 
-#### Compile in the terminal {#compile-in-the-terminal style="text-align: left;"}
+#### Compile in the terminal
 
 To compile in the terminal, type in the build/ directory:
 
@@ -166,7 +165,7 @@ bin/runSofad (Debug)
 ```
 
 
-#### Setting up QtCreator {#setting-up-qtcreator style="text-align: left;"}
+#### Setting up QtCreator
 
 The following instructions assume that you have set up two build
 directories as explained in the previous section.
@@ -195,7 +194,7 @@ non-official repository
 .autonumber} (Warning, it is using qt4 rather than qt5).
 
 
-#### Clang {#clang style="text-align: left;"}
+#### Clang
 
 Clang is a new alternative to gcc. It compiles approximately two times
 faster !

@@ -9,7 +9,7 @@ the **VisualParams** for the current subgraph. It merges the
 DisplayFlags. Example Taken from
 *examples/Components/visualmodel/VisualStyle.scn*
 
-``` {.lang:xhtml .decode:true}
+```xml
 
 
 
@@ -42,12 +42,12 @@ Resulting View from the previous XML scene\[/caption\]
 
 #### XML Usage
 
-``` {.lang:xhtml .decode:true}
+```xml
 ```
 
 allowed values for displayFlags data are a combination of the following:
 
-``` {.lang:xhtml .decode:true}
+```xml
 showAll, hideAll,
   showVisual, hideVisual,
    showVisualModels, hideVisualModels,

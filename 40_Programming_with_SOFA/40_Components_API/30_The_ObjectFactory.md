@@ -99,7 +99,7 @@ to a
 
 When you write a SOFA scene in XML this means that such a line
 
-``` {.lang:xhtml .decode:true}
+```xml
 <MechanicalObject />
 ```
 
@@ -108,7 +108,7 @@ registered in the ObjectFactory. If you want a specific flavor of
 MechanicalObject, you have to specify it by using the template attribute
 in the XML.
 
-``` {.lang:xhtml .decode:true}
+```xml
 ```
 
 This will produce a MechanicalObject if SOFA is compiled with double and

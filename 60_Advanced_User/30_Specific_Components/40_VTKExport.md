@@ -1,9 +1,9 @@
-#### <span class="mw-headline">Exporting in VTK format</span>
+#### Exporting in VTK format
 
 In this section, we will explain how to export a 3D object in a VTK
 format file.
 
-##### <span class="mw-headline">How to use it</span>
+##### How to use it
 
 Put :
 
@@ -23,7 +23,7 @@ into a node where a BaseMeshTopology exists.
 
  
 
-##### <span class="mw-headline">Limitations</span>
+##### Limitations
 
 For now, this class supports only , for the data, Vec{1,2}{f/d} as an
 array of values and Vec3{f/d} as an array of vectors ('real' vector with
@@ -34,18 +34,12 @@ pressed.Don't forget to set listening to true.  
 
 -   example/Component/misc/VTKExporter.scn
 
-<!-- -->
-
-
-
-
- 
 [![Example\_vtkexporter\_paraview](https://www.sofa-framework.org/wp-content/uploads/2014/11/Example_vtkexporter_paraview.jpg){.size-full
 .wp-image-1624 .aligncenter width="600"
 height="357"}](https://www.sofa-framework.org/wp-content/uploads/2014/11/Example_vtkexporter_paraview.jpg)
  
 
-#### <span class="mw-headline">Reconstruct VTK mesh in ParaView</span>
+#### Reconstruct VTK mesh in ParaView
 
 The **VTKExporter** component will export the mesh as a "*VTK
 Unstructured Grid*". This part will explain how to get back a "*VTK

@@ -33,7 +33,7 @@ Write your own python !
 
 #### From scratch
 
-**<span style="text-decoration: underline;">In your scene</span>**, if
+** style="text-decoration: underline;">In your scene**, if
 you want to use Python in one of your scene (fontain.scn), you need:
 
 -   in the first place add the plugin in the scene using the
@@ -49,8 +49,8 @@ node as illustrated in the example "fontain.scn" below:
 The core of this plugin is the Sofa Python module available to python
 scripts from within the SofaPython components (they are not available
 outside Sofa environment, in the command-line python binary for
-example). **<span style="text-decoration: underline;">Any python
-script</span>** (fontain.py) embedded in SOFA should include the
+example). ** style="text-decoration: underline;">Any python
+script** (fontain.py) embedded in SOFA should include the
 following line if it wants to interact with the SOFA framework:
 
     import sofa

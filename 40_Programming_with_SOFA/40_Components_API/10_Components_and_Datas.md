@@ -160,7 +160,7 @@ this template class provides the following features:
 This is how a Data called enableOptionA storing a boolean can appear in
 a scene file:
 
-``` {.lang:xhtml .decode:true}
+```xml
 <Node name="Root">
    <MyClass enableOptionA="true"/>
 </Node>
@@ -201,7 +201,7 @@ to Access Data below), it first checks its dirty state and if necessary,
 it updates its value based on the source, recursively. In XML, links are
 set using the @ symbol as in the following example:
 
-``` {.lang:xhtml .decode:true}
+```xml
 ```
 
 In C++, links are set using method BaseData::setParent( BaseData\* ), as
@@ -448,7 +448,7 @@ method otherwise there will be some mismatches about what is expected.**
 The template attribute is used at the component creation to select the
 appropriate constructor registered in the ObjectFactory.
 
-``` {.lang:xhtml .decode:true}
+```xml
 ```
 
 As a rule of thumb, you should override these methods in your component
@@ -478,12 +478,12 @@ template<> inline const char* Vec3dTypes::Name() { return "Vec3d"; }
 
 As a result we can write
 
-``` {.lang:xhtml .decode:true}
+```xml
 ```
 
 instead of :
 
-``` {.lang:xhtml .decode:true}
+```xml
 ```
 
 #### Common operations

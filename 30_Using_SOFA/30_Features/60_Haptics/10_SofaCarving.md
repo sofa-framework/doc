@@ -2,13 +2,13 @@ The SofaCarving plugin provides basic functionality for removing
 tetrahedra from a mesh. This can be used to simulate tissue destruction
 in medical simulations. []()
 
-<span class="mw-headline">Loading the Plugin</span>
+ class="mw-headline">Loading the Plugin
 ---------------------------------------------------
 
 To load the SofaCarving plugin, select **SOFA-PLUGIN\_SOFACARVING** in
 your Cmake configuration. Reconfigure, generate and build. []()
 
-<span class="mw-headline">CarvingManager</span>
+ class="mw-headline">CarvingManager
 -----------------------------------------------
 
 The plugin provides one component, the CarvingManager. When added to a

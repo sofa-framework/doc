@@ -9,7 +9,7 @@ subtree. Finally, there is only one shader activated for each visual
 model : if two shaders are present in the same node, only the second
 will be effective. To simply include a shader, add this into your node :
 
-``` {.lang:xhtml .decode:true}
+```xml
 ```
 
 vertFilename and fragFilename are the only mandatory parameters. Other

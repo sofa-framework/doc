@@ -5,7 +5,7 @@ You can get different points of view of your scene. It can be useful if
 you want to watch something for example. In order to get those
 viewports, you have to add :
 
-``` {.lang:xhtml .decode:true}
+```xml
 ```
 
 where :

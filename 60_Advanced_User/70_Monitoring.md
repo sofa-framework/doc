@@ -18,7 +18,7 @@ To monitor properties you have to add a Monitor Component in your scene.
 Here is a selection of a piece of code of one of the Monitor of the
 example scene:
 
-``` {.lang:xhtml .decode:true}
+```xml
 ```
 
 You can of course also add the component to your scene with the Modeler,
@@ -71,7 +71,7 @@ MechanicalObject, or the minimum displacement of a region...
 
 Include the ExtraMonitor in your scene. Here is an example of use :
 
-``` {.lang:xhtml .decode:true}
+```xml
 ```
 
 -   With this xml code, we say we want to use an ExtraMonitor named

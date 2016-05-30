@@ -17,7 +17,7 @@ stop the Animation, pressing back the Animate button.
 *PauseEvent* event. When it receives this event, it calls the *pause()*
 method. Add the following component on your scene description:
 
-``` {.lang:xhtml .decode:true}
+```xml
 ```
 
 Then launch the PauseEvent where you want to in your code. For example,

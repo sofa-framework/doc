@@ -4,7 +4,7 @@ Prerequisites for OS X
 Before building SOFA from source, make sure your configuration meets the
 following requirements.
 
-#### <span class="mw-headline">CMake: Makefile generator</span> {#cmake-makefile-generator style="text-align: left;"}
+#### CMake: Makefile generator
 
 SOFA requires at least CMake 2.8.8. To install CMake, use the
 [Homebrew](http://brew.sh/ "Homebrew") commands (you can also use
@@ -14,7 +14,7 @@ SOFA requires at least CMake 2.8.8. To install CMake, use the
 brew install install cmake
 ```
 
-#### <span class="mw-headline">Required dependencies</span> {#required-dependencies style="text-align: left;"}
+#### Required dependencies
 
 To compile SOFA, you need to install several dependencies using Homebrew
 
@@ -37,7 +37,7 @@ To compile SOFA, you need to install several dependencies using Homebrew
     brew install glew
     ```
 
-#### <span class="mw-headline">About the compiler : LLVM vs. GCC</span> {#about-the-compiler-llvm-vs.-gcc style="text-align: left;"}
+#### About the compiler : LLVM vs. GCC
 
 The default compiler on MacOS is now LLVM (ie. clang). SOFA is now
 compatible with it, but if you want to use gcc/g++ instead it is
@@ -47,7 +47,7 @@ You can do this by setting those environment variables: *CC="gcc"* and
 *CXX="g++"*. These settings are stored in the cmake cache; once set, you
 can re-use ccmake or cmake-gui and the gcc settings won't be lost.
 
-#### <span class="mw-headline">About the compiler on MacOS 10.8 Mountain Lion & MacOS 10.9 Maverick</span> {#about-the-compiler-on-macos-10.8-mountain-lion-macos-10.9-maverick style="text-align: left;"}
+#### About the compiler on MacOS 10.8 Mountain Lion & MacOS 10.9 Maverick
 
 If you are on MacOS 10.8 Mountain Lion, *gcc* is an alias of *clang*. To
 use gcc, use the following environnement varialbles:
@@ -56,12 +56,10 @@ use gcc, use the following environnement varialbles:
 CC="llvm-gcc" CXX="llvm-g++"
 ```
 
-\[hr style="3"\]
-
-<span class="mw-headline">Building on OS X</span>
+Building on OS X
 =================================================
 
-#### <span class="mw-headline">Setting up your source and build directories</span> {#setting-up-your-source-and-build-directories style="text-align: left;"}
+#### Setting up your source and build directories
 
 To set up clean repositories, we propose to arrange the SOFA directories
 as follows:
@@ -111,7 +109,7 @@ SOFA, acticate or deactivate plugins and functionalities. By default,
 gcc is used but Clang can be prefered for a faster compilation (see the
 paragraph below).
 
-#### <span class="mw-headline">Compile in the terminal</span> {#compile-in-the-terminal style="text-align: left;"}
+#### Compile in the terminal
 
 To compile in the terminal, type in the build/ directory:
 
@@ -136,7 +134,7 @@ bin/runSofa (Release)
 bin/runSofad (Debug)
 ```
 
-#### <span class="mw-headline">Setting up QtCreator</span> {#setting-up-qtcreator style="text-align: left;"}
+#### Setting up QtCreator
 
 The following instructions assume that you have set up two build
 directories as explained in the previous section.
@@ -164,7 +162,7 @@ non-official repository
 [\[1\]](https://launchpad.net/~alexey-ivanov/+archive/qtcreator "https://launchpad.net/~alexey-ivanov/+archive/qtcreator"){.external
 .autonumber} (Warning, it is using qt4 rather than qt5).
 
-#### <span class="mw-headline">Clang</span> {#clang style="text-align: left;"}
+#### Clang
 
 Clang is a new alternative to gcc. It compiles approximately two times
 faster !
