@@ -39,4 +39,5 @@ Will become
 Page title and URL depend on file name.  
 File name become page title following this principles: 10_Folder_A -> Folder A  and  10_File_AA.md -> File AA  
 File name become page url following this principles: 10_Folder_A -> folder-a  and  10_File_AA.md -> file-aa  
-WARNING: Changing file or folder names (except numbers and case) will change page URL. Use with caution.
+
+**WARNING**: Changing file or folder names (except numbers and case) will change page URL. Use with caution.
