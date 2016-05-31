@@ -6,6 +6,7 @@ you want to watch something for example. In order to get those
 viewports, you have to add :
 
 ```xml
+<OglViewport screenPosition="0 0" screenSize="250 250" cameraPosition="-1 2.7 5" cameraOrientation="-0 -0 -0 1" />
 ```
 
 where :
