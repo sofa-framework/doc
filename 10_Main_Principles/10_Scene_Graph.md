@@ -2,9 +2,10 @@ A simulation in SOFA is described as a scene with an intrinsic generalized hiera
 
 Let's take some examples!
 
-<div style="text-align:center;width:20%;margin: 0 40% 0;">
+<div style="text-align:center;width:50%;margin: 0 25% 0;">
 
-![Fig. 1 - A graph with one single child node](https://www.sofa-framework.org/wp-content/uploads/2016/05/Images-tuto.001.jpg)
+<img src="https://www.sofa-framework.org/wp-content/uploads/2016/05/Images-tuto.001.jpg" style="width: 100%;"/>
+Fig. 1 - A graph with one single child node
 
 </div>
 
@@ -12,17 +13,19 @@ Let's take some examples!
 
 The scene starts from a parent node, called the "Root" node. All other nodes (called child nodes) inherit from this main node. In the figure 1, a first child node "Liver" is defined and represents a first object. This "Liver" node includes components (solvers, forcefield, mass) used to build the simulation. Each of these components contains attributes. For instance, a component of mass features an attribute for mass density; an iterative linear solver needs an attribute defining a maximum of iterations. These attributes are also called Data. Two Data of a same type can be connected one with another.
 
-<div style="text-align:center;width: 28%;margin: 0 35% 0;">
+<div style="text-align:center;width: 50%;margin: 0 25% 0;">
 
-![Fig. 2 - A graph with one object and its two representations (mechanics and visual)](https://www.sofa-framework.org/wp-content/uploads/2016/05/Images-tuto.002.jpg)
+<img src="https://www.sofa-framework.org/wp-content/uploads/2016/05/Images-tuto.002.jpg" style="width: 100%;"/>
+Fig. 2 - A graph with one object and its two representations (mechanics and visual)
 
 </div>
 
 As illustrated in figure 2, nodes can be structured serially in the graph. Such a hierarchical graph allows for having several representation of a same object. In the example, the first child node "Liver" implements the mechanical behavior of the liver (hexahedral mesh), whereas the sub-node "Visual" describes a surface model (triangular mesh) of the liver.
 
-<div style="text-align:center;width:25%;margin: 0 37% 0;">
+<div style="text-align:center;width:50%;margin: 0 25% 0;">
 
-![Fig. 3 - A graph including two different objects computed in the same simulation](https://www.sofa-framework.org/wp-content/uploads/2016/05/Images-tuto.003.jpg)
+<img src="https://www.sofa-framework.org/wp-content/uploads/2016/05/Images-tuto.003.jpg" style="width: 100%;"/>
+Fig. 3 - A graph including two different objects computed in the same simulation
 
 </div>
 
@@ -47,8 +50,9 @@ Example: _acculating the forces_.
 
 Acculating forces is used to compute all the forces (internal or external) applied on our object. The solver then triggers the associate visitor and the action is propagated through the graph and calls the appropriate (botom-up) methods at each force and mapping node. All components able to compute forces will accumulate their contributions. This information is finally gathered in the MechanicalObject and the solver will use this "force" vector to solve the mathematical system.
 
-<div style="text-align:center;width:20%;margin: 0 40% 0;">
+<div style="text-align:center;width:50%;margin: 0 25% 0;">
 
-![Fig. 4 - Traversing visitors triggered for the _acculateForce()_ action](https://www.sofa-framework.org/wp-content/uploads/2016/05/Images-tuto.0010.jpg)
+<img src="https://www.sofa-framework.org/wp-content/uploads/2016/05/Images-tuto.0010.jpg" style="width: 100%;"/>
+Fig. 4 - Traversing visitors triggered for the _acculateForce()_ action
 
 </div>
