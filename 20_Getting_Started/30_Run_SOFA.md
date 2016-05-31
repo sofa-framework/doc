@@ -16,22 +16,30 @@ Launch SOFA
 The binary **runSofa** can be launched with different options, that can
 be enabled through the command line. You can display the different
 options available by using the argument ‘-h’ in the command line:
-`runSofa -h` We obtain the following output:
-`This is a SOFA application. Here are the command line arguments (short name, long name, description, default value) -h, --help: this help -a, --start: start the animation loop  (default: false ) -c, --computationTimeSampling: Frequency of display of the computation time statistics, in number of animation steps. 0 means never.  (default: 0 ) -g, --gui: choose the UI (batch|glut|glut-mt|qglviewer|qt)  (default:  ) -l, --load: load given plugins  (default: ) -n, --nb_iterations: (only batch) Number of iterations of the simulation  (default: 1000 ) -p, --factory: print factory logs  (default: false ) -r, --recent: load most recently opened file  (default: false ) -s, --simu: select the type of simulation (bgl, dag, tree, smp)  (default: tree ) -t, --temporary: the loaded scene won't appear in history of opened files  (default: false ) -v, --verification: load verification data for the scene  (default:  ) others: file names`
+`runSofa -h`
+We obtain the following output:
+    This is a SOFA application. Here are the command line arguments (short name, long name, description, default value)
+    -h, --help: this help 
+    -a, --start: start the animation loop  (default: false ) 
+    -c, --computationTimeSampling: Frequency of display of the computation time statistics, in number of animation steps. 0 means never.  (default: 0 ) 
+    -g, --gui: choose the UI (batch|glut|glut-mt|qglviewer|qt)  (default:  ) 
+    -l, --load: load given plugins  (default: ) 
+    -n, --nb_iterations: (only batch) Number of iterations of the simulation  (default: 1000 ) 
+    -p, --factory: print factory logs  (default: false ) 
+    -r, --recent: load most recently opened file  (default: false ) 
+    -s, --simu: select the type of simulation (bgl, dag, tree, smp)  (default: tree ) 
+    -t, --temporary: the loaded scene won't appear in history of opened files  (default: false ) 
+    -v, --verification: load verification data for the scene  (default:  ) others: file names`
+
 When getting started with **runSofa**, the following options might be
-valuable for you: **-a:** **runSofa** starts the animation directly (no
-need to press on the animate button) **-c:** Displays interesting
-statistics about the computation time of the simulation. It is very
-useful to analyse the performance of your simulation, or to benchmark a
-plugin developed for SOFA. The value that follows the argument
-determines the number of simulation steps to wait for before dumping the
-statistics (-c 10 will display the logs every 10 simulation steps)
-**-g** allows you to choose between the existing user interfaces
-developed in SOFA: **-qglviewer:** default interface **-batch:** command
-line interface (only displays statistics) **-l** allows you to load a
-SOFA plugin by specifying its name **-n** specifies the number of
-simulation steps to run before closing **runSofa**. Can only be used
-with “–g batch”
+valuable for you:
+**-a:** **runSofa** starts the animation directly (no need to press on the animate button) 
+**-c:** Displays interesting statistics about the computation time of the simulation. It is very useful to analyse the performance of your simulation, or to benchmark a plugin developed for SOFA. The value that follows the argument determines the number of simulation steps to wait for before dumping the statistics (-c 10 will display the logs every 10 simulation steps)
+**-g** allows you to choose between the existing user interfaces developed in SOFA:
+**-qglviewer:** default interface
+**-batch:** command line interface (only displays statistics)
+**-l** allows you to load a SOFA plugin by specifying its name
+**-n** specifies the number of simulation steps to run before closing **runSofa**. Can only be used with “–g batch”
 
 ### Load and run a specific scene
 
