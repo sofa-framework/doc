@@ -18,7 +18,7 @@ be enabled through the command line. You can display the different
 options available by using the argument ‘-h’ in the command line:
 `runSofa -h`
 We obtain the following output:
-    This is a SOFA application. Here are the command line arguments (short name, long name, description, default value)
+    `This is a SOFA application. Here are the command line arguments (short name, long name, description, default value)
     -h, --help: this help 
     -a, --start: start the animation loop  (default: false ) 
     -c, --computationTimeSampling: Frequency of display of the computation time statistics, in number of animation steps. 0 means never.  (default: 0 ) 
