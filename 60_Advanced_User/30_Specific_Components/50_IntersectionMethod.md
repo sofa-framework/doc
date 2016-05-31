@@ -1,8 +1,8 @@
 This page presents how to use MinProximityIntersection and
 NewProximityIntersection and other IntersectionMethod parameters.
 
-**MinProximityIntersection**
-----------------------------
+MinProximityIntersection
+------------------------
 
 -   optimized for mesh intersections
 -   intersection computation for : Triangle/Point, Line/Point,
@@ -12,8 +12,8 @@ NewProximityIntersection and other IntersectionMethod parameters.
 
  
 
-**NewProximityIntersection**
-----------------------------
+NewProximityIntersection
+------------------------
 
 -   intersection computation is done between all pairs of collision
     primitives
@@ -28,8 +28,8 @@ NewProximityIntersection and other IntersectionMethod parameters.
 
  
 
-**IntesectionMehtod parameters**
---------------------------------
+IntesectionMehtod parameters
+----------------------------
 
 -   alarmDistance : maximum distance between collision elements for wich
     a contact is created
@@ -37,8 +37,8 @@ NewProximityIntersection and other IntersectionMethod parameters.
 
  
 
-**CollisionModel parameters**
------------------------------
+CollisionModel parameters
+-------------------------
 
 -   proximity : enlargement of the collision model, i.e., value added to
     the alarmDistance and the contactDistance and also when building
@@ -46,8 +46,8 @@ NewProximityIntersection and other IntersectionMethod parameters.
 
  
 
-**Trick**
----------
+Trick
+-----
 
 -   you can specify a different alarmDistance and contactDistance for
     each CollisionModel by setting alarmDistance and contactDistance to
