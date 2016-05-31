@@ -34,12 +34,17 @@ This is a SOFA application. Here are the command line arguments (short name, lon
 ```
 When getting started with **runSofa**, the following options might be
 valuable for you:
-**-a:** **runSofa** starts the animation directly (no need to press on the animate button) 
+
+**-a:** **runSofa** starts the animation directly (no need to press on the animate button)
+
 **-c:** Displays interesting statistics about the computation time of the simulation. It is very useful to analyse the performance of your simulation, or to benchmark a plugin developed for SOFA. The value that follows the argument determines the number of simulation steps to wait for before dumping the statistics (-c 10 will display the logs every 10 simulation steps)
+
 **-g** allows you to choose between the existing user interfaces developed in SOFA:
 **-qglviewer:** default interface
 **-batch:** command line interface (only displays statistics)
+
 **-l** allows you to load a SOFA plugin by specifying its name
+
 **-n** specifies the number of simulation steps to run before closing **runSofa**. Can only be used with “–g batch”
 
 ### Load and run a specific scene
