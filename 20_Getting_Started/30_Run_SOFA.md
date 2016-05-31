@@ -18,7 +18,8 @@ be enabled through the command line. You can display the different
 options available by using the argument ‘-h’ in the command line:
 `runSofa -h`
 We obtain the following output:
-    `This is a SOFA application. Here are the command line arguments (short name, long name, description, default value)
+```batch
+This is a SOFA application. Here are the command line arguments (short name, long name, description, default value)
     -h, --help: this help 
     -a, --start: start the animation loop  (default: false ) 
     -c, --computationTimeSampling: Frequency of display of the computation time statistics, in number of animation steps. 0 means never.  (default: 0 ) 
@@ -30,7 +31,7 @@ We obtain the following output:
     -s, --simu: select the type of simulation (bgl, dag, tree, smp)  (default: tree ) 
     -t, --temporary: the loaded scene won't appear in history of opened files  (default: false ) 
     -v, --verification: load verification data for the scene  (default:  ) others: file names`
-
+```
 When getting started with **runSofa**, the following options might be
 valuable for you:
 **-a:** **runSofa** starts the animation directly (no need to press on the animate button) 
