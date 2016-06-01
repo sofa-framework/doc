@@ -3,12 +3,9 @@ found in the folder *%{SOFA\_BUILD\_DIR}/bin*. The execution of the
 binary - either via the terminal or by double clicking the instance -
 launchs a default [XML
 scene](https://www.sofa-framework.org/community/doc/write-a-scene-in-xml "Write XML scene")
-with the name caduceus. \[responsive\] [![Execution of runSofa using the
-default scene
-caduceus](https://www.sofa-framework.org/wp-content/uploads/2014/11/Screenshot-from-2015-01-14-1839152.png){.alignnone
-.size-full .wp-image-2516 width="1920"
-height="1048"}](https://www.sofa-framework.org/wp-content/uploads/2014/11/Screenshot-from-2015-01-14-1839152.png)
-\[/responsive\]
+with the name caduceus.
+![Execution of runSofa using the
+default scene caduceus](https://www.sofa-framework.org/wp-content/uploads/2014/11/Screenshot-from-2015-01-14-1839152.png)
 
 Launch SOFA
 -----------
@@ -18,7 +15,7 @@ be enabled through the command line. You can display the different
 options available by using the argument ‘-h’ in the command line:
 `runSofa -h`
 We obtain the following output:
-```batch
+```bash
 This is a SOFA application. Here are the command line arguments (short name, long name, description, default value)
     -h, --help: this help 
     -a, --start: start the animation loop  (default: false ) 
