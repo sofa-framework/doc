@@ -151,7 +151,7 @@ Tetrahedra contained in the ROI.  
 
 and you can also test these other scenes using the engine :
 
-``` {.ignore:true}
+```
 Sofa/examples/Components/engine/BoxROI.scn
 Sofa/examples/Components/Constraint/BoxConstraint.scn
 Sofa/examples/Components/Forcefield/BoxContactForcefield.scn
@@ -161,7 +161,7 @@ Sofa/examples/Components/Forcefield/BoxContactForcefield.scn
 
 and you can also test these other scenes using the engine :
 
-``` {.ignore:true}
+```
 Sofa/examples/Components/engine/PlaneROI.scn
 Sofa/examples/Components/Constraint/PlaneConstraint.scn
 ```
@@ -171,7 +171,7 @@ Sofa/examples/Components/Constraint/PlaneConstraint.scn
 
 and you can also test this other scene using the engine:
 
-``` {.ignore:true}
+```
 Sofa/examples/Components/engine/SphereROI.scn
 ```
 
@@ -382,7 +382,7 @@ states (default behavior) or on a manual define scale.**
 
 See the example scene :
 
-``` {.ignore:true}
+```
 Sofa/examples/Components/engine/TextureInterpolation.scn
 ```
 
@@ -443,7 +443,7 @@ Position of the mechanical object once it has been turned on spiral.  
 
 See the example scene :
 
-``` {.ignore:true}
+```
 Sofa/examples/Components/engine/spiral.scn
 ```
 
@@ -457,7 +457,7 @@ defined in an .obj file, this engine computes a set of rigid points
 using the normals. Normal vector will be collinear to the Z axis and
 orthonormal to X and Y as showed bellow:**
 
-``` {.ignore:true}
+```
 Y
 |
 |   / X
@@ -486,7 +486,7 @@ Set of rigid types oriented as described before.  
 
 or you can see the example scene :
 
-``` {.ignore:true}
+```
 Sofa/examples/Components/engine/vertex2Frame.scn
 ```
 
@@ -514,7 +514,7 @@ Position of the mechanical object once it has been turned on spiral.  
 
 See the example scene :
 
-``` {.ignore:true}
+```
 Sofa/examples/Components/engine/spiral.scn
 ```
 
@@ -671,7 +671,7 @@ Topology).  
 
 See the example scenes using this engine in :
 
-``` {.ignore:true}
+```
 Sofa/examples/Components/engine/SubsetTopology.scn
 Sofa/examples/Components/engine/SubsetTopology_localIndicesOption.scn
 Sofa/examples/Components/engine/SubsetTopology_refiningMesh.scn

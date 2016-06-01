@@ -8,7 +8,7 @@ This is the most precise and flexible way of monitoring the computation
 time in SOFA. It prints results on the standard text output. There is an
 option in **runSofa** to activate from the command line :
 
-``` {.ignore:true}
+```
 -c $INT (use --help for a list of command line options)
 ```
 
@@ -27,7 +27,7 @@ instructions. The begin/end calls can be nested, to monitor
 hierarchically. An example of statistics is shown below. The number of
 dots before the name of the piece of code denote the nesting level.
 
-``` {.ignore:true}
+```
 ==== Animate ====
 
 Trace of last iteration :

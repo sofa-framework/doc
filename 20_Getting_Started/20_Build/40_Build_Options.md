@@ -22,13 +22,13 @@ CMake comes with both a GUI tool (**cmake-gui**) and a cursed based tool
 (**ccmake**) to modify the build options interactively. You can invoke
 them from the command line like so:
 
-``` {.ignore:true}
+```
  cmake-gui <build-directory>
 ```
 
 or
 
-``` {.ignore:true}
+```
  ccmake <build-directory>
 ```
 
@@ -73,7 +73,7 @@ command line (e.g. in a script), you can pass options to cmake with the
 option enables the compilation of the SofaPython plugin, you can enable
 it like so:
 
-``` {.ignore:true}
+```
 cmake -DSOFA-PLUGIN_SOFAPYTHON=ON <build-directory>
 ```
 

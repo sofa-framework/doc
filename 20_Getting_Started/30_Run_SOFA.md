@@ -15,7 +15,7 @@ be enabled through the command line. You can display the different
 options available by using the argument ‘-h’ in the command line:
 `runSofa -h`
 We obtain the following output:
-```bash
+```
 This is a SOFA application. Here are the command line arguments (short name, long name, description, default value)
     -h, --help: this help 
     -a, --start: start the animation loop  (default: false ) 

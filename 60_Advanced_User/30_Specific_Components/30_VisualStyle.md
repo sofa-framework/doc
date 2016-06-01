@@ -73,7 +73,7 @@ VisualStyle component, attach it to the node, create and tune a
 !DisplayFlags object and set the !VisualStyle with it, as shown in the
 following example:
 
-``` {.ignore:true}
+```
   VisualStyle::SPtr visualStyle = New();
   root->addObject(visualStyle);
   VisualStyle::DisplayFlags displayFlags;
@@ -85,6 +85,6 @@ You can also use method component::visualmodel::addVisualStyle(
 simulation::Node::SPtr ) to insert a VisualStyle component at the given
 node and return a WriteAccessor on the display flags:
 
-``` {.ignore:true}
+```
 addVisualStyle(root)->setShowVisual().setShowBehavior().setShowMapping(false);
 ```

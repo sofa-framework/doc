@@ -56,7 +56,7 @@ That is why this section propose standard names used Loaders: Standard
 names for **\[doxygen:sofa::core::componentmodel::loader::MeshLoader
 MeshLoader\]**:
 
-``` {.ignore:true}
+```
 list of points coordinates:
   position     =>   type: Data < helper::vector  > positions;
 
@@ -75,7 +75,7 @@ Standard names for
 **\[doxygen:sofa::core::componentmodel::loader::ImageLoader
 ImageLoader\]**:
 
-``` {.ignore:true}
+```
  Not yet implemented.
 ```
 
@@ -86,14 +86,14 @@ Data. **\[doxygen:sofa::component::loader::MeshGmshLoader
 MeshGmshLoader\]**: (example in:
 *Sofa/examples/Components/loader/MeshGmshLoader.scn*)
 
-``` {.ignore:true}
+```
 No other Data.
 ```
 
 **\[doxygen:sofa::component::loader::MeshObjLoader MeshObjLoader\]**:
 (example in: *Sofa/examples/Components/loader/MeshObjLoader.scn*)
 
-``` {.ignore:true}
+```
   texturesList =>  type: Data  > > texturesList;
   texcoords    =>  type: Data< helper::vector< sofa::defaulttype::Vector2> > texCoords;
   normalsList  =>  type: Data  > > normalsList;
@@ -107,7 +107,7 @@ No other Data.
 MeshTrianLoader\]**: (example in:
 *Sofa/examples/Components/loader/MeshTrianLoader.scn*)
 
-``` {.ignore:true}
+```
   neighborTable          => type: Data  > > neighborTable;
   edgesOnBorder          => type: Data  > > edgesOnBorder;
   trianglesOnBorderList  => type: Data < helper::vector  > trianglesOnBorderList;
@@ -116,13 +116,13 @@ MeshTrianLoader\]**: (example in:
 **\[doxygen:sofa::component::loader::MeshVTKLoader MeshVTKLoader\]**:
 (example in: *Sofa/examples/Components/loader/MeshVTKLoader.scn*)
 
-``` {.ignore:true}
+```
   No other Data. For the moment.
 ```
 
 **\[doxygen:sofa::component::loader::MeshXspLoader MeshXspLoader\]**:
 
-``` {.ignore:true}
+```
   gravity      =>  type: Data  > gravity;
   viscosity    =>  type: Data  > viscosity;
 ```
