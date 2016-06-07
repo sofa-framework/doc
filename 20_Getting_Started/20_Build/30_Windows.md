@@ -91,7 +91,7 @@ you downloaded before.
 
 **Finally**, you should have something like this:
 
-![sofa\_files](https://www.sofa-framework.org/wp-content/uploads/2015/11/sofa_files.png)
+![sofa_files](https://www.sofa-framework.org/wp-content/uploads/2015/11/sofa_files.png)
 
 
 ### Generate a Makefile with CMake
@@ -151,7 +151,8 @@ Boost libraries should be auto-detected.
 Expected result for VS2013 64-bit build with Boost 1.59.0 installed in
 C:/boost/ :
 
-![screen\_boost\_cmake](https://www.sofa-framework.org/wp-content/uploads/2015/11/screen_boost_cmake.png)
+![screen_boost_cmake](https://www.sofa-framework.org/wp-content/uploads/2015/11/screen_boost_cmake.png)
+
 When you are ready, press **Generate**. This will create your Visual
 Studio solution.
 
