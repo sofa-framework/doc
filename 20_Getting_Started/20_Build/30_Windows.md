@@ -49,8 +49,8 @@ Finally, SOFA requires some specific dependencies:
 
 To complete the dependencies integration, you can add Boost and Qt to
 your PATH.  
-Boost: add `your/boost/path/libXX-msvc-XX`  
-Qt: add `your/Qt/path/msvcXXXX_XX/bin` and `your/Qt/path/msvcXXXX_XX/lib`
+**Boost**: add `your/boost/path/libXX-msvc-XX`  
+**Qt**: add `your/Qt/path/msvcXXXX_XX/bin` and `your/Qt/path/msvcXXXX_XX/lib`
 
 
 Building on Windows
