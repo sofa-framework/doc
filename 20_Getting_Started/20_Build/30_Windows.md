@@ -151,8 +151,7 @@ Boost libraries should be auto-detected.
 Expected result for VS2013 64-bit build with Boost 1.59.0 installed in
 C:/boost/ :
 
-![screen\_boost\_cmake](https://www.sofa-framework.org/wp-content/uploads/2015/11/screen_boost_cmake.png){.alignnone
-.size-full .wp-image-5833 height="600"}
+![screen\_boost\_cmake](https://www.sofa-framework.org/wp-content/uploads/2015/11/screen_boost_cmake.png)
 When you are ready, press **Generate**. This will create your Visual
 Studio solution.
 
