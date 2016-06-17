@@ -1,7 +1,7 @@
 #### AttachBodyButtonSetting
 
 Tune the attachBody mouse operation, like which button is used for the
-operation and the stiffness of the spring;
+operation and the stiffness of the spring.
 
 #### FixPickedParticleButtonSetting
 
@@ -16,7 +16,7 @@ you use the picking with the selection buffer you can only pick the
 surfacic primitives like triangles and spheres which belong to the
 collision layer of your models.
 
-#### BackgroudSetting
+#### BackgroundSetting
 
 Tune the color or the image used for the background of the viewer.
 
