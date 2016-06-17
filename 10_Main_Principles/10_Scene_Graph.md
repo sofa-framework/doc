@@ -46,13 +46,13 @@ For each of these steps, the operation implemented with the visitor can be descr
 *   abstract methods depending on the triggered action (ex: clearing an global vector, or accumulating forces),
 *   and vector identificators.
 
-Example: _acculating the forces_.
+Example: _accumulating the forces_.
 
-Acculating forces is used to compute all the forces (internal or external) applied on our object. The solver then triggers the associate visitor and the action is propagated through the graph and calls the appropriate (botom-up) methods at each force and mapping node. All components able to compute forces will accumulate their contributions. This information is finally gathered in the MechanicalObject and the solver will use this "force" vector to solve the mathematical system.
+Accumulating forces is used to compute all the forces (internal or external) applied on our object. The solver then triggers the associate visitor and the action is propagated through the graph and calls the appropriate (bottom-up) methods at each force and mapping node. All components able to compute forces will accumulate their contributions. This information is finally gathered in the MechanicalObject and the solver will use this "force" vector to solve the mathematical system.
 
 <div style="text-align:center;width:50%;margin: 0 25% 0;">
 
 <img src="https://www.sofa-framework.org/wp-content/uploads/2016/05/Images-tuto.0010.jpg" style="width: 90%;"/>
-Fig. 4 - Traversing visitors triggered for the _acculateForce()_ action
+Fig. 4 - Traversing visitors triggered for the _accumulateForce()_ action
 
 </div>
