@@ -162,6 +162,12 @@ install(TARGETS MyPlugin
         ARCHIVE DESTINATION lib)
 ```
 
+And the following must be added to *applications/plugins/CMakeLists.txt*:
+
+``` {.cmake}
+sofa_add_plugin(MyPlugin MyPlugin)
+```
+
 Keep us updated!
 ================
 
