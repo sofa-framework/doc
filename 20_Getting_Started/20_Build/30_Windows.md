@@ -41,6 +41,7 @@ Finally, SOFA requires some specific dependencies:
     are required.
     -   Download the [SOFA dependencies for Windows using VS2013](https://gforge.inria.fr/frs/download.php/file/36036/sofa-win-dependencies-21-11-2013_VS2013.zip).
     -   or the [SOFA dependencies for Windows using VS2015](https://gforge.inria.fr/frs/download.php/file/36035/sofa-win-dependencies-06-11-2015_VS2015.zip).
+    
     You will unzip them in your sources folder (e.g. sofa/v15.12/src/)
     after cloning SOFA (see below).
 
