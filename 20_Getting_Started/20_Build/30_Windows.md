@@ -86,10 +86,8 @@ Or get the development **unstable** version on the master branch:
 git clone -b master https://github.com/sofa-framework/sofa.git sofa/master/src/
 ```
 
-**Next**, unzip in your sources folder (e.g. sofa/v15.12/src/) the [SOFA
-dependencies for
-Windows](https://gforge.inria.fr/frs/download.php/33142/sofa-win-dependencies-21-11-2013.zip)
-you downloaded before.
+**Next**, unzip in your sources folder (e.g. sofa/v15.12/src/) the **SOFA
+dependencies for Windows** you downloaded before.
 
 **Finally**, you should have something like this:
 
