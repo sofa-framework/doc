@@ -1,3 +1,5 @@
+**NOTE:** Every scenes detailed in tutorial can also be launched using the [runSofa](https://www.sofa-framework.org/community/doc/getting-started/run-sofa/) application directly.
+
 Tutorial Application
 --------------------
 
