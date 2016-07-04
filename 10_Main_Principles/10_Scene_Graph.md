@@ -9,7 +9,8 @@ Fig. 1 - A graph with one single child node
 
 </div>
 
-#### Structure of a scene
+Structure of a scene
+--------------------
 
 The scene starts from a parent node, called the "Root" node. All other nodes (called child nodes) inherit from this main node. In the figure 1, a first child node "Liver" is defined and represents a first object. This "Liver" node includes components (solvers, forcefield, mass) used to build the simulation. Each of these components contains attributes. For instance, a component of mass features an attribute for mass density; an iterative linear solver needs an attribute defining a maximum of iterations. These attributes are also called Data. Two Data of a same type can be connected one with another.
 
@@ -36,7 +37,8 @@ To build a simulation in SOFA, the scene graph can be written both using:
 *   XML files. Read the [associated page](https://www.sofa-framework.org/support/doc/using-sofa/write-a-scene-in-xml/) about how to write a scene in XML.
 *   Python scripts. Read the [associated page](https://www.sofa-framework.org/support/doc/using-sofa/features/python-scripting/) about how to write in Python.
 
-#### Visitors
+Visitors
+--------
 
 During the different steps of the simulation (initialization, system assembly, solving, visualization), information needs to be recovered from all the graph nodes. An implicit mechanism based on visitors enables this. You can find the abstract class _Visitor.h_ in the SofaSimulation package.
 
