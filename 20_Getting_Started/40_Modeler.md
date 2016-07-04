@@ -1,3 +1,5 @@
+**NOTE:** The Modeler is an application that has not been maintained for a long time. Few issues has been reported in the SOFA forum. In a near future, the Modeler will be updated. 
+
 What is the Modeler ?
 ---------------------
 
