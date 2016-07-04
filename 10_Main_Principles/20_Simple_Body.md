@@ -1,6 +1,7 @@
 This page presents the basic components required to simulate a single object.
 
-#### The animation loop
+The animation loop
+------------------
 
 Any simulation in SOFA is ruled by an animation loop. This component manages the different steps of the simulation, i.e. the animation loop makes the simulation run from one time step to the next, and at each time step, it triggers the solving of the system and the associated constraints. If no animation loop is defined in the scene, a "DefaultAnimationLoop" is automatically created.
 
@@ -11,13 +12,15 @@ In an XML format, this would be written as follows:
 </Node>
 ```
 
-#### State vectors (DOFs)
+State vectors (DOFs)
+--------------------
 
 The main component of a simulation in SOFA is the MechanicalObject. This component saves all the state vectors, namely the degrees of freedom (DOFs), their associated velocity, acceleration and the forces applied on the simulated body.
 
 The SOFA framework was historically focused on soft tissue mechanics. Therefore, the semantic is strongly related to mechanics. The component saving the degrees of freedom is called "MechanicalObject", and the degrees of freedom are stored in the "position" field.
 
-#### Templates
+Templates
+---------
 
 In this MechanicalObject, we need to specify the type of degrees of freedom. The MechanicalObject can thus save either:
 
@@ -35,7 +38,8 @@ In an XML format, this would be written as follows:
 </Node>
 ```
 
-#### Solvers
+Solvers
+-------
 
 To solve the mathematical system at each time step, solvers have to be defined. For dynamic simulations, you need to choose:
 
@@ -54,7 +58,8 @@ In an XML format, this would be written as follows:
 </Node>
 ```
 
-#### Physics
+Physics
+-------
 
 There is many different kind of physics available in SOFA, namely soft body mechanics but also thermodynamics and fluid dynamics. To run a physics simulation, all you need is to add the associated component in your scene.
 
