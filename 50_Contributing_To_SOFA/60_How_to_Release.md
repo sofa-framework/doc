@@ -5,7 +5,7 @@ When you are ready for creating a release:
 *   check the status of the build on the [dashboard](http://www.sofa-framework.org/dash/)
 *   make sure the [changelog](https://github.com/sofa-framework/sofa/blob/master/CHANGELOG.md) is up-to-date
 *   make sure your local SOFA repository is up-to-date  
-    ```
+    ```bash
     git checkout master  
     git stash  
     git pull -r
@@ -19,7 +19,7 @@ When you are ready for creating a release:
 In this new branch:
 *   run header script GPL / LGPL (TODO where is the script? check it use the right header for GPL (e.g. gui) /LGPL part (warning about plugins))
 *   update the version in the CMakeList.txt  
-    ```
+    ```cmake
     #CPack install  
     SET(CPACK_PACKAGE_VERSION "1.1.0")  
     SET(CPACK_PACKAGE_VERSION_MAJOR "1")  
@@ -28,7 +28,7 @@ In this new branch:
     ```
     
 *   apply the following custom.cmake  
-    ```
+    ```cmake
     # Wrapper macro to set boolean value to a variable
     macro(setSofaOption name value)
         set(${name} "${value}" CACHE BOOL "" FORCE)
