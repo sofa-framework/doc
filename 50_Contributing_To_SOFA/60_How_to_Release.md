@@ -17,6 +17,7 @@ When you are ready for creating a release:
     `git push -u origin v1.1`
 
 In this new branch:  
+
 *   run header script GPL / LGPL (TODO where is the script? check it use the right header for GPL (e.g. gui) /LGPL part (warning about plugins))  
 *   update the version in the CMakeList.txt  
     ```cmake
@@ -69,7 +70,6 @@ The next steps do depend on the operating system.
 * * * 
 
 ## Linux
-
 
 *   configure and build
 *   create the binaries : `make/ninja install`  
