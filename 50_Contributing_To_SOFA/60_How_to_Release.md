@@ -16,8 +16,8 @@ When you are ready for creating a release:
 *   push this new branch on the remote repository  
     `git push -u origin v1.1`
 
-In this new branch:
-*   run header script GPL / LGPL (TODO where is the script? check it use the right header for GPL (e.g. gui) /LGPL part (warning about plugins))
+In this new branch:  
+*   run header script GPL / LGPL (TODO where is the script? check it use the right header for GPL (e.g. gui) /LGPL part (warning about plugins))  
 *   update the version in the CMakeList.txt  
     ```cmake
     #CPack install  
@@ -64,9 +64,10 @@ In this new branch:
     endif()
     ```
 
-The next steps do depend on the operating system:
+The next steps do depend on the operating system.
 
 * * * 
+
 ## Linux
 
 
@@ -74,9 +75,7 @@ The next steps do depend on the operating system:
 *   create the binaries : `make/ninja install`  
     (you can potentially change the repository where the binaries are created with the CMAKE_INSTALL_PREFIX variable)
 
-
 * * * 
-
 
 ## Windows
 
