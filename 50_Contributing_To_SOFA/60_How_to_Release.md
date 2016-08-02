@@ -9,6 +9,78 @@ Steps
 Building packages
 -----------------
 
+### Linux
+
+When you are ready for creating a release:
+
+*   check the status of the build on the [dashboard](http://www.sofa-framework.org/dash/)
+*   make sure the [changelog](https://github.com/sofa-framework/sofa/blob/master/CHANGELOG.md) is up-to-date
+*   make sure your local SOFA repository is up-to-date  
+    `git checkout master  
+    git stash  
+    git pull -r`
+*   create a new branch for the release  
+    `git checkout -b v1.1`
+*   push this new branch on the remote repository  
+    `git push -u origin v1.1`
+
+In this new branch:
+
+*   update the version in the CMakeList.txt  
+    `#CPack install  
+    SET(CPACK_PACKAGE_VERSION "1.1.0")  
+    SET(CPACK_PACKAGE_VERSION_MAJOR "1")  
+    SET(CPACK_PACKAGE_VERSION_MINOR "1")  
+    SET(CPACK_PACKAGE_VERSION_PATCH "0")`
+*   apply the following custom.cmake  
+    ```
+    ######################
+    # Wrapper macro to set boolean value to a variable
+    macro(setSofaOption name value)
+        set(${name} "${value}" CACHE BOOL "" FORCE)
+        message("${name} ${value}")
+    endmacro()
+
+    macro(setSofaPath name value)
+        set(${name} "${value}" CACHE PATH "" FORCE)
+        message("${name} ${value}")
+    endmacro()
+
+    macro(setSofaString name value)
+        set(${name} "${value}" CACHE STRING "" FORCE)
+        message("${name} ${value}")
+    endmacro()
+
+    macro(setSofaFilePath name value)
+        set(${name} "${value}" CACHE FILEPATH "" FORCE)
+        message("${name} ${value}")
+    endmacro()
+    ######################
+
+    if(NOT DEFINED CUSTOM_PRECONFIGURE_DONE)
+        set(CUSTOM_PRECONFIGURE_DONE 1 CACHE INTERNAL "")
+
+    # OFF
+    setSofaOption(APPLICATION_MODELER OFF)
+    setSofaOption(SOFA_BUILD_TESTS OFF)
+    # ON
+    setSofaOption(SOFA_BUILD_TUTORIALS ON)
+
+    endif()
+    ```
+*   configure and build
+*   create the binaries : `make/ninja install`  
+    (you can potentially change the repository where the binaries are created with the CMAKE_INSTALL_PREFIX variable)
+
+Following this:
+
+*   update the link on the [download](https://www.sofa-framework.org/download/) page for the binaries (add changes in dependencies)
+*   update the flag on the forum
+*   create [announcement](https://www.sofa-framework.org/community/forum/section/announcements-infos/) on the forum and [twitter](https://twitter.com/SofaFramework)
+*   create a [release](https://github.com/sofa-framework/sofa/releases) GitHub with a link to the changelog
+
+
+
 ### Windows
 
 -   (config: Visual Studio 2015 / x86, zip package)
@@ -36,10 +108,6 @@ git.exe into your PATH environment variable.
     VS2015 pre-built binaries for the version 5.6)
 -   boost 1.59 from
     <http://sourceforge.net/projects/boost/files/boost-binaries/1.59.0/> (boost\_1\_59\_0-msvc-14.0-32.exe)
-
-### Linux
-
-TODO
 
 ### OS X
 
