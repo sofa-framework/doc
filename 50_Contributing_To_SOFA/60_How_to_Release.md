@@ -11,6 +11,7 @@ When you are ready for creating a release:
     git pull -r
     ```
     
+*   check the year in the files: README.md, Authors.txt, LICENCE.txt
 *   create a new branch for the release  
     `git checkout -b v1.1`
 *   push this new branch on the remote repository  
@@ -18,7 +19,10 @@ When you are ready for creating a release:
 
 In this new branch:  
 
-*   run header script GPL / LGPL (TODO where is the script? check it use the right header for GPL (e.g. gui) /LGPL part (warning about plugins))  
+*   run header script to change the version (for both GPL / LGPL parts)
+    *   launch script : licenseUpdater (scripts/licenseUpdater)
+    *   change "development version" (twice) into "v1.1"
+    *   compile it and run: `./licenseUpdater path_to_sofa`
 *   update the version in the CMakeList.txt  
     ```cmake
     #CPack install  
