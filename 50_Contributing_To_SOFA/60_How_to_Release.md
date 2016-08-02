@@ -20,7 +20,7 @@ When you are ready for creating a release:
 In this new branch:  
 
 *   run header script to change the version (for both GPL / LGPL parts)
-    *   launch script : licenseUpdater (scripts/licenseUpdater)
+    *   open the file licenseUpdater.cpp (scripts/licenseUpdater)
     *   change "development version" (twice) into "v1.1"
     *   compile it and run: `./licenseUpdater path_to_sofa`
 *   update the version in the CMakeList.txt  
