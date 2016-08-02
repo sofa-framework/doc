@@ -10,6 +10,7 @@ When you are ready for creating a release:
     git stash  
     git pull -r
     ```
+    
 *   create a new branch for the release  
     `git checkout -b v1.1`
 *   push this new branch on the remote repository  
