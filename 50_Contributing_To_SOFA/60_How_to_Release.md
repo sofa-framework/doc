@@ -83,12 +83,10 @@ The next steps do depend on the operating system.
 -   select CPACK\_ZIP in the CMake configuration
 -   compile as usual
 -   modify the package project, in the post-build step (bug of Cmake or
-    I missed something):
-
-"C:\\Program Files (x86)\\CMake\\bin\\cpack.exe" -C \$(Configuration)
---config ./CPackConfig.cmake by "C:\\Program Files
-(x86)\\CMake\\bin\\cpack.exe" -C \$(Configuration) --config
-./CPackConfig.cmake -G ZIP
+    I missed something), replace  
+`"C:\\Program Files (x86)\\CMake\\bin\\cpack.exe" -C \$(Configuration) --config ./CPackConfig.cmake`  
+with  
+`"C:\\Program Files(x86)\\CMake\\bin\\cpack.exe" -C \$(Configuration) --config ./CPackConfig.cmake -G ZIP`  
 
 -   build the target "package"
 -   it will create the zip file in your build directory
