@@ -11,7 +11,7 @@ When you are ready for creating a release:
     git pull -r
     ```
     
-*   check the year in the files: README.md, Authors.txt, LICENCE.txt
+*   check the year in the files: README.md, Authors.txt, LICENCE.txt, CMakeList.txt (SOFA, SofaKernel, SofaFramework)
 *   create a new branch for the release  
     `git checkout -b v1.1`
 *   push this new branch on the remote repository  
