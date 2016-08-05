@@ -76,7 +76,7 @@ as follows:
 
 Get the current **stable** version on the v15.12 branch:
 ```bash
-git clone -b v15.12 https://github.com/sofa-framework/sofa.git sofa/v15.12/src/
+git clone -b v16.08 https://github.com/sofa-framework/sofa.git sofa/v16.08/src/
 ```
 
 Or get the development **unstable** version on the master branch:
@@ -115,15 +115,14 @@ manage the module dependencies. You can then customize your version of
 SOFA, activate or deactivate plugins and functionalities.
 
 A further dev warning may appear:
-```nohighlight
-CMake Warning (dev) at YOUR_QT_MSVC_PATH/lib/cmake/Qt5Core/Qt5CoreMacros.cmake:224 (configure_file):
-configure_file called with unknown argument(s):
 
-COPY_ONLY
+    CMake Warning (dev) at YOUR_QT_MSVC_PATH/lib/cmake/Qt5Core/Qt5CoreMacros.cmake:224 (configure_file):
+    configure_file called with unknown argument(s):
 
-Call Stack (most recent call first):
-applications/projects/Modeler/exec/CMakeLists.txt:14 (qt5_add_resources)
-```
+    COPY_ONLY
+
+    Call Stack (most recent call first):
+    applications/projects/Modeler/exec/CMakeLists.txt:14 (qt5_add_resources)
 
 This is just a typo with Qt5CoreMacros.cmake file. It uses COPY\_ONLY
 instead of COPYONLY. Simply edit your Qt5CoreMacros.cmake, replace

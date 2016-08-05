@@ -107,7 +107,7 @@ First, download the sources from Git repository:
 
 Get the current **stable** version on the v15.12 branch:
 ``` {.bash .stable}
-git clone -b v15.12 https://github.com/sofa-framework/sofa.git sofa/v15.12/src/
+git clone -b v16.08 https://github.com/sofa-framework/sofa.git sofa/v16.08/src/
 ```
 
 Or get the development **unstable** version on the master branch:
