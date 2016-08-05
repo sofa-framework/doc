@@ -75,13 +75,11 @@ as follows:
 **First**, download the sources from Git repository:
 
 Get the current **stable** version on the v15.12 branch:
-
 ``` {.bash .stable}
 git clone -b v15.12 https://github.com/sofa-framework/sofa.git sofa/v15.12/src/
 ```
 
 Or get the development **unstable** version on the master branch:
-
 ``` {.bash .unstable}
 git clone -b master https://github.com/sofa-framework/sofa.git sofa/master/src/
 ```
