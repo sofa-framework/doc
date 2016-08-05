@@ -128,6 +128,12 @@ If you want a pure Mac OS X package, you have to:
 It will create a dmg (compressed archive), with an app containing
 \*all\* required libraries, runSofa binary and the share directory.
 
+## Misc
+
+Tricks while doing Qt Packaging:
+- (OS X) before running, to show when dylibs are loaded: $ DYLD_PRINT_LIBRARIES=1 ./runSofa
+- Qt plugins are not loaded at runtime so to force Qt to print when plugins are loaded and used: $ export QT_DEBUG_PLUGINS=1
+
 * * * 
 
 # Final steps
