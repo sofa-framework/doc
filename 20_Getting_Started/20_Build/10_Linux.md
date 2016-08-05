@@ -96,7 +96,7 @@ To set up clean repositories, we propose to arrange the SOFA directories
 as follows:
 
 -   sofa/
-    -   v15.12/
+    -   v16.08/
         -   src/
         -   build/
     -   master
@@ -105,7 +105,7 @@ as follows:
 
 First, download the sources from Git repository:
 
-Get the current **stable** version on the v15.12 branch:
+Get the current **stable** version on the v16.08 branch:
 ``` {.bash .stable}
 git clone -b v16.08 https://github.com/sofa-framework/sofa.git sofa/v16.08/src/
 ```
@@ -119,7 +119,7 @@ To compile the project, open a terminal, go to your sofa/ directory and
 type the following command to run CMake:
 
 ```bash
-cd v15.12
+cd v16.08
 mkdir build/
 cd build/
 cmake-gui ../src/

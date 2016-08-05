@@ -42,7 +42,7 @@ Finally, SOFA requires some specific dependencies:
     -   Download the [SOFA dependencies for Windows using VS2013](https://www.sofa-framework.org/wp-content/uploads/2016/08/sofa-win-dependencies-21-11-2013_VS2013.zip).
     -   or the [SOFA dependencies for Windows using VS2015](https://www.sofa-framework.org/wp-content/uploads/2016/08/sofa-win-dependencies-06-11-2015_VS2015.zip).
     
-    You will unzip them in your sources folder (e.g. sofa/v15.12/src/)
+    You will unzip them in your sources folder (e.g. sofa/v16.08/src/)
     after cloning SOFA (see below).
 
 
@@ -65,7 +65,7 @@ To set up clean repositories, we propose to arrange the SOFA directories
 as follows:
 
 -   sofa/
-    -   v15.12/
+    -   v16.08/
         -   src/
         -   build/
     -   master/
@@ -74,7 +74,7 @@ as follows:
 
 **First**, download the sources from Git repository:
 
-Get the current **stable** version on the v15.12 branch:
+Get the current **stable** version on the v16.08 branch:
 ```bash
 git clone -b v16.08 https://github.com/sofa-framework/sofa.git sofa/v16.08/src/
 ```
@@ -84,7 +84,7 @@ Or get the development **unstable** version on the master branch:
 git clone -b master https://github.com/sofa-framework/sofa.git sofa/master/src/
 ```
 
-**Next**, unzip in your sources folder (e.g. sofa/v15.12/src/) the **SOFA
+**Next**, unzip in your sources folder (e.g. sofa/v16.08/src/) the **SOFA
 dependencies for Windows** you downloaded before.
 
 **Finally**, you should have something like this:
@@ -130,7 +130,7 @@ COPY\_ONLY with COPYONLY and **Configure** again.
 
 #### Boost detection
 
-**WARNING**: With v15.03, v15.09 and v15.12, no error shows up
+**WARNING**: With v15.03, v15.09 and v16.08, no error shows up
 concerning Boost (miniBoost is integrated with sources). But since Boost
 is needed by several plugins, we decided to remove miniBoost from our
 future releases. So you better learn now how to manually tell to CMake
