@@ -115,14 +115,15 @@ manage the module dependencies. You can then customize your version of
 SOFA, activate or deactivate plugins and functionalities.
 
 A further dev warning may appear:
+```nohighlight
+CMake Warning (dev) at YOUR_QT_MSVC_PATH/lib/cmake/Qt5Core/Qt5CoreMacros.cmake:224 (configure_file):
+configure_file called with unknown argument(s):
 
-    CMake Warning (dev) at YOUR_QT_MSVC_PATH/lib/cmake/Qt5Core/Qt5CoreMacros.cmake:224 (configure_file):
-    configure_file called with unknown argument(s):
+COPY_ONLY
 
-    COPY_ONLY
-
-    Call Stack (most recent call first):
-    applications/projects/Modeler/exec/CMakeLists.txt:14 (qt5_add_resources)
+Call Stack (most recent call first):
+applications/projects/Modeler/exec/CMakeLists.txt:14 (qt5_add_resources)
+```
 
 This is just a typo with Qt5CoreMacros.cmake file. It uses COPY\_ONLY
 instead of COPYONLY. Simply edit your Qt5CoreMacros.cmake, replace
