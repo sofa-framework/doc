@@ -1,5 +1,5 @@
 In computer science, most of the computations require a discretization in space of the considered simulation domain. This discretization therefore implies to define the domain as a collection of subsets. Regarding the Finite Element Method (FEM), the domain is divided into small elements. These elements and their connectedness establish the topology. The topology can be used for the computation, the visualization, the collision, etc. It is therefore a transversal aspect of the simulation.
-<img src="https://www.sofa-framework.org/wp-content/uploads/2016/08/redHeart-alpha.png" style="width: 30%;float:right;"/>
+<img src="https://www.sofa-framework.org/wp-content/uploads/2016/08/redHeart-alpha.png" style="width: 40%;float:right;"/>
 
 We consider meshes that are cellular complexes made of k-simplices (triangulations, tetrahedralisation) or k-cubes (quad or hexahedron meshes). These meshes are the most commonly used in real-time surgery simulation and can be hierarchically decomposed into k-cells, edges being 1-cells, triangles and quads being 2-cells, tetrahedron and hexahedron being 3-cells. To take advantage of this feature, the different mesh topologies are structured as a family tree where children topologies are made of their parent topology.
 
@@ -16,8 +16,8 @@ When simulating the physics of an object, its topology must therefore be loaded.
 
 More information about the loaders can be found on the [associated page](https://www.sofa-framework.org/community/doc/using-sofa/basic-components/loaders/).
 
-<div style="text-align:center;width:50%;margin: 0 25% 0;">
-<img src="https://www.sofa-framework.org/wp-content/uploads/2016/08/Topology-types.png" style="width: 90%;"/>
+<div style="text-align:center;width:90%;margin: 0 5% 0;">
+<img src="https://www.sofa-framework.org/wp-content/uploads/2016/08/Topology-types.png" style="width: 80%;"/>
 Fig. 1 - Elements of topology available in SOFA
 </div>
 
