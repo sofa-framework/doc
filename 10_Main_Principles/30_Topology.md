@@ -1,7 +1,7 @@
 In computer science, most of the computations require a discretization in space of the considered simulation domain. This discretization therefore implies to define the domain as a collection of subsets. Regarding the Finite Element Method (FEM), the domain is divided into small elements. These elements and their connectedness establish the topology. The topology can be used for the computation, the visualization, the collision, etc. It is therefore a transversal aspect of the simulation.
 <img src="https://www.sofa-framework.org/wp-content/uploads/2016/08/redHeart-alpha.png" style="width: 30%;float:right;"/>
 
-
+We consider meshes that are cellular complexes made of k-simplices (triangulations, tetrahedralisation) or k-cubes (quad or hexahedron meshes). These meshes are the most commonly used in real-time surgery simulation and can be hierarchically decomposed into k-cells, edges being 1-cells, triangles and quads being 2-cells, tetrahedron and hexahedron being 3-cells. To take advantage of this feature, the different mesh topologies are structured as a family tree where children topologies are made of their parent topology.
 
 Loading a topology
 ------------------
@@ -22,7 +22,7 @@ Fig. 1 - Elements of topology available in SOFA
 </div>
 
 
-As shown in Fig. 1, these loaders will load the different elements of the topology (if any), namely: the points, edges, triangles, quads, hexas and tetras. These elements need to be saved into a _TopologyContainer_. This container gathers all topological elements and stores all the information in vectors. There is one container per topological element:
+As shown in Fig. 1, these loaders will load the different elements of the topology (if any), namely: the points, edges, triangles, quads, hexas and tetras. These elements need to be saved into a _TopologyContainer_. This container stores all the topological information in vectors. It indicates how vertices are connected to each other by edges, triangles or any type of mesh element and implements all the related functions (e.g. _getTetrahedraAroundVertex()_, _getTriangleIndex()_). There is one container per topological element:
 
 * _PointSetTopologyContainer_
 * _EdgeSetTopologyContainer_
@@ -46,7 +46,7 @@ Example: _examples/Demos/liver.scn_
 
 **_Algorithms on the geometry_**
 
-Once loaded, one may want to perform computations based on the geometry (e.g. _computeTriangleArea()_, _isPointInTetrahedron()_). _SetGeometryAlgorithms_ classes are already available in SOFA to access geometrical algorithms. One class is implemented per topological element. It allows for instance to know whether a specific position is (or not) within a tetrahedron, or to select all tetrahedra around one point. Thus, it exists:
+Once loaded, one may want to perform computations based on the geometry. _SetGeometryAlgorithms_ classes are already available in SOFA to access geometrical algorithms (e.g. _computeTriangleArea()_, _isPointInTetrahedron()_). The _SetGeometryAlgorithms_ include all geometrical functions specific to the topological elements and also implement the visualization options for this topology (e.g. showing point indices, drawing triangles). One class is implemented per topological element. Thus, it exists:
 
 * _PointSetGeometryAlgorithms_
 * _EdgeSetGeometryAlgorithms_
@@ -55,20 +55,20 @@ Once loaded, one may want to perform computations based on the geometry (e.g. _c
 * _TetrahedronSetGeometryAlgorithms_
 * _HexahedronSetGeometryAlgorithms_
 
-The resulting xml file is:
+
+In the XML scene, we have:
 
 ```xml
     <MeshObjLoader name="ObjLoader" filename="path_to_my_mesh.obj" />
     <MechanicalObject name="StateVectors" src="@ObjLoader" />
     <TetrahedronSetTopologyContainer name="TetraTopologyContainer" src="@meshLoader" />
-    <TetrahedronSetGeometryAlgorithms name="TetraAlgorithms" template="Vec3d" />
+    <TetrahedronSetGeometryAlgorithms name="TetraAlgorithms" template="Vec3d" drawTetrahedra="1"/>
 ```
 
 
 **_Inheritance_**
 
 When a topology is loaded in a node of the graph, the child nodes will automatically inherit from the parent's topology.
-
 
 
 Topological changes
@@ -79,7 +79,7 @@ In some simulations, the topology may evolve. Elements could be removed, added o
 * _SetTopologyModifier_: defines all the basic operations (add or remove tetrahedra) and their process
 * _SetTopologyAlgorithms_: defines more specific algorithms (e.g. _subDivideTetrahedronsWithPlane()_, _InciseAlongEdge()_, etc.)
 
-The The xml scene looks like:
+The XLM scene looks like:
 
 ```xml
     <MeshObjLoader name="ObjLoader" filename="path_to_my_mesh.obj" />
@@ -98,8 +98,8 @@ Then, the nature of the topological changes can either:
 
 
 
-Topology & Mappings
--------------------
+Topological mappings
+--------------------
 
 **_Multi-model representation_**
 
@@ -108,7 +108,7 @@ One of the significant strength of SOFA is to allow several representation of a 
 
 **_From a topology to another_**
 
-It is possible to go from one topological representation to another. Again, the [mappings](https://www.sofa-framework.org/community/doc/main-principles/mapping-mechanism/) make it possible. If one of the simulation node is modeling hexahedra, you can compute another model based on the same geometry with tetrahedra (based on the subdivision of hexahedra). The existing _TopologicalMappings_ are:
+It is possible to define a mesh topology from another mesh topology using the same degrees of freedom. Again, the [mappings](https://www.sofa-framework.org/community/doc/main-principles/mapping-mechanism/) make it possible. Mappings can be used either to go from one topology to a lower one in the topological hierarchy (from tetrahedra to triangles), or to split elements (quads into triangles). As usual mappings, forces applied on the slave topology are propagated onto the master one. Both topologies will therefore be assigned to the same _MechanicalObject_. The existing _TopologicalMappings_ are:
 
 * _Hexa2TetraTopologicalMapping_
 * _Hexa2QuadTopologicalMapping_
@@ -117,6 +117,11 @@ It is possible to go from one topological representation to another. Again, the 
 * _Triangle2EdgeTopologicalMapping_
 
 
+**_Topological subset_**
+
 Finally, SOFA allows to select a subset of the topology using a _SubsetTopologicalMapping_. A part of the topology in the parent node can thus be selected to be used in a child node.
+
+
+
 
 All examples are available in the folder _examples/Components/topology/_.
