@@ -103,7 +103,7 @@ Sequence diagram
 Here is the usual sequence diagram of a SOFA simulation.
 
 
-<div style="text-align:center;width:90%;margin: 0 25% 0;">
+<div style="text-align:center;width:90%;margin: 0 5% 0;">
 
 <img src="https://www.sofa-framework.org/wp-content/uploads/2016/08/diagram-sequence.png" style="width: 100%;"/>
 Fig. 5 - Sequence diagram of a SOFA simulation

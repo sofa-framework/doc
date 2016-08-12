@@ -189,7 +189,7 @@ EulerSolver:
 Advanced sequence diagram
 -------------------------
 
-<div style="text-align:center;width:90%;margin: 0 25% 0;">
+<div style="text-align:center;width:90%;margin: 0 5% 0;">
 
 <img src="https://www.sofa-framework.org/wp-content/uploads/2016/08/diagram-sequence-detailed.png" style="width: 100%;"/>
 Fig. 1 - Detailed sequence diagram of a SOFA simulation
