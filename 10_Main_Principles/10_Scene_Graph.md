@@ -44,7 +44,7 @@ Data
 ----
 This "Liver" node of Fig. 1 includes components (solvers, forcefield, mass) used to build the mechanical simulation of the liver. Each of these components contains attributes. For instance, a component of mass features an attribute for mass density; an iterative linear solver needs an attribute defining a maximum of iterations. These attributes are also called **Data**. These Data are containers providing a reflective API used for serialization in XML files and automatic creation of input/output widgets in the user interface.
 
-Two Data instances can be connected one with another to keep their value synchronized. This is only possible if they both have the same type (_float_, _vector<double>_). A mechanism of lazy evaluation is used to recursively flag Data that are not up-to-date. Then, the Data is recomputed (only if necessary). The network of interconnected Data objects defines a data dependency graph. In an XML file, one Data is connected to another when "@" is used:
+Two Data instances can be connected one with another to keep their value synchronized. This is only possible if they both have the same type (`float`, `vector<double>`). A mechanism of lazy evaluation is used to recursively flag Data that are not up-to-date. Then, the Data is recomputed (only if necessary). The network of interconnected Data objects defines a data dependency graph. In an XML file, one Data is connected to another when "@" is used:
 ```xml
 <Component dataname="@path_to/component.data" />
 ```
