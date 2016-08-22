@@ -34,9 +34,9 @@ As shown in Fig. 1, these loaders will load the different elements of the topolo
 
 If the topology is uploaded from an .obj file with a topology involving tetrahedra, it would be written as:
 ```xml
-    <MeshObjLoader name="ObjLoader" filename="path_to_my_mesh.obj" />
-    <MechanicalObject name="StateVectors" src="@ObjLoader" />
-    <TetrahedronSetTopologyContainer name="TetraTopologyContainer" src="@meshLoader" />
+<MeshObjLoader name="ObjLoader" filename="path_to_my_mesh.obj" />
+<MechanicalObject name="StateVectors" src="@ObjLoader" />
+<TetrahedronSetTopologyContainer name="TetraTopologyContainer" src="@meshLoader" />
 ```
 
 Thus, the loader give the tetrahedral information to the _TopologyContainer_. From this information, the rest of the topology can be recovered, namely the triangles (faces), edges and points.
@@ -59,10 +59,10 @@ Once loaded, one may want to perform computations based on the geometry. _SetGeo
 In the XML scene, we have:
 
 ```xml
-    <MeshObjLoader name="ObjLoader" filename="path_to_my_mesh.obj" />
-    <MechanicalObject name="StateVectors" src="@ObjLoader" />
-    <TetrahedronSetTopologyContainer name="TetraTopologyContainer" src="@meshLoader" />
-    <TetrahedronSetGeometryAlgorithms name="TetraAlgorithms" template="Vec3d" drawTetrahedra="1"/>
+<MeshObjLoader name="ObjLoader" filename="path_to_my_mesh.obj" />
+<MechanicalObject name="StateVectors" src="@ObjLoader" />
+<TetrahedronSetTopologyContainer name="TetraTopologyContainer" src="@meshLoader" />
+<TetrahedronSetGeometryAlgorithms name="TetraAlgorithms" template="Vec3d" drawTetrahedra="1"/>
 ```
 
 
@@ -82,13 +82,12 @@ In some simulations, the topology may evolve. Elements could be removed, added o
 The XLM scene looks like:
 
 ```xml
-    <MeshObjLoader name="ObjLoader" filename="path_to_my_mesh.obj" />
-    <MechanicalObject name="StateVectors" src="@ObjLoader" />
-    <TetrahedronSetTopologyContainer name="TetraTopologyContainer" src="@meshLoader" />
-    <TetrahedronSetTopologyModifier   name="Modifier" />
-    <TetrahedronSetTopologyAlgorithms name="TopoAlgo"   template="Vec3d" />
-    <TetrahedronSetGeometryAlgorithms name="TetraAlgorithms" template="Vec3d" />
-
+<MeshObjLoader name="ObjLoader" filename="path_to_my_mesh.obj" />
+<MechanicalObject name="StateVectors" src="@ObjLoader" />
+<TetrahedronSetTopologyContainer name="TetraTopologyContainer" src="@meshLoader" />
+<TetrahedronSetTopologyModifier   name="Modifier" />
+<TetrahedronSetTopologyAlgorithms name="TopoAlgo"   template="Vec3d" />
+<TetrahedronSetGeometryAlgorithms name="TetraAlgorithms" template="Vec3d" />
 ```
 
 Then, the nature of the topological changes can either:
