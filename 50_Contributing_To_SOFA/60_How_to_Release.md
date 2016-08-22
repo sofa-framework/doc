@@ -85,13 +85,13 @@ The next steps do depend on the operating system.
 ## Windows
 
 -   (config: Visual Studio 2015 / x86, zip package)
--   select CPACK\_ZIP in the CMake configuration
+-   select CPACK_ZIP in the CMake configuration
 -   compile as usual
 -   modify the package project, in the post-build step (bug of Cmake or
     I missed something), replace  
-`"C:\\Program Files (x86)\\CMake\\bin\\cpack.exe" -C \$(Configuration) --config ./CPackConfig.cmake`  
+`"C:\Program Files (x86)\CMake\bin\cpack.exe" -C \$(Configuration) --config ./CPackConfig.cmake`  
 with  
-`"C:\\Program Files(x86)\\CMake\\bin\\cpack.exe" -C \$(Configuration) --config ./CPackConfig.cmake -G ZIP`  
+`"C:\Program Files(x86)\CMake\bin\cpack.exe" -C \$(Configuration) --config ./CPackConfig.cmake -G ZIP`  
 
 -   build the target "package"
 -   it will create the zip file in your build directory
@@ -106,7 +106,7 @@ git.exe into your PATH environment variable.
 -   Qt 5.5 has been built for VS2015 in x86 (I guess Qt will propose
     VS2015 pre-built binaries for the version 5.6)
 -   boost 1.59 from
-    <http://sourceforge.net/projects/boost/files/boost-binaries/1.59.0/> (boost\_1\_59\_0-msvc-14.0-32.exe)
+    <http://sourceforge.net/projects/boost/files/boost-binaries/1.59.0/> (boost_1_59_0-msvc-14.0-32.exe)
 
 * * * 
 
@@ -120,13 +120,13 @@ wishing to develop.
 
 If you want a pure Mac OS X package, you have to:
 
--   enable the CMake option RUNSOFA\_INSTALL\_AS\_BUNDLE
+-   enable the CMake option RUNSOFA_INSTALL_AS_BUNDLE
 -   configure/compile as usual
 -   and to package, run: ninja install && cpack -G DragNDrop
     CPackConfig.cmake
 
 It will create a dmg (compressed archive), with an app containing
-\*all\* required libraries, runSofa binary and the share directory.
+*all* required libraries, runSofa binary and the share directory.
 
 ## Misc
 
