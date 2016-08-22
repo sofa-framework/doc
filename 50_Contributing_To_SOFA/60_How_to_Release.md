@@ -89,9 +89,9 @@ The next steps do depend on the operating system.
 -   compile as usual
 -   modify the package project, in the post-build step (bug of Cmake or
     I missed something), replace  
-`"C:\\Program Files (x86)\\CMake\\bin\\cpack.exe" -C \\$(Configuration) --config ./CPackConfig.cmake`  
+`"C:&#92;Program Files (x86)&#92;CMake&#92;bin&#92;cpack.exe" -C &#92;$(Configuration) --config ./CPackConfig.cmake`  
 with  
-`"C:\\Program Files(x86)\\CMake\bin\\cpack.exe" -C \\$(Configuration) --config ./CPackConfig.cmake -G ZIP`  
+`"C:&#92;Program Files(x86)&#92;CMake&#92;bin&#92;cpack.exe" -C &#92;$(Configuration) --config ./CPackConfig.cmake -G ZIP`  
 
 -   build the target "package"
 -   it will create the zip file in your build directory
