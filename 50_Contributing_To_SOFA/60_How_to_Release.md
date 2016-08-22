@@ -97,16 +97,12 @@ with
 -   it will create the zip file in your build directory
 
 If you have a problem with CPack not finding Git, add the path of your
-git.exe into your PATH environment variable.
+git.exe to your PATH environment variable.
 
-### Dependencies Notes
+### Dependencies
 
--   VS2015 redistribuable dlls come from the official executable of
-    Microsoft (https://www.microsoft.com/en-US/download/details.aspx?id=48145)
--   Qt 5.5 has been built for VS2015 in x86 (I guess Qt will propose
-    VS2015 pre-built binaries for the version 5.6)
--   boost 1.59 from
-    <http://sourceforge.net/projects/boost/files/boost-binaries/1.59.0/> (boost_1_59_0-msvc-14.0-32.exe)
+-   VS2015 redistribuable dlls come from (the official executable of
+    Microsoft)[https://www.microsoft.com/en-US/download/details.aspx?id=48145]
 
 * * * 
 
@@ -131,8 +127,8 @@ It will create a dmg (compressed archive), with an app containing
 ## Misc
 
 Tricks while doing Qt Packaging:
-- (OS X) before running, to show when dylibs are loaded: $ DYLD_PRINT_LIBRARIES=1 ./runSofa
-- Qt plugins are not loaded at runtime so to force Qt to print when plugins are loaded and used: $ export QT_DEBUG_PLUGINS=1
+- (OS X) before running, to show when dylibs are loaded: `DYLD_PRINT_LIBRARIES=1 ./runSofa`
+- Qt plugins are not loaded at runtime so to force Qt to print when plugins are loaded and used: `export QT_DEBUG_PLUGINS=1`
 
 * * * 
 
