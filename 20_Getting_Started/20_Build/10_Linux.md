@@ -187,11 +187,7 @@ compilation will be done using ccache (if installed). You can check this
 by setting VERBOSE=1 as additional argument to Make in the Projects tab
 on the left. Moreover, you probably want to run parallel compilations by
 setting *-j10* for instance, for 10 parallel compilations, as additional
-argument to Make. Ubuntu 14.04: default qtcreator cmake plugin is
-bugged, but you can easily install qtcreator 3.1.1 from this
-non-official repository
-[\[1\]](https://launchpad.net/~alexey-ivanov/+archive/qtcreator "https://launchpad.net/~alexey-ivanov/+archive/qtcreator"){.external
-.autonumber} (Warning, it is using qt4 rather than qt5).
+argument to Make.
 
 
 #### Clang
