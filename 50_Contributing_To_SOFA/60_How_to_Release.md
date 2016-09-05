@@ -89,9 +89,13 @@ The next steps do depend on the operating system.
 -   compile as usual
 -   modify the package project, in the post-build step (bug of Cmake or
     I missed something), replace  
-`"C:\Program Files (x86)\CMake\bin\cpack.exe" -C \$(Configuration) --config ./CPackConfig.cmake`  
+```bash
+"C:\Program Files (x86)\CMake\bin\cpack.exe" -C \$(Configuration) --config ./CPackConfig.cmake
+```  
 with  
-`"C:\Program Files(x86)\CMake\bin\cpack.exe" -C \$(Configuration) --config ./CPackConfig.cmake -G ZIP`  
+```bash
+"C:\Program Files(x86)\CMake\bin\cpack.exe" -C \$(Configuration) --config ./CPackConfig.cmake -G ZIP
+```  
 
 -   build the target "package"
 -   it will create the zip file in your build directory
@@ -101,8 +105,8 @@ git.exe to your PATH environment variable.
 
 ### Dependencies
 
--   VS2015 redistribuable dlls come from (the official executable of
-    Microsoft)[https://www.microsoft.com/en-US/download/details.aspx?id=48145]
+-   VS2015 redistribuable dlls come from [the official executable of
+    Microsoft](https://www.microsoft.com/en-US/download/details.aspx?id=48145)
 
 * * * 
 
@@ -127,6 +131,7 @@ It will create a dmg (compressed archive), with an app containing
 ## Misc
 
 Tricks while doing Qt Packaging:
+
 - (OS X) before running, to show when dylibs are loaded: `DYLD_PRINT_LIBRARIES=1 ./runSofa`
 - Qt plugins are not loaded at runtime so to force Qt to print when plugins are loaded and used: `export QT_DEBUG_PLUGINS=1`
 
