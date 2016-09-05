@@ -90,11 +90,11 @@ The next steps do depend on the operating system.
 -   modify the package project, in the post-build step (bug of Cmake or
     I missed something), replace  
 ```bash
-"C:\Program Files (x86)\CMake\bin\cpack.exe" -C \$(Configuration) --config ./CPackConfig.cmake
+"C:\\Program Files (x86)\\CMake\bin\\cpack.exe" -C \\$(Configuration) --config ./CPackConfig.cmake
 ```  
 with  
 ```bash
-"C:\Program Files(x86)\CMake\bin\cpack.exe" -C \$(Configuration) --config ./CPackConfig.cmake -G ZIP
+"C:\\Program Files(x86)\\CMake\\bin\\cpack.exe" -C \\$(Configuration) --config ./CPackConfig.cmake -G ZIP
 ```  
 
 -   build the target "package"
