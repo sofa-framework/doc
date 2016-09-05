@@ -12,10 +12,8 @@ When you are ready for creating a release:
     ```
     
 *   check the year in the files: README.md, Authors.txt, LICENCE.txt, CMakeList.txt (SOFA, SofaKernel, SofaFramework)
-*   create a new branch for the release  
-    `git checkout -b v1.1`
-*   push this new branch on the remote repository  
-    `git push -u origin v1.1`
+*   create a new branch for the release: `git checkout -b v1.1`
+*   push this new branch on the remote repository: `git push -u origin v1.1`
 
 In this new branch:  
 
