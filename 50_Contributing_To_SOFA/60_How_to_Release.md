@@ -120,9 +120,9 @@ wishing to develop.
 
 If you want a pure Mac OS X package, you have to:
 
--   enable the CMake option RUNSOFA_INSTALL_AS_BUNDLE
+-   enable the CMake option `RUNSOFA_INSTALL_AS_BUNDLE`
 -   configure/compile as usual
--   and to package, run: ninja install && cpack -G DragNDrop
+-   and to package, run: `ninja install && cpack -G DragNDrop`
     CPackConfig.cmake
 
 It will create a dmg (compressed archive), with an app containing
