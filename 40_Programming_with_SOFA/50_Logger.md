@@ -1,8 +1,5 @@
 # SOFA Logging
 
-## Table of content
-[toc]
-
 
 ## Main classes 
 
