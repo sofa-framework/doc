@@ -7,9 +7,7 @@ All the following classes are in the namespace *sofa::core::objectmodel::helper:
 
 Source files are located in *SofaKernel/framework/sofa/helper/logging/* 
 
-<a name="Message">
 ### Message
-</a>
 
 A *Message* object encapsulates everything about an output message:
 
@@ -18,9 +16,7 @@ A *Message* object encapsulates everything about an output message:
 * message class (dev, runtime)
 * sender name (std::string) 
 
-<a name="MessageHandler">
 ### MessageHandler (abstract class)
-</a>
 
 A *MessageHandler* object is in charge of doing things wich every emitted messages. This can be console ouput, file logging, whatever you can imagine. For example: some unit-tests use a specific *MessageHandler* to catch error messages.
 
@@ -31,9 +27,7 @@ Available [MessageHandler](#MessageHandler) classes:
 * ExceptionMessageHandler
 * SilentMessageHandler
 
-<a name="MessageFormatter">
 ### MessageFormatter (abstract class)
-</a>
 
 A *MessageFormatter* object has only one purpose, which is translate a *Message* object to a *std::ostream*.
 
@@ -42,9 +36,7 @@ Available *MessageFormatter* classes:
 * DefaultStyleMessageFormatter
 * ClangStyleMessageFormatter
 
-<a name="MessageDispatcher">
 ### MessageDispatcher (static class)
-</a>
 
 The *MessageDispatcher* is in charge of sending messages to every [MessageHandler](#MessageHandler) registered.
 
