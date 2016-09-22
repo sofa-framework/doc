@@ -51,7 +51,7 @@ There are 2 macros categories:
 * **runtime macros** to emmit messages in every context.
 * **debug macros** 
 
-Typically, when you want to output some inf you use either if these macros, dpending of the criticality level:
+Typically, to output a message you can use one of these macros, depending of the criticality level:
 
 * msg_info
 * msg_deprecated
