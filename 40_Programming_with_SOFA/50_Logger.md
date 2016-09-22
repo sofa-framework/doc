@@ -66,7 +66,7 @@ Just include *Messaging.h* and you can use these macros like any output stream:
 ```
 
 ```
-msg_warning("GUIManager") << "WARNING(SofaGUI): Previously used GUI not registered. Using default GUI.";
+msg_warning("GUIManager") << "Previously used GUI not registered. Using default GUI.";
 ```
 
 ## Customization
