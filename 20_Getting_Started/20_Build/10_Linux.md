@@ -102,8 +102,6 @@ as follows:
     -   master
         -   src/
         -   build/
-            - debug/
-            - release/
 
 First, download the sources from Git repository:
 
