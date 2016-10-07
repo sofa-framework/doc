@@ -134,7 +134,7 @@ cmake-gui PATH-TO-THE-SOURCE
 
 You need to run *Configure* twice, since SOFA requires two passes to
 manage the module dependencies. You can then customize your version of
-SOFA, acticate or deactivate plugins and functionalities. For the 
+SOFA, activate or deactivate plugins and functionalities. For the 
 compilation in debug mode, set the CMAKE_BUILD_TYPE to DEBUG. By default,
 gcc is used but Clang can be prefered for a faster compilation (see the
 paragraph below).
