@@ -20,4 +20,4 @@ pathToSofaScene = fullfile(PATH_TO_SOFA_SCENES, ‘sofaScene.scn’)
 It reads in result the sofa terminal output.
 
 
-__Note__: Matlab plots, and other Qt related funcitons (write png images) will be a bit broken
+__Note__: Matlab plots, and other Qt related functions (write png images) will be a bit broken
