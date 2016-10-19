@@ -163,3 +163,8 @@ Version Control Rules
 3.  Mixing indentation and logical modifications in a same commit
     *should* be avoided.
 
+A correct commit message must therefore be structured as:
+
+**[NAME_OF_MODULE_OR_PLUGIN] ACTION message**
+
+where ACTION includes ADD, REMOVE, FIX, CLEAN, REVERT. An example of commit message would be: `[SofaKernel] ADD test for the mass conservation in UniformMass` 
