@@ -18,8 +18,8 @@ It is automatically rendered in SOFA website: https://www.sofa-framework.org/doc
 Everyone is very welcome to contribute to this documentation. Here are some information you have to read.  
 Files are written in Markdown. If you don't understand the syntax, you can refer to [this usefull cheatsheet] (https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet).
 
-### Order ###
-Files are parsed in alphabetical order. To change some file/folder order in the hierarchy, you can simply edit its number.
+### Hierarchy ###
+Files are parsed in alphabetical order to generate the online documentation. To change some file/folder order in the hierarchy, you can simply edit its number.
 - 10_Folder_A
   - 10_File_AA.md
   - 20_File_AB.md
