@@ -20,8 +20,7 @@ page](https://cmake.org/download/).
 
 #### Required dependencies
 
-Finally, SOFA requires some specific dependencies:
-
+Finally, SOFA requires some specific dependencies:  
 -   **Qt**: you need to have Qt 4.8.3 or higher installed. We recommend to install Qt from
     [the unified Windows installer](http://download.qt.io/official_releases/online_installers/qt-unified-windows-x86-online.exe).  
     **WARNING**: Choose the Qt version matching your compiler.  
