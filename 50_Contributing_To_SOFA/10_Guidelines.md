@@ -1,1 +1,0 @@
-Please find SOFA contribution guidelines in [CONTRIBUTING.md](https://github.com/sofa-framework/sofa/blob/master/CONTRIBUTING.md).
