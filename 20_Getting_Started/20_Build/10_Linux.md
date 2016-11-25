@@ -138,6 +138,7 @@ SOFA, activate or deactivate plugins and functionalities. For the
 compilation in debug mode, set the CMAKE_BUILD_TYPE to DEBUG. By default,
 gcc is used but Clang can be prefered for a faster compilation (see the
 paragraph below).
+Once you are satisfied with the configuration you can run *Generate* and close cmake-gui.
 
 
 #### Compile in the terminal
