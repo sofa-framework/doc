@@ -18,7 +18,7 @@ A *Message* object encapsulates everything about an output message:
 * text (std::string) with the actual content of the message
 
 Messages text description can also contain markdown syntax to improve their rendering when used in a graphical application. Supported syntax
-include emphasizing with '', url's [](), double space for new line.  
+include emphasizing with `''`, `url's []()`, `double space` for new line.  
 
 ### MessageHandler (abstract class)
 
