@@ -18,7 +18,7 @@ sudo apt-get install cmake build-essential
 
 #### CMake: Makefile generator
 
-SOFA requires at least CMake 2.8.8. To get CMake, execute the usual
+SOFA requires at least CMake 3.1. To get CMake, execute the usual
 command:
 ```bash
 sudo apt-get install cmake cmake-qt-gui cmake-curses-gui

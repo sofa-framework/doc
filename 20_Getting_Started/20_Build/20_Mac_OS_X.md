@@ -6,7 +6,7 @@ following requirements.
 
 #### CMake: Makefile generator
 
-SOFA requires at least CMake 2.8.8. To install CMake, use the
+SOFA requires at least CMake 3.1. To install CMake, use the
 [Homebrew](http://brew.sh/ "Homebrew") commands (you can also use
 [Macport](http://www.macports.org/ "Macport"))
 

@@ -3,8 +3,8 @@ Prerequisites for Windows
 
 #### Compiler
 
-You need to have Visual Studio 2008 or higher installed. We recommend
-Visual Studio 2012 (tested on [our
+You need to have Visual Studio 2013 or higher installed. We recommend
+Visual Studio 2015 (tested on [our
 Dashboard](http://www.sofa-framework.org/dash/)) or Visual Studio 2013
 (to use the latest Qt5 64bit binaries). Both are available in [Visual
 Studio downloads
@@ -13,7 +13,7 @@ page](https://www.visualstudio.com/fr-fr/downloads/download-visual-studio-vs.asp
 
 #### CMake: Makefile generator
 
-You need to have CMake 2.8.8 or higher installed. The easiest way to do
+You need to have CMake 3.1 or higher installed. The easiest way to do
 this is to get the installer from the [CMake download
 page](https://cmake.org/download/).
 
@@ -24,13 +24,7 @@ Finally, SOFA requires some specific dependencies:
 
 -   **Qt**: you need to have Qt 4.8.3 or higher installed. We recommend to install Qt from
     [the unified Windows installer](http://download.qt.io/official_releases/online_installers/qt-unified-windows-x86-online.exe).  
-    **WARNING**: Choose the Qt version matching your compiler.  
-	If you choose Qt 5.5.x or upper, make sure you check all the Qt stuff after "Source Components" (Qt3D, Qt Location, ...).  
-	If you choose Qt 5.4.x or lower, you will have to select an **OpenGL version** of the binary. There is not an OpenGL version for each compiler for each Qt version so this may force you to use an old Qt.  
-	**Summary:**  
-	MSVC2013 32-bit/64-bit, MSVC2015 32-bit/64-bit : Qt 5.6  
-	MSVC2012 32-bit : Qt 5.5  
-	MSVC2012 64-bit : Qt 5.2.1 (OpenGL version)
+    **WARNING**: Choose the Qt version matching your compiler. If you choose Qt 5.4.x or lower, you will have to select an **OpenGL version** of the binary. There is not an OpenGL version for each compiler for each Qt version so this may force you to use an old Qt.  
 -   **Boost**: you need to have Boost installed. You will find the last
     official Boost installer for every Visual Studio version
     [here](https://sourceforge.net/projects/boost/files/boost-binaries/).
@@ -39,8 +33,8 @@ Finally, SOFA requires some specific dependencies:
     Studio and MSVC versions (VS2013 = MSVC12, VS2012 = MSVC11, ...).
 -   **External libraries**: some external libraries like Zlib or libXML2
     are required.
-    -   Download the [SOFA dependencies for Windows using VS2013](https://www.sofa-framework.org/wp-content/uploads/2016/08/sofa-win-dependencies-21-11-2013_VS2013.zip).
-    -   or the [SOFA dependencies for Windows using VS2015](https://www.sofa-framework.org/wp-content/uploads/2016/08/sofa-win-dependencies-06-11-2015_VS2015.zip).
+    -   VS2013 users: download the [SOFA dependencies for Windows using VS2013](https://www.sofa-framework.org/wp-content/uploads/2016/08/sofa-win-dependencies-21-11-2013_VS2013.zip).
+    -   VS2015 users: download the [SOFA dependencies for Windows using VS2015](https://www.sofa-framework.org/wp-content/uploads/2016/08/sofa-win-dependencies-06-11-2015_VS2015.zip).
     
     You will unzip them in your sources folder (e.g. sofa/v16.08/src/)
     after cloning SOFA (see below).
