@@ -6,6 +6,15 @@ Before building SOFA from source, make sure your configuration meets the
 following requirements.
 
 
+#### Compiler
+
+SOFA requires at least GCC 4.8 or Clang 3.4. To make sure you have a correct version, execute the usual
+commands:
+```bash
+gcc --version
+clang --version
+```
+
 
 #### Compiler meta-package
 
