@@ -33,13 +33,12 @@ command:
 sudo apt-get install cmake cmake-qt-gui cmake-curses-gui
 ```
 
-In case your configuration is Ubuntu 12.04 (or similar), the associated
+In case your configuration is Ubuntu 14.04 (or similar), the associated
 repositories only provide CMake 2.8.7. Fortunately, a more recent
-version of CMake is available in some PPAs, such as ppa:kalakris/cmake,
-ppa:leppa/backports or ppa:ubuntu-sdk-team/ppa:
+version of CMake is available in some PPAs, such as ppa:george-edison55/cmake-3.x
 
 ```bash
-sudo add-apt-repository ppa:kalakris/cmake
+sudo add-apt-repository ppa:george-edison55/cmake-3.x
 sudo apt-get update
 sudo apt-get install cmake cmake-qt-gui cmake-curses-gui
 ```
