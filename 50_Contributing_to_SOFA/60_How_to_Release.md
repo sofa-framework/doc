@@ -62,8 +62,7 @@ In this new branch:
     # OFF
     setSofaOption(APPLICATION_MODELER OFF)
     setSofaOption(SOFA_BUILD_TESTS OFF)
-    # ON
-    setSofaOption(SOFA_BUILD_TUTORIALS ON)
+    setSofaOption(SOFA_BUILD_TUTORIALS OFF)
 
     endif()
     ```
