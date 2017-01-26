@@ -147,5 +147,5 @@ Once the binaries are generated:
     -   for [MacOS](https://www.sofa-framework.org/community/doc/getting-started/build/mac-os-x/)
     -   for [Windows](https://www.sofa-framework.org/community/doc/getting-started/build/windows/)
 -   update the flag on the forum
--   create [announcement](https://www.sofa-framework.org/community/forum/section/announcements-infos/) on the forum and [twitter](https://twitter.com/SofaFramework)
+-   create [announcement](https://www.sofa-framework.org/community/forum/section/announcements-infos/) on the forum, [twitter](https://twitter.com/SofaFramework), LinkedIn, SOFA dev, post.
 -   create a [release](https://github.com/sofa-framework/sofa/releases) GitHub with a link to the changelog
