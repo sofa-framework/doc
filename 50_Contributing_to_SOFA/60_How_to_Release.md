@@ -141,7 +141,11 @@ DYLD_PRINT_LIBRARIES=1
 
 Once the binaries are generated:
 
-*   update the link on the [download](https://www.sofa-framework.org/download/) page for the binaries (add changes in dependencies)
-*   update the flag on the forum
-*   create [announcement](https://www.sofa-framework.org/community/forum/section/announcements-infos/) on the forum and [twitter](https://twitter.com/SofaFramework)
-*   create a [release](https://github.com/sofa-framework/sofa/releases) GitHub with a link to the changelog
+-   update the link on the [download](https://www.sofa-framework.org/download/) page for the binaries (add changes in dependencies)
+-   update the doc for building SOFA:
+    -   for [Linux](https://www.sofa-framework.org/community/doc/getting-started/build/linux/)
+    -   for [MacOS](https://www.sofa-framework.org/community/doc/getting-started/build/mac-os-x/)
+    -   for [Windows](https://www.sofa-framework.org/community/doc/getting-started/build/windows/)
+-   update the flag on the forum
+-   create [announcement](https://www.sofa-framework.org/community/forum/section/announcements-infos/) on the forum and [twitter](https://twitter.com/SofaFramework)
+-   create a [release](https://github.com/sofa-framework/sofa/releases) GitHub with a link to the changelog
