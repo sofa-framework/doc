@@ -73,6 +73,7 @@ The next steps do depend on the operating system.
 
 ## Linux
 
+*   download SOFA and apply the above mentioned custom.cmake
 *   configure and build
 *   create the binaries : `make install  # or ninja install`  
     (you can potentially change the repository where the binaries are created with the CMAKE_INSTALL_PREFIX variable)
@@ -83,6 +84,7 @@ The next steps do depend on the operating system.
 
 -   (config: Visual Studio 2015 / x86, zip package)
 -   select CPACK_ZIP in the CMake configuration
+-   apply the above mentioned custom.cmake
 -   compile as usual
 -   modify the package project, in the post-build step (bug of Cmake or
     I missed something), replace  
@@ -117,6 +119,7 @@ wishing to develop.
 
 If you want a pure Mac OS X package, you have to:
 
+-   download SOFA and apply the above mentioned custom.cmake
 -   enable the CMake option `RUNSOFA_INSTALL_AS_BUNDLE`
 -   configure/compile as usual
 -   and to package, run: `ninja install && cpack -G DragNDrop CPackConfig.cmake`
