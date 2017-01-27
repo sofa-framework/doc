@@ -36,7 +36,7 @@ Finally, SOFA requires some specific dependencies:
     -   VS2013 users: download the [SOFA dependencies for Windows using VS2013](https://www.sofa-framework.org/wp-content/uploads/2016/08/sofa-win-dependencies-21-11-2013_VS2013.zip).
     -   VS2015 users: download the [SOFA dependencies for Windows using VS2015](https://www.sofa-framework.org/wp-content/uploads/2016/08/sofa-win-dependencies-06-11-2015_VS2015.zip).
     
-    You will unzip them in your sources folder (e.g. sofa/v16.08/src/)
+    You will unzip them in your sources folder (e.g. sofa/v16.12/src/)
     after cloning SOFA (see below).
 
 
@@ -59,7 +59,7 @@ To set up clean repositories, we propose to arrange the SOFA directories
 as follows:
 
 -   sofa/
-    -   v16.08/
+    -   v16.12/
         -   src/
         -   build/
     -   master/
@@ -68,9 +68,9 @@ as follows:
 
 **First**, download the sources from Git repository:
 
-Get the current **stable** version on the v16.08 branch:
+Get the current **stable** version on the v16.12 branch:
 ```bash
-git clone -b v16.08 https://github.com/sofa-framework/sofa.git sofa/v16.08/src/
+git clone -b v16.12 https://github.com/sofa-framework/sofa.git sofa/v16.12/src/
 ```
 
 Or get the development **unstable** version on the master branch:
@@ -78,7 +78,7 @@ Or get the development **unstable** version on the master branch:
 git clone -b master https://github.com/sofa-framework/sofa.git sofa/master/src/
 ```
 
-**Next**, unzip in your sources folder (e.g. sofa/v16.08/src/) the **SOFA
+**Next**, unzip in your sources folder (e.g. sofa/v16.12/src/) the **SOFA
 dependencies for Windows** you downloaded before.
 
 **Finally**, you should have something like this:
