@@ -20,7 +20,7 @@ SOFA requires at least CMake 3.1. To install CMake, use the
 [Macport](http://www.macports.org/ "Macport"))
 
 ```bash
-brew install install cmake
+brew install cmake
 ```
 The GUI for cmake is not available yet with brew.
 You can directly download it from the [CMake website](https://cmake.org/download/).
