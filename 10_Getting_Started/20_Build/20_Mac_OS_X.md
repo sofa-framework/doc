@@ -109,11 +109,13 @@ cmake-gui ../src/
 
 **NOTE**:
 -   if you installed Qt5 with brew, you need to specify the Qt5 cmake path:
-    ``` {.bash}
+
+    ```
     cmake -DQt5_DIR=/usr/local/Cellar/qt5/5.X.Y/lib/cmake/Qt5 ../src/
     ```
 -   if you are not using the same file structure as the one described above, from your own build directory type instead:
-    ```{.bash}
+
+    ```
     cmake-gui PATH-TO-THE-SOURCE
     ```
 -   you need to run ** *Configure* twice**, since SOFA requires two passes to manage the module dependencies. You can then customize your version of SOFA, acticate or deactivate plugins and functionalities. By default, gcc is used but Clang can be prefered for a faster compilation (see the paragraph below).
