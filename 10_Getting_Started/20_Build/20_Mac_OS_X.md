@@ -118,7 +118,7 @@ cmake-gui ../src/
     ```
     cmake-gui PATH-TO-THE-SOURCE
     ```
--   you need to run ** *Configure* twice**, since SOFA requires two passes to manage the module dependencies. You can then customize your version of SOFA, acticate or deactivate plugins and functionalities. By default, gcc is used but Clang can be prefered for a faster compilation (see the paragraph below).
+-   you need to run  __*Configure* twice__, since SOFA requires two passes to manage the module dependencies. You can then customize your version of SOFA, acticate or deactivate plugins and functionalities. By default, gcc is used but Clang can be prefered for a faster compilation (see the paragraph below).
 
 #### Compile in the terminal
 
