@@ -109,7 +109,7 @@ cmake-gui ../src/
 
 **NOTE**:
 
--   if you installed Qt5 with brew, you need to specify the Qt5 cmake path:
+-   if you installed Qt5 with brew, you need to specify the Qt5 cmake path (replace 5.X.Y by your own Qt5 version):
 
     ```
     cmake -DQt5_DIR=/usr/local/Cellar/qt5/5.X.Y/lib/cmake/Qt5 ../src/
