@@ -1,9 +1,9 @@
 Installing the Sensable Plugin
 ------------------------------
 
--   Register in [3DSystems Haptics
-    Forums](http://developer.geomagic.com/) to access the
-    **Download** section.
+-   Download Geomagic drivers and SDK:  
+    [OpenHaptics for **Windows** Developer Edition v3.4](https://3dsystems.teamplatform.com/pages/102774?t=r4nk8zvqwa91)  
+    [OpenHaptics for **Linux** Developer Edition v3.4](https://3dsystems.teamplatform.com/pages/102863?t=fptvcy2zbkcc)
 -   The OpenHaptics SDK comes with both the Phantom Drivers and the
     OpenHaptics libraries. First install the drivers, then the SDK.
 -   Run the Phantom Test program that came with the SDK, and use it to
