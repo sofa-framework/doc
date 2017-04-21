@@ -15,6 +15,7 @@ A *Message* object encapsulates everything about an output message:
 * message type (info, deprecated, warning, error, fatal)
 * message class (dev, runtime)
 * sender name (std::string) 
+* sender extra information 
 * text (std::string) with the actual content of the message
 
 Messages text description can also contain markdown syntax to improve their rendering when used in a graphical application. Supported syntax
@@ -59,7 +60,7 @@ The macros are not in a namespace, for ease of use.
 There are 2 macros categories:
 
 * **runtime macros** to emmit messages in every context.
-* **debug macros** 
+* **developper's macros** to emmit messages only targetted to developpers (people willing to dive into the sofa source code)
 
 Typically, to output a message you can use one of these macros, depending of the criticality level:
 
@@ -77,14 +78,24 @@ Just include *Messaging.h* and you can use these macros like any output stream:
 
 If you are in a component (an object inheriting from 'Base') you should use
 ```
+msg_warning() << "Previously used GUI not registered. Using default GUI.";
+or
 msg_warning(this) << "Previously used GUI not registered. Using default GUI.";
 ```
 
-If you are not in a sofa component you can specify the emitter's name with a string. 
+You can also send a message binded to a different component as in:
+```
+msg_warning(otherComponent) << "Previously used GUI not registered. Using default GUI.";
+```
 
+Finally if you are not in a sofa component you can specify the emitter's name with a string. 
 ```
 msg_warning("GUIManager") << "Previously used GUI not registered. Using default GUI.";
 ```
+
+If your message is for developper you can use the dmsg_info, dmsg_deprecated, dmsg_warning,... function. 
+These messages are removed on end-user application and can be more specific and less well written as the one
+that targets users. A very simple to guide the use of the dmsg_* API is to ask yourself if fixing the message needs to have the sourcode understand the message. 
 
 ## Message and unit-testing
 Messages plays an important role in Sofa as they are the principal way to convey informations on the 
