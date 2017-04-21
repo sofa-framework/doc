@@ -97,6 +97,12 @@ If your message is for developper you can use the dmsg_info, dmsg_deprecated, dm
 These messages are removed on end-user application and can be more specific and less well written as the one
 that targets users. A very simple to guide the use of the dmsg_* API is to ask yourself if fixing the message needs to have the sourcode understand the message. 
 
+## How are handled the messages in Sofa Component
+Component have a 'printLog' data field that controls whether or not the msg_info() are emitted on the component side. An user that don't want the component to emit info messages have to set the 'printLog' to false. There is no equivalent way to prevent warning/error/fatal message to be emitted. The reason is that they are important in indicating the state of the sofa component and other componant may use them to validate that the componant is in a valid state. 
+
+The fact that the warning/error and fatal message are always emitted by the component does not means the have to be showed to the user. If needed a third party application can implement its own message handler discarding (on demand) instead of printing 
+these messages. 
+
 ## Message and unit-testing
 Messages plays an important role in Sofa as they are the principal way to convey informations on the 
 component state. Message are part of the behavior of a component and should be tested accordingly. 
