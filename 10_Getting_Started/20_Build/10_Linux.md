@@ -67,7 +67,7 @@ Finally, SOFA requires some libraries:
 -   Boost. Some development packages of boost are needed:
 
     ```bash
-    sudo apt-get install libboost-atomic-dev libboost-chrono-dev libboost-date-time-dev libboost-filesystem-dev libboost-locale-dev libboost-system-dev libboost-thread-dev
+    sudo apt-get install libboost-atomic-dev libboost-chrono-dev libboost-date-time-dev libboost-filesystem-dev libboost-locale-dev libboost-regex-dev libboost-system-dev libboost-thread-dev
     ```
     
 -   Python. Python is needed in several tests and examples:
