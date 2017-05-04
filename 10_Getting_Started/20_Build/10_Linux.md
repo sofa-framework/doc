@@ -212,7 +212,7 @@ faster !
 
 Building cmake for SOFA using clang:
 
-```bash
+``` {.bash .optional}
 CC="clang -Qunused-arguments -fcolor-diagnostics" CXX="clang++ -Qunused-arguments -fcolor-diagnostics" cmake -DCMAKE_BUILD_TYPE=Release -G "CodeBlocks - Unix Makefiles" -H/path/to/src/Sofa -B/path/to/build/dir
 ```
 
