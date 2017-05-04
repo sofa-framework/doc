@@ -8,20 +8,11 @@ following requirements.
 
 #### Compiler
 
-SOFA requires at least GCC 4.8 or Clang 3.4. To make sure you have a correct version, execute the usual
-commands:
-```bash
-gcc --version
-clang --version
-```
-
-
-#### Compiler meta-package
-
-To get the meta-package required to compile SOFA, first execute:
+SOFA requires at least GCC 4.8 or Clang 3.4.  
+Install the standard compilation toolkit (GCC + Make) with this command:
 
 ```bash
-sudo apt-get install cmake build-essential
+sudo apt-get install build-essential
 ```
 
 
@@ -33,7 +24,7 @@ command:
 sudo apt-get install cmake cmake-qt-gui cmake-curses-gui
 ```
 
-In case your configuration is Ubuntu 14.04 (or similar), the associated
+In case your configuration is **Ubuntu 14.04** (or similar), the associated
 repositories only provide CMake 2.8.7. Fortunately, a more recent
 version of CMake is available in some PPAs, such as ppa:george-edison55/cmake-3.x
 
@@ -44,7 +35,7 @@ sudo apt-get install cmake cmake-qt-gui cmake-curses-gui
 ```
 
 
-#### Ccache: Speed-up your compilation
+#### [optional] CCache: Speed-up your compilation
 
 If you work on Linux, we advise you to use *ccache*. It is by no means
 mandatory, but it will dramatically improve the compilation time if you
@@ -58,7 +49,7 @@ make changes to SOFA. As explained on the
 
 To get ccache, execute the usual command:
 
-```bash
+``` {.bash .optional}
 sudo apt-get install ccache
 ```
 
@@ -73,24 +64,30 @@ Finally, SOFA requires some libraries:
     sudo apt-get install qtbase5-dev libqt5opengl5-dev
     ```
 
--   Boost. The development package of boost is needed:
+-   Boost. Some development packages of boost are needed:
 
     ```bash
-    sudo apt-get install libboost-all-dev
+    sudo apt-get install libboost-atomic-dev libboost-chrono-dev libboost-date-time-dev libboost-filesystem-dev libboost-locale-dev libboost-system-dev libboost-thread-dev
     ```
-
--   Additional libraries: libPNG, libZ and libGlew are needed.
+    
+-   Python. Python is needed in several tests and examples:
 
     ```bash
-    sudo apt-get install libpng-dev zlib1g-dev libglew-dev
+    sudo apt-get install python2.7-dev python-numpy python-scipy
     ```
 
-Some plugins depend on libraries that are available in the repositories.
+-   Additional libraries: libPNG, Zlib, Glew and Glut are needed:
+
+    ```bash
+    sudo apt-get install libpng-dev zlib1g-dev libglew-dev freeglut3-dev
+    ```
+
+Some **plugins** depend on libraries that are available in the repositories.
 You probably don't need them all, but you might find it convenient to
 install them all and not worry about it later:
 
-```bash
-[optional] sudo apt-get install python2.7-dev libxml2-dev libcgal-dev libblas-dev liblapack-dev libsuitesparse-dev libassimp-dev freeglut3-dev
+``` {.bash .optional}
+sudo apt-get install libxml2-dev libcgal-dev libblas-dev liblapack-dev libsuitesparse-dev libassimp-dev
 ```
 
 
@@ -200,7 +197,7 @@ setting *-j10* for instance, for 10 parallel compilations, as additional
 argument to Make.
 
 
-#### Clang
+#### [optional] Clang
 
 Clang is a new alternative to gcc. It compiles approximately two times
 faster !
