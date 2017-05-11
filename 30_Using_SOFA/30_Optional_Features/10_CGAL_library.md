@@ -5,7 +5,7 @@ directory. Here is the way to compile it for SOFA using **CMake**.
 Install the CGAL plugin - Linux
 -------------------------------
 
-\[expand\] With Linux, follow the next steps to install CGAL:
+With Linux, follow the next steps to install CGAL:
 
 -   Install
     [Boost](http://www.boost.org/users/download/ "Boost download") for
@@ -23,12 +23,12 @@ Install the CGAL plugin - Linux
 -   Configure. Set GMP\_DIR and MPFR\_DIR to the location that you
     installed GMP and MPFR. Configure again and generate.
 
-You can now compile CGalPlugin. \[/expand\]
+You can now compile CGalPlugin.
 
 Install the CGAL plugin - Windows
 ---------------------------------
 
-\[expand\] **Downloads** You will need to download the following:
+**Downloads** You will need to download the following:
 
 -   [CGal](http://www.cgal.org/download.html "CGAL download"): This
     tutorial will describe how to set up CGal using the installer
@@ -76,7 +76,7 @@ it should find the directories for those libraries automatically. If for
 some reason GMP\_DIR and MPFR\_DIR are not set, you can direct set them
 to the appropriate directory. They are both located in your CGal
 directory under auxiliary/gmp. You can now open your Sofa solution and
-compile CGalPlugin. \[/expand\]
+compile CGalPlugin.
 
 Test your plugin on the examples
 --------------------------------
