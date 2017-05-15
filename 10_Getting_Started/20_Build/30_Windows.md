@@ -33,8 +33,8 @@ Finally, SOFA requires some specific dependencies:
     Studio and MSVC versions (VS2013 = MSVC12, VS2012 = MSVC11, ...).
 -   **External libraries**: some external libraries like Zlib or libXML2
     are required.
-    -   VS2013 users: download the [SOFA dependencies for Windows using VS2013](https://www.sofa-framework.org/wp-content/uploads/2016/08/sofa-win-dependencies-21-11-2013_VS2013.zip).
-    -   VS2015 users: download the [SOFA dependencies for Windows using VS2015](https://www.sofa-framework.org/wp-content/uploads/2016/08/sofa-win-dependencies-06-11-2015_VS2015.zip).
+    -   VS2013 users: download the [SOFA dependencies for Windows using VS2013](https://www.sofa-framework.org/download/WinDepPack/VS-2013/latest).
+    -   VS2015 users: download the [SOFA dependencies for Windows using VS2015](https://www.sofa-framework.org/download/WinDepPack/VS-2015/latest).
     
     You will unzip them in your sources folder (e.g. sofa/v16.12/src/)
     after cloning SOFA (see below).
