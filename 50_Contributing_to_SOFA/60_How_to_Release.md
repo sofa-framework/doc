@@ -22,13 +22,19 @@ In this new branch:
     licenseUpdater.sh <path_to_sofa> <year> <version>
     ```
     
-*   update the version in the CMakeList.txt  
+*   update the version in CMakeLists.txt  
     ```cmake
     #CPack install  
-    SET(CPACK_PACKAGE_VERSION "1.1.0")  
-    SET(CPACK_PACKAGE_VERSION_MAJOR "1")  
-    SET(CPACK_PACKAGE_VERSION_MINOR "1")  
-    SET(CPACK_PACKAGE_VERSION_PATCH "0")
+    SET(CPACK_PACKAGE_VERSION "17.06.00")  
+    SET(CPACK_PACKAGE_VERSION_MAJOR "17")  
+    SET(CPACK_PACKAGE_VERSION_MINOR "06")  
+    SET(CPACK_PACKAGE_VERSION_PATCH "00")
+    ```
+    
+*   update the version in SofaKernel/SofaFramework/CMakelists.txt
+    ```cmake
+    ## Version
+    set(SOFAFRAMEWORK_VERSION "17.06.00")
     ```
     
 *   apply the following custom.cmake  
