@@ -1,50 +1,51 @@
 Prerequisites for Windows
 =========================
 
+
 #### Compiler
 
-You need to have Visual Studio 2013 or higher installed. We recommend
-Visual Studio 2015 (tested on [our
-Dashboard](http://www.sofa-framework.org/dash/)) or Visual Studio 2013
-(to use the latest Qt5 64bit binaries). Both are available in [Visual
-Studio downloads
-page](https://www.visualstudio.com/fr-fr/downloads/download-visual-studio-vs.aspx).
+You need to have Visual Studio 2015 or higher installed. We recommend Visual Studio 2015 (tested on [our Dashboard](http://www.sofa-framework.org/dash/)).
+
+Visit [Visual Studio downloads page](https://www.visualstudio.com/fr-fr/downloads/download-visual-studio-vs.aspx).
+
+**Note**: you can also get [Build Tools for VS2015](https://www.microsoft.com/en-us/download/details.aspx?id=48159) or [Build Tools for VS2017](https://www.visualstudio.com/fr/thank-you-downloading-visual-studio/?sku=BuildTools&rel=15) to install MSVC without all the Visual Studio package.
 
 
 #### CMake: Makefile generator
 
-You need to have CMake 3.1 or higher installed. The easiest way to do
-this is to get the installer from the [CMake download
-page](https://cmake.org/download/).
+You need to have CMake 3.1 or higher installed.
+The easiest way to do this is to get the installer from the [CMake download page](https://cmake.org/download/).
 
 
 #### Required dependencies
 
 Finally, SOFA requires some specific dependencies:
 
--   **Qt**: you need to have Qt 4.8.3 or higher installed. We recommend to install Qt from
-    [the unified Windows installer](http://download.qt.io/official_releases/online_installers/qt-unified-windows-x86-online.exe).  
-    **WARNING**: Choose the Qt version matching your compiler. If you choose Qt 5.4.x or lower, you will have to select an **OpenGL version** of the binary. There is not an OpenGL version for each compiler for each Qt version so this may force you to use an old Qt.  
--   **Boost**: you need to have Boost installed. You will find the last
-    official Boost installer for every Visual Studio version
-    [here](https://sourceforge.net/projects/boost/files/boost-binaries/).
-    SOFA is fully compatible with Boost 1.60.0 and older (not tested
-    with newer versions). Beware of the correspondance between Visual
-    Studio and MSVC versions (VS2013 = MSVC12, VS2012 = MSVC11, ...).
--   **External libraries**: some external libraries like Zlib or libXML2
-    are required.
-    -   VS2013 users: download the [SOFA dependencies for Windows using VS2013](https://www.sofa-framework.org/download/WinDepPack/VS-2013/latest).
-    -   VS2015 users: download the [SOFA dependencies for Windows using VS2015](https://www.sofa-framework.org/download/WinDepPack/VS-2015/latest).
-    
-    You will unzip them in your sources folder (e.g. sofa/v16.12/src/)
-    after cloning SOFA (see below).
+-   **Qt** (>= 4.8.3)
 
+    We recommend to install Qt from [the unified installer](http://download.qt.io/official_releases/online_installers).  
+
+-   **Boost** (>= 1.54.0)
+
+    Find the last official Boost installer for every Visual Studio version
+    [here](https://sourceforge.net/projects/boost/files/boost-binaries/).
+    Beware of the correspondance between Visual Studio and MSVC versions (VS-2015 == MSVC-14.0, VS-2017 == MSVC-14.1).
+
+-   **Python 2.7**
+
+    Get Python 2.7.x (32 or 64 bit) on [python.org download page](https://www.python.org/downloads/windows/).
+
+-   **External libraries**: libPNG, Zlib, Glew and Glut
+
+    -   VS2015 users: download the [Windows dependency pack for VS2015](https://www.sofa-framework.org/download/WinDepPack/VS-2015/latest).
+    -   VS2017 users: download the [Windows dependency pack for VS2017](https://www.sofa-framework.org/download/WinDepPack/VS-2017/latest).
+
+    You will unzip them in your sources folder (e.g. sofa/src/) after cloning SOFA (see below).
 
 
 #### PATH
 
-To complete the dependencies integration, you can add Boost and Qt to
-your PATH.  
+To complete the dependencies integration, you can add Boost and Qt to your PATH.  
 **Boost**: add `your/boost/path/libXX-msvc-XX`  
 **Qt**: add `your/Qt/path/msvcXXXX_XX/bin` and `your/Qt/path/msvcXXXX_XX/lib`
 
@@ -59,26 +60,24 @@ To set up clean repositories, we propose to arrange the SOFA directories
 as follows:
 
 -   sofa/
-    -   v16.12/
-        -   src/
-        -   build/
-    -   master/
-        -   src/
-        -   build/
+    -   src/
+    -   build/
+        -   v17.06/
+        -   master/
 
 **First**, download the sources from Git repository:
 
-Get the current **stable** version on the v16.12 branch:
+Get the current **stable** version on the v17.06 branch:
 ```bash
-git clone -b v16.12 https://github.com/sofa-framework/sofa.git sofa/v16.12/src/
+git clone -b v17.06 https://github.com/sofa-framework/sofa.git sofa/src/
 ```
 
 Or get the development **unstable** version on the master branch:
 ```bash
-git clone -b master https://github.com/sofa-framework/sofa.git sofa/master/src/
+git clone -b master https://github.com/sofa-framework/sofa.git sofa/src/
 ```
 
-**Next**, unzip in your sources folder (e.g. sofa/v16.12/src/) the **SOFA
+**Next**, unzip in your sources folder (sofa/src/) the **SOFA
 dependencies for Windows** you downloaded before.
 
 **Finally**, you should have something like this:
@@ -94,19 +93,23 @@ arrangement.
 Open CMake-GUI and set source folder with **Browse Source** and build
 folder with **Browse Build**.
 
-To avoid Qt detection errors, click on **Add Entry** and add
-`CMAKE_PREFIX_PATH` with path C:/Qt/QtX.X.X/X.X/msvcXXXX matching your
-Qt MSVC folder.
-
-Next, run **Configure**. A popup window will ask you to specify the
+Next, run *Configure*. A popup window will ask you to specify the
 generator for the project. Using the drop down menu, select your
 preferred version of Visual Studio. If you have Visual Studio 2013 and a
 64-bit system select "Visual Studio 12 2013 Win64". Keep "Use default
 native compilers" selected, and press "Finish".
 
-You need to run **Configure** twice, since SOFA requires two passes to
+You need to run *Configure* **twice**, since SOFA requires two passes to
 manage the module dependencies. You can then customize your version of
 SOFA, activate or deactivate plugins and functionalities.
+
+To solve Qt detection errors, click on **Add Entry** and add
+`CMAKE_PREFIX_PATH` with path C:/Qt/QtX.X.X/X.X/msvcXXXX matching your
+Qt MSVC folder. *Configure* again.
+
+To solve Boost detection errors, click on **Add Entry** and add
+`BOOST_LIBRARYDIR` with path C:/boost/boost_1_XX_X/libXX-msvc-XX.X matching your
+Boost lib folder. *Configure* again.
 
 A further dev warning may appear:
 
@@ -120,34 +123,10 @@ A further dev warning may appear:
 
 This is just a typo with Qt5CoreMacros.cmake file. It uses COPY\_ONLY
 instead of COPYONLY. Simply edit your Qt5CoreMacros.cmake, replace
-COPY\_ONLY with COPYONLY and **Configure** again.
-
-#### Boost detection
-
-**WARNING**: With v15.03, v15.09 and v16.08, no error shows up
-concerning Boost (miniBoost is integrated with sources). But since Boost
-is needed by several plugins, we decided to remove miniBoost from our
-future releases. So you better learn now how to manually tell to CMake
-where are Boost libraries.
-
-In CMake-GUI, check the Advanced box (right from Search text-box) and
-search for "Boost". Manually set `Boost_INCLUDE_DIR` with your Boost
-root directory if it is empty. Manually set `Boost_THREAD_LIBRARY_DEBUG`
-with absolute path of boost\_thread-vcXXX-mt-gd-1\_XX.lib and
-`Boost_THREAD_LIBRARY_RELEASE` with absolute path of
-boost\_thread-vcXXX-mt-1\_XX.lib.
-
-Then run **Configure** twice (you should see no more red entries). Other
-Boost libraries should be auto-detected.
-
-Expected result for VS2013 64-bit build with Boost 1.59.0 installed in
-C:/boost/ :
-
-![screen_boost_cmake](https://www.sofa-framework.org/wp-content/uploads/2015/11/screen_boost_cmake.png)
+COPY\_ONLY with COPYONLY and *Configure* again.
 
 When you are ready, press **Generate**. This will create your Visual
-Studio solution.
-
+Studio solution or your makefiles if you chose another generator.
 
 
 ### Compile

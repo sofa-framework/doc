@@ -21,7 +21,7 @@ sudo apt-get install build-essential
 SOFA requires at least CMake 3.1. To get CMake, execute the usual
 command:
 ```bash
-sudo apt-get install cmake cmake-qt-gui cmake-curses-gui
+sudo apt-get install cmake cmake-qt-gui
 ```
 
 In case your configuration is **Ubuntu 14.04** (or similar), the associated
@@ -31,11 +31,43 @@ version of CMake is available in some PPAs, such as ppa:george-edison55/cmake-3.
 ```bash
 sudo add-apt-repository ppa:george-edison55/cmake-3.x
 sudo apt-get update
-sudo apt-get install cmake cmake-qt-gui cmake-curses-gui
+sudo apt-get install cmake cmake-qt-gui
 ```
 
 
-#### [optional] CCache: Speed-up your compilation
+#### [optional] Ninja (build system)
+
+Ninja is an alternative to Make. It has a better handling of incremental builds.
+
+``` {.bash .optional}
+sudo apt-get install ninja-build
+```
+
+Do not forget to set CMake generator to **Codeblocks - Ninja** !
+
+
+#### [optional] Clang (compiler)
+
+Clang is an alternative to GCC. It compiles approximately **two times faster** !
+
+``` {.bash .optional}
+sudo apt-get install clang
+```
+
+To tell CMake you are using Clang use "Specify native compilers" option during first Configure/Generate, then set C compiler to `/usr/bin/clang` and C++ compiler to `/usr/bin/clang++`.
+
+If you already configured or generated the project, simply set `CMAKE_C_COMPILER=/usr/bin/clang` and `CMAKE_CXX_COMPILER=/usr/bin/clang++` in CMake GUI.
+
+If you prefer using the command line:
+
+```
+cmake -DCMAKE_C_COMPILER=/usr/bin/clang -DCMAKE_CXX_COMPILER=/usr/bin/clang++ ../../src/
+```
+
+***WARNING***: Clang does not compile CUDA host code, prefer GCC for this (i.e. set CUDA\_HOST\_COMPILER=/usr/bin/gcc)
+
+
+#### [optional] CCache (cache system)
 
 If you work on Linux, we advise you to use *ccache*. It is by no means
 mandatory, but it will dramatically improve the compilation time if you
@@ -58,25 +90,23 @@ sudo apt-get install ccache
 
 Finally, SOFA requires some libraries:
 
--   Qt5 libraries. The development package of Qt4 is needed:
+-   **Qt** (>= 4.8.3)
 
-    ```bash
-    sudo apt-get install qtbase5-dev libqt5opengl5-dev
-    ```
+    We recommend to install Qt from [the unified installer](http://download.qt.io/official_releases/online_installers).  
 
--   Boost. Some development packages of boost are needed:
+-   **Boost** (>= 1.54.0)
 
     ```bash
     sudo apt-get install libboost-atomic-dev libboost-chrono-dev libboost-date-time-dev libboost-filesystem-dev libboost-locale-dev libboost-regex-dev libboost-system-dev libboost-thread-dev
     ```
     
--   Python. Python is needed in several tests and examples:
+-   **Python 2.7**
 
     ```bash
     sudo apt-get install python2.7-dev python-numpy python-scipy
     ```
 
--   Additional libraries: libPNG, Zlib, Glew and Glut are needed:
+-   Additional libraries: libPNG, Zlib, Glew and Glut
 
     ```bash
     sudo apt-get install libpng-dev zlib1g-dev libglew-dev freeglut3-dev
@@ -101,43 +131,34 @@ To set up clean repositories, we propose to arrange the SOFA directories
 as follows:
 
 -   sofa/
-    -   v16.12/
-        -   src/
-        -   build/
-    -   master
-        -   src/
-        -   build/
+    -   src/
+    -   build/
+        -   v17.06/
+        -   master/
 
 First, download the sources from Git repository:
 
-Get the current **stable** version on the v16.12 branch:
+Get the current **stable** version on the v17.06 branch:
 ``` {.bash .stable}
-git clone -b v16.12 https://github.com/sofa-framework/sofa.git sofa/v16.12/src/
+git clone -b v17.06 https://github.com/sofa-framework/sofa.git sofa/src/
 ```
 
-Or get the development **unstable** version on the master branch:
+**OR** get the development **unstable** version on the master branch:
 ``` {.bash .unstable}
-git clone -b master https://github.com/sofa-framework/sofa.git sofa/master/src/
+git clone -b master https://github.com/sofa-framework/sofa.git sofa/src/
 ```
 
-To compile the project, open a terminal, go to your sofa/ directory and
-type the following command to run CMake:
+To launch CMake GUI on the project, open a terminal and type the following commands:
 
 ```bash
-cd v16.12
-mkdir build/
-cd build/
-cmake-gui ../src/
+cd sofa
+mkdir -p build/v17.06
+cd build/v17.06
+cmake-gui ../../src/
 ```
 
-If you are not using the same file structure as the one described above,
-from your own build directory type instead:
 
-```bash
-cmake-gui PATH-TO-THE-SOURCE
-```
-
-You need to run *Configure* twice, since SOFA requires two passes to
+You need to run *Configure* **twice**, since SOFA requires two passes to
 manage the module dependencies. You can then customize your version of
 SOFA, activate or deactivate plugins and functionalities. For the 
 compilation in debug mode, set the CMAKE_BUILD_TYPE to DEBUG. By default,
@@ -148,7 +169,7 @@ Once you are satisfied with the configuration you can run *Generate* and close c
 
 #### Compile in the terminal
 
-To compile in the terminal, type in the build/ directory:
+To compile in the terminal, type in the build/v17.06 directory:
 
 ```bash
 make
@@ -195,26 +216,3 @@ by setting VERBOSE=1 as additional argument to Make in the Projects tab
 on the left. Moreover, you probably want to run parallel compilations by
 setting *-j10* for instance, for 10 parallel compilations, as additional
 argument to Make.
-
-
-#### [optional] Clang
-
-Clang is a new alternative to gcc. It compiles approximately two times
-faster !
-
--   Ubuntu 12.04: Installing
-    [clang](http://llvm.org/apt/ "http://llvm.org/apt/"){.external
-    .autonumber}. Note that openmp requires a [specific
-    installation](http://clang-omp.github.io/ "http://clang-omp.github.io"){.external
-    .autonumber}.
--   Ubuntu 14.04: clang 3.4 & 3.5 are available in the
-    default repositories.
-
-Building cmake for SOFA using clang:
-
-``` {.bash .optional}
-CC="clang -Qunused-arguments -fcolor-diagnostics" CXX="clang++ -Qunused-arguments -fcolor-diagnostics" cmake -DCMAKE_BUILD_TYPE=Release -G "CodeBlocks - Unix Makefiles" -H/path/to/src/Sofa -B/path/to/build/dir
-```
-
-***WARNING***: clang does not compile CUDA host code, select gcc for it
-(i.e. set CUDA\_HOST\_COMPILER=/usr/bin/gcc)
