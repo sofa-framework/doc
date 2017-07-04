@@ -21,18 +21,18 @@ The easiest way to do this is to get the installer from the [CMake download page
 
 Finally, SOFA requires some specific dependencies:
 
--   **Qt** (>= 4.8.3)
+-   **Qt** (>= 4.8.3)  
     We recommend to install Qt from [the unified installer](http://download.qt.io/official_releases/online_installers).  
 
--   **Boost** (>= 1.54.0)
+-   **Boost** (>= 1.54.0)  
     Find the last official Boost installer for every Visual Studio version
     [here](https://sourceforge.net/projects/boost/files/boost-binaries/).
     Beware of the correspondance between Visual Studio and MSVC versions (VS-2015 == MSVC-14.0, VS-2017 == MSVC-14.1).
 
--   **Python 2.7**
+-   **Python 2.7**  
     Get Python 2.7.x (32 or 64 bit) on [python.org download page](https://www.python.org/downloads/windows/).
 
--   **External libraries**: libPNG, Zlib, Glew and Glut
+-   **External libraries**: libPNG, Zlib, Glew and Glut  
     -   VS2015 users: download the [Windows dependency pack for VS2015](https://www.sofa-framework.org/download/WinDepPack/VS-2015/latest).
     -   VS2017 users: download the [Windows dependency pack for VS2017](https://www.sofa-framework.org/download/WinDepPack/VS-2017/latest).
 
