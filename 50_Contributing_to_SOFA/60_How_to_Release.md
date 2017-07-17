@@ -35,6 +35,10 @@ In this new branch:
     ```cmake
     ## Version
     set(SOFAFRAMEWORK_VERSION "17.06.00")
+    
+    ## sofa/version.h
+    set(SOFA_VERSION "170600")
+    set(SOFA_VERSION_STR "\"17.06\"")
     ```
     
 *   apply the following custom.cmake  
