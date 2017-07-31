@@ -101,14 +101,14 @@ SOFA, activate or deactivate plugins and functionalities.
 
 #### Qt detection errors
 To solve Qt detection errors, click on **Add Entry** and add
-`CMAKE_PREFIX_PATH` with path C:/Qt/X.X/msvcXXXX matching your
+`CMAKE_PREFIX_PATH` with path `C:/Qt/X.X/msvcXXXX` matching your
 Qt MSVC folder.  
 Example: `CMAKE_PREFIX_PATH=C:/Qt/5.7/msvc2015_64`  
 *Configure* again.
 
 #### Boost detection errors
 To solve Boost detection errors, click on **Add Entry** and add
-`BOOST_ROOT` with path C:/boost/boost_1_XX_X matching your
+`BOOST_ROOT` with path `C:/boost/boost_1_XX_X` matching your
 Boost lib folder.  
 Example: `BOOST_ROOT=C:/boost/boost_1_61_0`  
 *Configure* again.
