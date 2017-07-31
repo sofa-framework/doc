@@ -39,10 +39,10 @@ Finally, SOFA requires some specific dependencies:
     You will unzip them in your sources folder (e.g. sofa/src/) after cloning SOFA (see below).
 
 
-#### PATH
+#### PATH (optional)
 
 To complete the dependencies integration, you can add Boost and Qt to your PATH.  
-**Boost**: add `your/boost/path/libXX-msvc-XX`  
+**Boost**: add `your/boost/path` and `your/boost/path/libXX-msvc-XX`  
 **Qt**: add `your/Qt/path/msvcXXXX_XX/bin` and `your/Qt/path/msvcXXXX_XX/lib`
 
 
@@ -99,13 +99,19 @@ You need to run *Configure* **twice**, since SOFA requires two passes to
 manage the module dependencies. You can then customize your version of
 SOFA, activate or deactivate plugins and functionalities.
 
+#### Qt detection errors
 To solve Qt detection errors, click on **Add Entry** and add
-`CMAKE_PREFIX_PATH` with path C:/Qt/QtX.X.X/X.X/msvcXXXX matching your
-Qt MSVC folder. *Configure* again.
+`CMAKE_PREFIX_PATH` with path C:/Qt/X.X/msvcXXXX matching your
+Qt MSVC folder.  
+Example: `CMAKE_PREFIX_PATH=C:/Qt/5.7/msvc2015_64`  
+*Configure* again.
 
+#### Boost detection errors
 To solve Boost detection errors, click on **Add Entry** and add
-`BOOST_LIBRARYDIR` with path C:/boost/boost_1_XX_X/libXX-msvc-XX.X matching your
-Boost lib folder. *Configure* again.
+`BOOST_ROOT` with path C:/boost/boost_1_XX_X matching your
+Boost lib folder.  
+Example: `BOOST_ROOT=C:/boost/boost_1_61_0`  
+*Configure* again.
 
 A further dev warning may appear:
 
