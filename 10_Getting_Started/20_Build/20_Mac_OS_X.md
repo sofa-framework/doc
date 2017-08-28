@@ -61,7 +61,7 @@ CC="llvm-gcc" CXX="llvm-g++"
 
 To compile SOFA, you need to install several dependencies using Homebrew
 
--   **Qt** (>= 4.8.3)
+-   **Qt** (>= 5.5.0)
 
     We recommend to install Qt from [the unified installer](http://download.qt.io/official_releases/online_installers).  
 

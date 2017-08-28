@@ -90,7 +90,7 @@ sudo apt-get install ccache
 
 Finally, SOFA requires some libraries:
 
--   **Qt** (>= 4.8.3)
+-   **Qt** (>= 5.5.0)
 
     We recommend to install Qt from [the unified installer](http://download.qt.io/official_releases/online_installers).  
 

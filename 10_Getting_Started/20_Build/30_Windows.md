@@ -21,7 +21,7 @@ The easiest way to do this is to get the installer from the [CMake download page
 
 Finally, SOFA requires some specific dependencies:
 
--   **Qt** (>= 4.8.3)  
+-   **Qt** (>= 5.5.0)  
     We recommend to install Qt from [the unified installer](http://download.qt.io/official_releases/online_installers).  
 
 -   **Boost** (>= 1.54.0)  
