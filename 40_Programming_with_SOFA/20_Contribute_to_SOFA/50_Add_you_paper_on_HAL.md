@@ -1,6 +1,6 @@
 You want your papers, which rely on SOFA, to be listed on our website? Just follow the following explanations for HAL.
 
-![logo-episcience-tampon](https://www.sofa-framework.org/wp-content/uploads/2016/06/tampon-hal.jpg)
+![](https://www.sofa-framework.org/wp-content/uploads/2016/06/tampon-hal.jpg)
 
 ## Case 1 - add a new paper on HAL
 
@@ -12,7 +12,7 @@ First, go on the [HAL portal](https://hal.archives-ouvertes.fr/) and log in. Fol
     *   videos, or others supplementary data, if any,
     *   one or several images: do not forget to define one image as primary as shown in the following image.
     
-![AjoutVignettes](https://www.sofa-framework.org/wp-content/uploads/2016/06/AjoutVignettes.png)
+![](https://www.sofa-framework.org/wp-content/uploads/2016/06/AjoutVignettes.png)
 
 <center>_Specify one image as "Primary"_</center>
 

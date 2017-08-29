@@ -5,5 +5,5 @@ In order to allow anyone in the community to help us improve the documentation, 
 
 Any feedback is always welcome!
 
-![Easy doc editing!](https://www.sofa-framework.org/wp-content/uploads/2017/08/Edit-doc.png)
+![](https://www.sofa-framework.org/wp-content/uploads/2017/08/Edit-doc.png "Easy doc editing!")
 
