@@ -21,6 +21,265 @@ In summary, test-oriented development generates **better code** and is
 **easier**. Therefore, we strongly urge you to apply it. Feel free to
 ask us for advice.
 
+
+
+Structure of a test in SOFA
+---------------------------
+
+Any test structure should have a similar structure as:
+`
+ // Constructor or the Test object
+Test();
+
+// Sets up the test fixture
+virtual void SetUp();
+
+// Tears down the test fixture
+virtual void TearDown();
+`
+
+Many examples are available in the SOFA sources.
+Many gtest macros are at your disposal to indicate success/failure in test code, such as EXPECT (if fails, returns a non-fatal error):
+
+`
+EXPECT_THROW(statement, expected_exception) // statement should return a specific exception
+EXPECT_ANY_THROW(statement)                 // statement should return anyb exception
+EXPECT_NO_THROW(statement)                  // statement should not generate an exception
+
+EXPECT_TRUE(condition)                      // condition == true
+EXPECT_FALSE(condition)                     // condition == false
+
+EXPECT_EQ(val1, val2)                       // val1 == val2
+EXPECT_NE(val1, val2)                       // val1 != val2
+EXPECT_LE(val1, val2)                       // val1 <= val2
+EXPECT_LT(val1, val2)                       // val1 <  val2
+EXPECT_GE(val1, val2)                       // val1 >= val2
+EXPECT_GT(val1, val2)                       // val1 >  val2
+`
+
+or ASSERT (if fails, returns a FATAL error):
+
+
+`
+ASSERT_THROW(statement, expected_exception)
+ASSERT_NO_THROW(statement)
+ASSERT_ANY_THROW(statement)
+
+ASSERT_TRUE(condition)
+ASSERT_FALSE(condition)
+`
+
+If the statement/condition is not respected, the test fails.
+More can be found in gtest.h (extlibs/gtest/include/gtest/gtest.h)
+
+
+
+
+
+Examples
+--------
+
+Classical structure of the test in SOFA is:
+`
+/******************************************************************************
+*       SOFA, Simulation Open-Framework Architecture, development version     *
+*                (c) 2006-2017 INRIA, USTL, UJF, CNRS, MGH                    *
+*                                                                             *
+* This program is free software; you can redistribute it and/or modify it     *
+* under the terms of the GNU Lesser General Public License as published by    *
+* the Free Software Foundation; either version 2.1 of the License, or (at     *
+* your option) any later version.                                             *
+*                                                                             *
+* This program is distributed in the hope that it will be useful, but WITHOUT *
+* ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or       *
+* FITNESS FOR A PARTICULAR PURPOSE. See the GNU Lesser General Public License *
+* for more details.                                                           *
+*                                                                             *
+* You should have received a copy of the GNU Lesser General Public License    *
+* along with this program. If not, see <http://www.gnu.org/licenses/>.        *
+*******************************************************************************
+* Authors: The SOFA Team and external contributors (see Authors.txt)          *
+*                                                                             *
+* Contact information: contact@sofa-framework.org                             *
+******************************************************************************/
+
+#include <SofaTest/Sofa_test.h>
+#include <SofaTest/TestMessageHandler.h>
+#include <sofa/simulation/graph/DAGSimulation.h>
+
+namespace sofa {
+
+    using namespace component;
+    using namespace defaulttype;
+
+
+    template <typename _DataTypes>
+    struct EmptyPlugin_test : public Sofa_test<typename _DataTypes::Real>
+    {
+        typedef _DataTypes DataTypes;
+        typedef typename DataTypes::CPos CPos;
+        typedef typename DataTypes::VecCoord VecCoord;
+        typedef typename DataTypes::VecDeriv VecDeriv;
+        typedef container::MechanicalObject<DataTypes> MechanicalObject;
+
+        /// Root of the scene graph
+        simulation::Node::SPtr root;
+        /// Simulation
+        simulation::Simulation* simulation;
+
+
+
+        /// Create the context for the scene
+        void SetUp()
+        {
+            // Init simulation
+            sofa::simulation::setSimulation(simulation = new sofa::simulation::graph::DAGSimulation());
+            root = simulation::getSimulation()->createNewGraph("root");
+        }
+
+
+
+
+        // Load an existing XML scene containing the 
+        void sceneLoad()
+        {
+            std::string sceneFilename = SOFAMISCFEM_TEST_SCENES_DIR + "/" + "mySceneForTesting.scn")
+            root = sofa::simulation::getSimulation()->load(sceneFilename.c_str());
+
+            // Find a node in the existing scene
+            myNode = root->getChild("nyNode");
+            EXPECT_TRUE(myNode)
+        }
+
+        // OR : (instead of loading an existing scene) you can create you test scene in the code
+        void createSceneXML()
+        {
+            std::string scene =
+                    "<?xml version='1.0'?>"
+                    "<Node  name='Root' gravity='0 0 0' time='0' animate='0'   > "
+                    "   <MyComponent parameter='0'/>                             "
+                    "</Node>                                                     " ;
+
+            Node::SPtr root = SceneLoaderXML::loadFromMemory ("loadWithNoParam",
+                                                              scene.c_str(),
+                                                              scene.size()) ;
+
+            ASSERT_NE(root.get(), nullptr) ;
+        }
+
+        // OR : (instead of loading an existing scene) you can create you test scene in C++
+        void createSceneCPP()
+        {
+            my_Component = New<MyComponent >() ;
+            root->addObject(my_Component) ; // add nodes, components to build your scene (see doc "Write your scene in Cpp")
+            // and so on
+        }
+
+
+
+
+        // Initialization of the scene
+        void initScene()
+        {
+            sofa::simulation::getSimulation()->init(this->root.get()); 
+        }
+
+
+
+
+        /// Function where you can implement the test you want to do
+        bool testSomething()
+        {
+            // Write the test you like in it
+            return true;
+        }
+
+
+
+
+        /// Unload the scene
+        void TearDown()
+        {
+            if (root!=NULL)
+                sofa::simulation::getSimulation()->unload(root);
+        }
+
+    };
+
+    // Define the list of DataTypes to instantiate
+    using testing::Types;
+    typedef Types< Vec3Types > DataTypes;
+
+    // Test suite for all the instantiations
+    TYPED_TEST_CASE(EmptyPlugin_test, DataTypes);
+
+    
+
+
+    // test case: smallTest_1
+    // this is the key part
+    TYPED_TEST( EmptyPlugin_test , smallTest_1)
+    {
+        this->SetUp();
+        this->sceneLoad();   /* or call this->createSceneXML() if you load an XML scene
+                            *  or call this->createSceneCPP() if you want to define your own C++ scene in the test */
+        this->initScene();
+
+        ASSERT_TRUE( this->testSomething() );
+    }
+}
+`
+
+For **unit tests**, replace the function testSomething() with:
+`
+bool testSomething()
+{
+    double value = 2.0;
+    my_Component.setMyData(value);
+    double checkValue = my_Component.getMyData();
+
+    // Do the unit test
+    EXPECT_EQ(value, checkValue)
+    return true;
+}
+
+`
+
+For **simulation tests**, replace the function testSomething() with:
+`
+bool testSomething()
+{
+    double initial_value = 2.0;
+    double final_value_expected = 4.0;
+    my_Component.setMyData(initial_value);
+
+    // Run the simulation 
+    this->runSimulationSteps();
+
+    // Do the test after running the simulation
+    double checkValue = my_Component.getMyData();
+
+    EXPECT_EQ(final_value_expected, checkValue)
+    return true;
+}
+
+
+
+// Run the simulation, setting yourself the number of steps desired: nbSteps
+void runSimulationSteps()
+{
+    //Animate simulation
+    unsigned int nbSteps = timeEvaluation/timeStep;
+    unsigned int stepId;
+    for (stepId = 0; stepId < nbSteps; ++stepId)
+        sofa::simulation::getSimulation()->animate(root.get(),timeStep);
+}
+`
+
+For **regression tests**, an example is available in [applications/plugins/SofaTest/SofaTest_test/Regression_test.h](https://github.com/sofa-framework/sofa/blob/master/applications/plugins/SofaTest/SofaTest_test/Regression_test.h)
+
+
+
 Activation
 ----------
 
