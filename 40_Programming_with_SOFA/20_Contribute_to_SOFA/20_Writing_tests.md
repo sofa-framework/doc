@@ -27,7 +27,9 @@ Structure of a test in SOFA
 ---------------------------
 
 Any test structure should have a similar structure as:
-`
+
+``` cpp
+
  // Constructor or the Test object
 Test();
 
@@ -36,12 +38,12 @@ virtual void SetUp();
 
 // Tears down the test fixture
 virtual void TearDown();
-`
+```
 
 Many examples are available in the SOFA sources.
 Many gtest macros are at your disposal to indicate success/failure in test code, such as EXPECT (if fails, returns a non-fatal error):
 
-`
+``` cpp
 EXPECT_THROW(statement, expected_exception) // statement should return a specific exception
 EXPECT_ANY_THROW(statement)                 // statement should return anyb exception
 EXPECT_NO_THROW(statement)                  // statement should not generate an exception
@@ -55,19 +57,19 @@ EXPECT_LE(val1, val2)                       // val1 <= val2
 EXPECT_LT(val1, val2)                       // val1 <  val2
 EXPECT_GE(val1, val2)                       // val1 >= val2
 EXPECT_GT(val1, val2)                       // val1 >  val2
-`
+```
 
 or ASSERT (if fails, returns a FATAL error):
 
 
-`
+``` cpp
 ASSERT_THROW(statement, expected_exception)
 ASSERT_NO_THROW(statement)
 ASSERT_ANY_THROW(statement)
 
 ASSERT_TRUE(condition)
 ASSERT_FALSE(condition)
-`
+```
 
 If the statement/condition is not respected, the test fails.
 More can be found in gtest.h (extlibs/gtest/include/gtest/gtest.h)
@@ -80,7 +82,7 @@ Examples
 --------
 
 Classical structure of the test in SOFA is:
-`
+``` cpp
 /******************************************************************************
 *       SOFA, Simulation Open-Framework Architecture, development version     *
 *                (c) 2006-2017 INRIA, USTL, UJF, CNRS, MGH                    *
@@ -228,10 +230,10 @@ namespace sofa {
         ASSERT_TRUE( this->testSomething() );
     }
 }
-`
+```
 
 For **unit tests**, replace the function testSomething() with:
-`
+``` cpp
 bool testSomething()
 {
     double value = 2.0;
@@ -242,11 +244,10 @@ bool testSomething()
     EXPECT_EQ(value, checkValue)
     return true;
 }
-
-`
+```
 
 For **simulation tests**, replace the function testSomething() with:
-`
+``` cpp
 bool testSomething()
 {
     double initial_value = 2.0;
@@ -274,7 +275,7 @@ void runSimulationSteps()
     for (stepId = 0; stepId < nbSteps; ++stepId)
         sofa::simulation::getSimulation()->animate(root.get(),timeStep);
 }
-`
+```
 
 For **regression tests**, an example is available in [applications/plugins/SofaTest/SofaTest_test/Regression_test.h](https://github.com/sofa-framework/sofa/blob/master/applications/plugins/SofaTest/SofaTest_test/Regression_test.h)
 
