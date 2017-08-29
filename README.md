@@ -6,12 +6,11 @@ It is automatically rendered in SOFA website: https://www.sofa-framework.org/doc
 
 
 ## Content ##
-- **Main Principles**: everything you need to know about what is SOFA and how it works.
 - **Getting Started**: instructions about building and installing SOFA.
+- **Main Principles**: everything you need to know about what is SOFA and how it works.
+- **Video Tutorials**: list videos helping new users starting with SOFA.
 - **Using SOFA**: how to use SOFA to build and run simulation scenes (user documentation).
-- **Programming with SOFA**: how to write your own code using SOFA (developper documentation).
-- **Contributing to SOFA**: guidelines and tools to help you proposing fixes and features in SOFA.
-- **Advanced User**: technical documentation about specific SOFA components.
+- **Programming with SOFA**: how to write your own code and then contribute it to SOFA (developper documentation).
 
 
 ## Contribution ##
