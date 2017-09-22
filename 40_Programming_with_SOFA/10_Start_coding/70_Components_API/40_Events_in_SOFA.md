@@ -17,6 +17,8 @@ component, you need:
 Now, you will be able to recover the events and therefore to interact
 with your simulation. Have fun !
 
+If you still don't receive events, it may be possible than you will need to press Ctrl key.
+
 Mouse or Keyboard Events
 ------------------------
 
