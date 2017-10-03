@@ -8,7 +8,6 @@ They have been repackaged into plugins that can be activated / desactivated in t
 In this documentation, you will find a brief description of these plugins
 
 ### Specific Boudnary Conditions
-
 This plugin gathers components that inherit from Forcefields and Projective Constraints.
 Here is the list of the components and their function:
 
@@ -40,3 +39,21 @@ Here is the list of the components and their function:
 - **SphereForceField** creates sphere walls using penalty forces
 - **TorsionForceField**   This forcefield applies a torque to a set of selected nodes. The force is applied from a specified axis (origin and direction) and a torque value.
 - **UniformVelocityDampingForceField** creates damping forces. Contrary to DiagonalVelocityDampingForceField the damping coefficient is uniform for each node and in each direction.
+
+
+### Specific User Interaction
+This plugin gathers some components that are used to define some specific interaction using the mouse
+- **AddRecordedCameraPerformer** Save the current camera's position and orientation in the appropriate Data of Recorded Camera for navigation
+- **FixParticlePerformer** Fix the points that are grabbed by the mouse 
+- **InciseAlongPathPerformer** Incise along the path defined by cliking on the mouse. It works only with triangles.
+- **RemovePrimitivePerforme** Remove the primitives picked by the mouse
+- **StartNavigationPerformer** 
+- **SuturePointPerformer** create a spring between simulated object picked by the mouse
+
+
+
+
+
+
+
+
