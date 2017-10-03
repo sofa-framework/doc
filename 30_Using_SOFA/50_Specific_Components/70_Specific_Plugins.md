@@ -37,4 +37,4 @@ Here is the list of the components and their function:
 - ** QuadPressureForceField** Implements a pressure force applied on a quad surface. (Redundant with SurfacePressureForceField). Does not implement AddKToMatrix (so it doesn't work with direct solvers.
 - **SkeletalMotionConstraint** impose a specific motion (translation and rotation) for each DOFs of a MechanicalObject based on a skeletal motion description
 - **SphereForceField** creates sphere walls using penalty forces
-- **TorsionForceField** 
+- **TorsionForceField**  
