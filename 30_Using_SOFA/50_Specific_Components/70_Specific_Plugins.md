@@ -28,4 +28,13 @@ Here is the list of the components and their function:
 - **ParabolicConstraint** Apply a parabolic trajectory to particles going through 3 points specified by the user.
 - **PartialLinearMovementConstraint** impose a motion to given DOFs (translation and rotation) in some directions only.
 - **PatchTestMovementConstraint** Impose a motion to all the boundary points of a mesh. The motion of the 4 corners are given in the data cornerMovements and the movements of the edge points are computed by linear interpolation.
-- **PointConstraint** 
+- **PointConstraint** Attach given particles to their initial positions. This is a temporary class, somehow redundant with FixedConstraint, simplified to avoid the memory leak issue.
+- **PositionBasedDynamicsConstraint** Position-based dynamics as described in [Muller06]: input: target positions X  ( x(t) <- x(t) + stiffness.( X - x(t) )    v(t) = v(t) + stiffness.( X - x(t) ) /dt )
+- **ProjectDirectionConstraint** Project particles to an affine straight line going through the particle original position.
+- **ProjectToLineConstraint** Project particles to an affine straight line.
+- **ProjectToPlaneConstraint** Project particles to an affine plane.
+- **ProjectToPointConstraint** Attach given particles to their initial positions. Contrary to FixedConstraint, this one stops the particles even if they have a non-null initial velocity.
+- ** QuadPressureForceField** Implements a pressure force applied on a quad surface. (Redundant with SurfacePressureForceField). Does not implement AddKToMatrix (so it doesn't work with direct solvers.
+- **SkeletalMotionConstraint** impose a specific motion (translation and rotation) for each DOFs of a MechanicalObject based on a skeletal motion description
+- **SphereForceField** creates sphere walls using penalty forces
+- **TorsionForceField** 
