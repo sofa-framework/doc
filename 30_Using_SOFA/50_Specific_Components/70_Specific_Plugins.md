@@ -11,6 +11,7 @@ In this documentation, you will find a brief description of these plugins
 
 This plugin gathers components that inherit from Forcefields and Projective Constraints.
 Here is the list of the components and their function:
+
 - **AffineMovementConstraint** no description available: copy of PatchTestMovementConstraint (deprecated)
 - **ConicalForceField** creates conical walls using penalty forces
 - **DiagonalVelocityDampingForceField** creates damping forces 
