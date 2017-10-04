@@ -4,11 +4,15 @@ Integration Schemes
 All dynamic simulations assume to discretize the temporal evolution of the system through small time steps. This time step is usually noted *dt*.  An integration scheme is the numerical method describing how to find the solution of ordinary differential equations at the next time step. They are usually called **ODESolver** in SOFA.
 
 Let's write our ODE as follows:
-$$\frac{dx}{dt} = f(x,t)$$
+
+$$ \frac{dx}{dt} = f(x,t)$$
+
 
 Two categories
 --------------
+
 Two main categories of integration schemes exist:
+
   * explicit scheme: means that the new time step (t + dt) is computed based on information of the previous time step (t). For instance, in mechanics, internal or external forces would be computed on previous positions (x(t)). The ordinary differential equation looks like:
   $$x(t+dt) = x(t) + dt * f( x(t) , t)$$
   Explicit schemes are usually known as being fast to solve (since the created linear system is lighter) but they require very small time steps, unless they may undergo stability issues.
@@ -19,13 +23,15 @@ Two main categories of integration schemes exist:
 
   * Semi-implicit or semi-explicit are actually a combination of two explicit and implicit schemes together for different parts of the ordinary differential equation.
 
+
 In SOFA
 -------
+
 The integration scheme is described in the *solve()* function of the ODESolver. This *solve()* function will build the complete linear system $$Ax=b$$. The left hand side matrix A is build using the function:
 ``` cpp
 matrix = MechanicalMatrix(a,b,c);
 ```
-as $$M \times a + B \times b + K \times c$$ where M is the mass matrix, B is the damping matrix and K is the stiffness matrix. The right hand side vector b is built through the function:
+with the matrix $$A=M \times a + B \times b + K \times c$$ where M is the mass matrix, B is the damping matrix and K is the stiffness matrix. The right hand side vector $$b$$ is built through the function:
 ``` cpp
 computeForce()
 ```
