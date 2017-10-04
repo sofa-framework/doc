@@ -12,11 +12,11 @@ Two categories
 
 Two main categories of integration schemes exist:
 
-  * explicit scheme: means that the new time step (t + dt) is computed based on information of the previous time step (t). For instance, in mechanics, internal or external forces would be computed on previous positions (x(t)). The ordinary differential equation looks like:
+  * **explicit scheme**: means that the new time step (t + dt) is computed based on information of the previous time step (t). For instance, in mechanics, internal or external forces would be computed on previous positions (x(t)). The ordinary differential equation looks like:
   $$x(t+dt) = x(t) + dt * f( x(t) , t)$$
   Explicit schemes are usually known as being fast to solve (since the created linear system is lighter) but they require very small time steps, unless they may undergo stability issues.
 
-  * implicit scheme: means that the new time step (t + dt) is computed based on information of this next time step (t + dt). For instance, in mechanics, internal or external forces would be computed on unknow positions at the next time step (x(t + dt)). The ordinary differential equation looks like:
+  * **implicit scheme**: means that the new time step (t + dt) is computed based on information of this next time step (t + dt). For instance, in mechanics, internal or external forces would be computed on unknow positions at the next time step (x(t + dt)). The ordinary differential equation looks like:
   $$x(t+dt) = x(t) + dt * f( x(t+dt) , t)$$
   Implicit schemes are known as being slower to solve (the outcoming linear system is more complex) but they are more way more stable than explicit schemes.
 
