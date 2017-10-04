@@ -52,7 +52,15 @@ This plugin gathers some components that are used to define some specific intera
 - **SuturePointPerformer** create a spring between simulated object picked by the mouse
 
 
-
+### SOFA LM Constraint
+This plugin gathers the following LM components :
+- **BarycentricDistanceLMConstraintContact**
+- **DOFBlockerLMConstraint**
+- **FixedLMConstraint**
+- **DistanceLMContactConstraint**
+- **DistanceLMConstraint**
+- **LMConstraintSolver**
+- **LMConstraintDirectSolver**
 
 
 
