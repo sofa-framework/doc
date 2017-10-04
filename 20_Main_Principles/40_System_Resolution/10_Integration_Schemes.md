@@ -36,7 +36,7 @@ computeForce()
 ```
 Previous positions, new positions, forces, etc. are MultiVec, i.e. vectors stored in the MechanicalState (MechanicalObject).
 
-This matrix system is then sent to a **LinearSolver** in charge of finally solving the system according to the chosen scheme. Within the function *ODESolver::solve()*, the call to the LinearSolver will appear through the function call:
+This matrix system is then sent to a [LinearSolver](https://www.sofa-framework.org/community/doc/main-principles/system-resolution/linear-solvers/) in charge of finally solving the system according to the chosen scheme. Within the function *ODESolver::solve()*, the call to the LinearSolver will appear through the function call:
 
 ``` cpp
 matrix.solve(x, b);
