@@ -17,7 +17,7 @@ To solve this system, two main categories of algorithms are available:
 In the SOFA code
 ----------------
 
-The abstract description is done within the MatrixLinearSolver and depends on the 
+The abstract description is done within the MatrixLinearSolver and depends on the category of the linear system (i.e. direct or iterative):
 
 * with direct solvers, the integration scheme sucessively calls the two following functions:
 ``` cpp
