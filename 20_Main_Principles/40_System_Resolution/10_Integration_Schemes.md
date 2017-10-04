@@ -13,11 +13,11 @@ Two categories
 Two main categories of integration schemes exist:
 
   * **explicit scheme**: means that the new time step (t + dt) is computed based on information of the previous time step (t). For instance, in mechanics, internal or external forces would be computed on previous positions (x(t)). The ordinary differential equation looks like:
-  $$x(t+dt) = x(t) + dt * f( x(t) , t)$$
+  $$x(t+dt) = x(t) + dt \times f( x(t) , t)$$
   Explicit schemes are usually known as being fast to solve (since the created linear system is lighter) but they require very small time steps, unless they may undergo stability issues.
 
   * **implicit scheme**: means that the new time step (t + dt) is computed based on information of this next time step (t + dt). For instance, in mechanics, internal or external forces would be computed on unknow positions at the next time step (x(t + dt)). The ordinary differential equation looks like:
-  $$x(t+dt) = x(t) + dt * f( x(t+dt) , t)$$
+  $$x(t+dt) = x(t) + dt \times f( x(t+dt) , t)$$
   Implicit schemes are known as being slower to solve (the outcoming linear system is more complex) but they are more way more stable than explicit schemes.
 
   * Semi-implicit or semi-explicit are actually a combination of two explicit and implicit schemes together for different parts of the ordinary differential equation.
@@ -30,7 +30,7 @@ The integration scheme is described in the *solve()* function of the ODESolver. 
 ``` cpp
 matrix = MechanicalMatrix(a,b,c);
 ```
-with the matrix A equals $$A=M \times a + B \times b + K \times c$$ where *M* is the mass matrix, *B* is the damping matrix and *K* is the stiffness matrix. The right hand side vector *b* is built through the function:
+with the matrix A equals $$A=M \cdot a + B \cdot b + K \cdot c$$ where *M* is the mass matrix, *B* is the damping matrix and *K* is the stiffness matrix. The right hand side vector *b* is built through the function:
 ``` cpp
 computeForce()
 ```
