@@ -43,10 +43,11 @@ Here is the list of the components and their function:
 
 ### Specific User Interaction
 This plugin gathers some components that are used to define some specific interaction using the mouse
+
 - **AddRecordedCameraPerformer** Save the current camera's position and orientation in the appropriate Data of Recorded Camera for navigation
 - **FixParticlePerformer** Fix the points that are grabbed by the mouse 
 - **InciseAlongPathPerformer** Incise along the path defined by cliking on the mouse. It works only with triangles.
-- **RemovePrimitivePerforme** Remove the primitives picked by the mouse
+- **RemovePrimitivePerforme** Remove the primitives picked by the mouse.
 - **StartNavigationPerformer** 
 - **SuturePointPerformer** create a spring between simulated object picked by the mouse
 
