@@ -6,7 +6,7 @@ In the previous doc pages, the integration scheme describes how to compute the c
 Mass
 ----
 
-The Mass of the system will contribute to the left-hand side within the matrix A:
+The Mass of the system will contribute to the left-hand side within the matrix *A*:
 
 * with direct solvers, the mass is included in the matrix using the function:
 ``` cpp
@@ -68,7 +68,10 @@ for (size_t i=0; i<n; i++)
 External forces
 ---------------
 
-Forces can be applied on your physical object. Usually forces are sorted into external and internal forces. Let's consider a simple external force independent from the state *x* of your system. This force will contribute to the right-hand side *b* of the system through the function:
+Forces can be applied on your physical object. Usually forces are sorted into external and internal forces. Let's consider a simple external force independent from the state *x* of your system. This force will contribute to the right-hand side *b*:
+$$Ax=b=F_{ext}$$
+
+In any forcefield, the vector *b* is filled in the function:
 ``` cpp
 addForce()
 ```
@@ -79,10 +82,36 @@ addForce(const core::MechanicalParams* params, DataVecDeriv& force, const DataVe
 {
     sofa::helper::WriteAccessor< core::objectmodel::Data< VecDeriv > > _force = force;
 	for (unsigned int i=0; i<position.getValue().size(); i++)
-		_force[i] += constantForce;
+		_force[i] += constantForce; // constant value filling the b vector
 }
 ```
 
 
 Physical laws
 -------------
+
+Looking at continuum mechanics, the linear system *Ax=b* becomes:
+$$M \ddot{x} = K(x)$$
+where *K* may depend on the state *x*. *K* can either be linear or non-linear regarding *x*. In case *K* is non-linear, the resulting *K(x)* must be recomputed at each time step. The choice of the space integration used for the physical law will determine how the matrix *K* is filled. SOFA is mainly based on the [Finite Element Method](https://en.wikipedia.org/wiki/Finite_element_method) to integrate in space the physical law, i.e. the contribution of each element of the mesh will be added to the global *K* matrix.
+
+The contribution of the physical law in the linear system will depend on the integration scheme:
+
+  * with explicit scheme, we have *K(x) = K(x(t))* where *x(t)* is the known current state. The initial equation becomes:
+  $$M dv = dt \cdot K(x(t))$$
+  The physical law therefore only contributes to the right-hand side *b* of the linear system through the function:
+  ``` cpp
+  addForce() // corresponding to the term : dt K(x(t))
+  ```
+
+  * with the implicit scheme, we have $$K(x) = K(x(t+dt)) = K(x(t)) + \frac{dK(x(t+dt))}{dx} dx$$ where *x(t+dt)* is the unknown current state and the initial equation becomes:
+  $$M dv = dt \cdot (K(x(t)) + \frac{dK(x(t+dt))}{dx})$$
+  $$\left(M - dt \cdot \frac{dK(x(t+dt))}{dx}\right) dv= dt \cdot K(x(t))$$
+  Therefore, the implicit scheme will also implement the function:
+  ``` cpp
+  addForce() // corresponding to the term : dt K(x(t))
+  ```
+  and the part of the left-hand side depending on the unknown state *x(t+dt)* is implemented in the function:
+  ``` cpp
+  addKToMatrix() // corresponding to the term : - dt  dK(x(t+dt))/dx 
+  ```
+  
