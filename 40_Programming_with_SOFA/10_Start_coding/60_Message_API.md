@@ -23,23 +23,23 @@ include emphasizing with `''`, `url's []()`, `double space` for new line.
 
 ### MessageHandler (abstract class)
 
-A *MessageHandler* object is in charge of processing and actually 'doing something' of the emitted messages. This can be displaying the message in the console, logging them into file, logging them into a GUI, ...., whatever you can imagine. For example: some unit-tests use a specific *MessageHandler* to catch error messages.
+A *MessageHandler* object is in charge of processing and actually 'doing something' of the emitted messages. This can be displaying the message in the console, logging them into file, logging them into a GUI, ...., whatever you can imagine. For example: some unit tests use a specific *MessageHandler* to catch error messages.
 
 Available [MessageHandler](#MessageHandler) classes:
 
 * FileMessageHandler writes textual representation of the messages in a file. 
 * ClangMessageHandler writes a clang-syntax textual representation of the message in the console (for integration with IDE). 
 * ConsoleMessageHandler writes a formatted representation of the message in the console. 
-* ExceptionMessageHandler throw an exception for each message. 
-* SilentMessageHandler  do nothing. 
+* ExceptionMessageHandler throws an exception for each message. 
+* SilentMessageHandler  does nothing. 
 * CountingMessageHandler counts the number of messages per message type (advice, info, deprecated, warning, error, fatal)
-* LogginMessageHandler logs all the messages in a single message queue. 
-* PerComponentLoggingMessageHandler logs the message in the component that emits them. 
-* RoutingMessageHandler routes the messages to different handlers according to an user provided function.
+* LoggingMessageHandler logs all the messages in a single message queue. 
+* PerComponentLoggingMessageHandler logs the messages in the component that emits them. 
+* RoutingMessageHandler routes the messages to different handlers according to a user-provided function.
 
 ### MessageFormatter (abstract class)
 
-A *MessageFormatter* object has only one purpose, which is translate a *Message* object to a *std::ostream*.
+A *MessageFormatter* object has only one purpose, which is to translate a *Message* object to a *std::ostream*.
 
 Available *MessageFormatter* classes:
 
@@ -59,8 +59,8 @@ The macros are not in a namespace, for ease of use.
 
 There are 2 macros categories:
 
-* **runtime macros** to emmit messages in every context.
-* **developper's macros** to emmit messages only targetted to developpers (people willing to dive into the sofa source code)
+* **runtime macros** to emit messages in every context.
+* **developper macros** to emit messages only targeted to developpers (people willing to dive into the sofa source code)
 
 Typically, to output a message you can use one of these macros, depending of the criticality level:
 
@@ -69,6 +69,8 @@ Typically, to output a message you can use one of these macros, depending of the
 * msg_warning
 * msg_error
 * msg_fatal
+
+Note that for `msg_info` messages to appear in the console, the component from which it is called must have its `printLog` attribute set to `true`.
 
 Just include *Messaging.h* and you can use these macros like any output stream:
 
@@ -83,7 +85,7 @@ or
 msg_warning(this) << "Previously used GUI not registered. Using default GUI.";
 ```
 
-You can also send a message binded to a different component as in:
+You can also send a message bound to a different component as in:
 ```
 msg_warning(otherComponent) << "Previously used GUI not registered. Using default GUI.";
 ```
@@ -93,9 +95,9 @@ Finally if you are not in a sofa component you can specify the emitter's name wi
 msg_warning("GUIManager") << "Previously used GUI not registered. Using default GUI.";
 ```
 
-If your message is for developper you can use the dmsg_info, dmsg_deprecated, dmsg_warning,... function. 
-These messages are removed on end-user application and can be more specific and less well written as the one
-that targets users. A very simple to guide the use of the dmsg_* API is to ask yourself if fixing the message needs to have the sourcode understand the message. 
+If your message is for developpers, you can use the dmsg_info, dmsg_deprecated, dmsg_warning,... functions. 
+These messages are removed on end-user application and can be more specific and less well written than those
+that target users. A very simple way to guide the use of the dmsg_* API is to ask yourself if fixing the message needs to have the sourcode understand the message. 
 
 **NB** Please note that for classes that are not inheriting from BaseObject, an additional macro must be defined to register your class to the messaging system.
 In the header file, just add:
@@ -106,16 +108,15 @@ MSG_REGISTER_CLASS(sofa::...::myClass, "myClassName")
 ## How are handled the messages in Sofa Component
 Component have a 'printLog' data field that controls whether or not the msg_info() are emitted on the component side. An user that don't want the component to emit info messages have to set the 'printLog' to false. There is no equivalent way to prevent warning/error/fatal message to be emitted. The reason is that they are important in indicating the state of the sofa component and other componant may use them to validate that the componant is in a valid state. 
 
-The fact that the warning/error and fatal message are always emitted by the component does not means the have to be showed to the user. If needed a third party application can implement its own message handler discarding (on demand) instead of printing 
-these messages. 
+The fact that the warning/error and fatal message are always emitted by the component does not means they have to be shown to the user. If needed, a third party application can implement its own message handler that discards (on demand) these message instead of printing them
 
 ## Message and unit-testing
-Messages plays an important role in Sofa as they are the principal way to convey informations on the 
-component state. Message are part of the behavior of a component and should be tested accordingly. 
+Messages play an important role in Sofa as they are the principal way to convey information about the 
+component state. Messages are part of the behavior of a component and should be tested accordingly. 
 
-For that there is two dedicated class in the file *applications/plugins/SofaTest/TestMessageHandler.h*
+For that there are two dedicated classes in the file *applications/plugins/SofaTest/TestMessageHandler.h*
 
-Using these class you can test that a component has emitted a message (as it should in the tested conditin) or the contrary, 
+Using these classes, you can test whether a component has emitted a message (as it should in the tested condition) or the contrary, 
 that a component emitted a message while it was not supposed to. 
 
 ```cpp
@@ -141,11 +142,11 @@ TEST_F(MyComponent, testAnInvalidUsageThatShouldnotSendMessage)
 
 ``` 
 
-When the condition is not respected this produce a test failure. 
+When the condition is not respected this produces a test failure. 
 
 ## Customization
 If you implement a specific [MessageHandler](#MessageHandler) and regiter it in the [MessageDispatcher](#MessageDispatcher), you will be able to receive every single message from the whole SOFA executable. 
 
-Since you will receive [Message](#Message) objects, every useful informations will be available: source code location, type, class, sender, and obviously the message itself.
+Since you will receive [Message](#Message) objects, every useful information will be available: source code location, type, class, sender, and obviously the message itself.
 
 
