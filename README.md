@@ -15,7 +15,7 @@ It is automatically rendered in SOFA website: https://www.sofa-framework.org/doc
 
 ## Contribution ##
 Everyone is very welcome to contribute to this documentation. Here are some information you have to read.  
-Files are written in Markdown. If you don't understand the syntax, you can refer to [this usefull cheatsheet] (https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet).
+Files are written in Markdown. If you don't understand the syntax, you can refer to [this usefull cheatsheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet).
 
 ### Hierarchy ###
 Files are parsed in alphabetical order to generate the online documentation. To change some file/folder order in the hierarchy, you can simply edit its number.
