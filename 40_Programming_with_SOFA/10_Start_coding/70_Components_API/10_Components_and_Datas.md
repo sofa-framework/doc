@@ -346,7 +346,7 @@ Data< helper::SVector< helper::vector< int> > > vecValues;
 A Data is template with the type of your option: a boolean, an integer,
 ... But it is not restricted to the default types, you put inside a Data
 your own class, or data structure. Your class must implement the
-operator &lt; &lt; and &gt;&gt; in order to be used through an input and
+operator &lt;&lt; and &gt;&gt; in order to be used through an input and
 output stream:
 
 ``` cpp
@@ -367,6 +367,10 @@ struct MyStruct
 };
 Data configureStruct;
 ```
+
+While Data are passed to other components **by copy**, the stream operators are used to display a data field's content in the GUI. This data serialization method could also have other uses, such as sending data over the network, through the **Communication plugin** for instance.
+
+
 
 #### ObjectFactory methods
 

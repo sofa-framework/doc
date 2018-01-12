@@ -90,3 +90,25 @@ value like so:
     <MyComponent myparam="3.7">
 </Node>
 ```
+
+Create DataEngine Components
+--------------------------
+
+Basic components such as the example above that inherits `BaseObject`, only allow for “Parameter” data fields (values that can be changed but only affects the component itself, internally).
+Sometimes, you might want to create **input / output components**.
+Engines can be “chained”, by giving an engine an input data that is the output of another, previously declared engine:
+``` xml
+<?xml version="1.0"?>
+<Node name="Root">
+    <RequiredPlugin pluginName="MyPlugin"/>
+    <MechanicalObject name=”MO” />
+    <MyEngine  name=”engine1” myinput="@MO.position" />
+    <MyEngine myinput=”@engine1.myoutput” />
+</Node>
+```
+
+These engine components will trigger an action when notified of a change in an input data field, and warn other engines, that take as an input the output of this engine, that the data has been modified.
+In order to implement such a component, your class must inherit [`sofa::core::DataEngine` class]( https://www.sofa-framework.org/api/SOFA/classsofa_1_1core_1_1_data_engine.html "DataEngine").
+
+More information on how to implement subclasses inheriting `DataEngine` can be found in the interface's Doxygen documentation.
+
