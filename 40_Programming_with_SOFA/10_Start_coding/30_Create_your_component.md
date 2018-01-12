@@ -94,8 +94,8 @@ value like so:
 Create DataEngine Components
 --------------------------
 
-Basic components, such as the example above that inherits BaseObject, only allows for “Parameter” data fields (values that can be changed but only affects the component itself, internally.
-Sometimes though, you might want to create **input / output components**.
+Basic components such as the example above that inherits `BaseObject`, only allow for “Parameter” data fields (values that can be changed but only affects the component itself, internally).
+Sometimes, you might want to create **input / output components**.
 Engines can be “chained”, by giving an engine an input data that is the output of another, previously declared engine:
 ``` xml
 <?xml version="1.0"?>
