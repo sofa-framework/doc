@@ -22,6 +22,7 @@ In order to get python support for your [custom Data types](https://www.sofa-fra
 As an example, we will consider the native Sofa type [`DataFileName`](https://www.sofa-framework.org/api/SOFA/classsofa_1_1core_1_1objectmodel_1_1_data_file_name.html), whose bindings are implemented in the SofaPython plugin.
 In any case, it is very informative to look into the "native" binding implementations present in the SofaPython plugin.
 
+An overview of the complete code for this example can be found at the end of this page.
 
 
 
@@ -46,7 +47,7 @@ static inline DataFileName* get_DataFileName(PyObject* obj) {
 }
 ```
 
-Getters are implemented to read attribute values from the DataFileName structure (fullPath and relativePath):
+Getters / Setters are implemented to read attribute values from the DataFileName structure (fullPath and relativePath):
 
 ```
 /// read accessor for fullPath
@@ -56,15 +57,30 @@ SP_CLASS_ATTR_GET(DataFileName, fullPath)(PyObject *self, void*)
     return PyString_FromString(dataFilename->getFullPath().c_str());
 }
 
+SP_CLASS_ATTR_SET(DataFileName, fullPath)(PyObject */*self*/, PyObject * /*args*/, void*)
+{
+    SP_MESSAGE_ERROR("fullPath attribute is read only")
+        PyErr_BadArgument();
+    return -1;
+}
+
 /// read accessor for relativePath
 SP_CLASS_ATTR_GET(DataFileName, relativePath)(PyObject *self, void*)
 {
     DataFileName* dataFilename = get_DataFileName( self );;
     return PyString_FromString(dataFilename->getRelativePath().c_str());
 }
+
+SP_CLASS_ATTR_SET(DataFileName, relativePath)(PyObject */*self*/, PyObject * /*args*/, void*)
+{
+    SP_MESSAGE_ERROR("relativePath attribute is read only")
+        PyErr_BadArgument();
+    return -1;
+}
+
 ```
 
-These functions will make the values fullPath and relativePath accessible from python:
+These functions will make the values fullPath and relativePath accessible from python as such:
 
 ```python
 print myComponent.myDatFileName.fullPath
@@ -76,8 +92,8 @@ Once implemented, these methods must be passed to cPython in a structure called 
 ```cpp
 
 SP_CLASS_ATTRS_BEGIN(DataFileName) // Open Attributes declaration
-SP_CLASS_ATTR(DataFileName,fullPath) // declare attribute fullPath
-SP_CLASS_ATTR(DataFileName,relativePath) // declare attribute relativePath
+SP_CLASS_ATTR(DataFileName,fullPath) // declare attribute fullPath and references both the getter and setter method for this attribute
+SP_CLASS_ATTR(DataFileName,relativePath) // declare attribute relativePath and references both the getter and setter method for this attribute
 SP_CLASS_ATTRS_END // close Attributes declaration
 
 // The same can be done for methods, if you want any to be accessed from python:
@@ -119,7 +135,7 @@ void initExternalModule()
       simulation::PythonEnvironment::gil lock(__func__);
 
       // adding new bindings for Data<DataFileName>
-      SP_ADD_CLASS_IN_FACTORY(cvMatData, sofa::Data<DataFileName>)
+      SP_ADD_CLASS_IN_FACTORY(DataFileName, sofa::Data<DataFileName>)
     }
 #endif
   }
@@ -128,4 +144,103 @@ void initExternalModule()
 ```
 
 
+Here's the complete code for this example:
 
+_Binding_DataFileName.h_
+
+```
+#ifndef BINDING_DataFileName_H
+#define BINDING_DataFileName_H
+
+#include "PythonMacros.h"
+#include <sofa/core/objectmodel/DataFileName.h>
+
+SP_DECLARE_CLASS_TYPE(DataFileName)
+
+#endif
+```
+
+_Binding_DataFileName.cpp_
+
+```
+#include "Binding_DataFileName.h"
+#include "Binding_Data.h"
+#include "PythonToSofa.inl"
+
+
+using namespace sofa::core::objectmodel;
+
+/// getting a DataFileName* from a PyObject*
+static inline DataFileName* get_DataFileName(PyObject* obj) {
+    return sofa::py::unwrap<DataFileName>(obj);
+}
+
+
+SP_CLASS_ATTR_GET(DataFileName, fullPath)(PyObject *self, void*)
+{
+    DataFileName* dataFilename = get_DataFileName( self );;
+    return PyString_FromString(dataFilename->getFullPath().c_str());
+}
+
+
+SP_CLASS_ATTR_SET(DataFileName, fullPath)(PyObject */*self*/, PyObject * /*args*/, void*)
+{
+    SP_MESSAGE_ERROR("fullPath attribute is read only")
+        PyErr_BadArgument();
+    return -1;
+}
+
+
+SP_CLASS_ATTR_GET(DataFileName, relativePath)(PyObject *self, void*)
+{
+    DataFileName* dataFilename = get_DataFileName( self );;
+    return PyString_FromString(dataFilename->getRelativePath().c_str());
+}
+
+
+SP_CLASS_ATTR_SET(DataFileName, relativePath)(PyObject */*self*/, PyObject * /*args*/, void*)
+{
+    SP_MESSAGE_ERROR("relativePath attribute is read only")
+        PyErr_BadArgument();
+    return -1;
+}
+
+
+SP_CLASS_ATTRS_BEGIN(DataFileName)
+SP_CLASS_ATTR(DataFileName,fullPath)
+SP_CLASS_ATTR(DataFileName,relativePath)
+SP_CLASS_ATTRS_END
+
+
+SP_CLASS_METHODS_BEGIN(DataFileName)
+SP_CLASS_METHODS_END
+
+SP_CLASS_TYPE_PTR_ATTR(DataFileName, BaseData, Data);
+
+```
+
+_initplugin.cpp_
+
+```
+/// initplugin.cpp
+#include <SofaPython/PythonFactory.h>
+#include "Binding_DataFileName.h"
+
+void initExternalModule()
+{
+  static bool first = true;
+  if (first)
+  {
+    first = false;
+#ifdef SOFA_HAVE_SOFAPYTHON
+    if (PythonFactory::s_sofaPythonModule)
+    {
+      simulation::PythonEnvironment::gil lock(__func__);
+
+      // adding new bindings for Data<DataFileName>
+      SP_ADD_CLASS_IN_FACTORY(DataFileName, sofa::Data<DataFileName>)
+    }
+#endif
+  }
+}
+```
