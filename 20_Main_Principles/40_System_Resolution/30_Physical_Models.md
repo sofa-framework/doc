@@ -104,14 +104,21 @@ addForce() // corresponding to the term : dt K(x(t))
 ```
 
 * with the implicit scheme, we have $$K(x) = K(x(t+dt)) = K(x(t)) + \frac{dK(x(t+dt))}{dx} dx$$ where *x(t+dt)* is the unknown current state and the initial equation becomes:
+
 $$M dv = dt \cdot (K(x(t)) + \frac{dK(x(t+dt))}{dx})$$
 $$\left(M - dt \cdot \frac{dK(x(t+dt))}{dx}\right) dv= dt \cdot K(x(t))$$
-Therefore, the implicit scheme will also implement the function:
+
+Therefore, the implicit scheme implements the same *addForce()* function as presented above:
 ``` cpp
 addForce() // corresponding to the term : dt K(x(t))
-```  
-and the part of the left-hand side depending on the unknown state *x(t+dt)* is implemented in the function:
-``` cpp
-addKToMatrix() // corresponding to the term : - dt  dK(x(t+dt))/dx
 ```
-  
+
+But an implicit scheme also requires the left-hand side contribution depending on the unknown state *x(t+dt)*:
+* for **direct solvers**, this is implemented in the *addKToMatrix()* function:
+``` cpp
+addKToMatrix() // corresponding to the term : - dt  dK(x(t+dt))/dx dv
+```
+* for **iterative solvers**, this is implemented in the *addDForce()* function:
+``` cpp
+addDForce()    // corresponding to the term : - dt  dK(x(t+dt))/dx dv
+```
