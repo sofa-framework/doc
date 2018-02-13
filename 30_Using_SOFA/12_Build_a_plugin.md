@@ -14,9 +14,9 @@ Let's note the path to this repository */ext_plugin_repo/*.
 In this directory, the structure is:
 
 - ext_plugin_repo/
-  - plugin1/
-  - plugin2/
-  - ...
+    - plugin1/
+    - plugin2/
+    - ...
 
 
 CMakeList of the repository
