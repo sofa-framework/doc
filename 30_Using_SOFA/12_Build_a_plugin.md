@@ -39,6 +39,6 @@ CMake option in SOFA
 
 To compile all the external plugins located in this repository,
 all you need to do is to set the path to this repository (*/ext_plugin_repo/*)
-in the CMake variable: **SOFA SOFA\_EXTERNAL\_DIRECTORIES**.
+in the CMake variable: **SOFA\_EXTERNAL\_DIRECTORIES**.
 
 This will directly configure and allow to compile all specified plugins from SOFA.
