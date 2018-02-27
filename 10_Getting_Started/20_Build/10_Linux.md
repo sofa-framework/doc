@@ -97,7 +97,7 @@ Finally, SOFA requires some libraries:
 -   **Boost** (>= 1.54.0)
 
     ```bash
-    sudo apt-get install libboost-atomic-dev libboost-chrono-dev libboost-date-time-dev libboost-filesystem-dev libboost-locale-dev libboost-regex-dev libboost-system-dev libboost-thread-dev
+    sudo apt-get install libboost-atomic-dev libboost-chrono-dev libboost-date-time-dev libboost-filesystem-dev libboost-locale-dev libboost-regex-dev libboost-system-dev libboost-thread-dev libboost-program-options-dev
     ```
     
 -   **Python 2.7**
