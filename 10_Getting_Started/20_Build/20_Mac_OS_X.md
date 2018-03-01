@@ -91,14 +91,14 @@ as follows:
 -   sofa/
     -   src/
     -   build/
-        -   v17.06/
+        -   v17.12/
         -   master/
 
 First, download the sources from Git repository:
 
-Get the current **stable** version on the v17.06 branch:
+Get the current **stable** version on the v17.12 branch:
 ``` {.bash .stable}
-git clone -b v17.06 https://github.com/sofa-framework/sofa.git sofa/src
+git clone -b v17.12 https://github.com/sofa-framework/sofa.git sofa/src
 ```
 
 **OR** get the development **unstable** version on the master branch:
@@ -110,8 +110,8 @@ To launch CMake GUI on the project, open a terminal and type the following comma
 
 ```bash
 cd sofa
-mkdir -p build/v17.06
-cd build/v17.06
+mkdir -p build/v17.12
+cd build/v17.12
 cmake-gui ../../src/
 ```
 
@@ -135,7 +135,7 @@ or if you prefer running cmake by the command line:
 
 #### Compile in the terminal
 
-To compile in the terminal, type in the v17.06/ directory:
+To compile in the terminal, type in the v17.12/ directory:
 
 ```bash
 make
