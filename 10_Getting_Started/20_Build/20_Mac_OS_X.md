@@ -115,22 +115,21 @@ cd build/v17.12
 cmake-gui ../../src/
 ```
 
-**NOTE**:
-
--   if you installed Qt5 with brew, set `CMAKE_PREFIX_PATH=/usr/local/Cellar/qt5/5.X.Y` (replace 5.X.Y by your own Qt5 version) in CMake GUI to tell CMake were is your Qt installation  
+Now that Qt is installed, you need to set the CMAKE_PREFIX_PATH variable.
+For instance, set `CMAKE_PREFIX_PATH=/usr/local/Cellar/qt5/5.X.Y` (replace 5.X.Y by your own Qt5 version) in CMake GUI to tell CMake were is your Qt installation  
 or if you prefer running cmake by the command line:
 
     ```
     cmake -DCMAKE_PREFIX_PATH=/usr/local/Cellar/qt5/5.X.Y ../../src/
     ```
     
--   if you are not using the same file structure as the one described above, from your own build directory type instead:
+In case you are not using the same file structure as the one described above, from your own build directory type instead:
 
     ```
     cmake PATH-TO-THE-SOURCE
     ```
     
--   you need to run  *Configure* **twice**, since SOFA requires two passes to manage the module dependencies. You can then customize your version of SOFA, acticate or deactivate plugins and functionalities. By default, gcc is used but Clang can be prefered for a faster compilation (see the paragraph below).
+Run  *Configure* **twice**, since SOFA requires two passes to manage the module dependencies. You can then customize your version of SOFA, acticate or deactivate plugins and functionalities. By default, gcc is used but Clang can be prefered for a faster compilation (see the paragraph below).
 
 
 #### Compile in the terminal
