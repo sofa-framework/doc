@@ -146,8 +146,8 @@ git clone -b v17.06 https://github.com/your-username/sofa.git sofa/src/
 **OR** get the development **unstable** version on the master branch:
 ``` {.bash .unstable}
 git clone -b master https://github.com/your-username/sofa.git sofa/src/
-
-__Don't forget to replace "your-username" accordingly.__
+```
+_Don't forget to replace "your-username" accordingly._
 
 **Otherwise**, first download the sources from Git repository:
 
