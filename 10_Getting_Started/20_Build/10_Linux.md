@@ -136,7 +136,20 @@ as follows:
         -   v17.06/
         -   master/
 
-First, download the sources from Git repository:
+**In case you wish to contribute to the SOFA codebase as a developer**, [FORK](https://guides.github.com/activities/forking/) the repository first.
+
+Get the current **stable** version on the v17.06 branch:
+``` {.bash .stable}
+git clone -b v17.06 https://github.com/your-username/sofa.git sofa/src/
+```
+
+**OR** get the development **unstable** version on the master branch:
+``` {.bash .unstable}
+git clone -b master https://github.com/your-username/sofa.git sofa/src/
+
+__Don't forget to replace "your-username" accordingly.__
+
+**Otherwise**, first download the sources from Git repository:
 
 Get the current **stable** version on the v17.06 branch:
 ``` {.bash .stable}
