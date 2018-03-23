@@ -90,7 +90,7 @@ Several _AnimationLoops_ are already available in SOFA:
 * _MultiStepAnimationLoop_:
   given one time step, this animation loop allows for running several collision (_C_) and several integration time in one step (_I_), where _C_ and _I_ can be different. If the time step is _dt=0.01_, the number of collision step _C=2_ and the number of integration step is _I=4_, the loop of one simulation step follows:
   1. compute _C=4_ times the collision pipeline (4 collision steps)
-    * for each collision step, solve _I=4_ times the linear system due to integration. The integration time step is therefore _dt* = dt / (C*I) = 0.00125_ (8 integration steps).
+    * for each collision step, solve _I=4_ times the linear system due to integration. The integration time step is therefore _dt' = dt / (C.I) = 0.00125_ (8 integration steps).
   2. update the context
   3. update the mappings
   4. update the bounding box : this means that the visualization is done once at each time step _dt=0.01_
