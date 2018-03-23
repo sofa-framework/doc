@@ -1,7 +1,7 @@
 Integration Schemes
 ===================
 
-All dynamic simulations assume to discretize the temporal evolution of the system through small time steps. This time step is usually noted *dt*.  An integration scheme is the numerical method describing how to find the solution of ordinary differential equations (ODE) at the next time step. They are usually called **ODESolver** in SOFA.
+All dynamic simulations assume to discretize the temporal evolution of the system through small time steps. This time step is usually noted *dt*. An integration scheme is the numerical method describing how to find the solution of ordinary differential equations (ODE) at the next time step. They are usually called **ODESolver** in SOFA.
 
 Let's write our ordinary differential equation as follows:
 $$dx/dt = f(x,t)$$
@@ -26,7 +26,8 @@ Two main categories of integration schemes exist:
 In the SOFA code
 ----------------
 
-The integration scheme is described in the *solve()* function of the ODESolver. This *solve()* function will build the complete linear system $$Ax=b$$. The left hand side matrix A is build using the function:
+The integration scheme is described in the *solve()* function of the ODESolver. This *solve()* function will build the complete linear system $$Ax=b$$
+The left hand side matrix _A_ is built using the function:
 ``` cpp
 matrix = MechanicalMatrix(a,b,c);
 ```
