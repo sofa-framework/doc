@@ -2,12 +2,12 @@ Specific Plugins
 =======================
 
 Over the time, many components have been implemented in SOFA. 
-Some of these components are specific and allows for a particular functionnality.
-They have been repackaged into plugins that can be activated / desactivated in the compilation of SOFA.
+Some of these components are specific and allows for a particular functionality.
+They have been repackaged into plugins that can be activated / deactivated in the compilation of SOFA.
 
 In this documentation, you will find a brief description of these plugins
 
-### Specific Boudnary Conditions
+### Specific Boundary Conditions
 This plugin gathers components that inherit from Forcefields and Projective Constraints.
 Here is the list of the components and their function:
 
