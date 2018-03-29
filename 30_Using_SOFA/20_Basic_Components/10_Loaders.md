@@ -3,10 +3,10 @@ MeshLoader/ImageLoader
 
 These components can be used in SOFA since revision (r5359).  
 
-Supported file formats:  
+Supported file formats:
+
 - In SOFA trunk: .obj, .vtk, .gmsh, .trian, .xsp
-- In SOFA at Asclepios (still in project): .tr, .tr3D, .atr3D, .vol,
-.tet3D, .atet3D 
+- In SOFA at Asclepios (still in project): .tr, .tr3D, .atr3D, .vol, .tet3D, .atet3D
 
 Volumetric msh files can be generated based on surface
 meshes, using an external tool (with some limitations, though).
