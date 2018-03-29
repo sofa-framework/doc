@@ -6,8 +6,7 @@ formats supported are: - In SOFA trunk: .obj, .vtk, .gmsh, .trian, .xsp
 - In SOFA at asclepios (still in project): .tr, .tr3D, .atr3D, .vol,
 .tet3D, .atet3D Volumetric msh files can be generated based on surface
 meshes, using an external tool (with some limitations, though):
-http://www.dennis2society.de/main/archives/285 Another tool is presented
-here: http://smart.seecs.nust.edu.pk/tutorial.html
+Another tool is presented here: http://smart.seecs.nust.edu.pk/tutorial.html
 
 #### Architecture
 
