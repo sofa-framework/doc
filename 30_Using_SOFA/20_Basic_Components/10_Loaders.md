@@ -1,23 +1,31 @@
 MeshLoader/ImageLoader
 ----------------------
 
-These components can be used in SOFA since revision (r5359). File
-formats supported are: - In SOFA trunk: .obj, .vtk, .gmsh, .trian, .xsp
-- In SOFA at asclepios (still in project): .tr, .tr3D, .atr3D, .vol,
-.tet3D, .atet3D Volumetric msh files can be generated based on surface
-meshes, using an external tool (with some limitations, though):
-http://www.dennis2society.de/main/archives/285 Another tool is presented
-here: http://smart.seecs.nust.edu.pk/tutorial.html
+These components can be used in SOFA since revision (r5359).  
+
+Supported file formats:  
+- In SOFA trunk: .obj, .vtk, .gmsh, .trian, .xsp
+- In SOFA at Asclepios (still in project): .tr, .tr3D, .atr3D, .vol,
+.tet3D, .atet3D 
+
+Volumetric msh files can be generated based on surface
+meshes, using an external tool (with some limitations, though).
+
+Another tool is presented here: [http://smart.seecs.nust.edu.pk/tutorial.html](http://smart.seecs.nust.edu.pk/tutorial.html
+)
 
 #### Architecture
 
 [![Uml\_loaders](https://www.sofa-framework.org/wp-content/uploads/2015/01/Uml_loaders1.png){.aligncenter
 .size-full .wp-image-1360 width="633"
 height="400"}](https://www.sofa-framework.org/wp-content/uploads/2015/01/Uml_loaders1.png)
-Comments: - The branch of Image loader has not been implemented yet. -
-The function canCreate will be used by the factory to create the
-appropriate loader when no specific loader is used (i.e "&lt;MeshLoader
-filename="myfile.obj /&ut;") in this case the function will recognize
+
+Comments:
+
+- The branch of Image loader has not been implemented yet.
+- The function canCreate will be used by the factory to create the
+appropriate loader when no specific loader is used (i.e `<MeshLoader
+filename="myfile.obj">`) in this case the function will recognize
 the file extension) or if the file format is unknown.
 
 #### How to use it
