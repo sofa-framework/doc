@@ -16,7 +16,7 @@ sudo apt-get install build-essential
 ```
 
 
-#### CMake: Makefile generator
+## CMake: Makefile generator
 
 SOFA requires at least CMake 3.1. To get CMake, execute the usual
 command:
@@ -35,7 +35,7 @@ sudo apt-get install cmake cmake-qt-gui
 ```
 
 
-#### [optional] Ninja (build system)
+## [optional] Ninja: build system
 
 Ninja is an alternative to Make. It has a better handling of incremental builds.
 
@@ -43,10 +43,11 @@ Ninja is an alternative to Make. It has a better handling of incremental builds.
 sudo apt-get install ninja-build
 ```
 
-Do not forget to set CMake generator to **Codeblocks - Ninja** !
+To use Ninja, do not forget to set the CMake generator to "Codeblocks - Ninja" (as explained in [Generate a Makefile with CMake](#generate-a-makefile-with-cmake)).  
+If you already configured or generated the project, simply set `CMAKE_MAKE_PROGRAM=/usr/bin/ninja` in CMake GUI.
 
 
-#### [optional] Clang (compiler)
+## [optional] Clang (compiler)
 
 Clang is an alternative to GCC. It compiles approximately **two times faster** !
 
@@ -67,9 +68,9 @@ cmake -DCMAKE_C_COMPILER=/usr/bin/clang -DCMAKE_CXX_COMPILER=/usr/bin/clang++ ..
 ***WARNING***: Clang does not compile CUDA host code, prefer GCC for this (i.e. set CUDA\_HOST\_COMPILER=/usr/bin/gcc)
 
 
-#### [optional] CCache (cache system)
+## [optional] CCache (cache system)
 
-If you work on Linux, we advise you to use *ccache*. It is by no means
+If you work on Linux, we advise you to use **ccache**. It is by no means
 mandatory, but it will dramatically improve the compilation time if you
 make changes to SOFA. As explained on the
 [ccache](http://ccache.samba.org/ "http://ccache.samba.org/"){.external
@@ -86,13 +87,13 @@ sudo apt-get install ccache
 ```
 
 
-#### Required dependencies
+## Required dependencies
 
 Finally, SOFA requires some libraries:
 
 -   **Qt** (>= 5.5.0)
 
-    We recommend to install Qt from [the unified installer](http://download.qt.io/official_releases/online_installers).  
+    We recommend to install Qt **in your user directory** with [the unified installer](http://download.qt.io/official_releases/online_installers).  
 
 -   **Boost** (>= 1.54.0)
 
@@ -106,10 +107,10 @@ Finally, SOFA requires some libraries:
     sudo apt-get install python2.7-dev python-numpy python-scipy
     ```
 
--   Additional libraries: libPNG, Zlib, Glew and Glut
+-   Additional libraries: libPNG, libJPEG, libTIFF, Zlib, Glew
 
     ```bash
-    sudo apt-get install libpng-dev zlib1g-dev libglew-dev freeglut3-dev
+    sudo apt-get install libpng-dev libjpeg-dev libtiff-dev zlib1g-dev libglew-dev
     ```
 
 Some **plugins** depend on libraries that are available in the repositories.
@@ -125,7 +126,7 @@ Building on Linux
 =================
 
 
-#### Setting up your source and build directories
+## Setting up your source and build directories
 
 To set up clean repositories, we propose to arrange the SOFA directories
 as follows:
@@ -133,7 +134,7 @@ as follows:
 -   sofa/
     -   src/
     -   build/
-        -   v17.06/
+        -   v17.12/
         -   master/
 
 **For development purposes**
@@ -150,9 +151,9 @@ _(Don't forget to replace "your-username" accordingly.)_
 
 first download the sources from Git repository:
 
-Get the current **stable** version on the v17.06 branch:
+Get the current **stable** version on the v17.12 branch:
 ``` {.bash .stable}
-git clone -b v17.06 https://github.com/sofa-framework/sofa.git sofa/src/
+git clone -b v17.12 https://github.com/sofa-framework/sofa.git sofa/src/
 ```
 
 **OR** get the development **unstable** version on the master branch:
@@ -160,52 +161,60 @@ git clone -b v17.06 https://github.com/sofa-framework/sofa.git sofa/src/
 git clone -b master https://github.com/sofa-framework/sofa.git sofa/src/
 ```
 
-To launch CMake GUI on the project, open a terminal and type the following commands:
 
-```bash
-cd sofa
-mkdir -p build/v17.06
-cd build/v17.06
-cmake-gui ../../src/
-```
+## Generate a Makefile with CMake
 
+If you didn't do it yet, create a build/ folder respecting directories
+arrangement.
 
-You need to run *Configure* **twice**, since SOFA requires two passes to
+Run CMake-GUI and set source folder with **Browse Source** and build
+folder with **Browse Build**.
+
+Next, run **Configure**. A popup window will ask you to specify the
+generator for the project.  
+If you installed Ninja, select "Codeblocks - Ninja". Otherwise, select "Codeblocks - Makefile".  
+Keep "Use default native compilers" selected, and press "Finish".
+
+You need to **run Configure twice**, since SOFA requires two passes to
 manage the module dependencies. You can then customize your version of
-SOFA, activate or deactivate plugins and functionalities. For the 
-compilation in debug mode, set the CMAKE_BUILD_TYPE to DEBUG. By default,
-gcc is used but Clang can be prefered for a faster compilation (see the
-paragraph below).
-Once you are satisfied with the configuration you can run *Generate* and close cmake-gui.
+SOFA, activate or deactivate plugins and functionalities.
+
+When you are ready, press **Generate**. This will create your Visual
+Studio solution or your makefiles if you chose another generator.
+
+### Troubleshooting
+
+#### Qt detection errors
+To solve Qt detection errors, click on **Add Entry** and add
+`CMAKE_PREFIX_PATH` with path `/home/YOUR_USERNAME/Qt/QT_VERSION/COMPILER` matching your
+Qt architecture.  
+Example: `CMAKE_PREFIX_PATH=/home/bob/Qt/5.7/gcc_64`  
+**Configure** again.
+
+A further dev warning may appear:
+
+    CMake Warning (dev) at YOUR_QT_PATH/lib/cmake/Qt5Core/Qt5CoreMacros.cmake:224 (configure_file):
+    configure_file called with unknown argument(s):
+
+    COPY_ONLY
+
+    Call Stack (most recent call first):
+    applications/projects/Modeler/exec/CMakeLists.txt:14 (qt5_add_resources)
+
+This is just a typo with Qt5CoreMacros.cmake file. It uses COPY\_ONLY
+instead of COPYONLY. Simply edit your Qt5CoreMacros.cmake, replace
+COPY\_ONLY with COPYONLY and **Configure** again.
 
 
-#### Compile in the terminal
+## Compile
 
-To compile in the terminal, type in the build/v17.06 directory:
+To compile in the terminal, go to your build directory and run `make` or `ninja` depending on the generator you chose during CMake configuration.  
+Do not forget the `-j` option to use all your CPU cores.
 
-```bash
-make
-```
-
-You can use several cores to make the build faster. If, for example, you
-want to use 4 cores, write:
-
-```bash
-make -j4
-```
-
-Time to have a coffee if you have an SSD, time to have lunch if you work
-on a HDD! Once built, stay in the build folder and issue the following
-commands to launch SOFA:
-
-```bash
-bin/runSofa (Release)
-or
-bin/runSofa_d (Debug)
-```
+Time for a coffee!
 
 
-#### Setting up QtCreator
+## Setting up QtCreator
 
 The following instructions assume that you have set up two build
 directories as explained in the previous section.

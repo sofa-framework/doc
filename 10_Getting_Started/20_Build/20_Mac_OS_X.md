@@ -2,11 +2,7 @@ Prerequisites for OS X
 ======================
 
 
-Before building SOFA from source, make sure your configuration meets the
-following requirements.
-
-
-#### Compiler
+## Compiler
 
 SOFA requires at least GCC 4.8 or Clang 3.4. To make sure you have a correct version, execute the usual
 commands:
@@ -15,8 +11,20 @@ gcc --version
 clang --version
 ```
 
+### LLVM vs. GCC
 
-#### CMake: Makefile generator
+The default compiler on MacOS is now LLVM (ie. clang). SOFA is compatible with Clang but if you want to use gcc/g++ instead it is
+necessary to tell CMake.
+
+You can do this by setting those environment variables: `CC=gcc` and
+`CXX=g++`. These settings are stored in the cmake cache. Once set, you
+can re-use cmake or cmake-gui and the gcc settings won't be lost.
+
+WARNING: if you are on MacOS 10.8 Mountain Lion, *gcc* is an alias of *clang*. To really
+use gcc, use `CC=llvm-gcc` and `CXX=llvm-g++`.
+
+
+## CMake: Makefile generator
 
 SOFA requires at least CMake 3.1. To install CMake, use this
 [Homebrew](http://brew.sh/ "Homebrew") command:
@@ -26,7 +34,7 @@ brew cask install cmake
 ```
 
 
-#### [optional] Ninja (build system)
+## [optional] Ninja: build system
 
 Ninja is an alternative to Make. It has a better handling of incremental builds.
 
@@ -34,36 +42,16 @@ Ninja is an alternative to Make. It has a better handling of incremental builds.
 brew install ninja
 ```
 
-Do not forget to set CMake generator to **Codeblocks - Ninja** !
+To use Ninja, do not forget to set the CMake generator to "Codeblocks - Ninja" (as explained in [Generate a Makefile with CMake](#generate-a-makefile-with-cmake)).
 
 
-#### About the compiler : LLVM vs. GCC
-
-The default compiler on MacOS is now LLVM (ie. clang). SOFA is compatible with Clang but if you want to use gcc/g++ instead it is
-necessary to tell cmake to use gcc/g++ instead of clang on MacOS.
-
-You can do this by setting those environment variables: `CC=gcc` and
-`CXX=g++`. These settings are stored in the cmake cache; once set, you
-can re-use cmake or cmake-gui and the gcc settings won't be lost.
-
-
-#### About the compiler on MacOS 10.8 Mountain Lion & MacOS 10.9 Maverick
-
-If you are on MacOS 10.8 Mountain Lion, *gcc* is an alias of *clang*. To really
-use gcc, use the following environnement varialbles:
-
-```bash
-CC="llvm-gcc" CXX="llvm-g++"
-```
-
-
-#### Required dependencies
+## Required dependencies
 
 To compile SOFA, you need to install several dependencies using Homebrew
 
 -   **Qt** (>= 5.5.0)
 
-    We recommend to install Qt from [the unified installer](http://download.qt.io/official_releases/online_installers).  
+    We recommend to install Qt **in your user directory** with [the unified installer](http://download.qt.io/official_releases/online_installers).  
 
 -   **Boost** (>= 1.54.0)
 
@@ -71,19 +59,18 @@ To compile SOFA, you need to install several dependencies using Homebrew
     brew install boost
     ```
 
--   Additional libraries: libPNG and Glew are needed
+-   **Additional libraries**: libPNG, libTIFF, libJPEG, Zlib, Glew
 
     ```bash
-    brew install libpng
-    brew install glew
+    brew install libpng libjpeg libtiff glew
     ```
 
 
 Building on OS X
-=================================================
+================
 
 
-#### Setting up your source and build directories
+## Setting up your source and build directories
 
 To set up clean repositories, we propose to arrange the SOFA directories
 as follows:
@@ -106,59 +93,61 @@ git clone -b v17.12 https://github.com/sofa-framework/sofa.git sofa/src
 git clone -b master https://github.com/sofa-framework/sofa.git sofa/src
 ```
 
-To launch CMake GUI on the project, open a terminal and type the following commands:
 
-```bash
-cd sofa
-mkdir -p build/v17.12
-cd build/v17.12
-cmake-gui ../../src/
-```
+## Generate a Makefile with CMake
 
-Now that Qt is installed, you need to set the CMAKE_PREFIX_PATH variable.
-For instance, set `CMAKE_PREFIX_PATH=/usr/local/Cellar/qt5/5.X.Y` (replace 5.X.Y by your own Qt5 version) in CMake GUI to tell CMake were is your Qt installation  
-or if you prefer running cmake by the command line:
+If you didn't do it yet, create a build/ folder respecting directories
+arrangement.
 
-    ```
-    cmake -DCMAKE_PREFIX_PATH=/usr/local/Cellar/qt5/5.X.Y ../../src/
-    ```
-    
-In case you are not using the same file structure as the one described above, from your own build directory type instead:
+Run CMake-GUI and set source folder with **Browse Source** and build
+folder with **Browse Build**.
 
-    ```
-    cmake PATH-TO-THE-SOURCE
-    ```
-    
-Run  *Configure* **twice**, since SOFA requires two passes to manage the module dependencies. You can then customize your version of SOFA, acticate or deactivate plugins and functionalities. By default, gcc is used but Clang can be prefered for a faster compilation (see the paragraph below).
+Next, run **Configure**. A popup window will ask you to specify the
+generator for the project.  
+If you installed Ninja, select "Codeblocks - Ninja". Otherwise, select "Codeblocks - Makefile".  
+Keep "Use default native compilers" selected, and press "Finish".
 
+You need to **run Configure twice**, since SOFA requires two passes to
+manage the module dependencies. You can then customize your version of
+SOFA, activate or deactivate plugins and functionalities.
 
-#### Compile in the terminal
+When you are ready, press **Generate**. This will create your Visual
+Studio solution or your makefiles if you chose another generator.
 
-To compile in the terminal, type in the v17.12/ directory:
+### Troubleshooting
 
-```bash
-make
-```
+#### Qt detection errors
+To solve Qt detection errors, click on **Add Entry** and add
+`CMAKE_PREFIX_PATH` with path `/Users/YOUR_USERNAME/Qt/QT_VERSION/COMPILER` matching your
+Qt architecture.  
+Example: `CMAKE_PREFIX_PATH=/Users/bob/Qt/5.7/clang_64`  
+**Configure** again.
 
-You can use several cores to make the build faster. If, for example, you
-want to use 4 cores, write:
+A further dev warning may appear:
 
-```bash
-make -j4
-```
+    CMake Warning (dev) at YOUR_QT_PATH/lib/cmake/Qt5Core/Qt5CoreMacros.cmake:224 (configure_file):
+    configure_file called with unknown argument(s):
 
-Time to have a coffee if you have an SSD, time to have lunch if you work
-on a HDD! Once built, stay in the build folder and issue the following
-commands to launch SOFA:
+    COPY_ONLY
 
-```bash
-bin/runSofa (Release)
- or
-bin/runSofad (Debug)
-```
+    Call Stack (most recent call first):
+    applications/projects/Modeler/exec/CMakeLists.txt:14 (qt5_add_resources)
+
+This is just a typo with Qt5CoreMacros.cmake file. It uses COPY\_ONLY
+instead of COPYONLY. Simply edit your Qt5CoreMacros.cmake, replace
+COPY\_ONLY with COPYONLY and **Configure** again.
 
 
-#### Setting up QtCreator
+## Compile
+
+To compile in the terminal, go to your build directory and run `make` or `ninja` depending on the generator you chose during CMake configuration.  
+Do not forget the `-j` option to use all your CPU cores.
+
+Time for a coffee!
+
+
+
+## Setting up QtCreator
 
 The following instructions assume that you have set up two build
 directories as explained in the previous section.
