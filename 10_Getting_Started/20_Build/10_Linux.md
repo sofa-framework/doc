@@ -2,10 +2,6 @@ Prerequisites for Linux
 =======================
 
 
-Before building SOFA from source, make sure your configuration meets the
-following requirements.
-
-
 ## Compiler
 
 SOFA requires at least GCC 4.8 or Clang 3.4.  
