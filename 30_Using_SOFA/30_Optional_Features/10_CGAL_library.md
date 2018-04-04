@@ -11,7 +11,7 @@ With Linux, follow the next steps to install CGAL:
     [Boost](http://www.boost.org/users/download/ "Boost download") for
     use with Sofa. Note that Sofa with CMake requires the compiled
     libraries,
--   Install GMP and MPFR librairies,
+-   Install GMP and MPFR libraries,
 -   Install and compile
     [CGal](http://www.cgal.org/download.html "CGAL download")
     -   To compile CGAL you basically need to run:
@@ -24,6 +24,38 @@ With Linux, follow the next steps to install CGAL:
     installed GMP and MPFR. Configure again and generate.
 
 You can now compile CGalPlugin.
+
+Install the CGAL plugin - MacOS
+-------------------------------
+
+With MacOS, follow the next steps to install CGAL:
+
+- Install Boost, GMP and MPFR libraries with Homebrew
+
+        brew install boost, gmp, mpfr
+
+- Download the sources of CGAL version 4.7 (last stable version for SOFA) [here](https://github.com/CGAL/cgal/releases?after=releases%2FCGAL-4.9.1 "CGAL download")
+- Create a folder in your Homebrew directory to build the plugin
+
+        cd /usr/local/Cellar/
+        mkdir cgal4.7
+        cd cgal4.7
+    
+- Build the plugin with Cmake (redirect to the folder you downloaded before)
+
+        cmake ~/Downloads/CGAL-4.7/
+        make
+    
+- Go to the build directory of your SOFA install and open CMake GUI
+
+        cd ~/path_to_sofa/sofa/build/buildv17.12/
+        cmake-gui ../../
+    
+- Set the **PLUGIN\_CGALPLUGIN** variable and put the path `/usr/local/Cellar/cgal4.7/` in the **CGAL\_DIR** in the Cmake GUI
+- Create the **GMP\_DIR** variable and set the path `/usr/local/Cellar/gmp`
+- Create the **MPFR\_DIR** variable and set the path `/usr/local/Cellar/mpfr`
+- Set the **PLUGIN\_IMAGE** variable (for the example, see after), configure, generate and compile
+
 
 Install the CGAL plugin - Windows
 ---------------------------------
