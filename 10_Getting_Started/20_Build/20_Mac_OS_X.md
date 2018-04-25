@@ -26,12 +26,7 @@ use gcc, use `CC=llvm-gcc` and `CXX=llvm-g++`.
 
 ## CMake: Makefile generator
 
-SOFA requires at least CMake 3.1. To install CMake, use this
-[Homebrew](http://brew.sh/ "Homebrew") command:
-
-```bash
-brew cask install cmake
-```
+SOFA requires at least CMake 3.1. To install CMake, download the latest DMG package from [their download page](https://cmake.org/download/).
 
 
 ## [optional] Ninja: build system
