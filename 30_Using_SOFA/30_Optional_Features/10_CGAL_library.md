@@ -34,7 +34,7 @@ With MacOS, follow the next steps to install CGAL:
 
         brew install boost, gmp, mpfr
 
-- Download the sources of CGAL version 4.7 (last stable version for SOFA) [here](https://github.com/CGAL/cgal/releases?after=releases%2FCGAL-4.9.1 "CGAL download")
+- Download the sources of CGAL version 4.7 (last stable version for SOFA) [here](https://github.com/CGAL/cgal/releases/tag/releases%2FCGAL-4.7 "CGAL download")
 - Create a folder in your Homebrew directory to build the plugin
 
         cd /usr/local/Cellar/
