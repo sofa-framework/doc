@@ -8,7 +8,7 @@ The Geomagic drivers and SDK can be directly downloaded from the 3DSystem websit
 
 Once the download is complete, follow the [installation guide](https://3dsystems.teamplatform.com/pages/102863?t=fptvcy2zbkcc#). The installation directory should be:
 
-- `C:\OpenHaptics` for Windows
+- `C:/OpenHaptics` for Windows
 - `/opt/OpenHaptics/Developer/3.4-0/` for Linux
 
 You can check the install by running the *Geomagic_Touch_Setup* and *Geomagic_Touch_Diagnostic* applications (located in `/opt/geomagic_touch_device_driver/` for Linux). To do so, your Geomagic device must now be connected. If you are using Ethernet connection, make sure the address assignement of the wired connection is set to "Link-Local Only" instead of "Automatic".
