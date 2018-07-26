@@ -33,7 +33,7 @@ Write your own python !
 
 #### From scratch
 
-** style="text-decoration: underline;">In your scene**, if
+**In your scene**, if
 you want to use Python in one of your scene (fontain.scn), you need:
 
 -   in the first place add the plugin in the scene using the
