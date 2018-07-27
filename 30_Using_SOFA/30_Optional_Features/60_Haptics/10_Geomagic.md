@@ -13,6 +13,12 @@ Once the download is complete, follow the [installation guide](https://3dsystems
 
 You can check the install by running the *Geomagic_Touch_Setup* and *Geomagic_Touch_Diagnostic* applications (located in `/opt/geomagic_touch_device_driver/` for Linux). To do so, your Geomagic device must now be connected. If you are using Ethernet connection, make sure the address assignement of the wired connection is set to "Link-Local Only" instead of "Automatic".
 
+__NB__ : for Linux, after the installation, if you already had a version of Qt installed, you might face a conflict with Qt versions. This is due to a script named _geomagic.sh_ created at the Geomagic installation (in _/etc/profile.d/_). To fix this, you can remove or comment the two following lines in the _geomagic.sh_ file:
+```bash
+export LD_LIBRARY_PATH=/opt/geomagic_touch_device_driver/lib
+export QT_PLUGIN_PATH=/opt/geomagic_touch_device_driver/lib/plugins
+```
+
 
 Compilation in SOFA
 -------------------
