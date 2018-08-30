@@ -66,18 +66,18 @@ as follows:
 -   sofa/
     -   src/
     -   build/
-        -   v17.12/
+        -   v18.06/
         -   master/
 
 **First**, download the sources from Git repository:
 
-Get the current **stable** version on the v17.12 branch:
-```bash
-git clone -b v17.12 https://github.com/sofa-framework/sofa.git sofa/src/
+Get the current **stable** version on the v18.06 branch:
+``` {.bash .stable}
+git clone -b v18.06 https://github.com/sofa-framework/sofa.git sofa/src/
 ```
 
-Or get the development **unstable** version on the master branch:
-```bash
+**OR** get the development **unstable** version on the master branch:
+``` {.bash .unstable}
 git clone -b master https://github.com/sofa-framework/sofa.git sofa/src/
 ```
 
