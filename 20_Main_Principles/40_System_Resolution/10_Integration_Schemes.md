@@ -42,3 +42,10 @@ This matrix system is then sent to a [LinearSolver](https://www.sofa-framework.o
 ``` cpp
 matrix.solve(x, b);
 ```
+
+Rayleigh damping
+----------------
+
+The Rayleigh damping is a numerical damping. This damping has therefore no physical meaning and must not be mixed up with physical damping (like _DiagonalVelocityDampingForceField_ in SOFA). The Rayleigh damping corresponds to a damping matrix that is proportional to the mass or/and stiffness matrices using ceofficients, respectively Rayleigh stiffness factor _rK_ or Rayleigh mass factor _rM_. This numerical damping is usually used to stabilize or ease convergence of the simulation. However, it has to be used carefully.
+
+You can see the use of Rayleigh mass and stifness in the _solve()_ function of the _EulerImplicit_ class (see EulerImplicitSolver.cpp).
