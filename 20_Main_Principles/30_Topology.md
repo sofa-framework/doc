@@ -1,3 +1,6 @@
+Topology
+========
+
 In computer science, most of the computations require a discretization in space of the considered simulation domain. This discretization therefore implies to define the domain as a collection of subsets. Regarding the Finite Element Method (FEM), the domain is divided into small elements. These elements and their connectedness establish the topology. The topology can be used for the computation, the visualization, the collision, etc. It is therefore a transversal aspect of the simulation.
 <img src="https://www.sofa-framework.org/wp-content/uploads/2016/08/redHeart-alpha.png" style="width: 40%;float:right;"/>
 

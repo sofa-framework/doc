@@ -1,3 +1,6 @@
+State vectors
+=============
+
 The main component of a simulation in SOFA is the _MechanicalObject_. It inherits from _MechanicalState_, which saves all the state vectors, namely the degrees of freedom (DOFs), their associated velocity, acceleration and the forces applied on the simulated body. By gathering all state vectors, the _MechanicalObject_ avoids multiple calls of virtual functions. The vector size is the number of nodes, and the size of each vector entry depends on the template (see below).
 
 The SOFA framework was historically focused on soft tissue mechanics. Therefore, the semantic is strongly related to mechanics. The component saving the DOFs is called _MechanicalObject_. In this class, the state vectors (DOFs) are stored in the _position_ field, their first derivatives in the _velocity_ field and their second derivatives in the _acceleration_ field.
