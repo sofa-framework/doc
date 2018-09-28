@@ -103,8 +103,9 @@ The physical law therefore only contributes to the right-hand side *b* of the li
 addForce() // corresponding to the term : dt K(x(t))
 ```
 
-* with the implicit scheme, we have $$K(x) = K(x(t+dt)) = K(x(t)) + \frac{dK(x(t+dt))}{dx} dx$$ where *x(t+dt)* is the unknown current state and the initial equation becomes:
-
+* with the implicit scheme, we have
+$$K(x) = K(x(t+dt)) = K(x(t)) + \frac{dK(x(t+dt))}{dx} dx$$
+where *x(t+dt)* is the unknown current state and the initial equation becomes:
 $$M dv = dt \cdot (K(x(t)) + \frac{dK(x(t+dt))}{dx})$$
 $$\left( M - dt \cdot \frac{dK(x(t+dt))}{dx} \right) dv= dt \cdot K(x(t))$$
 
