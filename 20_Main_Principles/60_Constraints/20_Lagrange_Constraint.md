@@ -100,7 +100,7 @@ bool applyCorrection(const core::ConstraintParams * , MultiVecId res1, MultiVecI
 Each of these functions corresponds to a step described below:
   - Prepare states: allocate in memory vectors corresponding to the corrective motion <img src="https://latex.codecogs.com/gif.latex?$$\Delta%20v^{cor}$$" title="Corrective displacement" /> and the Lagrange multipliers <img src="https://latex.codecogs.com/gif.latex?$$\lambda$$" title="Lagrange multipliers" />
   - Build system: ensure the construction of the constraint matrix system
-  - Solve system: request the Gauss-Seidel algorithm available to solve the constraint problem, the _ConstraintResolution_ (see below) knows which algorithm is availble
+  - Solve system: request the Gauss-Seidel algorithm available to solve the constraint problem, the _ConstraintResolution_ (see below) knows which algorithm is available
   - Apply the correction: recovers the result <img src="https://latex.codecogs.com/gif.latex?$$\Delta%20v^{cor}$$" title="Corrective displacement" /> and apply this corrective motion to the free motion <img src="https://latex.codecogs.com/gif.latex?$$x=x^{free}+dt\cdot%20\Delta%20v^{cor}$$" title="Correction" />
 
 
@@ -143,69 +143,4 @@ More about Lagrange multipliers and constraints
 -----------------------------------------------
 
 To read more and go further regarding constraints relying on Lagrange multipliers, please read Pr. Duriez habilitation [thesis available online](http://tel.archives-ouvertes.fr/tel-00785118/).
-
-
-
-
-
-
-
-
-
-
-
-Interaction constraint
-----------------------
-
-Unlike the previous project constraints, an interaction constraint is applied between a pair of simulated body.
-
-In SOFA, you can find several of these projective constraints in the SofaBoundaryConditions module, among them:
-  - the _BilateralInteractionConstraint_: 
-  - 
-  
-
-Classes defining constraints between a pair of objects inherit from the class _PairInteractionConstraint_. The associated API functions are:
-
-``` cpp
-/// Retrieve the associated MechanicalState of both paired objects
-MechanicalState<DataTypes>* getMState1()
-BaseMechanicalState* getMechModel1()
-MechanicalState<DataTypes>* getMState2()
-BaseMechanicalState* getMechModel2()
-
-/// Construct the Constraint violations vector of each constraint
-/// \param v is the result vector that contains the whole constraints violations
-/// \param cParams defines the state vectors to use for positions and velocities. Also defines the order of the constraint (POS, VEL, ACC)
-virtual void getConstraintViolation(const ConstraintParams* cParams, defaulttype::BaseVector *v) override;
-
-/// Construct the Constraint violations vector of each constraint
-///
-/// \param v is the result vector that contains the whole constraints violations
-/// \param x1 and x2 are the position vectors used to compute contraint position violation
-/// \param v1 and v2 are the velocity vectors used to compute contraint velocity violation
-/// \param cParams defines the state vectors to use for positions and velocities. Also defines the order of the constraint (POS, VEL, ACC)
-///
-/// This is the method that should be implemented by the component
-virtual void getConstraintViolation(const ConstraintParams* cParams, defaulttype::BaseVector *v, const DataVecCoord &x1, const DataVecCoord &x2
-, const DataVecDeriv &v1, const DataVecDeriv &v2) = 0;
-
-/// Construct the Jacobian Matrix
-///
-/// \param cId is the result constraint sparse matrix Id
-/// \param cIndex is the index of the next constraint equation: when building the constraint matrix, you have to use this index, and then update it
-/// \param cParams defines the state vectors to use for positions and velocities. Also defines the order of the constraint (POS, VEL, ACC)
-virtual void buildConstraintMatrix(const ConstraintParams* cParams, MultiMatrixDerivId cId, unsigned int &cIndex) override;
-
-/// Construct the Jacobian Matrix
-///
-/// \param c1 and c2 are the results constraint sparse matrix
-/// \param cIndex is the index of the next constraint equation: when building the constraint matrix, you have to use this index, and then update it
-/// \param x1 and x2 are the position vectors used for contraint equation computation
-/// \param cParams defines the state vectors to use for positions and velocities. Also defines the order of the constraint (POS, VEL, ACC)
-///
-/// This is the method that should be implemented by the component
-virtual void buildConstraintMatrix(const ConstraintParams* cParams, DataMatrixDeriv &c1, DataMatrixDeriv &c2, unsigned int &cIndex
-, const DataVecCoord &x1, const DataVecCoord &x2) = 0;
-
-```
 
