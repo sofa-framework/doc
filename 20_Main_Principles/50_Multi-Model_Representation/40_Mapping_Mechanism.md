@@ -7,16 +7,22 @@ In SOFA, all the different representations of an object can be modeled and consi
   - the visual model (e.g. a triangular mesh using a very high resolution)
   - the collision model (e.g. a grid bounding with quad faces around our physical object)
 
-Relying on different geometrical models, this modular approach allows to tune the computational effort set on each of these representations. However, the simulation must ensure the coherency of these different representations. For instance, we want our visual model to move according to the physics. How is this done? The mappings in SOFA ensure this corresponding between the different representations of our object (physics, visual, collision etc.)
+Relying on different geometrical models, this modular approach allows to tune the computational effort set on each of these representations in order to find the best trade-off between accuracy and efficiency. However, the simulation must ensure the coherency of these different representations: for instance, we want our visual model to move according to the physics. To do so, SOFA relies on _Mappings_ to ensure this corresponding between the different representations of one-or-more object (physics, visual, collision etc.)
 
 
 Matrix approach
 ---------------
 
-Typical mappings compute the correspondance between different geometrical models by computing local coordinates (for rigid bodies) or barycentric coordinates (for deformable bodies).
+Typical mappings compute the correspondance between different geometrical models by computing local coordinates (for rigid bodies) or barycentric coordinates (for deformable bodies). Once this correspondance is computed, it allows to project vectors (like forces) from one representation to another.
 
- include polygonal shapes attached to rigid bodies using local coordinates, or
-embedded in deformable cells using barycentric coordinates
+
+One can define two representations of an object, both using a different topology:
+  - one mechanical model with its degrees of freedom _q_
+  - one collision model with its degrees of freedom _p_
+The mapping defines a function $$\mathbb{J}$$ mapping kinematically the position of the parent mechnaical model to the child collision model: $$p=\mathbb{J}(p)$$. The derivative of the degrees of freedom (velocities in case of positions) can be mapped in a similar way using $$v_p=\mathbf{J}v_q$$, the mechanical model thus driving the collision model. $$\mathbf{J}$$ is the mapping function, which can be non-linear. In the case of a _BarycentricMapping_, the matrix $$\mathbf{J}$$ includes the barycentric coordinates.
+
+By applying the principle of virtual work, the mapping can also translate forces applied to the child collision model $$f_p$$ into forces applied to the parent mechanical model $$f_q$$, using $$f_q = \mathbf{J}^T f_p$$. Mappings can therefore build a bijective correspondance between two representations of an object. Note that several mappings can also be applied recursively when necessary.
+
 
 
 Topological mapping
