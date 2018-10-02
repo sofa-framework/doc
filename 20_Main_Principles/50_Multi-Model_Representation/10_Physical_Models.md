@@ -20,7 +20,7 @@ addMDx()
 There is different way of integrating the mass in the system, described below.
 
 
-### UniformMass ###
+#### UniformMass ####
 
 This mass is independent of your modeling choices. The total mass is divided by the number of nodes, the mass matrix is diagonal and each value on the diagonal has the same value:
 ``` cpp
@@ -29,7 +29,7 @@ for ( unsigned int i=0; i<indices.size(); i++ )
 ```
 
 
-### MeshMatrixMass ###
+#### MeshMatrixMass ####
 
 This mass integrates the mass density within the topology based on the Finite Element Method (FEM). Thus, the mass is spread on the nodes and edges of the topology. A large element will therefore have a higher associated mass due to its volume:
 ``` cpp
@@ -53,7 +53,7 @@ for (unsigned int i=0; i<dx.size(); i++)
         }
 ```
 
-### DiagonalMass ###
+#### DiagonalMass ####
 
 The diagonal mass is a simplification of the MeshMatrixMass approach. It integrates the mass density within the topology based on the Finite Element Method (FEM). However, the mass is moved only on integration points (only mass on the nodes, not on edges anymore): this is a numerical lumping. The mass matrix thus becomes diagonal:
 ``` cpp
