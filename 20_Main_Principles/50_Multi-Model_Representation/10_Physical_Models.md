@@ -124,11 +124,15 @@ The term <img src="https://latex.codecogs.com/gif.latex?$$dt\textstyle\frac{\par
 
 * for **direct solvers**, the *addKToMatrix()* function computes the implicit part of the stiffness <img src="https://latex.codecogs.com/gif.latex?$$dt^2\textstyle\frac{\partial%20f}{\partial%20x}\Delta%20v$$" title="Implicit stiffness" /> which will build a matrix <img src="https://latex.codecogs.com/gif.latex?$$\mathbf{K}$$" title="Stiffness matrix" />. The linear system matrix <img src="https://latex.codecogs.com/gif.latex?$$\mathbf{A}$$" title="System matrix" /> must be stored and built, since it will be inversed later on to solve the system.
 ``` cpp
-addKToMatrix() // corresponding to the term : - dt  df(x(t+dt))/dx
+addKToMatrix() // adding contribution in the A matrix : - dt^2  df(x(t+dt))/dx
 ```
-The *addDForce()* function implements the explicit part of the stiffness <img src="https://latex.codecogs.com/gif.latex?$$dt^2\textstyle\frac{\partial%20f}{\partial%20x}v$$" title="Explicit stiffness" /> by adding the result of the matrix-vector multiplication directly in the right-hand side vector <img src="https://latex.codecogs.com/gif.latex?$$b$$" title="RHS vector" />.
+The *addDForce()* function implements the explicit part of the stiffness <img src="https://latex.codecogs.com/gif.latex?$$dt^2\textstyle\frac{\partial%20f}{\partial%20x}v$$" title="Explicit stiffness" /> by adding the result of the matrix-vector multiplication directly in the right-hand side vector <img src="https://latex.codecogs.com/gif.latex?$$b$$" title="RHS vector" />:
+``` cpp
+addDForce()    // adding contribution in b : - dt^2  df(x(t+dt))/dx
+```
+
 
 * for **iterative solvers**, since the system matrix does not required to be built, both explicit and implicit contributions of the stiffness will be computed by the *addDForce()*: for the explicit part it compultes the matrix-vector multiplication between <img src="https://latex.codecogs.com/gif.latex?$$\mathbf{K}$$" title="Stiffness matrix" /> and <img src="https://latex.codecogs.com/gif.latex?$$v$$" title="Velocity" /> the known first derivate of the degrees of freedom, while for the implicit part it computes the matrix-vector multiplication between <img src="https://latex.codecogs.com/gif.latex?$$\mathbf{K}$$" title="Stiffness matrix" /> and the unknown <img src="https://latex.codecogs.com/gif.latex?$$\Delta%20v$$" title="Unknow state at next time step" />:
 ``` cpp
-addDForce()    // corresponding to the term : - dt  df(x(t+dt))/dx
+addDForce()    // multiplying any vector by : - dt^2  df(x(t+dt))/dx
 ```
