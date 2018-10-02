@@ -100,7 +100,9 @@ The contribution of the physical law in the linear system will depend on the int
 #### Explicit case ####
 
 In case of an explicit integration, the above system becomes:
+
 <img src="https://latex.codecogs.com/gif.latex?$$\mathbf{M}\Delta%20v=dt\left(f(x(t))\right)$$" title="Explicit dynamic system" />
+
 The physical law therefore only contributes to the right-hand side <img src="https://latex.codecogs.com/gif.latex?$$b$$" title="RHS vector" /> of the linear system through the function:
 
 ``` cpp
@@ -112,8 +114,10 @@ SOFA is mainly based on the [Finite Element Method](https://en.wikipedia.org/wik
 #### Implicit case ####
 
 In case of an implicit integration, the above system becomes:
+
 <img src="https://latex.codecogs.com/gif.latex?$$\mathbf{M}\Delta%20v=dt\left(f(x(t))+\textstyle\frac{\partial%20f}{\partial%20x}\Delta%20x+\textstyle\frac{\partial%20f}{\partial%20v}\Delta%20v\right)$$" title="Implicit dynamic system" />
-In this equation, we can notice the same explicit contribution <img src="https://latex.codecogs.com/gif.latex?$$dt\left(f(x(t))\right)$$" title="Explicit contribution" />. <img src="https://latex.codecogs.com/gif.latex?$$\mathbf{A}x=b$$" title="Linear system" /> Just like in the explicit case, this part is implemented in the same function _addForce()_. We can also notice the appearance of the stiffness matrix : <img src="https://latex.codecogs.com/gif.latex?$$\mathbf{K}_{ij}=\textstyle\frac{\partial%20f_i}{\partial%20x_j}$$" title="Implicit contribution" />. The stiffness matrix <img src="https://latex.codecogs.com/gif.latex?$$\mathbf{K}$$" title="Stiffness matrix" /> is a symetric matrix, can either be linear or non-linear regarding <img src="https://latex.codecogs.com/gif.latex?$$x$$" title="DOF" />.
+
+In this equation, we can notice the same explicit contribution <img src="https://latex.codecogs.com/gif.latex?$$dt\left(f(x(t))\right)$$" title="Explicit contribution" />. Just like in the explicit case, this part is implemented in the same function _addForce()_. We can also notice the appearance of the stiffness matrix : <img src="https://latex.codecogs.com/gif.latex?$$\mathbf{K}_{ij}=\textstyle\frac{\partial%20f_i}{\partial%20x_j}$$" title="Implicit contribution" />. The stiffness matrix <img src="https://latex.codecogs.com/gif.latex?$$\mathbf{K}$$" title="Stiffness matrix" /> is a symetric matrix, can either be linear or non-linear regarding <img src="https://latex.codecogs.com/gif.latex?$$x$$" title="DOF" />.
 
 
 * for **direct solvers**, this is implemented in the *addKToMatrix()* function which will compute and build a matrix <img src="https://latex.codecogs.com/gif.latex?$$\mathbf{K}$$" title="Stiffness matrix" />. The linear system matrix <img src="https://latex.codecogs.com/gif.latex?$$\mathbf{A}$$" title="System matrix" /> must be stored and built, since it will be inversed later on to solve the system.
