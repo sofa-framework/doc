@@ -37,8 +37,9 @@ void projectPosition(const core::MechanicalParams* mparams, DataVecCoord& xData)
 void projectJacobianMatrix(const core::MechanicalParams* mparams, DataMatrixDeriv& cData);
 
 /// Project the global Mechanical Matrix to constrained space using offset parameter
-virtual void applyConstraint(const MechanicalParams*, const sofa::core::behavior::MultiMatrixAccessor*)
+void applyConstraint(const MechanicalParams*, const sofa::core::behavior::MultiMatrixAccessor*)
 
 /// Project the global Mechanical Vector to constrained space using offset parameter
-virtual void applyConstraint(const MechanicalParams* , defaulttype::BaseVector*, const sofa::core::behavior::MultiMatrixAccessor*)
+void applyConstraint(const MechanicalParams* , defaulttype::BaseVector*, const sofa::core::behavior::MultiMatrixAccessor*)
+
 ```
