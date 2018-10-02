@@ -1,7 +1,7 @@
 Collisions
 ==========
 
-In all SOFA simulations, i.e. using any [AnimationLoop](https://www.sofa-framework.org/community/doc/main-principles/animationloop-and-visitors/), the collision phase is done separately from the physics simulation, and usually before the call to the solvers.
+In all SOFA simulations, i.e. using any [animation loop](https://www.sofa-framework.org/community/doc/main-principles/animationloop-and-visitors/), the collision phase is done separately from the physics simulation, and usually before the call to the solvers.
 
 Collision detection is split in several phases, each implemented in a different component, and organized using a collision pipeline component.
 
