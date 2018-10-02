@@ -98,10 +98,10 @@ bool applyCorrection(const core::ConstraintParams * , MultiVecId res1, MultiVecI
 ```
 
 Each of these functions corresponds to a step described below:
-  - Prepare states: allocate in memory vectors corresponding to the corrective motion <img src="https://latex.codecogs.com/gif.latex?$$x\Delta%20v^{cor}$$" title="Corrective displacement" /> and the Lagrange multipliers <img src="https://latex.codecogs.com/gif.latex?$$\lambda$$" title="Lagrange multipliers" />
+  - Prepare states: allocate in memory vectors corresponding to the corrective motion <img src="https://latex.codecogs.com/gif.latex?$$\Delta%20v^{cor}$$" title="Corrective displacement" /> and the Lagrange multipliers <img src="https://latex.codecogs.com/gif.latex?$$\lambda$$" title="Lagrange multipliers" />
   - Build system: ensure the construction of the constraint matrix system
   - Solve system: request the Gauss-Seidel algorithm available to solve the constraint problem, the _ConstraintResolution_ (see below) knows which algorithm is availble
-  - Apply the correction: recovers the result <img src="https://latex.codecogs.com/gif.latex?$$x\Delta%20v^{cor}$$" title="Corrective displacement" /> and apply this corrective motion to the free motion <img src="https://latex.codecogs.com/gif.latex?$$x=x^{free}+dt\cdot%20\Delta%20v^{cor}$$" title="Correction" />
+  - Apply the correction: recovers the result <img src="https://latex.codecogs.com/gif.latex?$$\Delta%20v^{cor}$$" title="Corrective displacement" /> and apply this corrective motion to the free motion <img src="https://latex.codecogs.com/gif.latex?$$x=x^{free}+dt\cdot%20\Delta%20v^{cor}$$" title="Correction" />
 
 
 #### Build system ####
