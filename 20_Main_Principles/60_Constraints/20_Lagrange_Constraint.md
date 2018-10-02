@@ -19,9 +19,8 @@ where <img src="https://latex.codecogs.com/gif.latex?$$\mathbf{H}^T\lambda$$" ti
 
 For two interacting objects (object 1 and object 2), we therefore have:
 
-<img src="https://latex.codecogs.com/gif.latex?$$\mathbf{A}_1\Delta%20v_1=b_1+dt\mathbf{H}^T_1\lambda$$" title="Shortened constraint problem1" />
-
-<img src="https://latex.codecogs.com/gif.latex?$$\mathbf{A}_2\Delta%20v_2=b_2+dt\mathbf{H}^T_2\lambda$$" title="Shortened constraint problem2" />
+- <img src="https://latex.codecogs.com/gif.latex?$$\mathbf{A}_1\Delta%20v_1=b_1+dt\mathbf{H}^T_1\lambda$$" title="Shortened constraint problem1" />
+- <img src="https://latex.codecogs.com/gif.latex?$$\mathbf{A}_2\Delta%20v_2=b_2+dt\mathbf{H}^T_2\lambda$$" title="Shortened constraint problem2" />
 
 
 **Step 1**: interacting objects are solved independently while setting <img src="https://latex.codecogs.com/gif.latex?$$\lambda=0$$" title="Lagrange multipliers" />. We obtain what we call the free motion <img src="https://latex.codecogs.com/gif.latex?$$\Delta%20v_1^{free}$$" title="Free motion 1" /> and <img src="https://latex.codecogs.com/gif.latex?$$\Delta%20v_2^{free}$$" title="Free motion 2" /> for each object.
@@ -33,17 +32,16 @@ For two interacting objects (object 1 and object 2), we therefore have:
 
 If <img src="https://latex.codecogs.com/gif.latex?$$\mathbf{H}_\alpha(x)=\textstyle\frac{\partial%20\mathbb{A}}{\partial%20x}$$" title="Condition for velocity relationship" /> and assuming that <img src="https://latex.codecogs.com/gif.latex?$$\mathbf{H}$$" title="Constraint matrix" /> does not change during the contact response process, we have:
 
-<img src="https://latex.codecogs.com/gif.latex?$$\dot{\delta}_\alpha=\mathbf{H}_1(v_1)-\mathbf{H}_2(v_2)$$" title="Relative displacement" />
+<img src="https://latex.codecogs.com/gif.latex?$$\dot{\delta}_\alpha=\mathbf{H}_1%20v_1-\mathbf{H}_2%20v_2$$" title="Relative displacement" />
 
 By linearizing the constraint, it can be shown that:
 
-<img src="https://latex.codecogs.com/gif.latex?$$\dot{\delta}=\mathbf{H}_1(v_1^{free})-\mathbf{H}_2(v_2^{free})+dt^2\left[\mathbf{H}_1\mathbf{A}_1^{-1}\mathbf{H}_1^T+\mathbf{H}_2\mathbf{A}_2^{-1}\mathbf{H}_2^T\right]\lambda$$" title="Constraint problem" />
+<img src="https://latex.codecogs.com/gif.latex?$$\dot{\delta}=\mathbf{H}_1%20v_1^{free}-\mathbf{H}_2%20v_2^{free}+dt^2\left[\mathbf{H}_1\mathbf{A}_1^{-1}\mathbf{H}_1^T+\mathbf{H}_2\mathbf{A}_2^{-1}\mathbf{H}_2^T\right]\lambda$$" title="Constraint problem" />
 
 The resolution of the constraint problem is done using the [Gauss-Seidel algorithm](https://en.wikipedia.org/wiki/Gauss%E2%80%93Seidel_method). After resolution of this new linear system, the motion can be corrected as follows:
 
-<img src="https://latex.codecogs.com/gif.latex?$$x_1=x_1^{free}+dt\cdot%20\Delta%20v_1^{cor}$$" title="Correction1" />
-
-<img src="https://latex.codecogs.com/gif.latex?$$x_1=x_2^{free}+dt\cdot%20\Delta%20v_2^{cor}$$" title="Correction2" />
+- <img src="https://latex.codecogs.com/gif.latex?$$x_1=x_1^{free}+dt\cdot%20\Delta%20v_1^{cor}$$" title="Correction1" />
+- <img src="https://latex.codecogs.com/gif.latex?$$x_1=x_2^{free}+dt\cdot%20\Delta%20v_2^{cor}$$" title="Correction2" />
 
 
 with <img src="https://latex.codecogs.com/gif.latex?$$x\Delta%20v_1^{cor}=\mathbf{A}_1^{-1}\mathbf{H}_1^T\lambda$$" title="Corrective displacement1" /> and <img src="https://latex.codecogs.com/gif.latex?$$x\Delta%20v_2^{cor}=\mathbf{A}_2^{-1}\mathbf{H}_2^T\lambda$$" title="Corrective displacement2" />
