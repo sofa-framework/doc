@@ -41,4 +41,4 @@ virtual void applyConstraint(const MechanicalParams*, const sofa::core::behavior
 
 /// Project the global Mechanical Vector to constrained space using offset parameter
 virtual void applyConstraint(const MechanicalParams* , defaulttype::BaseVector*, const sofa::core::behavior::MultiMatrixAccessor*)
-``    
+```
