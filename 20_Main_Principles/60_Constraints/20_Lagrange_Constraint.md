@@ -18,6 +18,7 @@ that can be written in a simpler way as:
 where <img src="https://latex.codecogs.com/gif.latex?$$\mathbf{H}^T\lambda$$" title="Constraint forces" /> is the vector of constraint forces contribution with <img src="https://latex.codecogs.com/gif.latex?$$\mathbf{H}$$" title="Constraint matrix" /> matrix containing the constraint directions and <img src="https://latex.codecogs.com/gif.latex?$$\lambda$$" title="Lagrange multipliers" /> are the so-called Lagrange multipliers.
 
 For two interacting objects (object 1 and object 2), we therefore have:
+
 <img src="https://latex.codecogs.com/gif.latex?$$\mathbf{A}_1\Delta%20v_1=b_1+dt\mathbf{H}^T_1\lambda$$" title="Shortened constraint problem1" />
 
 <img src="https://latex.codecogs.com/gif.latex?$$\mathbf{A}_2\Delta%20v_2=b_2+dt\mathbf{H}^T_2\lambda$$" title="Shortened constraint problem2" />
@@ -28,21 +29,21 @@ For two interacting objects (object 1 and object 2), we therefore have:
 
 **Step 2**: from collision or proximity detection, we have a set of potential contact spots <img src="https://latex.codecogs.com/gif.latex?$$\alpha$$" title="Contact spots" />. In the contact space, we will measure the relative displacement <img src="https://latex.codecogs.com/gif.latex?$$\delta_\alpha$$" title="Relative displacement" /> and velocity <img src="https://latex.codecogs.com/gif.latex?$$\dot{\delta}_\alpha$$" title="Relative velocity" /> between colliding objects in order to use contact and friction laws. For every contact between two object, we can build a mapping function <img src="https://latex.codecogs.com/gif.latex?$$\mathbb{A}$$" title="Mapping function" /> that links the positions in the contact space to the motion space:
 
-<img src="https://latex.codecogs.com/gif.latex?$$\delta_\alpha = \mathbb{A}(x_1)-\mathbb{A}(x_2)$$" title="Relative displacement" />
+<img src="https://latex.codecogs.com/gif.latex?$$\delta_\alpha=\mathbb{A}(x_1)-\mathbb{A}(x_2)$$" title="Relative displacement" />
 
-If <img src="https://latex.codecogs.com/gif.latex?$$\mathbf{H}_\alpha(x) = \textstyle\frac{\partial \mathbb{A}}{\partial x}$$" title="Condition for velocity relationship" /> and assuming that <img src="https://latex.codecogs.com/gif.latex?$$\mathbf{H}$$" title="Constraint matrix" /> does not change during the contact response process, we have:
+If <img src="https://latex.codecogs.com/gif.latex?$$\mathbf{H}_\alpha(x)=\textstyle\frac{\partial%20\mathbb{A}}{\partial x}$$" title="Condition for velocity relationship" /> and assuming that <img src="https://latex.codecogs.com/gif.latex?$$\mathbf{H}$$" title="Constraint matrix" /> does not change during the contact response process, we have:
 
-<img src="https://latex.codecogs.com/gif.latex?$$\dot{\delta}_\alpha = \mathbf{H}_1(v_1)-\mathbf{H}_2(v_2)$$" title="Relative displacement" />
+<img src="https://latex.codecogs.com/gif.latex?$$\dot{\delta}_\alpha=\mathbf{H}_1(v_1)-\mathbf{H}_2(v_2)$$" title="Relative displacement" />
 
 By linearizing the constraint, it can be shown that:
 
-<img src="https://latex.codecogs.com/gif.latex?$$\dot{\delta} = \mathbf{H}_1(v_1^{free})-\mathbf{H}_2(v_2^{free})+dt^2\left[\mathbf{H}_1\mathbf{A}_1^{-1}\mathbf{H}_1^T+\mathbf{H}_2\mathbf{A}_2^{-1}\mathbf{H}_2^T\right]\lambda$$" title="Constraint problem" />
+<img src="https://latex.codecogs.com/gif.latex?$$\dot{\delta}=\mathbf{H}_1(v_1^{free})-\mathbf{H}_2(v_2^{free})+dt^2\left[\mathbf{H}_1\mathbf{A}_1^{-1}\mathbf{H}_1^T+\mathbf{H}_2\mathbf{A}_2^{-1}\mathbf{H}_2^T\right]\lambda$$" title="Constraint problem" />
 
 The resolution of the constraint problem is done using the [Gauss-Seidel algorithm](https://en.wikipedia.org/wiki/Gauss%E2%80%93Seidel_method). After resolution of this new linear system, the motion can be corrected as follows:
 
-<img src="https://latex.codecogs.com/gif.latex?$$x_1=x_1^{free}+dt\cdot \Delta v_1^{cor}$$" title="Correction1" />
+<img src="https://latex.codecogs.com/gif.latex?$$x_1=x_1^{free}+dt\cdot%20\Delta%20v_1^{cor}$$" title="Correction1" />
 
-<img src="https://latex.codecogs.com/gif.latex?$$x_1=x_2^{free}+dt\cdot \Delta v_2^{cor}$$" title="Correction2" />
+<img src="https://latex.codecogs.com/gif.latex?$$x_1=x_2^{free}+dt\cdot%20\Delta%20v_2^{cor}$$" title="Correction2" />
 
 
 with <img src="https://latex.codecogs.com/gif.latex?$$x\Delta v_1^{cor}=\mathbf{A}_1^{-1}\mathbf{H}_1^T\lambda$$" title="Corrective displacement1" /> and <img src="https://latex.codecogs.com/gif.latex?$$x\Delta v_2^{cor}=\mathbf{A}_2^{-1}\mathbf{H}_2^T\lambda$$" title="Corrective displacement2" />
