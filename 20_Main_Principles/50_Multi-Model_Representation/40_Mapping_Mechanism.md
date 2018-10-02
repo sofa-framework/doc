@@ -20,11 +20,39 @@ One can define two representations of an object, both using a different topology
   - one mechanical model with its degrees of freedom <img src="https://latex.codecogs.com/gif.latex?$$q$$" title="DOF of mechanical model" />
   - one collision model with its degrees of freedom <img src="https://latex.codecogs.com/gif.latex?$$p$$" title="DOF of collision model" />
 
-The mapping defines a function (that can be non-linear) <img src="https://latex.codecogs.com/gif.latex?$$\mathbb{J}$$" title="Mapping function" /> mapping kinematically the position of the parent mechnaical model to the child collision model: <img src="https://latex.codecogs.com/gif.latex?$$p=\mathbb{J}(p)$$" title="Mapping relationship" />. The derivative of the degrees of freedom (velocities in case of positions) can be mapped in a similar way using the associated Jacobian matrix <img src="https://latex.codecogs.com/gif.latex?$$v_p=\mathbf{J}v_q$$" title="Jacobian function" />, the mechanical model thus driving the collision model. In the case of a _BarycentricMapping_, the matrix <img src="https://latex.codecogs.com/gif.latex?$$\mathbf{J}$$" title="Jacobian matrix" /> includes the barycentric coordinates.
+The mapping defines a function (that can be non-linear) <img src="https://latex.codecogs.com/gif.latex?$$\mathbb{J}$$" title="Mapping function" /> mapping kinematically the position of the parent mechnaical model to the child collision model: <img src="https://latex.codecogs.com/gif.latex?$$p=\mathbb{J}(p)$$" title="Mapping relationship" />. The derivative of the degrees of freedom (velocities in case of positions) can be mapped in a similar way using the relationship <img src="https://latex.codecogs.com/gif.latex?$$v_p=\mathbf{J}v_q$$" title="Jacobian function" />, with <img src="https://latex.codecogs.com/gif.latex?$$\mathbf{J}=\frac{\partial p}{\partial q}$$" title="Jacobian matrix" /> is the associated Jacobian matrix. The mechanical model thus drives the collision model. In the case of a _BarycentricMapping_, the matrix <img src="https://latex.codecogs.com/gif.latex?$$\mathbf{J}$$" title="Jacobian matrix" /> includes the barycentric coordinates.
 
 By applying the principle of virtual work, the mapping can also translate forces applied to the child collision model <img src="https://latex.codecogs.com/gif.latex?$$f_p$$" title="Forces on collision model" /> into forces applied to the parent mechanical model <img src="https://latex.codecogs.com/gif.latex?$$f_q$$" title="Forces on mechanical model" />, using the relationship <img src="https://latex.codecogs.com/gif.latex?$$f_{q}=\mathbf{J}^{T}f_{p}$$" title="Bidirectional use of mapping" />. Mappings can therefore build a bijective correspondance between two representations of an object. Note that several mappings can also be applied recursively when necessary.
 
 
+API of mappings
+---------------
+
+As explained above, the mappings propagate positions, velocities, displacements and accelerations top-down, and they propagate forces bottom-up. The top-down propagation methods are:
+
+```cpp
+//for positions
+apply (const MechanicalParams*, MultiVecCoordId outPos, ConstMultiVecCoordId inPos )
+
+//for velocities and small displacements
+applyJ(const MechanicalParams*, MultiVecDerivId outVel, ConstMultiVecDerivId inVel )
+
+//for accelerations, taking into account velocity-dependent accelerations in nonlinear mappings
+computeAccFromMapping(const MechanicalParams*, MultiVecDerivId outAcc, ConstMultiVecDeri inVel, ConstMultiVecDerivId inAcc )
+```
+
+The bottom-up propagation methods are:
+
+```cpp
+//for child forces or changes of child forces
+applyJT(const MechanicalParams*, MultiVecDerivId inForce, ConstMultiVecDerivId outForce )
+
+//for changes of parent force due to a change of mapping with constant child force
+applyDJT(const MechanicalParams*, MultiVecDerivId parentForce, ConstMultiVecDerivId childForce )
+
+//for constraint Jacobians
+applyJT(const ConstraintParams*, MultiMatrixDerivId inConst, ConstMultiMatrixDerivId outConst )
+```
 
 Topological mapping
 -------------------
