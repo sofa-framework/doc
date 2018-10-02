@@ -87,17 +87,7 @@ if (constraintSolver)
 ConstraintSolver
 ----------------
 
-In its function _solveConstraint()_ called by the _step()_ function of the _AnimationLoop_, the _ConstraintSolver_ organizes and rules all the steps of the constraint-based correction. It builds the constraint problem, solve it and apply a correction to find a corrected solution from the free motion solution <img src="https://latex.codecogs.com/gif.latex?$$x_{free}$$" title="Free motion solution" />. The four steps are described now.
-
-#### Prepare states ####
-
-build system ++++
-solve system
-apply the correction
-
-Two different _ConstraintSolvers_ exist in SOFA:
-  - _GenericConstraintSolver_: 
-  - _LCPConstraintSolver_: 
+In its function _solveConstraint()_ called by the _step()_ function of the _AnimationLoop_, the _ConstraintSolver_ organizes and rules all the steps of the constraint-based correction. It builds the constraint problem, solve it and apply a correction to find a corrected solution from the free motion solution <img src="https://latex.codecogs.com/gif.latex?$$x_{free}$$" title="Free motion solution" />. In the code of any _ConstraintSolver_, you find the following functions:
 
 
 ``` cpp
@@ -107,7 +97,25 @@ bool solveSystem(const core::ConstraintParams * , MultiVecId res1, MultiVecId re
 bool applyCorrection(const core::ConstraintParams * , MultiVecId res1, MultiVecId res2=MultiVecId::null());
 ```
 
-<img src="https://latex.codecogs.com/gif.latex?$$\mathbf{H}^T\lambda$$" title="Constraint forces" />
+Each of these functions corresponds to a step described below:
+  - Prepare states: allocate in memory vectors corresponding to the corrective motion <img src="https://latex.codecogs.com/gif.latex?$$x\Delta%20v^{cor}$$" title="Corrective displacement" /> and the Lagrange multipliers <img src="https://latex.codecogs.com/gif.latex?$$\lambda$$" title="Lagrange multipliers" />
+  - Build system: ensure the construction of the constraint matrix system
+  - Solve system: request the Gauss-Seidel algorithm available to solve the constraint problem, the _ConstraintResolution_ (see below) knows which algorithm is availble
+  - Apply the correction: recovers the result <img src="https://latex.codecogs.com/gif.latex?$$x\Delta%20v^{cor}$$" title="Corrective displacement" /> and apply this corrective motion to the free motion <img src="https://latex.codecogs.com/gif.latex?$$x=x^{free}+dt\cdot%20\Delta%20v^{cor}$$" title="Correction" />
+
+
+#### Build system ####
+
+This is the most dense part of the constraint resolution.
+
+
+#### ConstraintSolver in SOFA ####
+
+Two different _ConstraintSolvers_ exist in SOFA:
+  - _GenericConstraintSolver_: 
+  - _LCPConstraintSolver_: 
+
+
 
 
 ConstraintCorrection
