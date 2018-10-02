@@ -31,7 +31,7 @@ For two interacting objects (object 1 and object 2), we therefore have:
 
 <img src="https://latex.codecogs.com/gif.latex?$$\delta_\alpha=\mathbb{A}(x_1)-\mathbb{A}(x_2)$$" title="Relative displacement" />
 
-If <img src="https://latex.codecogs.com/gif.latex?$$\mathbf{H}_\alpha(x)=\textstyle\frac{\partial%20\mathbb{A}}{\partial x}$$" title="Condition for velocity relationship" /> and assuming that <img src="https://latex.codecogs.com/gif.latex?$$\mathbf{H}$$" title="Constraint matrix" /> does not change during the contact response process, we have:
+If <img src="https://latex.codecogs.com/gif.latex?$$\mathbf{H}_\alpha(x)=\textstyle\frac{\partial%20\mathbb{A}}{\partial%20x}$$" title="Condition for velocity relationship" /> and assuming that <img src="https://latex.codecogs.com/gif.latex?$$\mathbf{H}$$" title="Constraint matrix" /> does not change during the contact response process, we have:
 
 <img src="https://latex.codecogs.com/gif.latex?$$\dot{\delta}_\alpha=\mathbf{H}_1(v_1)-\mathbf{H}_2(v_2)$$" title="Relative displacement" />
 
@@ -46,7 +46,7 @@ The resolution of the constraint problem is done using the [Gauss-Seidel algorit
 <img src="https://latex.codecogs.com/gif.latex?$$x_1=x_2^{free}+dt\cdot%20\Delta%20v_2^{cor}$$" title="Correction2" />
 
 
-with <img src="https://latex.codecogs.com/gif.latex?$$x\Delta v_1^{cor}=\mathbf{A}_1^{-1}\mathbf{H}_1^T\lambda$$" title="Corrective displacement1" /> and <img src="https://latex.codecogs.com/gif.latex?$$x\Delta v_2^{cor}=\mathbf{A}_2^{-1}\mathbf{H}_2^T\lambda$$" title="Corrective displacement2" />
+with <img src="https://latex.codecogs.com/gif.latex?$$x\Delta%20v_1^{cor}=\mathbf{A}_1^{-1}\mathbf{H}_1^T\lambda$$" title="Corrective displacement1" /> and <img src="https://latex.codecogs.com/gif.latex?$$x\Delta%20v_2^{cor}=\mathbf{A}_2^{-1}\mathbf{H}_2^T\lambda$$" title="Corrective displacement2" />
 
 
 FreeAnimationLoop
