@@ -33,9 +33,13 @@ The result of the resolution of the linear system <img src="https://latex.codeco
 Once the free motion <img src="https://latex.codecogs.com/gif.latex?$$x_{free}$$" title="Free motion solution" /> has been computed, the animation loop will look for an existing _ConstraintSolver_ in the scene graph. If one is found, it will handle the entire constraint process: computation of the constraint system, resolution and application of the corrective motion ensuring valid constraints.
 
 From the physics model to solve, the constraint problem can be expressed with the linear system as:
+
 <img src="https://latex.codecogs.com/gif.latex?$$\left(\mathbf{M}+dt\textstyle\frac{\partial%20f}{\partial%20\dot{x}}+dt^2\textstyle\frac{\partial%20f}{\partial%20x}\right)\Delta%20v=-dt(f+dt\textstyle\frac{\partial%20f}{\partial%20x}%20-%20\mathbf{H}^T\lambda)$$" title="Constraint problem" />
+
 that can be written in a simpler way as:
+
 <img src="https://latex.codecogs.com/gif.latex?$$\mathbf{A}\Delta%20v=b+dt\mathbf{H}^T\lambda)$$" title="Shortened constraint problem" />
+
 where <img src="https://latex.codecogs.com/gif.latex?$$\mathbf{H}^T\lambda)$$" title="Constraint forces" /> is the vector of constraint forces contribution with <img src="https://latex.codecogs.com/gif.latex?$$\mathbf{H}$$" title="Constraint matrix" /> matrix containing the constraint directions and <img src="https://latex.codecogs.com/gif.latex?$$\lambda)$$" title="Lagrange multipliers" /> are the so-called Lagrange multipliers.
 
 
