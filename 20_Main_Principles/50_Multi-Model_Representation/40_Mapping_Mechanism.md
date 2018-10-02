@@ -32,26 +32,26 @@ As explained above, the mappings propagate positions, velocities, displacements 
 
 ```cpp
 //for positions
-apply (const MechanicalParams*, MultiVecCoordId outPos, ConstMultiVecCoordId inPos )
+apply (const MechanicalParams*, MultiVecCoordId outPos, ConstMultiVecCoordId inPos );
 
 //for velocities and small displacements
-applyJ(const MechanicalParams*, MultiVecDerivId outVel, ConstMultiVecDerivId inVel )
+applyJ(const MechanicalParams*, MultiVecDerivId outVel, ConstMultiVecDerivId inVel );
 
 //for accelerations, taking into account velocity-dependent accelerations in nonlinear mappings
-computeAccFromMapping(const MechanicalParams*, MultiVecDerivId outAcc, ConstMultiVecDeri inVel, ConstMultiVecDerivId inAcc )
+computeAccFromMapping(const MechanicalParams*, MultiVecDerivId outAcc, ConstMultiVecDeri inVel, ConstMultiVecDerivId inAcc );
 ```
 
 The bottom-up propagation methods are:
 
 ```cpp
 //for child forces or changes of child forces
-applyJT(const MechanicalParams*, MultiVecDerivId inForce, ConstMultiVecDerivId outForce )
+applyJT(const MechanicalParams*, MultiVecDerivId inForce, ConstMultiVecDerivId outForce );
 
 //for changes of parent force due to a change of mapping with constant child force
-applyDJT(const MechanicalParams*, MultiVecDerivId parentForce, ConstMultiVecDerivId childForce )
+applyDJT(const MechanicalParams*, MultiVecDerivId parentForce, ConstMultiVecDerivId childForce );
 
 //for constraint Jacobians
-applyJT(const ConstraintParams*, MultiMatrixDerivId inConst, ConstMultiMatrixDerivId outConst )
+applyJT(const ConstraintParams*, MultiMatrixDerivId inConst, ConstMultiMatrixDerivId outConst );
 ```
 
 Topological mapping
