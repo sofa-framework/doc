@@ -107,33 +107,32 @@ Each of these functions corresponds to a step described below:
   - **Solve system**: the _ConstraintResolution_ finds a solution for the constraint problem
   - **Apply the correction**: recovers the result <img src="https://latex.codecogs.com/gif.latex?$$\Delta%20v^{cor}$$" title="Corrective displacement" /> and applies this corrective motion to the free motion <img src="https://latex.codecogs.com/gif.latex?$$x=x^{free}+dt\cdot%20\Delta%20v^{cor}$$" title="Correction" />
 
-The step of building the system (see the "Build system" section) and solving it (see the "ConstraintResolution" section) will now be detailed.
+The step of building the system (see the "Build system", "Constraint laws" and "ConstraintCorrection" sections) and solving it (see the "ConstraintResolution" section) will now be detailed.
 
 #### Build system ####
 
-This is the denser part of the constraint resolution. Most steps done to build the constraint problem are triggered using (visitors)[https://www.sofa-framework.org/community/doc/main-principles/animationloop-and-visitors/] browsing the simulation graph. The following steps are processed one after another:
+This is the denser part of the constraint resolution. Most steps done to build the constraint problem are triggered using [visitors](https://www.sofa-framework.org/community/doc/main-principles/animationloop-and-visitors/) browsing the simulation graph. The following steps are processed one after another:
 
-  - reset
-  See the visitor _MechanicalResetConstraintVisitor_.
+  - reset the constraint matrix <img src="https://latex.codecogs.com/gif.latex?$$\mathbf{H}$$" title="Constraint matrix" />. The associated visitor is _MechanicalResetConstraintVisitor_.
 
-  - X
-  See the visitor _MechanicalBuildConstraintMatrix_.
+  - build a new constraint matrix (or Jacobian matrix) <img src="https://latex.codecogs.com/gif.latex?$$\mathbf{H}$$" title="Constraint matrix" /> depending on the constraint laws available in the scene  <img src="https://latex.codecogs.com/gif.latex?$$\Phi$$" title="Phi" /> and <img src="https://latex.codecogs.com/gif.latex?$$\Psi$$" title="Psi" /> (see the "Constraint law" section). The associated visitor is _MechanicalBuildConstraintMatrix_.
 
-  - 
-  See the visitor _MechanicalAccumulateMatrixDeriv_
+  - acculutate additional contributions to the constraint matrix (or Jacobian matrix) <img src="https://latex.codecogs.com/gif.latex?$$\mathbf{H}$$" title="Constraint matrix" /> coming from underlying mappings. The associated visitor is _MechanicalAccumulateMatrixDeriv_.
 
-  - 
-  See the visitor _MechanicalProjectJacobianMatrixVisitor_
+  - project the free motion <img src="https://latex.codecogs.com/gif.latex?$$v^{free}$$" title="Free motion" /> (computed at Step 1) into the constraint space <img src="https://latex.codecogs.com/gif.latex?$$\mathbf{H}_1%20v^{free}$$" title="Projected free motion" />. The associated visitor is _MechanicalProjectJacobianMatrixVisitor_.
 
-  - clear constraints
+  - clear previous values of the Lagrange multipliers
 
   - 
   See the visitor _MechanicalGetConstraintViolationVisitor_
 
   - 
   See the visitor _MechanicalGetConstraintResolutionVisitor_
-  
-  - addComplianceInConstraintSpace
+
+  -
+  The associated function of the _ConstraintCorrection_ is _addComplianceInConstraintSpace()_
+
+
 
 In the code, the _buildSystem()_ function looks like this:
 
@@ -166,6 +165,30 @@ Moreover, you may find the class _ConstraintSolver_. This class does not impleme
 
 
 
+Constraint laws
+---------------
+
+In SOFA, you can find several of interaction constraint laws available to include in your simulation. A lot of them is available in the SofaConstraint module, among them:
+  - _UnilateralInteractionConstraint_: 
+  - _BilateralInteractionConstraint_: 
+  - _SlidingConstraint_: 
+
+Classes defining constraints between a pair of objects inherit from the class _PairInteractionConstraint_. The associated API functions are:
+
+``` cpp
+/// Retrieve the associated MechanicalState of both paired objects
+MechanicalState<DataTypes>* getMState1()
+BaseMechanicalState* getMechModel1()
+MechanicalState<DataTypes>* getMState2()
+BaseMechanicalState* getMechModel2()
+
+/// Construct the Constraint violations vector of each constraint
+virtual void getConstraintViolation(const ConstraintParams* cParams, defaulttype::BaseVector *v);
+
+/// Construct the Jacobian Matrix or constraint matrix H
+virtual void buildConstraintMatrix(const ConstraintParams* cParams, MultiMatrixDerivId cId, unsigned int &cIndex) override;
+
+```
 
 
 ConstraintCorrection
