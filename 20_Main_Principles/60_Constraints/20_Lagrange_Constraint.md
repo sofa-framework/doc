@@ -21,9 +21,7 @@ where <img src="https://latex.codecogs.com/gif.latex?$$\mathbf{H}^T\lambda$$" ti
 
 <img src="https://latex.codecogs.com/gif.latex?$$\Psi(x_1,x_2%20...)~\geq~0$$" title="Constraint law2" />
 
-where <img src="https://latex.codecogs.com/gif.latex?$$\Phi$$" title="Phi" /> represents the bilateral interaction laws (attachments, sliding joints, etc.) whereas <img src="https://latex.codecogs.com/gif.latex?$$\Psi$$" title="Psi" /> represents unilateral interaction laws (contact, needle puncture, friction, etc.). These functions can be nonlinear.
-
-In the constrained system presented above, the constraint matrix <img src="https://latex.codecogs.com/gif.latex?$$\mathbf{H}$$" title="Constraint matrix" /> appeared. The definition of the constraint laws <img src="https://latex.codecogs.com/gif.latex?$$\Phi$$" title="Phi" /> and <img src="https://latex.codecogs.com/gif.latex?$$\Psi$$" title="Psi" /> allows to define:
+where <img src="https://latex.codecogs.com/gif.latex?$$\Phi$$" title="Phi" /> represents the bilateral interaction laws (attachments, sliding joints, etc.) whereas <img src="https://latex.codecogs.com/gif.latex?$$\Psi$$" title="Psi" /> represents unilateral interaction laws (contact, needle puncture, friction, etc.). These functions can be nonlinear. In the constrained system presented above, the constraint matrix <img src="https://latex.codecogs.com/gif.latex?$$\mathbf{H}$$" title="Constraint matrix" /> appeared. The definition of the constraint laws <img src="https://latex.codecogs.com/gif.latex?$$\Phi$$" title="Phi" /> and <img src="https://latex.codecogs.com/gif.latex?$$\Psi$$" title="Psi" /> allows to define:
 
 <img src="https://latex.codecogs.com/gif.latex?$$\mathbf{H}_1(x)=\left[\frac{\partial%20\Phi}{\partial%20x1};\frac{\partial%20\Psi}{\partial%20x_1}\right]~~$$" title="H1" /><img src="https://latex.codecogs.com/gif.latex?$$~~\mathbf{H}_2(x)=\left[\frac{\partial%20\Phi}{\partial%20x2};\frac{\partial%20\Psi}{\partial%20x_2}\right]$$" title="H2" />
 
@@ -42,7 +40,7 @@ However, this system will not be solved diretly. It will be decomposed into two 
 
 <img src="https://latex.codecogs.com/gif.latex?$$\dot{\delta}=\mathbf{H}_1%20v_1^{free}-\mathbf{H}_2%20v_2^{free}+dt\left[\mathbf{H}_1\mathbf{A}_1^{-1}\mathbf{H}_1^T+\mathbf{H}_2\mathbf{A}_2^{-1}\mathbf{H}_2^T\right]\lambda$$" title="Constraint problem" />
 
-where <img src="https://latex.codecogs.com/gif.latex?$$\mathbf{W}=dt\left[\mathbf{H}_1\mathbf{A}_1^{-1}\mathbf{H}_1^T+\mathbf{H}_2\mathbf{A}_2^{-1}\mathbf{H}_2^T\right]\lambda$$" title="Constraint problem" /> is the matrix <img src="https://latex.codecogs.com/gif.latex?$$\mathbf{W}$$" title="Compliance matrix" /> of our linearized constraint system, this matrix is homogeneous to a compliance. <img src="https://latex.codecogs.com/gif.latex?$$\dot{\delta}$$" title="Compliance matrix" /> is the constraint violation (here in velocity), that can be directly obtained from the expression of our constraint laws <img src="https://latex.codecogs.com/gif.latex?$$\Phi$$" title="Phi" /> and <img src="https://latex.codecogs.com/gif.latex?$$\Psi$$" title="Psi" />.
+where <img src="https://latex.codecogs.com/gif.latex?$$\mathbf{W}=dt\left[\mathbf{H}_1\mathbf{A}_1^{-1}\mathbf{H}_1^T+\mathbf{H}_2\mathbf{A}_2^{-1}\mathbf{H}_2^T\right]$$" title="Constraint problem" /> is the matrix of our linearized constraint system, this matrix <img src="https://latex.codecogs.com/gif.latex?$$\mathbf{W}$$" title="Compliance matrix" /> is homogeneous to a compliance. <img src="https://latex.codecogs.com/gif.latex?$$\dot{\delta}$$" title="Compliance matrix" /> is the constraint violation (here in velocity), that can be directly obtained from the expression of our constraint laws <img src="https://latex.codecogs.com/gif.latex?$$\Phi$$" title="Phi" /> and <img src="https://latex.codecogs.com/gif.latex?$$\Psi$$" title="Psi" />.
 
 Finally, the resolution of the constraint problem is done using the [Gauss-Seidel algorithm](https://en.wikipedia.org/wiki/Gauss%E2%80%93Seidel_method). After resolution of this new linear system, the motion can be corrected as follows:
 
@@ -117,17 +115,24 @@ This is the denser part of the constraint resolution. Most steps done to build t
 
   - reset
   See the visitor _MechanicalResetConstraintVisitor_.
+
   - X
   See the visitor _MechanicalBuildConstraintMatrix_.
+
   - 
   See the visitor _MechanicalAccumulateMatrixDeriv_
+
   - 
   See the visitor _MechanicalProjectJacobianMatrixVisitor_
+
   - clear constraints
+
   - 
   See the visitor _MechanicalGetConstraintViolationVisitor_
+
   - 
   See the visitor _MechanicalGetConstraintResolutionVisitor_
+  
   - addComplianceInConstraintSpace
 
 In the code, the _buildSystem()_ function looks like this:
