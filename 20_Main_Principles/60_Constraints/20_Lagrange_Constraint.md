@@ -25,7 +25,7 @@ where <img src="https://latex.codecogs.com/gif.latex?$$\Phi$$" title="Phi" /> re
 
 <img src="https://latex.codecogs.com/gif.latex?$$\mathbf{H}_1(x)=\left[\frac{\partial%20\Phi}{\partial%20x1};\frac{\partial%20\Psi}{\partial%20x_1}\right]~~$$" title="H1" /><img src="https://latex.codecogs.com/gif.latex?$$~~\mathbf{H}_2(x)=\left[\frac{\partial%20\Phi}{\partial%20x2};\frac{\partial%20\Psi}{\partial%20x_2}\right]$$" title="H2" />
 
-Note that <img src="https://latex.codecogs.com/gif.latex?$$\mathbf{H}$$" title="Constraint matrix" /> the matrix containing the constraint directions can be considered as the Jacobian of the mapping between the physical space and the constraint space. The constraint will always be linearized in SOFA. For two interacting objects (object 1 and object 2), the complete constrained system therefore corresponds to:
+Note that <img src="https://latex.codecogs.com/gif.latex?$$\mathbf{H}$$" title="Constraint matrix" /> the matrix containing the constraint directions can be considered as the Jacobian of the mapping between the physics space and the constraint space. The constraint will always be linearized in SOFA. For two interacting objects (object 1 and object 2), the complete constrained system therefore corresponds to:
 
 - <img src="https://latex.codecogs.com/gif.latex?$$\mathbf{A}_1\Delta%20v_1=b_1+dt\mathbf{H}^T_1\lambda$$" title="Shortened constraint problem1" />
 - <img src="https://latex.codecogs.com/gif.latex?$$\mathbf{A}_2\Delta%20v_2=b_2+dt\mathbf{H}^T_2\lambda$$" title="Shortened constraint problem2" />
@@ -40,7 +40,7 @@ However, this system will not be solved diretly. It will be decomposed into two 
 
 <img src="https://latex.codecogs.com/gif.latex?$$\dot{\delta}=\mathbf{H}_1%20v_1^{free}-\mathbf{H}_2%20v_2^{free}+dt\left[\mathbf{H}_1\mathbf{A}_1^{-1}\mathbf{H}_1^T+\mathbf{H}_2\mathbf{A}_2^{-1}\mathbf{H}_2^T\right]\lambda$$" title="Constraint problem" />
 
-where <img src="https://latex.codecogs.com/gif.latex?$$\mathbf{W}=dt\left[\mathbf{H}_1\mathbf{A}_1^{-1}\mathbf{H}_1^T+\mathbf{H}_2\mathbf{A}_2^{-1}\mathbf{H}_2^T\right]$$" title="Constraint problem" /> is the matrix of our linearized constraint system, this matrix <img src="https://latex.codecogs.com/gif.latex?$$\mathbf{W}$$" title="Compliance matrix" /> is homogeneous to a compliance. <img src="https://latex.codecogs.com/gif.latex?$$\dot{\delta}$$" title="Compliance matrix" /> is the constraint violation (here in velocity), that can be directly obtained from the expression of our constraint laws <img src="https://latex.codecogs.com/gif.latex?$$\Phi$$" title="Phi" /> and <img src="https://latex.codecogs.com/gif.latex?$$\Psi$$" title="Psi" />.
+where <img src="https://latex.codecogs.com/gif.latex?$$\mathbf{W}=dt\left[\mathbf{H}_1\mathbf{A}_1^{-1}\mathbf{H}_1^T+\mathbf{H}_2\mathbf{A}_2^{-1}\mathbf{H}_2^T\right]$$" title="Compliance matrix" /> is the matrix of our linearized constraint system, this matrix <img src="https://latex.codecogs.com/gif.latex?$$\mathbf{W}$$" title="Compliance matrix" /> is homogeneous to a compliance. <img src="https://latex.codecogs.com/gif.latex?$$\dot{\delta}$$" title="Constraint violation" /> is the constraint violation (here in velocity), that can be directly obtained from the expression of our constraint laws <img src="https://latex.codecogs.com/gif.latex?$$\Phi$$" title="Phi" /> and <img src="https://latex.codecogs.com/gif.latex?$$\Psi$$" title="Psi" />.
 
 Finally, the resolution of the constraint problem is done using the [Gauss-Seidel algorithm](https://en.wikipedia.org/wiki/Gauss%E2%80%93Seidel_method). After resolution of this new linear system, the motion can be corrected as follows:
 
@@ -104,18 +104,18 @@ bool applyCorrection(const core::ConstraintParams * , MultiVecId res1, MultiVecI
 Each of these functions corresponds to a step described below:
   - **Prepare states**: allocates in memory vectors corresponding to the corrective motion <img src="https://latex.codecogs.com/gif.latex?$$\Delta%20v^{cor}$$" title="Corrective displacement" /> and the Lagrange multipliers <img src="https://latex.codecogs.com/gif.latex?$$\lambda$$" title="Lagrange multipliers" />
   - **Build system**: ensures itself the construction of the constraint matrix system
-  - **Solve system**: the _ConstraintResolution_ finds a solution for the constraint problem
+  - **Solve system**: the constraint resolution finds a solution for the constraint problem
   - **Apply the correction**: recovers the result <img src="https://latex.codecogs.com/gif.latex?$$\Delta%20v^{cor}$$" title="Corrective displacement" /> and applies this corrective motion to the free motion <img src="https://latex.codecogs.com/gif.latex?$$x=x^{free}+dt\cdot%20\Delta%20v^{cor}$$" title="Correction" />
 
-The step of building the system (see the "Build system", "Constraint laws" and "ConstraintCorrection" sections) and solving it (see the "ConstraintResolution" section) will now be detailed.
+The step of building the system (see the "Build system", "Constraint laws" and "ConstraintCorrection" sections) and solving it will now be detailed.
 
 #### Build system ####
 
-This is the denser part of the constraint resolution. Most steps done to build the constraint problem are triggered using [visitors](https://www.sofa-framework.org/community/doc/main-principles/animationloop-and-visitors/) browsing the simulation graph. The following steps are processed one after another:
+This is the denser part of the constraint resolution. Most steps done to build the constraint problem are triggered using [visitors](https://www.sofa-framework.org/community/doc/main-principles/animationloop-and-visitors/) browsing the simulation graph. The function are actually implemented by the constraint laws available in the scene  <img src="https://latex.codecogs.com/gif.latex?$$\Phi$$" title="Phi" /> and <img src="https://latex.codecogs.com/gif.latex?$$\Psi$$" title="Psi" /> (see the "Constraint law" section). The following steps are processed one after another:
 
   - reset the constraint matrix <img src="https://latex.codecogs.com/gif.latex?$$\mathbf{H}$$" title="Constraint matrix" />. The associated visitor is _MechanicalResetConstraintVisitor_.
 
-  - build a new constraint matrix (or Jacobian matrix) <img src="https://latex.codecogs.com/gif.latex?$$\mathbf{H}$$" title="Constraint matrix" /> depending on the constraint laws available in the scene  <img src="https://latex.codecogs.com/gif.latex?$$\Phi$$" title="Phi" /> and <img src="https://latex.codecogs.com/gif.latex?$$\Psi$$" title="Psi" /> (see the "Constraint law" section). The associated visitor is _MechanicalBuildConstraintMatrix_.
+  - build a new constraint matrix (or Jacobian matrix) <img src="https://latex.codecogs.com/gif.latex?$$\mathbf{H}$$" title="Constraint matrix" /> depending on the constraint laws available in the scene  <img src="https://latex.codecogs.com/gif.latex?$$\Phi$$" title="Phi" /> and <img src="https://latex.codecogs.com/gif.latex?$$\Psi$$" title="Psi" />. The associated visitor is _MechanicalBuildConstraintMatrix_.
 
   - acculutate additional contributions to the constraint matrix (or Jacobian matrix) <img src="https://latex.codecogs.com/gif.latex?$$\mathbf{H}$$" title="Constraint matrix" /> coming from underlying mappings. The associated visitor is _MechanicalAccumulateMatrixDeriv_.
 
@@ -126,15 +126,15 @@ This is the denser part of the constraint resolution. Most steps done to build t
   - 
   See the visitor _MechanicalGetConstraintViolationVisitor_
 
-  - 
-  See the visitor _MechanicalGetConstraintResolutionVisitor_
+  - select which method will be used to solve the constraint problem. The associated visitor is _MechanicalGetConstraintResolutionVisitor_.
 
-  -
-  The associated function of the _ConstraintCorrection_ is _addComplianceInConstraintSpace()_
+  - finally build the "compliance" matrix <img src="https://latex.codecogs.com/gif.latex?$$\mathbf{W}=dt\left[\mathbf{H}_1\mathbf{A}_1^{-1}\mathbf{H}_1^T+\mathbf{H}_2\mathbf{A}_2^{-1}\mathbf{H}_2^T\right]$$" title="Compliance matrix" /> based on the previously computed matrices. This task is performed by the _ConstraintCorrection_. The detail of the assembly of <img src="https://latex.codecogs.com/gif.latex?$$\mathbf{W}$$" title="Compliance matrix" /> is given below in the "ConstraintCorrection" section. The associated function of the _ConstraintCorrection_ is _addComplianceInConstraintSpace()_
+
+  - store <img src="https://latex.codecogs.com/gif.latex?$$\mathbf{H}^T\lambda$$" title="Projected lambda" /> which corresponds to the projection of the Lagrange multipliers <img src="https://latex.codecogs.com/gif.latex?$$\lambda$$" title="Lagrange multipliers" /> into the physics space, and is homogeneous to forces.
 
 
 
-In the code, the _buildSystem()_ function looks like this:
+In the code, the _buildSystem()_ function performs each of the steps just described and looks as follows:
 
 ``` cpp
 simulation::MechanicalResetConstraintVisitor(cParams).execute(context);
@@ -153,6 +153,11 @@ cc->addComplianceInConstraintSpace(cParams, &current_cp->W);
 
 #### Solve system ####
 
+The resolution of the system will be processed when the _solveSystem()_ function of the _ConstraintSolver_ is called (see). In SOFA, the current resolution always relies on a [Gauss-Seidel algorithm](https://en.wikipedia.org/wiki/Gauss%E2%80%93Seidel_method). Depending on the type of _ConstraintSolver_ used, two implementations are available:
+  - using a _LCPConstraintSolver_, the Gauss-Seidel implementation running is implemented in _sofa::helper::GaussSeidel_
+  - using a _GenericConstraintSolver_, the Gauss-Seidel algorithm triggered is the one implemented internally in _GenericConstraintSolver::GaussSeidel_
+
+The output of the constraint resolution is the corrected motion <img src="https://latex.codecogs.com/gif.latex?$$\Delta%20v^{cor}$$" title="Corrective displacement" /> for each object involved.
 
 
 #### ConstraintSolver in SOFA ####
@@ -162,6 +167,19 @@ Two different _ConstraintSolver_ implementations exist in SOFA:
   - _LCPConstraintSolver_: 
 
 Moreover, you may find the class _ConstraintSolver_. This class does not implement a real solver but actually just browses the graph in order to find and use one of the two implementations mentioned above.
+
+
+
+
+ConstraintCorrection
+--------------------
+
+As explained above, a _ConstraintCorrection_ is required in the simulation to define the way the compliance matrix <img src="https://latex.codecogs.com/gif.latex?$$\mathbf{W}$$" title="Compliance matrix" /> is computed. Different classes of exist in SOFA corresponding to different approaches:
+  - _GenericConstraintCorrection_: 
+  - _UncoupledConstraintCorrection_: 
+  - _LinearSolverConstraintCorrection_: 
+  - _PrecomputedConstraintCorrection_: 
+
 
 
 
@@ -177,39 +195,19 @@ Classes defining constraints between a pair of objects inherit from the class _P
 
 ``` cpp
 /// Retrieve the associated MechanicalState of both paired objects
-MechanicalState<DataTypes>* getMState1()
-BaseMechanicalState* getMechModel1()
-MechanicalState<DataTypes>* getMState2()
-BaseMechanicalState* getMechModel2()
+MechanicalState<DataTypes>* getMState1();
+BaseMechanicalState* getMechModel1();
+MechanicalState<DataTypes>* getMState2();
+BaseMechanicalState* getMechModel2();
 
 /// Construct the Constraint violations vector of each constraint
 virtual void getConstraintViolation(const ConstraintParams* cParams, defaulttype::BaseVector *v);
 
 /// Construct the Jacobian Matrix or constraint matrix H
-virtual void buildConstraintMatrix(const ConstraintParams* cParams, MultiMatrixDerivId cId, unsigned int &cIndex) override;
+virtual void buildConstraintMatrix(const ConstraintParams* cParams, MultiMatrixDerivId cId, unsigned int &cIndex);
 
 ```
 
-
-ConstraintCorrection
---------------------
-
-Different classes of _ConstraintCorrection_ exist in SOFA:
-  - _GenericConstraintCorrection_: 
-  - _UncoupledConstraintCorrection_: 
-  - _LinearSolverConstraintCorrection_: 
-  - _PrecomputedConstraintCorrection_: 
-
-
-
-ConstraintResolution
---------------------
-
-The resolution of the system will be processed when the _solveSystem()_ function of the _ConstraintSolver_ is called (see). In SOFA, the current resolution always relies on a [Gauss-Seidel algorithm](https://en.wikipedia.org/wiki/Gauss%E2%80%93Seidel_method). Depending on the type of _ConstraintSolver_ used, two implementations are available:
-  - using a _LCPConstraintSolver_, the Gauss-Seidel implementation running is implemented in _sofa::helper::GaussSeidel_
-  - using a _GenericConstraintSolver_, the Gauss-Seidel algorithm triggered is the one implemented internally in _GenericConstraintSolver::GaussSeidel_
-
-The output of the _ConstraintResolution_ is the corrected motion <img src="https://latex.codecogs.com/gif.latex?$$\Delta%20v^{cor}$$" title="Corrective displacement" /> for each object involved.
 
 
 
