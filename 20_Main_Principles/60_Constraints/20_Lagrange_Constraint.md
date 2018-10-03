@@ -111,7 +111,9 @@ The step of building the system (see the "Build system", "Constraint laws" and "
 
 #### Build system ####
 
-This is the denser part of the constraint resolution. Most steps done to build the constraint problem are triggered using [visitors](https://www.sofa-framework.org/community/doc/main-principles/animationloop-and-visitors/) browsing the simulation graph. The function are actually implemented by the constraint laws available in the scene  <img src="https://latex.codecogs.com/gif.latex?$$\Phi$$" title="Phi" /> and <img src="https://latex.codecogs.com/gif.latex?$$\Psi$$" title="Psi" /> (see the "Constraint law" section). The following steps are processed one after another:
+This is the denser part of the constraint resolution. Most steps done to build the constraint problem are triggered using [visitors](https://www.sofa-framework.org/community/doc/main-principles/animationloop-and-visitors/) browsing the simulation graph. All the following functions are actually not implemented by _ConstraintSolver_ but by the constraint laws available in the scene <img src="https://latex.codecogs.com/gif.latex?$$\Phi$$" title="Phi" /> and <img src="https://latex.codecogs.com/gif.latex?$$\Psi$$" title="Psi" /> (see the "Constraint law" section).
+
+The following steps are processed one after another:
 
   - reset the constraint matrix <img src="https://latex.codecogs.com/gif.latex?$$\mathbf{H}$$" title="Constraint matrix" />. The associated visitor is _MechanicalResetConstraintVisitor_.
 
@@ -130,7 +132,7 @@ This is the denser part of the constraint resolution. Most steps done to build t
 
   - finally build the "compliance" matrix <img src="https://latex.codecogs.com/gif.latex?$$\mathbf{W}=dt\left[\mathbf{H}_1\mathbf{A}_1^{-1}\mathbf{H}_1^T+\mathbf{H}_2\mathbf{A}_2^{-1}\mathbf{H}_2^T\right]$$" title="Compliance matrix" /> based on the previously computed matrices. This task is performed by the _ConstraintCorrection_. The detail of the assembly of <img src="https://latex.codecogs.com/gif.latex?$$\mathbf{W}$$" title="Compliance matrix" /> is given below in the "ConstraintCorrection" section. The associated function of the _ConstraintCorrection_ is _addComplianceInConstraintSpace()_
 
-  - store <img src="https://latex.codecogs.com/gif.latex?$$\mathbf{H}^T\lambda$$" title="Projected lambda" /> which corresponds to the projection of the Lagrange multipliers <img src="https://latex.codecogs.com/gif.latex?$$\lambda$$" title="Lagrange multipliers" /> into the physics space, and is homogeneous to forces.
+  - store <img src="https://latex.codecogs.com/gif.latex?$$\mathbf{H}^T\lambda$$" title="Projected lambda" /> which corresponds to the projection of the Lagrange multipliers <img src="https://latex.codecogs.com/gif.latex?$$\lambda$$" title="Lagrange multipliers" /> into the physics space, and is homogeneous to forces. This will be finally used to compute the corrective motion, resulting from the constraint resolution.
 
 
 
