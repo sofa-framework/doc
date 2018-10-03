@@ -17,15 +17,15 @@ that can be written in a simpler way as:
 
 where <img src="https://latex.codecogs.com/gif.latex?$$\mathbf{H}^T\lambda$$" title="Constraint forces" /> is the vector of constraint forces contribution with <img src="https://latex.codecogs.com/gif.latex?$$\mathbf{H}$$" title="Constraint matrix" /> matrix containing the constraint directions and <img src="https://latex.codecogs.com/gif.latex?$$\lambda$$" title="Lagrange multipliers" /> are the so-called Lagrange multipliers. Both holonomic and nonholonomic constraints can be used to model the various mechanical interactions involved in the simulation. For each constraint, a constraint law is assigned, which depends on the relative position of the interacting objects:
 
-<img src="https://latex.codecogs.com/gif.latex?$$\Phi(x_1,x_2 ...) = 0$$" title="Constraint law1" />
+<img src="https://latex.codecogs.com/gif.latex?$$\Phi(x_1,x_2%20...)~=~0$$" title="Constraint law1" />
 
-<img src="https://latex.codecogs.com/gif.latex?$$\Psi(x_1,x_2 ...) \geq 0$$" title="Constraint law2" />
+<img src="https://latex.codecogs.com/gif.latex?$$\Psi(x_1,x_2%20...)~\geq~0$$" title="Constraint law2" />
 
 where <img src="https://latex.codecogs.com/gif.latex?$$\Phi$$" title="Phi" /> represents the bilateral interaction laws (attachments, sliding joints, etc.) whereas <img src="https://latex.codecogs.com/gif.latex?$$\Psi$$" title="Psi" /> represents unilateral interaction laws (contact, needle puncture, friction, etc.). These functions can be nonlinear.
 
 In the constrained system presented above, the constraint matrix <img src="https://latex.codecogs.com/gif.latex?$$\mathbf{H}$$" title="Constraint matrix" /> appeared. The definition of the constraint laws <img src="https://latex.codecogs.com/gif.latex?$$\Phi$$" title="Phi" /> and <img src="https://latex.codecogs.com/gif.latex?$$\Psi$$" title="Psi" /> allows to define:
 
-<img src="https://latex.codecogs.com/gif.latex?$$\mathbf{H}_1(x)=\left[\frac{\partial%20\Phi}{\partial%20x1};\frac{\partial%20Psi}{\partial%20x_1}\right]$$" title="H1" /><img src="https://latex.codecogs.com/gif.latex?$$\mathbf{H}_2(x)=\left[\frac{\partial%20\Phi}{\partial%20x2};\frac{\partial%20Psi}{\partial%20x_2}\right]$$" title="H2" />
+<img src="https://latex.codecogs.com/gif.latex?$$\mathbf{H}_1(x)=\left[\frac{\partial%20\Phi}{\partial%20x1};\frac{\partial%20\Psi}{\partial%20x_1}\right]~~$$" title="H1" /><img src="https://latex.codecogs.com/gif.latex?$$~~\mathbf{H}_2(x)=\left[\frac{\partial%20\Phi}{\partial%20x2};\frac{\partial%20\Psi}{\partial%20x_2}\right]$$" title="H2" />
 
 Note that <img src="https://latex.codecogs.com/gif.latex?$$\mathbf{H}$$" title="Constraint matrix" /> the matrix containing the constraint directions can be considered as the Jacobian of the mapping between the physical space and the constraint space. The constraint will always be linearized in SOFA. For two interacting objects (object 1 and object 2), the complete constrained system therefore corresponds to:
 
