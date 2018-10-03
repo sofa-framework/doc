@@ -15,30 +15,36 @@ that can be written in a simpler way as:
 
 <img src="https://latex.codecogs.com/gif.latex?$$\mathbf{A}\Delta%20v=b+dt\mathbf{H}^T\lambda$$" title="Shortened constraint problem" />
 
-where <img src="https://latex.codecogs.com/gif.latex?$$\mathbf{H}^T\lambda$$" title="Constraint forces" /> is the vector of constraint forces contribution with <img src="https://latex.codecogs.com/gif.latex?$$\mathbf{H}$$" title="Constraint matrix" /> matrix containing the constraint directions and <img src="https://latex.codecogs.com/gif.latex?$$\lambda$$" title="Lagrange multipliers" /> are the so-called Lagrange multipliers.
+where <img src="https://latex.codecogs.com/gif.latex?$$\mathbf{H}^T\lambda$$" title="Constraint forces" /> is the vector of constraint forces contribution with <img src="https://latex.codecogs.com/gif.latex?$$\mathbf{H}$$" title="Constraint matrix" /> matrix containing the constraint directions and <img src="https://latex.codecogs.com/gif.latex?$$\lambda$$" title="Lagrange multipliers" /> are the so-called Lagrange multipliers. Both holonomic and nonholonomic constraints can be used to model the various mechanical interactions involved in the simulation. For each constraint, a constraint law is assigned, which depends on the relative position of the interacting objects:
 
-For two interacting objects (object 1 and object 2), we therefore have:
+<img src="https://latex.codecogs.com/gif.latex?$$\Phi(x_1,x_2 ...) = 0$$" title="Constraint law1" />
+
+<img src="https://latex.codecogs.com/gif.latex?$$\Psi(x_1,x_2 ...) \geq 0$$" title="Constraint law2" />
+
+where <img src="https://latex.codecogs.com/gif.latex?$$\Phi$$" title="Phi" /> represents the bilateral interaction laws (attachments, sliding joints, etc.) whereas <img src="https://latex.codecogs.com/gif.latex?$$\Psi$$" title="Psi" /> represents unilateral interaction laws (contact, needle puncture, friction, etc.). These functions can be nonlinear.
+
+In the constrained system presented above, the constraint matrix <img src="https://latex.codecogs.com/gif.latex?$$\mathbf{H}$$" title="Constraint matrix" /> appeared. The definition of the constraint laws <img src="https://latex.codecogs.com/gif.latex?$$\Phi$$" title="Phi" /> and <img src="https://latex.codecogs.com/gif.latex?$$\Psi$$" title="Psi" /> allows to define:
+
+<img src="https://latex.codecogs.com/gif.latex?$$\mathbf{H}_1(x)=\left[\frac{\partial%20\Phi}{\partial%20x1};\frac{\partial%20Psi}{\partial%20x_1}\right]$$" title="H1" /><img src="https://latex.codecogs.com/gif.latex?$$\mathbf{H}_2(x)=\left[\frac{\partial%20\Phi}{\partial%20x2};\frac{\partial%20Psi}{\partial%20x_2}\right]$$" title="H2" />
+
+Note that <img src="https://latex.codecogs.com/gif.latex?$$\mathbf{H}$$" title="Constraint matrix" /> the matrix containing the constraint directions can be considered as the Jacobian of the mapping between the physical space and the constraint space. The constraint will always be linearized in SOFA. For two interacting objects (object 1 and object 2), the complete constrained system therefore corresponds to:
 
 - <img src="https://latex.codecogs.com/gif.latex?$$\mathbf{A}_1\Delta%20v_1=b_1+dt\mathbf{H}^T_1\lambda$$" title="Shortened constraint problem1" />
 - <img src="https://latex.codecogs.com/gif.latex?$$\mathbf{A}_2\Delta%20v_2=b_2+dt\mathbf{H}^T_2\lambda$$" title="Shortened constraint problem2" />
+
+However, this system will not be solved diretly. It will be decomposed into two steps:
 
 
 **Step 1**: interacting objects are solved independently while setting <img src="https://latex.codecogs.com/gif.latex?$$\lambda=0$$" title="Lagrange multipliers" />. We obtain what we call the free motion <img src="https://latex.codecogs.com/gif.latex?$$\Delta%20v_1^{free}$$" title="Free motion 1" /> and <img src="https://latex.codecogs.com/gif.latex?$$\Delta%20v_2^{free}$$" title="Free motion 2" /> for each object.
 
 
-**Step 2**: from collision or proximity detection, we have a set of potential contact spots <img src="https://latex.codecogs.com/gif.latex?$$\alpha$$" title="Contact spots" />. In the contact space, we will measure the relative displacement <img src="https://latex.codecogs.com/gif.latex?$$\delta_\alpha$$" title="Relative displacement" /> and velocity <img src="https://latex.codecogs.com/gif.latex?$$\dot{\delta}_\alpha$$" title="Relative velocity" /> between colliding objects in order to use contact and friction laws. For every contact between two object, we can build a mapping function <img src="https://latex.codecogs.com/gif.latex?$$\mathbb{A}$$" title="Mapping function" /> that links the positions in the contact space to the motion space:
+**Step 2**: now, the constraints are taken into account while considering <img src="https://latex.codecogs.com/gif.latex?$$b_1=b_2=0" title="No force condition" />. The constrained system can therefore be presented as:
 
-<img src="https://latex.codecogs.com/gif.latex?$$\delta_\alpha=\mathbb{A}(x_1)-\mathbb{A}(x_2)$$" title="Relative displacement" />
+<img src="https://latex.codecogs.com/gif.latex?$$\dot{\delta}=\mathbf{H}_1%20v_1^{free}-\mathbf{H}_2%20v_2^{free}+dt\left[\mathbf{H}_1\mathbf{A}_1^{-1}\mathbf{H}_1^T+\mathbf{H}_2\mathbf{A}_2^{-1}\mathbf{H}_2^T\right]\lambda$$" title="Constraint problem" />
 
-If <img src="https://latex.codecogs.com/gif.latex?$$\mathbf{H}_\alpha(x)=\textstyle\frac{\partial%20\mathbb{A}}{\partial%20x}$$" title="Condition for velocity relationship" /> and assuming that <img src="https://latex.codecogs.com/gif.latex?$$\mathbf{H}$$" title="Constraint matrix" /> does not change during the contact response process, we have:
+where <img src="https://latex.codecogs.com/gif.latex?$$\mathbf{W}=dt\left[\mathbf{H}_1\mathbf{A}_1^{-1}\mathbf{H}_1^T+\mathbf{H}_2\mathbf{A}_2^{-1}\mathbf{H}_2^T\right]\lambda$$" title="Constraint problem" /> is the matrix <img src="https://latex.codecogs.com/gif.latex?$$\mathbf{W}$$" title="Compliance matrix" /> of our linearized constraint system, this matrix is homogeneous to a compliance. <img src="https://latex.codecogs.com/gif.latex?$$\dot{\delta}$$" title="Compliance matrix" /> is the constraint violation (here in velocity), that can be directly obtained from the expression of our constraint laws <img src="https://latex.codecogs.com/gif.latex?$$\Phi$$" title="Phi" /> and <img src="https://latex.codecogs.com/gif.latex?$$\Psi$$" title="Psi" />.
 
-<img src="https://latex.codecogs.com/gif.latex?$$\dot{\delta}_\alpha=\mathbf{H}_1%20v_1-\mathbf{H}_2%20v_2$$" title="Relative displacement" />
-
-By linearizing the constraint, it can be shown that:
-
-<img src="https://latex.codecogs.com/gif.latex?$$\dot{\delta}=\mathbf{H}_1%20v_1^{free}-\mathbf{H}_2%20v_2^{free}+dt^2\left[\mathbf{H}_1\mathbf{A}_1^{-1}\mathbf{H}_1^T+\mathbf{H}_2\mathbf{A}_2^{-1}\mathbf{H}_2^T\right]\lambda$$" title="Constraint problem" />
-
-The resolution of the constraint problem is done using the [Gauss-Seidel algorithm](https://en.wikipedia.org/wiki/Gauss%E2%80%93Seidel_method). After resolution of this new linear system, the motion can be corrected as follows:
+Finally, the resolution of the constraint problem is done using the [Gauss-Seidel algorithm](https://en.wikipedia.org/wiki/Gauss%E2%80%93Seidel_method). After resolution of this new linear system, the motion can be corrected as follows:
 
 - <img src="https://latex.codecogs.com/gif.latex?$$x_1=x_1^{free}+dt\cdot%20\Delta%20v_1^{cor}$$" title="Correction1" />
 - <img src="https://latex.codecogs.com/gif.latex?$$x_1=x_2^{free}+dt\cdot%20\Delta%20v_2^{cor}$$" title="Correction2" />
@@ -87,7 +93,7 @@ if (constraintSolver)
 ConstraintSolver
 ----------------
 
-In its function _solveConstraint()_ called by the _step()_ function of the _AnimationLoop_, the _ConstraintSolver_ organizes and rules all the steps of the constraint-based correction. It builds the constraint problem, solve it and apply a correction to find a corrected solution from the free motion solution <img src="https://latex.codecogs.com/gif.latex?$$x_{free}$$" title="Free motion solution" />. In the code of any _ConstraintSolver_, you find the following functions:
+A _ConstraintSolver_ is called by the _AnimationLoop_ within the _step()_ function. The _solveConstraint()_ function of the _ConstraintSolver_ organizes and rules all the steps of the resolution of the constraint problem. It builds the constraint system, solves it and applies a correction to find a corrected solution based on the free motion <img src="https://latex.codecogs.com/gif.latex?$$x_{free}$$" title="Free motion solution" />. In the code of any _ConstraintSolver_, you find the following functions:
 
 
 ``` cpp
@@ -98,22 +104,61 @@ bool applyCorrection(const core::ConstraintParams * , MultiVecId res1, MultiVecI
 ```
 
 Each of these functions corresponds to a step described below:
-  - Prepare states: allocate in memory vectors corresponding to the corrective motion <img src="https://latex.codecogs.com/gif.latex?$$\Delta%20v^{cor}$$" title="Corrective displacement" /> and the Lagrange multipliers <img src="https://latex.codecogs.com/gif.latex?$$\lambda$$" title="Lagrange multipliers" />
-  - Build system: ensure the construction of the constraint matrix system
-  - Solve system: request the Gauss-Seidel algorithm available to solve the constraint problem, the _ConstraintResolution_ (see below) knows which algorithm is available
-  - Apply the correction: recovers the result <img src="https://latex.codecogs.com/gif.latex?$$\Delta%20v^{cor}$$" title="Corrective displacement" /> and apply this corrective motion to the free motion <img src="https://latex.codecogs.com/gif.latex?$$x=x^{free}+dt\cdot%20\Delta%20v^{cor}$$" title="Correction" />
+  - **Prepare states**: allocates in memory vectors corresponding to the corrective motion <img src="https://latex.codecogs.com/gif.latex?$$\Delta%20v^{cor}$$" title="Corrective displacement" /> and the Lagrange multipliers <img src="https://latex.codecogs.com/gif.latex?$$\lambda$$" title="Lagrange multipliers" />
+  - **Build system**: ensures itself the construction of the constraint matrix system
+  - **Solve system**: the _ConstraintResolution_ finds a solution for the constraint problem
+  - **Apply the correction**: recovers the result <img src="https://latex.codecogs.com/gif.latex?$$\Delta%20v^{cor}$$" title="Corrective displacement" /> and applies this corrective motion to the free motion <img src="https://latex.codecogs.com/gif.latex?$$x=x^{free}+dt\cdot%20\Delta%20v^{cor}$$" title="Correction" />
 
+The step of building the system (see the "Build system" section) and solving it (see the "ConstraintResolution" section) will now be detailed.
 
 #### Build system ####
 
-This is the most dense part of the constraint resolution.
+This is the denser part of the constraint resolution. Most steps done to build the constraint problem are triggered using (visitors)[https://www.sofa-framework.org/community/doc/main-principles/animationloop-and-visitors/] browsing the simulation graph. The following steps are processed one after another:
+
+  - reset
+  See the visitor _MechanicalResetConstraintVisitor_.
+  - X
+  See the visitor _MechanicalBuildConstraintMatrix_.
+  - 
+  See the visitor _MechanicalAccumulateMatrixDeriv_
+  - 
+  See the visitor _MechanicalProjectJacobianMatrixVisitor_
+  - clear constraints
+  - 
+  See the visitor _MechanicalGetConstraintViolationVisitor_
+  - 
+  See the visitor _MechanicalGetConstraintResolutionVisitor_
+  - addComplianceInConstraintSpace
+
+In the code, the _buildSystem()_ function looks like this:
+
+``` cpp
+simulation::MechanicalResetConstraintVisitor(cParams).execute(context);
+simulation::MechanicalBuildConstraintMatrix(cParams, cParams->j(), numConstraints).execute(context);
+simulation::MechanicalAccumulateMatrixDeriv(cParams, cParams->j(), reverseAccumulateOrder.getValue()).execute(context);
+simulation::MechanicalProjectJacobianMatrixVisitor(&mparams).execute(context);
+
+current_cp->clear(numConstraints);
+
+MechanicalGetConstraintViolationVisitor(cParams, &current_cp->dFree).execute(context);
+MechanicalGetConstraintResolutionVisitor(cParams, current_cp->constraintsResolutions).execute(context);
+
+cc->addComplianceInConstraintSpace(cParams, &current_cp->W);
+```
+
+
+#### Solve system ####
+
 
 
 #### ConstraintSolver in SOFA ####
 
-Two different _ConstraintSolvers_ exist in SOFA:
+Two different _ConstraintSolver_ implementations exist in SOFA:
   - _GenericConstraintSolver_: 
   - _LCPConstraintSolver_: 
+
+Moreover, you may find the class _ConstraintSolver_. This class does not implement a real solver but actually just browses the graph in order to find and use one of the two implementations mentioned above.
+
 
 
 
@@ -132,10 +177,12 @@ Different classes of _ConstraintCorrection_ exist in SOFA:
 ConstraintResolution
 --------------------
 
-
-Depending on the type of _ConstraintSolver_ used, two implementations are available:
+The resolution of the system will be processed when the _solveSystem()_ function of the _ConstraintSolver_ is called (see). In SOFA, the current resolution always relies on a [Gauss-Seidel algorithm](https://en.wikipedia.org/wiki/Gauss%E2%80%93Seidel_method). Depending on the type of _ConstraintSolver_ used, two implementations are available:
   - using a _LCPConstraintSolver_, the Gauss-Seidel implementation running is implemented in _sofa::helper::GaussSeidel_
   - using a _GenericConstraintSolver_, the Gauss-Seidel algorithm triggered is the one implemented internally in _GenericConstraintSolver::GaussSeidel_
+
+The output of the _ConstraintResolution_ is the corrected motion <img src="https://latex.codecogs.com/gif.latex?$$\Delta%20v^{cor}$$" title="Corrective displacement" /> for each object involved.
+
 
 
 
@@ -144,3 +191,6 @@ More about Lagrange multipliers and constraints
 
 To read more and go further regarding constraints relying on Lagrange multipliers, please read Pr. Duriez habilitation [thesis available online](http://tel.archives-ouvertes.fr/tel-00785118/).
 
+You can also look at examples in the scenes of SOFA like:
+  - _examples/Components/animationloop/FreeMotionAnimationLoop.scn_
+  - _examples/Components/constraint/SlidingConstraint.scn_
