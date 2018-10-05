@@ -111,9 +111,13 @@ To integrate with the build system of SOFA, your CMakeLists.txt file
 should be structured as follows:
 
 ``` {.cmake}
-cmake_minimum_required(VERSION 2.8.12)
-project(MyPlugin)
+cmake_minimum_required(VERSION 3.1)
 
+#replace here with your project name and version number
+project(MyPlugin VERSION X.X)
+
+#look for all packages on which your project depends
+find_package(SofaFramework REQUIRED)
 
 set(HEADER_FILES
     MyHeaderFile1.h
@@ -126,8 +130,6 @@ set(SOURCE_FILES
     MySourceFile2.cpp
     MySourceFile3.cpp
 )
-
-find_package(SofaFramework REQUIRED)
 
 add_library(${PROJECT_NAME} SHARED ${HEADER_FILES} ${SOURCE_FILES})
 target_link_libraries(${PROJECT_NAME} SofaCore)
