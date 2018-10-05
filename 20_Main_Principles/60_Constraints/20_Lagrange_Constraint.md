@@ -115,24 +115,23 @@ This is the denser part of the constraint resolution. Most steps done to build t
 
 The following steps are processed one after another:
 
-  - reset the constraint matrix <img src="https://latex.codecogs.com/gif.latex?$$\mathbf{H}$$" title="Constraint matrix" />. The associated visitor is _MechanicalResetConstraintVisitor_.
+  - reset the constraint matrix <img src="https://latex.codecogs.com/gif.latex?$$\mathbf{H}$$" title="Constraint matrix" />. The associated visitor is _MechanicalResetConstraintVisitor_
 
-  - build a new constraint matrix (or Jacobian matrix) <img src="https://latex.codecogs.com/gif.latex?$$\mathbf{H}$$" title="Constraint matrix" /> depending on the constraint laws available in the scene  <img src="https://latex.codecogs.com/gif.latex?$$\Phi$$" title="Phi" /> and <img src="https://latex.codecogs.com/gif.latex?$$\Psi$$" title="Psi" />. The associated visitor is _MechanicalBuildConstraintMatrix_.
+  - build a new constraint matrix (or Jacobian matrix) <img src="https://latex.codecogs.com/gif.latex?$$\mathbf{H}$$" title="Constraint matrix" /> depending on the constraint laws available in the scene  <img src="https://latex.codecogs.com/gif.latex?$$\Phi$$" title="Phi" /> and <img src="https://latex.codecogs.com/gif.latex?$$\Psi$$" title="Psi" />. The associated visitor is _MechanicalBuildConstraintMatrix_
 
-  - acculutate additional contributions to the constraint matrix (or Jacobian matrix) <img src="https://latex.codecogs.com/gif.latex?$$\mathbf{H}$$" title="Constraint matrix" /> coming from underlying mappings. The associated visitor is _MechanicalAccumulateMatrixDeriv_.
+  - acculutate additional contributions to the constraint matrix (or Jacobian matrix) <img src="https://latex.codecogs.com/gif.latex?$$\mathbf{H}$$" title="Constraint matrix" /> coming from underlying mappings. The associated visitor is _MechanicalAccumulateMatrixDeriv_
 
-  - project the free motion <img src="https://latex.codecogs.com/gif.latex?$$v^{free}$$" title="Free motion" /> (computed at Step 1) into the constraint space <img src="https://latex.codecogs.com/gif.latex?$$\mathbf{H}_1%20v^{free}$$" title="Projected free motion" />. The associated visitor is _MechanicalProjectJacobianMatrixVisitor_.
+  - take into account the projective constraint <img src="https://latex.codecogs.com/gif.latex?$$\mathbf{P}$$" title="Projective constraint" />. This step removes the constraints that are affecting the degrees of freedom currently concerned by a project constraint. The associated visitor is _MechanicalProjectJacobianMatrixVisitor_
 
   - clear previous values of the Lagrange multipliers
 
-  - 
-  See the visitor _MechanicalGetConstraintViolationVisitor_
+  - project the free motion <img src="https://latex.codecogs.com/gif.latex?$$v^{free}$$" title="Free motion" /> (computed at Step 1) into the constraint space <img src="https://latex.codecogs.com/gif.latex?$$\dot{\delta}=\mathbf{H}%20v^{free}$$" title="Projected free motion" /> where <img src="https://latex.codecogs.com/gif.latex?$$\dot{\delta}$$" title="Violation" /> is the violation in velocity. See the visitor _MechanicalGetConstraintViolationVisitor_
 
-  - select which method will be used to solve the constraint problem. The associated visitor is _MechanicalGetConstraintResolutionVisitor_.
+  - select which method will be used to solve the constraint problem. The associated visitor is _MechanicalGetConstraintResolutionVisitor_
 
   - finally build the "compliance" matrix <img src="https://latex.codecogs.com/gif.latex?$$\mathbf{W}=dt\left[\mathbf{H}_1\mathbf{A}_1^{-1}\mathbf{H}_1^T+\mathbf{H}_2\mathbf{A}_2^{-1}\mathbf{H}_2^T\right]$$" title="Compliance matrix" /> based on the previously computed matrices. This task is performed by the _ConstraintCorrection_. The detail of the assembly of <img src="https://latex.codecogs.com/gif.latex?$$\mathbf{W}$$" title="Compliance matrix" /> is given below in the "ConstraintCorrection" section. The associated function of the _ConstraintCorrection_ is _addComplianceInConstraintSpace()_
 
-  - store <img src="https://latex.codecogs.com/gif.latex?$$\mathbf{H}^T\lambda$$" title="Projected lambda" /> which corresponds to the projection of the Lagrange multipliers <img src="https://latex.codecogs.com/gif.latex?$$\lambda$$" title="Lagrange multipliers" /> into the physics space, and is homogeneous to forces. This will be finally used to compute the corrective motion, resulting from the constraint resolution.
+  - store <img src="https://latex.codecogs.com/gif.latex?$$\mathbf{H}^T\lambda$$" title="Projected lambda" /> which corresponds to the projection of the Lagrange multipliers <img src="https://latex.codecogs.com/gif.latex?$$\lambda$$" title="Lagrange multipliers" /> into the physics space, and is homogeneous to forces. This will be finally used to compute the corrective motion, resulting from the constraint resolution
 
 
 
@@ -165,8 +164,8 @@ The output of the constraint resolution is the corrected motion <img src="https:
 #### ConstraintSolver in SOFA ####
 
 Two different _ConstraintSolver_ implementations exist in SOFA:
-  - _GenericConstraintSolver_: 
-  - _LCPConstraintSolver_: 
+  - _GenericConstraintSolver_: this solver handles all kind of constraints, i.e. works with any constraint resolution algorithm
+  - _LCPConstraintSolver_: this solvers targets on collision constraints, contacts with frictions which corresponds to unilateral constraints
 
 Moreover, you may find the class _ConstraintSolver_. This class does not implement a real solver but actually just browses the graph in order to find and use one of the two implementations mentioned above.
 
@@ -177,10 +176,10 @@ ConstraintCorrection
 --------------------
 
 As explained above, a _ConstraintCorrection_ is required in the simulation to define the way the compliance matrix <img src="https://latex.codecogs.com/gif.latex?$$\mathbf{W}$$" title="Compliance matrix" /> is computed. Different classes of exist in SOFA corresponding to different approaches:
-  - _GenericConstraintCorrection_: 
-  - _UncoupledConstraintCorrection_: 
-  - _LinearSolverConstraintCorrection_: 
-  - _PrecomputedConstraintCorrection_: 
+  - _UncoupledConstraintCorrection_: makes the approximation that the compliance matrix <img src="https://latex.codecogs.com/gif.latex?$$\mathbf{W}$$" title="Compliance matrix" /> is diagonal. This is as strong assumption since a diagonal matrix means that all constraints are independent from each other. Note that you can directly specify the compliance matrix values within the Data field "compliance"
+  - _LinearSolverConstraintCorrection_: computes the compliance matrix <img src="https://latex.codecogs.com/gif.latex?$$\mathbf{W}=\mathbf{H}\mathbf{A}^{-1}\mathbf{H}^T$$" title="Compliance matrix" /> with <img src="https://latex.codecogs.com/gif.latex?$$\mathbf{A}^{-1}$$" title="Inverse of A" /> comes from a direct solver associated to the object. Since the direct solvers in SOFA factorize the <img src="https://latex.codecogs.com/gif.latex?$$\mathbf{A}$$" title="System matrix" /> (for instance using a LDL factorization if you use the _LDLSolver_), the computation of its inverse <img src="https://latex.codecogs.com/gif.latex?$$\mathbf{A}^{-1}$$" title="Inverse of A" /> requires to call the _solve()_ function for each constraint, i.e. each column of the constraint matrix <img src="https://latex.codecogs.com/gif.latex?$$\mathbf{H}$$" title="Constraint matrix" />. This approach can therefore be very computationally-demanding if you have many contacts. Note that an optimization is available for wire-like structures (boolean option)
+  - _PrecomputedConstraintCorrection_: instead of computing <img src="https://latex.codecogs.com/gif.latex?$$\mathbf{A}^{-1}$$" title="Inverse of A" /> at each time step, this constraint correction precomputes once the inverse of <img src="https://latex.codecogs.com/gif.latex?$$\mathbf{A}$$" title="System matrix" /> at the initialization of the simulation and stores this matrix into a file. This speeds up the simulation while decreasing the accuracy if you <img src="https://latex.codecogs.com/gif.latex?$$\mathbf{A}$$" title="System matrix" /> changes
+  - _GenericConstraintCorrection_: similar to the _LinearSolverConstraintCorrection_, it allows to declare only once all the direct solvers (one for each constraint object) used to compute the global <img src="https://latex.codecogs.com/gif.latex?$$\mathbf{W}$$" title="Compliance matrix" />, whereas the previously described contraint correction needs to be added for each object
 
 
 
@@ -217,7 +216,9 @@ virtual void buildConstraintMatrix(const ConstraintParams* cParams, MultiMatrixD
 More about Lagrange multipliers and constraints
 -----------------------------------------------
 
-To read more and go further regarding constraints relying on Lagrange multipliers, please read Pr. Duriez habilitation [thesis available online](http://tel.archives-ouvertes.fr/tel-00785118/).
+To read more and go further regarding constraints relying on Lagrange multipliers, please read:
+  - Pr. Duriez's [habilitation thesis](http://tel.archives-ouvertes.fr/tel-00785118/)
+  - Pr. Baraff's [courses](https://www.cs.cmu.edu/~baraff/sigcourse/)
 
 You can also look at examples in the scenes of SOFA like:
   - _examples/Components/animationloop/FreeMotionAnimationLoop.scn_
