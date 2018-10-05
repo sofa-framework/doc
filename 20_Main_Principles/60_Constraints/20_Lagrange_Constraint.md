@@ -111,7 +111,7 @@ The step of building the system (see the [Build system](https://www.sofa-framewo
 
 #### Build system ####
 
-This is the denser part of the constraint resolution. Most steps done to build the constraint problem are triggered using [visitors](https://www.sofa-framework.org/community/doc/main-principles/animationloop-and-visitors/) browsing the simulation graph. All the following functions are actually not implemented by _ConstraintSolver_ but by the constraint laws available in the scene <img class="latex" src="https://latex.codecogs.com/png.latex?$$\Phi$$" title="Phi" /> and <img class="latex" src="https://latex.codecogs.com/png.latex?$$\Psi$$" title="Psi" /> (see the [Constraint law](https://www.sofa-framework.org/community/doc/main-principles/constraints/lagrange-constraint/#constraint-laws) section).
+This is the denser part of the constraint resolution. Most steps done to build the constraint problem are triggered using [visitors](https://www.sofa-framework.org/community/doc/main-principles/animationloop-and-visitors/#visitors) browsing the simulation graph. All the following functions are actually not implemented by _ConstraintSolver_ but by the constraint laws available in the scene <img class="latex" src="https://latex.codecogs.com/png.latex?$$\Phi$$" title="Phi" /> and <img class="latex" src="https://latex.codecogs.com/png.latex?$$\Psi$$" title="Psi" /> (see the [Constraint law](https://www.sofa-framework.org/community/doc/main-principles/constraints/lagrange-constraint/#constraint-laws) section).
 
 The following steps are processed one after another:
 
