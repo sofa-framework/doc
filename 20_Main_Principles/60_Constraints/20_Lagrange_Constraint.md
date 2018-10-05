@@ -188,9 +188,9 @@ Constraint laws
 ---------------
 
 In SOFA, you can find several of interaction constraint laws available to include in your simulation. A lot of them is available in the SofaConstraint module, among them:
-  - _UnilateralInteractionConstraint_: 
-  - _BilateralInteractionConstraint_: 
-  - _SlidingConstraint_: 
+  - _UnilateralInteractionConstraint_: constraint of inequality (like the <img src="https://latex.codecogs.com/gif.latex?$$\Psi$$" title="Psi" /> function described above in the "Constraint problem" section), that fits for instance contact and collision cases
+  - _BilateralInteractionConstraint_: constraint of equality (like the <img src="https://latex.codecogs.com/gif.latex?$$\Phi$$" title="Phi" /> function described above in the "Constraint problem" section), that fits for instance interactions, attachements between two paired objects
+  - _SlidingConstraint_: constraint in equality, like the _BilateralInteractionConstraint_, but only active for some vectors of the physics space (for instance only the x-direction)
 
 Classes defining constraints between a pair of objects inherit from the class _PairInteractionConstraint_. The associated API functions are:
 
