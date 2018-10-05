@@ -107,11 +107,11 @@ Each of these functions corresponds to a step described below:
   - **Solve system**: the constraint resolution finds a solution for the constraint problem
   - **Apply the correction**: recovers the result <img class="latex" src="https://latex.codecogs.com/png.latex?$$\Delta%20v^{cor}$$" title="Corrective displacement" /> and applies this corrective motion to the free motion <img class="latex" src="https://latex.codecogs.com/png.latex?$$x=x^{free}+dt\cdot%20\Delta%20v^{cor}$$" title="Correction" />
 
-The step of building the system (see the "Build system", "Constraint laws" and "ConstraintCorrection" sections) and solving it will now be detailed.
+The step of building the system (see the [Build system](https://www.sofa-framework.org/community/doc/main-principles/constraints/lagrange-constraint/#build-system), [Constraint laws](https://www.sofa-framework.org/community/doc/main-principles/constraints/lagrange-constraint/#constraint-laws) and [ConstraintCorrection](https://www.sofa-framework.org/community/doc/main-principles/constraints/lagrange-constraint/#constraintcorrection) sections) and solving it will now be detailed.
 
 #### Build system ####
 
-This is the denser part of the constraint resolution. Most steps done to build the constraint problem are triggered using [visitors](https://www.sofa-framework.org/community/doc/main-principles/animationloop-and-visitors/) browsing the simulation graph. All the following functions are actually not implemented by _ConstraintSolver_ but by the constraint laws available in the scene <img class="latex" src="https://latex.codecogs.com/png.latex?$$\Phi$$" title="Phi" /> and <img class="latex" src="https://latex.codecogs.com/png.latex?$$\Psi$$" title="Psi" /> (see the "Constraint law" section).
+This is the denser part of the constraint resolution. Most steps done to build the constraint problem are triggered using [visitors](https://www.sofa-framework.org/community/doc/main-principles/animationloop-and-visitors/) browsing the simulation graph. All the following functions are actually not implemented by _ConstraintSolver_ but by the constraint laws available in the scene <img class="latex" src="https://latex.codecogs.com/png.latex?$$\Phi$$" title="Phi" /> and <img class="latex" src="https://latex.codecogs.com/png.latex?$$\Psi$$" title="Psi" /> (see the [Constraint law](https://www.sofa-framework.org/community/doc/main-principles/constraints/lagrange-constraint/#constraint-laws) section).
 
 The following steps are processed one after another:
 
@@ -129,7 +129,7 @@ The following steps are processed one after another:
 
   - select which method will be used to solve the constraint problem. The associated visitor is _MechanicalGetConstraintResolutionVisitor_
 
-  - finally build the "compliance" matrix <img class="latex" src="https://latex.codecogs.com/png.latex?$$\mathbf{W}=dt\left[\mathbf{H}_1\mathbf{A}_1^{-1}\mathbf{H}_1^T+\mathbf{H}_2\mathbf{A}_2^{-1}\mathbf{H}_2^T\right]$$" title="Compliance matrix" /> based on the previously computed matrices. This task is performed by the _ConstraintCorrection_. The detail of the assembly of <img class="latex" src="https://latex.codecogs.com/png.latex?$$\mathbf{W}$$" title="Compliance matrix" /> is given below in the "ConstraintCorrection" section. The associated function of the _ConstraintCorrection_ is _addComplianceInConstraintSpace()_
+  - finally build the "compliance" matrix <img class="latex" src="https://latex.codecogs.com/png.latex?$$\mathbf{W}=dt\left[\mathbf{H}_1\mathbf{A}_1^{-1}\mathbf{H}_1^T+\mathbf{H}_2\mathbf{A}_2^{-1}\mathbf{H}_2^T\right]$$" title="Compliance matrix" /> based on the previously computed matrices. This task is performed by the _ConstraintCorrection_. The detail of the assembly of <img class="latex" src="https://latex.codecogs.com/png.latex?$$\mathbf{W}$$" title="Compliance matrix" /> is given below in the [ConstraintCorrection](https://www.sofa-framework.org/community/doc/main-principles/constraints/lagrange-constraint/#constraintcorrection) section. The associated function of the _ConstraintCorrection_ is _addComplianceInConstraintSpace()_
 
   - store <img class="latex" src="https://latex.codecogs.com/png.latex?$$\mathbf{H}^T\lambda$$" title="Projected lambda" /> which corresponds to the projection of the Lagrange multipliers <img class="latex" src="https://latex.codecogs.com/png.latex?$$\lambda$$" title="Lagrange multipliers" /> into the physics space, and is homogeneous to forces. This will be finally used to compute the corrective motion, resulting from the constraint resolution
 
@@ -188,8 +188,8 @@ Constraint laws
 ---------------
 
 In SOFA, you can find several of interaction constraint laws available to include in your simulation. A lot of them is available in the SofaConstraint module, among them:
-  - _UnilateralInteractionConstraint_: constraint of inequality (like the <img class="latex" src="https://latex.codecogs.com/png.latex?$$\Psi$$" title="Psi" /> function described above in the "Constraint problem" section), that fits for instance contact and collision cases
-  - _BilateralInteractionConstraint_: constraint of equality (like the <img class="latex" src="https://latex.codecogs.com/png.latex?$$\Phi$$" title="Phi" /> function described above in the "Constraint problem" section), that fits for instance interactions, attachements between two paired objects
+  - _UnilateralInteractionConstraint_: constraint of inequality (like the <img class="latex" src="https://latex.codecogs.com/png.latex?$$\Psi$$" title="Psi" /> function described above in the [Constraint problem](https://www.sofa-framework.org/community/doc/main-principles/constraints/lagrange-constraint/#constraint-problem) section), that fits for instance contact and collision cases
+  - _BilateralInteractionConstraint_: constraint of equality (like the <img class="latex" src="https://latex.codecogs.com/png.latex?$$\Phi$$" title="Phi" /> function described above in the [Constraint problem](https://www.sofa-framework.org/community/doc/main-principles/constraints/lagrange-constraint/#constraint-problem) section), that fits for instance interactions, attachements between two paired objects
   - _SlidingConstraint_: constraint in equality, like the _BilateralInteractionConstraint_, but only active for some vectors of the physics space (for instance only the x-direction)
 
 Classes defining constraints between a pair of objects inherit from the class _PairInteractionConstraint_. The associated API functions are:

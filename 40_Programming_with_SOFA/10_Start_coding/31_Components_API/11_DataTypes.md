@@ -1,7 +1,7 @@
 DataTypes
 =========
 
-As you may know, many SOFA C++ classes are templated. The different templates can be found in the page about [state vectors](https://www.sofa-framework.org/community/doc/main-principles/state-vectors/). In the code, the use of templates implies the many types in the C++ variable, that are not always easy to understand. This page provides a short introduction to all these types.
+As you may know, many SOFA C++ classes are templated. The different templates can be found in the page about [state vectors and templates](https://www.sofa-framework.org/community/doc/main-principles/state-vectors/#templates). In the code, the use of templates implies the many types in the C++ variable, that are not always easy to understand. This page provides a short introduction to all these types.
 
 All following types are defined from the DataTypes class, and can therefore be used by writing: **DataTypes::MyType**.
 
@@ -13,7 +13,7 @@ All following types are defined from the DataTypes class, and can therefore be u
 
 **VecCoord** or **VecDeriv**: corresponds to a vector of respectively _Coord_ or _Deriv_
 
-**DataVecCoord or DataVecDeriv**: corresponds to a [Data](https://www.sofa-framework.org/community/doc/main-principles/state-vectors/) containing a vector of respectively _Coord_ or _Deriv_. As noted in the assocaited article, the Data are variable of the class exposed to the user and other components in the scene
+**DataVecCoord or DataVecDeriv**: corresponds to a [Data](https://www.sofa-framework.org/community/doc/main-principles/scene-graph/#data) containing a vector of respectively _Coord_ or _Deriv_. As noted in the assocaited article, the Data are variable of the class exposed to the user and other components in the scene
 
 **MatrixCoord or MatrixDeriv**: corresponds to a matrix of respectively _Coord_ or _Deriv_, this is more especially used by solvers and constraint algorithms
 
