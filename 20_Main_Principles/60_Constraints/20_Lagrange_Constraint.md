@@ -9,7 +9,7 @@ Constraint problem
 
 To solve the dynamic of two constrained objects, we use a Lagrange Multipliers approach and a single linearization by time step. From the [physical system](https://www.sofa-framework.org/community/doc/main-principles/multi-model-representation/physical-model/) to solve, the constraint problem can be expressed with the linear system as:
 
-<img class="latex" src="https://latex.codecogs.com/png.latex?$$\left(\mathbf{M}+dt\textstyle\frac{\partial%20f}{\partial%20\dot{x}}+dt^2\textstyle\frac{\partial%20f}{\partial%20x}\right)\Delta%20v=-dt(f+dt\textstyle\frac{\partial%20f}{\partial%20x}%20-%20\mathbf{H}^T\lambda)$$" title="Constraint problem" />
+<img class="latex" src="https://latex.codecogs.com/png.latex?$$\left(\mathbf{M}+dt\textstyle\frac{\partial%20f}{\partial%20\dot{x}}+dt^2\textstyle\frac{\partial%20f}{\partial%20x}\right)\Delta%20v=-dt(f+dt\textstyle\frac{\partial%20f}{\partial%20x}v%20-%20\mathbf{H}^T\lambda)$$" title="Constraint problem" />
 
 that can be written in a simpler way as:
 
