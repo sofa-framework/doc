@@ -155,7 +155,9 @@ cc->addComplianceInConstraintSpace(cParams, &current_cp->W);
 #### Solve system ####
 
 The resolution of the system will be processed when the _solveSystem()_ function of the _ConstraintSolver_ is called (see). In SOFA, the current resolution always relies on a [Gauss-Seidel algorithm](https://en.wikipedia.org/wiki/Gauss%E2%80%93Seidel_method). Depending on the type of _ConstraintSolver_ used, two implementations are available:
+
   - using a _LCPConstraintSolver_, the Gauss-Seidel implementation running is implemented in _sofa::helper::GaussSeidel_
+
   - using a _GenericConstraintSolver_, the Gauss-Seidel algorithm triggered is the one implemented internally in _GenericConstraintSolver::GaussSeidel_
 
 The output of the constraint resolution is the corrected motion <img class="latex" src="https://latex.codecogs.com/png.latex?$$\Delta%20v^{cor}$$" title="Corrective displacement" /> for each object involved.
@@ -164,7 +166,9 @@ The output of the constraint resolution is the corrected motion <img class="late
 #### ConstraintSolver in SOFA ####
 
 Two different _ConstraintSolver_ implementations exist in SOFA:
+  
   - _GenericConstraintSolver_: this solver handles all kind of constraints, i.e. works with any constraint resolution algorithm
+
   - _LCPConstraintSolver_: this solvers targets on collision constraints, contacts with frictions which corresponds to unilateral constraints
 
 Moreover, you may find the class _ConstraintSolver_. This class does not implement a real solver but actually just browses the graph in order to find and use one of the two implementations mentioned above.
@@ -176,9 +180,13 @@ ConstraintCorrection
 --------------------
 
 As explained above, a _ConstraintCorrection_ is required in the simulation to define the way the compliance matrix <img class="latex" src="https://latex.codecogs.com/png.latex?$$\mathbf{W}$$" title="Compliance matrix" /> is computed. Different classes of exist in SOFA corresponding to different approaches:
+
   - _UncoupledConstraintCorrection_: makes the approximation that the compliance matrix <img class="latex" src="https://latex.codecogs.com/png.latex?$$\mathbf{W}$$" title="Compliance matrix" /> is diagonal. This is as strong assumption since a diagonal matrix means that all constraints are independent from each other. Note that you can directly specify the compliance matrix values within the Data field "compliance"
-  - _LinearSolverConstraintCorrection_: computes the compliance matrix <img class="latex" src="https://latex.codecogs.com/png.latex?$$\mathbf{W}=\mathbf{H}\mathbf{A}^{-1}\mathbf{H}^T$$" title="Compliance matrix" /> with <img class="latex" src="https://latex.codecogs.com/png.latex?$$\mathbf{A}^{-1}$$" title="Inverse of A" /> comes from a direct solver associated to the object. Since the direct solvers in SOFA factorize the <img class="latex" src="https://latex.codecogs.com/png.latex?$$\mathbf{A}$$" title="System matrix" /> (for instance using a LDL factorization if you use the _LDLSolver_), the computation of its inverse <img class="latex" src="https://latex.codecogs.com/png.latex?$$\mathbf{A}^{-1}$$" title="Inverse of A" /> requires to call the _solve()_ function for each constraint, i.e. each column of the constraint matrix <img class="latex" src="https://latex.codecogs.com/png.latex?$$\mathbf{H}$$" title="Constraint matrix" />. This approach can therefore be very computationally-demanding if you have many contacts. Note that an optimization is available for wire-like structures (boolean option)
+
+  - _LinearSolverConstraintCorrection_: computes the compliance matrix <img class="latex" src="https://latex.codecogs.com/png.latex?$$\mathbf{W}=\mathbf{H}\mathbf{A}^{-1}\mathbf{H}^T$$" title="Compliance matrix" /> where <img class="latex" src="https://latex.codecogs.com/png.latex?$$\mathbf{A}^{-1}$$" title="Inverse of A" /> comes from a direct solver associated to the object. Since the direct solvers in SOFA factorize the matrix <img class="latex" src="https://latex.codecogs.com/png.latex?$$\mathbf{A}$$" title="System matrix" /> (for instance using a LDL factorization if you use the _LDLSolver_). The matrix-matrix multiplication <img class="latex" src="https://latex.codecogs.com/png.latex?$$\mathbf{H}\mathbf{A}^{-1}\mathbf{H}^T$$" title="Compliance matrix" /> is not possible since the assembled inverse matrix <img class="latex" src="https://latex.codecogs.com/png.latex?$$\mathbf{A}^{-1}$$" title="Inverse of A" /> is not available. From the factorization of <img class="latex" src="https://latex.codecogs.com/png.latex?$$\mathbf{A}$$" title="System matrix" />, the computation of <img class="latex" src="https://latex.codecogs.com/png.latex?$$\mathbf{H}\mathbf{A}^{-1}\mathbf{H}^T$$" title="Compliance matrix" /> requires to call the _solve()_ function from the direct solver, computing a matrix-vector multiplication, for each line of the constraint matrix <img class="latex" src="https://latex.codecogs.com/png.latex?$$\mathbf{H}$$" title="Constraint matrix" />, i.e. for each constraint. This approach can therefore be very computationally-demanding if you have many constraints. Note that this ConstraintCorrection proposes an optimization for wire-like structures (boolean option)
+
   - _PrecomputedConstraintCorrection_: instead of computing <img class="latex" src="https://latex.codecogs.com/png.latex?$$\mathbf{A}^{-1}$$" title="Inverse of A" /> at each time step, this constraint correction precomputes once the inverse of <img class="latex" src="https://latex.codecogs.com/png.latex?$$\mathbf{A}$$" title="System matrix" /> at the initialization of the simulation and stores this matrix into a file. This speeds up the simulation while decreasing the accuracy if you <img class="latex" src="https://latex.codecogs.com/png.latex?$$\mathbf{A}$$" title="System matrix" /> changes
+
   - _GenericConstraintCorrection_: similar to the _LinearSolverConstraintCorrection_, it allows to declare only once all the direct solvers (one for each constraint object) used to compute the global <img class="latex" src="https://latex.codecogs.com/png.latex?$$\mathbf{W}$$" title="Compliance matrix" />, whereas the previously described contraint correction needs to be added for each object
 
 
