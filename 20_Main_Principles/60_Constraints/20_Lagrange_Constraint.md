@@ -131,7 +131,7 @@ The following steps are processed one after another:
 
   - finally build the "compliance" matrix <img class="latex" src="https://latex.codecogs.com/png.latex?$$\mathbf{W}=dt\left[\mathbf{H}_1\mathbf{A}_1^{-1}\mathbf{H}_1^T+\mathbf{H}_2\mathbf{A}_2^{-1}\mathbf{H}_2^T\right]$$" title="Compliance matrix" /> based on the previously computed matrices. This task is performed by the _ConstraintCorrection_. The detail of the assembly of <img class="latex" src="https://latex.codecogs.com/png.latex?$$\mathbf{W}$$" title="Compliance matrix" /> is given below in the [ConstraintCorrection](https://www.sofa-framework.org/community/doc/main-principles/constraints/lagrange-constraint/#constraintcorrection) section. The associated function of the _ConstraintCorrection_ is _addComplianceInConstraintSpace()_
 
-  - store <img class="latex" src="https://latex.codecogs.com/png.latex?$$\mathbf{H}^T\lambda$$" title="Projected lambda" /> which corresponds to the projection of the Lagrange multipliers <img class="latex" src="https://latex.codecogs.com/png.latex?$$\lambda$$" title="Lagrange multipliers" /> into the physics space, and is homogeneous to forces. This will be finally used to compute the corrective motion, resulting from the constraint resolution
+  - store <img class="latex" src="https://latex.codecogs.com/png.latex?$$\mathbf{H}^T\lambda$$" title="Projected lambda" /> which corresponds to the projection of the Lagrange multipliers <img class="latex" src="https://latex.codecogs.com/png.latex?$$\lambda$$" title="Lagrange multipliers" /> into the physics space, and is homogeneous to forces. This vector is made available with the function _storeLambda()_. This will be finally used to compute the corrective motion, resulting from the constraint resolution
 
 
 
