@@ -147,9 +147,9 @@ In the **explicit** case, we solve the equation <img class="latex" src="https://
 | **Direct**     | addMToMatrix()  | addForce() |
 
 
-In the **implicit** case, we solve the equation <img class="latex" src="https://latex.codecogs.com/png.latex?$$\left(%20\mathbf{M}-dt^2\textstyle\frac{\partial%20f}{\partial%20x}\Delta%20v\right)%20\Delta%20v=dt%20\cdot%20f(x(t))+dt^2\textstyle\frac{\partial%20f}{\partial%20x}v$$" title="Implicit equation" /> using the following SOFA API:
+In the **implicit** case, we solve the equation <img class="latex" src="https://latex.codecogs.com/png.latex?$$\left(%20\mathbf{M}-dt^2%20\cdot%20\textstyle\frac{\partial%20f}{\partial%20x}\right)%20\Delta%20v=dt%20\cdot%20f(x(t))+dt^2%20\cdot%20\textstyle\frac{\partial%20f}{\partial%20x}v(t)$$" title="Implicit equation" /> using the following SOFA API:
 
-| Linear solver | <img class="latex" src="https://latex.codecogs.com/png.latex?$$\mathbf{M}\Delta%20v$$" title="Mass" /> | <img class="latex" src="https://latex.codecogs.com/png.latex?$$-dt^2\textstyle\frac{\partial%20f}{\partial%20x}\Delta%20v$$" title="Implicit stiffness" /> | <img class="latex" src="https://latex.codecogs.com/png.latex?$$dt\left(f(x(t))\right)$$" title="Explicit forces" /> | <img class="latex" src="https://latex.codecogs.com/png.latex?$$dt^2\textstyle\frac{\partial%20f}{\partial%20x}v$$" title="Explicit stiffness" /> |
+| Linear solver | <img class="latex" src="https://latex.codecogs.com/png.latex?$$\mathbf{M}\Delta%20v$$" title="Mass" /> | <img class="latex" src="https://latex.codecogs.com/png.latex?$$-dt^2%20\cdot%20\textstyle\frac{\partial%20f}{\partial%20x}\Delta%20v$$" title="Implicit stiffness" /> | <img class="latex" src="https://latex.codecogs.com/png.latex?$$dt%20\cdot%20f(x(t))$$" title="Explicit forces" /> | <img class="latex" src="https://latex.codecogs.com/png.latex?$$dt^2\textstyle\frac{\partial%20f}{\partial%20x}v(t)$$" title="Explicit stiffness" /> |
 |:-------------:|:--------------:|:--------------:|:----------:|:-----------:|
 | **Iterative** | addMDx()       | addDForce()    | addForce() | addDForce() |
 | **Direct**    | addMToMatrix() | addKToMatrix() | addForce() | addDForce() |
