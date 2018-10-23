@@ -146,6 +146,7 @@ In the **explicit** case, we solve the equation <img class="latex" src="https://
 | **Iterative**  | addMDx()      | addForce() |
 | **Direct**     | addMToMatrix()  | addForce() |
 
+<br />
 
 In the **implicit** case, we solve the equation <img class="latex" src="https://latex.codecogs.com/png.latex?$$\left(%20\mathbf{M}-dt^2%20\cdot%20\textstyle\frac{\partial%20f}{\partial%20x}\right)%20\Delta%20v=dt%20\cdot%20f(x(t))+dt^2%20\cdot%20\textstyle\frac{\partial%20f}{\partial%20x}v(t)$$" title="Implicit equation" /> using the following SOFA API:
 
