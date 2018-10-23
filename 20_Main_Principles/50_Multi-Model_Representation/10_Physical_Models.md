@@ -139,6 +139,7 @@ addDForce()    // multiplying any vector by : - dt^2  df(x(t+dt))/dx
 
 #### API summary ####
 Here are the functions used in the **explicit** case:
+
 | Linear solver | <img class="latex" src="https://latex.codecogs.com/png.latex?$$\mathbf{M}\Delta%20v$$" title="Mass" /> | <img class="latex" src="https://latex.codecogs.com/png.latex?$$dt\left(f(x(t))\right)$$" title="Explicit forces" /> |
 | ------------- |:-------------:| -----:|
 | Iterative | addMDx() | addForce |
@@ -148,6 +149,6 @@ Here are the functions used in the **explicit** case:
 Here are the functions used in the **implicit** case:
 
 | Linear solver | <img class="latex" src="https://latex.codecogs.com/png.latex?$$\mathbf{M}\Delta%20v$$" title="Mass" /> | <img class="latex" src="https://latex.codecogs.com/png.latex?$$-dt^2\textstyle\frac{\partial%20f}{\partial%20x}\Delta%20v$$" title="Implicit stiffness" /> | <img class="latex" src="https://latex.codecogs.com/png.latex?$$dt\left(f(x(t))\right)$$" title="Explicit forces" /> | <img class="latex" src="https://latex.codecogs.com/png.latex?$$dt^2\textstyle\frac{\partial%20f}{\partial%20x}v$$" title="Explicit stiffness" /> |
-| ------------- |:-------------:| -----:|
+|:---------:|:------------:|:--------:|
 | Iterative | addMDx() | addForce |
-| Direct | addMToMatrix | addForce |
+| Direct    | addMToMatrix | addForce |
