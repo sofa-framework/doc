@@ -80,8 +80,8 @@ Taking the example of the *ConstantForceField*:
 addForce(const core::MechanicalParams* params, DataVecDeriv& force, const DataVecCoord& position, const DataVecDeriv&)
 {
     sofa::helper::WriteAccessor< core::objectmodel::Data< VecDeriv > > _force = force;
-	for (unsigned int i=0; i<position.getValue().size(); i++)
-		_force[i] += constantForce; // constant value filling the b vector
+    for (unsigned int i=0; i<position.getValue().size(); i++)
+        _force[i] += constantForce; // constant value filling the b vector
 }
 ```
 
@@ -119,7 +119,7 @@ In case of an implicit integration, the above system becomes:
 
 In this equation, we can notice the same explicit contribution <img class="latex" src="https://latex.codecogs.com/png.latex?$$dt\left(f(x(t))\right)$$" title="Explicit contribution" />. Just like in the explicit case, this part is implemented in the same function _addForce()_. We can also notice the appearance of the stiffness matrix : <img class="latex" src="https://latex.codecogs.com/png.latex?$$\mathbf{K}_{ij}=\textstyle\frac{\partial%20f_i}{\partial%20x_j}$$" title="Implicit contribution" />. The stiffness matrix <img class="latex" src="https://latex.codecogs.com/png.latex?$$\mathbf{K}$$" title="Stiffness matrix" /> is a symetric matrix, can either be linear or non-linear regarding <img class="latex" src="https://latex.codecogs.com/png.latex?$$x$$" title="DOF" />.
 
-The term <img class="latex" src="https://latex.codecogs.com/png.latex?$$dt\textstyle\frac{\partial%20f}{\partial%20x}\Delta%20x$$" title="Implicit forces" /> resulting from the Taylor expansion with <img class="latex" src="https://latex.codecogs.com/png.latex?$$\Delta%20x=dt(v+\Delta%20v)$$" title="Implicit forces" /> can be decomposed into one explicit term <img class="latex" src="https://latex.codecogs.com/png.latex?$$dt^2\textstyle\frac{\partial%20f}{\partial%20x}v$$" title="Explicit stiffness" /> contributing to the right-hand side vector <img class="latex" src="https://latex.codecogs.com/png.latex?$$b$$" title="RHS vector" /> and one implicit term <img class="latex" src="https://latex.codecogs.com/png.latex?$$dt^2\textstyle\frac{\partial%20f}{\partial%20x}\Delta%20v$$" title="Implicit stiffness" /> contributing to the system matrix <img class="latex" src="https://latex.codecogs.com/png.latex?$$\mathbf{A}$$" title="System matrix" /> on the left-hand side.
+The term <img class="latex" src="https://latex.codecogs.com/png.latex?$$dt\textstyle\frac{\partial%20f}{\partial%20x}\Delta%20x$$" title="Implicit forces" /> resulting from the Taylor expansion with <img class="latex" src="https://latex.codecogs.com/png.latex?$$\Delta%20x=x(t+dt)-x(t)=dt(v+\Delta%20v)$$" title="Implicit forces" /> can be decomposed into one explicit term <img class="latex" src="https://latex.codecogs.com/png.latex?$$dt^2\textstyle\frac{\partial%20f}{\partial%20x}v$$" title="Explicit stiffness" /> contributing to the right-hand side vector <img class="latex" src="https://latex.codecogs.com/png.latex?$$b$$" title="RHS vector" /> and one implicit term <img class="latex" src="https://latex.codecogs.com/png.latex?$$dt^2\textstyle\frac{\partial%20f}{\partial%20x}\Delta%20v$$" title="Implicit stiffness" /> contributing to the system matrix <img class="latex" src="https://latex.codecogs.com/png.latex?$$\mathbf{A}$$" title="System matrix" /> on the left-hand side.
 
 
 * for **direct solvers**, the *addKToMatrix()* function computes the implicit part of the stiffness <img class="latex" src="https://latex.codecogs.com/png.latex?$$dt^2\textstyle\frac{\partial%20f}{\partial%20x}\Delta%20v$$" title="Implicit stiffness" /> which will build a matrix <img class="latex" src="https://latex.codecogs.com/png.latex?$$\mathbf{K}$$" title="Stiffness matrix" />. The linear system matrix <img class="latex" src="https://latex.codecogs.com/png.latex?$$\mathbf{A}$$" title="System matrix" /> must be stored and built, since it will be inversed later on to solve the system.
@@ -136,3 +136,18 @@ addDForce()    // adding contribution in b : - dt^2  df(x(t+dt))/dx
 ``` cpp
 addDForce()    // multiplying any vector by : - dt^2  df(x(t+dt))/dx
 ```
+
+#### API summary ####
+Here are the functions used in the **explicit** case:
+| Linear solver | <img class="latex" src="https://latex.codecogs.com/png.latex?$$\mathbf{M}\Delta%20v$$" title="Mass" /> | <img class="latex" src="https://latex.codecogs.com/png.latex?$$dt\left(f(x(t))\right)$$" title="Explicit forces" /> |
+| ------------- |:-------------:| -----:|
+| Iterative | addMDx() | addForce |
+| Direct | addMToMatrix | addForce |
+
+
+Here are the functions used in the **implicit** case:
+
+| Linear solver | <img class="latex" src="https://latex.codecogs.com/png.latex?$$\mathbf{M}\Delta%20v$$" title="Mass" /> | <img class="latex" src="https://latex.codecogs.com/png.latex?$$-dt^2\textstyle\frac{\partial%20f}{\partial%20x}\Delta%20v$$" title="Implicit stiffness" /> | <img class="latex" src="https://latex.codecogs.com/png.latex?$$dt\left(f(x(t))\right)$$" title="Explicit forces" /> | <img class="latex" src="https://latex.codecogs.com/png.latex?$$dt^2\textstyle\frac{\partial%20f}{\partial%20x}v$$" title="Explicit stiffness" /> |
+| ------------- |:-------------:| -----:|
+| Iterative | addMDx() | addForce |
+| Direct | addMToMatrix | addForce |
