@@ -16,9 +16,10 @@ clang --version
 The default compiler on MacOS is now LLVM (ie. clang). SOFA is compatible with Clang but if you want to use gcc/g++ instead it is
 necessary to tell CMake.
 
-You can do this by setting those environment variables: `CC=gcc` and
-`CXX=g++`. These settings are stored in the cmake cache. Once set, you
-can re-use cmake or cmake-gui and the gcc settings won't be lost.
+To change the default compiler, set `CMAKE_C_COMPILER` and `CMAKE_CXX_COMPILER` in cmake.
+For example, to set the compiler to gcc through command line :
+`cmake -DCMAKE_C_COMPILER=llvm-gcc -DCMAKE_CXX_COMPILER=llvm-g++ ...`
+You may require to regenerate the project for the changes to take effect.
 
 WARNING: if you are on MacOS 10.8 Mountain Lion, *gcc* is an alias of *clang*. To really
 use gcc, use `CC=llvm-gcc` and `CXX=llvm-g++`.
