@@ -94,7 +94,7 @@ value like so:
 Create DataEngine Components
 --------------------------
 
-Basic components such as the example above that inherits `BaseObject`, only allow for “Parameter” data fields (values that can be changed but only affects the component itself, internally).
+Basic components such as the example above that inherits `BaseObject`, only allow for “Parameter” data fields (values that can be changed but only affect the component itself, internally).
 Sometimes, you might want to create **input / output components**.
 Engines can be “chained”, by giving an engine an input data that is the output of another, previously declared engine:
 ``` xml
@@ -167,6 +167,6 @@ void DataEngine::update()
 }
 ```
 - Some engines might require performing an action when an event is triggered, not just when an input is dirty. This is still possible by calling BaseObject's handleEvent() method. If you do so though, make sure that you stay consistent with the Data dependency graph
-- Except in some specific / rare cases, every data field in your engine should either be inputs or outputs of the engine, and there should be no "standard" data field.
+- Except in some specific / rare cases, every data field in your engine should either be inputs or outputs of the engine, and there should be no "Parameter" data field.
 - before the 18.12, a call to setDirtyValue had to be made once all the inputs and outputs were set. It is now obsolete
 - DataEngines are part of the Data Dependency Graph of Sofa. This mechanism is inherited from DDGNode, and can be quite challenging to understand by simply digging in the code. If you are curious about how it works, a [presentation is available on Google Drive](https://docs.google.com/presentation/d/1p0a3PVYhfZS9Vqkvn2DIYUo10SDnJolb2QYKZIy5W3s/edit) 
