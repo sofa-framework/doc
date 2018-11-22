@@ -198,10 +198,12 @@ time a source value changes, it sends a dirty message to all its
 targets, which recursively propagate the dirty signal if they are the
 sources of further links. When a target data value is accessed (see How
 to Access Data below), it first checks its dirty state and if necessary,
-it updates its value based on the source, recursively. In XML, links are
-set using the @ symbol as in the following example:
+it updates its value based on the source, recursively.
+
+In XML, links are set using the @ symbol as in the following example:
 
 ```xml
+<FixedConstraint  indices="@box_roi.indices"/>
 ```
 
 In C++, links are set using method BaseData::setParent( BaseData\* ), as
@@ -453,6 +455,7 @@ The template attribute is used at the component creation to select the
 appropriate constructor registered in the ObjectFactory.
 
 ```xml
+<MechanicalObject template="Rigid"/>
 ```
 
 As a rule of thumb, you should override these methods in your component
@@ -483,11 +486,13 @@ template<> inline const char* Vec3dTypes::Name() { return "Vec3d"; }
 As a result we can write
 
 ```xml
+<MechanicalObject template="Vec3d"/>
 ```
 
 instead of :
 
 ```xml
+<MechanicalObject template="StdVectorTypes<Vec<3,double>,Vec<3,double>,double> >" />
 ```
 
 #### Common operations
