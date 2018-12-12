@@ -166,10 +166,10 @@ The output of the constraint resolution is the corrected motion <img class="late
 #### ConstraintSolver in SOFA ####
 
 Two different _ConstraintSolver_ implementations exist in SOFA:
-  
-  - _GenericConstraintSolver_: this solver handles all kind of constraints, i.e. works with any constraint resolution algorithm
 
   - _LCPConstraintSolver_: this solvers targets on collision constraints, contacts with frictions which corresponds to unilateral constraints
+
+  - _GenericConstraintSolver_: this solver handles all kind of constraints, i.e. works with any constraint resolution algorithm
 
 Moreover, you may find the class _ConstraintSolver_. This class does not implement a real solver but actually just browses the graph in order to find and use one of the two implementations mentioned above.
 
