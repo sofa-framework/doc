@@ -5,17 +5,20 @@ Command-line method: Advanced Timer
 -----------------------------------
 
 This is the most precise and flexible way of monitoring the computation
-time in SOFA. It prints results on the standard text output. There is an
-option in **runSofa** to activate from the command line :
+time in SOFA. It prints results on the standard text output. 
+This can be controlled in **runSofa** using the folllowing command line options (use --help for the full list) :
 
 ```
--c $INT (use --help for a list of command line options)
+--computationTimeSampling arg 
+-b [ --computationTimeAtBegin ] [=arg(=1)] (=0)
+-o [ --computationTimeOutputType ] arg
 ```
-
-The parameter updates the variable computationTimeSampling which
+The first option updates the variable computationTimeSampling which
 specifies the intervals (counted in animation steps) between successive
-statistics displays. 0 means deactivated. To monitor the time spent in a
-specific part of the code, bracket it as shown below:
+statistics displays. 0 means deactivated. 
+The other 2 can be used to activate the time statistics during init and change the output format, respectively.
+
+To monitor the time spent in a specific part of the code, bracket it as shown below:
 
     sofa::helper::AdvancedTimer::stepBegin("Build linear equation");
      // your code here
