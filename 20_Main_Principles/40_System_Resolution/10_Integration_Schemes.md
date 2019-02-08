@@ -18,7 +18,7 @@ Two main categories of integration schemes exist:
 
   * **implicit scheme**: means that the new time step (t + dt) is computed based on information of this next time step (t + dt). For instance, in mechanics, internal or external forces would be computed on unknow positions at the next time step (x(t + dt)). The ordinary differential equation looks like:
   <img class="latex" src="https://latex.codecogs.com/png.latex?x(t+dt)=x(t)+dt%20\cdot%20f(x(t+dt),t)" title="Implicit scheme" />
-  Implicit schemes are known as being slower to solve (the outcoming linear system is more complex) but they are more way more stable than explicit schemes.
+  Implicit schemes are known as being slower to solve (the outcoming linear system is more complex) but they are way more stable than explicit schemes.
 
   * Semi-implicit or semi-explicit are actually a combination of two explicit and implicit schemes together for different parts of the ordinary differential equation.
 
