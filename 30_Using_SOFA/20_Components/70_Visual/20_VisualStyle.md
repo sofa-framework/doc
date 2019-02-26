@@ -9,29 +9,7 @@ the **VisualParams** for the current subgraph. It merges the
 DisplayFlags. Example Taken from
 *examples/Components/visualmodel/VisualStyle.scn*
 
-```xml
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-```
 
 \[caption id="attachment\_1566" align="aligncenter"
 width="533"\][![Resulting View from the previous XML
@@ -43,6 +21,7 @@ Resulting View from the previous XML scene\[/caption\]
 #### XML Usage
 
 ```xml
+<VisualStyle displayFlags="showBehavior showVisual" />
 ```
 
 allowed values for displayFlags data are a combination of the following:
