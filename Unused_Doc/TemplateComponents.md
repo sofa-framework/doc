@@ -11,7 +11,7 @@ What it is made for, what it does
 Usage
 -----
 
-How to use it, what required component, case
+How to use it, what **required** component, case
 
 In which case it works, in which case it doesn't
 
@@ -26,7 +26,7 @@ This component is used as follows in XML format:
 <Component data_field="X" />
 ```
 
-or python:
+or using Python:
 
 ``` python
 node.createObject('ComponentName', data_field='X')
@@ -34,11 +34,4 @@ node.createObject('ComponentName', data_field='X')
 
 With a description of each data
 
-Link to a ref scene *examples/Components/path_to_myscene.scn*
-
-
-
-API
----
-
-Doxygen of this class can be found [here](#).
+An example scene involving a ComponentName is available in [*examples/Components/path_to_myscene.scn*](https://github.com/sofa-framework/sofa/blob/master/)
