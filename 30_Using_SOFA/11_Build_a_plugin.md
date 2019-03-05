@@ -1,3 +1,7 @@
+Build a plugin
+==============
+
+
 This page presents how to build an external plugin,
 i.e. a plugin which is not provided in the source code of SOFA.
 

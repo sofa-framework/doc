@@ -1,5 +1,5 @@
-The scene file
---------------
+Write an XML scene
+==================
 
 Now let's take a look at the scene file. Scene files are XML files that
 describes the scene graph for the simulation. By convention, scene files

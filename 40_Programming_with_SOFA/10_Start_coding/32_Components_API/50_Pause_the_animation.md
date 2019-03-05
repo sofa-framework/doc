@@ -18,6 +18,7 @@ stop the Animation, pressing back the Animate button.
 method. Add the following component on your scene description:
 
 ```xml
+listening="true"
 ```
 
 Then launch the PauseEvent where you want to in your code. For example,
