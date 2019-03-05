@@ -12,8 +12,11 @@ In a static simulation involving elasticity, the linear system that we solve cor
 In case of non-linear elasticity, <img class="latex" src="https://latex.codecogs.com/png.latex?$$K_i$$" title="Stiffness matrix" /> is a linearization which must be updated with regards to the increment of displacement <img class="latex" src="https://latex.codecogs.com/png.latex?$$\delta%20u_i$$" title="Iterative increment of displacement" />. In such cases, several iterations of Newton Raphson are required to find an appropriate approximate solution. In one step of the StaticSolver, the number of Newton Raphson iterations is ruled by the data field **newton_iterations**.
 
 _Reminder_: the [Newton Raphson method](https://en.wikipedia.org/wiki/Newton%27s_method) is an iterative algorithm aiming at finding the solution of the system <img class="latex" src="https://latex.codecogs.com/png.latex?$$f(x)=0$$"/> where <img class="latex" src="https://latex.codecogs.com/png.latex?$$f(x)$$"/> is non-linear. At each iteration of Newton Raphson algorithm, we find a new approximate solution:
-<img class="latex" src="https://latex.codecogs.com/png.latex?$$x^{n+1}=x^n-\frac{f(x^n)}{f'(x^n)}$$" title="Newton Raphson method"/> where <img class="latex" src="https://latex.codecogs.com/png.latex?$$f'(x^n) = \frac{df}{dx}(x^n)$$"/>.
+
+<img class="latex" src="https://latex.codecogs.com/png.latex?$$x^{n+1}=x^n-\frac{f(x^n)}{f'(x^n)}$$" title="Newton Raphson method"/> where <img class="latex" src="https://latex.codecogs.com/png.latex?$$f'(x^n) = \frac{df}{dx}(x^n)$$"/>
+
 In our elasticity case, the system to solve is <img class="latex" src="https://latex.codecogs.com/png.latex?$$K_i%20\delta%20u_i-f=0$$" title="Iterative linear system" />. At each iteration of Newton Raphson algorithm <img class="latex" src="https://latex.codecogs.com/png.latex?$$n$$" title="Newton Raphson iteration"/> at simulation step <img class="latex" src="https://latex.codecogs.com/png.latex?$$i$$" title="Simulation time step"/>, we therefore find:
+
 <img class="latex" src="https://latex.codecogs.com/png.latex?$$\delta%20u_i^{n+1}=\delta%20u_i^{n}-\frac{(K_i^n%20\delta%20u_i^n-f)}{K_i^n}$$" title="Newton Raphson method in static elasticity"/>
 
 
