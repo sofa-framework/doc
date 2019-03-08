@@ -5,7 +5,7 @@ This component belongs to the category of [AnimationLoop](https://www.sofa-frame
 
 The FreeMotionAnimationLoop is the component that rules the simulation in two main steps: a free motion, then a correction step. First, the free motion computes the projective constraints, the physics, solving the resulting free linear system. Second, the correction step solves the constraints based on the Lagrange multipliers. More information on the constraint resolution can be found [here](https://www.sofa-framework.org/community/doc/main-principles/constraints/lagrange-constraint/).
 
-<img src="https://github.com/sofa-framework/doc/blob/master/Images/animationloop/FreeMotionAnimationLoop.png" title="Flow diagram for a FreeMotionAnimationLoop"/>
+<img src="https://raw.githubusercontent.com/sofa-framework/doc/blob/master/Images/animationloop/FreeMotionAnimationLoop.png" title="Flow diagram for a FreeMotionAnimationLoop"/>
 
 Usage
 -----
