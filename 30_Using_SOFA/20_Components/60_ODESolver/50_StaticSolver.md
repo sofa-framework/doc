@@ -20,7 +20,7 @@ In our elasticity case, the system to solve is <img class="latex" src="https://l
 <img class="latex" src="https://latex.codecogs.com/png.latex?$$\delta%20u_i^{n+1}=\delta%20u_i^{n}-\frac{(K_i^n%20\delta%20u_i^n-f)}{K_i^n}$$" title="Newton Raphson method in static elasticity"/>
 
   
-<img src="https://raw.githubusercontent.com/sofa-framework/doc/blob/master/Images/solver/StaticSolver.png" title="Flow diagram for the StaticSolver"/>
+<img src="https://github.com/sofa-framework/doc/blob/master/Images/solver/StaticSolver.png?raw=true" title="Flow diagram for the StaticSolver"/>
  
 
 The solver is ruled by several breaking (converging or diverging) conditions:  
