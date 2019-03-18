@@ -87,4 +87,4 @@ Here is the usual sequence diagram of a SOFA simulation.
 Fig. 5 - Sequence diagram of a SOFA simulation
 </div>
 
-More about the _Visitors_ can be found [here](https://www.sofa-framework.org/community/doc/using-sofa/basic-components/visitors-and-solvers/).
+More about the _Visitors_ can be found [here](https://www.sofa-framework.org/community/doc/using-sofa/components/visitors-and-solvers/).

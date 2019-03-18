@@ -105,12 +105,12 @@ Topological mappings
 
 **_Multi-model representation_**
 
-One of the significant strength of SOFA is to allow several representation of a same object. For instance, an object can have a coarse triangular representation for the collision, a tetrahedral representation of the mechanics and a very detailed quad surface for the visualization. However, this means that these different representations must be linked one to another. This is the role of the [mappings](https://www.sofa-framework.org/community/doc/main-principles/mapping-mechanism/). When you run a simulation with such several representations, it assumes to load the different topologies in the scene.
+One of the significant strength of SOFA is to allow several representation of a same object. For instance, an object can have a coarse triangular representation for the collision, a tetrahedral representation of the mechanics and a very detailed quad surface for the visualization. However, this means that these different representations must be linked one to another. This is the role of the [mappings](https://www.sofa-framework.org/community/doc/main-principles/multi-model-representation/mappings/). When you run a simulation with such several representations, it assumes to load the different topologies in the scene.
 
 
 **_From a topology to another_**
 
-It is possible to define a mesh topology from another mesh topology using the same degrees of freedom. Again, the [mappings](https://www.sofa-framework.org/community/doc/main-principles/mapping-mechanism/) make it possible. Mappings can be used either to go from one topology to a lower one in the topological hierarchy (from tetrahedra to triangles), or to split elements (quads into triangles). As usual mappings, forces applied on the slave topology are propagated onto the master one. Both topologies will therefore be assigned to the same _MechanicalObject_. The existing _TopologicalMappings_ are:
+It is possible to define a mesh topology from another mesh topology using the same degrees of freedom. Again, the [mappings](https://www.sofa-framework.org/community/doc/main-principles/multi-model-representation/mappings/) make it possible. Mappings can be used either to go from one topology to a lower one in the topological hierarchy (from tetrahedra to triangles), or to split elements (quads into triangles). As usual mappings, forces applied on the slave topology are propagated onto the master one. Both topologies will therefore be assigned to the same _MechanicalObject_. The existing _TopologicalMappings_ are:
 
 * _Hexa2TetraTopologicalMapping_
 * _Hexa2QuadTopologicalMapping_
