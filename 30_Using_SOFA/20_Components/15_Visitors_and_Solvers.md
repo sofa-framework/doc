@@ -1,3 +1,6 @@
+Visitors and Solvers
+====================
+
 We implement the simulation using visitors which traverse the scene
 top-down and bottom-up, and call the corresponding virtual functions at
 each graph node traversal. Algorithmic operations on the simulated
