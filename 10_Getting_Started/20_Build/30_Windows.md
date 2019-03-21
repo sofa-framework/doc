@@ -107,6 +107,12 @@ You need to **run Configure twice**, since SOFA requires two passes to
 manage the module dependencies. You can then customize your version of
 SOFA, activate or deactivate plugins and functionalities.
 
+If you have some errors, make absolutely sure all of your dependencies and your
+compilator are targeting the same architecture. For example, if you are not sure
+that the compiler is correctly set, do not hesitate to select it manually in the
+cmake-gui configuration screen instead of keeping the default ("Use default native
+compilers").
+
 When you are ready, press **Generate**. This will create your Visual
 Studio solution or your makefiles if you chose another generator.
 
