@@ -125,7 +125,9 @@ Next, run **Configure**. A popup window will ask you to specify the generator fo
 Now, you can see in the CMake GUI all options available to configure the SOFA project. You can for instance choose the type of build (Release/Debug/RelWithDebInfo) using the variable `CMAKE_BUILD_TYPE`. By default, set it to `Release`. You can also tune the plugins you want to activate/compile or de-activate. For instance, the image plugin can be activated by setting the flag `PLUGIN_IMAGE` to true.
 
 **Note**:
+
   - To solve Qt detection errors, click on **Add Entry** and add `CMAKE_PREFIX_PATH` with path `C:/Qt/X.X/msvcXXXX` matching your Qt MSVC folder. Example: `CMAKE_PREFIX_PATH=C:/Qt/5.7/msvc2015_64` and **Configure** again.
+
   - To solve Boost detection errors, click on **Add Entry** and add `BOOST_ROOT` with type **PATH** and value `C:/boost/boost_1_XX_X` matching your Boost lib folder.   Example: `BOOST_ROOT=C:/boost/boost_1_61_0` and **Configure** again.
 
 
