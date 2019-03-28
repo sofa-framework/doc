@@ -1,8 +1,9 @@
+**_It is advised to read through this entire doc page before getting started_**
+
 Prerequisites for OS X
 ======================
 
-
-## Compiler
+### Compiler
 
 SOFA requires at least GCC 4.8 or Clang 3.4. To make sure you have a correct version, execute the usual
 commands:
@@ -11,7 +12,7 @@ gcc --version
 clang --version
 ```
 
-### LLVM vs. GCC
+### Compiler: LLVM vs. GCC
 
 The default compiler on MacOS is now LLVM (ie. clang). SOFA is compatible with Clang but if you want to use gcc/g++ instead it is
 necessary to tell CMake.
@@ -25,12 +26,12 @@ WARNING: if you are on MacOS 10.8 Mountain Lion, *gcc* is an alias of *clang*. T
 use gcc, use `CC=llvm-gcc` and `CXX=llvm-g++`.
 
 
-## CMake: Makefile generator
+### CMake: Makefile generator
 
 SOFA requires at least CMake 3.1. To install CMake, download the latest DMG package from [their download page](https://cmake.org/download/).
 
 
-## [optional] Ninja: build system
+### [optional] Ninja: build system
 
 Ninja is an alternative to Make. It has a better handling of incremental builds.
 
@@ -41,7 +42,8 @@ brew install ninja
 To use Ninja, do not forget to set the CMake generator to "Codeblocks - Ninja" (as explained in [Generate a Makefile with CMake](#generate-a-makefile-with-cmake)).
 
 
-## Required dependencies
+Required dependencies
+=====================
 
 To compile SOFA, you need to install several dependencies using Homebrew
 
@@ -110,9 +112,8 @@ SOFA, activate or deactivate plugins and functionalities.
 When you are ready, press **Generate**. This will create your Visual
 Studio solution or your makefiles if you chose another generator.
 
-### Troubleshooting
+#### Troubleshooting: Qt detection errors
 
-#### Qt detection errors
 To solve Qt detection errors, click on **Add Entry** and add
 `CMAKE_PREFIX_PATH` with path `/Users/YOUR_USERNAME/Qt/QT_VERSION/COMPILER` matching your
 Qt architecture.  

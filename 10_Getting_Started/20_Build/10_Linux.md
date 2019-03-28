@@ -1,8 +1,9 @@
+**_It is advised to read through this entire doc page before getting started_**
+
 Prerequisites for Linux
 =======================
 
-
-## Compiler
+### Compiler
 
 SOFA requires at least GCC 4.8 or Clang 3.4.  
 Install the standard compilation toolkit (GCC + Make) with this command:
@@ -12,7 +13,7 @@ sudo apt-get install build-essential
 ```
 
 
-## CMake: Makefile generator
+### CMake: Makefile generator
 
 SOFA requires at least CMake 3.1. To get CMake, execute the usual
 command:
@@ -31,7 +32,7 @@ sudo apt-get install cmake cmake-qt-gui
 ```
 
 
-## [optional] Ninja: build system
+### [optional] Ninja: build system
 
 Ninja is an alternative to Make. It has a better handling of incremental builds.
 
@@ -43,7 +44,7 @@ To use Ninja, do not forget to set the CMake generator to "Codeblocks - Ninja" (
 If you already configured or generated the project, simply set `CMAKE_MAKE_PROGRAM=/usr/bin/ninja` in CMake GUI.
 
 
-## [optional] Clang (compiler)
+### [optional] Clang (compiler)
 
 Clang is an alternative to GCC. It compiles approximately **two times faster** !
 
@@ -64,7 +65,7 @@ cmake -DCMAKE_C_COMPILER=/usr/bin/clang -DCMAKE_CXX_COMPILER=/usr/bin/clang++ ..
 ***WARNING***: Clang does not compile CUDA host code, prefer GCC for this (i.e. set CUDA\_HOST\_COMPILER=/usr/bin/gcc)
 
 
-## [optional] CCache (cache system)
+### [optional] CCache (cache system)
 
 If you work on Linux, we advise you to use **ccache**. It is by no means
 mandatory, but it will dramatically improve the compilation time if you
@@ -83,7 +84,8 @@ sudo apt-get install ccache
 ```
 
 
-## Required dependencies
+Required dependencies
+=====================
 
 Finally, SOFA requires some libraries:
 
@@ -166,9 +168,7 @@ SOFA, activate or deactivate plugins and functionalities.
 When you are ready, press **Generate**. This will create your Visual
 Studio solution or your makefiles if you chose another generator.
 
-### Troubleshooting
-
-#### Qt detection errors
+#### Troubleshooting:  Qt detection errors
 To solve Qt detection errors, click on **Add Entry** and add
 `CMAKE_PREFIX_PATH` with path `/home/YOUR_USERNAME/Qt/QT_VERSION/COMPILER` matching your
 Qt architecture.  
