@@ -17,7 +17,7 @@ In the _MechanicalObject_, each of these state vectors can be accessed using (sc
 Symbolic ids
 ------------
 
-The MultiVec entries are not directly accessible by the solvers. The multivec are represented by identificators. The operations on the vectors are implemented using visitors which contain the identificators of the relevant vectors. The multivec identificators (MultiVecId) have different types, depending on the data they contain
+The MultiVec entries are not directly accessible by the solvers. The MultiVec are represented by identificators. The operations on the vectors are implemented using visitors which contain the identificators of the relevant vectors. The MultiVec identificators (MultiVecId) have different types, depending on the data they contain
 (positions or their derivatives) and the access mode, e.g.:
 
 The use of symbolic identificators (MultiVecId) prevent other components (like solvers) from handling state vectors directly and allow to easily work with abstract MultiVec by using their ids. These symbolic ids are widely used by specialized visitors, like the ones used in [ODESolver](https://www.sofa-framework.org/community/doc/main-principles/system-resolution/integration-schemes/).
