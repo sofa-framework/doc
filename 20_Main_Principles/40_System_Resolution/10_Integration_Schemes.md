@@ -41,7 +41,7 @@ Implicit ODESolvers in SOFA: [EulerImplicitSolver](https://www.sofa-framework.or
 In the SOFA code
 ----------------
 
-The integration scheme is described in the `solve()` function of the ODESolver. This *solve()* function is called by the [AnimationLoop](https://www.sofa-framework.org/community/doc/main-principles/animationloop/) (through a dedicated visitor) and builds the complete linear system <img class="latex" src="https://latex.codecogs.com/png.latex?$$\mathbf{A}x=b$$" title="Linear system" />.
+The integration scheme is described in the `solve()` function of the ODESolver. This *solve()* function is called by the [AnimationLoop](https://www.sofa-framework.org/community/doc/main-principles/animation-loop/) (through a dedicated visitor) and builds the complete linear system <img class="latex" src="https://latex.codecogs.com/png.latex?$$\mathbf{A}x=b$$" title="Linear system" />.
 
 
 ### Specification of the scheme
