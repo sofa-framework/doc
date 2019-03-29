@@ -32,7 +32,9 @@ In the SOFA code
 
 The resolution of the linear system is computed in the `solve()` function of the LinearSolver. The abstract description is done within the MatrixLinearSolver and depends on the category of the linear system (i.e. direct or iterative):
 
-* with direct solvers, the integration scheme sucessively calls the two following functions:
+### With direct solvers
+
+The integration scheme sucessively calls the two following functions:
 ``` cpp
 invert(Matrix& M)
 ```
@@ -42,7 +44,9 @@ solve(Matrix& A, Vector& x, Vector& b)
 ```
 
 
-* with iterative solvers, the integration scheme only calls the function:
+### With iterative solvers
+
+The integration scheme only calls the function:
 ``` cpp
 solve(Matrix& A, Vector& x, Vector& b)
 ```
