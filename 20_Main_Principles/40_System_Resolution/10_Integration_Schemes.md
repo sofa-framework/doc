@@ -22,7 +22,7 @@ An explicit scheme means that the new time step (t + dt) is computed based on in
 
 Explicit schemes are usually known as being fast to solve (since the created linear system is lighter) but they require very small time steps, unless they may undergo stability issues. They are known to efficiently solve non-stiff problems.
 
-Explicit ODESolvers: [EulerExplicitSolver](https://www.sofa-framework.org/community/doc/using-sofa/components/odesolver/eulerexplicitsolver/)
+Explicit ODESolvers in SOFA: [EulerExplicitSolver](https://www.sofa-framework.org/community/doc/using-sofa/components/odesolver/eulerexplicitsolver/)
 
 
 ### Implicit scheme
@@ -33,13 +33,13 @@ An implicit scheme means that the new time step (t + dt) is computed based on in
 
 Implicit schemes are known as being slower to solve (the outcoming linear system is more complex) but they are way more stable than explicit schemes. Stiff differential equations require the use of implicit schemes.
 
-Implicit ODESolvers: [EulerImplicitSolver](https://www.sofa-framework.org/community/doc/using-sofa/components/odesolver/eulerimplicitsolver/)
+Implicit ODESolvers in SOFA: [EulerImplicitSolver](https://www.sofa-framework.org/community/doc/using-sofa/components/odesolver/eulerimplicitsolver/)
 
 
 In the SOFA code
 ----------------
 
-The integration scheme is described in the *solve()* function of the ODESolver. This *solve()* function is called by the [AnimationLoop](https://www.sofa-framework.org/community/doc/main-principles/animationloop/) (through a dedicated visitor) and builds the complete linear system <img class="latex" src="https://latex.codecogs.com/png.latex?$$\mathbf{A}x=b$$" title="Linear system" />.
+The integration scheme is described in the `solve()` function of the ODESolver. This *solve()* function is called by the [AnimationLoop](https://www.sofa-framework.org/community/doc/main-principles/animationloop/) (through a dedicated visitor) and builds the complete linear system <img class="latex" src="https://latex.codecogs.com/png.latex?$$\mathbf{A}x=b$$" title="Linear system" />.
 
 
 ### Specification of the scheme
@@ -47,14 +47,12 @@ The integration scheme is described in the *solve()* function of the ODESolver. 
 The construction of the linear system changes whether the integration scheme is explicit or implicit, which is specified by:
 
   - for explicit cases
-
 ``` cpp
 mop->setImplicit(false);
 ```
 
 
   - for implicit cases
-
 ``` cpp
 mop->setImplicit(true);
 ```
