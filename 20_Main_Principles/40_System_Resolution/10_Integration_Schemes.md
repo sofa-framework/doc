@@ -6,7 +6,9 @@ All dynamic simulations assume to discretize the temporal evolution of the syste
 They are usually called **ODESolver** in SOFA. 
 
 Let's write our ordinary differential equation as follows:
-<img class="latex" src="https://latex.codecogs.com/png.latex?$$\frac{dx}{dt}=f(x,t)$$" title="Ordinary differential equation" />. ODESolver defines how to go from the current time step (t) to the next (t + dt), i.e. how to compute the forces <img class="latex" src="https://latex.codecogs.com/png.latex?$$f(x,t)$$" title="Forces" /> and therefore how to compute the linear system <img class="latex" src="https://latex.codecogs.com/png.latex?$$\mathbf{A}x=b$$" title="Linear system" />. Explicit contributions depending on <img class="latex" src="https://latex.codecogs.com/png.latex?x(t)" title="Current position"/> will contribute to the *b* vector, implicit contributions depending on <img class="latex" src="https://latex.codecogs.com/png.latex?x(t+dt)" title="Unknown position"/> will contribute to <img class="latex" src="https://latex.codecogs.com/png.latex?$$\mathbf{A}$$" title="System matrix" />. 
+<img class="latex" src="https://latex.codecogs.com/png.latex?$$\frac{dx}{dt}=f(x,t)$$" title="Ordinary differential equation" />.
+
+ODESolver defines how to go from the current time step (t) to the next (t + dt), i.e. how to compute the forces <img class="latex" src="https://latex.codecogs.com/png.latex?$$f(x,t)$$" title="Forces" /> and therefore how to compute the linear system <img class="latex" src="https://latex.codecogs.com/png.latex?$$\mathbf{A}x=b$$" title="Linear system" />. Explicit contributions depending on <img class="latex" src="https://latex.codecogs.com/png.latex?x(t)" title="Current position"/> will contribute to the *b* vector, implicit contributions depending on <img class="latex" src="https://latex.codecogs.com/png.latex?x(t+dt)" title="Unknown position"/> will contribute to <img class="latex" src="https://latex.codecogs.com/png.latex?$$\mathbf{A}$$" title="System matrix" />. 
 
 
 Two categories
@@ -16,7 +18,7 @@ Two main categories of integration schemes exist: **explicit** and **implicit** 
 
 ### Explicit scheme
 
-An explicit scheme means that the new time step (t + dt) is computed based on information of the previous time step (t). For instance, in mechanics, internal or external forces would be computed on previous positions (<img class="latex" src="https://latex.codecogs.com/png.latex?x(t)" title="Current position"/>). The ordinary differential equation looks like:
+An explicit scheme means that the new time step (t + dt) is computed based on information of the previous time step (t). For instance, in mechanics, internal or external forces would be computed on current known positions <img class="latex" src="https://latex.codecogs.com/png.latex?x(t)" title="Current position"/>. The ordinary differential equation looks like:
 
 <center><img class="latex" src="https://latex.codecogs.com/png.latex?x(t+dt)=x(t)+dt%20\cdot%20f(x(t))" title="Explicit scheme"/></center>
 
@@ -27,7 +29,7 @@ Explicit ODESolvers in SOFA: [EulerExplicitSolver](https://www.sofa-framework.or
 
 ### Implicit scheme
 
-An implicit scheme means that the new time step (t + dt) is computed based on information of this next time step (t + dt). For instance, in mechanics, internal or external forces would be computed on unknow positions at the next time step (<img class="latex" src="https://latex.codecogs.com/png.latex?x(t+dt)" title="Unknown position"/>). The ordinary differential equation looks like:
+An implicit scheme means that the new time step (t + dt) is computed based on information of this next time step (t + dt). For instance, in mechanics, internal or external forces would be computed on unknow positions at the next time step <img class="latex" src="https://latex.codecogs.com/png.latex?x(t+dt)" title="Unknown position"/>. The ordinary differential equation looks like:
 
 <center><img class="latex" src="https://latex.codecogs.com/png.latex?x(t+dt)=x(t)+dt%20\cdot%20f(x(t+dt))" title="Implicit scheme" /></center>
 
