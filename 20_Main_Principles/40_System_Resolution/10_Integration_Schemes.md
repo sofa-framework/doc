@@ -12,7 +12,7 @@ Let's write our ordinary differential equation as follows:
 Two categories
 --------------
 
-Two main categories of integration schemes exist: explicit and implicit schemes. A combination of explicit and implicit methods are also possible, it is called semi-implicit or semi-explicit schemes.
+Two main categories of integration schemes exist: **explicit** and **implicit** schemes. A combination of explicit and implicit methods are also possible, it is called semi-implicit or semi-explicit schemes.
 
 ### Explicit scheme
 
