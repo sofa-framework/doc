@@ -33,7 +33,7 @@ It is important to note that, depending on the choice of LinearSolver (direct or
 Sequence diagram
 ----------------
 
-<a href="https://github.com/sofa-framework/doc/blob/master/Images/integrationscheme/EulerImplicitSolver.png?raw=true"><img src="https://github.com/sofa-framework/doc/blob/master/Images/solver/EulerImplicitSolver.png?raw=true" title="Flow diagram for the EulerImplicitSolver"/></a>
+<a href="https://github.com/sofa-framework/doc/blob/master/Images/integrationscheme/EulerImplicitSolver.png?raw=true"><img src="https://github.com/sofa-framework/doc/blob/master/Images/integrationscheme/EulerImplicitSolver.png?raw=true" title="Flow diagram for the EulerImplicitSolver"/></a>
 
 
 Data  

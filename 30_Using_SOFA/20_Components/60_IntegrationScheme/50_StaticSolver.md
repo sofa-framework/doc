@@ -1,7 +1,7 @@
 StaticSolver  
 ============  
 
-This component belongs to the category of [ODE Solver](https://www.sofa-framework.org/community/doc/main-principles/system-resolution/integration-schemes/).  
+This component belongs to the category of [integration schemes or ODE Solver](https://www.sofa-framework.org/community/doc/main-principles/system-resolution/integration-schemes/).  
 
 In the field of mechanics, statics consists in finding the equilibrium taking into account the loads (internal forces, external forces and torques) acting on the physical system, that do not experience an acceleration ( <img class="latex" src="https://latex.codecogs.com/png.latex?$$a=0$$" title="Zero acceleration" /> ). Finding a static equilibrium means finding a solution to: <img class="latex" src="https://latex.codecogs.com/png.latex?$$\textstyle%20\sum%20F=0$$" title="Equilibrium" /> where <img class="latex" src="https://latex.codecogs.com/png.latex?$$F$$" title="Sum of loads" /> is the sum of all loads, one of which might be unknown.  
 
@@ -19,9 +19,15 @@ In our elasticity case, the system to solve is <img class="latex" src="https://l
 
 <img class="latex" src="https://latex.codecogs.com/png.latex?$$\delta%20u_i^{n+1}=\delta%20u_i^{n}-\frac{(K_i^n%20\delta%20u_i^n-f)}{K_i^n}$$" title="Newton Raphson method in static elasticity"/>
 
-  
-<a href="https://github.com/sofa-framework/doc/blob/master/Images/solver/StaticSolver.png?raw=true"><img src="https://github.com/sofa-framework/doc/blob/master/Images/solver/StaticSolver.png?raw=true" title="Flow diagram for the StaticSolver"/></a>
+
+Sequence diagram
+----------------
+
+<a href="https://github.com/sofa-framework/doc/blob/master/Images/integrationscheme/StaticSolver.png?raw=true"><img src="https://github.com/sofa-framework/doc/blob/master/Images/integrationscheme/StaticSolver.png?raw=true" title="Flow diagram for the StaticSolver"/></a>
  
+
+Data 
+----
 
 The solver is ruled by several breaking (converging or diverging) conditions:  
 
