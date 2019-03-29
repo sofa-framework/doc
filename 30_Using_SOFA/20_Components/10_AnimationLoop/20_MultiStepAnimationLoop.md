@@ -1,7 +1,7 @@
 MultiStepAnimationLoop
 ======================
 
-This component belongs to the category of [AnimationLoop](https://www.sofa-framework.org/community/doc/main-principles/animationloop-and-visitors/).
+This component belongs to the category of [AnimationLoop](https://www.sofa-framework.org/community/doc/main-principles/animation-loop/).
 
 The MultiStepAnimationLoop derives from the [DefaultAnimationLoop](https://www.sofa-framework.org/community/doc/using-SOFA/components/animationloop/defaultanimationloop/). This animation loop is different due to the fact that it allows - at each iteration - for running several collision (_collisionSteps_), and within each of these collision steps, several integration sub-steps can be computes (_integrationSteps_).
 

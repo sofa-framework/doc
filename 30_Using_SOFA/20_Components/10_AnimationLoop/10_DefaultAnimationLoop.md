@@ -1,7 +1,7 @@
 DefaultAnimationLoop
 ====================
 
-This component belongs to the category of [AnimationLoop](https://www.sofa-framework.org/community/doc/main-principles/animationloop-and-visitors/).
+This component belongs to the category of [AnimationLoop](https://www.sofa-framework.org/community/doc/main-principles/animation-loop/).
 
 The DefaultAnimationLoop is the component that rules the steps of the simulation in the default order. It consists in computing the collision (if any), the projective constraints, the physics, solving the resulting linear system and finally updating all data before another step begins.
 
