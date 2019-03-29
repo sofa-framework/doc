@@ -8,6 +8,16 @@ Description of the component
 What it is made for, what it does
 
 
+
+Sequence diagram
+----------------
+
+
+Data  
+----
+
+
+
 Usage
 -----
 
