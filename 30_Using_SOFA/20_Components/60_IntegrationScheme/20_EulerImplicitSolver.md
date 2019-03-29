@@ -47,6 +47,7 @@ The data **trapezoidalScheme** modifies the EulerImplicitSolver scheme and imple
 <img class="latex" src="https://latex.codecogs.com/png.latex?$$y_{n+1}-y_n=\frac{dt}{2}(f(y_{n+1})+f(y_n))$$" title="Trapezoidal rule" />
 This results in the following linear system:
 <img class="latex" src="https://latex.codecogs.com/png.latex?$$\left(%20\mathbf{M}-\frac{dt^2}{2}%20\frac{\partial%20f}{\partial%20x}\right)%20\Delta%20v=dt\cdot%20f(x(t))+\frac{dt^2}{2}\cdot%20\frac{\partial%20f}{\partial%20x}v(t)$$" title="Linear trapezoidal system" />
+The use of the trapezoidal rule is known to increase robustness and stability to the time integration due to the order 2 in time of this trapezoidal scheme.
 
 The option is given to the user to hadd numerical Rayleigh damping using the data **rayleighStiffness** and **rayleighMass**. The description of the meaning and effect of these Rayleigh damping coefficients is given in [ODESolver](https://www.sofa-framework.org/community/doc/main-principles/system-resolution/integration-schemes/#rayleigh-damping).
 
