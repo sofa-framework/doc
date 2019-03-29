@@ -64,3 +64,9 @@ Collision group
 ---------------
 
 Just as a notice, it is possible to create group of contact, create integration groups. Given a set of contacts, the CollisionGroupManager allows this. Contacts between models define a graph: by creating contact groups, the collision resolution will process each graph (i.e. collision group) separately.
+
+
+Sequence diagram
+----------------
+
+<a href="https://github.com/sofa-framework/doc/blob/master/Images/collision/CollisionVisitor.png?raw=true"><img src="https://github.com/sofa-framework/doc/blob/master/Images/collision/CollisionVisitor.png?raw=true" title="Flow diagram for a CollisionVisitor"/></a>
