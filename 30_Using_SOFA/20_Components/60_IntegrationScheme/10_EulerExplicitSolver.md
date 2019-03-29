@@ -12,7 +12,7 @@ where <img class="latex" src="https://latex.codecogs.com/png.latex?$$x$$" title=
 <img class="latex" src="https://latex.codecogs.com/png.latex?$$\mathbf{M}\Delta%20v=dt\left(f(x(t))\right)$$" title="Explicit dynamic system" />
 since forces only depend on known state (at our current time step). The system matrix <img class="latex" src="https://latex.codecogs.com/png.latex?$$\mathbf{A}$$" title="System matrix" /> is only equal to the mass matrix <img class="latex" src="https://latex.codecogs.com/png.latex?$$\mathbf{M}$$" title="Mass matrix" />.
 
-In SOFA, the EulerExplicitSolver only handles diagonal mass matrices, thus making the resolution of the linear system trivial. <img class="latex" src="https://latex.codecogs.com/png.latex?$$\mathbf{A}$$" title="System matrix" /> being only equal to a diagonal mass matrix, the result can easily be computed: <img class="latex" src="https://latex.codecogs.com/png.latex?$$\Delta%20v_{sol}=dt\mathbf{M}^{-1}f(x(t))$$" title="Explicit resolution" /> where <img class="latex" src="https://latex.codecogs.com/png.latex?$$\mathbf{M}^-1$$" title="Inverse mass matrix" /> is only a vector. Therefore, no LinearSolver is needed to compute directly or iteratively a solution.
+In SOFA, the EulerExplicitSolver only handles diagonal mass matrices, thus making the resolution of the linear system trivial. <img class="latex" src="https://latex.codecogs.com/png.latex?$$\mathbf{A}$$" title="System matrix" /> being only equal to a diagonal mass matrix, the result can easily be computed: <img class="latex" src="https://latex.codecogs.com/png.latex?$$\Delta%20v_{sol}=dt\mathbf{M}^{-1}f(x(t))$$" title="Explicit resolution" /> where <img class="latex" src="https://latex.codecogs.com/png.latex?$$\mathbf{M}^-1$$" title="Inverse mass matrix" /> is only a vector. The division operation of <img class="latex" src="https://latex.codecogs.com/png.latex?f(x(t))" title="Explicit forces" /> by the mass, is actually directly computed by the Mass component. Therefore, no LinearSolver is needed to compute directly or iteratively a solution.
 
 
 
@@ -25,7 +25,7 @@ Sequence diagram
 Data
 ----
 
-The data **symplectic** allows to modify the scheme to make is symplectic, i.e. velocities are updated before the positions. This option makes the scheme more robust in time.
+The data **symplectic** allows to modify the scheme to make is [symplectic](https://en.wikipedia.org/wiki/Semi-implicit_Euler_method), i.e. velocities are updated before the positions. This option makes the scheme more robust in time.
 
 
 Usage  
