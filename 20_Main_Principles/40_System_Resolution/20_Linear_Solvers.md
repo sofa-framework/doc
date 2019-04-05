@@ -15,7 +15,7 @@ These solvers aim at finding the exact solution <img class="latex" src="https://
 
 For small-size linear systems, the direct methods will be efficient. Large and sparse systems may imply time-consuming inverse of the matrix <img class="latex" src="https://latex.codecogs.com/png.latex?$$\mathbf{A}$$" title="System matrix" />. The advantage of direct methods is that they succeed to solve well-conditioned and even some quite ill-conditioned problems. The computation of the inverse of <img class="latex" src="https://latex.codecogs.com/png.latex?$$\mathbf{A}$$" title="System matrix" /> often relies on decomposition of this matrix: Cholesky, LU or LDL and their sparse versions are available.
 
-Direct solvers in SOFA:
+Direct solvers in SOFA: [SparseLDLSolver](https://www.sofa-framework.org/community/doc/using-sofa/components/linearsolver/sparseldlsolver/)
 
 
 ### Iterative solvers
@@ -24,7 +24,7 @@ Contrary to direct solvers, iterative methods converge towards the solution grad
 
 For well-conditioned problems (even large systems), the convergence remains monotonic. However, for ill-conditioned systems, the convergence might be much slower. Since these methods compute the residual <img class="latex" src="https://latex.codecogs.com/png.latex?$$r=\mathbf{A}x-b$$" title="Residual computation" /> at each iteration, the matrix <img class="latex" src="https://latex.codecogs.com/png.latex?$$\mathbf{A}$$" title="System matrix" /> does not have to be built to improve performances (only matrix vector computations). Numerical settings of the solver (maximum number of iterations, tolerance for instance) must be appropriately defined. Two available methods are the [conjugate gradient method](http://en.wikipedia.org/wiki/Conjugate_gradient_method) (using the CGLinearSolver) or the [minimal residual method](http://en.wikipedia.org/wiki/Generalized_minimal_residual_method) (using the MinResLinearSolver).
 
-Direct solvers in SOFA:
+Iterative solvers in SOFA: [CGLinearSolver](https://www.sofa-framework.org/community/doc/using-sofa/components/linearsolver/cglinearsolver/)
 
 
 In the SOFA code
