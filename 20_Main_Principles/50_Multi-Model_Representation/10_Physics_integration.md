@@ -81,6 +81,8 @@ $" title="Transformation T^K" />
 
 This transformation <img class="latex" src="https://latex.codecogs.com/png.latex?$$T^K$$" title="Transformation T^K from reference configuration to global space" /> is bijective if the determinant of the Jacobian of the transmation is non-null <img class="latex" src="https://latex.codecogs.com/png.latex?$$det(J)\neq0$$" title="Non-zero Jacobian" />. Moreover, the transformation <img class="latex" src="https://latex.codecogs.com/png.latex?$$T^K$$" title="Transformation T^K from reference configuration to global space" /> will allow for the integration of the weak form by change of variables: instead of integrating over <img class="latex" src="https://latex.codecogs.com/png.latex?$$d\Omega=dxdydz$$" title="Derivative of global coordinates" />, the integration will be reported on the reference element <img class="latex" src="https://latex.codecogs.com/png.latex?$$d\xi%20d\eta%20d\zeta$$" title="Derivative of local coordinates" />. 
 
+
+#### Example
 Let's consider an example. A density of force <img class="latex" src="https://latex.codecogs.com/png.latex?$$\boldsymbol{b}$$" title="Density of force" /> that depends linearly on the coordinates <img class="latex" src="https://latex.codecogs.com/png.latex?$$\textbf{x}=(x,y,z)$$" title="Global coordinates" />: <img class="latex" src="https://latex.codecogs.com/png.latex?$$\boldsymbol{b}=\alpha%20\textbf{x}$$" title="Density of force" />. The integration of this term can be done as follows:
 
 

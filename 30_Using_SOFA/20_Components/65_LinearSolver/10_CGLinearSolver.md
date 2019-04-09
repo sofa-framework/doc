@@ -30,7 +30,7 @@ This LinearSolver is ruled by several breaking conditions:
 Usage
 -----
 
-The CGLinearSolver **requires** the use (above in the graph) of an integration scheme, and (below in the graph) of a MechanicalObject storing the state information that the CGLinearSolver will access.
+The CGLinearSolver **requires** the use (above in the scene graph) of an integration scheme, and (below in the scene graph) of a MechanicalObject storing the state information that the CGLinearSolver will access.
 
 When using a CGLinearSolver, make sure you carefully chose the value of the free data field iterations, tolerance and threshold. Both tolerance and threshold data must be chosen in accordance with the dimension of the degrees of freedom (DOFs). Usually, the value of these two data is close to the square of the expected error on the DOFs.
 
