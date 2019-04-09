@@ -128,7 +128,7 @@ See examples of ForceField implementation:
 Template of a ForceField
 ------------------------
 
-ForceField.h : declares the variable, the Data and the functions of the class
+TemplateForceField.h : declares the variable, the Data and the functions of the class
 
 ``` cpp
 /******************************************************************************
@@ -171,15 +171,15 @@ namespace forcefield
 template<class DataTypes>
 class TemplateForceField : public core::behavior::ForceField<DataTypes>
 {
-public:
-    SOFA_CLASS(SOFA_TEMPLATE(TemplateForceField, DataTypes), SOFA_TEMPLATE(core::behavior::ForceField, DataTypes));
 
 public:
+
+    SOFA_CLASS(SOFA_TEMPLATE(TemplateForceField, DataTypes), SOFA_TEMPLATE(core::behavior::ForceField, DataTypes));
+
     /// Declare here the data and their type, you want the user to have access to
     Data< int > d_inputForTheUser;
 
-public:
-    /// Init function
+    /// Function responsible for the initialization of the component
     void init() override;
 
     /// Add the explicit forces (right hand side)
@@ -198,6 +198,11 @@ public:
 
     SReal getPotentialEnergy(const core::MechanicalParams* params, const DataVecCoord& x) const override;
 
+protected:
+
+    TemplateForceField();
+    ~TemplateForceField();
+
 };
 
 
@@ -206,8 +211,6 @@ extern template class SOFA_BOUNDARY_CONDITION_API TemplateForceField<sofa::defau
 extern template class SOFA_BOUNDARY_CONDITION_API TemplateForceField<sofa::defaulttype::Vec2Types>;
 extern template class SOFA_BOUNDARY_CONDITION_API TemplateForceField<sofa::defaulttype::Vec1Types>;
 extern template class SOFA_BOUNDARY_CONDITION_API TemplateForceField<sofa::defaulttype::Vec6Types>;
-extern template class SOFA_BOUNDARY_CONDITION_API TemplateForceField<sofa::defaulttype::Rigid3Types>;
-extern template class SOFA_BOUNDARY_CONDITION_API TemplateForceField<sofa::defaulttype::Rigid2Types>;
 #endif
 
 
@@ -223,7 +226,7 @@ extern template class SOFA_BOUNDARY_CONDITION_API TemplateForceField<sofa::defau
 
 
 
-ForceField.inl : implements the functions of the class
+TemplateForceField.inl : implements the functions of the class
 
 ``` cpp
 /******************************************************************************
@@ -273,6 +276,12 @@ TemplateForceField<DataTypes>::TemplateForceField()
 
 
 template<class DataTypes>
+TemplateForceField<DataTypes>::~TemplateForceField()
+{
+}
+
+
+template<class DataTypes>
 void TemplateForceField<DataTypes>::init()
 {
     // Initialization of your ForceField class and variables
@@ -280,7 +289,7 @@ void TemplateForceField<DataTypes>::init()
 
 
 template<class DataTypes>
-void ConstantForceField<DataTypes>::addForce(const core::MechanicalParams* /*params*/,
+void TemplateForceField<DataTypes>::addForce(const core::MechanicalParams* /*params*/,
                                              DataVecDeriv& f, const DataVecCoord& p, const DataVecDeriv&)
 {
     // Compute the forces f from the current DOFs p
@@ -296,7 +305,7 @@ void TemplateForceField<DataTypes>::addDForce(const core::MechanicalParams* mpar
 
 
 template<class DataTypes>
-void ConstantForceField<DataTypes>::addKToMatrix(sofa::defaulttype::BaseMatrix * /* mat */,
+void TemplateForceField<DataTypes>::addKToMatrix(sofa::defaulttype::BaseMatrix * /* mat */,
                                                  SReal /* k */, unsigned int & /* offset */)
 {
     // Compute the force derivative d_df from the current and store the resulting matrix
@@ -304,7 +313,7 @@ void ConstantForceField<DataTypes>::addKToMatrix(sofa::defaulttype::BaseMatrix *
 
 
 template<class DataTypes>
-void ConstantForceField<DataTypes>::addKToMatrix(const sofa::core::behavior::MultiMatrixAccessor* /*matrix*/,
+void TemplateForceField<DataTypes>::addKToMatrix(const sofa::core::behavior::MultiMatrixAccessor* /*matrix*/,
                                                  SReal /*kFact*/)
 {
     // Same as previously
@@ -313,7 +322,7 @@ void ConstantForceField<DataTypes>::addKToMatrix(const sofa::core::behavior::Mul
 
 
 template <class DataTypes>
-SReal ConstantForceField<DataTypes>::getPotentialEnergy(const core::MechanicalParams* /*params*/,
+SReal TemplateForceField<DataTypes>::getPotentialEnergy(const core::MechanicalParams* /*params*/,
                                                         const DataVecCoord& x) const
 {
     // Compute the potential energy associated to the force f
@@ -328,13 +337,13 @@ SReal ConstantForceField<DataTypes>::getPotentialEnergy(const core::MechanicalPa
 
 } // namespace sofa
 
-#endif // SOFA_COMPONENT_FORCEFIELD_CONSTANTFORCEFIELD_INL
+#endif // SOFA_COMPONENT_FORCEFIELD_TEMPLATEFORCEFIELD_INL
 
 ```
 
 
 
-ForceField.cpp : declares the different templates used for this ForceField (DataType)
+TemplateForceField.cpp : declares the different templates used for this ForceField (DataType)
 
 ``` cpp
 /******************************************************************************
@@ -380,17 +389,14 @@ int TemplateForceFieldClass = core::RegisterObject("Description here of the phys
         .add< TemplateForceFieldClass<Vec2Types> >()
         .add< TemplateForceFieldClass<Vec1Types> >()
         .add< TemplateForceFieldClass<Vec6Types> >()
-        .add< TemplateForceFieldClass<Rigid3Types> >()
-        .add< TemplateForceFieldClass<Rigid2Types> >()
 
         ;
 
-template class ConstantForceField<Vec3Types>;
-template class ConstantForceField<Vec2Types>;
-template class ConstantForceField<Vec1Types>;
-template class ConstantForceField<Vec6Types>;
-template class ConstantForceField<Rigid3Types>;
-template class ConstantForceField<Rigid2Types>;
+template class TemplateForceField<Vec3Types>;
+template class TemplateForceField<Vec2Types>;
+template class TemplateForceField<Vec1Types>;
+template class TemplateForceField<Vec6Types>;
+
 
 
 } // namespace forcefield

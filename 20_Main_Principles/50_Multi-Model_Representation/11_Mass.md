@@ -188,7 +188,6 @@ void TemplateMass<DataTypes, MassType>::init()
 }
 
 
-
 template <class DataTypes, class MassType>
 void TemplateMass<DataTypes, MassType>::addMDx(const core::MechanicalParams* mparams, DataVecDeriv& f, const DataVecDeriv& dx, SReal factor)
 {
