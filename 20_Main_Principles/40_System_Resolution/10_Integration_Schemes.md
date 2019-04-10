@@ -85,16 +85,7 @@ The left hand side matrix <img class="latex" src="https://latex.codecogs.com/png
 ``` cpp
 matrix = MechanicalMatrix(r_M, r_B, r_K);
 ```
-where *r_M* (mass coefficient), *r_B* (damping coefficient). and *r_K* (stiffness coefficient) are Rayleigh coefficients (see section below). Depending on the scheme (explicit or implicit, see previous paragraph) and on the type of LinearSolver used (if any), the abstract function `MechanicalMatrix` will trigger different [visitors](https://www.sofa-framework.org/community/doc/main-principles/visitors/), thus different functions to compute the system matrix <img class="latex" src="https://latex.codecogs.com/png.latex?$$\mathbf{A}$$" title="System matrix" />. Discover the API used for the computation <img class="latex" src="https://latex.codecogs.com/png.latex?$$\mathbf{A}$$" title="System matrix" /> in the [ForceField](https://www.sofa-framework.org/community/doc/main-principles/multi-model-representation/forcefield/) and [Mass](https://www.sofa-framework.org/community/doc/main-principles/multi-model-representation/mass/) doc page.
-
-  - explicit case:
-    - direct LinearSolver: the function `addMToMatrix()` implemented in the Mass is called
-    - iterative LinearSolver: the function `addMDx()` is called
-
-  - implicit case:
-    - direct LinearSolver: the functions `addMToMatrix()` (implemented in the Mass) and `addKToMatrix()` (implemented in the ForceFields) are called
-    - iterative LinearSolver: the functions `addMDx()` (implemented in the Mass) and `addDForce()` (implemented in the ForceFields) are called
-
+where *r_M* (mass coefficient), *r_B* (damping coefficient). and *r_K* (stiffness coefficient) are Rayleigh coefficients (see section below). Depending on the scheme (explicit or implicit, see previous paragraph) and on the type of LinearSolver used (if any), the abstract function `MechanicalMatrix` will trigger different [visitors](https://www.sofa-framework.org/community/doc/main-principles/visitors/), thus different functions to compute the system matrix <img class="latex" src="https://latex.codecogs.com/png.latex?$$\mathbf{A}$$" title="System matrix" />. Discover the API used for the computation of <img class="latex" src="https://latex.codecogs.com/png.latex?$$\mathbf{A}$$" title="System matrix" /> in the [ForceField](https://www.sofa-framework.org/community/doc/main-principles/multi-model-representation/forcefield/) and [Mass](https://www.sofa-framework.org/community/doc/main-principles/multi-model-representation/mass/) doc pages.
 
 
 The right hand side vector *b* is built through the function:
@@ -102,10 +93,7 @@ The right hand side vector *b* is built through the function:
 computeForce(b)
 ```
 
-Again, Depending on the scheme (explicit or implicit, see previous paragraph), the abstract function `computeForce` will trigger different [visitors](https://www.sofa-framework.org/community/doc/main-principles/visitors/), thus different functions to accumulate the forces into the vector *b*:
-
-  - explicit case: only the `addForce()` function implemented in all ForceFields is called
-  - implicit case: both the `addForce()` and `addDForce()` functions are called
+Again, Depending on the scheme (explicit or implicit, see previous paragraph), the abstract function `computeForce` will trigger different [visitors](https://www.sofa-framework.org/community/doc/main-principles/visitors/), thus different functions to accumulate the forces into the vector *b*. Discover the API used for the computation of *b* in the [ForceField](https://www.sofa-framework.org/community/doc/main-principles/multi-model-representation/forcefield/) doc page.
 
 
 
