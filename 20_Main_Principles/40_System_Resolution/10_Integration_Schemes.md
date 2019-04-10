@@ -31,7 +31,7 @@ For instance, in mechanics, internal or external forces would be computed on cur
 
 Explicit schemes are usually known as being fast to solve (since the created linear system is lighter) but they require very small time steps, unless they may undergo stability issues. They are known to efficiently solve non-stiff problems.
 
-Explicit ODESolvers in SOFA: [EulerExplicitSolver](https://www.sofa-framework.org/community/doc/using-sofa/components/integrationscheme/eulerexplicitsolver/)
+Explicit ODESolvers in SOFA: [EulerExplicitSolver](https://www.sofa-framework.org/community/doc/using-sofa/components/integrationscheme/eulerexplicitsolver/), CentralDifferenceSolver, RungeKutta2Solver
 
 
 ### Implicit scheme
@@ -46,7 +46,7 @@ For instance, in mechanics, internal or external forces would be computed on unk
 
 Implicit schemes are known as being slower to solve (the outcoming linear system is more complex) but they are way more stable than explicit schemes. Stiff differential equations require the use of implicit schemes.
 
-Implicit ODESolvers in SOFA: [EulerImplicitSolver](https://www.sofa-framework.org/community/doc/using-sofa/components/integrationscheme/eulerimplicitsolver/)
+Implicit ODESolvers in SOFA: [EulerImplicitSolver](https://www.sofa-framework.org/community/doc/using-sofa/components/integrationscheme/eulerimplicitsolver/), NewmarkImplicitSolver, VariationalSymplecticSolver
 
 
 In the SOFA code
