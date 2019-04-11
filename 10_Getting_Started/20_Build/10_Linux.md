@@ -105,10 +105,10 @@ Finally, SOFA requires some libraries:
     sudo apt-get install python2.7-dev python-numpy python-scipy
     ```
 
--   **Additional libraries**: libPNG, libJPEG, libTIFF, Zlib, Glew
+-   **Additional libraries**: libPNG, libJPEG, libTIFF, Zlib, Glew, Freeglut
 
     ```bash
-    sudo apt-get install libpng-dev libjpeg-dev libtiff-dev zlib1g-dev libglew-dev
+    sudo apt-get install libpng-dev libjpeg-dev libtiff-dev zlib1g-dev libglew-dev freeglut3-dev
     ```
 
 Some **plugins** depend on libraries that are available in the repositories.
