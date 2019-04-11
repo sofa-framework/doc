@@ -24,8 +24,8 @@ See examples of Mass implementation:
 - [DiagonalMass](https://www.sofa-framework.org/community/doc/using-sofa/components/mass/diagonalmass/)
 
 
-Template of a ForceField
-------------------------
+Template of a Mass
+------------------
 
 
 TemplateMass.h : declares the variable, the Data and the functions of the class
