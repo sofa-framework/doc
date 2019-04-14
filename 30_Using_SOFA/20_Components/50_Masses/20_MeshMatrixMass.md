@@ -10,11 +10,11 @@ As detailed in the [Physics integration](https://www.sofa-framework.org/communit
 
 <img class="latex" src="https://latex.codecogs.com/png.latex?$$\mathbf{M}\dot{v}=\int_{\Omega}%20\phi_j%20\rho%20\dot{v}d\Omega$$" title="Mass integration" />
 
-where <img class="latex" src="https://latex.codecogs.com/png.latex?$$\phi_j$$" title="Test function" /> are the test functions, which are basis functions ensuring the existence of a solution. Since no exact integration can be performed on a random domain $\Omega$, the MeshMatrixMass relies on the Finite Element Method (FEM) and accumulates the result of the integral over each finite element (triangles, quads, tetrahedra or hexahedra):
+where <img class="latex" src="https://latex.codecogs.com/png.latex?$$\phi_j$$" title="Test function" /> are the test functions, which are basis functions ensuring the existence of a solution. Since no exact integration can be performed on a random domain <img class="latex" src="https://latex.codecogs.com/png.latex?$$\Omega$$" title="Random domain" />, the MeshMatrixMass relies on the Finite Element Method (FEM) and accumulates the result of the integral over each finite element (triangles, quads, tetrahedra or hexahedra):
 
 <img class="latex" src="https://latex.codecogs.com/png.latex?$$\mathbf{M}\dot{v}=\sum_{e=0}^E%20\int_{V_e}%20\phi_j%20\rho%20\dot{v}dV_e$$" title="Mass integration" />
 
-The FEM relies on simple geometries in which any field can be interpolated using shape functions $\phi_i$ (see [FEM at a glance](https://www.sofa-framework.org/community/doc/main-principles/multi-model-representation/physics-integration/#fem-at-a-glance)). Note that the same basis functions are chosen for both the test and the shape functions.
+The FEM relies on simple geometries in which any field can be interpolated using shape functions <img class="latex" src="https://latex.codecogs.com/png.latex?$$\phi_i$$" title="Shape function" /> (see [FEM at a glance](https://www.sofa-framework.org/community/doc/main-principles/multi-model-representation/physics-integration/#fem-at-a-glance)). Note that the same basis functions are chosen for both the test and the shape functions. In case 
 
 <img class="latex" src="https://latex.codecogs.com/png.latex?$$\mathbf{M}\dot{v}=\sum_{e=0}^E%20\rho%20\int_{V_e}%20\phi_j%20\sum_{i=0}^{N}%20\phi_i%20\dot{v}_i%20dV_e$$" title="Mass integration" />
 
