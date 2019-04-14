@@ -12,7 +12,7 @@ As detailed in the [Physics integration](https://www.sofa-framework.org/communit
 
 where <img class="latex" src="https://latex.codecogs.com/png.latex?$$\phi_j$$" title="Test function" /> are the test functions, which are basis functions ensuring the existence of a solution. Since no exact integration can be performed on a random domain $\Omega$, the MeshMatrixMass relies on the Finite Element Method (FEM) and accumulates the result of the integral over each finite element (triangles, quads, tetrahedra or hexahedra):
 
-<img class="latex" src="https://latex.codecogs.com/png.latex?$$\mathbf{M}\dot{v}==\sum_{e=0}^E%20\int_{V_e}%20\phi_j%20\rho%20\dot{v}dV_e$$" title="Mass integration" />
+<img class="latex" src="https://latex.codecogs.com/png.latex?$$\mathbf{M}\dot{v}=\sum_{e=0}^E%20\int_{V_e}%20\phi_j%20\rho%20\dot{v}dV_e$$" title="Mass integration" />
 
 The FEM relies on simple geometries in which any field can be interpolated using shape functions $\phi_i$ (see [FEM at a glance](https://www.sofa-framework.org/community/doc/main-principles/multi-model-representation/physics-integration/#fem-at-a-glance)). Note that the same basis functions are chosen for both the test and the shape functions.
 
@@ -20,14 +20,13 @@ The FEM relies on simple geometries in which any field can be interpolated using
 
 By change of variables, the computation of the mass matrix results in solving the following integration of the shape functions in each element:
 
-<img class="latex" src="https://latex.codecogs.com/png.latex?$$\mathbf{M}\dot{v}=\sum_{e=0}^E%20\rho%20\int_{V_e}%20|det(J)|%20\sum_{i=0}^{N}\phi_j(\boldsymbol{\xi})%20\phi_i(\boldsymbol{\xi})%20\dot{v}_i%20d%20\boldsymbol{\xi}
-$$" title="Mass integration" />
+<img class="latex" src="https://latex.codecogs.com/png.latex?$$\mathbf{M}\dot{v}=\sum_{e=0}^E%20\rho%20\int_{V_e}%20|det(J)|%20\sum_{i=0}^{N}\phi_j(\boldsymbol{\xi})%20\phi_i(\boldsymbol{\xi})%20\dot{v}_i%20d%20\boldsymbol{\xi}$$" title="Mass integration" />
 
 
 ### Case of a linear tetrahedron
 In the case of a linear tetrahedron, the shape functions are:
 
-<img class="latex" src="https://latex.codecogs.com/png.latex?$$\begin{matrix}\phi_1=1-\xi%20-\eta%20-\zeta%20\\\phi_2=\xi%20\\\phi_3=\eta%20\\\phi_4=\zeta%20\\%20\end{matrix}$$" title="Shape functions of a linear tetrahedron" />
+<img class="latex" src="https://latex.codecogs.com/png.latex?$$\begin{align*}&\phi_1=1-\xi%20-\eta%20-\zeta%20\\&\phi_2=\xi%20\\&\phi_3=\eta%20\\&\phi_4=\zeta%20\\%20\end{align*}$$" title="Shape functions of a linear tetrahedron" />
 
 By replacing the shape functions, we therefore obtain:
 
@@ -36,7 +35,7 @@ $$" title="Mass integration in a tetrahedron" />
 
 <img class="latex" src="https://latex.codecogs.com/png.latex?$$\mathbf{M}\dot{v}=\sum_{e=0}^E%20\rho%20\int_{V_e}%20|det(J)|%20\begin{bmatrix}\phi_1^2&\phi_1\phi_2&\phi_1\phi_3&\phi_1\phi_4%20\\\phi_2\phi_1&\phi_2^2&\phi_2\phi_3&\phi_2\phi_4%20\\\phi_3\phi_1&\phi_3\phi_2&\phi_3^2&\phi_3\phi_4%20\\\phi_4\phi_1&\phi_4\phi_2&\phi_4\phi_3&\phi_4^2%20\\%20\end{bmatrix}%20\begin{bmatrix}\dot{v}_1\\%20\dot{v}_2\\%20\dot{v}_3\\%20\dot{v}_4\\%20\end{bmatrix}%20d%20\boldsymbol{\xi}$$" title="Mass integration in a tetrahedron" />
 
-<img class="latex" src="https://latex.codecogs.com/png.latex?$$\mathbf{M}\dot{v}=\sum_{e=0}^E%20\rho%20\int_{V_e}%20|det(J)|%20\begin{bmatrix}(1-\xi%20-\eta%20-\zeta)^2&\xi-\xi^2%20-\eta\xi%20-\zeta\xi&\eta-\xi\eta%20-\eta^2%20-\zeta\eta&\zeta-\xi\zeta%20-\eta\zeta\zeta%20-\zeta^2%20\\\phi_2\phi_1&\phi_2^2&\phi_2\phi_3&\phi_2\phi_4%20\\\phi_3\phi_1&\phi_3\phi_2&\phi_3^2&\phi_3\phi_4%20\\\phi_4\phi_1&\phi_4\phi_2&\phi_4\phi_3&\phi_4^2%20\\%20\end{bmatrix}%20\begin{bmatrix}\dot{v}_1\\%20\dot{v}_2\\%20\dot{v}_3\\%20\dot{v}_4\\%20\end{bmatrix}%20d%20\boldsymbol{\xi}$$" title="Mass integration in a tetrahedron" />
+<img class="latex" src="https://latex.codecogs.com/png.latex?$$\mathbf{M}\dot{v}=\sum_{e=0}^E%20\rho%20\int_{\xi}%20\int_{\eta}%20\int_{\zeta}%20|det(J)|%20\begin{bmatrix}(1-\xi%20-\eta%20-\zeta)^2&\xi-\xi^2%20-\eta\xi%20-\zeta\xi&\eta-\xi\eta%20-\eta^2%20-\zeta\eta&\zeta-\xi\zeta%20-\eta\zeta\zeta%20-\zeta^2%20\\\phi_2\phi_1&\xi^2&\xi\eta&\xi\zeta%20\\\phi_3\phi_1&\phi_3\phi_2&\eta^2&\eta\zeta%20\\\phi_4\phi_1&\phi_4\phi_2&\phi_4\phi_3&\zeta^2%20\\%20\end{bmatrix}%20\begin{bmatrix}\dot{v}_1\\%20\dot{v}_2\\%20\dot{v}_3\\%20\dot{v}_4\\%20\end{bmatrix}%20d\xi%20d\eta%20d\zeta$$" title="Mass integration in a tetrahedron" />
 
 We can note that the matrix is symmetric. The integration in the reference (or parent) space <img class="latex" src="https://latex.codecogs.com/png.latex?$$\boldsymbol{\xi}$$" title="Reference coordinates" /> can be numerically computed using a [Gauss quadrature](https://en.wikipedia.org/wiki/Gaussian_quadrature) (or Gauss point integration). The resulting mass matrix is:
 
