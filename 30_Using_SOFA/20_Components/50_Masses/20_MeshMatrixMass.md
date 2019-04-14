@@ -14,11 +14,11 @@ where <img class="latex" src="https://latex.codecogs.com/png.latex?$$\phi_j$$" t
 
 <img class="latex" src="https://latex.codecogs.com/png.latex?$$\mathbf{M}\dot{v}=\sum_{e=0}^E%20\int_{V_e}%20\phi_j%20\rho%20\dot{v}dV_e$$" title="Mass integration" />
 
-The FEM relies on simple geometries in which any field can be interpolated using shape functions <img class="latex" src="https://latex.codecogs.com/png.latex?$$\phi_i$$" title="Shape function" /> (see [FEM at a glance](https://www.sofa-framework.org/community/doc/main-principles/multi-model-representation/physics-integration/#fem-at-a-glance)). Note that the same basis functions are chosen for both the test and the shape functions. In case 
+The FEM relies on simple geometries in which any field can be interpolated using shape functions <img class="latex" src="https://latex.codecogs.com/png.latex?$$\phi_i$$" title="Shape functions" /> (see [FEM at a glance](https://www.sofa-framework.org/community/doc/main-principles/multi-model-representation/physics-integration/#fem-at-a-glance)). Note that the same basis functions are chosen for both the test and the shape functions. The interpolation of the acceleration term <img class="latex" src="https://latex.codecogs.com/png.latex?$$\dot{v}$$" title="Acceleration term" /> thus gives:
 
 <img class="latex" src="https://latex.codecogs.com/png.latex?$$\mathbf{M}\dot{v}=\sum_{e=0}^E%20\rho%20\int_{V_e}%20\phi_j%20\sum_{i=0}^{N}%20\phi_i%20\dot{v}_i%20dV_e$$" title="Mass integration" />
 
-By change of variables, the computation of the mass matrix results in solving the following integration of the shape functions in each element:
+By change of variables, the computation of the mass matrix results in solving the following integration of the shape functions <img class="latex" src="https://latex.codecogs.com/png.latex?$$\phi$$" title="Shape function" /> in each element:
 
 <img class="latex" src="https://latex.codecogs.com/png.latex?$$\mathbf{M}\dot{v}=\sum_{e=0}^E%20\rho%20\int_{V_e}%20|det(J)|%20\sum_{i=0}^{N}\phi_j(\boldsymbol{\xi})%20\phi_i(\boldsymbol{\xi})%20\dot{v}_i%20d%20\boldsymbol{\xi}$$" title="Mass integration" />
 
@@ -119,7 +119,7 @@ The MeshMatrixMass can be initialized using two different input data:
 - **totalMass**: corresponding to the total mass of the object, which will be distributed over its volume taking into account the geometry
 - **massDensity**: corresponding to the mass density used for the integration detailed above
 
-Note that using the optional data **lumping**, it is possible to simply the mass matrix by making it diagonal. This is called mass lumping and it consists in summing all mass values of a line on the diagonal. The DiagonalMass is an optimized version of this mass lumping approach. If the data **lumping** is true, the (lumped) mass matrix becomes:
+Note that using the optional data **lumping**, it is possible to simply the mass matrix by making it diagonal. This is called mass lumping and it consists in summing all mass values of a line on the diagonal. The DiagonalMass is an optimized version of this mass lumping approach. In case of a linear tetrahedron, if the data **lumping** is true, the (lumped) mass matrix becomes:
 
 <img class="latex" src="https://latex.codecogs.com/png.latex?$$\mathbf{M}\dot{v}=\sum_{e=0}^E%20\frac{\rho%20V_e}{4}\begin{bmatrix}1&0&0&0\\0&1&0&0\\0&0&1&0\\0&0&0&1\\%20\end{bmatrix}\begin{bmatrix}\dot{v}_1\\%20\dot{v}_2\\%20\dot{v}_3\\%20\dot{v}_4\\%20\end{bmatrix}$$" title="Mass integration" />
 
@@ -132,7 +132,7 @@ Usage
 
 The MeshMatrixMass **requires** a MechanicalObject to store the degrees of freedom associated to the nodes, as well as a Topology. An integration scheme and a solver are also necessary to solve the linear system at each time step.
 
-Several topologies are handled by the MeshMatrixMass, namely: triangles, quads, tetrahedra or hexahedra. Only the beam (edge topology) is not handled by this component.
+Several topologies are handled by the MeshMatrixMass, namely: triangles, quads, tetrahedra or hexahedra. Only the beam model (edge topology) is not handled by this component.
 
 
 
