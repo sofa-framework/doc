@@ -30,8 +30,7 @@ In the case of a linear tetrahedron, the shape functions are:
 
 By replacing the shape functions, we therefore obtain:
 
-<img class="latex" src="https://latex.codecogs.com/png.latex?$$\mathbf{M}\dot{v}=\sum_{e=0}^E%20\rho%20\int_{V_e}%20|det(J)|%20\phi_j%20\phi_i%20\dot{v}_i%20d%20\boldsymbol{\xi}
-$$" title="Mass integration in a tetrahedron" />
+<img class="latex" src="https://latex.codecogs.com/png.latex?$$\mathbf{M}\dot{v}=\sum_{e=0}^E%20\rho%20\int_{V_e}%20|det(J)|%20\phi_j%20\phi_i%20\dot{v}_i%20d%20\boldsymbol{\xi}$$" title="Mass integration in a tetrahedron" />
 
 <img class="latex" src="https://latex.codecogs.com/png.latex?$$\mathbf{M}\dot{v}=\sum_{e=0}^E%20\rho%20\int_{V_e}%20|det(J)|%20\begin{bmatrix}\phi_1^2&\phi_1\phi_2&\phi_1\phi_3&\phi_1\phi_4%20\\\phi_2\phi_1&\phi_2^2&\phi_2\phi_3&\phi_2\phi_4%20\\\phi_3\phi_1&\phi_3\phi_2&\phi_3^2&\phi_3\phi_4%20\\\phi_4\phi_1&\phi_4\phi_2&\phi_4\phi_3&\phi_4^2%20\\%20\end{bmatrix}%20\begin{bmatrix}\dot{v}_1\\%20\dot{v}_2\\%20\dot{v}_3\\%20\dot{v}_4\\%20\end{bmatrix}%20d%20\boldsymbol{\xi}$$" title="Mass integration in a tetrahedron" />
 
