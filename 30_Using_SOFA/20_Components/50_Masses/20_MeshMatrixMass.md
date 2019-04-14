@@ -121,7 +121,7 @@ The MeshMatrixMass can be initialized using two different input data:
 
 Note that using the optional data **lumping**, it is possible to simply the mass matrix by making it diagonal. This is called mass lumping and it consists in summing all mass values of a line on the diagonal. The DiagonalMass is an optimized version of this mass lumping approach. In case of a linear tetrahedron, if the data **lumping** is true, the (lumped) mass matrix becomes:
 
-<img class="latex" src="https://latex.codecogs.com/png.latex?$$\mathbf{M}\dot{v}=\sum_{e=0}^E%20\frac{\rho%20V_e}{4}\begin{bmatrix}1&0&0&0\\0&1&0&0\\0&0&1&0\\0&0&0&1\\%20\end{bmatrix}\begin{bmatrix}\dot{v}_1\\%20\dot{v}_2\\%20\dot{v}_3\\%20\dot{v}_4\\%20\end{bmatrix}$$" title="Mass integration" />
+<img class="latex" src="https://latex.codecogs.com/png.latex?$$\mathbf{M}\dot{v}=\sum_{e=0}^E%20\frac{\rho%20V_e}{4}\begin{bmatrix}1&0&0&0\\%30&1&0&0\\%30&0&1&0\\%30&0&0&1\\%20\end{bmatrix}\begin{bmatrix}\dot{v}_1\\%20\dot{v}_2\\%20\dot{v}_3\\%20\dot{v}_4\\%20\end{bmatrix}$$" title="Mass integration" />
 
 Use lumping with caution since it is a numerical approximation, thus decreasing the accuracy of the integration.
 

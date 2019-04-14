@@ -4,7 +4,7 @@ UniformMass
 
 This component belongs to the category of [Masses](https://www.sofa-framework.org/community/doc/main-principles/multi-model-representation/mass/). The UniformMass is a very **simplistic mass** component since it does not compute the volume integration of a density term. The mass is equally spread over the number of points, thus resulting in the following diagonal mass matrix:
 
-<img class="latex" src="https://latex.codecogs.com/png.latex?$$\mathbf{M}=\begin{bmatrix}m&0&\cdots&0\\0&m&\cdots&0\\%20\vdots&\vdots&\ddots&\vdots\\0&0&\cdots&m\end{bmatrix}$$" title="UniformMass M" />
+<img class="latex" src="https://latex.codecogs.com/png.latex?$$\mathbf{M}=\begin{bmatrix}m&0&\cdots&0\\%30&m&\cdots&0\\%20\vdots&\vdots&\ddots&\vdots\\%30&0&\cdots&m\end{bmatrix}$$" title="UniformMass M" />
 
 Each diagonal term equals the nodal mass <img class="latex" src="https://latex.codecogs.com/png.latex?$$m=\frac{m_{\textnormal{total}}}{N}$$" title="Nodal mass" /> where <img class="latex" src="https://latex.codecogs.com/png.latex?$$m_{\textnormal{total}}$$" title="Total mass" /> is the total mass of the objet and <img class="latex" src="https://latex.codecogs.com/png.latex?$$N$$" title="Number of nodes" /> is the number of nodes of the object. Spreading the mass over the nodes without considering their connectivity results in this diagonal mass matrix <img class="latex" src="https://latex.codecogs.com/png.latex?$$\mathbf{M}$$" title="UniformMass M" />.
 
