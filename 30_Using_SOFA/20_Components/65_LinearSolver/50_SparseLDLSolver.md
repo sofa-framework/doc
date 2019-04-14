@@ -16,7 +16,7 @@ Next, a second solution <img class="latex" src="https://latex.codecogs.com/png.l
 
 Finally, from the relationship <img class="latex" src="https://latex.codecogs.com/png.latex?$$y=z\mathbf{D}^{-1}$$" title="Final substitution" /> where <img class="latex" src="https://latex.codecogs.com/png.latex?$$\mathbf{D}^{-1}$$" title="Inverse of diagonal" /> is easy to compute, we can find the exact solution <img class="latex" src="https://latex.codecogs.com/png.latex?$$x$$" title="Solution" /> via backward substitution: <img class="latex" src="https://latex.codecogs.com/png.latex?$$\mathbf{L}^Tx=y$$" title="Final resolution" />
 
-It is important to note that this decomposition considers that the system matrix <img class="latex" src="https://latex.codecogs.com/png.latex?$$\mathbf{A}$$" title="System matrix" /> is symetric.
+It is important to note that this decomposition considers that the system matrix <img class="latex" src="https://latex.codecogs.com/png.latex?$$\mathbf{A}$$" title="System matrix" /> is symmetric.
 
 
 
@@ -43,7 +43,7 @@ Usage
 
 The SparseLDLSolver **requires** the use (above in the scene graph) of an integration scheme, and (below in the scene graph) of a MechanicalObject storing the state information that the SparseLDLSolver will access.
 
-As a direct solver, the SparseLDLSolver might be extremely time consuming for large system. However, it will always give you an exact solution, **making the assumption that the system matrix <img class="latex" src="https://latex.codecogs.com/png.latex?$$\mathbf{A}$$" title="System matrix" /> is symetric**.
+As a direct solver, the SparseLDLSolver might be extremely time consuming for large system. However, it will always give you an exact solution, **making the assumption that the system matrix <img class="latex" src="https://latex.codecogs.com/png.latex?$$\mathbf{A}$$" title="System matrix" /> is symmetric**.
 
 
 
