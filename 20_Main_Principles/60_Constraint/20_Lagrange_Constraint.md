@@ -102,9 +102,13 @@ bool applyCorrection(const core::ConstraintParams * , MultiVecId res1, MultiVecI
 ```
 
 Each of these functions corresponds to a step described below:
+
   - **Prepare states**: allocates in memory vectors corresponding to the corrective motion <img class="latex" src="https://latex.codecogs.com/png.latex?$$\Delta%20v^{cor}$$" title="Corrective displacement" /> and the Lagrange multipliers <img class="latex" src="https://latex.codecogs.com/png.latex?$$\lambda$$" title="Lagrange multipliers" />
+
   - **Build system**: ensures itself the construction of the constraint matrix system
+
   - **Solve system**: the constraint resolution finds a solution for the constraint problem
+
   - **Apply the correction**: recovers the result <img class="latex" src="https://latex.codecogs.com/png.latex?$$\Delta%20v^{cor}$$" title="Corrective displacement" /> and applies this corrective motion to the free motion <img class="latex" src="https://latex.codecogs.com/png.latex?$$x=x^{free}+dt\cdot%20\Delta%20v^{cor}$$" title="Correction" />
 
 The step of building the system (see the [Build system](https://www.sofa-framework.org/community/doc/main-principles/constraint/lagrange-constraint/#build-system), [Constraint laws](https://www.sofa-framework.org/community/doc/main-principles/constraint/lagrange-constraint/#constraint-laws) and [ConstraintCorrection](https://www.sofa-framework.org/community/doc/main-principles/constraint/lagrange-constraint/#constraintcorrection) sections) and solving it will now be detailed.
@@ -196,8 +200,11 @@ Constraint laws
 ---------------
 
 In SOFA, you can find several of interaction constraint laws available to include in your simulation. A lot of them is available in the SofaConstraint module, among them:
+
   - _UnilateralInteractionConstraint_: constraint of inequality (like the <img class="latex" src="https://latex.codecogs.com/png.latex?$$\Psi$$" title="Psi" /> function described above in the [Constraint problem](https://www.sofa-framework.org/community/doc/main-principles/constraint/lagrange-constraint/#constraint-problem) section), that fits for instance contact and collision cases
+
   - _BilateralInteractionConstraint_: constraint of equality (like the <img class="latex" src="https://latex.codecogs.com/png.latex?$$\Phi$$" title="Phi" /> function described above in the [Constraint problem](https://www.sofa-framework.org/community/doc/main-principles/constraint/lagrange-constraint/#constraint-problem) section), that fits for instance interactions, attachements between two paired objects
+
   - _SlidingConstraint_: constraint in equality, like the _BilateralInteractionConstraint_, but only active for some vectors of the physics space (for instance only the x-direction)
 
 Classes defining constraints between a pair of objects inherit from the class _PairInteractionConstraint_. The associated API functions are:
@@ -225,9 +232,13 @@ More about Lagrange multipliers and constraints
 -----------------------------------------------
 
 To read more and go further regarding constraints relying on Lagrange multipliers, please read:
+
   - Pr. Duriez's [habilitation thesis](http://tel.archives-ouvertes.fr/tel-00785118/)
+
   - Pr. Baraff's [courses](https://www.cs.cmu.edu/~baraff/sigcourse/)
 
 You can also look at examples in the scenes of SOFA like:
+
   - _examples/Components/animationloop/FreeMotionAnimationLoop.scn_
+
   - _examples/Components/constraint/SlidingConstraint.scn_
