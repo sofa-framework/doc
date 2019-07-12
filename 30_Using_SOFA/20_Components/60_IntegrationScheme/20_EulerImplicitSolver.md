@@ -13,25 +13,48 @@ where <img class="latex" src="https://latex.codecogs.com/png.latex?$$x$$" title=
 
 by using a Taylor expansion, we get:
 
-<img class="latex" src="https://latex.codecogs.com/png.latex?$$\mathbf{M}%20\Delta%20v=dt%20\cdot%20\left(%20f(x(t)+\cdot%20\frac{\partial%20f}{\partial%20x}%20\Delta%20x%20\right)$$" title="Implicit dynamic system" />
+<img class="latex" src="https://latex.codecogs.com/png.latex?$$\mathbf{M}%20\Delta%20v=dt%20\cdot%20\left(%20f(x(t))+\cdot%20\frac{\partial%20f}{\partial%20x}%20\Delta%20x%20\right)$$" title="Implicit dynamic system" />
 
 since we have: <img class="latex" src="https://latex.codecogs.com/png.latex?$$\Delta%20x=dt(v(t)+\Delta%20v)$$" title="Implicit scheme" />, then:
 
-<img class="latex" src="https://latex.codecogs.com/png.latex?$$\mathbf{M}\Delta%20v=dt\cdot%20\left(%20f(x(t)+dt\cdot%20\frac{\partial%20f}{\partial%20x}v(t)+dt\cdot%20\frac{\partial%20f}{\partial%20x}%20\Delta%20v%20\right)$$" title="Implicit dynamic system" />
+<img class="latex" src="https://latex.codecogs.com/png.latex?$$\mathbf{M}\Delta%20v=dt\cdot%20\left(%20f(x(t))+dt\cdot%20\frac{\partial%20f}{\partial%20x}v(t)+dt\cdot%20\frac{\partial%20f}{\partial%20x}%20\Delta%20v%20\right)$$" title="Implicit dynamic system" />
 
 Finally, gathering the unknown (depending on <img class="latex" src="https://latex.codecogs.com/png.latex?$$\Delta%20v$$" title="Unknown delta of velocity" />) in the left hand side, we have:
 
-<img class="latex" src="https://latex.codecogs.com/png.latex?$$\left(%20\mathbf{M}-dt^2%20\cdot%20\frac{\partial%20f}{\partial%20x}%20\right)%20\Delta%20v=dt\cdot%20f(x(t)+dt^2\cdot%20\frac{\partial%20f}{\partial%20x}v(t)$$" title="Implicit dynamic system" />
+<img class="latex" src="https://latex.codecogs.com/png.latex?$$\left(%20\mathbf{M}-dt^2%20\cdot%20\frac{\partial%20f}{\partial%20x}%20\right)%20\Delta%20v=dt\cdot%20f(x(t))+dt^2\cdot%20\frac{\partial%20f}{\partial%20x}v(t)$$" title="Implicit dynamic system" />
 
 We can notice the appearance of the stiffness matrix : <img class="latex" src="https://latex.codecogs.com/png.latex?$$\mathbf{K}_{ij}=\textstyle\frac{\partial%20f_i}{\partial%20x_j}$$" title="Implicit contribution" />. The stiffness matrix <img class="latex" src="https://latex.codecogs.com/png.latex?$$\mathbf{K}$$" title="Stiffness matrix" /> is a symetric matrix, can either be linear or non-linear regarding <img class="latex" src="https://latex.codecogs.com/png.latex?$$x$$" title="DOF" />.
+
+<img class="latex" src="https://latex.codecogs.com/png.latex?$$\left(%20\mathbf{M}-dt^2%20\cdot%20\mathbf{K}%20\right)%20\Delta%20v=dt\cdot%20f(x(t))+dt^2\cdot%20\mathbf{K}v(t)$$" title="Implicit dynamic system" />
 
 The computation of the **right hand side** is done by the ForceFields. Just like in the explicit case (see [EulerExplicitSolver](https://www.sofa-framework.org/community/doc/using-sofa/components/odesolver/eulerexplicitsolver/)), the explicit contribution <img class="latex" src="https://latex.codecogs.com/png.latex?$$dt\left(f(x(t))\right)$$" title="Explicit contribution" /> is implemented in the same function `addForce()`. The second part <img class="latex" src="https://latex.codecogs.com/png.latex?$$dt^2\cdot%20\frac{\partial%20f}{\partial%20x}v(t)$$" title="Known stiffness" /> is computed by the function `addDForce()`.
 
 It is important to note that, depending on the **choice of LinearSolver** (direct or iterative), the API functions called to build the **left hand side** system matrix <img class="latex" src="https://latex.codecogs.com/png.latex?$$\mathbf{A}=\left(%20M-dt^2%20\cdot%20\frac{\partial%20f}{\partial%20x}%20\right)$$" title="System matrix" /> will not be the same:
 
-  - if a direct solver is used, the mass <img class="latex" src="https://latex.codecogs.com/png.latex?$$\mathbf{M}$$" title="Mass matrix" /> is computed in the `addMToMatrix()` and the stiffness part <img class="latex" src="https://latex.codecogs.com/png.latex?$$-dt^2%20\cdot%20\frac{\partial%20f}{\partial%20x}$$" title="Stiffness matrix" /> is computed in the function `addKToMatrix()` in ForceFields.
+  - if a direct solver is used, the mass <img class="latex" src="https://latex.codecogs.com/png.latex?$$\mathbf{M}$$" title="Mass matrix" /> is computed in the `addMToMatrix()` and the stiffness part <img class="latex" src="https://latex.codecogs.com/png.latex?$$-dt^2%20\cdot%20\frac{\partial%20f}{\partial%20x}$$" title="Stiffness matrix" /> is computed in the function `addKToMatrix()` in ForceFields
 
   - if an iterative solver is used, the mass is iteratively multiplied by the unknown <img class="latex" src="https://latex.codecogs.com/png.latex?$$\mathbf{M}%20\Delta%20v$$" title="Mass matrix" /> within the `addMDx()`, as the stiffness part <img class="latex" src="https://latex.codecogs.com/png.latex?$$-dt^2%20\cdot%20\frac{\partial%20f}{\partial%20x}%20\Delta%20v$$" title="Stiffness matrix" /> within the function `addDForce()` in ForceFields.
+
+
+Considering viscosity
+---------------------
+
+As you might have notice, the Taylor expansion detailed above does not take into account a possible dependency of the force  <img class="latex" src="https://latex.codecogs.com/png.latex?$$f(x,t)$$" title="Forces" /> on the velocity. By considering it, the effect of velocity will result in a viscosity effect through the damping matrix <img class="latex" src="https://latex.codecogs.com/png.latex?$$\mathbf{B}$$" title="Damping matrix" />.
+
+Let's apply the Taylor expansion taking into account the velocity and we get:
+
+<img class="latex" src="https://latex.codecogs.com/png.latex?$$\mathbf{M}%20\Delta%20v=dt%20\cdot%20\left(%20f(x(t), v(t))+\cdot%20\frac{\partial%20f}{\partial%20x}%20\Delta%20x+\cdot%20\frac{\partial%20f}{\partial%20v}%20\Delta%20v%20\right)$$" title="Implicit dynamic system with damping" />
+
+<img class="latex" src="https://latex.codecogs.com/png.latex?$$\left(%20\mathbf{M}-dt%20\cdot%20\frac{\partial%20f}{\partial%20v}-dt^2%20\cdot%20\frac{\partial%20f}{\partial%20x}%20\right)%20\Delta%20v=dt\cdot%20f(x(t),v(t))+dt^2\cdot%20\frac{\partial%20f}{\partial%20x}v(t)$$" title="Implicit dynamic system with damping" />
+
+<img class="latex" src="https://latex.codecogs.com/png.latex?$$\left(%20\mathbf{M}-dt%20\cdot%20\mathbf{B}-dt^2%20\cdot%20\mathbf{K}%20\right)%20\Delta%20v=dt\cdot%20f(x(t),v(t))+dt^2\cdot%20\mathbf{K}v(t)$$" title="Implicit dynamic system with damping" />
+
+Depending on the choice of LinearSolver (direct or iterative), the API functions called to build the <img class="latex" src="https://latex.codecogs.com/png.latex?$$\mathbf{B}$$" title="Damping matrix" /> damping matrix on the left hand side will not be the same:
+
+  - if a direct solver is used, the damping matrix <img class="latex" src="https://latex.codecogs.com/png.latex?$$\mathbf{B}$$" title="Damping matrix" /> is computed in the `addBToMatrix()` in ForceFields
+
+  - if an iterative solver is used, the damping is iteratively multiplied by the unknown <img class="latex" src="https://latex.codecogs.com/png.latex?$$\mathbf{B}%20\Delta%20v$$" title="Damping matrix" /> within the `addDForce()` just as the stiffness partin the function `addDForce()` in ForceFields.
+
 
 
 Sequence diagram
