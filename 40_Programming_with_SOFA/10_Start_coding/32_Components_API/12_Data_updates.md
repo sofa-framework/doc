@@ -68,28 +68,55 @@ The information recovered by the `getValue()` therefore returns a fresh up-to-da
 Update in engines
 -----------------
 
-As stated in the previous paragraph, Engines inherit from the DDGNode class. They there inherit from their update mechanism. However, to
+Engines are components aiming at computing a set of Data outputs from a set of Data inputs. Engines inherit from the base class DDGNode but their input/output are nested in the Data fields. As a DDGNode, Engines implement an update mechanism to recompute the output Data when an input Data is dirty or modified. Let's see how this works.
 
+First, the Engine class must specify which Data is an input or an output, respectively using the functions `addInput()` and `addOutput()`. These Data are therefore added to a 'DataTracker'. This DataTracker registers all changes using a counter for each tracked Data. It also implements a callback when one of the tracked data has changed. As for the DDGNode, if an output Data is accessed while an input is dirty, the whole update mechanism takes place.
 
+To make the implementation of the update easier and less error-prone, the `update()` function of an Engine is not left to the developer. The final implementation of the `update()` function is done in the DataEngine class so that:
+- it manages the process of update and clean of dirty parents
+- it calls a delegate function `doUpdate()`
+- it cleans the DataTracker
 
-An ouput Data is a Data resulting from a computation involving one or several input Data. Engines (and graph nodes) inherit from this class DDGNode. Every engine implements this 'doUpdate()' function.
-
-
-``` cpp
-/// Final function of DataEngine call the doUpdate() function and calls cleanDirty()
-void update() final {
-    updateAllInputs();      // calls updateIfDirty() on inputs
-    DDGNode::cleanDirty();  // calls cleanDirty()
-    doUpdate();
+```cpp
+void DataEngine::update() final
+{
+    updateAllInputs();
+    DDGNode::cleanDirty();
+    doUpdate(); // Implemented in all engines
     m_dataTracker.clean();
 }
-
-/// Function updating the output Data from the up-to-date input Data
-void doUpdate() // to be implemented in each Engine class
 ```
+
+Only the delegate function `doUpdate()` is therefore left to the user. The user is therefore free to implement the desired update mechanism depending on which tracked Data has been changed. You can find examples of implementation in any Engine, e.g. [TransformEngine](https://www.sofa-framework.org/community/doc/using-sofa/components/engine/roi-engines/).
+
 
 
 
 Update of internal data in other components
 -------------------------------------------
 
+In SOFA, components others than Engines do not share the same automatic update of their Data fields. Yet, it is important for several components to be able to recompute internal information when a Data is modified. For example, when the _massDensity_ Data is modified, we want the MeshMatrixMass component to recompute the _totalMass_ and the _vertexMass_ vector defining the mass spread on each vertex.
+
+This update mechanism of internal information is done by the call of the **UpdateInternalDataVisitor** at each begin of step (within any AnimationLoop). This visitor triggers a function `updateInternal()` which manages this internal update. The final implementation of the `updateInternal()` function is done in the BaseObject class so that:
+- it checks if at least one the tracked Data of the component has changed
+- it calls a delegate function `doUpdateInternal()`
+- it cleans the DataTracker
+
+``` cpp
+void BaseObject::updateInternal()
+{
+    const auto& mapTrackedData = m_internalDataTracker.getMapTrackedData();
+    for( auto const& it : mapTrackedData )
+    {
+        it.first->updateIfDirty();
+    }
+
+    if(m_internalDataTracker.hasChanged())
+    {
+        doUpdateInternal();                // left to be implemented in components
+        m_internalDataTracker.clean();
+    }
+}
+```
+
+Only the delegate function `doUpdateInternal()` is therefore available in any component to handle internal update. You can find examples of implementation in any Engine, e.g. [MeshMatrixMass](https://www.sofa-framework.org/community/doc/using-sofa/components/masses/meshmatrixmass/).
