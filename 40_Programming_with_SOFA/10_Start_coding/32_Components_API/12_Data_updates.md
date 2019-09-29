@@ -73,9 +73,28 @@ Update in engines
 
 Engines are components aiming at computing a set of Data outputs from a set of Data inputs. Engines inherit from the base class DDGNode but their input/output are nested in the Data fields. As a DDGNode, Engines implement an update mechanism to recompute the output Data when an input Data is dirty or modified. Let's see how this works.
 
-First, the Engine class must specify which Data is an input or an output, respectively using the functions `addInput()` and `addOutput()`. These Data are therefore added to a **DataTracker**. This DataTracker registers all changes using a counter for each tracked Data. It also implements a callback when one of the tracked data has changed. As for the DDGNode, if an output Data is accessed while an input is dirty, the whole update mechanism takes place.
 
-To make the implementation of the update easier and less error-prone, the `update()` function of an Engine is not left to the developer. The final implementation of the `update()` function is done in the DataEngine class so that:
+#### DataTracker
+
+First, the Engine class must specify which Data is an input or an output, respectively using the functions `addInput()` and `addOutput()`. These Data are therefore added to a **DataTracker**. This DataTracker registers all changes using a counter for each tracked Data. A dedicated API is available to use the DataTracker in Engines described in DataTrackerDDGNode:
+
+```cpp
+/// Function adding the data to the DataTracker for inputs
+void trackInputData(const objectmodel::BaseData &data);
+
+/// Function checking if a specific input data changed
+bool hasInputDataChanged(const objectmodel::BaseData &data);
+
+/// Function checking if one or several inputs did changed
+bool haveInputsDataChanged();
+
+/// Function cleaning the DataTracker for inputs
+void cleanInputTracker();
+```
+
+#### Update
+
+If an output Data is accessed while an input is dirty, the DataTacker counter will detect it and triggers the update mechanism (described above in Data-dependency graph). To make the implementation of the update easier and less error-prone, the `update()` function of an Engine is not left to the developer. The final implementation of the `update()` function is done in the DataEngine class so that:
 - it manages the process of update and clean of dirty parents
 - it calls a delegate function `doUpdate()`
 - it cleans the DataTracker
@@ -86,22 +105,53 @@ void DataEngine::update() final
     updateAllInputs();
     DDGNode::cleanDirty();
     doUpdate(); // Implemented in all engines
-    m_dataTracker.clean();
+    cleanInputTracker();
 }
 ```
 
-Only the **delegate function** `doUpdate()` is therefore left to the user. The user is therefore free to implement the desired update mechanism depending on which tracked Data has been changed. You can find examples of implementation in any Engine, e.g. [TransformEngine](https://www.sofa-framework.org/community/doc/using-sofa/components/engine/roi-engines/).
+Only the **delegate function** `doUpdate()` is therefore left to the user. The user is therefore free to implement the desired update mechanism depending on which tracked Data has been changed. Here is an example:
+
+```cpp
+template <class DataTypes>
+void MyEngine::doUpdate()
+{
+    // use the DataTracker API
+    if( hasInputDataChanged(d_myInputData) )
+    {
+        // Here do the update
+        d_myOutputData.setValue(2.0 * d_myInputData);
+    }
+}
+```
+
+You can find examples of implementation in any Engine, e.g. [TransformEngine](https://github.com/sofa-framework/sofa/blob/master/modules/SofaGeneralEngine/TransformEngine.inl#L273).
 
 
 
 
-Update of internal data in other components
--------------------------------------------
+Internal update in other components
+-----------------------------------
 
 In SOFA, components others than Engines do not share the same automatic update of their Data fields. Yet, it is important for several components to be able to recompute internal information when a Data is modified.
 For example, when the _massDensity_ Data is modified, we want the MeshMatrixMass component to recompute the _totalMass_ and the _vertexMass_ vector defining the mass spread on each vertex.
 
-This update mechanism of internal information is done by the call of the **UpdateInternalDataVisitor** at each begin of step (within any AnimationLoop). This visitor triggers a function `updateInternal()` which manages this internal update. The final implementation of the `updateInternal()` function is done in the BaseObject class so that:
+
+#### DataTracker
+
+A DataTracker and a dedicated API are available for any component inheriting from BaseObject. It is therefore possible to track if a data of the component is dirty and/or has changed. The DataTracker API is defined in BaseObject:
+
+```cpp
+/// Method called to add the Data to the DataTracker (listing the Data to track)
+void trackData(const BaseData &data);
+
+/// Method called to know if a tracked Data has changed
+bool hasDataChanged(const BaseData &data);
+``
+
+
+#### Internal update
+
+The update mechanism of internal information differs from the Engine update. The update is done by the call of the **UpdateInternalDataVisitor** at each begin of step (within any AnimationLoop). This visitor triggers a function `updateInternal()` which manages this internal update. The final implementation of the `updateInternal()` function is done in the BaseObject class so that:
 - it checks if at least one the tracked Data of the component has changed
 - it calls a delegate function `doUpdateInternal()`
 - it cleans the DataTracker
@@ -123,4 +173,28 @@ void BaseObject::updateInternal()
 }
 ```
 
-Only the **delegate function** `doUpdateInternal()` is therefore available in any component to handle internal update. You can find examples of implementation in any Engine, e.g. [MeshMatrixMass](https://www.sofa-framework.org/community/doc/using-sofa/components/masses/meshmatrixmass/).
+Only the **delegate function** `doUpdateInternal()` is therefore available in any component to handle internal update. Here is an example:
+
+```cpp
+template <class DataTypes>
+void MyForeceField::doInternalUpdate()
+{
+    // use the DataTracker API
+    if( hasDataChanged(d_myStiffness) )
+    {
+        // Here do the update
+        for (size_t i=0; i<m_myVecorStiffness.size(); i++)
+        {
+            m_myVecorStiffness[i] = d_myStiffness;
+        }
+    }
+}
+```
+
+
+You can find examples of implementation in any Engine, e.g. [MeshMatrixMass](https://github.com/sofa-framework/sofa/blob/master/modules/SofaMiscForceField/MeshMatrixMass.inl#L1299) or [ConstantForceField](https://github.com/sofa-framework/sofa/blob/master/modules/SofaBoundaryCondition/ConstantForceField.inl#L205).
+
+
+#### Process of internal update
+
+<a href="https://github.com/sofa-framework/doc/blob/master/Images/dataupdate/InternalUpdateVisitor.png?raw=true"><img src="https://github.com/sofa-framework/doc/blob/master/Images/dataupdate/InternalUpdateVisitor.png?raw=true" title="Scheme representing the internal update process"/></a>
