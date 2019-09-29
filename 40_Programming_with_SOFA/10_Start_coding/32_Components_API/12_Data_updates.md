@@ -146,7 +146,7 @@ void trackData(const BaseData &data);
 
 /// Method called to know if a tracked Data has changed
 bool hasDataChanged(const BaseData &data);
-``
+```
 
 
 #### Internal update
