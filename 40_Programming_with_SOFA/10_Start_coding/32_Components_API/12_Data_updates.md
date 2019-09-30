@@ -48,7 +48,7 @@ Let's take an example to illustrate the update mechanism:
 
 <a href="https://github.com/sofa-framework/doc/blob/master/Images/dataupdate/DDGNodes-1.png?raw=true"><img src="https://github.com/sofa-framework/doc/blob/master/Images/dataupdate/DDGNodes-1.png?raw=true" title="A is modified, then set to dirty"/></a>
 
-Let's consider that **B** has been modified. Therefore, a `setDirtyValue()` is automatically called, thus triggering the `setDirtyOutputs()` on its outputs **C** and **D** and calling `setDirtyValue()`. Recursively, the dirty state also spreads to **E**.
+Let's consider that **B** has been modified, e.g. using the function `setValue()`. Therefore, a `setDirtyValue()` is automatically called, thus triggering the `setDirtyOutputs()` on its outputs **C** and **D** and calling `setDirtyValue()`. Recursively, the dirty state also spreads to **E**.
 
 <a href="https://github.com/sofa-framework/doc/blob/master/Images/dataupdate/DDGNodes-2.png?raw=true"><img src="https://github.com/sofa-framework/doc/blob/master/Images/dataupdate/DDGNodes-2.png?raw=true" title="Recursive propagation to C and D"/></a>
 <a href="https://github.com/sofa-framework/doc/blob/master/Images/dataupdate/DDGNodes-3.png?raw=true"><img src="https://github.com/sofa-framework/doc/blob/master/Images/dataupdate/DDGNodes-3.png?raw=true" title="Dirty state is properly propagated to E"/></a>
@@ -146,6 +146,9 @@ void trackData(const BaseData &data);
 
 /// Method called to know if a tracked Data has changed
 bool hasDataChanged(const BaseData &data);
+
+/// Method called to clean the data tracker
+void cleanTracker();
 ```
 
 
