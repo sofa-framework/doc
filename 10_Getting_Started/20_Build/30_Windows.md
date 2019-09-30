@@ -49,7 +49,7 @@ Finally, SOFA requires some specific dependencies:
 -   **Additional libraries**: libPNG, libJPEG, libTIFF, Zlib, Glew
     -   VS2015 users: download the [Windows dependency pack for VS2015](https://www.sofa-framework.org/download/WinDepPack/VS-2015/latest).
     -   VS2017 users: download the [Windows dependency pack for VS2017](https://www.sofa-framework.org/download/WinDepPack/VS-2017/latest).
-    -   VS2019 users: download the [Windows dependency pack for VS2017](https://www.sofa-framework.org/download/WinDepPack/VS-2017/latest)(VS2019 is compatible with VS2017 binaries).
+    -   VS2019 users: download the [Windows dependency pack for VS2017](https://www.sofa-framework.org/download/WinDepPack/VS-2017/latest) (VS2019 is compatible with VS2017 binaries).
 
     You will unzip them **in SOFA source directory** (e.g. sofa/src/) after cloning SOFA (see below).
 
