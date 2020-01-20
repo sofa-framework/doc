@@ -76,14 +76,14 @@ as follows:
 -   sofa/
     -   src/
     -   build/
-        -   v19.06/
+        -   v19.12/
         -   master/
 
 **First**, download the sources from Git repository:
 
-Get the current **stable** version on the v19.06 branch:
+Get the current **stable** version on the v19.12 branch:
 ``` {.bash .stable}
-git clone -b v19.06 https://github.com/sofa-framework/sofa.git sofa/src
+git clone -b v19.12 https://github.com/sofa-framework/sofa.git sofa/src
 ```
 
 **OR** get the development **unstable** version on the master branch:
