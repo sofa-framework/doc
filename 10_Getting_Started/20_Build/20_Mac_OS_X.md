@@ -57,6 +57,12 @@ To compile SOFA, you need to install several dependencies using Homebrew
     brew install boost
     ```
 
+-   **Eigen** (>= 3.3.4)
+    
+    ```bash
+    brew install eigen
+    ```
+
 -   **Additional libraries**: libPNG, libTIFF, libJPEG, Zlib, Glew
 
     ```bash

@@ -43,6 +43,10 @@ Finally, SOFA requires some specific dependencies:
     [here](https://sourceforge.net/projects/boost/files/boost-binaries/).
     Beware of the correspondance between Visual Studio and MSVC versions (VS-2015 == MSVC-14.0, VS-2017 == MSVC-14.1).
 
+-   **Eigen** (>= 3.3.4)
+    Download the latest Eigen release [here](http://eigen.tuxfamily.org).
+    Unzip in the location of your choice, preferrably at `C:\` or `C:\Program files` for better discoverability by CMake find-modules (remember to extract the inner folder and rename it to `Eigen3` or `Eigen`).
+
 -   **Python 2.7**  
     Get Python 2.7.x (32 or 64 bit) on [python.org download page](https://www.python.org/downloads/windows/).
 

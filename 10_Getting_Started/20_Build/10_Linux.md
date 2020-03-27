@@ -98,6 +98,11 @@ Finally, SOFA requires some libraries:
     ```bash
     sudo apt-get install libboost-atomic-dev libboost-chrono-dev libboost-date-time-dev libboost-filesystem-dev libboost-locale-dev libboost-regex-dev libboost-system-dev libboost-thread-dev libboost-program-options-dev
     ```
+-   **Eigen** (>= 3.3.4)
+
+    ```bash
+    sudo apt install libeigen3-dev
+    ```
     
 -   **Python 2.7**
 
