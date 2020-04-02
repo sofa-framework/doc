@@ -7,6 +7,7 @@ This component belongs to the category of Multi2Mapping, which is the interface 
 Each articulation is represented as one degree of freedom (translation or rotation). All articulation DOFs are contained in a MechanicalObject with a `template=Vec1d`. From these local articulation DOFs, the ArticulatedSystemMapping can build a serial chain (arborescent chain).
 
 To compute this mapping, the ArticulatedSystemMapping needs an ArticulatedHierarchyContainer. At the initiatization, this component browse the graph and detects to all articulations. The ArticulatedHierarchyContainer therefore contains a link to all pairs of:
+
 - ArticulationCenter: defines the location of the articulation. It can either be defined relatively to the parent and child articulations (in local coordinates), or defined in the global coordinate system (and all local data are automatically computed).
 - Articulation: defines the id (integer) and the nature of the articulation, e.g. a translation along the x axis ` translationAxis="1 0 0"` or rotation around the z axis `rotationAxis="0 0 1"`
 
@@ -16,6 +17,7 @@ Data
 ----
 
 The ArticulatedSystemMapping builds the correspondence the articulations and the global motion of the system. It has therefore only two data:
+
 - **input1** link to the MechanicalObject containing the articulation DOFs (Vec1d)
 - **output** link to the MechanicalObject containing the mapped DOFs in the global coordinate system for each rigid body (Rigid3d), i.e. for each part of the articulated system
 
@@ -30,6 +32,7 @@ This component and this structure works well for simple serial articulations. Ho
 The ArticulatedSystemMapping works well in quasi-static cases.
 
 _Next steps of development:_
+
 - add option of defining a position and a rotation in the ArticulationCenter
 - handle more complex articulations than only Vec1d (rotation/translation), like using quaternions
 - representing the articulated system as a graph, separated from the scene graph
