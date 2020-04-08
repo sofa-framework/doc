@@ -32,6 +32,7 @@ If you want to use **another IDE like QtCreator**, install the Build Tools only.
 | **Build Tools only**  | [download](https://visualstudio.microsoft.com/fr/thank-you-downloading-visual-studio/?sku=BuildTools&rel=15) | [download](https://visualstudio.microsoft.com/fr/thank-you-downloading-visual-studio/?sku=BuildTools&rel=16) |
 | **IDE + Build Tools** | [download](https://visualstudio.microsoft.com/fr/thank-you-downloading-visual-studio/?sku=Community&rel=15) | [download](https://visualstudio.microsoft.com/fr/thank-you-downloading-visual-studio/?sku=Community&rel=16) |
 
+
 In the installer, you must enable:
 
 1. In the main panel: the **C++ development toolkit**, called "C++ Build Tools" or "Desktop C++".
@@ -68,18 +69,20 @@ SOFA requires some libraries:
     ![](https://www.sofa-framework.org/wp-content/uploads/2020/04/install_qt_windows.png)
 
 -   **Boost** (>= 1.65.1)  
-    Download and install latest Boost from [https://boost.teeks99.com](https://boost.teeks99.com).  
-    - **Users with Windows 64-bit and VS 2019**: choose boost_X_X_X-msvc-14.2-64.exe  
-    - **Users with Windows 64-bit and VS 2017**: choose boost_X_X_X-msvc-14.1-64.exe  
-    - Users with Windows 32-bit and VS 2019: choose boost_X_X_X-msvc-14.2-32.exe  
-    - Users with Windows 32-bit and VS 2017: choose boost_X_X_X-msvc-14.1-32.exe    
+    Download and install latest Boost from [https://boost.teeks99.com](https://boost.teeks99.com).
     
+    - **Users with Windows 64-bit and VS 2019**: choose boost_X_X_X-msvc-14.2-64.exe
+    - **Users with Windows 64-bit and VS 2017**: choose boost_X_X_X-msvc-14.1-64.exe
+    - Users with Windows 32-bit and VS 2019: choose boost_X_X_X-msvc-14.2-32.exe
+    - Users with Windows 32-bit and VS 2017: choose boost_X_X_X-msvc-14.1-32.exe
+
 -   **Eigen** (>= 3.2.10)  
     Download and unzip latest Eigen from [http://eigen.tuxfamily.org](http://eigen.tuxfamily.org)
     
 -   **Python** (= 2.7.x)  
-    Download and install latest Python **2.7** from [python.org download page](https://www.python.org/downloads/windows/).  
-    - **Users with Windows 64-bit**: choose the "Windows x86-64 MSI installer".  
+    Download and install latest Python **2.7** from [python.org download page](https://www.python.org/downloads/windows/).
+    
+    - **Users with Windows 64-bit**: choose the "Windows x86-64 MSI installer".
     - Users with Windows 32-bit: choose the "Windows x86 MSI installer".
 
 -   **Additional libraries**: libPNG, libJPEG, libTIFF, Glew, Zlib  
@@ -141,10 +144,12 @@ git clone -b master https://github.com/sofa-framework/sofa.git sofa/src
 
 3. In CMake-GUI, set source folder and build folder.
 
-4. Run **Configure**. A popup will ask you to specify the generator for the project.
+4. Run **Configure**.  
+   A popup will ask you to specify the generator for the project.
 
    - If you want use **Visual Studio IDE**, select "Visual Studio 15 2017 Win64" or "Visual Studio 16 2019 Win64" (or without the "Win64" if you are on Windows 32-bit).
    - If you want to use **another IDE like QtCreator**, select "CodeBlocks - Ninja" (recommended, needs [Ninja](#optional-ninja-build-system)) or "CodeBlocks - NMake".
+
 
 5. Keep "Use default native compilers" and press "Finish".
 
