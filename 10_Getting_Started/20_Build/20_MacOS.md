@@ -5,6 +5,7 @@
 Unfortunately, no Docker image has been created yet for MacOS.  
 This may come in a near future, to be continued...
 
+----------------------------
 
 # Build tools
 
@@ -75,7 +76,7 @@ brew install ccache
 
 SOFA requires some libraries:
 
--   **Qt** (>= 5.12.0)  
+-   **Qt** (>= 5.12.0) with **Charts** and **WebEngine**    
     We recommend to install Qt **in your user directory** with [the unified installer](http://download.qt.io/official_releases/online_installers).  
     Make sure to enable **Charts** and **WebEngine** components.  
     ![](https://www.sofa-framework.org/wp-content/uploads/2020/04/install_qt_macos.png)
@@ -102,11 +103,26 @@ You probably don't need them all, but you might find it convenient to
 install them all and not worry about it later.  
 This list does not cover all available SOFA plugins, only the ones that are built by our continuous integration platform.
 
--  CGALPlugin: `brew install cgal`
--  MeshSTEPLoader: `brew install opencascade`
--  SofaAssimp: `brew install assimp`    
--  SofaCUDA: `brew install homebrew/cask-drivers/nvidia-cuda`
--  SofaPardisoSolver: `brew install lapack`
+-  CGALPlugin  
+   ``` {.bash .optional}
+   brew install cgal
+   ```
+-  MeshSTEPLoader  
+   ``` {.bash .optional}
+   brew install opencascade
+   ```
+-  SofaAssimp  
+   ``` {.bash .optional}
+   brew install assimp
+   ```    
+-  SofaCUDA  
+   ``` {.bash .optional}
+   brew install homebrew/cask-drivers/nvidia-cuda
+   ```
+-  SofaPardisoSolver  
+   ``` {.bash .optional}
+   brew install lapack
+   ```
 
 
 # Building SOFA

@@ -10,6 +10,7 @@ CentOS image: [https://hub.docker.com/r/sofaframework/sofabuilder_centos](https:
 
 Ubuntu image: [https://hub.docker.com/r/sofaframework/sofabuilder_ubuntu](https://hub.docker.com/r/sofaframework/sofabuilder_ubuntu)
 
+----------------------------
 
 # Build tools
 
@@ -88,32 +89,27 @@ sudo apt install ccache
 
 SOFA requires some libraries:
 
--   **Qt** (>= 5.12.0)
-
+-   **Qt** (>= 5.12.0) with **Charts** and **WebEngine**  
     We recommend to install Qt **in your user directory** with [the unified installer](http://download.qt.io/official_releases/online_installers).  
     Make sure to enable **Charts** and **WebEngine** components.  
     ![](https://www.sofa-framework.org/wp-content/uploads/2020/04/install_qt_linux.png)
 
--   **Boost** (>= 1.65.1)
-
+-   **Boost** (>= 1.65.1)  
     ```bash
     sudo apt install libboost-all-dev
     ```
     
--   **Eigen** (>= 3.2.10)
-
+-   **Eigen** (>= 3.2.10)  
     ```bash
     sudo apt install libeigen3-dev
     ```
     
--   **Python 2.7**
-
+-   **Python 2.7**  
     ```bash
     sudo apt install python2.7-dev python-numpy python-scipy
     ```
 
--   **Additional libraries**: libPNG, libJPEG, libTIFF, Glew, Zlib
- 
+-   **Additional libraries**: libPNG, libJPEG, libTIFF, Glew, Zlib   
     ```bash
     sudo apt install libpng-dev libjpeg-dev libtiff-dev libglew-dev zlib1g-dev
     ```
@@ -125,12 +121,30 @@ You probably don't need them all, but you might find it convenient to
 install them all and not worry about it later.  
 This list does not cover all available SOFA plugins, only the ones that are built by our continuous integration platform.
 
--  CGALPlugin: `sudo apt install libcgal-dev libcgal-qt5-dev`
--  MeshSTEPLoader: `sudo apt install liboce-ocaf-dev`
--  SofaAssimp: `sudo apt install libassimp-dev`    
--  SofaCUDA: `sudo apt install nvidia-cuda-toolkit`
--  SofaHeadlessRecorder: `sudo apt install libavcodec-dev libavformat-dev libavutil-dev libswscale-dev`
--  SofaPardisoSolver: `sudo apt install libblas-dev liblapack-dev`
+-  CGALPlugin  
+   ``` {.bash .optional}
+   sudo apt install libcgal-dev libcgal-qt5-dev
+   ```
+-  MeshSTEPLoader  
+   ``` {.bash .optional}
+   sudo apt install liboce-ocaf-dev
+   ```
+-  SofaAssimp  
+   ``` {.bash .optional}
+   sudo apt install libassimp-dev
+   ```
+-  SofaCUDA  
+   ``` {.bash .optional}
+   sudo apt install nvidia-cuda-toolkit
+   ```
+-  SofaHeadlessRecorder  
+   ``` {.bash .optional}
+   sudo apt install libavcodec-dev libavformat-dev libavutil-dev libswscale-dev
+   ```
+-  SofaPardisoSolver  
+   ``` {.bash .optional}
+   sudo apt install libblas-dev liblapack-dev
+   ```
 
 
 # Building SOFA
@@ -170,7 +184,7 @@ git clone -b master https://github.com/sofa-framework/sofa.git sofa/src
 1. Run CMake-GUI and set source folder and build folder.
 
 2. Run **Configure**. A popup will ask you to specify the generator for the project.  
-    - If you installed Ninja, select "CodeBlocks - Ninja".
+    - If you installed [Ninja](#optional-ninja-build-system), select "CodeBlocks - Ninja".
     - Otherwise, select "CodeBlocks - Unix Makefile".
 
 3. Choose "Specify native compilers" and press "Next"
@@ -185,7 +199,7 @@ git clone -b master https://github.com/sofa-framework/sofa.git sofa/src
 7. (optional) Customize SOFA via CMake variables  
      - choose the build type by setting CMAKE_BUILD_TYPE to "Release" or "RelWithDebInfo" (recommended) or "Debug"  
      - activate or deactivate plugins: see PLUGIN_XXX variables  
-     - activate or deactivate functionalities: see SOFA_XXX variables  
+     - activate or deactivate functionalities: see SOFA_XXX variables
    Do not forget to **Configure** again to check if your changes are valid.
 
 8. When you are ready, run **Generate**.

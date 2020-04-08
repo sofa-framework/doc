@@ -4,12 +4,11 @@
 
 To simplify the configuration of our continuous integration machines, we created a complete setup script.
 
-### WARNING
+### WARNING: USE AT YOUR OWN RISKS
 This script installs a lot of software directly in `C:\` without any prealable check.  
 It is meant to be used on a **fresh Windows**. We use it on disposable virtual machines only.  
-**USE AT YOUR OWN RISKS!**
 
-Setup script: (I am aware of the disclaimer above)[https://github.com/sofa-framework/ci/blob/master/setup/setup-windows.bat]
+Setup script: [I am aware of the disclaimer above](https://github.com/sofa-framework/ci/blob/master/setup/setup-windows.bat)
 
 
 ## Preconfigured Docker image
@@ -17,6 +16,7 @@ Setup script: (I am aware of the disclaimer above)[https://github.com/sofa-frame
 Unfortunately, no Docker image has been created yet for Windows.  
 This may come in a near future, to be continued...
 
+----------------------------
 
 # Build tools
 
@@ -62,7 +62,7 @@ Do not forget to **add ninja to your system PATH**!
 
 SOFA requires some libraries:
 
--   **Qt** (>= 5.12.0)  
+-   **Qt** (>= 5.12.0) with **Charts** and **WebEngine**  
     We recommend to install Qt **in your user directory** with [the unified installer](http://download.qt.io/official_releases/online_installers).  
     Make sure to enable **Charts** and **WebEngine** components.  
     ![](https://www.sofa-framework.org/wp-content/uploads/2020/04/install_qt_windows.png)
