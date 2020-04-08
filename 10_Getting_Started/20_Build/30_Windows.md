@@ -1,151 +1,190 @@
-**_It is advised to read through this entire doc page before getting started_**
+**It is STRONGLY advised to read through this entire doc page before getting started.**
 
-Prerequisites for Windows
-=========================
+## Setup script
 
-### Compiler
+To simplify the configuration of our continuous integration machines, we created a complete setup script.
 
-You need to have Visual Studio 2015 or higher installed. We recommend Visual Studio 2015 (tested on [our Dashboard](http://www.sofa-framework.org/dash/)).
+### WARNING
+This script installs a lot of software directly in `C:\` without any prealable check.  
+It is meant to be used on a **fresh Windows**. We use it on disposable virtual machines only.  
+**USE AT YOUR OWN RISKS!**
 
-Visit [Visual Studio downloads page](https://www.visualstudio.com/fr-fr/downloads/download-visual-studio-vs.aspx).
-
-**Note**: you can also get [Build Tools for VS2015](https://www.microsoft.com/en-us/download/details.aspx?id=48159) or [Build Tools for VS2017](https://www.visualstudio.com/fr/thank-you-downloading-visual-studio/?sku=BuildTools&rel=15) to install MSVC without all the Visual Studio package.
+Setup script: (I am aware of the disclaimer above)[https://github.com/sofa-framework/ci/blob/master/setup/setup-windows.bat]
 
 
-### CMake: Makefile generator
+## Preconfigured Docker image
 
-You need to have CMake 3.1 or higher installed.  
-The easiest way to do this is to get the installer from the [CMake download page](https://cmake.org/download/).
+Unfortunately, no Docker image has been created yet for Windows.  
+This may come in a near future, to be continued...
 
-**Note**: during the install process, we advise to choose the option "Add CMake to the system PATH for all users" (as shown in the image below) in order to be able to easily run cmake from any directory.
+
+# Build tools
+
+## Compiler
+
+SOFA requires a [C++17 compatible compiler](https://en.cppreference.com/w/cpp/compiler_support#C.2B.2B17_features).  
+On Windows, we officially support **Microsoft Visual Studio >= 2017**.
+
+If you want to use **Visual Studio IDE**, install the complete Visual Studio solution:  
+- [Visual Studio 2017 "IDE + Build Tools"](https://visualstudio.microsoft.com/fr/thank-you-downloading-visual-studio/?sku=Community&rel=15)
+- [Visual Studio 2019 "IDE + Build Tools"](https://visualstudio.microsoft.com/fr/thank-you-downloading-visual-studio/?sku=Community&rel=16)
+
+If you want to use **another IDE like QtCreator**, install the Visual Studio Build Tools only:  
+- [Visual Studio 2017 "Build Tools only"](https://visualstudio.microsoft.com/fr/thank-you-downloading-visual-studio/?sku=BuildTools&rel=15)
+- [Visual Studio 2019 "Build Tools only"](https://visualstudio.microsoft.com/fr/thank-you-downloading-visual-studio/?sku=BuildTools&rel=16)
+
+In the installer, you must enable:  
+1. In the main panel: the **C++ development toolkit**, called "C++ Build Tools" or "Desktop C++"
+2. In the side panel: the **C++ ATL** and **C++ MFC** components
+
+![](https://www.sofa-framework.org/wp-content/uploads/2020/03/install_vs_ide.png)
+
+## CMake: Makefile generator
+
+SOFA requires at least **CMake 3.12**.  
+Install CMake with [the latest official installer](https://github.com/Kitware/CMake/releases/latest).
+
+**IMPORTANT**: check the option **"Add CMake to the system PATH for all users"** during the install process.
 
 ![](https://www.sofa-framework.org/wp-content/uploads/2019/03/install-cmake.png)
 
 
-### [optional] Ninja: build system
+## [optional] Ninja: build system
 
 Ninja is an alternative to NMake. It has a better handling of incremental builds.  
 You can download the latest release from [their GitHub repository](https://github.com/ninja-build/ninja/releases).
 
-To use Ninja, do not forget to set the CMake generator to "Codeblocks - Ninja" (as explained in [Generate a Makefile with CMake](#generate-a-makefile-with-cmake)).
+Do not forget to **add ninja to your system PATH**!
 
+# Dependencies
 
-Required dependencies
-=====================
+## Core (required)
 
-Finally, SOFA requires some specific dependencies:
+SOFA requires some libraries:
 
--   **Qt** (>= 5.5.0)  
-    We recommend to install Qt from [the unified installer](http://download.qt.io/official_releases/online_installers).  
+-   **Qt** (>= 5.12.0)  
+    We recommend to install Qt **in your user directory** with [the unified installer](http://download.qt.io/official_releases/online_installers).  
+    Make sure to enable **Charts** and **WebEngine** components.  
+    ![](https://www.sofa-framework.org/wp-content/uploads/2020/04/install_qt_windows.png)
 
--   **Boost** (>= 1.54.0)  
-    Find the latest official Boost installer for your Visual Studio version
-    [here](https://sourceforge.net/projects/boost/files/boost-binaries/).
-    Beware of the correspondance between Visual Studio and MSVC versions (VS-2015 == MSVC-14.0, VS-2017 == MSVC-14.1).
+-   **Boost** (>= 1.65.1)  
+    Download and install latest Boost from [https://boost.teeks99.com](https://boost.teeks99.com).
+        **Users with Windows 64-bit + Visual Studio 2019**: choose boost_X_X_X-msvc-14.2-64.exe
+        **Users with Windows 64-bit + Visual Studio 2017**: choose boost_X_X_X-msvc-14.1-64.exe
+        Users with Windows 32-bit + Visual Studio 2019: choose boost_X_X_X-msvc-14.2-32.exe
+        Users with Windows 32-bit + Visual Studio 2017: choose boost_X_X_X-msvc-14.1-32.exe
+    
+    
+-   **Eigen** (>= 3.2.10)  
+    Download and unzip latest Eigen from [http://eigen.tuxfamily.org](http://eigen.tuxfamily.org)
+    
+-   **Python** (= 2.7.x)  
+    Download and install latest Python **2.7** from [python.org download page](https://www.python.org/downloads/windows/).  
+        **Users with Windows 64-bit**: choose the "Windows x86-64 MSI installer".  
+        Users with Windows 32-bit: choose the "Windows x86 MSI installer".
 
--   **Python 2.7**  
-    Get Python 2.7.x (32 or 64 bit) on [python.org download page](https://www.python.org/downloads/windows/).
-
--   **Additional libraries**: libPNG, libJPEG, libTIFF, Zlib, Glew
-    -   VS2015 users: download the [Windows dependency pack for VS2015](https://www.sofa-framework.org/download/WinDepPack/VS-2015/latest).
-    -   VS2017 users: download the [Windows dependency pack for VS2017](https://www.sofa-framework.org/download/WinDepPack/VS-2017/latest).
-    -   VS2019 users: download the [Windows dependency pack for VS2017](https://www.sofa-framework.org/download/WinDepPack/VS-2017/latest) (VS2019 is compatible with VS2017 binaries).
-
-    You will unzip them **in SOFA source directory** (e.g. sofa/src/) after cloning SOFA (see below).
-
+-   **Additional libraries**: libPNG, libJPEG, libTIFF, Glew, Zlib  
+    Download the [Windows dependency pack](https://www.sofa-framework.org/download/WinDepPack/VS-2017/latest). You will need to unzip it directly in SOFA sources (later in this tutorial).
 
 ### [optional] PATH modification
 
-To complete the dependencies integration, you may add Boost and Qt to your PATH (it will ease their detection by CMake).  
+You can add Boost and Qt to your PATH to ease their detection by CMake.  
 **Boost**: add `your/Boost/path` and `your/Boost/path/libXX-msvc-XX`  
 **Qt**: add `your/Qt/path/msvcXXXX_XX/bin` and `your/Qt/path/msvcXXXX_XX/lib`
 
 
-Building on Windows
-===================
+# Building SOFA
 
 
-## Setting up your source and build directories
+## Setup your source and build directories
 
-To set up clean repositories, we propose to arrange the SOFA directories
+To set up clean repositories, we recommend to arrange the SOFA directories
 as follows:
 
--   sofa/
-    -   src/
-    -   build/
-        -   v19.12/
-        -   master/
+```
+sofa/
+├── build/
+│   ├── master/
+│   └── v19.12/
+└── src/
+    └── < SOFA sources here >
+```
 
-**First**, download the sources from Git repository:
+**First**, checkout the sources from Git repository:
 
 Get the current **stable** version on the v19.12 branch:
 ``` {.bash .stable}
-git clone -b v19.12 https://github.com/sofa-framework/sofa.git sofa/src/
+git clone -b v19.12 https://github.com/sofa-framework/sofa.git sofa/src
 ```
 
 **OR** get the development **unstable** version on the master branch:
 ``` {.bash .unstable}
-git clone -b master https://github.com/sofa-framework/sofa.git sofa/src/
+git clone -b master https://github.com/sofa-framework/sofa.git sofa/src
 ```
 
-**Next**, unzip in your sources folder (sofa/src/) the **SOFA
-dependencies for Windows** you downloaded before.
+**Next**, unzip the **SOFA dependencies for Windows** (downloaded before) directly in the sources `sofa/src/`.
 
 **Finally**, you should have something like this:
 
 ![](https://www.sofa-framework.org/wp-content/uploads/2015/11/sofa_files.png)
 
 
-## Generate a solution (\*.sln) with CMake
+## Generate a Visual Studio project (.sln) or a Makefile with CMake
 
-### Launch CMake
+0. Create build directories respecting the arrangement above.
 
-If you didn't do it yet, create a build/ folder respecting directories
-arrangement.
-
-In the "Start" menu of Windows, you can search for a program called "_Native Build Tools Command Prompt_". As shown in the figure below, you should be able to find the _Command Prompt_ corresponding to your VisualStudio install:
-
+1. In Windows Start menu, search for `Native Tools Command Prompt` and run the one correponding to your Windows architecture (x64 for 64-bit, x86 for 32-bit).  
 ![](https://www.sofa-framework.org/wp-content/uploads/2019/03/SearchCommandPrompt.png)
 
-**Launch this _Command Prompt_ as administrator**.
+2. In the command prompt, type `cmake-gui` and press Enter.  
+   If you get the error `'cmake-gui' is not recognized as an internal or external command`, it means that your system PATH does not correctly include the path to cmake-gui. In this case, you need to provide the full path to your cmake-gui.
 
-If you installed cmake using the option "Add CMake to the system PATH for all users" [as mentioned above](https://www.sofa-framework.org/community/doc/getting-started/build/windows/#cmake-makefile-generator), **type "cmake-gui"** in the _Native Build Tools Command Prompt_ as shown in the image below.
-If you get an error due to `'cmake-gui' is not recognized as an internal or external command`, it means that the system PATH does not correctly include the path to cmake-gui. In this case, you need to provide the full path to your cmake-gui.
+3. In CMake-GUI, set source folder and build folder.
 
-![](https://www.sofa-framework.org/wp-content/uploads/2019/03/TypeCMakeGUI.png)
+4. Run **Configure**. A popup will ask you to specify the generator for the project.  
+    - If you want use **Visual Studio IDE**, select "Visual Studio 15 2017 Win64" or "Visual Studio 16 2019 Win64" (or without the "Win64" if you are on Windows 32-bit).
+    - If you want to use **another IDE like QtCreator**, select "CodeBlocks - Ninja" (recommended, needs [Ninja](#optional-ninja-build-system)) or "CodeBlocks - NMake".
 
+5. Keep "Use default native compilers" and press "Finish".
 
-### Setup CMake options
+6. Fix eventual dependency errors by following CMake messages (see Troubleshooting section below). Do not worry about warnings.
 
+7. (optional) Customize SOFA via CMake variables  
+     - choose the build type by setting CMAKE_BUILD_TYPE to "Release" or "RelWithDebInfo" (recommended) or "Debug"  
+     - activate or deactivate plugins: see PLUGIN_XXX variables  
+     - activate or deactivate functionalities: see SOFA_XXX variables  
+   Do not forget to **Configure** again to check if your changes are valid.
 
-Once CMake-GUI is open, set source folder with **Browse Source** and build
-folder with **Browse Build**.
-
-Next, run **Configure**. A popup window will ask you to specify the generator for the project. If you installed Ninja, select "Codeblocks - Ninja". Otherwise, select your version of Visual Studio. If you have Visual Studio 2015 and a 64-bit system select "Visual Studio 14 2015 Win64". Keep "Use default native compilers" selected, and press "Finish".
-
-Now, you can see in the CMake GUI all options available to configure the SOFA project. You can for instance choose the type of build (Release/Debug/RelWithDebInfo) using the variable `CMAKE_BUILD_TYPE`. By default, set it to `Release`. You can also tune the plugins you want to activate/compile or de-activate. For instance, the image plugin can be activated by setting the flag `PLUGIN_IMAGE` to true.
-
-**Note**:
-
-  - To solve Qt detection errors, click on **Add Entry** and add `CMAKE_PREFIX_PATH` with path `C:/Qt/X.X/msvcXXXX` matching your Qt MSVC folder. Example: `CMAKE_PREFIX_PATH=C:/Qt/5.7/msvc2015_64` and **Configure** again.
-
-  - To solve Boost detection errors, click on **Add Entry** and add `BOOST_ROOT` with type **PATH** and value `C:/boost/boost_1_XX_X` matching your Boost lib folder.   Example: `BOOST_ROOT=C:/boost/boost_1_61_0` and **Configure** again.
+8. When you are ready, run **Generate**. In the build directory, this will create a Visual Studio project (.sln) or a Makefile depending on the generator you chose at step 4.
 
 
-You need to **run Configure again**. Configuration must be run twice since SOFA requires two passes to manage the module dependencies. You can then customize your version of SOFA, activate or deactivate plugins and functionalities.
+## Compile
 
-If you have some errors, make absolutely sure all of your dependencies and your compilator are targeting the same architecture. For example, if you are not sure
-that the compiler is correctly set, do not hesitate to select it manually in the cmake-gui configuration screen instead of keeping the default ("Use default native
-compilers").
+To build SOFA in Visual Studio, simply **open the generated Sofa.sln**. Finally, **build the solution** using the Visual Studio interface as shown in the image below:
 
-When you are ready, press **Generate**. This will create your Visual Studio solution (Sofa.sln file in the build/ directory) or your makefiles if you chose another generator.
+![](https://www.sofa-framework.org/wp-content/uploads/2019/03/build-visual.png)
+
+If you chose another generator you will have to run the generator from the build directory.
+
+Example with Ninja:  
+- In Windows Start menu, search for `Native Tools Command Prompt` and run the one correponding to your Windows architecture (x64 for 64-bit, x86 for 32-bit).  
+- Go to the build directory with `cd`
+- Run `ninja`
+
+Time for a coffee!
 
 
-#### Troubleshooting: Qt detection errors
+## Troubleshooting CMake errors
 
-During CMake configuration, a dev warning due to Qt may appear:
+### Qt detection error
+To solve Qt detection errors, click on **Add Entry** and add
+`CMAKE_PREFIX_PATH` with path to your Qt directory (navigate until msvcXXXX_XX directory).  
+Example: `CMAKE_PREFIX_PATH=C:/dev/Qt/5.11.3/msvc2017_64`
+**Configure** again.
 
-    CMake Warning (dev) at YOUR_QT_MSVC_PATH/lib/cmake/Qt5Core/Qt5CoreMacros.cmake:224 (configure_file):
+A further dev warning may appear:
+
+    CMake Warning (dev) at YOUR_QT_PATH/lib/cmake/Qt5Core/Qt5CoreMacros.cmake:224 (configure_file):
     configure_file called with unknown argument(s):
 
     COPY_ONLY
@@ -156,17 +195,3 @@ During CMake configuration, a dev warning due to Qt may appear:
 This is just a typo with Qt5CoreMacros.cmake file. It uses COPY\_ONLY
 instead of COPYONLY. Simply edit your Qt5CoreMacros.cmake, replace
 COPY\_ONLY with COPYONLY and **Configure** again.
-
-
-
-## Compile
-
-To build SOFA in Visual Studio, simply **open the generated Sofa.sln**. Finally, **build the solution** using the Visual Studio interface as shown in the image below:
-
-![](https://www.sofa-framework.org/wp-content/uploads/2019/03/build-visual.png)
-
-If you chose another generator you will have to run the generator from the build directory.
-Example with Ninja: go in the build dir and run `ninja`.
-
-Time for a coffee!
-

@@ -2,13 +2,8 @@
 
 ## Preconfigured Docker image
 
-We provide preconfigured Docker images based on Ubuntu or CentOS.  
-These images contain all the tools and dependencies needed to build SOFA.  
-Feel free to use them and to propose your own versions on Docker Hub!
-
-CentOS image: [https://hub.docker.com/r/sofaframework/sofabuilder_centos](https://hub.docker.com/r/sofaframework/sofabuilder_centos)
-
-Ubuntu image: [https://hub.docker.com/r/sofaframework/sofabuilder_ubuntu](https://hub.docker.com/r/sofaframework/sofabuilder_ubuntu)
+Unfortunately, no Docker image has been created yet for MacOS.  
+This may come in a near future, to be continued...
 
 
 # Build tools
@@ -16,39 +11,31 @@ Ubuntu image: [https://hub.docker.com/r/sofaframework/sofabuilder_ubuntu](https:
 ## Compiler
 
 SOFA requires a [C++17 compatible compiler](https://en.cppreference.com/w/cpp/compiler_support#C.2B.2B17_features).  
-On Linux, we officially support **GCC >= 7** and **Clang >= 5**.  
+On MacOS, we officially support **MacOS >= 10.13.2 (High Sierra)** and **AppleClang >= 9.1.0**.  
 
-First, install the standard compilation toolkit with this command:
+Check your MacOS version with `system_profiler SPSoftwareDataType`
+Check your AppleClang version with `clang --version`
 
-```bash
-sudo apt install build-essential software-properties-common python-software-properties
-```
-    
-### GCC
+If your MacOS version is too low, update your Mac from the App Store.
 
-To know which GCC versions are available for your distribution, run this command:
-```bash
-apt-cache search '^gcc-[0-9.]+$'
-```
+If your AppleClang version is too low:
+1. Download and install the highest possible Xcode compatible with your MacOS.
+   Compatibility list (taken from Wikipedia):
+       MacOS >= 10.15.2 : Xcode 11.4   (with AppleClang 11.0.3, based on clang 9)
+       MacOS >= 10.14.4 : Xcode 11.3.1 (with AppleClang 11.0.0, based on clang 8)
+       MacOS >= 10.14.3 : Xcode 10.3   (with AppleClang 10.0.1, based on clang 7)
+       MacOS >= 10.13.6 : Xcode 10.1   (with AppleClang 10.0.0, based on clang 6)
+       MacOS >= 10.13.2 : Xcode 9.4.1  (with AppleClang 9.1.0,  based on clang 5)
+   To download any version, go to https://developer.apple.com/download/more/ and search "Xcode".
 
-Then, install the latest one with the usual command (example with gcc-7):
-```bash
-sudo apt install gcc-7
-```
+2. Open Xcode to automatically finalize installation
 
-### Clang
-Clang is an **alternative to GCC**. It compiles approximately two times faster !  
-We recommend to install **Clang 5 or newer**.
+3. In Xcode, navigate to "Xcode > Preferences > Locations" and set Command Line Tools to your Xcode version
 
-To know which Clang versions are available for your distribution, run this command:
-```bash
-apt-cache search '^clang-[0-9.]+$'
-```
+4. Verify Command Line Tools path: xcode-select -p
+   If it is not pointing to your Xcode, change it: xcode-select --switch /Applications/Xcode.app
 
-Then, install the latest one with the usual command (example with clang-5.0):
-```bash
-sudo apt install clang-5.0
-```
+5. Reboot
 
 
 ## CMake: Makefile generator
@@ -62,7 +49,7 @@ We recommend to install CMake using [the latest official installer](https://gith
 Ninja is an alternative to Make. It has a better handling of incremental builds.
 
 ``` {.bash .optional}
-sudo apt install ninja-build
+brew install ninja
 ```
 
 
@@ -78,7 +65,7 @@ make changes to SOFA. As explained on the
 > done again."
 
 ``` {.bash .optional}
-sudo apt install ccache
+brew install ccache
 ```
 
 
@@ -88,34 +75,24 @@ sudo apt install ccache
 
 SOFA requires some libraries:
 
--   **Qt** (>= 5.12.0)
-
+-   **Qt** (>= 5.12.0)  
     We recommend to install Qt **in your user directory** with [the unified installer](http://download.qt.io/official_releases/online_installers).  
     Make sure to enable **Charts** and **WebEngine** components.  
-    ![](https://www.sofa-framework.org/wp-content/uploads/2020/04/install_qt_linux.png)
+    ![](https://www.sofa-framework.org/wp-content/uploads/2020/04/install_qt_macos.png)
 
--   **Boost** (>= 1.65.1)
-
+-   **Boost** (>= 1.65.1)  
     ```bash
-    sudo apt install libboost-all-dev
+    brew install boost
     ```
     
--   **Eigen** (>= 3.2.10)
-
+-   **Eigen** (>= 3.2.10)  
     ```bash
-    sudo apt install libeigen3-dev
-    ```
-    
--   **Python 2.7**
-
-    ```bash
-    sudo apt install python2.7-dev python-numpy python-scipy
+    brew install eigen
     ```
 
--   **Additional libraries**: libPNG, libJPEG, libTIFF, Glew, Zlib
- 
+-   **Additional libraries**: libPNG, libJPEG, libTIFF, Glew   
     ```bash
-    sudo apt install libpng-dev libjpeg-dev libtiff-dev libglew-dev zlib1g-dev
+    brew install libpng libjpeg libtiff glew
     ```
 
 ## Plugins (optional)
@@ -125,12 +102,11 @@ You probably don't need them all, but you might find it convenient to
 install them all and not worry about it later.  
 This list does not cover all available SOFA plugins, only the ones that are built by our continuous integration platform.
 
--  CGALPlugin: `sudo apt install libcgal-dev libcgal-qt5-dev`
--  MeshSTEPLoader: `sudo apt install liboce-ocaf-dev`
--  SofaAssimp: `sudo apt install libassimp-dev`    
--  SofaCUDA: `sudo apt install nvidia-cuda-toolkit`
--  SofaHeadlessRecorder: `sudo apt install libavcodec-dev libavformat-dev libavutil-dev libswscale-dev`
--  SofaPardisoSolver: `sudo apt install libblas-dev liblapack-dev`
+-  CGALPlugin: `brew install cgal`
+-  MeshSTEPLoader: `brew install opencascade`
+-  SofaAssimp: `brew install assimp`    
+-  SofaCUDA: `brew install homebrew/cask-drivers/nvidia-cuda`
+-  SofaPardisoSolver: `brew install lapack`
 
 
 # Building SOFA
@@ -167,28 +143,23 @@ git clone -b master https://github.com/sofa-framework/sofa.git sofa/src
 
 0. Create build directories respecting the arrangement above.
 
-1. Run CMake-GUI and set source folder and build folder.
+1. Run CMake.app and set source folder and build folder.
 
 2. Run **Configure**. A popup will ask you to specify the generator for the project.  
-    - If you installed Ninja, select "CodeBlocks - Ninja".
+    - If you installed [Ninja](#optional-ninja-build-system) (recommended), select "CodeBlocks - Ninja".
     - Otherwise, select "CodeBlocks - Unix Makefile".
 
-3. Choose "Specify native compilers" and press "Next"
+3. Keep "Use default native compilers" and press "Done".
 
-4. Set the C compiler to `/usr/bin/gcc` **or** `/usr/bin/clang`  
-   Set the C++ compiler to `/usr/bin/g++` **or** `/usr/bin/clang++`
+4. Fix eventual dependency errors by following CMake messages (see Troubleshooting section below). Do not worry about warnings.
 
-5. Run **Configure**.
-
-6. Fix eventual dependency errors by following CMake messages (see Troubleshooting section below). Do not worry about warnings.
-
-7. (optional) Customize SOFA via CMake variables  
+5. (optional) Customize SOFA via CMake variables  
      - choose the build type by setting CMAKE_BUILD_TYPE to "Release" or "RelWithDebInfo" (recommended) or "Debug"  
      - activate or deactivate plugins: see PLUGIN_XXX variables  
      - activate or deactivate functionalities: see SOFA_XXX variables  
    Do not forget to **Configure** again to check if your changes are valid.
 
-8. When you are ready, run **Generate**.
+6. When you are ready, run **Generate**.
 
 
 
