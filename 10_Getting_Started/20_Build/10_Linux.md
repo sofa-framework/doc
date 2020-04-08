@@ -69,14 +69,9 @@ sudo apt install ninja-build
 
 ## [optional] CCache: caching system
 
-We advise you to use **ccache**. It is by no means
+We advise you to use [ccache](https://ccache.dev/). It is by no means
 mandatory, but it will dramatically improve the compilation time if you
-make changes to SOFA. As explained on the
-[ccache website](https://ccache.dev/):
-
-> "ccache is a compiler cache. It speeds up recompilation by caching
-> previous compilations and detecting when the same compilation is being
-> done again."
+make changes to SOFA.
 
 ``` {.bash .optional}
 sudo apt install ccache

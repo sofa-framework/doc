@@ -14,19 +14,22 @@ This may come in a near future, to be continued...
 SOFA requires a [C++17 compatible compiler](https://en.cppreference.com/w/cpp/compiler_support#C.2B.2B17_features).  
 On MacOS, we officially support **MacOS >= 10.13.2 (High Sierra)** and **AppleClang >= 9.1.0**.  
 
-Check your MacOS version with `system_profiler SPSoftwareDataType`
+Check your MacOS version with `system_profiler SPSoftwareDataType`  
 Check your AppleClang version with `clang --version`
 
 If your MacOS version is too low, update your Mac from the App Store.
 
 If your AppleClang version is too low:
-1. Download and install the highest possible Xcode compatible with your MacOS.
-   Compatibility list (taken from Wikipedia):
-       MacOS >= 10.15.2 : Xcode 11.4   (with AppleClang 11.0.3, based on clang 9)
-       MacOS >= 10.14.4 : Xcode 11.3.1 (with AppleClang 11.0.0, based on clang 8)
-       MacOS >= 10.14.3 : Xcode 10.3   (with AppleClang 10.0.1, based on clang 7)
-       MacOS >= 10.13.6 : Xcode 10.1   (with AppleClang 10.0.0, based on clang 6)
-       MacOS >= 10.13.2 : Xcode 9.4.1  (with AppleClang 9.1.0,  based on clang 5)
+
+1. Download and install the highest possible Xcode compatible with your MacOS.  
+   Compatibility list (taken from Wikipedia):  
+   ```
+   MacOS >= 10.15.2 : Xcode 11.4   (with AppleClang 11.0.3, based on clang 9)
+   MacOS >= 10.14.4 : Xcode 11.3.1 (with AppleClang 11.0.0, based on clang 8)
+   MacOS >= 10.14.3 : Xcode 10.3   (with AppleClang 10.0.1, based on clang 7)
+   MacOS >= 10.13.6 : Xcode 10.1   (with AppleClang 10.0.0, based on clang 6)
+   MacOS >= 10.13.2 : Xcode 9.4.1  (with AppleClang 9.1.0,  based on clang 5)
+   ```  
    To download any version, go to https://developer.apple.com/download/more/ and search "Xcode".
 
 2. Open Xcode to automatically finalize installation
@@ -56,14 +59,9 @@ brew install ninja
 
 ## [optional] CCache: caching system
 
-We advise you to use **ccache**. It is by no means
+We advise you to use [ccache](https://ccache.dev/). It is by no means
 mandatory, but it will dramatically improve the compilation time if you
-make changes to SOFA. As explained on the
-[ccache website](https://ccache.dev/):
-
-> "ccache is a compiler cache. It speeds up recompilation by caching
-> previous compilations and detecting when the same compilation is being
-> done again."
+make changes to SOFA.
 
 ``` {.bash .optional}
 brew install ccache

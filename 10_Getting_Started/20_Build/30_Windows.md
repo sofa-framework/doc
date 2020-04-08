@@ -25,15 +25,18 @@ This may come in a near future, to be continued...
 SOFA requires a [C++17 compatible compiler](https://en.cppreference.com/w/cpp/compiler_support#C.2B.2B17_features).  
 On Windows, we officially support **Microsoft Visual Studio >= 2017**.
 
-If you want to use **Visual Studio IDE**, install the complete Visual Studio solution:  
+If you want to use **Visual Studio IDE**, install the complete Visual Studio solution:
+
 - [Visual Studio 2017 "IDE + Build Tools"](https://visualstudio.microsoft.com/fr/thank-you-downloading-visual-studio/?sku=Community&rel=15)
 - [Visual Studio 2019 "IDE + Build Tools"](https://visualstudio.microsoft.com/fr/thank-you-downloading-visual-studio/?sku=Community&rel=16)
 
-If you want to use **another IDE like QtCreator**, install the Visual Studio Build Tools only:  
+If you want to use **another IDE like QtCreator**, install the Visual Studio Build Tools only:
+
 - [Visual Studio 2017 "Build Tools only"](https://visualstudio.microsoft.com/fr/thank-you-downloading-visual-studio/?sku=BuildTools&rel=15)
 - [Visual Studio 2019 "Build Tools only"](https://visualstudio.microsoft.com/fr/thank-you-downloading-visual-studio/?sku=BuildTools&rel=16)
 
-In the installer, you must enable:  
+In the installer, you must enable:
+
 1. In the main panel: the **C++ development toolkit**, called "C++ Build Tools" or "Desktop C++"
 2. In the side panel: the **C++ ATL** and **C++ MFC** components
 
@@ -68,23 +71,23 @@ SOFA requires some libraries:
     ![](https://www.sofa-framework.org/wp-content/uploads/2020/04/install_qt_windows.png)
 
 -   **Boost** (>= 1.65.1)  
-    Download and install latest Boost from [https://boost.teeks99.com](https://boost.teeks99.com).
-        **Users with Windows 64-bit + Visual Studio 2019**: choose boost_X_X_X-msvc-14.2-64.exe
-        **Users with Windows 64-bit + Visual Studio 2017**: choose boost_X_X_X-msvc-14.1-64.exe
-        Users with Windows 32-bit + Visual Studio 2019: choose boost_X_X_X-msvc-14.2-32.exe
-        Users with Windows 32-bit + Visual Studio 2017: choose boost_X_X_X-msvc-14.1-32.exe
-    
+    Download and install latest Boost from [https://boost.teeks99.com](https://boost.teeks99.com).  
+    - **Users with Windows 64-bit + Visual Studio 2019**: choose boost_X_X_X-msvc-14.2-64.exe  
+    - **Users with Windows 64-bit + Visual Studio 2017**: choose boost_X_X_X-msvc-14.1-64.exe  
+    - Users with Windows 32-bit + Visual Studio 2019: choose boost_X_X_X-msvc-14.2-32.exe  
+    - Users with Windows 32-bit + Visual Studio 2017: choose boost_X_X_X-msvc-14.1-32.exe    
     
 -   **Eigen** (>= 3.2.10)  
     Download and unzip latest Eigen from [http://eigen.tuxfamily.org](http://eigen.tuxfamily.org)
     
 -   **Python** (= 2.7.x)  
     Download and install latest Python **2.7** from [python.org download page](https://www.python.org/downloads/windows/).  
-        **Users with Windows 64-bit**: choose the "Windows x86-64 MSI installer".  
-        Users with Windows 32-bit: choose the "Windows x86 MSI installer".
+    - **Users with Windows 64-bit**: choose the "Windows x86-64 MSI installer".  
+    - Users with Windows 32-bit: choose the "Windows x86 MSI installer".
 
 -   **Additional libraries**: libPNG, libJPEG, libTIFF, Glew, Zlib  
-    Download the [Windows dependency pack](https://www.sofa-framework.org/download/WinDepPack/VS-2017/latest). You will need to unzip it directly in SOFA sources (later in this tutorial).
+    Download the [Windows dependency pack](https://www.sofa-framework.org/download/WinDepPack/VS-2017/latest).  
+    You will need to unzip it directly in SOFA sources (later in this tutorial).
 
 ### [optional] PATH modification
 
@@ -129,12 +132,12 @@ git clone -b master https://github.com/sofa-framework/sofa.git sofa/src
 ![](https://www.sofa-framework.org/wp-content/uploads/2015/11/sofa_files.png)
 
 
-## Generate a Visual Studio project (.sln) or a Makefile with CMake
+## Generate a VS project (.sln) or a Makefile with CMake
 
 0. Create build directories respecting the arrangement above.
 
 1. In Windows Start menu, search for `Native Tools Command Prompt` and run the one correponding to your Windows architecture (x64 for 64-bit, x86 for 32-bit).  
-![](https://www.sofa-framework.org/wp-content/uploads/2019/03/SearchCommandPrompt.png)
+![](https://www.sofa-framework.org/wp-content/uploads/2020/04/SearchCommandPrompt2.png)
 
 2. In the command prompt, type `cmake-gui` and press Enter.  
    If you get the error `'cmake-gui' is not recognized as an internal or external command`, it means that your system PATH does not correctly include the path to cmake-gui. In this case, you need to provide the full path to your cmake-gui.
