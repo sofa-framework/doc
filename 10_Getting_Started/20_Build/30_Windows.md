@@ -23,22 +23,19 @@ This may come in a near future, to be continued...
 ## Compiler
 
 SOFA requires a [C++17 compatible compiler](https://en.cppreference.com/w/cpp/compiler_support#C.2B.2B17_features).  
-On Windows, we officially support **Microsoft Visual Studio >= 2017**.
+On Windows, we officially support **Microsoft Visual Studio >= 2017**.  
+If you want to use **Visual Studio IDE**, install the complete Visual Studio solution.  
+If you want to use **another IDE like QtCreator**, install the Build Tools only.
 
-If you want to use **Visual Studio IDE**, install the complete Visual Studio solution:
-
-- [Visual Studio 2017 "IDE + Build Tools"](https://visualstudio.microsoft.com/fr/thank-you-downloading-visual-studio/?sku=Community&rel=15)
-- [Visual Studio 2019 "IDE + Build Tools"](https://visualstudio.microsoft.com/fr/thank-you-downloading-visual-studio/?sku=Community&rel=16)
-
-If you want to use **another IDE like QtCreator**, install the Visual Studio Build Tools only:
-
-- [Visual Studio 2017 "Build Tools only"](https://visualstudio.microsoft.com/fr/thank-you-downloading-visual-studio/?sku=BuildTools&rel=15)
-- [Visual Studio 2019 "Build Tools only"](https://visualstudio.microsoft.com/fr/thank-you-downloading-visual-studio/?sku=BuildTools&rel=16)
+|                       | **Visual Studio 2017** | **Visual Studio 2019** |
+| --------------------- |:----------------------:|:----------------------:|
+| **Build Tools only**  | [download](https://visualstudio.microsoft.com/fr/thank-you-downloading-visual-studio/?sku=BuildTools&rel=15) | [download](https://visualstudio.microsoft.com/fr/thank-you-downloading-visual-studio/?sku=BuildTools&rel=16) |
+| **IDE + Build Tools** | [download](https://visualstudio.microsoft.com/fr/thank-you-downloading-visual-studio/?sku=Community&rel=15) | [download](https://visualstudio.microsoft.com/fr/thank-you-downloading-visual-studio/?sku=Community&rel=16) |
 
 In the installer, you must enable:
 
-1. In the main panel: the **C++ development toolkit**, called "C++ Build Tools" or "Desktop C++"
-2. In the side panel: the **C++ ATL** and **C++ MFC** components
+1. In the main panel: the **C++ development toolkit**, called "C++ Build Tools" or "Desktop C++".
+2. In the side panel: the **C++ ATL** and **C++ MFC** components.
 
 ![](https://www.sofa-framework.org/wp-content/uploads/2020/03/install_vs_ide.png)
 
@@ -72,10 +69,10 @@ SOFA requires some libraries:
 
 -   **Boost** (>= 1.65.1)  
     Download and install latest Boost from [https://boost.teeks99.com](https://boost.teeks99.com).  
-    - **Users with Windows 64-bit + Visual Studio 2019**: choose boost_X_X_X-msvc-14.2-64.exe  
-    - **Users with Windows 64-bit + Visual Studio 2017**: choose boost_X_X_X-msvc-14.1-64.exe  
-    - Users with Windows 32-bit + Visual Studio 2019: choose boost_X_X_X-msvc-14.2-32.exe  
-    - Users with Windows 32-bit + Visual Studio 2017: choose boost_X_X_X-msvc-14.1-32.exe    
+    - **Users with Windows 64-bit and VS 2019**: choose boost_X_X_X-msvc-14.2-64.exe  
+    - **Users with Windows 64-bit and VS 2017**: choose boost_X_X_X-msvc-14.1-64.exe  
+    - Users with Windows 32-bit and VS 2019: choose boost_X_X_X-msvc-14.2-32.exe  
+    - Users with Windows 32-bit and VS 2017: choose boost_X_X_X-msvc-14.1-32.exe    
     
 -   **Eigen** (>= 3.2.10)  
     Download and unzip latest Eigen from [http://eigen.tuxfamily.org](http://eigen.tuxfamily.org)
@@ -144,18 +141,21 @@ git clone -b master https://github.com/sofa-framework/sofa.git sofa/src
 
 3. In CMake-GUI, set source folder and build folder.
 
-4. Run **Configure**. A popup will ask you to specify the generator for the project.  
-    - If you want use **Visual Studio IDE**, select "Visual Studio 15 2017 Win64" or "Visual Studio 16 2019 Win64" (or without the "Win64" if you are on Windows 32-bit).
-    - If you want to use **another IDE like QtCreator**, select "CodeBlocks - Ninja" (recommended, needs [Ninja](#optional-ninja-build-system)) or "CodeBlocks - NMake".
+4. Run **Configure**. A popup will ask you to specify the generator for the project.
+
+   - If you want use **Visual Studio IDE**, select "Visual Studio 15 2017 Win64" or "Visual Studio 16 2019 Win64" (or without the "Win64" if you are on Windows 32-bit).
+   - If you want to use **another IDE like QtCreator**, select "CodeBlocks - Ninja" (recommended, needs [Ninja](#optional-ninja-build-system)) or "CodeBlocks - NMake".
 
 5. Keep "Use default native compilers" and press "Finish".
 
 6. Fix eventual dependency errors by following CMake messages (see Troubleshooting section below). Do not worry about warnings.
 
-7. (optional) Customize SOFA via CMake variables  
-     - choose the build type by setting CMAKE_BUILD_TYPE to "Release" or "RelWithDebInfo" (recommended) or "Debug"  
-     - activate or deactivate plugins: see PLUGIN_XXX variables  
-     - activate or deactivate functionalities: see SOFA_XXX variables  
+7. (optional) Customize SOFA via CMake variables
+
+   - choose the build type by setting CMAKE_BUILD_TYPE to "Release" or "RelWithDebInfo" (recommended) or "Debug"
+   - activate or deactivate plugins: see PLUGIN_XXX variables
+   - activate or deactivate functionalities: see SOFA_XXX variables
+
    Do not forget to **Configure** again to check if your changes are valid.
 
 8. When you are ready, run **Generate**. In the build directory, this will create a Visual Studio project (.sln) or a Makefile depending on the generator you chose at step 4.
@@ -169,8 +169,9 @@ To build SOFA in Visual Studio, simply **open the generated Sofa.sln**. Finally,
 
 If you chose another generator you will have to run the generator from the build directory.
 
-Example with Ninja:  
-- In Windows Start menu, search for `Native Tools Command Prompt` and run the one correponding to your Windows architecture (x64 for 64-bit, x86 for 32-bit).  
+Example with Ninja:
+
+- In Windows Start menu, search for `Native Tools Command Prompt` and run the one correponding to your Windows architecture (x64 for 64-bit, x86 for 32-bit).
 - Go to the build directory with `cd`
 - Run `ninja`
 
