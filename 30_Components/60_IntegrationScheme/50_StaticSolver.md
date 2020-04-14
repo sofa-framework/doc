@@ -23,7 +23,7 @@ In our elasticity case, the system to solve is <img class="latex" src="https://l
 Sequence diagram
 ----------------
 
-<a href="https://github.com/sofa-framework/doc/blob/master/Images/integrationscheme/StaticSolver.png?raw=true"><img src="https://github.com/sofa-framework/doc/blob/master/Images/integrationscheme/StaticSolver.png?raw=true" title="Flow diagram for the StaticSolver"/></a>
+<a href="https://github.com/sofa-framework/doc/blob/master/images/integrationscheme/StaticSolver.png?raw=true"><img src="https://github.com/sofa-framework/doc/blob/master/images/integrationscheme/StaticSolver.png?raw=true" title="Flow diagram for the StaticSolver"/></a>
  
 
 Data 

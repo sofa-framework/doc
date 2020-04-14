@@ -5,7 +5,7 @@ This component belongs to the category of [AnimationLoop](https://www.sofa-frame
 
 The DefaultAnimationLoop is the component that rules the steps of the simulation in the default order. It consists in computing the collision (if any), the projective constraints, the physics, solving the resulting linear system and finally updating all data before another step begins.
 
-<a href="https://github.com/sofa-framework/doc/blob/master/Images/animationloop/DefaultAnimationLoop.png?raw=true"><img src="https://github.com/sofa-framework/doc/blob/master/Images/animationloop/DefaultAnimationLoop.png?raw=true" title="Flow diagram for a DefaultAnimationLoop"/></a>
+<a href="https://github.com/sofa-framework/doc/blob/master/images/animationloop/DefaultAnimationLoop.png?raw=true"><img src="https://github.com/sofa-framework/doc/blob/master/images/animationloop/DefaultAnimationLoop.png?raw=true" title="Flow diagram for a DefaultAnimationLoop"/></a>
 
 Usage
 -----

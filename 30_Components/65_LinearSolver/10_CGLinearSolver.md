@@ -12,7 +12,7 @@ In SOFA, the CGLinearSolver follows the well-known [conjugate gardient method](h
 Sequence diagram
 ----------------
 
-<a href="https://github.com/sofa-framework/doc/blob/master/Images/linearsolver/CGLinearSolver.png?raw=true"><img src="https://github.com/sofa-framework/doc/blob/master/Images/linearsolver/CGLinearSolver.png?raw=true" title="Flow diagram for the CGLinearSolver"/></a>
+<a href="https://github.com/sofa-framework/doc/blob/master/images/linearsolver/CGLinearSolver.png?raw=true"><img src="https://github.com/sofa-framework/doc/blob/master/images/linearsolver/CGLinearSolver.png?raw=true" title="Flow diagram for the CGLinearSolver"/></a>
 
 
 

@@ -22,7 +22,7 @@ The solution <img class="latex" src="https://latex.codecogs.com/png.latex?$$\Del
 Sequence diagram
 ----------------
 
-<a href="https://github.com/sofa-framework/doc/blob/master/Images/integrationscheme/EulerExplicitSolver.png?raw=true"><img src="https://github.com/sofa-framework/doc/blob/master/Images/integrationscheme/EulerExplicitSolver.png?raw=true" title="Flow diagram for a EulerExplicitSolver"/></a>
+<a href="https://github.com/sofa-framework/doc/blob/master/images/integrationscheme/EulerExplicitSolver.png?raw=true"><img src="https://github.com/sofa-framework/doc/blob/master/images/integrationscheme/EulerExplicitSolver.png?raw=true" title="Flow diagram for a EulerExplicitSolver"/></a>
 
 
 Data
