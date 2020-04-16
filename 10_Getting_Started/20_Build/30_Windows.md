@@ -75,9 +75,6 @@ SOFA requires some libraries:
     - **Users with Windows 64-bit and VS 2017**: choose boost_X_X_X-msvc-14.1-64.exe
     - Users with Windows 32-bit and VS 2019: choose boost_X_X_X-msvc-14.2-32.exe
     - Users with Windows 32-bit and VS 2017: choose boost_X_X_X-msvc-14.1-32.exe
-
--   **Eigen** (>= 3.2.10)  
-    Download and unzip latest Eigen from [http://eigen.tuxfamily.org](http://eigen.tuxfamily.org)
     
 -   **Python** (= 2.7.x)  
     Download and install latest Python **2.7** from [python.org download page](https://www.python.org/downloads/windows/).
@@ -88,6 +85,9 @@ SOFA requires some libraries:
 -   **Additional libraries**: libPNG, libJPEG, libTIFF, Glew, Zlib  
     Download the [Windows dependency pack](https://www.sofa-framework.org/download/WinDepPack/VS-2017/latest).  
     You will need to unzip it directly in SOFA sources (later in this tutorial).
+
+-   SOFA v20.06 and newer also need **Eigen** (>= 3.2.10)  
+    Download and install latest Eigen from [http://eigen.tuxfamily.org](http://eigen.tuxfamily.org)
 
 ### [optional] PATH modification
 
