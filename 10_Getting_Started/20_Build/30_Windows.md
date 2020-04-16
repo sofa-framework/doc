@@ -76,8 +76,9 @@ SOFA requires some libraries:
     - Users with Windows 32-bit and VS 2019: choose boost_X_X_X-msvc-14.2-32.exe
     - Users with Windows 32-bit and VS 2017: choose boost_X_X_X-msvc-14.1-32.exe
 
--   **Eigen** (>= 3.2.10)  
-    Download and unzip latest Eigen from [http://eigen.tuxfamily.org](http://eigen.tuxfamily.org)
+-   **Eigen** (>= 3.2.10)
+    For SOFA v20.06 or earlier: download and unzip latest Eigen from [http://eigen.tuxfamily.org](http://eigen.tuxfamily.org)
+    For SOFA v19.12 or older: Eigen will be automatically pulled.
     
 -   **Python** (= 2.7.x)  
     Download and install latest Python **2.7** from [python.org download page](https://www.python.org/downloads/windows/).
