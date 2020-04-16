@@ -94,13 +94,6 @@ SOFA requires some libraries:
     sudo apt install libboost-all-dev
     ```
     
--   **Eigen** (>= 3.2.10)  
-    For SOFA v20.06 or earlier:
-    ```bash
-    sudo apt install libeigen3-dev
-    ```
-    For SOFA v19.12 or older: Eigen will be automatically pulled.
-    
 -   **Python 2.7**  
     ```bash
     sudo apt install python2.7-dev python-numpy python-scipy
@@ -109,6 +102,11 @@ SOFA requires some libraries:
 -   **Additional libraries**: libPNG, libJPEG, libTIFF, Glew, Zlib   
     ```bash
     sudo apt install libpng-dev libjpeg-dev libtiff-dev libglew-dev zlib1g-dev
+    ```
+
+-   SOFA v20.06 and newer also need **Eigen** (>= 3.2.10)  
+    ```bash
+    sudo apt install libeigen3-dev
     ```
 
 ## Plugins (optional)

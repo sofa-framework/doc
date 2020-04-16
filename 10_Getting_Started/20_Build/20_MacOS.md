@@ -83,17 +83,15 @@ SOFA requires some libraries:
     ```bash
     brew install boost
     ```
-    
--   **Eigen** (>= 3.2.10)  
-    For SOFA v20.06 or earlier: 
-    ```bash
-    brew install eigen
-    ```
-    For SOFA v19.12 or older: Eigen will be automatically pulled.
 
 -   **Additional libraries**: libPNG, libJPEG, libTIFF, Glew   
     ```bash
     brew install libpng libjpeg libtiff glew
+    ```
+
+-   SOFA v20.06 and newer also need **Eigen** (>= 3.2.10)  
+    ```bash
+    brew install eigen
     ```
 
 ## Plugins (optional)
