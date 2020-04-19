@@ -69,4 +69,4 @@ Just as a notice, it is possible to create group of contact, create integration 
 Sequence diagram
 ----------------
 
-<a href="https://github.com/sofa-framework/doc/blob/master/Images/collision/CollisionVisitor.png?raw=true"><img src="https://github.com/sofa-framework/doc/blob/master/Images/collision/CollisionVisitor.png?raw=true" title="Flow diagram for a CollisionVisitor"/></a>
+<a href="https://github.com/sofa-framework/doc/blob/master/images/collision/CollisionVisitor.png?raw=true"><img src="https://github.com/sofa-framework/doc/blob/master/images/collision/CollisionVisitor.png?raw=true" title="Flow diagram for a CollisionVisitor"/></a>
