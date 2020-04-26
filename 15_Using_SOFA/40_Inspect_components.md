@@ -19,6 +19,7 @@ Here is a selection of a piece of code of one of the Monitor of the
 example scene:
 
 ```xml
+<Monitor template="Vec3d" name="velocities_8-16-24" listening="1" indices="8 16 24" showPositions="0" PositionsColor="1 1 0 1" showVelocities="1" VelocitiesColor="1 1 0 1" ForcesColor="1 1 0 1" showMinThreshold="0.01" TrajectoriesPrecision="0.1" TrajectoriesColor="1 1 0 1" sizeFactor="1" />
 ```
 
 You can of course also add the component to your scene with the Modeler,
@@ -59,6 +60,16 @@ GUI. You have to select the properties you want to monitor or display.
                  `showMinThreshold`        `0.01`                   `showMinThreshold="0.01"`       *under this value, vectors are not represented*
   -------------- ------------------------- ------------------------ ------------------------------- --------------------------------------------------------------------------------------
 
+#### Visualize the result
+To read the resulting file, you can use ![Gnuplot](http://www.gnuplot.info/). In Gnuplot, you can for instance run the following command to render curves of your export file:
+```batch
+splot "monitor-displacement-faceNode_x.txt"
+```
+
+See more ![Gnuplot examples here](http://gnuplot.sourceforge.net/demo/surface1.html).
+
+
+
 The ExtraMonitor Component, a Monitor extension
 -----------------------------------------------
 
@@ -72,6 +83,7 @@ MechanicalObject, or the minimum displacement of a region...
 Include the ExtraMonitor in your scene. Here is an example of use :
 
 ```xml
+<ExtraMonitor template="Vec3d" name="velocities_8-16-24" listening="1" indices="8 16 24" showPositions="0" PositionsColor="1 1 0 1" showVelocities="1" VelocitiesColor="1 1 0 1" ForcesColor="1 1 0 1" showMinThreshold="0.01" TrajectoriesPrecision="0.1" TrajectoriesColor="1 1 0 1" sizeFactor="1" ExportWcin="false" ExportWext="false" resultantF="true" />
 ```
 
 -   With this xml code, we say we want to use an ExtraMonitor named
