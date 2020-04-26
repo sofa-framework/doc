@@ -61,12 +61,12 @@ GUI. You have to select the properties you want to monitor or display.
   -------------- ------------------------- ------------------------ ------------------------------- --------------------------------------------------------------------------------------
 
 #### Visualize the result
-To read the resulting file, you can use ![Gnuplot](http://www.gnuplot.info/). In Gnuplot, you can for instance run the following command to render curves of your export file:
+To read the resulting file, you can use [Gnuplot](http://www.gnuplot.info/). In Gnuplot, you can for instance run the following command to render curves of your export file:
 ```batch
 splot "monitor-displacement-faceNode_x.txt"
 ```
 
-See more ![Gnuplot examples here](http://gnuplot.sourceforge.net/demo/surface1.html).
+See more [Gnuplot examples here](http://gnuplot.sourceforge.net/demo/surface1.html).
 
 
 
