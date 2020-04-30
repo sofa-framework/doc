@@ -23,7 +23,7 @@ This may come in a near future, to be continued...
 ## Compiler
 
 SOFA requires a [C++17 compatible compiler](https://en.cppreference.com/w/cpp/compiler_support#C.2B.2B17_features).  
-On Windows, we officially support **Microsoft Visual Studio >= 2017**.  
+On Windows, we officially support **Microsoft Visual Studio >= 2017** (version 15.7).  
 If you want to use **Visual Studio IDE**, install the complete Visual Studio solution.  
 If you want to use **another IDE like QtCreator**, install the Build Tools only.
 
