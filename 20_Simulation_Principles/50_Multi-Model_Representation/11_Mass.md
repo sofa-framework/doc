@@ -1,16 +1,16 @@
 Mass
 ====
 
-In simulation, the mass usually results from the volume integration of a density (see the [Physics Integration](https://www.sofa-framework.org/community/doc/main-principles/multi-model-representation/physics-integration/) section). It can be a mass density, but it can be a electrical or electrical conductivity among others. In all these equations, the density appears in the left hand side part of the equation. The mass matrix therefore contributes to <img class="latex" src="https://latex.codecogs.com/png.latex?$$\mathbf{A}$$" title="System matrix" />, in the linear System <img class="latex" src="https://latex.codecogs.com/png.latex?$$\mathbf{A}x=b$$" title="Linear system" />.
+In simulation, the mass usually results from the volume integration of a density (see the [Physics Integration](https://www.sofa-framework.org/community/doc/main-principles/multi-model-representation/physics-integration/) section). It can be a mass density, but it can be a electrical or electrical conductivity among others. In all these equations, the density appears in the left hand side part of the equation. The mass matrix therefore contributes to <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{A}" title="System matrix" />, in the linear System <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{A}x=b" title="Linear system" />.
 
 Mass API
 --------------
 
-The choice of the temporal scheme will influence the way the linear system <img class="latex" src="https://latex.codecogs.com/png.latex?$$\mathbf{A}x=b$$" title="Linear system" /> is built. As a consequence, it also impacts the API:
+The choice of the temporal scheme will influence the way the linear system <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{A}x=b" title="Linear system" /> is built. As a consequence, it also impacts the API:
 
-- for iterative solvers, the result of the multiplication between the mass matrix <img class="latex" src="https://latex.codecogs.com/png.latex?$$\mathbf{M}$$" title="Mass matrix" /> and an approximated solution is computed by the function: `addMDx()` 
+- for iterative solvers, the result of the multiplication between the mass matrix <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{M}" title="Mass matrix" /> and an approximated solution is computed by the function: `addMDx()` 
 
-- for direct solvers, the mass matrix <img class="latex" src="https://latex.codecogs.com/png.latex?$$\mathbf{M}$$" title="Mass matrix" /> is built by the function: `addMToMatrix()` and will be used later when the system matrix will be inversed
+- for direct solvers, the mass matrix <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{M}" title="Mass matrix" /> is built by the function: `addMToMatrix()` and will be used later when the system matrix will be inversed
 
 
 

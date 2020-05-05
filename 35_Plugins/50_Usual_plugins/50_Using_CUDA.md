@@ -129,7 +129,7 @@ the Mechanical Object in your scene. Consider the following scene:
     <CGLinearSolver iterations="25" tolerance="1e-6" threshold="1e-20"/>
     <MeshTopology src="@volume" />
     <MechanicalObject template="Vec3f" />
-    <UniformMass mass="0.01" />
+    <UniformMass vertexMass="0.01" />
     <BoxROI name="box0" box="-2.2 -1 -10 2.2  10  10" drawBoxes="1" />
     <BoxROI name="box1" box="-2.2 -1  -1 2.2 2.5 1.5" drawBoxes="1" />
     <IndexValueMapper name="ind_box0"                                      indices="@box0.tetrahedronIndices" value="100000" />
@@ -169,7 +169,7 @@ with the scene:
     <CGLinearSolver iterations="25" tolerance="1e-6" threshold="1e-20"/>
     <MeshTopology src="@volume" />
     <MechanicalObject template="CudaVec3f" />
-    <UniformMass mass="0.01" />
+    <UniformMass vertexMass="0.01" />
     <BoxROI name="box0" box="-2.2 -1 -10 2.2  10  10" drawBoxes="1" />
     <BoxROI name="box1" box="-2.2 -1  -1 2.2 2.5 1.5" drawBoxes="1" />
     <IndexValueMapper name="ind_box0"                                      indices="@box0.tetrahedronIndices" value="100000" />
