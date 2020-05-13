@@ -3,7 +3,7 @@ Advanced Timer: How to log computation time
 
 This is the most precise and flexible way of monitoring the computation
 time in SOFA. It prints results on the standard text output. There is an
-option in runSofa to activate from the command line : -c \$INT (use
+option in runSofa to activate the display every N time steps from the command line : runSofa --computationTimeSampling N myAmazingScene.pyscn (use
 --help for a list of command line options). The parameter update the
 variable computationTimeSampling which specifies the intervals (counted
 in animation steps) between successive statistics displays. 0 means
