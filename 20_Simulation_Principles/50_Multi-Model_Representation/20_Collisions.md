@@ -10,6 +10,7 @@ Collision pipeline
 ------------------
 
 The collision pipeline follows two steps:
+
   1. a collision detection
   2. a collision response
 
@@ -39,11 +40,13 @@ The broad phase uses the bounding boxes of each object with a collision model an
 **Narrow phase**
 
 The narrow phase of detection can rely on different intersection methods that use collision models to detect a contact.Note that different collision models are available to detect a contact:
+
   - using primitives: point, line, triangle, sphere, cube, cylinder or oriented bounding boxes (OBB)
   - using distance grid, associated to each object in the scene
   - using ray casting: that send rays in the volume of simulation to compute a volume of intersection
 
 The different intersection methods available in SOFA are:
+
   - DiscreteIntersection : contact created when collision elements are intersecting, not fitted to surfacic collision models
   - MinProximityIntersection : contact created when collision elements are close to each other, optimized for meshes
   - NewProximityIntersection : contact created when collision elements are close to each other, not optimized for meshes
