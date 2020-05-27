@@ -10,18 +10,18 @@ This scheme is an implicit time integrator for dynamic system using the Newmark 
 <img class="latex" src="https://latex.codecogs.com/png.latex?v_{t+h}=v_t+h((1-\gamma)a_t+\gamma%20a_{t+h})" title="Newmark scheme in velocity" />
 
 
-Applied to a mechanical system where <img class="latex" src="https://latex.codecogs.com/png.latex?Ma_t+(r_MM+r_KK)v_t+Kx_t=f_{ext}" title="Mechanical system with Rayleigh damping" />, we need to solve the following system:
+Applied to a mechanical system where <img class="latex" src="https://latex.codecogs.com/png.latex?\small%20Ma_t+(r_MM+r_KK)v_t+Kx_t=f_{ext}" title="Mechanical system with Rayleigh damping" />, we need to solve the following system:
 
 
-<img class="latex" src="https://latex.codecogs.com/png.latex?Ma_{t+h}+(r_MM+r_KK)v_{t+h}+Kx_{t+h}=f_{ext}" title="System expanded following the Newmark scheme (1)" />
+<img class="latex" src="https://latex.codecogs.com/png.latex?\small%20Ma_{t+h}+(r_MM+r_KK)v_{t+h}+Kx_{t+h}=f_{ext}" title="System expanded following the Newmark scheme (1)" />
 
-<img class="latex" src="https://latex.codecogs.com/png.latex?Ma_{t+h}+(r_MM+r_KK)(v_t+h((1-\gamma)a_t+\gamma%20a_{t+h}))+K(x_t+hv_t+\frac{h^2}{2}((1-2\beta)a_t+2\beta%20a_{t+h}))=f_{ext}" title="System expanded following the Newmark scheme (2)" />
+<img class="latex" src="https://latex.codecogs.com/png.latex?\small%20Ma_{t+h}+(r_MM+r_KK)(v_t+h((1-\gamma)a_t+\gamma%20a_{t+h}))+K(x_t+hv_t+\frac{h^2}{2}((1-2\beta)a_t+2\beta%20a_{t+h}))=f_{ext}" title="System expanded following the Newmark scheme (2)" />
 
-<img class="latex" src="https://latex.codecogs.com/png.latex?(M+h\gamma(r_MM+r_KK)+h^2\beta%20K)a_{t+h}=f_{ext}-(r_MM+r_KK)(v_t+h(1-\gamma)a_t)-K(x_t+hv_t+\frac{h^2(1-2\beta)}{2}a_t)" title="System expanded following the Newmark scheme (3)" />
+<img class="latex" src="https://latex.codecogs.com/png.latex?\small%20(M+h\gamma(r_MM+r_KK)+h^2\beta%20K)a_{t+h}=f_{ext}-(r_MM+r_KK)(v_t+h(1-\gamma)a_t)-K(x_t+hv_t+\frac{h^2(1-2\beta)}{2}a_t)" title="System expanded following the Newmark scheme (3)" />
 
-<img class="latex" src="https://latex.codecogs.com/png.latex?((1+h\gamma%20r_M)M+(h^2\beta%20+h\gamma%20r_K)K)a_{t+h}=f_{ext}-(r_MM+r_KK)v_t-Kx_t-(r_MM+r_KK)(h(1-\gamma)a_t)-K(hv_t+h^2/2(1-2\beta)a_t)" title="System expanded following the Newmark scheme (4)" />
+<img class="latex" src="https://latex.codecogs.com/png.latex?\small%20((1+h\gamma%20r_M)M+(h^2\beta%20+h\gamma%20r_K)K)a_{t+h}=f_{ext}-(r_MM+r_KK)v_t-Kx_t-(r_MM+r_KK)(h(1-\gamma)a_t)-K(hv_t+h^2/2(1-2\beta)a_t)" title="System expanded following the Newmark scheme (4)" />
 
-<img class="latex" src="https://latex.codecogs.com/png.latex?((1+h\gamma%20r_M)M+(h^2\beta+h\gamma%20r_K)K)a_{t+h}=a_t-(r_MM+r_KK)(h(1-\gamma)a_t)-K(hv_t+\frac{h^2(1-2\beta)}{2}a_t)" title="System expanded following the Newmark scheme (5)" />
+<img class="latex" src="https://latex.codecogs.com/png.latex?\small%20((1+h\gamma%20r_M)M+(h^2\beta+h\gamma%20r_K)K)a_{t+h}=a_t-(r_MM+r_KK)(h(1-\gamma)a_t)-K(hv_t+\frac{h^2(1-2\beta)}{2}a_t)" title="System expanded following the Newmark scheme (5)" />
 
 
 
