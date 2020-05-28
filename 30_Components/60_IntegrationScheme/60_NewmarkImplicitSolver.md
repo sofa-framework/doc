@@ -19,7 +19,7 @@ Applied to a mechanical system where <img class="latex" src="https://latex.codec
 
 <img class="latex" src="https://latex.codecogs.com/png.latex?\tiny%20(M+h\gamma(r_MM+r_KK)+h^2\beta%20K)a_{t+h}=f_{ext}-(r_MM+r_KK)(v_t+h(1-\gamma)a_t)-K(x_t+hv_t+\frac{h^2(1-2\beta)}{2}a_t)" title="System expanded following the Newmark scheme (3)" />
 
-<img class="latex" src="https://latex.codecogs.com/png.latex?\tiny%20((1+h\gamma%20r_M)M+(h^2\beta%20+h\gamma%20r_K)K)a_{t+h}=f_{ext}-(r_MM+r_KK)v_t-Kx_t-(r_MM+r_KK)(h(1-\gamma)a_t)-K(hv_t+h^2/2(1-2\beta)a_t)" title="System expanded following the Newmark scheme (4)" />
+<img class="latex" src="https://latex.codecogs.com/png.latex?\tiny%20((1+h\gamma%20r_M)M+(h^2\beta%20+h\gamma%20r_K)K)a_{t+h}=f_{ext}-(r_MM+r_KK)v_t-Kx_t-(r_MM+r_KK)(h(1-\gamma)a_t)-K(hv_t+\frac{h^2(1-2\beta)}{2}a_t)" title="System expanded following the Newmark scheme (4)" />
 
 <img class="latex" src="https://latex.codecogs.com/png.latex?\tiny%20((1+h\gamma%20r_M)M+(h^2\beta+h\gamma%20r_K)K)a_{t+h}=a_t-(r_MM+r_KK)(h(1-\gamma)a_t)-K(hv_t+\frac{h^2(1-2\beta)}{2}a_t)" title="System expanded following the Newmark scheme (5)" />
 
