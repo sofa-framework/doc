@@ -10,22 +10,22 @@ height="544"}](https://www.sofa-framework.org/wp-content/uploads/2014/11/SofaMou
 The basic interactions are from now (see below parts for further
 informations):
 
--   Attach an object to the Mouse: when clicked, the mouse casts a ray,
+-   **Attach an object to the Mouse:** when clicked, the mouse casts a ray,
     and create a spring between a point in the ray, and a DOF
     encountered (if one has been found in the proximity of the ray)
--   Fix picked particle: when clicked, the particle of the collision
+-   **Fix picked particle:** when clicked, the particle of the collision
     model near the mouse is fixed using a stiff spring.
--   Incise along a path: pressing the mouse, you can proceed to an
+-   **Incise along a path:** pressing the mouse, you can proceed to an
     incision following the path of the mouse. (Only available for
     triangular mesh)
--   Set action potential using the mouse: allow to inject a potential
-    value to the nearest DOF encounter by the ray.
--   Perform topological operations: useful to make some
+-   **Perform topological operations:** useful to make some
     topological changes. Only primitive removal available for
     the moment.
--   Add a spring to suture two points: allow to create a spring, with a
+-   **Add a spring to suture two points:** allow to create a spring, with a
     null rest length, between two points, in order to join them.
--   Add a Frame to Skinned model: TODO
+-   **Add a Frame to Skinned model:** TODO
+-   **Save camera's view points for navigation:** TODO
+-   **Start navigation if camera's view point have been saved:** TODO
 
 Operations available
 --------------------
@@ -110,21 +110,6 @@ are two methods available for performing incision:
       ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
       \[caption id="attachment\_1516" align="aligncenter" width="150"\][![Triangular Mesh (under gravity)](https://www.sofa-framework.org/wp-content/uploads/2014/11/150px-Incision_011.png){.size-full .wp-image-1516 width="150" height="150"}](https://www.sofa-framework.org/wp-content/uploads/2014/11/150px-Incision_011.png) Triangular Mesh (under gravity)\[/caption\]   \[caption id="attachment\_1524" align="aligncenter" width="150"\][![Start incision](https://www.sofa-framework.org/wp-content/uploads/2014/11/150px-Incision_02bis.png){.size-full .wp-image-1524 width="150" height="157"}](https://www.sofa-framework.org/wp-content/uploads/2014/11/150px-Incision_02bis.png) Start incision\[/caption\]   \[caption id="attachment\_1525" align="aligncenter" width="150"\][![Continuous incision](https://www.sofa-framework.org/wp-content/uploads/2014/11/150px-Incision_03bis.png){.size-full .wp-image-1525 width="150" height="157"}](https://www.sofa-framework.org/wp-content/uploads/2014/11/150px-Incision_03bis.png) Continuous incision\[/caption\]
       ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-#### Set action potential using the mouse
-
-This operation allow to inject a potential value to the nearest DOF
-encounter by the ray. Two parameters have to be specified:
-
--   The value to inject,
--   The XML tag of the mechanicalObject in which this value will be set.
-
-Here for example we simulate a triangular heat diffusion by injecting
-"hot" values:
-
-  --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  \[caption id="attachment\_1527" align="aligncenter" width="150"\][![First "heat point "injected](https://www.sofa-framework.org/wp-content/uploads/2014/11/150px-Injection_01.png){.size-full .wp-image-1527 width="150" height="147"}](https://www.sofa-framework.org/wp-content/uploads/2014/11/150px-Injection_01.png) First "heat point "injected\[/caption\]   \[caption id="attachment\_1528" align="alignnone" width="150"\][![150px-Injection\_02](https://www.sofa-framework.org/wp-content/uploads/2014/11/150px-Injection_02.png){.wp-image-1528 .size-full width="150" height="147"}](https://www.sofa-framework.org/wp-content/uploads/2014/11/150px-Injection_02.png) Heat is spreading and two other "injections" are done\[/caption\]   \[caption id="attachment\_1529" align="alignnone" width="150"\][![150px-Injection\_03](https://www.sofa-framework.org/wp-content/uploads/2014/11/150px-Injection_03.png){.wp-image-1529 .size-full width="150" height="147"}](https://www.sofa-framework.org/wp-content/uploads/2014/11/150px-Injection_03.png) Several area are heated\[/caption\]
-  --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 #### Perform topological operations
 
