@@ -36,8 +36,8 @@ It is important to note that, depending on the **choice of LinearSolver** (direc
   - if an iterative solver is used, the mass is iteratively multiplied by the unknown <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{M}%20\Delta%20v" title="Mass matrix" /> within the `addMDx()`, as the stiffness part <img class="latex" src="https://latex.codecogs.com/png.latex?-dt^2%20\cdot%20\frac{\partial%20f}{\partial%20x}%20\Delta%20v" title="Stiffness matrix" /> within the function `addDForce()` in ForceFields.
 
 
-Considering viscosity
----------------------
+#### Considering viscosity
+
 
 As you might have notice, the Taylor expansion detailed above does not take into account a possible dependency of the force  <img class="latex" src="https://latex.codecogs.com/png.latex?f(x,t)" title="Forces" /> on the velocity. By considering it, the effect of velocity will result in a viscosity effect through the damping matrix <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{B}" title="Damping matrix" />.
 
@@ -54,6 +54,14 @@ Depending on the choice of LinearSolver (direct or iterative), the API functions
   - if a direct solver is used, the damping matrix <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{B}" title="Damping matrix" /> is computed in the `addBToMatrix()` in ForceFields
 
   - if an iterative solver is used, the damping is iteratively multiplied by the unknown <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{B}%20\Delta%20v" title="Damping matrix" /> within the `addDForce()` just as the stiffness partin the function `addDForce()` in ForceFields.
+
+
+
+#### Dissipation
+
+SOFA is a framework aiming at interactive simulations. For this purpose, dissipative schemes are very appropriate. The Euler scheme is an order 1 integration scheme (in time, since only using the current state <img class="latex" src="https://latex.codecogs.com/png.latex?x(t)" title="Current DOF" /> and no older one like <img class="latex" src="https://latex.codecogs.com/png.latex?x(t-dt)" title="Older DOF" />). It is known to be a dissipative scheme. Moreover, only one Newton step is performed in the EulerImplicit, which might harm the energy conservation.
+
+Activating the trapezoidalScheme option of the Euler implicit scheme will make the scheme less dissipative. This is due to the fact that the trapezoidal rule increases the order of the time integration. Moveover, higher order schemes are known to be less dissipative.
 
 
 
