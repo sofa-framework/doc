@@ -7,10 +7,10 @@ As introduced in the page about the Projective Constraint, the FixedConstraint c
 
 Example of a system of size 6, with a fixed constraint at the indice 5:
 <center>
-<img class="latex" src="https://latex.codecogs.com/png.latex??%5Cmathbf%7BP%7D%20%3D%20%5Cbegin%7Bbmatrix%7D%201%20%26%200%20%26%200%20%26%200%20%26%200%20%26%200%20%5C%5C%200%20%26%201%20%26%200%20%26%200%20%26%200%20%26%200%20%5C%5C%200%20%26%200%20%26%201%20%26%200%20%26%200%20%26%200%20%5C%5C%200%20%26%200%20%26%200%20%26%201%20%26%200%20%26%200%20%5C%5C%200%20%26%200%20%26%200%20%26%200%20%26%20%5Cmathbf%7B0%7D%20%26%200%20%5C%5C%200%20%26%200%20%26%200%20%26%200%20%26%200%20%26%201%20%5Cend%7Bbmatrix%7D" title="Projection matrix" />
+<img class="latex" src="https://latex.codecogs.com/png.latex?%5Cmathbf%7BP%7D%20%3D%20%5Cbegin%7Bbmatrix%7D%201%20%26%200%20%26%200%20%26%200%20%26%200%20%26%200%20%5C%5C%200%20%26%201%20%26%200%20%26%200%20%26%200%20%26%200%20%5C%5C%200%20%26%200%20%26%201%20%26%200%20%26%200%20%26%200%20%5C%5C%200%20%26%200%20%26%200%20%26%201%20%26%200%20%26%200%20%5C%5C%200%20%26%200%20%26%200%20%26%200%20%26%20%5Cmathbf%7B0%7D%20%26%200%20%5C%5C%200%20%26%200%20%26%200%20%26%200%20%26%200%20%26%201%20%5Cend%7Bbmatrix%7D" title="Projection matrix" />
 </center>
 
-By projecting this <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{P}" title="Projection matrix" /> matrix on the right hand side vector we have: <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{P}^T\mathbf{A}\mathbf{P}%20\Delta%20v=\mathbf{P}^Tb" title="Constrained system" />. This ensures to have <img class="latex" src="https://latex.codecogs.com/png.latex?b[5]=0" title="Fixed 5th point" />, thus preventing any time evolution of the fifth degree of freedom. In such case, we function ```projectResponse()```:
+By projecting this <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{P}" title="Projection matrix" /> matrix on the right hand side vector we have <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{P}^Tb" title="Constrained system" />. This ensures to have the projection <img class="latex" src="https://latex.codecogs.com/png.latex?b[5]=0" title="Fixed 5th point" />, thus preventing any time evolution of the fifth degree of freedom. In such case, we function _projectResponse()_:
 
 ```cpp
 template <class DataTypes>
