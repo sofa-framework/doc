@@ -8,7 +8,7 @@ An Engine is a component that computes a set of output Data's from a set of inpu
 Inputs
 ------
 
-#### BoxROI
+### BoxROI
 
 This engine finds the topological primitives which are inside a given box. Below are given its Data:
 
@@ -19,7 +19,7 @@ This engine finds the topological primitives which are inside a given box. Below
 ![](https://www.sofa-framework.org/wp-content/uploads/2014/11/BoxRoi1.png){.wp-image-1424 .aligncenter width="40%" height="auto"}
 
 
-#### PlaneROI
+### PlaneROI
 
 This engine finds the points which are inside a given box computed from a plane defined by three points and a depth distance. Below are given its Data:
 
@@ -29,7 +29,7 @@ This engine finds the points which are inside a given box computed from a plane 
 ![](https://www.sofa-framework.org/wp-content/uploads/2014/11/PlaneRoi1.png){.wp-image-1437 .aligncenter width="40%" height="auto"}
 
 
-#### SphereROI
+### SphereROI
 
 This engine finds the topological primitives which are inside a given sphere.
 
