@@ -2,8 +2,8 @@ Sofa Mouse Manager
 ------------------
 
 A Mouse Manager has been created in Sofa, allowing to easily create and
-change the interactions with the different buttons of the Mouse. Note that the Shift key needs to be hold during the operation. This
-panel is available through: *Edit -&gt; Mouse Manager*
+change the interactions with the different buttons of the Mouse. Note that the Shift key needs to be hold during the operation. 
+This panel is available through: *Edit -&gt; Mouse Manager*
 [![SofaMouseManager\_GUI](https://www.sofa-framework.org/wp-content/uploads/2014/11/SofaMouseManager_GUI1.png){.aligncenter
 .size-full .wp-image-1510 width="460"
 height="544"}](https://www.sofa-framework.org/wp-content/uploads/2014/11/SofaMouseManager_GUI1.png)
@@ -54,9 +54,9 @@ fixed using a stiff spring. When shift is pushed, collision model will
 appear (first figure), Then clicking with button mouse will fix the
 particle of the collision model near the mouse using a stiff spring.
 
-  -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  \[caption id="attachment\_1511" align="alignnone" width="200"\][![200px-Attach\_01](https://www.sofa-framework.org/wp-content/uploads/2014/11/200px-Attach_011.png){.wp-image-1511 .size-full width="200" height="144"}](https://www.sofa-framework.org/wp-content/uploads/2014/11/200px-Attach_011.png) Area selected\[/caption\]   \[caption id="attachment\_1513" align="alignnone" width="200"\][![200px-Fixed\_01](https://www.sofa-framework.org/wp-content/uploads/2014/11/200px-Fixed_011.png){.wp-image-1513 .size-full width="200" height="131"}](https://www.sofa-framework.org/wp-content/uploads/2014/11/200px-Fixed_011.png) Area fixed by a stiff spring\[/caption\]
-  -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+|Area selected                    |Area fixed by a stiff spring |                         
+|:-------------------------------:|:-----------------------------:|
+|[![200px-Attach\_01](https://www.sofa-framework.org/wp-content/uploads/2014/11/200px-Attach_011.png){.wp-image-1511 .size-full width="200" height="144"}](https://www.sofa-framework.org/wp-content/uploads/2014/11/200px-Attach_011.png) | [![200px-Fixed\_01](https://www.sofa-framework.org/wp-content/uploads/2014/11/200px-Fixed_011.png){.wp-image-1513 .size-full width="200" height="131"}](https://www.sofa-framework.org/wp-content/uploads/2014/11/200px-Fixed_011.png) |
 
 ### Incise along a path
 
