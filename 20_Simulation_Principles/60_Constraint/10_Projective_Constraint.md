@@ -18,7 +18,7 @@ API of projective constraint
 
 In SOFA, you can find several of these projective constraints in the SofaBoundaryConditions module, among them:
 
-  - the _FixedConstraint_: projecting a constant velocity, if the vertex is initially fixed, then it is attached to its initial position
+  - the [_FixedConstraint_](https://www.sofa-framework.org/community/doc/components/constraints/fixedconstraint/): projecting a constant velocity, if the vertex is initially fixed, then it is attached to its initial position
 
   - the _PartialFixedConstraint_: inheriting from _FixedConstraint_, this constraint is projected only along certain degrees of freedom (e.g. only in x direction)
 
