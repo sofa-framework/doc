@@ -126,43 +126,34 @@ are two methods available for performing incision:
 
 Different kind of topological operations are available:
 
--   Remove an element: This operation allow to remove a topological
-    element (surface or volume depending on the type of collision model)
-    . Notes that it is possible to remove a volume element using a
-    surface collision model if the scene contains a Topological Mapping.
--   Remove a zone of elements: This operation allow to remove a zone of
-    element (circle for surface, sphere for volume). Different situation
-    can be encountered depending on which kind of collision model is
-    used. \[caption id="attachment\_1541" align="alignright"
+#### Remove an element: 
+This operation allow to remove a topological element (surface or volume depending on the type of collision model). Notes that it is possible to remove a volume element using a surface collision model if the scene contains a Topological Mapping.
+#### Remove a zone of elements: 
+This operation allow to remove a zone of element (circle for surface, sphere for volume). Different situation can be encountered depending on which kind of collision model is used. 
+\[caption id="attachment\_1541" align="alignright"
     width="414"\][![Topological Operations menu
     GUI](https://www.sofa-framework.org/wp-content/uploads/2014/11/SofaMouseManager_GUI_topology1.png){.size-full
     .wp-image-1541 width="414"
     height="174"}](https://www.sofa-framework.org/wp-content/uploads/2014/11/SofaMouseManager_GUI_topology1.png)
     Topological Operations menu GUI\[/caption\]
-    -   For surface collision model:
-        1.  On a surface mesh it will remove a part of the mesh
+
+**For surface collision model:** On a surface mesh it will remove a part of the mesh
         
-     |Selected Triangles          |Removed Triangles |                         
+|Selected Triangles          |Removed Triangles |                         
 |:-------------------------------:|:-----------------------------:|
 |[![Selected Triangles](https://www.sofa-framework.org/wp-content/uploads/2014/11/150px-RemoveTri011.png){.size-full .wp-image-1533 width="150" height="182"}](https://www.sofa-framework.org/wp-content/uploads/2014/11/150px-RemoveTri011.png) | [![Removed Triangles](https://www.sofa-framework.org/wp-content/uploads/2014/11/150px-RemoveTri021.png){.size-full .wp-image-1534 width="150" height="182"}](https://www.sofa-framework.org/wp-content/uploads/2014/11/150px-RemoveTri021.png) |   
 
-        2.  On a volume mesh using the option surface will remove
-            surface element as well as volume element link to them (this
-            can let sharp element at the surface see fig). Using the
-            option Volume will remove a sphere volume of elements (see
-            fig on right)
+On a volume mesh using the option surface will remove surface element as well as volume element link to them (this can let sharp element at the surface see fig). Using the option Volume will remove a sphere volume of elements (see fig on right)
               
-                   |Selected Tetrahedra        | Removed Tetrahedra | Visual model of the modified volume | Visual model of the modified volume (Volume Option) |
+|Selected Tetrahedra        | Removed Tetrahedra | Visual model of the modified volume | Visual model of the modified volume (Volume Option) |
 |:-------------------------------:|:-----------------------------:|:-----------------------------:|:-----------------------------:|
 |[![Selected Tetrahedra](https://www.sofa-framework.org/wp-content/uploads/2014/11/150px-RemoveTetra04.png){.size-full .wp-image-1543 width="150" height="182"}](https://www.sofa-framework.org/wp-content/uploads/2014/11/150px-RemoveTetra04.png) | [![Corresponding Tetrahedra removed](https://www.sofa-framework.org/wp-content/uploads/2014/11/150px-RemoveTetra021.png){.size-full .wp-image-1536 width="150" height="182"}](https://www.sofa-framework.org/wp-content/uploads/2014/11/150px-RemoveTetra021.png) | [![Visual model of the modified volume (Surface Option)](https://www.sofa-framework.org/wp-content/uploads/2014/11/150px-RemoveTetra03.png){.size-full .wp-image-1537 width="150" height="182"}](https://www.sofa-framework.org/wp-content/uploads/2014/11/150px-RemoveTetra03.png) | [![Visual model of the modified volume (Volume Option)](https://www.sofa-framework.org/wp-content/uploads/2014/11/150px-RemoveTri03.png){.size-full .wp-image-1539 width="150" height="182"}](https://www.sofa-framework.org/wp-content/uploads/2014/11/150px-RemoveTri03.png) |
 
-    -   For volume collision model:
-        1.  Using the Volume option will have the same results as above
-            (remove a sphere volume of elements)
-        2.  Using the Surface option will remove a layer of element at
-            the surface of the mesh (see fig)
+**For volume collision model:**
+    1.  Using the Volume option will have the same results as above (remove a sphere volume of elements)
+    2.  Using the Surface option will remove a layer of element at the surface of the mesh (see fig)
 
- |Selected Tetrahedra        | Removed Tetrahedra (Volume Option) | Second selection | Removed Tetrahedra (with Surface Option) |
+|Selected Tetrahedra        | Removed Tetrahedra (Volume Option) | Second selection | Removed Tetrahedra (with Surface Option) |
 |:-------------------------------:|:-----------------------------:|:-----------------------------:|:-----------------------------:|
 |[![Removed Tetrahedra (Volume Option)](https://www.sofa-framework.org/wp-content/uploads/2014/11/150px-RemoveTetra05.png){.size-full .wp-image-1544 width="150" height="182"}](https://www.sofa-framework.org/wp-content/uploads/2014/11/150px-RemoveTetra05.png) | [![Corresponding Tetrahedra removed](https://www.sofa-framework.org/wp-content/uploads/2014/11/150px-RemoveTetra021.png){.size-full .wp-image-1536 width="150" height="182"}](https://www.sofa-framework.org/wp-content/uploads/2014/11/150px-RemoveTetra021.png) | [![Second selection](https://www.sofa-framework.org/wp-content/uploads/2014/11/150px-RemoveTetra06.png){.size-full .wp-image-1545 width="150" height="182"}](https://www.sofa-framework.org/wp-content/uploads/2014/11/150px-RemoveTetra06.png) | [![Removed Tetrahedra (with Surface Option)](https://www.sofa-framework.org/wp-content/uploads/2014/11/150px-RemoveTetra07.png){.size-full .wp-image-1546 width="150" height="182"}](https://www.sofa-framework.org/wp-content/uploads/2014/11/150px-RemoveTetra07.png) |
 
