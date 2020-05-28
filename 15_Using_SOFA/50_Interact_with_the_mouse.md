@@ -2,7 +2,7 @@ Sofa Mouse Manager
 ------------------
 
 A Mouse Manager has been created in Sofa, allowing to easily create and
-change the interactions with the different buttons of the Mouse. This
+change the interactions with the different buttons of the Mouse. Note that the Shift key needs to be hold during the operation. This
 panel is available through: *Edit -&gt; Mouse Manager*
 [![SofaMouseManager\_GUI](https://www.sofa-framework.org/wp-content/uploads/2014/11/SofaMouseManager_GUI1.png){.aligncenter
 .size-full .wp-image-1510 width="460"
@@ -32,7 +32,7 @@ Operations available
 
 Further informations for specific mouse interactions.
 
-#### Attach an object to the Mouse
+### Attach an object to the Mouse
 
 when clicked, the mouse casts a ray, and create a spring between a point
 in the ray, and a DOF encountered (if one has been found in the
@@ -44,10 +44,10 @@ mechanical behavior allows it). Whereas releasing shift first will
 freeze the object in the current position.
 
   -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  \[caption id="attachment\_1511" align="alignnone" width="200"\][![200px-Attach\_01](https://www.sofa-framework.org/wp-content/uploads/2014/11/200px-Attach_011.png){.wp-image-1511 .size-full width="200" height="144"}](https://www.sofa-framework.org/wp-content/uploads/2014/11/200px-Attach_011.png) Area selected\[/caption\]   \[caption id="attachment\_1512" align="alignnone" width="200"\][![200px-Attach\_02](https://www.sofa-framework.org/wp-content/uploads/2014/11/200px-Attach_021.png){.wp-image-1512 .size-full width="200" height="138"}](https://www.sofa-framework.org/wp-content/uploads/2014/11/200px-Attach_021.png) Area attached with a spring and pulled\[/caption\]
+  [![200px-Attach\_01](https://www.sofa-framework.org/wp-content/uploads/2014/11/200px-Attach_011.png)](https://www.sofa-framework.org/wp-content/uploads/2014/11/200px-Attach_011.png) Area selected   [![200px-Attach\_02](https://www.sofa-framework.org/wp-content/uploads/2014/11/200px-Attach_021.png)](https://www.sofa-framework.org/wp-content/uploads/2014/11/200px-Attach_021.png) Area attached with a spring and pulled
   -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-#### Fix picked particle
+### Fix picked particle
 
 when clicked, the particle of the collision model near the mouse is
 fixed using a stiff spring. When shift is pushed, collision model will
@@ -58,7 +58,7 @@ particle of the collision model near the mouse using a stiff spring.
   \[caption id="attachment\_1511" align="alignnone" width="200"\][![200px-Attach\_01](https://www.sofa-framework.org/wp-content/uploads/2014/11/200px-Attach_011.png){.wp-image-1511 .size-full width="200" height="144"}](https://www.sofa-framework.org/wp-content/uploads/2014/11/200px-Attach_011.png) Area selected\[/caption\]   \[caption id="attachment\_1513" align="alignnone" width="200"\][![200px-Fixed\_01](https://www.sofa-framework.org/wp-content/uploads/2014/11/200px-Fixed_011.png){.wp-image-1513 .size-full width="200" height="131"}](https://www.sofa-framework.org/wp-content/uploads/2014/11/200px-Fixed_011.png) Area fixed by a stiff spring\[/caption\]
   -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-#### Incise along a path
+### Incise along a path
 
 This operation allow to simulate incision on a triangular mesh. There
 are two methods available for performing incision:
@@ -111,7 +111,7 @@ are two methods available for performing incision:
       \[caption id="attachment\_1516" align="aligncenter" width="150"\][![Triangular Mesh (under gravity)](https://www.sofa-framework.org/wp-content/uploads/2014/11/150px-Incision_011.png){.size-full .wp-image-1516 width="150" height="150"}](https://www.sofa-framework.org/wp-content/uploads/2014/11/150px-Incision_011.png) Triangular Mesh (under gravity)\[/caption\]   \[caption id="attachment\_1524" align="aligncenter" width="150"\][![Start incision](https://www.sofa-framework.org/wp-content/uploads/2014/11/150px-Incision_02bis.png){.size-full .wp-image-1524 width="150" height="157"}](https://www.sofa-framework.org/wp-content/uploads/2014/11/150px-Incision_02bis.png) Start incision\[/caption\]   \[caption id="attachment\_1525" align="aligncenter" width="150"\][![Continuous incision](https://www.sofa-framework.org/wp-content/uploads/2014/11/150px-Incision_03bis.png){.size-full .wp-image-1525 width="150" height="157"}](https://www.sofa-framework.org/wp-content/uploads/2014/11/150px-Incision_03bis.png) Continuous incision\[/caption\]
       ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-#### Perform topological operations
+### Perform topological operations
 
 Different kind of topological operations are available:
 
@@ -153,10 +153,10 @@ Different kind of topological operations are available:
           \[caption id="attachment\_1543" align="aligncenter" width="150"\][![Selected Tetrahedra](https://www.sofa-framework.org/wp-content/uploads/2014/11/150px-RemoveTetra04.png){.size-full .wp-image-1543 width="150" height="182"}](https://www.sofa-framework.org/wp-content/uploads/2014/11/150px-RemoveTetra04.png) Selected Tetrahedra\[/caption\]   \[caption id="attachment\_1544" align="aligncenter" width="150"\][![Removed Tetrahedra (Volume Option)](https://www.sofa-framework.org/wp-content/uploads/2014/11/150px-RemoveTetra05.png){.size-full .wp-image-1544 width="150" height="182"}](https://www.sofa-framework.org/wp-content/uploads/2014/11/150px-RemoveTetra05.png) Removed Tetrahedra (Volume Option)\[/caption\]   \[caption id="attachment\_1545" align="aligncenter" width="150"\][![Second selection](https://www.sofa-framework.org/wp-content/uploads/2014/11/150px-RemoveTetra06.png){.size-full .wp-image-1545 width="150" height="182"}](https://www.sofa-framework.org/wp-content/uploads/2014/11/150px-RemoveTetra06.png) Second selection\[/caption\]   \[caption id="attachment\_1546" align="aligncenter" width="150"\][![Removed Tetrahedra (with Surface Option)](https://www.sofa-framework.org/wp-content/uploads/2014/11/150px-RemoveTetra07.png){.size-full .wp-image-1546 width="150" height="182"}](https://www.sofa-framework.org/wp-content/uploads/2014/11/150px-RemoveTetra07.png) Removed Tetrahedra (with Surface Option)\[/caption\]
           ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-#### Add a spring to suture two points
+### Add a spring to suture two points
 
 TODO
 
-#### Add a Frame to Skinned model
+### Add a Frame to Skinned model
 
 TODO
