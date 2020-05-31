@@ -13,9 +13,7 @@ This can be controlled in **runSofa** using the folllowing command line options 
 -b [ --computationTimeAtBegin ] [=arg(=1)] (=0)
 -o [ --computationTimeOutputType ] arg
 ```
-The first option updates the variable computationTimeSampling which
-specifies the intervals (counted in animation steps) between successive
-statistics displays. 0 means deactivated. 
+The first option updates the variable computationTimeSampling which specifies the intervals (counted in animation steps) between successive statistics displays. 0 means deactivated. 
 The other 2 can be used to activate the time statistics during init and change the output format, respectively.
 
 To monitor the time spent in a specific part of the code, bracket it as shown below:
@@ -83,19 +81,33 @@ Steps Duration Statistics (in ms) :
 ==== END ====
 ```
 
+In the first line of this table, mean values over 100 iterations of simulation are given. Only the TOTAL value on the first line is the total amount if time elapsed in milliseconds over these 100 iterations. The rest of the table is mean values for each computation step within one simulation step. NUM is the number of time the operation is done per simulation step. I can be noted that "_Mechanical_" and "_UpdateBBox_" are the 2 mains operations of your step and if you sum their % you get the 100%.
+
+Graphical Interface: Profiler
+-----------------------------
+
+
+A graphic tool has been added in order to benefit from a profiling window based on the AdvanceTimer records.
+This profiler is activated by ticking the box "Display AdvancedTimer Profiler" in the "Stats" widget in runSofa.
+
+This option allows to see the animation step duration (ms) in a graphView, then allows to navigate on the graph or on the sliders and analyze the different substeps exectuted during this animation step. Substeps are displayed in a Tree, in the right order and with their respective time and percentage (with regards to the full step duration). In its design, this tool is inspired from Unity3D profiler.
+
+![](https://github.com/sofa-framework/doc/blob/master/images/usingSOFA/TimerProfiler.png)
+
+
 Graphical Interface: Trace Visitor
 ----------------------------------
 
-A graphic tool using Qt exists, and is integrated inside the Sofa main
-application to trace and profile the execution of the visitors in Sofa.
+A graphic tool using Qt exists, and is integrated inside the SOFA main
+application to trace and profile the execution of the visitors in SOFA.
 It is work in progress and less accurate than the previous method. It
 can be used for illustration. How to use the graphic trace of visitors
 
 #### How to enable the trace of the visitors
 
-You need to activate the option SOFA\_DUMP\_VISITOR\_INFO in your sofa
+You need to activate the option SOFA\_DUMP\_VISITOR\_INFO in your SOFA
 configuration. It should be enabled by default. If not, you can use
-**SofaVerification** to modify the configuration of Sofa.
+**SofaVerification** to modify the configuration of SOFA.
 [![TraceVisitorLogTime](https://www.sofa-framework.org/wp-content/uploads/2014/11/TraceVisitorLogTime1.png){.aligncenter
 .size-full .wp-image-1293 width="600"
 height="342"}](https://www.sofa-framework.org/wp-content/uploads/2014/11/TraceVisitorLogTime1.png)
