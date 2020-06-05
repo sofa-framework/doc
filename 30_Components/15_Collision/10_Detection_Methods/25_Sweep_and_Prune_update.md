@@ -11,7 +11,7 @@ IncrSAP corresponds to the implementation of SAP in an incremental manner, i.e. 
 
 Before starting the broad phase, two steps are therefore required before the brute force detection starts:
 
-- all present collision models in the scene must be listed. This is done in the function void ```PipelineImpl::computeCollisionDetection()```  with:
+- all present collision models in the scene must be listed. This is done in the function ```void PipelineImpl::computeCollisionDetection()```  with:
 ```cpp
 root->getTreeObjects<CollisionModel> (&collisionModels);
 ```

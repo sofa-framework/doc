@@ -9,7 +9,7 @@ It **must be used with a TriangleOctreeModel**, as an octree is used to traverse
 
 Before starting the broad phase, two steps are therefore required before the brute force detection starts:
 
-- all present collision models in the scene must be listed. This is done in the function void ```PipelineImpl::computeCollisionDetection()```  with:
+- all present collision models in the scene must be listed. This is done in the function ```void PipelineImpl::computeCollisionDetection()```  with:
 ```cpp
 root->getTreeObjects<CollisionModel> (&collisionModels);
 ```

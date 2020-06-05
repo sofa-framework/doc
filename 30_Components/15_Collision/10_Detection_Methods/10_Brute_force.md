@@ -9,11 +9,11 @@ In order to reduce the number of tests to perform, these bounding volumes are ar
 
 Before starting the broad phase, two steps are therefore required before the brute force detection starts:
 
-- all present collision models in the scene must be listed. This is done in the function void ```PipelineImpl::computeCollisionDetection()```  with:
+- all present collision models in the scene must be listed. This is done in the function ```void PipelineImpl::computeCollisionDetection()```  with:
 ```cpp
 root->getTreeObjects<CollisionModel> (&collisionModels);
 ```
-- the BVH must be created, where ```used_depth``` is the needed depth level for the hierarchy. This is done by each CollisionModel in the scene in the function: 
+- the BVH must be created, where _used_depth_ is the needed depth level for the hierarchy. This is done by each CollisionModel in the scene in the function: 
 ```cpp
 computeBoundingTree(used_depth);
 ```
