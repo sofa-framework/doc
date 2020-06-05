@@ -52,7 +52,7 @@ Collision detection
 
 Collision detection aims at determining if two (or several) objects collide. In SOFA, the collision detection takes as input the collision models (geometric data) and returns pairs of geometric primitives as output, along with the associated contact points. This contact information is passed to the contact manager , which creates contact interactions of various types based on customizable rules.
 
-Given <img class="latex" src="https://latex.codecogs.com/png.latex?n" title="Number of objects" /> moving objects in a virtual environment, testing all objects pairs tend to perform <img class="latex" src="https://latex.codecogs.com/png.latex?n^2" title="Complexity of pairwise checks" /> pairwise checks. When <img class="latex" src="https://latex.codecogs.com/png.latex?n" title="Number of objects" /> is large, the collision may become a computational bottleneck. In order to break down the  <img class="latex" src="https://latex.codecogs.com/png.latex?\mathcal{O}(n^2)" title="Asymptotic complexity" /> complexity, the collision detection is usually divided into two successive steps triggered within the ```doCollisionDetection()``` function:
+Given <img class="latex" src="https://latex.codecogs.com/png.latex?n" title="Number of objects" /> moving objects in a virtual environment, testing all objects pairs tend to perform <img class="latex" src="https://latex.codecogs.com/png.latex?n^2" title="Complexity of pairwise checks" /> pairwise checks. When <img class="latex" src="https://latex.codecogs.com/png.latex?n" title="Number of objects" /> is large, the collision may become a computational bottleneck. In order to break down the  <img class="latex" src="https://latex.codecogs.com/png.latex?\mathcal{O}(%20n^2%20)" title="Asymptotic complexity" /> complexity, the collision detection is usually divided into two successive steps triggered within the ```doCollisionDetection()``` function:
 
 - a broad phase
 - a narrow phase
@@ -61,10 +61,10 @@ Given <img class="latex" src="https://latex.codecogs.com/png.latex?n" title="Num
 Several collision detection methods are available in SOFA. All of these methods will compute the contact points between collision models. The evaluation of these contacts will be done using Intersection Methods. Here again, various intersection methods are available in SOFA. The choice of the collision detection method and the intersection method depends on your specific simulation use case.
 Available collision detection methods are:
 
-- [Brute Force](https://www.sofa-framework.org/community/doc/components/collision/detection-methods/brute-force)
-- [Direct Sweep and Prune](https://www.sofa-framework.org/community/doc/components/collision/sweep-and-prune/)
-- [Incremental Sweep and Prune](https://www.sofa-framework.org/community/doc/components/collision/sweep-and-prune-update/)
-- [Ray Tracing](https://www.sofa-framework.org/community/doc/components/collision/detection-methods/ray-tracing)
+- [Brute Force](https://www.sofa-framework.org/community/doc/components/collision/detection-brute-force)
+- [Direct Sweep and Prune](https://www.sofa-framework.org/community/doc/components/collision/detection-sweep-and-prune/)
+- [Incremental Sweep and Prune](https://www.sofa-framework.org/community/doc/components/collision/detection-sap-incremental/)
+- [Ray Tracing](https://www.sofa-framework.org/community/doc/components/collision/detection-ray-tracing)
 
 
 ### Broad phase
