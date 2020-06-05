@@ -52,7 +52,7 @@ Collision detection
 
 Collision detection aims at determining if two (or several) objects collide. In SOFA, the collision detection takes as input the collision models (geometric data) and returns pairs of geometric primitives as output, along with the associated contact points. This contact information is passed to the contact manager , which creates contact interactions of various types based on customizable rules.
 
-Given <img class="latex" src="https://latex.codecogs.com/png.latex?n" title="Number of objects" /> moving objects in a virtual environment, testing all objects pairs tend to perform <img class="latex" src="https://latex.codecogs.com/png.latex?n^2" title="Complexity of pairwise checks" /> pairwise checks. When <img class="latex" src="https://latex.codecogs.com/png.latex?%5Cmathcal%7BO%7D%20%28%20n%5E2%29" title="Asymptotic complexity" /> complexity, the collision detection is usually divided into two successive steps triggered within the ```doCollisionDetection()``` function:
+Given <img class="latex" src="https://latex.codecogs.com/png.latex?n" title="Number of objects" /> moving objects in a virtual environment, testing all objects pairs tend to perform <img class="latex" src="https://latex.codecogs.com/png.latex?n^2" title="Complexity of pairwise checks" /> pairwise checks. When <img class="latex" src="https://latex.codecogs.com/png.latex?%20\mathcal{O%20}(n^2)" title="Asymptotic complexity" /> complexity, the collision detection is usually divided into two successive steps triggered within the ```doCollisionDetection()``` function:
 
 - a broad phase
 - a narrow phase
