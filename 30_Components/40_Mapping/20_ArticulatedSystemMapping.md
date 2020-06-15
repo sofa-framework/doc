@@ -43,7 +43,7 @@ _Next steps of development:_
 Example
 -------
 
-An example scene involving a ArticulatedSystemMapping is available in [*examples/Components/mass/UniformMass.scn*](https://github.com/sofa-framework/sofa/blob/master/examples/Components/mapping/ArticulatedSystemMapping.scn).
+An example scene involving a ArticulatedSystemMapping is available in [*examples/Components/mapping/ArticulatedSystemMapping.scn*](https://github.com/sofa-framework/sofa/blob/master/examples/Components/mapping/ArticulatedSystemMapping.scn).
 
 
 ``` xml
