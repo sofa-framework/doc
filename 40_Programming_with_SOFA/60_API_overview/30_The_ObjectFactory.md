@@ -33,8 +33,8 @@ called in the output binary. The summary of the steps to follow is here
 
     ``` cpp
      int NewComponentClass = sofa::core::RegisterObject("Description of your component")
-    .add< NewComponent >()
-    .add< NewComponent >()
+    .add< NewComponent <Vec3dTypes>>()
+    .add< NewComponent <Vec3fTypes>>()
     ;
     ```
 
@@ -109,6 +109,7 @@ MechanicalObject, you have to specify it by using the template attribute
 in the XML.
 
 ```xml
+<MechanicalObject template="Real"/>
 ```
 
 This will produce a MechanicalObject if SOFA is compiled with double and
