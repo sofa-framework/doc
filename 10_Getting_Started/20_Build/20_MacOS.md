@@ -22,7 +22,7 @@ If your MacOS version is too low, update your Mac from the App Store.
 If your AppleClang version is too low:
 
 1. Download and install the highest possible Xcode compatible with your MacOS.  
-   Compatibility list (taken from [Wikipedia](https://en.wikipedia.org/wiki/Xcode#Xcode_7.0_-_11.x_%28since_Free_On-Device_Development%29)):  
+   Compatibility list (taken from [Wikipedia](https://en.wikipedia.org/wiki/Xcode#Xcode_7.0_-_12.x_%28since_Free_On-Device_Development%29)):  
    ```
    MacOS >= 10.15.2 : Xcode 11.4   (with AppleClang 11.0.3, based on clang 9)
    MacOS >= 10.14.4 : Xcode 11.3.1 (with AppleClang 11.0.0, based on clang 8)
