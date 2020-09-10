@@ -36,8 +36,8 @@ If your AppleClang version is too low:
 
 3. In Xcode, navigate to "Xcode > Preferences > Locations" and set Command Line Tools to your Xcode version
 
-4. Verify Command Line Tools path: xcode-select -p
-   If it is not pointing to your Xcode, change it: xcode-select --switch /Applications/Xcode.app
+4. Verify Command Line Tools path: `xcode-select -p`  
+   If it is not pointing to your Xcode, change it: `xcode-select --switch /Applications/Xcode.app`
 
 5. Reboot
 
