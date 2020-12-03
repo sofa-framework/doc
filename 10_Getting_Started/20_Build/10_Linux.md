@@ -235,3 +235,9 @@ A further dev warning may appear:
 This is just a typo with Qt5CoreMacros.cmake file. It uses COPY\_ONLY
 instead of COPYONLY. Simply edit your Qt5CoreMacros.cmake, replace
 COPY\_ONLY with COPYONLY and **Configure** again.
+
+
+
+## Compilation tutorial
+
+See our page presenting [video tutorial for compilation on Linux](https://www.sofa-framework.org/community/doc/getting-started/video-tutorials/how-to-compile-sofa/#linux).
