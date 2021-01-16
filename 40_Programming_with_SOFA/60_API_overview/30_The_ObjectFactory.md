@@ -33,8 +33,8 @@ called in the output binary. The summary of the steps to follow is here
 
     ``` cpp
      int NewComponentClass = sofa::core::RegisterObject("Description of your component")
-    .add< NewComponent >()
-    .add< NewComponent >()
+    .add< NewComponent<Vec3dTypes> >()
+    .add< NewComponent<Vec3fTypes> >()
     ;
     ```
 
