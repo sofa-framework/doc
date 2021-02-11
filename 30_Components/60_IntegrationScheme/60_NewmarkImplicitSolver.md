@@ -59,10 +59,10 @@ This component is used as follows in XML format:
 <NewmarkImplicitSolver rayleighMass="0.01" rayleighStiffness="0.01" />
 ```  
 
-or using Python:
+or using Python3:
 
 ``` python  
-node.createObject('NewmarkImplicitSolver', rayleighMass='0.01', rayleighStiffness='0.01')  
+node.addObject('NewmarkImplicitSolver', rayleighMass='0.01', rayleighStiffness='0.01')  
 ```  
 
 An example scene involving a NewmarkImplicitSolver is available in [*examples/Components/solver/NewmarkImplicitSolver.scn*](https://github.com/sofa-framework/sofa/blob/master/examples/Components/solver/NewmarkImplicitSolver.scn)

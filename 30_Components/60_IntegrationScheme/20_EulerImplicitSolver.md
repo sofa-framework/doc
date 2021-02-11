@@ -111,10 +111,10 @@ This component is used as follows in XML format:
 <EulerImplicitSolver name="ODEsolver" rayleighStiffness="0.1" rayleighMass="0.1" />
 ```  
  
-or using Python:  
+or using Python3:  
  
 ``` python  
-node.createObject('EulerImplicitSolver', name='ODEsolver', rayleighStiffness='0.1' rayleighMass='0.1')  
+node.addObject('EulerImplicitSolver', name='ODEsolver', rayleighStiffness='0.1' rayleighMass='0.1')  
 ```  
  
 An example scene involving a StaticSolver is available in [*examples/Components/solver/EulerImplicitSolver.scn*](https://github.com/sofa-framework/sofa/blob/master/examples/Components/solver/EulerImplicitSolver.scn)

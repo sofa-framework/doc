@@ -62,10 +62,10 @@ This component is used as follows in XML format:
 <StaticSolver newton_iterations="10" correction_tolerance_threshold="1e-4" residual_tolerance_threshold="1e-2" should_diverge_when_residual_is_growing="0" />  
 ```  
  
-or using Python:  
+or using Python3:  
  
 ``` python  
-node.createObject('StaticSolver', newton_iterations='10', correction_tolerance_threshold='1e-4', residual_tolerance_threshold='1e-2', should_diverge_when_residual_is_growing='0')  
+node.addObject('StaticSolver', newton_iterations='10', correction_tolerance_threshold='1e-4', residual_tolerance_threshold='1e-2', should_diverge_when_residual_is_growing='0')  
 ```  
  
 An example scene involving a StaticSolver is available in [*examples/Components/solver/StaticSolver.scn*](https://github.com/sofa-framework/sofa/blob/master/examples/Components/solver/StaticSolver.scn)

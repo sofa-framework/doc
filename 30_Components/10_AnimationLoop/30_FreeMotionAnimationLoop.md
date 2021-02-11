@@ -25,10 +25,10 @@ This component is used as follows in XML format:
 <FreeMotionAnimationLoop />
 ```
 
-or using Python:
+or using Python3:
 
 ``` python
-node.createObject('FreeMotionAnimationLoop')
+node.addObject('FreeMotionAnimationLoop')
 ```
 
 An example scene involving a FreeAnimationLoop is available in [*examples/Components/animationloop/FreeMotionAnimationLoop.scn*](https://github.com/sofa-framework/sofa/blob/master/examples/Components/animationloop/FreeMotionAnimationLoop.scn)

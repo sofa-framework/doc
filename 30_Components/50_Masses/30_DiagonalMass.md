@@ -84,10 +84,10 @@ This component is used as follows in XML format:
 <DiagonalMass massDensity="1000" />
 ```
 
-or using Python:
+or using Python3:
 
 ``` python
-node.createObject('DiagonalMass', massDensity='1000')
+node.addObject('DiagonalMass', massDensity='1000')
 ```
 
 An example scene involving a DiagonalMass is available in [*examples/Components/mass/DiagonalMass.scn*](https://github.com/sofa-framework/sofa/blob/master/examples/Components/mass/DiagonalMass.scn)

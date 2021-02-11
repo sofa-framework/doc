@@ -57,10 +57,10 @@ This component is used as follows in XML format:
 <SparseLDLSolver  />
 ```
 
-or using Python:
+or using Python3:
 
 ``` python
-node.createObject('SparseLDLSolver')
+node.addObject('SparseLDLSolver')
 ```
 
 With a description of each data

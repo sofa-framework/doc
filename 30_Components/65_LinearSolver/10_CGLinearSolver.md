@@ -47,10 +47,10 @@ This component is used as follows in XML format:
 <CGLinearSolver iterations="100" tolerance="1e-5" threshold="1e-5"/>
 ```
 
-or using Python:
+or using Python3:
 
 ``` python
-node.createObject('CGLinearSolver', iterations='100' tolerance='1e-5' threshold='1e-5')
+node.addObject('CGLinearSolver', iterations='100' tolerance='1e-5' threshold='1e-5')
 ```
 
 A lot of scene examples are available in SOFA involving a CGLinearSolver. One is available in [*examples/Demos/liver.scn*](https://github.com/sofa-framework/sofa/blob/master/examples/Demos/liver.scn)

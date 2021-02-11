@@ -47,10 +47,10 @@ This component is used as follows in XML format:
 <EulerExplicitSolver name="odeExplicitSolver" />
 ```  
  
-or using Python:  
+or using Python3:  
  
 ``` python  
-node.createObject('EulerExplicitSolver', name='odeExplicitSolver')
+node.addObject('EulerExplicitSolver', name='odeExplicitSolver')
 ```  
  
 An example scene involving a EulerExplicitSolver is available in [*examples/Components/solver/EulerExplicitSolver.scn*](https://github.com/sofa-framework/sofa/blob/master/examples/Components/solver/EulerExplicitSolver.scn)

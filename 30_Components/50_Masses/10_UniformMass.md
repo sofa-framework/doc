@@ -83,10 +83,10 @@ This component is used as follows in XML format:
 <UniformMass totalMass="10" />
 ```
 
-or using Python:
+or using Python3:
 
 ``` python
-node.createObject('UniformMass', totalMass='10')
+node.addObject('UniformMass', totalMass='10')
 ```
 
 An example scene involving a UniformMass is available in [*examples/Components/mass/UniformMass.scn*](https://github.com/sofa-framework/sofa/blob/master/examples/Components/mass/UniformMass.scn)

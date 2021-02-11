@@ -36,10 +36,10 @@ This component is used as follows in XML format:
 <Component data_field="X" />
 ```
 
-or using Python:
+or using Python3:
 
 ``` python
-node.createObject('ComponentName', data_field='X')
+node.addObject('ComponentName', data_field='X')
 ```
 
 With a description of each data

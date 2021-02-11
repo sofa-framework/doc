@@ -47,10 +47,10 @@ This component is used as follows in XML format:
 <ShewchukPCGLinearSolver iterations="1000" tolerance="1e-9" preconditioners="LUSolver" build_precond="1" update_step="1000"/>
 ```
 
-or using Python:
+or using Python3:
 
 ``` python
-node.createObject('ShewchukPCGLinearSolver', iterations='1000', tolerance='1e-9', preconditioners='LUSolver'. build_precond='1', update_step='1000')
+node.addObject('ShewchukPCGLinearSolver', iterations='1000', tolerance='1e-9', preconditioners='LUSolver'. build_precond='1', update_step='1000')
 ```
 
 An example scene involving a ShewchukPCGLinearSolver is available in [*examples/Components/solver/ShewchukPCGLinearSolver.scn*](https://github.com/sofa-framework/sofa/blob/master/examples/Components/solver/ShewchukPCGLinearSolver.scn)

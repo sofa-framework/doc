@@ -70,10 +70,10 @@ This component is used as follows in XML format:
 <FixedConstraint name="FixedConstraint" indices="3 39 64" />
 ```
 
-or using Python:
+or using Python3:
 
 ``` python
-node.createObject('FixedConstraint', indices='3 39 64')
+node.addObject('FixedConstraint', indices='3 39 64')
 ```
 
 An example scene involving a FixedConstraint is available in [*examples/Components/constraint/FixedConstraint.scn*](https://github.com/sofa-framework/sofa/blob/master/examples/Components/constraint/FixedConstraint.scn)

@@ -145,10 +145,10 @@ This component is used as follows in XML format:
 <MeshMatrixMass massDensity="1000" />
 ```
 
-or using Python:
+or using Python3:
 
 ``` python
-node.createObject('MeshMatrixMass', massDensity='1000')
+node.addObject('MeshMatrixMass', massDensity='1000')
 ```
 
 An example scene involving a MeshMatrixMass is available in [*examples/Components/mass/MeshMatrixMass.scn*](https://github.com/sofa-framework/sofa/blob/master/examples/Components/mass/MeshMatrixMass.scn)

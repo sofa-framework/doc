@@ -129,7 +129,7 @@ def createScene(node):
     child_node = node.createChild('child name') 
 
     # create a component under the graph node
-    child_dofs = child_node.createObject('MechanicalObject', template = 'Vec3', name = 'dofs')
+    child_dofs = child_node.addObject('MechanicalObject', template = 'Vec3', name = 'dofs')
 ```
 
 Please refer to the [documentation](https://www.sofa-framework.org/community/doc/using-sofa/optional-features/python-scripting/) for further details.

@@ -24,10 +24,10 @@ This component is used as follows in XML format:
 <DefaultAnimationLoop />
 ```
 
-or using Python:
+or using Python3:
 
 ``` python
-node.createObject('DefaultAnimationLoop')
+node.addObject('DefaultAnimationLoop')
 ```
 
 An example scene involving a DefaultAnimationLoop is available in [*examples/Components/mass/UniformMass.scn*](https://github.com/sofa-framework/sofa/blob/master/examples/Components/mass/UniformMass.scn)

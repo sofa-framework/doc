@@ -24,10 +24,10 @@ This component is used as follows in XML format:
 <MultiStepAnimationLoop collisionSteps="10" integrationSteps="2" />
 ```
 
-or using Python:
+or using Python3:
 
 ``` python
-node.createObject('MultiStepAnimationLoop', collisionSteps='10', integrationSteps='2')
+node.addObject('MultiStepAnimationLoop', collisionSteps='10', integrationSteps='2')
 ```
 
 An example scene involving a MultiStepAnimationLoop is available in [*examples/Components/animationloop/MultiStepAnimationLoop.scn*](https://github.com/sofa-framework/sofa/blob/master/examples/Components/animationloop/MultiStepAnimationLoop.scn)
