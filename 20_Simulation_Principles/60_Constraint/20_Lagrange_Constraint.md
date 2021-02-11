@@ -46,7 +46,7 @@ Finally, the resolution of the constraint problem is done using the [Gauss-Seide
 
 - <img class="latex" src="https://latex.codecogs.com/png.latex?x_1=x_1^{free}+dt\cdot%20\Delta%20v_1^{cor}" title="Correction1" />
 - <img class="latex" src="https://latex.codecogs.com/png.latex?x_1=x_2^{free}+dt\cdot%20\Delta%20v_2^{cor}" title="Correction2" />
-with <img class="latex" src="https://latex.codecogs.com/svg.latex?\Delta%20V_1^{cor}%20=%20dt%20A_1^{-1}H_1^{T}\lambda" title="Corrective displacement1" /> and <img class="latex" src="https://latex.codecogs.com/svg.latex?\Delta%20V_2^{cor}%20=%20-dt%20A_2^{-1}H_2^{T}\lambda" title="Corrective displacement2" />
+with <img class="latex" src="https://latex.codecogs.com/png.latex?\Delta%20Vv_1^{cor}=dt\mathbf{A}_1{-1}\mathbf{H}_1\lambda" title="Corrective displacement1" /> and <img class="latex" src="https://latex.codecogs.com/png.latex?\Delta%20v_2^{cor}=dt\mathbf{A}_2^{-1}\mathbf{H}_2\lambda" title="Corrective displacement2" />
 
 
 FreeAnimationLoop
