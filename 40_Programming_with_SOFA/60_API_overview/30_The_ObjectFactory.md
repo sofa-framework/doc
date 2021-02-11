@@ -20,7 +20,7 @@ called in the output binary. The summary of the steps to follow is here
 -   Add a : SOFA\_DECL\_CLASS(NewComponent) in your .cpp file,
     NewComponent being the class name of your component.
 -   Register the component: it is generally done in the .cpp of your new
-    component class. if your component is not template:
+    component class. If your component is not templated:
 
     ``` cpp
     #include <sofa/core/ObjectFactory.h>
@@ -28,13 +28,13 @@ called in the output binary. The summary of the steps to follow is here
     .add< NewComponent >();
     ```
 
-    if your component is template with Vec3dTypes and Vec3fTypes
+    if your component is templated with Vec3dTypes and Vec3fTypes
     (for instance)
 
     ``` cpp
      int NewComponentClass = sofa::core::RegisterObject("Description of your component")
-    .add< NewComponent >()
-    .add< NewComponent >()
+    .add< NewComponent<Vec3dTypes> >()
+    .add< NewComponent<Vec3fTypes> >()
     ;
     ```
 
@@ -109,22 +109,16 @@ MechanicalObject, you have to specify it by using the template attribute
 in the XML.
 
 ```xml
+<MechanicalObject template="Vec3d"/>
 ```
 
-This will produce a MechanicalObject if SOFA is compiled with double and
-MechanicalObject otherwise The template attribute is resolved using the
-templateName method. Ultimately for a RigidType in 3D ( ie Rigid3dTypes
-Rigid3fTypes) this points to :
+This will produce a MechanicalObject templated on Vec3d, i.e. with 3
+degrees of freedom per node. For a RigidType in 3D (ie Rigid3dTypes) this points to :
 
 ``` cpp
-/// Note: Many scenes use Rigid as template for 3D double-precision rigid type. Changing it to Rigid3d would break backward compatibility.
-#ifdef SOFA_FLOAT
-        template<> inline const char* Rigid3dTypes::Name() { return "Rigid3d"; }
-        template<> inline const char* Rigid3fTypes::Name() { return "Rigid"; }
-#else
-        template<> inline const char* Rigid3dTypes::Name() { return "Rigid"; }
-        template<> inline const char* Rigid3fTypes::Name() { return "Rigid3f"; }
-#endif
+/// We now use template aliases so we do not break backward compatibility
+template<> inline const char* Rigid3dTypes::Name() { return "Rigid3d"; }
+template<> inline const char* Rigid3fTypes::Name() { return "Rigid3f"; }
 ```
 
 The createObject method
