@@ -172,7 +172,7 @@ To add this Data to a C++ class, you need to:
     boolean
 
     ``` cpp
-    Data activeOption;
+    Data<bool> activeOption;
     ```
 
 2.  in the constructor of you class MyClass, initialize the Data
