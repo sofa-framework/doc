@@ -17,7 +17,6 @@ When simulating the physics of an object, its topology must therefore be loaded.
 * off = _MeshVTKLoader_
 * gmsh = _MeshGmshLoader_
 
-More information about the loaders can be found on the [associated page](https://www.sofa-framework.org/community/doc/using-sofa/basic-components/loaders/).
 
 <div style="text-align:center;width:90%;margin: 0 5% 0;">
 <img src="https://www.sofa-framework.org/wp-content/uploads/2016/08/Topology-types.png" style="width: 80%;"/>

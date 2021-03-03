@@ -53,7 +53,7 @@ Implicit schemes are known as being slower to solve (the outcoming linear system
 Implicit ODESolvers in SOFA:
 
 - [EulerImplicitSolver](https://www.sofa-framework.org/community/doc/using-sofa/components/integrationscheme/eulerimplicitsolver/)
-- NewmarkImplicitSolver
+- [NewmarkImplicitSolver](https://www.sofa-framework.org/community/doc/components/integrationschemes/newmarkimplicitsolver/)
 - VariationalSymplecticSolver
 
 
@@ -116,7 +116,7 @@ MultiVecCoord previousPos(&vop, previousPosID);         // additional vector
 
 ### Compute the solution
 
-In most cases, the matrix system <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{A}x=b" title="Linear system" /> can then be sent to a [LinearSolver](https://www.sofa-framework.org/community/doc/main-principles/system-resolution/linear-solvers/) in charge of finally solving the system defined according to the chosen scheme. Within the function *ODESolver::solve()*, the call to the LinearSolver will appear through the function call:
+In most cases, the matrix system <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{A}x=b" title="Linear system" /> can then be sent to a [LinearSolver](https://www.sofa-framework.org/community/doc/simulation-principles/system-resolution/linear-solver/) in charge of finally solving the system defined according to the chosen scheme. Within the function *ODESolver::solve()*, the call to the LinearSolver will appear through the function call:
 
 ``` cpp
 matrix.solve(x, b);

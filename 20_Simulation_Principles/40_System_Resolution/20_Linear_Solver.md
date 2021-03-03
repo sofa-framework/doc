@@ -1,7 +1,7 @@
 Linear solvers
 ==============
 
-Once the [integration scheme](https://www.sofa-framework.org/community/doc/main-principles/system-resolution/integration-schemes/) described how the linear matrix system is built, this system <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{A}x=b" title="Linear system" /> must be solved in order to find the solution <img class="latex" src="https://latex.codecogs.com/png.latex?x(t+dt)" title="DOF at next time step system" /> at the next time step.
+Once the [integration scheme](https://www.sofa-framework.org/community/doc/simulation-principles/system-resolution/integration-scheme/) described how the linear matrix system is built, this system <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{A}x=b" title="Linear system" /> must be solved in order to find the solution <img class="latex" src="https://latex.codecogs.com/png.latex?x(t+dt)" title="DOF at next time step system" /> at the next time step.
 
 
 To solve this system, two main categories of algorithms exist: the **direct** solvers and the **iterative** solvers.

@@ -15,7 +15,7 @@ In an XML format, this would be written as follows:
 State vectors (DOFs)
 --------------------
 
-As described in [the introduction to state vectors](https://www.sofa-framework.org/community/doc/main-principles/state-vectors/), the degrees of freedom (DOFs) of your simulation are stored in state vectors. These vectors are managed by the main component of a simulation: the MechanicalObject. The SOFA framework was historically focused on soft tissue mechanics. Therefore, the semantic is strongly related to mechanics.
+As described in [the introduction to state vectors](https://www.sofa-framework.org/community/doc/simulation-principles/mechanicalobject/#state-vectors), the degrees of freedom (DOFs) of your simulation are stored in state vectors. These vectors are managed by the main component of a simulation: the MechanicalObject. The SOFA framework was historically focused on soft tissue mechanics. Therefore, the semantic is strongly related to mechanics.
 
 Depending on the physics (DOFs) you want to compute, you will have to choose the template of the MechanicalObject among: 1, 2, 3 or 6 reals per node, 1 rigid per node.
 

@@ -7,7 +7,7 @@ SOFA allows the use of Lagrange multipliers to handle complex constraints, such 
 Constraint problem
 ------------------
 
-To solve the dynamic of two constrained objects, we use a Lagrange Multipliers approach and a single linearization by time step. From the [physical system](https://www.sofa-framework.org/community/doc/main-principles/multi-model-representation/physical-model/) to solve, the constraint problem can be expressed with the linear system as:
+To solve the dynamic of two constrained objects, we use a Lagrange Multipliers approach and a single linearization by time step. From the [physical system](https://www.sofa-framework.org/community/doc/simulation-principles/multi-model-representation/physics-integration/) to solve, the constraint problem can be expressed with the linear system as:
 
 <img class="latex" src="https://latex.codecogs.com/png.latex?\left(\mathbf{M}+dt\textstyle\frac{\partial%20f}{\partial%20\dot{x}}+dt^2\textstyle\frac{\partial%20f}{\partial%20x}\right)\Delta%20v=-dt(f+dt\textstyle\frac{\partial%20f}{\partial%20x}v%20-%20\mathbf{H}^T\lambda)" title="Constraint problem" />
 
@@ -52,7 +52,7 @@ with <img class="latex" src="https://latex.codecogs.com/png.latex?\Delta%20v_1^{
 FreeAnimationLoop
 -----------------
 
-To solve such complex constraint-based interactions, the simulation requires a specific [animation loop](https://www.sofa-framework.org/community/doc/main-principles/animationloop-and-visitors/): the _FreeAnimationLoop_. This animation loop divides each simulation step into two successive resolution steps: the free motion and a corrective motion.
+To solve such complex constraint-based interactions, the simulation requires a specific [animation loop](https://www.sofa-framework.org/community/doc/simulation-principles/animation-loop/): the [_FreeAnimationLoop_](https://www.sofa-framework.org/community/doc/components/animationloops/freemotionanimationloop/). This animation loop divides each simulation step into two successive resolution steps: the free motion and a corrective motion.
 
 
 #### Free motion ####
@@ -115,7 +115,7 @@ The step of building the system (see the [Build system](https://www.sofa-framewo
 
 #### Build system ####
 
-This is the denser part of the constraint resolution. Most steps done to build the constraint problem are triggered using [visitors](https://www.sofa-framework.org/community/doc/main-principles/animationloop-and-visitors/#visitors) browsing the simulation graph. All the following functions are actually not implemented by _ConstraintSolver_ but by the constraint laws available in the scene <img class="latex" src="https://latex.codecogs.com/png.latex?\Phi" title="Phi" /> and <img class="latex" src="https://latex.codecogs.com/png.latex?\Psi" title="Psi" /> (see the [Constraint law](https://www.sofa-framework.org/community/doc/main-principles/constraint/lagrange-constraint/#constraint-laws) section).
+This is the denser part of the constraint resolution. Most steps done to build the constraint problem are triggered using [visitors](https://www.sofa-framework.org/community/doc/simulation-principles/visitors/) browsing the simulation graph. All the following functions are actually not implemented by _ConstraintSolver_ but by the constraint laws available in the scene <img class="latex" src="https://latex.codecogs.com/png.latex?\Phi" title="Phi" /> and <img class="latex" src="https://latex.codecogs.com/png.latex?\Psi" title="Psi" /> (see the [Constraint law](https://www.sofa-framework.org/community/doc/main-principles/constraint/lagrange-constraint/#constraint-laws) section).
 
 The following steps are processed one after another:
 

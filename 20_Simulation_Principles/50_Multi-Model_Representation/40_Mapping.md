@@ -3,6 +3,7 @@ Mappings
 
 
 In SOFA, all the different representations of an object can be modeled and considered separately:
+
   - the physical model (e.g. a mechanical behavior relying on a linear elasticity, computed on a tetrahedral topology)
   - the visual model (e.g. a triangular mesh using a very high resolution)
   - the collision model (e.g. a grid bounding with quad faces around our physical object)
@@ -17,6 +18,7 @@ Typical mappings compute the correspondance between different geometrical models
 
 
 One can define two representations of an object, both using a different topology:
+
   - one mechanical model with its degrees of freedom <img class="latex" src="https://latex.codecogs.com/png.latex?q" title="DOF of mechanical model" />
   - one collision model with its degrees of freedom <img class="latex" src="https://latex.codecogs.com/png.latex?p" title="DOF of collision model" />
 
@@ -60,6 +62,7 @@ Topological mapping
 -------------------
 
 Topological mappings are an additional type of mappings making the correspondance between hierarchical topologies. You can thus find :
+
   - a _Hexa2TetraTopologicalMapping_: computing the correspondance between a hexahedral and a tetrahedral topology, by dividing each hexahedron into 6 tetrahedra
   - a _Hexa2QuadTopologicalMapping_: computing the correspondance between a hexahedral topology and its surface quadrangular topology
   - a _Tetra2TriangleTopologicalMapping_: computing the correspondance between a tetrahedral topology and its surface triangular topology
