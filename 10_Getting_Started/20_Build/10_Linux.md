@@ -94,9 +94,9 @@ SOFA requires some libraries:
     sudo apt install libboost-all-dev
     ```
     
--   **Python 2.7**  
+-   **Python 3.7**  
     ```bash
-    sudo apt install python2.7-dev python-numpy python-scipy
+    sudo apt install python3.7-dev python-numpy python-scipy
     ```
 
 -   **Additional libraries**: libPNG, libJPEG, libTIFF, Glew, Zlib   

@@ -78,8 +78,8 @@ SOFA requires some libraries:
     - Users with Windows 32-bit and VS 2019: choose boost_X_X_X-msvc-14.2-32.exe
     - Users with Windows 32-bit and VS 2017: choose boost_X_X_X-msvc-14.1-32.exe
     
--   **Python** (= 2.7.x)  
-    Download and install latest Python **2.7** from [python.org download page](https://www.python.org/downloads/windows/).
+-   **Python** (= 3.7.x)  
+    Download and install latest Python **3.7** from [python.org download page](https://www.python.org/downloads/windows/).
     
     - **Users with Windows 64-bit**: choose the "Windows x86-64 MSI installer".
     - Users with Windows 32-bit: choose the "Windows x86 MSI installer".
