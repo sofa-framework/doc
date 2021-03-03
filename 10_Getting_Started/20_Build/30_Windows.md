@@ -65,8 +65,10 @@ SOFA requires some libraries:
 
 -   **Qt** (>= 5.12.0) with **Charts** and **WebEngine**  
     We recommend to install Qt **in your user directory** with [the unified installer](http://download.qt.io/official_releases/online_installers).  
+    Qt6 is not yet supported.
+    ![](https://github.com/sofa-framework/doc/blob/master/images/gettingstarted/install_qt_windows_1.png?raw=true")
     Make sure to enable **Charts** and **WebEngine** components.  
-    ![](https://www.sofa-framework.org/wp-content/uploads/2020/04/install_qt_windows.png)
+    ![](https://github.com/sofa-framework/doc/blob/master/images/gettingstarted/install_qt_windows_2.png?raw=true")
 
 -   **Boost** (>= 1.65.1)  
     Download and install latest Boost from [https://boost.teeks99.com](https://boost.teeks99.com).
