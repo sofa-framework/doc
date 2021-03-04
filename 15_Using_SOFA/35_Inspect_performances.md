@@ -26,7 +26,7 @@ That is all. Then the corresponding computation time can be displayed at
 regular intervals. Be careful to use the same string in the two
 instructions. The begin/end calls can be nested, to monitor
 hierarchically. An example of statistics is shown below. The number of
-dots before the name of the piece of code denote the nesting level.
+dots before the name of the piece of code denotes the nesting level.
 
 ```
 ==== Animate ====
@@ -81,7 +81,7 @@ Steps Duration Statistics (in ms) :
 ==== END ====
 ```
 
-In the first line of this table, mean values over 100 iterations of simulation are given. Only the TOTAL value on the first line is the total amount if time elapsed in milliseconds over these 100 iterations. The rest of the table is mean values for each computation step within one simulation step. NUM is the number of time the operation is done per simulation step. I can be noted that "_Mechanical_" and "_UpdateBBox_" are the 2 mains operations of your step and if you sum their % you get the 100%.
+In the first line of this table, mean values over 100 iterations of simulation are given. Only the TOTAL value on the first line is the total amount of time elapsed in milliseconds over these 100 iterations. The rest of the table is mean values for each computation step within one simulation step. NUM is the number of times the operation is done per simulation step. It can be noted that "_Mechanical_" and "_UpdateBBox_" are the 2 main operations of a simulation step, and the sum of percentages is 100%.
 
 Graphical Interface: Profiler
 -----------------------------
