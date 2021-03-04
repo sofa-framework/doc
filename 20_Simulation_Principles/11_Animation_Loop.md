@@ -14,7 +14,7 @@ Several _AnimationLoops_ are already available in SOFA:
     4. update the bounding box (volume covering all objects of the scene)
 
 * _MultiTagAnimationLoop_:
-  this animation loops works by labelling components using different tags. With a _MultiTagAnimationLoop_, the loop of one simulation step is the same as the _DefaultAnimationLoop_, except that one tag is solved after another, given a list of tags:
+  this animation loop works by labelling components using different tags. With a _MultiTagAnimationLoop_, the loop of one simulation step is the same as the _DefaultAnimationLoop_, except that one tag is solved after another, given a list of tags:
 
     1. build and solve all linear systems in the scene
       1. for all components and nodes using the first tag
@@ -33,7 +33,7 @@ Several _AnimationLoops_ are already available in SOFA:
     3. update the mappings
     4. update the bounding box : this means that the visualization is done once at each time step _dt=0.01_
 
-* [_FreeAnimationLoop_](https://www.sofa-framework.org/community/doc/using-sofa/components/animationloop/freemotionanimationloop/):
+* [_FreeMotionAnimationLoop_](https://www.sofa-framework.org/community/doc/using-sofa/components/animationloop/freemotionanimationloop/):
   this animation loop is used for simulation involving constraints and collisions. With a _FreeAnimationLoop_, the loop of one simulation step follows:
   
     1. build and solve all linear systems in the scene without constraints and save the "free" values of the dofs
