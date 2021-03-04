@@ -74,7 +74,7 @@ The ExtraMonitor Component, a Monitor extension
 -----------------------------------------------
 
 The ExtraMonitor component gives you the ability to use everything that
-it is in Monitor with some Extra stuff. IIt has been written to allow to
+it is in Monitor with some Extra stuff. It has been written to allow to
 compute, for example, the resultant of the forces of all the dofs of a
 MechanicalObject, or the minimum displacement of a region...
 
