@@ -78,7 +78,7 @@ The broad phase uses a set of root collision models in order to compute potentia
 
 The narrow phase of detection can rely on collision models to detect a contact. Note that different collision models are available to detect a contact:
 
-  - using [primitives](https://www.sofa-framework.org/community/doc/components/collision/collision-models/) (mostly used): point, line, triangle, sphere, cube, cylinder or oriented bounding boxes (OBB)
+  - using [primitives](https://www.sofa-framework.org/community/doc/components/collisions/collisionmodels/) (mostly used): point, line, triangle, sphere, cube, cylinder or oriented bounding boxes (OBB)
   - using distance grid, associated to each object in the scene
   - using ray casting: that send rays in the volume of simulation to compute a volume of intersection
 
