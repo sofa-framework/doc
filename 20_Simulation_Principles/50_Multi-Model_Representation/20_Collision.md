@@ -74,35 +74,33 @@ The first step of the pipeline is the so-called broad-phase. It aims at quickly 
 The broad phase uses a set of root collision models in order to compute potentially colliding pairs. It can for instance rely on the bounding boxes of each object with a collision model, thus efficiently checking whether boxes collide or not. This step does not state if pairs of objects collide, but it detects if they *potentially* collide. As output, the broad phase returns pairs of potentially colliding collision models.
 
 
-### Narrow phase
+### Narrow phase: detect intersection
 
-The narrow phase of detection can rely on different intersection methods that use collision models to detect a contact.Note that different collision models are available to detect a contact:
+The narrow phase of detection can rely on collision models to detect a contact. Note that different collision models are available to detect a contact:
 
-  - using primitives: point, line, triangle, sphere, cube, cylinder or oriented bounding boxes (OBB)
+  - using [primitives](https://www.sofa-framework.org/community/doc/components/collision/collision-models/) (mostly used): point, line, triangle, sphere, cube, cylinder or oriented bounding boxes (OBB)
   - using distance grid, associated to each object in the scene
   - using ray casting: that send rays in the volume of simulation to compute a volume of intersection
 
 
-### Intersection methods
-
 All collision detection methods will rely on intersection methods during the broad and/or narrow phase in order to assess if the models do collide. Given 2 collision elements, these intersection methods test if an intersection is possible.
-Available intersection methods are:
 
-- [DiscreteIntersection](https://www.sofa-framework.org/community/doc/components/collision/intersection-methods/)
-- [MinProximityIntersection](https://www.sofa-framework.org/community/doc/components/collision/intersection-methods/)
-- [NewProximityIntersection](https://www.sofa-framework.org/community/doc/components/collision/intersection-methods/)
-- [MeshNewProximityIntersection](https://www.sofa-framework.org/community/doc/components/collision/intersection-methods/)
-- [LocalMinDistance](https://www.sofa-framework.org/community/doc/components/collision/intersection-methods/)
-- [FFDDistanceGridDiscreteIntersection](https://www.sofa-framework.org/community/doc/components/collision/intersection-methods/)
-- [RigidDistanceGridDiscreteIntersection](https://www.sofa-framework.org/community/doc/components/collision/intersection-methods/)
-- [RayNewProximityIntersection](https://www.sofa-framework.org/community/doc/components/collision/intersection-methods/)
-- [RayDiscreteIntersection](https://www.sofa-framework.org/community/doc/components/collision/intersection-methods/)
+In SOFA, a proximity method can be used to detect contact when two objects are getting closer from another. Evalutating this proximity allows for a better anticipation of the contact, i.e. more stable contact. The two main implementations in SOFA are:
+
+- [MinProximityIntersection](https://www.sofa-framework.org/community/doc/components/collision/minproximityintersection/)
+- [LocalMinDistance](https://www.sofa-framework.org/community/doc/components/collision/localmindistance/)
 
 
-### Output of the detection
+Discrete intersection methods also exist to compute intersection only if models are already intersecting. These are using distance grid or ray: FFDDistanceGridDiscreteIntersection, RigidDistanceGridDiscreteIntersection, RayNewProximityIntersection, RayDiscreteIntersection.
+
+
+
+Output of the detection
+-----------------------
 
 As output, the collision detection (further to the narrow phase) returns pairs of geometric primitives with the corresponding collision points. The collision information is saved in a vector of DetectionOutput. This data structure is a generic description of a contact point, used for most collision models except special cases such as GPU-based collisions.
-Each contact point is described by :
+
+Each contact point is described by a DetectionOutput made up of:
 
 - elem: pair of colliding elements.
 - id: unique id of the contact for the given pair of collision models. This id is used to filter redundant contacts (only the contact with the smallest distance is kept), and to store persistant data over time for the response.
@@ -118,7 +116,7 @@ Collision response
 
 The step of collision response is triggered within the ```doCollisionResponse()``` function in the CollisionPipeline. The colliding models returned by the narrow phase are finally given to the ContactManager, which creates contact interactions of various types based on customizable rules. You can specify which one you want to use in the DefaultContactManager. Response has been implemented based on:
 
-- the penalty method, efficient but subject to instability if not properly tuned
+- the penality method, efficient but subject to instability if not properly tuned
 - the persistent method
 - or on constraints using [Lagrange multipliers](https://www.sofa-framework.org/community/doc/simulation-principles/constraint/lagrange-constraint/), and is processed by the solvers together with the other forces and constraints.
 

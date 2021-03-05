@@ -11,6 +11,23 @@ The _MechanicalState_ saves all the state vectors, namely the degrees of freedom
 
 **Note**: the SOFA framework was historically focused on soft tissue mechanics. Therefore, the semantic is strongly related to mechanics. In the _MechanicalObject_, the state vectors (DOFs) are stored in the field named _position_, their first derivatives in the _velocity_ field and their second derivatives in the _acceleration_ field.
 
+
+
+Templates
+---------
+
+The state vectors can contain different type of data depending on the degrees of freedom (DOFs). In order to provide generic implementation, components (C++ classes) in SOFA will be templated on **DataTypes**.
+
+SOFA supports several DataTypes corresponding to the DOFs:
+
+*   _Vec1f_ or _Vec1d_: 1 DOF per node is used. For instance, this can be used for thermodynamics (temperature field). Vec1f denotes vectors of float and Vec1d denotes the use of doubles.
+*   _Vec2f_ or _Vec2d_: 2 DOFs per node are used. For instance, this can be used for cardiac electrophysiology.
+*   _Vec3f_ or _Vec3d_: 3 DOFs per node are used. For instance, this can be used for mechanics.
+*   _Vec6f_ or _Vec6d_: 6 DOFs per node are used. For instance, this can be used for beam simulations (3 translations and 3 rotations).
+*   _Rigid_: this DataType corresponds to 7 DOFs per node, this can be used to simulate rigid bodies (3 positions and 1 quaternion).
+
+
+
 In the _MechanicalObject_, each of these state vectors can be accessed using (scattered) state vectors, called multi-vectors or MultiVec. 
 
 
@@ -63,23 +80,6 @@ public:
 ...
 };
 ```
-
-
-
-Templates
----------
-
-The state vectors can contain different type of data depending on the degrees of freedom (DOFs). In order to provide generic implementation, components (C++ classes) in SOFA will be templated on **DataTypes**.
-
-SOFA supports several DataTypes corresponding to the DOFs:
-
-*   _Vec1f_ or _Vec1d_: 1 DOF per node is used. For instance, this can be used for thermodynamics (temperature field). Vec1f denotes vectors of float and Vec1d denotes the use of doubles.
-*   _Vec2f_ or _Vec2d_: 2 DOFs per node are used. For instance, this can be used for cardiac electrophysiology.
-*   _Vec3f_ or _Vec3d_: 3 DOFs per node are used. For instance, this can be used for mechanics.
-*   _Vec6f_ or _Vec6d_: 6 DOFs per node are used. For instance, this can be used for beam simulations (3 translations and 3 rotations).
-*   _Rigid_: this DataType corresponds to 7 DOFs per node, this can be used to simulate rigid bodies (3 positions and 1 quaternion).
-
-
 
 
 

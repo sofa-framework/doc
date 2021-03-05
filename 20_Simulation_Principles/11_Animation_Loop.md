@@ -8,37 +8,30 @@ Several _AnimationLoops_ are already available in SOFA:
 * [_DefaultAnimationLoop_](https://www.sofa-framework.org/community/doc/using-sofa/components/animationloop/defaultanimationloop/):
   this is the default animation loop as the name indicates! This animation loop is included by default at the root node of the graph, if no animation loop is specified in the scene. With a _DefaultAnimationLoop_, the loop of one simulation step follows:
 
-    1. build and solve all linear systems in the scene : collision and time integration to compute the new values of the dofs
-    2. update the context (dt++)
-    3. update the mappings
-    4. update the bounding box (volume covering all objects of the scene)
+    1. collision detection is triggered through the collision pipeline (if any)
+    2. solve the physics in the scene by triggering the integration scheme, taking the constraint, collision into account
+    3. update the system (new values of the dofs), the context (dt++), the mappings and the bounding box (volume covering all objects of the scene)
 
 * _MultiTagAnimationLoop_:
   this animation loops works by labelling components using different tags. With a _MultiTagAnimationLoop_, the loop of one simulation step is the same as the _DefaultAnimationLoop_, except that one tag is solved after another, given a list of tags:
 
-    1. build and solve all linear systems in the scene
-      1. for all components and nodes using the first tag
-      2. then the second tag
-      ... and so on
-    2. update the context
-    3. update the mappings
-    4. update the bounding box
+    1. For each tag defined:
+      1. collision detection is triggered through the collision pipeline (if any)
+      2. solve the physics in the scene by triggering the integration scheme, taking the constraint, collision into account
+    2. update the system (new values of the dofs), the context (dt++), the mappings and the bounding box (volume covering all objects of the scene)
 
 * [_MultiStepAnimationLoop_](https://www.sofa-framework.org/community/doc/using-sofa/components/animationloop/multistepanimationloop/):
-  given one time step, this animation loop allows for running several collision (_C_) and several integration time in one step (_I_), where _C_ and _I_ can be different. If the time step is _dt=0.01_, the number of collision step _C=2_ and the number of integration step is _I=4_, the loop of one simulation step follows:
+  given one time step, this animation loop allows for running several collision (_C_ being the number of collision steps) and several integration time in one step (_I_ being the number of integration time steps), where _C_ and _I_ can be different. If the global time step is noted _dt_, the time integration time is actually: _dt' = dt / (C.I)_. The loop in one animation step is:
   
-    1. compute _C=2_ times the collision pipeline (2 collision steps)
-      * for each collision step, solve _I=4_ times the linear system due to integration. The integration time step is therefore _dt' = dt / (C.I) = 0.00125_ (8 integration steps).
-    2. update the context
-    3. update the mappings
-    4. update the bounding box : this means that the visualization is done once at each time step _dt=0.01_
+    1. compute _C_ times the collision pipeline within one time step _dt_
+    2. For each collision step, solve _I_ times the linear system for time integration using the time step _dt'_
+    3. update the context, the mappings, the bounding box (the visualization is done once at each time step _dt_)
 
 * [_FreeAnimationLoop_](https://www.sofa-framework.org/community/doc/using-sofa/components/animationloop/freemotionanimationloop/):
   this animation loop is used for simulation involving constraints and collisions. With a _FreeAnimationLoop_, the loop of one simulation step follows:
   
     1. build and solve all linear systems in the scene without constraints and save the "free" values of the dofs
-    2. collisions are computed
-    3. constraints are finally used to correct the "free" dofs in order to take into account the collisions & constraints
-    4. update the mappings
-    5. update the bounding box
+    2. collision detection is computed thus generating constraints
+    3. constraints are solved as one system to compute a correction term taking into account the collisions & constraints
+    4. update the mappings, the bounding box
 
