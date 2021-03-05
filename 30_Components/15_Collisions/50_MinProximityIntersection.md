@@ -1,7 +1,7 @@
 MinProximityIntersection
 ========================
 
-This proximity method:
+This proximity method for [intersection detection](https://www.sofa-framework.org/community/doc/simulation-principles/multi-model-representation/collision/#narrow-phase-detect-intersection):
 
 - detects a possible contact as soon as pair of collision elements are close to each other (distance smaller than the alarmDistance)
 - and creates contact (aka DetectionOutput) when the distance is lower than contactDistance.
@@ -27,8 +27,11 @@ Data
 
 The intersection methods include the following data:
 
--   **alarmDistance**: maximum distance between collision elements for wich a contact is created
--   **contactDistance** : parameter used in the contact creation
+-   **alarmDistance**: threshold distance below which the collision pipeline detects the models as getting in proximity. This distance can be increased for objects with high curvatures
+-   **contactDistance** : threshold distance below which a contact will be created (in DetectionOuput) to generate a contact response
+
+
+
 
 and it allows for activating tests in the primitive checks:
 

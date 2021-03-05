@@ -1,7 +1,7 @@
 LocalMinDistance
 ================
 
-This proximity method is close to the previous [MinProximityIntersection](https://www.sofa-framework.org/community/doc/components/collision/minproximityintersection/) but in addition, it filters the list of DetectionOutput to keep only the contacts with the local minimal distance.
+This proximity method is an [intersection detection](https://www.sofa-framework.org/community/doc/simulation-principles/multi-model-representation/collision/#narrow-phase-detect-intersection) close to the previous [MinProximityIntersection](https://www.sofa-framework.org/community/doc/components/collision/minproximityintersection/) but in addition, it filters the list of DetectionOutput to keep only the contacts with the local minimal distance.
 
 To find an optimal number of contact points, the LocalMinDistance computes cones on all nodes of the collision model. A cone is the combination of the orthogonal directions/planes of the neighboring lines/surfaces.
 
