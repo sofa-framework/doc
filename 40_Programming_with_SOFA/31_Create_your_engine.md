@@ -15,7 +15,7 @@ Engines can be “chained”, by giving an engine an input data that is the outp
 ```
 
 These engine components will trigger an action when notified of a change in an input data field, and warn other engines, that take as an input the output of this engine, that the data has been modified.
-In order to implement such a component, your class must inherit [`sofa::core::DataEngine` class]( https://www.sofa-framework.org/api/SOFA/classsofa_1_1core_1_1_data_engine.html "DataEngine").
+In order to implement such a component, your class must inherit [`sofa::core::DataEngine` class]( https://www.sofa-framework.org/api/master/sofa/html/classsofa_1_1core_1_1_data_engine.html "DataEngine").
 
 The interface of the DataEngine class inherits BaseObject's, and adds an additional `doUpdate()` method. Input and output fields must be added to the engine in the init() method by respectively calling `addInput(myInputData)` and `addOutput(myOutputData)`:
 
