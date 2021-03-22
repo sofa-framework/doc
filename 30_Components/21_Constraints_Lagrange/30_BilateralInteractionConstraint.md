@@ -48,7 +48,8 @@ Example
 This component is used as follows in XML format:
 
 ``` xml
-<BilateralInteractionConstraint template="Vec3d" object1="@CUBE_2/Constraints/points" object2="@CUBE_4/Constraints/points" first_point="1" second_point="0" />```
+<BilateralInteractionConstraint template="Vec3d" object1="@CUBE_2/Constraints/points" object2="@CUBE_4/Constraints/points" first_point="1" second_point="0" />
+```
 
 or using Python3:
 
