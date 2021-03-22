@@ -23,7 +23,7 @@ To explain the API associated to the ForceField, we will consider the system res
 
 where <img class="latex" src="https://latex.codecogs.com/png.latex?x" title="Position" /> is the position (degrees of freedom), <img class="latex" src="https://latex.codecogs.com/png.latex?v" title="Velocity" /> is the velocity (derivative in time of the degrees of freedom) and <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{M}" title="Mass matrix" /> is the mass matrix.
 
-As it is explained in the section [Integration Scheme](https://www.sofa-framework.org/community/doc/main-principles/system-resolution/integration-schemes/), the choice of the temporal scheme will influence the way the linear system <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{A}x=b" title="Linear system" /> is built.
+As it is explained in the section [Integration Scheme](https://www.sofa-framework.org/community/doc/simulation-principles/system-resolution/integration-scheme/), the choice of the temporal scheme will influence the way the linear system <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{A}x=b" title="Linear system" /> is built.
 
 
 ### Explicit force
