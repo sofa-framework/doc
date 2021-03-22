@@ -4,8 +4,8 @@ Constraint based on Lagrange Multipliers
 SOFA allows the use of Lagrange multipliers to handle complex constraints, such as contacts and joints between moving objets that can not be straightforwarly implemented using [projection matrices](https://www.sofa-framework.org/community/doc/main-principles/constraint/projective-constraint/).
 
 
-Constraint problem
-------------------
+General presentation of the constraint problem
+----------------------------------------------
 
 To solve the dynamic of two constrained objects, we use a Lagrange Multipliers approach and a single linearization by time step. From the [physical system](https://www.sofa-framework.org/community/doc/simulation-principles/multi-model-representation/physics-integration/) to solve, the constraint problem can be expressed with the linear system as:
 
@@ -33,10 +33,18 @@ Note that <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{H
 However, this system will not be solved diretly. It will be decomposed into two steps:
 
 
-**Step 1**: interacting objects are solved independently while setting <img class="latex" src="https://latex.codecogs.com/png.latex?\lambda=0" title="Lagrange multipliers" />. We obtain what we call the free motion <img class="latex" src="https://latex.codecogs.com/png.latex?\Delta%20v_1^{free}" title="Free motion 1" /> and <img class="latex" src="https://latex.codecogs.com/png.latex?\Delta%20v_2^{free}" title="Free motion 2" /> for each object.
+**Step 1**: Each interacting object is solved independently, i.e. as no constraint law is defined, while setting <img class="latex" src="https://latex.codecogs.com/png.latex?\lambda=0" title="Lagrange multipliers" />. This so-called free motion aims at finding the change in velocity <img class="latex" src="https://latex.codecogs.com/png.latex?\Delta%20v_1^{free}" title="Free motion 1" /> and <img class="latex" src="https://latex.codecogs.com/png.latex?\Delta%20v_2^{free}" title="Free motion 2" /> for each object from the resolution of:
+
+- <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{A}_1\Delta%20v_1^{free}=b_1" title="Free motion of object1" />
+- <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{A}_2\Delta%20v_2^{free}=b_2" title="Free motion of object2" />
 
 
-**Step 2**: now, the constraints are taken into account while considering <img class="latex" src="https://latex.codecogs.com/png.latex?b_1=b_2=0" title="No force condition" />. The constrained system can therefore be presented as:
+**Step 2**: now, the constraints are taken into account while considering <img class="latex" src="https://latex.codecogs.com/png.latex?b_1=b_2=0" title="No force condition" />. We are looking for a corrective change in velocity  <img class="latex" src="https://latex.codecogs.com/png.latex?\Delta%20v_1^{corr}" title="Corrective motion 1" /> and <img class="latex" src="https://latex.codecogs.com/png.latex?\Delta%20v_2^{corr}" title="Corrective motion 2" /> for each object from the resolution of:
+
+- <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{A}_1\Delta%20v_1^{corr}=dt\mathbf{H}^T_1\lambda" title="Free motion of object1" />
+- <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{A}_2\Delta%20v_2^{corr}=dt\mathbf{H}^T_2\lambda" title="Free motion of object2" />
+
+Defining <img class="latex" src="https://latex.codecogs.com/png.latex?\lambda" title="Lagrange multipliers" /> the Lagrange multipliers, as the forces to be applied in the constraint space to satisfy all constraint laws, the constrained system can therefore be presented as:
 
 <img class="latex" src="https://latex.codecogs.com/png.latex?\dot{\delta}=\mathbf{H}_1%20v_1^{free}-\mathbf{H}_2%20v_2^{free}+dt\left[\mathbf{H}_1\mathbf{A}_1^{-1}\mathbf{H}_1^T+\mathbf{H}_2\mathbf{A}_2^{-1}\mathbf{H}_2^T\right]\lambda" title="Constraint problem" />
 
@@ -45,8 +53,8 @@ where <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{W}=dt
 Finally, the resolution of the constraint problem is done using the [Gauss-Seidel algorithm](https://en.wikipedia.org/wiki/Gauss%E2%80%93Seidel_method). After resolution of this new linear system, the motion can be corrected as follows:
 
 - <img class="latex" src="https://latex.codecogs.com/png.latex?x_1=x_1^{free}+dt\cdot%20\Delta%20v_1^{cor}" title="Correction1" />
-- <img class="latex" src="https://latex.codecogs.com/png.latex?x_1=x_2^{free}+dt\cdot%20\Delta%20v_2^{cor}" title="Correction2" />
-with <img class="latex" src="https://latex.codecogs.com/png.latex?\Delta%20v_1^{cor}=dt\mathbf{A}_1^{-1}\mathbf{H}_1\lambda" title="Corrective displacement1" /> and <img class="latex" src="https://latex.codecogs.com/png.latex?\Delta%20v_2^{cor}=dt\mathbf{A}_2^{-1}\mathbf{H}_2\lambda" title="Corrective displacement2" />
+- <img class="latex" src="https://latex.codecogs.com/png.latex?x_1=x_2^{free}+dt\cdot%20\Delta%20v_2^{cor}" title="Correction2" /> 
+  with <img class="latex" src="https://latex.codecogs.com/png.latex?\Delta%20v_1^{cor}=dt\mathbf{A}_1^{-1}\mathbf{H}_1\lambda" title="Corrective displacement1" /> and <img class="latex" src="https://latex.codecogs.com/png.latex?\Delta%20v_2^{cor}=dt\mathbf{A}_2^{-1}\mathbf{H}_2\lambda" title="Corrective displacement2" />
 
 
 FreeAnimationLoop
