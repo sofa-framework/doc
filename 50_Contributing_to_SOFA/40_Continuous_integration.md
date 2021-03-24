@@ -2,7 +2,7 @@ Each commit or pull-request is built and tested using Jenkins.
 You can find the Jenkins platform for continuous integration here:
 
 <p style="text-align: center;">
-[**Continuous Integration Platform**](https://ci.inria.fr/sofa-ci/)
+[**Continuous Integration Platform**](https://ci.inria.fr/sofa-ci-dev/)
 </p>
 
 A dashboard presents all the SOFA builds.
