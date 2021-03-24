@@ -306,11 +306,20 @@ the code is bug-free.
 Running the tests
 -----------------
 
+### Command line
+
 Once you build every tests you want, simply go in your build directory
 and execute the following command in order to launch the whole test
 suite:
 
 ` ctest --verbose`
+
+### Visual Studio
+
+If you use Visual Studio, the tests are integrated in the IDE, in the 
+**Test Explorer** window. See the [documentation](https://docs.microsoft.com/en-us/visualstudio/test/how-to-use-ctest-for-cpp?view=vs-2019).
+
+![](https://github.com/sofa-framework/doc/blob/master/images/contributingtoSOFA/sofa_tests_vs.png?raw=true")
 
 How to create tests in your plugin
 ----------------------------------

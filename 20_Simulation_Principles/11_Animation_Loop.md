@@ -13,7 +13,7 @@ Several _AnimationLoops_ are already available in SOFA:
     3. update the system (new values of the dofs), the context (dt++), the mappings and the bounding box (volume covering all objects of the scene)
 
 * _MultiTagAnimationLoop_:
-  this animation loops works by labelling components using different tags. With a _MultiTagAnimationLoop_, the loop of one simulation step is the same as the _DefaultAnimationLoop_, except that one tag is solved after another, given a list of tags:
+  this animation loop works by labelling components using different tags. With a _MultiTagAnimationLoop_, the loop of one simulation step is the same as the _DefaultAnimationLoop_, except that one tag is solved after another, given a list of tags:
 
     1. For each tag defined:
       1. collision detection is triggered through the collision pipeline (if any)
@@ -27,7 +27,7 @@ Several _AnimationLoops_ are already available in SOFA:
     2. For each collision step, solve _I_ times the linear system for time integration using the time step _dt'_
     3. update the context, the mappings, the bounding box (the visualization is done once at each time step _dt_)
 
-* [_FreeAnimationLoop_](https://www.sofa-framework.org/community/doc/using-sofa/components/animationloop/freemotionanimationloop/):
+* [_FreeMotionAnimationLoop_](https://www.sofa-framework.org/community/doc/using-sofa/components/animationloop/freemotionanimationloop/):
   this animation loop is used for simulation involving constraints and collisions. With a _FreeAnimationLoop_, the loop of one simulation step follows:
   
     1. build and solve all linear systems in the scene without constraints and save the "free" values of the dofs
