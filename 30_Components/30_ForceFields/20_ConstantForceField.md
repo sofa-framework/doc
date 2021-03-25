@@ -1,31 +1,27 @@
 ConstantForceField
 ==================
 
-This component belongs to the category of [ForceField](https://www.sofa-framework.org/community/doc/simulation-principles/multi-model-representation/forcefield/). The page is still incomplete, but give us a bit of time to work on it!
-
-Description of the component ...
-
-What it is made for, what it does
+This component belongs to the category of [ForceField](https://www.sofa-framework.org/community/doc/simulation-principles/multi-model-representation/forcefield/). The ConstantForceField is a simple force field applying the same constant force on each node. This force field is not integrated over the domain of our object, but simply distributed over the number of nodes.
 
 
+<a href="https://github.com/sofa-framework/doc/blob/master/images/forcefield/ConstantForceField.png?raw=true"><img src="https://github.com/sofa-framework/doc/blob/master/images/forcefield/ConstantForceField.png?raw=true" title="Nodal constant force over a liver mesh"/></a>
 
-Sequence diagram
-----------------
 
 
 Data  
 ----
 
+- **indices**: list of node indices where the forces are applied and distributed
+- **force**: single value corresponding to the constant force applied on each node
+- **totalForce**: single value corresponding to total force for all points, i.e. the sum of the forces distributed uniformly over the nodes
+- **forces**: vector containing the force amplitude applied at each node
 
 
 Usage
 -----
 
-How to use it, what **required** component, case
+As a Forcefield, the ConstantForceField requires a **MechanicalObject** and the associated **solvers** (integration scheme and linear solver), as well as a **PointSetTopologyContainer**.
 
-In which case it works, in which case it doesn't
-
-Limitations
 
 Example
 -------
@@ -33,13 +29,13 @@ Example
 This component is used as follows in XML format:
 
 ``` xml
-<ConstantForceField data_field="X" />
+<ConstantForceField indices="0 1 2" forces="-1 -1 0   1 -1 0   1 1 0" 
 ```
 
 or using Python3:
 
 ``` python
-node.addObject('ConstantForceField', data_field='X')
+node.addObject('ConstantForceField', indices=[0 1 2], forces=[[-1 -1 0] [1 -1 0]   [1 1 0]]")
 ```
 
 With a description of each data
