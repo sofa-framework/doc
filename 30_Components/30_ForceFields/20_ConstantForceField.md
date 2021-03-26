@@ -35,7 +35,7 @@ This component is used as follows in XML format:
 or using SofaPython3:
 
 ``` python
-node.addObject('ConstantForceField', indices=[0 1 2], forces=[[-1 -1 0] [1 -1 0] [1 1 0]]")
+node.addObject('ConstantForceField', indices=[0 1 2], forces=[[-1 -1 0] [1 -1 0] [1 1 0]])
 ```
 
 With a description of each data
