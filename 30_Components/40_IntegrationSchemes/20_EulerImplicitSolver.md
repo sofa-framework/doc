@@ -111,7 +111,7 @@ This component is used as follows in XML format:
 <EulerImplicitSolver name="ODEsolver" rayleighStiffness="0.1" rayleighMass="0.1" />
 ```  
  
-or using Python3:  
+or using SofaPython3:  
  
 ``` python  
 node.addObject('EulerImplicitSolver', name='ODEsolver', rayleighStiffness='0.1' rayleighMass='0.1')  

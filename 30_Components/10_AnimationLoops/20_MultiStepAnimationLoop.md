@@ -24,7 +24,7 @@ This component is used as follows in XML format:
 <MultiStepAnimationLoop collisionSteps="10" integrationSteps="2" />
 ```
 
-or using Python3:
+or using SofaPython3:
 
 ``` python
 node.addObject('MultiStepAnimationLoop', collisionSteps='10', integrationSteps='2')

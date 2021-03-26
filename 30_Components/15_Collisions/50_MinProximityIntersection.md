@@ -28,7 +28,7 @@ Data
 The intersection methods include the following data:
 
 -   **alarmDistance**: threshold distance below which the collision pipeline detects the models as getting in proximity. This distance can be increased for objects with high curvatures
--   **contactDistance** : threshold distance below which a contact will be created (in DetectionOuput) to generate a contact response
+-   **contactDistance** : threshold distance below which a contact will be created (in DetectionOuput) to generate a contact response
 
 
 
@@ -51,8 +51,8 @@ The MinProximityIntersection must be placed right after the CollisionPipeline an
 Additional information
 ----------------------
 
-- collision models in the scene will have the data **proximity** corresponding to an enlargement of the collision model, i.e., value added to the alarmDistance and the contactDistance and also when building AABBs in the broad phase
-- a different alarmDistance and contactDistance can be specified for each CollisionModel by setting alarmDistance and contactDistance to zero and changing the proximity parameter
+- collision models in the scene will have the data **proximity** corresponding to an enlargement of the collision model, i.e., value added to the alarmDistance and the contactDistance and also when building AABBs in the broad phase
+- a different alarmDistance and contactDistance can be specified for each CollisionModel by setting alarmDistance and contactDistance to zero and changing the proximity parameter
 
 
 Example
@@ -64,7 +64,7 @@ This component is used as follows in XML format:
 <MinProximityIntersection name="Proximity" alarmDistance=".5" contactDistance=".3" useLinePoint="false" />
 ```
 
-or using Python3:
+or using SofaPython3:
 
 ``` python
 node.addObject('MinProximityIntersection', name='Proximity', alarmDistance='.5', contactDistance='.3', useLinePoint='false')

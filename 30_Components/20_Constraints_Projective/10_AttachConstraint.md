@@ -44,7 +44,7 @@ This component is used as follows in XML format:
 <AttachConstraint name="AttachConstraint" object1="@M1" object2="@M2" indices1="0 1 2" indices2="10 11 12" constraintFactor="1 1 1"/>
 ```
 
-or using Python3:
+or using SofaPython3:
 
 ``` python
 node.addObject('AttachConstraint', object1="@M1", object2="@M2", indices1="0 1 2", indices2="10 11 12", constraintFactor="1 1 1")

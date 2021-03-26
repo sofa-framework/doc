@@ -25,7 +25,7 @@ This component is used as follows in XML format:
 <FreeMotionAnimationLoop />
 ```
 
-or using Python3:
+or using SofaPython3:
 
 ``` python
 node.addObject('FreeMotionAnimationLoop')

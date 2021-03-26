@@ -47,7 +47,7 @@ This component is used as follows in XML format:
 <ShewchukPCGLinearSolver iterations="1000" tolerance="1e-9" preconditioners="LUSolver" build_precond="1" update_step="1000"/>
 ```
 
-or using Python3:
+or using SofaPython3:
 
 ``` python
 node.addObject('ShewchukPCGLinearSolver', iterations='1000', tolerance='1e-9', preconditioners='LUSolver'. build_precond='1', update_step='1000')

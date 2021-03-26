@@ -62,7 +62,7 @@ This component is used as follows in XML format:
 <StaticSolver newton_iterations="10" correction_tolerance_threshold="1e-4" residual_tolerance_threshold="1e-2" should_diverge_when_residual_is_growing="0" />  
 ```  
  
-or using Python3:  
+or using SofaPython3:  
  
 ``` python  
 node.addObject('StaticSolver', newton_iterations='10', correction_tolerance_threshold='1e-4', residual_tolerance_threshold='1e-2', should_diverge_when_residual_is_growing='0')  

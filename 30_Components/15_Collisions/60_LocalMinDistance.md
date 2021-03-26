@@ -29,7 +29,7 @@ Data
 The intersection methods include the following data:
 
 -   **alarmDistance**: maximum distance between collision elements for wich a contact is created
--   **contactDistance** : parameter used in the contact creation
+-   **contactDistance** : parameter used in the contact creation
 
 
 Usage
@@ -41,8 +41,8 @@ The MinProximityIntersection must be placed right after the CollisionPipeline an
 Additional information
 ----------------------
 
-- collision models in the scene will have the data **proximity** corresponding to an enlargement of the collision model, i.e., value added to the alarmDistance and the contactDistance and also when building AABBs in the broad phase
-- a different alarmDistance and contactDistance can be specified for each CollisionModel by setting alarmDistance and contactDistance to zero and changing the proximity parameter
+- collision models in the scene will have the data **proximity** corresponding to an enlargement of the collision model, i.e., value added to the alarmDistance and the contactDistance and also when building AABBs in the broad phase
+- a different alarmDistance and contactDistance can be specified for each CollisionModel by setting alarmDistance and contactDistance to zero and changing the proximity parameter
 
 
 
@@ -55,7 +55,7 @@ This component is used as follows in XML format:
 <LocalMinDistance name="LMD-proximity" alarmDistance="0.5" contactDistance="0.3" angleCone="0.0" />
 ```
 
-or using Python3:
+or using SofaPython3:
 
 ``` python
 node.addObject('LocalMinDistance', name='LMD-proximity', alarmDistance='.5', contactDistance='.3', angleCone='0.0')

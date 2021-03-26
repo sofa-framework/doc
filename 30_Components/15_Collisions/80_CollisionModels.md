@@ -44,7 +44,7 @@ This component is used as follows in XML format:
 <TriangleCollisionModel simulated="1" contactStiffness="100" selfCollision="0" group="1"/>
 ```
 
-or using Python3:
+or using SofaPython3:
 
 ``` python
 node.addObject('TriangleCollisionModel', simulated='1', contactStiffness='100', selfCollision='0', group='1')

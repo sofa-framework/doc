@@ -59,7 +59,7 @@ This component is used as follows in XML format:
 <NewmarkImplicitSolver rayleighMass="0.01" rayleighStiffness="0.01" />
 ```  
 
-or using Python3:
+or using SofaPython3:
 
 ``` python  
 node.addObject('NewmarkImplicitSolver', rayleighMass='0.01', rayleighStiffness='0.01')  

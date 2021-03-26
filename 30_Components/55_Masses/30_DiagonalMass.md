@@ -84,7 +84,7 @@ This component is used as follows in XML format:
 <DiagonalMass massDensity="1000" />
 ```
 
-or using Python3:
+or using SofaPython3:
 
 ``` python
 node.addObject('DiagonalMass', massDensity='1000')

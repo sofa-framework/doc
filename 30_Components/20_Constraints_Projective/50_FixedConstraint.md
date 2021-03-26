@@ -70,7 +70,7 @@ This component is used as follows in XML format:
 <FixedConstraint name="FixedConstraint" indices="3 39 64" />
 ```
 
-or using Python3:
+or using SofaPython3:
 
 ``` python
 node.addObject('FixedConstraint', indices='3 39 64')

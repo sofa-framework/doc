@@ -47,7 +47,7 @@ This component is used as follows in XML format:
 <EulerExplicitSolver name="odeExplicitSolver" />
 ```  
  
-or using Python3:  
+or using SofaPython3:  
  
 ``` python  
 node.addObject('EulerExplicitSolver', name='odeExplicitSolver')

@@ -47,7 +47,7 @@ This component is used as follows in XML format:
 <CGLinearSolver iterations="100" tolerance="1e-5" threshold="1e-5"/>
 ```
 
-or using Python3:
+or using SofaPython3:
 
 ``` python
 node.addObject('CGLinearSolver', iterations='100' tolerance='1e-5' threshold='1e-5')

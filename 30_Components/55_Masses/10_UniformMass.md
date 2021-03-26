@@ -83,7 +83,7 @@ This component is used as follows in XML format:
 <UniformMass totalMass="10" />
 ```
 
-or using Python3:
+or using SofaPython3:
 
 ``` python
 node.addObject('UniformMass', totalMass='10')

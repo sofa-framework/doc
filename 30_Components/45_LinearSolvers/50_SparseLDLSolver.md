@@ -57,7 +57,7 @@ This component is used as follows in XML format:
 <SparseLDLSolver  />
 ```
 
-or using Python3:
+or using SofaPython3:
 
 ``` python
 node.addObject('SparseLDLSolver')
