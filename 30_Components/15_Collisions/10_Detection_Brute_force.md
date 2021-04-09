@@ -20,7 +20,7 @@ computeBoundingTree(used_depth);
 
 ### Broad phase
 
-Once the BVH is created, the broad phase is ready to go. The hierarchy is browsed and the intersection between pairs of AABB is tested (using the [intersection method](https://www.sofa-framework.org/community/doc/main-principles/collisions/#intersection-methods) in the scene). In case the bounding volumes are detected as in collision, the algorithms either goes deeper in the hierarchy or adds the pair of collision models (AABB) in the ```cmPair``` vector if the bounding box is the last in the hierarchy, containing potentially colliding pairs. This is done in the ```addCollisionModel()``` function. The detection betweem bounding volumes (CubeModel) is performed using [intersection method](https://www.sofa-framework.org/community/doc/main-principles/collisions/#intersection-methods) defined in the scene.
+Once the BVH is created, the broad phase is ready to go. The hierarchy is browsed and the intersection between pairs of AABB is tested (using the [intersection method](https://www.sofa-framework.org/community/doc/main-principles/collisions/#intersection-methods) in the scene). In case the bounding volumes are detected as in collision, the algorithms either goes deeper in the hierarchy or adds the pair of collision models (AABB) in the ```cmPair``` vector if the bounding box is the last in the hierarchy, containing potentially colliding pairs. This is done in the ```addCollisionModel()``` function. The detection between bounding volumes (CubeModel) is performed using [intersection method](https://www.sofa-framework.org/community/doc/main-principles/collisions/#intersection-methods) defined in the scene.
 
 
 
