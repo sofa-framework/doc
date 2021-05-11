@@ -57,16 +57,16 @@ Finally, the resolution of the constraint problem is done using the [Gauss-Seide
   with <img class="latex" src="https://latex.codecogs.com/png.latex?\Delta%20v_1^{cor}=dt\mathbf{A}_1^{-1}\mathbf{H}_1\lambda" title="Corrective displacement1" /> and <img class="latex" src="https://latex.codecogs.com/png.latex?\Delta%20v_2^{cor}=dt\mathbf{A}_2^{-1}\mathbf{H}_2\lambda" title="Corrective displacement2" />
 
 
-FreeAnimationLoop
+FreeMotionAnimationLoop
 -----------------
 
-To solve such complex constraint-based interactions, the simulation requires a specific [animation loop](https://www.sofa-framework.org/community/doc/simulation-principles/animation-loop/): the [_FreeAnimationLoop_](https://www.sofa-framework.org/community/doc/components/animationloops/freemotionanimationloop/). This animation loop divides each simulation step into two successive resolution steps: the free motion and a corrective motion.
+To solve such complex constraint-based interactions, the simulation requires a specific [animation loop](https://www.sofa-framework.org/community/doc/simulation-principles/animation-loop/): the [_FreeMotionAnimationLoop_](https://www.sofa-framework.org/community/doc/components/animationloops/freemotionanimationloop/). This animation loop divides each simulation step into two successive resolution steps: the free motion and a corrective motion.
 
 
 #### Free motion ####
-The first step triggered by the _FreeAnimationLoop_ is the free motion step. It consists in the resolution of the unconstrained (free) system <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{A}x=b" title="Linear system" /> as described in the System Resolution section. Note that this free resolution may also include [projective constraints](https://www.sofa-framework.org/community/doc/main-principles/constraint/projective-constraint) that will be projected on the linear system. In the same way, [collision](https://www.sofa-framework.org/community/doc/main-principles/multi-model-representation/collisions) might also be detected and a response would be created.	
+The first step triggered by the _FreeMotionAnimationLoop_ is the free motion step. It consists in the resolution of the unconstrained (free) system <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{A}x=b" title="Linear system" /> as described in the System Resolution section. Note that this free resolution may also include [projective constraints](https://www.sofa-framework.org/community/doc/main-principles/constraint/projective-constraint) that will be projected on the linear system. In the same way, [collision](https://www.sofa-framework.org/community/doc/main-principles/multi-model-representation/collisions) might also be detected and a response would be created.	
 
-In the _solve()_ function of the _FreeAnimationLoop_, you will find the following functions responsible for the free motion:
+In the _solve()_ function of the _FreeMotionAnimationLoop_, you will find the following functions responsible for the free motion:
 ``` cpp
 ///Solve visitor is triggered to solve the free motion
 simulation::SolveVisitor freeMotion(params, dt, true);
@@ -85,7 +85,7 @@ The result of the resolution of the linear system <img class="latex" src="https:
 Once the free motion <img class="latex" src="https://latex.codecogs.com/png.latex?x_{free}" title="Free motion solution" /> has been computed, the animation loop will look for an existing _ConstraintSolver_ in the scene graph. If one is found, it will handle the entire constraint process: computation of the constraint system, resolution and application of the corrective motion ensuring valid constraints.
 
 
-In the _solve()_ function of the _FreeAnimationLoop_, the constraint resolution simply appears as:
+In the _solve()_ function of the _FreeMotionAnimationLoop_, the constraint resolution simply appears as:
 ``` cpp
 ///if a ConstraintSolver is in the simulation, trigger the constraint pipeline
 if (constraintSolver)
