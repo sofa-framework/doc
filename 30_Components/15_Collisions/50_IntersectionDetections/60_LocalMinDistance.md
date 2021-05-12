@@ -46,8 +46,8 @@ Additional information
 
 
 
-Example
--------
+Example of Usage
+----------------
 
 This component is used as follows in XML format:
 
