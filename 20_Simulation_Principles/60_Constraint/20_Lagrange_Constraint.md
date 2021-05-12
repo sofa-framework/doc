@@ -191,7 +191,7 @@ Moreover, you may find the class _ConstraintSolver_. This class does not impleme
 ConstraintCorrection
 --------------------
 
-As explained above, a _ConstraintCorrection_ is required in the simulation to define the way the compliance matrix <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{W}" title="Compliance matrix" /> is computed. Different classes of exist in SOFA corresponding to different approaches:
+As explained above, a _ConstraintCorrection_ is required in the simulation to define the way the compliance matrix <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{W}" title="Compliance matrix" /> is computed. Different classes of _ConstraintCorrection_ exist in SOFA corresponding to different approaches:
 
   - _UncoupledConstraintCorrection_: makes the approximation that the compliance matrix <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{W}" title="Compliance matrix" /> is diagonal. This is as strong assumption since a diagonal matrix means that all constraints are independent from each other. Note that you can directly specify the compliance matrix values within the Data field "compliance"
 
