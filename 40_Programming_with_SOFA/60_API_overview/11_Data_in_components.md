@@ -87,7 +87,7 @@ struct MyStruct
 Data configureStruct;
 ```
 
-While Data are passed to other components **by copy**, the stream operators are used to display a data field's content in the GUI. This data serialization method could also have other uses, such as sending data over the network, through the **Communication plugin** for instance.
+While Data are passed to other components **by copy**, the stream operators are used to display a data field's content in the GUI. This data serialization method could also have other uses, such as sending data over the network, through the Communication plugin for instance.
 
 
 
