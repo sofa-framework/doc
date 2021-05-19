@@ -140,6 +140,8 @@ step of the simulations. For a more complete description and how to use
 these informations, please go to the [Profiling
 part](https://www.sofa-framework.org/community/doc/profiling "Profiling").
 
+- **SOFA_WITH_DEVTOOLS** : enabling this option activates more features for developers such as more verbose log messages.
+It is enabled by default.
 
 - **SOFA\_NO\_EXTERN\_TEMPLATE** : this option (false by default) enables the use "extern template" in the
 code of SOFA. It will be always be activated for DLLs on windows. On
