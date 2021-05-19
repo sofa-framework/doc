@@ -35,7 +35,6 @@ This component is used as follows in XML format:
 ``` xml
 <QuadBendingFEMForceField data_field="X" />
 ```
-
 or using SofaPython3:
 
 ``` python
