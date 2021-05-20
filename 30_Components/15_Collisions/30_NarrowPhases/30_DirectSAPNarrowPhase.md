@@ -1,7 +1,7 @@
 Narrow Phase: Direct SAP Narrow Phase
 =====================================
 
-_DirectSAPNarrowPhase_ is a [narrow phase component](10_NarrowPhase.md), which is used in a [collision pipeline](../10_Pipelines/10_CollisionPipeline.md).
+_DirectSAPNarrowPhase_ is a [narrow phase component](10_NarrowPhase.md), which is used in a [collision pipeline](https://www.sofa-framework.org/community/doc/using-sofa/components/collisions/pipelines/collisionpipeline).
 The algorithm is based on the "[Sweep and Prune](https://en.wikipedia.org/wiki/Sweep_and_prune)" algorithm, noted SAP.
 
 The Algorithm

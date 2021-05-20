@@ -16,7 +16,7 @@ The collision pipeline follows three steps:
   2. a collision detection
   3. a collision response
 
-See a more detailed description of the collision pipeline [here](../../30_Components/15_Collisions/10_Pipelines/10_CollisionPipeline.md).
+See a more detailed description of the collision pipeline [here](https://www.sofa-framework.org/community/doc/using-sofa/components/collisions/pipelines/collisionpipeline).
 
 ### Sequence Diagram
 
@@ -95,7 +95,7 @@ Each contact point is described by a DetectionOutput made up of:
 Collision response
 ------------------
 
-The step of collision response is triggered in the [CollisionPipeline](../../30_Components/15_Collisions/10_Pipelines/10_CollisionPipeline.md).
+The step of collision response is triggered in the [CollisionPipeline](https://www.sofa-framework.org/community/doc/using-sofa/components/collisions/pipelines/collisionpipeline).
 The colliding models returned by the [narrow phase](../../30_Components/15_Collisions/30_NarrowPhases/10_NarrowPhase.md) are finally given to the ContactManager, which creates contact interactions of various types based on customizable rules. You can specify which one you want to use in the DefaultContactManager. Response has been implemented based on:
 
 - the penality method, efficient but subject to instability if not properly tuned

@@ -1,7 +1,7 @@
 Broad Phase Components
 ======================
 
-The broad phase collision detection components are executed in a [collision pipeline](../10_Pipelines/10_CollisionPipeline.md).
+The broad phase collision detection components are executed in a [collision pipeline](https://www.sofa-framework.org/community/doc/using-sofa/components/collisions/pipelines/collisionpipeline).
 
 Introduction
 ============
@@ -65,7 +65,7 @@ After the execution of the broad phase, the list of potential colliding pairs is
 ```cpp
 sofa::helper::vector< CollisionModelPair > BroadPhaseDetection::cmPairs;
 ```
-Finally, the [collision pipeline](../10_Pipelines/10_CollisionPipeline.md) provides this list to a [narrow phase collision detection](../30_NarrowPhases/10_NarrowPhase.md).
+Finally, the [collision pipeline](https://www.sofa-framework.org/community/doc/using-sofa/components/collisions/pipelines/collisionpipeline) provides this list to a [narrow phase collision detection](../30_NarrowPhases/10_NarrowPhase.md).
 
 Examples of Components
 ======================

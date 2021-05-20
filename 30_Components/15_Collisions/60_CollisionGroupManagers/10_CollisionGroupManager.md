@@ -1,7 +1,7 @@
 Collision Group Managers
 ========================
 
-The collision group manager components are used in a [collision pipeline](../10_Pipelines/10_CollisionPipeline.md).
+The collision group manager components are used in a [collision pipeline](https://www.sofa-framework.org/community/doc/using-sofa/components/collisions/pipelines/collisionpipeline).
 
 The role of a collision group manager is to find and merge solvers for a contact, i.e. two different objects in collision, into groups.
 The term 'group' refers to a group of integration components.
@@ -33,13 +33,13 @@ Interaction with Other Components
 ==============
 
 A collision group manager is optional in a simulation scene.
-A [collision pipeline](../10_Pipelines/10_CollisionPipeline.md) uses it if one is defined in the scene.
-It is usually a good practice to place the group manager near the [collision pipeline](../10_Pipelines/10_CollisionPipeline.md), at the same level (not in a child node).
+A [collision pipeline](https://www.sofa-framework.org/community/doc/using-sofa/components/collisions/pipelines/collisionpipeline) uses it if one is defined in the scene.
+It is usually a good practice to place the group manager near the [collision pipeline](https://www.sofa-framework.org/community/doc/using-sofa/components/collisions/pipelines/collisionpipeline), at the same level (not in a child node).
 
 Implementation
 ==============
 
-The following function must be called in the [collision pipeline](../10_Pipelines/10_CollisionPipeline.md), once contacts have been detected:
+The following function must be called in the [collision pipeline](https://www.sofa-framework.org/community/doc/using-sofa/components/collisions/pipelines/collisionpipeline), once contacts have been detected:
 ```cpp
 /// Create the integration groups
 void CollisionGroupManager::createGroups(objectmodel::BaseContext* scene, const sofa::helper::vector<Contact::SPtr>& contacts)

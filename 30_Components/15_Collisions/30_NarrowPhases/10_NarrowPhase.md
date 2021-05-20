@@ -1,7 +1,7 @@
 Narrow Phase Components
 ======================
 
-The narrow phase collision detection components are executed in a [collision pipeline](../10_Pipelines/10_CollisionPipeline.md).
+The narrow phase collision detection components are executed in a [collision pipeline](https://www.sofa-framework.org/community/doc/using-sofa/components/collisions/pipelines/collisionpipeline).
 
 Introduction
 ============
