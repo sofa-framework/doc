@@ -102,7 +102,7 @@ The colliding models returned by the [narrow phase](https://www.sofa-framework.o
 - the persistent method
 - or on constraints using [Lagrange multipliers](https://www.sofa-framework.org/community/doc/simulation-principles/constraint/lagrange-constraint/), and is processed by the solvers together with the other forces and constraints.
 
-When stiff contact penalities or contact constraints are created by the contact manager, an optional [GroupManager](../../30_Components/15_Collisions/40_CollisionModels) component is used to create interaction groups handled by a common solver.
+When stiff contact penalities or contact constraints are created by the contact manager, an optional [GroupManager](https://www.sofa-framework.org/community/doc/using-sofa/components/collisions/collisiongroupmanagers/collisiongroupmanager) component is used to create interaction groups handled by a common solver.
 When contacts disappear, interaction groups can be split to keep them as small as possible.
 The scenegraph structure thus changes along with the interaction groups.
 
