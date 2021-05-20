@@ -34,37 +34,37 @@ This contact information is passed to the contact manager, which creates contact
 Given <img class="latex" src="https://latex.codecogs.com/png.latex?n" title="Number of objects" /> moving objects in a virtual environment, testing all objects pairs tend to perform <img class="latex" src="https://latex.codecogs.com/png.latex?n^2" title="Complexity of pairwise checks" /> pairwise checks.
 When <img class="latex" src="https://latex.codecogs.com/png.latex?%20\mathcal{O%20}(n^2)" title="Asymptotic complexity" /> complexity, the collision detection is usually divided into two successive steps:
 
-- a [broad phase](../../30_Components/15_Collisions/20_BroadPhases/10_BroadPhase.md)
-- a [narrow phase](../../30_Components/15_Collisions/30_NarrowPhases/10_NarrowPhase.md)
+- a [broad phase](https://www.sofa-framework.org/community/doc/using-sofa/components/collisions/broadphases/broadphase)
+- a [narrow phase](https://www.sofa-framework.org/community/doc/using-sofa/components/collisions/narrowphases/narrowphase)
 
-Several [broad phase](../../30_Components/15_Collisions/20_BroadPhases/10_BroadPhase.md) and [narrow phase](../../30_Components/15_Collisions/30_NarrowPhases/10_NarrowPhase.md) methods are available in SOFA.
+Several [broad phase](https://www.sofa-framework.org/community/doc/using-sofa/components/collisions/broadphases/broadphase) and [narrow phase](https://www.sofa-framework.org/community/doc/using-sofa/components/collisions/narrowphases/narrowphase) methods are available in SOFA.
 All of these methods will compute the contact points between collision models. The evaluation of these contacts will be done using Intersection Methods. Here again, various intersection methods are available in SOFA. The choice of the collision detection method and the intersection method depends on your specific simulation use case.
 Available collision detection methods are:
 
-- [Brute Force broad phase](../../30_Components/15_Collisions/20_BroadPhases/20_BruteForceBroadPhase.md)
-- [Bounding Volumes Hierarchy narrow phase](../../30_Components/15_Collisions/30_NarrowPhases/20_BVHNarrowPhase.md)
-- [Direct Sweep and Prune narrow phase](../../30_Components/15_Collisions/30_NarrowPhases/30_DirectSAPNarrowPhase.md)
-- [Incremental Sweep and Prune](../../30_Components/15_Collisions/20_Detection_Sweep_and_Prune.md)
-- [Ray Tracing](../../30_Components/15_Collisions/10_Detection_Ray_tracing.md)
+- [Brute Force broad phase](https://www.sofa-framework.org/community/doc/using-sofa/components/collisions/broadphases/bruteforcebroadphase)
+- [Bounding Volumes Hierarchy narrow phase](https://www.sofa-framework.org/community/doc/using-sofa/components/collisions/narrowphases/bvhnarrowphase)
+- [Direct Sweep and Prune narrow phase](https://www.sofa-framework.org/community/doc/using-sofa/components/collisions/narrowphases/directsapnarrowphase)
+- [Incremental Sweep and Prune](https://www.sofa-framework.org/community/doc/using-sofa/components/collisions/detection-sweep-and-prune)
+- [Ray Tracing](https://www.sofa-framework.org/community/doc/using-sofa/components/collisions/detection-ray-tracing)
 
 
 ### Broad phase
 
-The first step of the pipeline is the so-called [broad-phase](../../30_Components/15_Collisions/20_BroadPhases/10_BroadPhase.md). It aims at quickly and efficiently removing objects pairs that are not in collision.
+The first step of the pipeline is the so-called [broad-phase](https://www.sofa-framework.org/community/doc/using-sofa/components/collisions/broadphases/broadphase). It aims at quickly and efficiently removing objects pairs that are not in collision.
 
 The broad phase uses a set of root collision models in order to compute potentially colliding pairs. It can for instance rely on the bounding boxes of each object with a collision model, thus efficiently checking whether boxes collide or not. This step does not state if pairs of objects collide, but it detects if they *potentially* collide. As output, the broad phase returns pairs of potentially colliding collision models.
 
 
 ### Narrow phase: detect intersection
 
-The [narrow phase](../../30_Components/15_Collisions/30_NarrowPhases/10_NarrowPhase.md) of detection can rely on collision models to detect a contact. Note that different collision models are available to detect a contact:
+The [narrow phase](https://www.sofa-framework.org/community/doc/using-sofa/components/collisions/narrowphases/narrowphase) of detection can rely on collision models to detect a contact. Note that different collision models are available to detect a contact:
 
   - using [primitives](https://www.sofa-framework.org/community/doc/components/collisions/collisionmodels/) (mostly used): point, line, triangle, sphere, cube, cylinder or oriented bounding boxes (OBB)
   - using distance grid, associated to each object in the scene
   - using ray casting: that send rays in the volume of simulation to compute a volume of intersection
 
 
-All collision detection methods will rely on intersection methods during the broad and/or [narrow phase](../../30_Components/15_Collisions/30_NarrowPhases/10_NarrowPhase.md) in order to assess if the models do collide. Given 2 collision elements, these intersection methods test if an intersection is possible.
+All collision detection methods will rely on intersection methods during the broad and/or [narrow phase](https://www.sofa-framework.org/community/doc/using-sofa/components/collisions/narrowphases/narrowphase) in order to assess if the models do collide. Given 2 collision elements, these intersection methods test if an intersection is possible.
 
 In SOFA, a proximity method can be used to detect contact when two objects are getting closer from another. Evalutating this proximity allows for a better anticipation of the contact, i.e. more stable contact. The two main implementations in SOFA are:
 
@@ -79,7 +79,7 @@ Discrete intersection methods also exist to compute intersection only if models 
 Output of the detection
 -----------------------
 
-As output, the collision detection (further to the [narrow phase](../../30_Components/15_Collisions/30_NarrowPhases/10_NarrowPhase.md)) returns pairs of geometric primitives with the corresponding collision points. The collision information is saved in a vector of DetectionOutput. This data structure is a generic description of a contact point, used for most collision models except special cases such as GPU-based collisions.
+As output, the collision detection (further to the [narrow phase](https://www.sofa-framework.org/community/doc/using-sofa/components/collisions/narrowphases/narrowphase)) returns pairs of geometric primitives with the corresponding collision points. The collision information is saved in a vector of DetectionOutput. This data structure is a generic description of a contact point, used for most collision models except special cases such as GPU-based collisions.
 
 Each contact point is described by a DetectionOutput made up of:
 
@@ -96,7 +96,7 @@ Collision response
 ------------------
 
 The step of collision response is triggered in the [CollisionPipeline](https://www.sofa-framework.org/community/doc/using-sofa/components/collisions/pipelines/collisionpipeline).
-The colliding models returned by the [narrow phase](../../30_Components/15_Collisions/30_NarrowPhases/10_NarrowPhase.md) are finally given to the ContactManager, which creates contact interactions of various types based on customizable rules. You can specify which one you want to use in the DefaultContactManager. Response has been implemented based on:
+The colliding models returned by the [narrow phase](https://www.sofa-framework.org/community/doc/using-sofa/components/collisions/narrowphases/narrowphase) are finally given to the ContactManager, which creates contact interactions of various types based on customizable rules. You can specify which one you want to use in the DefaultContactManager. Response has been implemented based on:
 
 - the penality method, efficient but subject to instability if not properly tuned
 - the persistent method

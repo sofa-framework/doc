@@ -1,7 +1,7 @@
 Broad Phase: Brute Force Broad Phase
 ====================================
 
-BruteForceBroadPhase is a [broad phase component](10_BroadPhase.md), which is used in a [Collision Detection](https://www.sofa-framework.org/community/doc/main-principles/collision/#collision-detection) pipeline.
+BruteForceBroadPhase is a [broad phase component](https://www.sofa-framework.org/community/doc/using-sofa/components/collisions/broadphases/broadphase), which is used in a [Collision Detection](https://www.sofa-framework.org/community/doc/main-principles/collision/#collision-detection) pipeline.
 
 The method is based on the comparison of the overall [bounding volumes](https://en.wikipedia.org/wiki/Bounding_volume) of objects to determine if they are in collision or not.
 This test is very exhaustive because of its <img class="latex" src="https://latex.codecogs.com/png.latex?n^2/2" title="Complexity of pairwise checks" /> pairwise checks.

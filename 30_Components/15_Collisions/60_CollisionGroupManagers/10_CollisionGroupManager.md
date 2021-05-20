@@ -5,22 +5,22 @@ The collision group manager components are used in a [collision pipeline](https:
 
 The role of a collision group manager is to find and merge solvers for a contact, i.e. two different objects in collision, into groups.
 The term 'group' refers to a group of integration components.
-It includes an [ODE solver](../../../20_Simulation_Principles/40_System_Resolution/10_Integration_Scheme.md), its associated [linear solver](../../../20_Simulation_Principles/40_System_Resolution/20_Linear_Solver.md) and the [constraint solver](../../../20_Simulation_Principles/60_Constraint/20_Lagrange_Constraint.md).
+It includes an [ODE solver](https://www.sofa-framework.org/community/doc/using-sofa/simulation-principles/system-resolution/integration-scheme), its associated [linear solver](https://www.sofa-framework.org/community/doc/simulation-principles/system-resolution/linear-solver/) and the [constraint solver](https://www.sofa-framework.org/community/doc/using-sofa/simulation-principles/constraint/lagrange-constraint).
 _DefaultCollisionGroupManager_ modifies the scene graph so that two objects in contact share the same node with a single integration algorithm.
 In that case, the integration algorithm solves the ODE of the two objects simultaneously.
 
-In [DefaultPipeline](../10_Pipelines/20_DefaultPipeline.md), groups are created only for contacts between two non-static objects.
+In [DefaultPipeline](https://www.sofa-framework.org/community/doc/using-sofa/components/collisions/pipelines/defaultpipeline), groups are created only for contacts between two non-static objects.
 
 After creating the groups, _DefaultCollisionGroupManager_ is also in charge to create the contact responses. 
 
 ## Merging Two Integration Nodes
 
 It is possible that two objects in contact are not solved with the same type of solver.
-For example, _objectA_ can be solved with [EulerImplicitSolver](../../40_IntegrationSchemes/20_EulerImplicitSolver.md), and _objectB_ with [EulerExplicitSolver](../../40_IntegrationSchemes/10_EulerExplicitSolver.md).
+For example, _objectA_ can be solved with [EulerImplicitSolver](https://www.sofa-framework.org/community/doc/components/integrationschemes/eulerimplicitsolver/), and _objectB_ with [EulerExplicitSolver](https://www.sofa-framework.org/community/doc/components/integrationschemes/eulerexplicitsolver/).
 In that case, some rules are pre-defined to select which one is kept.
 The other one is removed.
 Usually, the more stable or precise solver is prefered.
-For example, [EulerImplicitSolver](../../40_IntegrationSchemes/20_EulerImplicitSolver.md), is prefered over [EulerExplicitSolver](../../40_IntegrationSchemes/10_EulerExplicitSolver.md).
+For example, [EulerImplicitSolver](https://www.sofa-framework.org/community/doc/components/integrationschemes/eulerimplicitsolver/), is prefered over [EulerExplicitSolver](https://www.sofa-framework.org/community/doc/components/integrationschemes/eulerexplicitsolver/).
 
 In case both ODE solvers are of the same type, but still a different instance, pre-defined rules merge Data values of both ODE solvers.
 

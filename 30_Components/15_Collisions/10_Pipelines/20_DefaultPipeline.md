@@ -1,20 +1,20 @@
 Collision Pipelines: DefaultPipeline
 ==============================================
 
-The [DefaultPipeline](https://www.sofa-framework.org/api/master/sofa/html/classsofa_1_1component_1_1collision_1_1_default_pipeline.html) is a [Collision Pipeline](10_CollisionPipeline.md).
+The [DefaultPipeline](https://www.sofa-framework.org/api/master/sofa/html/classsofa_1_1component_1_1collision_1_1_default_pipeline.html) is a [Collision Pipeline](https://www.sofa-framework.org/community/doc/using-sofa/components/collisions/pipelines/collisionpipeline).
 It performs steps related to the collision, mainly collision detection and collision response.
 
-The [animation loop](https://www.sofa-framework.org/community/doc/simulation-principles/animation-loop/) executes the 3 steps of the pipeline (see documentation on [Collision Pipeline](10_CollisionPipeline.md)).
+The [animation loop](https://www.sofa-framework.org/community/doc/simulation-principles/animation-loop/) executes the 3 steps of the pipeline (see documentation on [Collision Pipeline](https://www.sofa-framework.org/community/doc/using-sofa/components/collisions/pipelines/collisionpipeline)).
 
 Interaction with Other Components
 =================================
 
 [_DefaultPipeline_](https://www.sofa-framework.org/api/master/sofa/html/classsofa_1_1component_1_1collision_1_1_default_pipeline.html) requires other components defined in the same context:
 - An intersection method (e.g. MinProximityIntersection, LocalMinDistance)
-- A broad phase detection (e.g. [_BruteForceBroadPhase_](../20_BroadPhases/20_BruteForceBroadPhase.md))
-- A narrow phase detection (e.g. [_BVHNarrowPhase_](../30_NarrowPhases/20_BVHNarrowPhase.md))
+- A broad phase detection (e.g. [_BruteForceBroadPhase_](https://www.sofa-framework.org/community/doc/using-sofa/components/collisions/broadphases/bruteforcebroadphase))
+- A narrow phase detection (e.g. [_BVHNarrowPhase_](https://www.sofa-framework.org/community/doc/using-sofa/components/collisions/narrowphases/bvhnarrowphase))
 - A contact manager (e.g. DefaultContactManager)
-- [optional] A group manager (e.g. [_DefaultCollisionGroupManager_](../60_CollisionGroupManagers/10_CollisionGroupManager.md))
+- [optional] A group manager (e.g. [_DefaultCollisionGroupManager_](https://www.sofa-framework.org/community/doc/using-sofa/components/collisions/collisiongroupmanagers/collisiongroupmanager))
 
 If no intersection method is provided, a default _DiscreteIntersection_ component is created and added to the scene graph, with a warning to the user, and used as the intersection method.
 

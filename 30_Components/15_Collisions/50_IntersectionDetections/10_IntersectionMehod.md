@@ -8,8 +8,8 @@ Examples of Components
 ======================
 
 The following components are all intersection methods, and can be placed in a simulation scene:
-- [_MinProximityIntersection_](50_MinProximityIntersection.md)
-- [_LocalMinDistance_](60_LocalMinDistance.md)
+- [_MinProximityIntersection_](https://www.sofa-framework.org/community/doc/using-sofa/components/collisions/intersectiondetections/minproximityintersection)
+- [_LocalMinDistance_](https://www.sofa-framework.org/community/doc/using-sofa/components/collisions/intersectiondetections/localmindistance)
 
 Inheritance Diagram
 ===================

@@ -15,7 +15,7 @@ For performances reasons, this approach is never selected because of its quadrat
 
 Instead, the collision detection will be divided in two parts:
 1. The broad phase collision detection
-2. The [narrow phase collision detection](../30_NarrowPhases/10_NarrowPhase.md)
+2. The [narrow phase collision detection](https://www.sofa-framework.org/community/doc/using-sofa/components/collisions/narrowphases/narrowphase)
 
 The Broad Phase
 ===============
@@ -65,14 +65,14 @@ After the execution of the broad phase, the list of potential colliding pairs is
 ```cpp
 sofa::helper::vector< CollisionModelPair > BroadPhaseDetection::cmPairs;
 ```
-Finally, the [collision pipeline](https://www.sofa-framework.org/community/doc/using-sofa/components/collisions/pipelines/collisionpipeline) provides this list to a [narrow phase collision detection](../30_NarrowPhases/10_NarrowPhase.md).
+Finally, the [collision pipeline](https://www.sofa-framework.org/community/doc/using-sofa/components/collisions/pipelines/collisionpipeline) provides this list to a [narrow phase collision detection](https://www.sofa-framework.org/community/doc/using-sofa/components/collisions/narrowphases/narrowphase).
 
 Examples of Components
 ======================
 
 The following components are all broad phase collision detections, and can be placed in a simulation scene:
 
-- [BruteForceBroadPhase](10_BroadPhase.md)
+- [BruteForceBroadPhase](https://www.sofa-framework.org/community/doc/using-sofa/components/collisions/broadphases/bruteforcebroadphase)
 - ParallelBruteForceBroadPhase (plugin MultiThreading)
 - BruteForceDetection
 - THMPGSpatialHashing (plugin THMPGSpatialHashing)
