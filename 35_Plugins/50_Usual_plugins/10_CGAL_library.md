@@ -12,13 +12,7 @@ With Linux, follow the next steps to install CGAL:
     use with Sofa. Note that Sofa with CMake requires the compiled
     libraries,
 -   Install GMP and MPFR libraries,
--   Install and compile
-    [CGal](http://www.cgal.org/download.html "CGAL download")
-    -   To compile CGAL you basically need to run:
-
-            cmake .
-            make
-
+-   [Install CGAL](https://www.cgal.org/download/linux.html "CGAL download")
 -   With CMake, set the **SOFA-PLUGIN\_CGALPLUGIN** option to On,
 -   Configure. Set GMP\_DIR and MPFR\_DIR to the location that you
     installed GMP and MPFR. Configure again and generate.
