@@ -29,7 +29,7 @@ Data<bool> d_isEnabled;
 ``` cpp
 //In Component constructor
 MyComponent():
-d_isEnabled(initData(&d_isEnabled, (bool)true, "isEnabled", "Boolean indicating if the component is enable"))) //ptr to the data, default value, name used for the parameter (the same that will appear later in the XML/Python file), description of the parameter (its purpose)
+d_isEnabled(initData(&d_isEnabled, (bool)true, "isEnabled", "Boolean indicating if the component is enabled"))) //ptr to the data, default value, name used for the parameter (the same that will appear later in the XML/Python file), description of the parameter (its purpose)
 {
 };
 ```
@@ -46,26 +46,29 @@ d_isEnabled(initData(&d_isEnabled, (bool)true, "isEnabled", "Boolean indicating 
 #### Data for standard containers
 
 To ease the use of Data, we already serialized some of the most common
-data container: map, vector, set, list. Instead of using a std::vector,
-use a helper::vector:
+data containers: map, vector, set, list. Instead of using a `std::vector`,
+use a `helper::vector`:
 
 ``` cpp
-Data< helper::vector > values;
+Data< helper::vector > d_values;
 ```
 
-**WARNING**: to use a vector&lt; vector&lt; int&gt; &gt;, you must use a
-SVector instead:
+**WARNING**: to use a `vector<vector<int>>`, you must use a
+`SVector` instead:
 
 ``` cpp
-Data< helper::SVector< helper::vector< int> > > vecValues;
+Data< helper::SVector< helper::vector< int> > > d_vecValues;
 ```
+
+The `SVector` class is basically `helper::vector` with a different serialization: it defines brackets for the beginning and the end of the whole string, plus a comma to separate values.
+
 
 #### Data for custom types
 
 A Data is template with the type of your option: a boolean, an integer,
-... But it is not restricted to the default types, you put inside a Data
-your own class, or data structure. Your class must implement the
-operator &lt;&lt; and &gt;&gt; in order to be used through an input and
+... But it is not restricted to the default types; you can put inside a Data
+your own class/struct. Your class/struct must implement the
+operator `<<` and `>>` in order to be used through an input and
 output stream:
 
 ``` cpp
@@ -79,15 +82,16 @@ struct MyStruct
             return in;
     }
 
-    inline friend std::ostream& operator < < ( std::ostream& out, const MyStruct& s ){
+    inline friend std::ostream& operator << ( std::ostream& out, const MyStruct& s ){
         out << s.active << " " << s.value;
         return out;
     }
 };
-Data configureStruct;
+
+Data<MyStruct> d_configureStruct;
 ```
 
-While Data are passed to other components **by copy**, the stream operators are used to display a data field's content in the GUI. This data serialization method could also have other uses, such as sending data over the network, through the Communication plugin for instance.
+While Data are passed to other components **by copy**, the stream operators are used to display a data field's content, e.g in the console, in a GUI or simply into a file. This data serialization may also also have other uses, such as sending data over the network, through the Communication plugin for instance.
 
 
 
@@ -99,8 +103,8 @@ In your C++ code, you can define several features for each Data:
 
 -   `d_isEnabled.setRequired(bool b)` whether the Data has to be set by the user for the owner component to be valid
 -   `d_isEnabled.setDisplayed(bool b)` whether this Data should be displayed in GUIs
--   `d_isEnabled.setReadOnly(bool b)` whether this Data is read-only
--   `d_isEnabled.setPersistent(bool b)` whether this %Data contains persistent information
+-   `d_isEnabled.setReadOnly(bool b)` whether this Data is read-only (applicable in the GUI only, no effect in the code itself)
+-   `d_isEnabled.setPersistent(bool b)` whether this Data contains persistent information (i.e should it be exported when saving the scene)
 -   `d_isEnabled.setAutoLink(bool b)` whether this data should be autolinked when using the src="" syntax
 
 
@@ -130,6 +134,7 @@ in the following example:
 myFixedConstraint->f_indices.setParent(&myBoxRoi->f_indices);
 ```
 
+Note that for some of the non-simple types (mainly containers), the value of the data is *COW* (Copy-On-Write), i.e if you link from a (potentially huge) `Data`, this will simply access the data in the same memory location as the original `Data`, and will avoid doing a (potentially costly) copy. But if the linked `Data` is modified, the underlying data will be copied, and the contents will be in two differents independents locations.
 
 
 
@@ -144,8 +149,8 @@ accessing it are presented in the following.
 To have a read only access to the data, use the method `getValue()`:
 
 ``` cpp
-//with Data activeOption;
-//and  Data > values;
+//with Data<bool> activeOption;
+//and  Data<vector<int>> values;
 void MyClass::doOperation()
 {
   bool isActive = d_activeOption.getValue();
@@ -165,11 +170,10 @@ void MyClass::doOperation()
 To write the value of the data, use the method `setValue(...)`. Such a write access,
 triggers the propagation of a dirty flag to all Data connected to this one (see Engine
 and Data dependency). This is appropriate for a «one shot» value setting.
-To iterate over an array, prefer one of the following methods.
 
 ``` cpp
-//with Data activeOption;
-//and  Data > values;
+//with Data<bool> activeOption;
+//and  Data<vector<int>> values;
 void MyClass::changeParameters(bool b)
 {
   d_activeOption.setValue(b);
@@ -184,15 +188,18 @@ void MyClass::changeParameters(bool b)
 
 These objects encapsulate `beginEdit()` and `endEdit()` (described below) in their constructor or
 destructor, respectively. These ensures that you do not forget to `endEdit()`
-since the WriteAccessor manages it for you.
+since the WriteAccessor manages it for you (through *RAII*).
 This also allows to distinguish read-only and write access. This is
 the **preferred** method for accessing arrays in write-access.
 
 ``` cpp
-//with Data > values;
+//with Data <vector<int>> values;
 void MyClass::doOperation()
 {
   helper::WriteAccessor<Data< vector< int > > > valuesWriteAccess(d_values);
+  //or a more modern version:
+  //auto valuesWriteAccess = helper::getWriteAccessor(d_values);
+
   for( size_t i=0; i<valuesWriteAccess.size(); i++ )
   {
     valuesWriteAccess[i] = 0.0;
@@ -203,12 +210,14 @@ void MyClass::doOperation()
 For read access, replace WriteAccessor with ReadAccessor. Here is another example:
 
 ``` cpp
-//with Data activeOption;
-//and  Data > values;
+//with Data<bool> activeOption;
+//and  Data<vector<int>> values;
 void MyClass::doOperation()
 {
   bool isActive = d_activeOption.getValue();
   helper::ReadAccessor<Data< vector< int > > > valuesReadAccess = d_values;
+  //or a more modern version:
+  //auto valuesReadAccess = helper::getReadAccessor(d_values);
   vector< int > newVector;
 
   if (isActive)
@@ -224,7 +233,7 @@ void MyClass::doOperation()
 
 #### beginEdit/endEdit
 
-**NB**: _this methods are now deprecated, use ReadAccessor/WriteAccessor instead._
+**NB**: _this methods are not recommended to use, use ReadAccessor/WriteAccessor instead._
 
 This method is useful when you need to change multiple values (such as
 array cells) before to notify the change to other Data, and to prevent
@@ -240,17 +249,18 @@ ReadAccessor/WriteAccessor presented below. This is commonly used while
 manipulating vectors of data.
 
 ``` cpp
-//with Data > values;
+//with Data<vector<int>> values;
 void MyClass::manipulatingParameters()
 {
-  vector& myValues = *values.beginEdit();
-  for( int i=0; i<max; i++ )
+  vector<int>& myValues = *values.beginEdit();
+  for( size_t i=0; i<myValues.size(); i++ )
   {
-     myValues[i] = 0.0;
+     myValues[i] = 0;
   }
-  values.endEdit();
+  values.endEdit(); // do not forget this !
 ```
 
+Needlessly to say that, as you are getting a raw pointer to the data, you should proceed with the uttermost attention, especially in a multithreaded code!
 
 
 
@@ -262,6 +272,8 @@ as:
 
 ``` cpp
 typename core::behavior::MechanicalState::ReadVecCoord coord1 = mstate1->readPositions();
+//or:
+//auto coord1 = mstate1->readPositions();
 ```
 
 #### Using MechanicalParams
@@ -269,11 +281,11 @@ typename core::behavior::MechanicalState::ReadVecCoord coord1 = mstate1->readPos
 In the following example, all the state vectors are obtained from the
 local MechanicalState as Data and Data using a MechanicalParam, such as
 the current position and velocity of the local object. The force vector
-id is passed explicitly to remind that the result should be stored in
-this vector, and a alternative instruction is used, but the force vector
-can also be obtained using an instruction like for positions and
+ID is passed explicitly to remind that the result should be stored in
+this vector, and an alternative instruction is used, but the force vector
+can also be obtained in the same way as the positions and the
 velocities. The vectors are then passed to a more concrete (though
-virtual) function which processes actual vectors rather than Ids.
+virtual) function which processes actual vectors rather than IDs.
 
 ``` cpp
 template
