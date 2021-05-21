@@ -54,6 +54,7 @@ Examples of Components
 ======================
 
 The following components are collision group managers, and can be placed in a simulation scene:
+
 - DefaultCollisionGroupManager (plugin SofaMiscCollision)
 
 Inheritance Diagram
