@@ -14,6 +14,7 @@ The number of tests depends on the number of objects, and the number of collisio
 For performances reasons, this approach is never selected because of its quadratic complexity.
 
 Instead, the collision detection will be divided in two parts:
+
 1. The broad phase collision detection
 2. The [narrow phase collision detection](https://www.sofa-framework.org/community/doc/using-sofa/components/collisions/narrowphases/narrowphase)
 
