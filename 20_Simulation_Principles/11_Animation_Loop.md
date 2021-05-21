@@ -8,7 +8,7 @@ Several _AnimationLoops_ are already available in SOFA:
 * [_DefaultAnimationLoop_](https://www.sofa-framework.org/community/doc/using-sofa/components/animationloop/defaultanimationloop/):
   this is the default animation loop as the name indicates! This animation loop is included by default at the root node of the graph, if no animation loop is specified in the scene. With a _DefaultAnimationLoop_, the loop of one simulation step follows:
 
-    1. collision detection is triggered through the collision pipeline (if any)
+    1. collision detection is triggered through the [collision pipeline](https://www.sofa-framework.org/community/doc/using-sofa/components/collisions/pipelines/collisionpipeline) (if any)
     2. solve the physics in the scene by triggering the integration scheme, taking the constraint, collision into account
     3. update the system (new values of the dofs), the context (dt++), the mappings and the bounding box (volume covering all objects of the scene)
 
@@ -16,14 +16,14 @@ Several _AnimationLoops_ are already available in SOFA:
   this animation loop works by labelling components using different tags. With a _MultiTagAnimationLoop_, the loop of one simulation step is the same as the _DefaultAnimationLoop_, except that one tag is solved after another, given a list of tags:
 
     1. For each tag defined:
-      1. collision detection is triggered through the collision pipeline (if any)
+      1. collision detection is triggered through the [collision pipeline](https://www.sofa-framework.org/community/doc/using-sofa/components/collisions/pipelines/collisionpipeline) (if any)
       2. solve the physics in the scene by triggering the integration scheme, taking the constraint, collision into account
     2. update the system (new values of the dofs), the context (dt++), the mappings and the bounding box (volume covering all objects of the scene)
 
 * [_MultiStepAnimationLoop_](https://www.sofa-framework.org/community/doc/using-sofa/components/animationloop/multistepanimationloop/):
   given one time step, this animation loop allows for running several collision (_C_ being the number of collision steps) and several integration time in one step (_I_ being the number of integration time steps), where _C_ and _I_ can be different. If the global time step is noted _dt_, the time integration time is actually: _dt' = dt / (C.I)_. The loop in one animation step is:
   
-    1. compute _C_ times the collision pipeline within one time step _dt_
+    1. compute _C_ times the [collision pipeline](https://www.sofa-framework.org/community/doc/using-sofa/components/collisions/pipelines/collisionpipeline) within one time step _dt_
     2. For each collision step, solve _I_ times the linear system for time integration using the time step _dt'_
     3. update the context, the mappings, the bounding box (the visualization is done once at each time step _dt_)
 

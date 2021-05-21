@@ -55,8 +55,8 @@ Additional information
 - a different alarmDistance and contactDistance can be specified for each CollisionModel by setting alarmDistance and contactDistance to zero and changing the proximity parameter
 
 
-Example
--------
+Example of Usage
+----------------
 
 This component is used as follows in XML format:
 
