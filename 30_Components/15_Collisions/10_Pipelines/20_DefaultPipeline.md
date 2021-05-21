@@ -10,6 +10,7 @@ Interaction with Other Components
 =================================
 
 [_DefaultPipeline_](https://www.sofa-framework.org/api/master/sofa/html/classsofa_1_1component_1_1collision_1_1_default_pipeline.html) requires other components defined in the same context:
+
 - An intersection method (e.g. MinProximityIntersection, LocalMinDistance)
 - A broad phase detection (e.g. [_BruteForceBroadPhase_](https://www.sofa-framework.org/community/doc/using-sofa/components/collisions/broadphases/bruteforcebroadphase))
 - A narrow phase detection (e.g. [_BVHNarrowPhase_](https://www.sofa-framework.org/community/doc/using-sofa/components/collisions/narrowphases/bvhnarrowphase))
