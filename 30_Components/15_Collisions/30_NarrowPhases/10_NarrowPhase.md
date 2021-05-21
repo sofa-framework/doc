@@ -67,6 +67,7 @@ Examples of Components
 ======================
 
 The following components are all narrow phase collision detections, and can be placed in a simulation scene:
+
 - [BVHNarrowPhase](https://www.sofa-framework.org/community/doc/using-sofa/components/collisions/narrowphases/bvhnarrowphase)
 - ParallelBVHNarrowPhase (plugin MultiThreading)
 - DirectSAPNarrowPhase
