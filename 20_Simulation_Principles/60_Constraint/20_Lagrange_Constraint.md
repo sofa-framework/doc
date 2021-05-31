@@ -149,7 +149,7 @@ The following steps are processed one after another:
 
 In the code, the _buildSystem()_ function performs each of the steps just described and looks as follows:
 
-``` cpp
+```cpp
 simulation::MechanicalResetConstraintVisitor(cParams).execute(context);
 simulation::MechanicalBuildConstraintMatrix(cParams, cParams->j(), numConstraints).execute(context);
 simulation::MechanicalAccumulateMatrixDeriv(cParams, cParams->j(), reverseAccumulateOrder.getValue()).execute(context);
