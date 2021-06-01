@@ -94,6 +94,18 @@ This option allows to see the animation step duration (ms) in a graphView, then 
 
 ![](https://raw.githubusercontent.com/sofa-framework/doc/master/images/usingSOFA/TimerProfiler.png)
 
+Description of the columns:
+
+1. **Total (%)**: Percentage of duration of this step compared to the duration of the root step.
+2. **Self (%)**:
+- If the step has child steps: percentage of the duration of this step minus the sum of durations of its children, compared to the duration of the root step.
+- If the step has no child step: percentage of the average duration of this step in case of multiple calls of this step during this time step, compared to the duration of the root step.
+3. **Time (ms)**: Duration in milliseconds of this step.
+4. **Self (ms)**:
+- If the step has child steps: duration in milliseconds of this step minus the sum of durations of its children.
+- If the step has no child step: average duration in milliseconds of this step in case of multiple calls of this step during this time step.
+
+
 
 Graphical Interface: Trace Visitor
 ----------------------------------
