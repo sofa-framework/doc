@@ -45,7 +45,7 @@ and it allows for activating tests in the primitive checks:
 Usage
 -----
 
-The MinProximityIntersection must be placed right after the CollisionPipeline and the associated Detection method (usually [BruteForce](https://www.sofa-framework.org/community/doc/components/collisions/detection-brute-force/)) on top the scene graph.
+The MinProximityIntersection must be placed right after the CollisionPipeline and the associated Detection methods (usually [BruteForceBroadPhase](https://www.sofa-framework.org/community/doc/components/collisions/broadphases/bruteforcebroadphase/) and [BVHNarrowPhase](https://www.sofa-framework.org/community/doc/components/collisions/narrowphases/bvhnarrowphase/)) on top the scene graph.
 
 
 Additional information
