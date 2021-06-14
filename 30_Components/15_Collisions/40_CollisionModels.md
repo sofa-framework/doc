@@ -21,8 +21,8 @@ Data
 All collision models define the following data:
 
 - **active**: boolean defining if the CollisionModel should be considered in the detection
-- **moving**: boolean defining if the object associated to this CollisionModel might move during the simulation
-- **simulated**: boolean defining if this CollisionModel is attached to a simulation. It is false for immobile or procedurally animated objects that don't use contact forces (no Penality or InteractionConstraint created)
+- **moving**: boolean defining if the object associated to this CollisionModel might move during the simulation. In most cases, **moving** being false prevents the unnecessary recomputation of the bounding tree, which is a mandatory step for some broad or narrow phases collision detection.
+- **simulated**: boolean defining if this CollisionModel is attached to a simulation. It is false for immobile or procedurally animated objects that don't use contact forces (no Penality or InteractionConstraint created). Usually, two colliding objects having **simulated** being false are not considered in collision detection. Self-collision is not considered if **simulated** is false. If one of two colliding objects has **simulated** being false, the contact response is created as a child of the other.
 - **selfCollision**: boolean defining if the object can self collide
 - **group**: integer ID corresponding to the groups containing this model. No collision can occur between collision models included in a common group (e.g. allowing the same object to have multiple collision models). See info about [collision group](https://www.sofa-framework.org/community/doc/simulation-principles/multi-model-representation/collision/#collision-group)
 
