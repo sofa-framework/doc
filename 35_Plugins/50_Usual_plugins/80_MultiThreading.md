@@ -24,6 +24,7 @@ ParallelBruteForceBroadPhase is the most efficient compared to [BruteForceBroadP
 #### Examples
 
 Examples of ParallelBruteForceBroadPhase can be found in:
+
 * [ParallelBruteForceBroadPhase.scn](https://github.com/sofa-framework/sofa/blob/master/applications/plugins/MultiThreading/examples/ParallelBruteForceBroadPhase.scn)
 * [ParallelCollisionDetection.scn](https://github.com/sofa-framework/sofa/blob/master/applications/plugins/MultiThreading/examples/ParallelCollisionDetection.scn)
 * [5DeformableCubesConstraints.scn](https://github.com/sofa-framework/sofa/blob/master/applications/plugins/MultiThreading/examples/5DeformableCubesConstraints.scn)
@@ -36,6 +37,7 @@ It means the result of a simulation with [BVHNarrowPhase](https://www.sofa-frame
 #### Examples
 
 Examples of ParallelBruteForceBroadPhase can be found in:
+
 * [ParallelBruteForceBroadPhase.scn](https://github.com/sofa-framework/sofa/blob/master/applications/plugins/MultiThreading/examples/ParallelBruteForceBroadPhase.scn)
 * [ParallelCollisionDetection.scn](https://github.com/sofa-framework/sofa/blob/master/applications/plugins/MultiThreading/examples/ParallelCollisionDetection.scn)
 * [5DeformableCubesConstraints.scn](https://github.com/sofa-framework/sofa/blob/master/applications/plugins/MultiThreading/examples/5DeformableCubesConstraints.scn)
