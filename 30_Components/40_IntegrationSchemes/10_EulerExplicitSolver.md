@@ -1,7 +1,7 @@
 EulerExplicitSolver  
 ===================
 
-The EulerExplicitSolver (or EulerSolver) component belongs to the category of [integration schemes or ODE Solver](https://www.sofa-framework.org/community/doc/main-principles/system-resolution/integration-schemes/). This scheme allows to solve dynamic systems explicitely: all forces will be computed based on the state information at the current time step <img class="latex" src="https://latex.codecogs.com/png.latex?x(t)" title="Current position"/>.
+The EulerExplicitSolver component belongs to the category of [integration schemes or ODE Solver](https://www.sofa-framework.org/community/doc/main-principles/system-resolution/integration-schemes/). This scheme allows to solve dynamic systems explicitely: all forces will be computed based on the state information at the current time step <img class="latex" src="https://latex.codecogs.com/png.latex?x(t)" title="Current position"/>.
 
 Looking at continuum mechanics, the linear system <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{A}x=b" title="Linear system" /> arises from the dynamic equation. This dynamic is written as follows but other physics (like heat transfer) result in a similar equation:
 
@@ -13,11 +13,11 @@ where <img class="latex" src="https://latex.codecogs.com/png.latex?x" title="DOF
 
 since forces only depend on known state (at our current time step). These forces are computed by the ForceField in the `addForce()` function. The system matrix <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{A}" title="System matrix" /> is only equal to the mass matrix <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{M}" title="Mass matrix" />.
 
-In SOFA, the EulerExplicitSolver <u>only handles diagonal mass matrices</u>, thus making the resolution of the linear system trivial. In this case, the system matrix <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{A}" title="System matrix" /> equals a diagonal mass matrix <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{M}" title="Mass matrix" /> which is diagonal and it can be stored as a vector <img class="latex" src="https://latex.codecogs.com/png.latex?|m|" title="Mass vector" /> . Moreover, its inverse can directly be obtained as: <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{M}^{-1}=|m|^{-1}=\frac{1}{|m|}" title="Inverse mass matrix" /> 
+Depending on whether the mass matrix is diagonal or not, SOFA supports two cases:
 
-The solution <img class="latex" src="https://latex.codecogs.com/png.latex?\Delta%20v_{sol}=dt\cdot%20\mathbf{M}^{-1}f(x(t))" title="Explicit resolution" /> finally corresponds to a division operation of <img class="latex" src="https://latex.codecogs.com/png.latex?f(x(t))" title="Explicit forces" /> by the mass. This computation is actually performed by the Mass component in the `accFromF()` function. Therefore, no LinearSolver is needed to compute directly or iteratively a solution.
-
-
+1) The mass matrix is diagonal. It makes the resolution of the linear system trivial (best performances). In this case, the system matrix <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{A}" title="System matrix" /> equals a diagonal mass matrix <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{M}" title="Mass matrix" /> which is diagonal and it can be stored as a vector <img class="latex" src="https://latex.codecogs.com/png.latex?|m|" title="Mass vector" /> . Moreover, its inverse can directly be obtained as: <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{M}^{-1}=|m|^{-1}=\frac{1}{|m|}" title="Inverse mass matrix" />.
+   The solution <img class="latex" src="https://latex.codecogs.com/png.latex?\Delta%20v_{sol}=dt\cdot%20\mathbf{M}^{-1}f(x(t))" title="Explicit resolution" /> finally corresponds to a division operation of <img class="latex" src="https://latex.codecogs.com/png.latex?f(x(t))" title="Explicit forces" /> by the mass. This computation is actually performed by the Mass component in the `accFromF()` function. Therefore, no LinearSolver is needed to compute directly or iteratively a solution.
+2) The mass matrix is not diagonal. Solving the system requires a linear solver. 
 
 Sequence diagram
 ----------------
@@ -28,8 +28,10 @@ Sequence diagram
 Data
 ----
 
-The data **symplectic** allows to modify the scheme to make is [symplectic](https://en.wikipedia.org/wiki/Semi-implicit_Euler_method), i.e. velocities are updated before the positions. This option makes the scheme more robust in time.
-
+The data **symplectic** allows to modify the scheme to make it [symplectic](https://en.wikipedia.org/wiki/Semi-implicit_Euler_method), i.e. velocities are updated before the positions.
+It allows to update the positions from the newly computed velocities, instead of velocities from the previous time step.
+This option makes the scheme more robust in time.
+EulerExplicitSolver is symplectic by default.
 
 Usage  
 -----  
