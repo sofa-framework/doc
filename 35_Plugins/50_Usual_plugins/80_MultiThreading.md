@@ -44,6 +44,31 @@ Examples of ParallelBruteForceBroadPhase can be found in:
 
 # Physics
 
+## Parallel FEM
+
+### ParallelHexahedronFEMForceField
+
+[ParallelHexahedronFEMForceField](https://www.sofa-framework.org/api/master/plugins/MultiThreading/html/classsofa_1_1component_1_1forcefield_1_1_parallel_hexahedron_f_e_m_force_field.html) is the multi-threaded equivalent of [HexahedronFEMForceField](https://www.sofa-framework.org/api/master/sofa/html/classsofa_1_1component_1_1forcefield_1_1_hexahedron_f_e_m_force_field.html).
+
+This implementation is the most efficient when:
+1) the number of hexahedron is large (> 1000)
+2) the global system matrix is not assembled. It is usually the case with a [CGLinearSolver](https://www.sofa-framework.org/community/doc/components/linearsolvers/cglinearsolver/) templated with GraphScattered types.
+3) the method is 'large'. If the method is 'polar' or 'small', `addForce` is executed sequentially, but `addDForce` in parallel.
+
+The following methods are executed in parallel:
+- `addForce` for method 'large'.
+- `addDForce`
+
+The method `addKToMatrix` is not executed in parallel.
+This method is called with an assembled system, usually with a direct solver or a [CGLinearSolver](https://www.sofa-framework.org/community/doc/components/linearsolvers/cglinearsolver/) templated with types different from GraphScattered.
+In this case, the most time-consumming step is to invert the matrix. This is where efforts should be put to accelerate the simulation.
+
+#### Examples
+
+Examples of ParallelHexahedronFEMForceField can be found in:
+
+* [ParallelHexahedronFEMForceField.scn](https://github.com/sofa-framework/sofa/blob/master/applications/plugins/MultiThreading/examples/ParallelHexahedronFEMForceField.scn)
+
 ## BeamLinearMapping_mt
 
 This component inherits all the functionality from the BeamLinearMapping component and overrides three virtual functions that contain a `for` loop: `apply()`, `applyJ()` and `applyJT()`.
