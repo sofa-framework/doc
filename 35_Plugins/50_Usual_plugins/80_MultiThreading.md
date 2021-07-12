@@ -51,11 +51,13 @@ Examples of ParallelBruteForceBroadPhase can be found in:
 [ParallelHexahedronFEMForceField](https://www.sofa-framework.org/api/master/plugins/MultiThreading/html/classsofa_1_1component_1_1forcefield_1_1_parallel_hexahedron_f_e_m_force_field.html) is the multi-threaded equivalent of [HexahedronFEMForceField](https://www.sofa-framework.org/api/master/sofa/html/classsofa_1_1component_1_1forcefield_1_1_hexahedron_f_e_m_force_field.html).
 
 This implementation is the most efficient when:
+
 1) the number of hexahedron is large (> 1000)
 2) the global system matrix is not assembled. It is usually the case with a [CGLinearSolver](https://www.sofa-framework.org/community/doc/components/linearsolvers/cglinearsolver/) templated with GraphScattered types.
 3) the method is 'large'. If the method is 'polar' or 'small', `addForce` is executed sequentially, but `addDForce` in parallel.
 
 The following methods are executed in parallel:
+
 - `addForce` for method 'large'.
 - `addDForce`
 
