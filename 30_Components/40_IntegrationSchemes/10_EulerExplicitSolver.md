@@ -54,5 +54,10 @@ or using SofaPython3:
 ``` python  
 node.addObject('EulerExplicitSolver', name='odeExplicitSolver')
 ```  
- 
-An example scene involving a EulerExplicitSolver is available in [*examples/Components/solver/EulerExplicitSolver.scn*](https://github.com/sofa-framework/sofa/blob/master/examples/Components/solver/EulerExplicitSolver.scn)
+
+Examples of scenes involving a EulerExplicitSolver are available in [*examples/Components/solver/EulerExplicitSolver*](https://github.com/sofa-framework/sofa/tree/master/examples/Components/solver/EulerExplicitSolver):
+
+- [EulerExplicitSolver.scn](https://github.com/sofa-framework/sofa/blob/master/examples/Components/solver/EulerExplicitSolver/EulerExplicitSolver.scn): non-symplectic and non-diagonal mass matrix
+- [EulerExplicitSolver_diagonal.scn](https://github.com/sofa-framework/sofa/blob/master/examples/Components/solver/EulerExplicitSolver/EulerExplicitSolver_diagonal.scn): non-symplectic and diagonal mass matrix
+- [EulerSymplecticSolver.scn](https://github.com/sofa-framework/sofa/blob/master/examples/Components/solver/EulerExplicitSolver/EulerSymplecticSolver.scn): symplectic and non-diagonal mass matrix
+- [EulerSymplecticSolver_diagonal.scn](https://github.com/sofa-framework/sofa/blob/master/examples/Components/solver/EulerExplicitSolver/EulerSymplecticSolver_diagonal.scn): symplectic and diagonal mass matrix
