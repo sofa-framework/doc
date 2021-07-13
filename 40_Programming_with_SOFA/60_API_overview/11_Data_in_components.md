@@ -78,8 +78,8 @@ struct MyStruct
     int  value;
 
     inline friend std::istream& operator >> ( std::istream& in, MyStruct& s ){
-        in >> s.active >> s.value
-            return in;
+        in >> s.active >> s.value;
+        return in;
     }
 
     inline friend std::ostream& operator << ( std::ostream& out, const MyStruct& s ){
