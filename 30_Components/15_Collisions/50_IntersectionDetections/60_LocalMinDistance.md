@@ -20,7 +20,7 @@ The cones on the sides (no 1 and 3) are open with an 90 degree angle, while the 
 <a href="https://github.com/sofa-framework/doc/blob/master/images/collision/LocalMinDistance-degenerated.png?raw=true"><img src="https://github.com/sofa-framework/doc/blob/master/images/collision/LocalMinDistance-degenerated.png?raw=true" title="Degenerated case" style="width: 70%;"/></a>
 
 - In case our object is rigid, having the two cones exactly equal to 90 degrees may lead to instabilities: a small rotation would lead to the invalidation of one of the two corner contacts, and the object would start to oscillate. To prevent such cases, a data is available to open the cone: "coneFactor"
-- In case of a soft body, the LocalMinDistance would not detect the middle point as a contact since the cone is closed. The method would therefore fail to keep the object over the surface. To solve such a generated case, a data aiming at opening all existing cones is defined: "coneAngle"
+- In case of a soft body, the LocalMinDistance would not detect the middle point as a contact since the cone is closed. The method would therefore fail to keep the object over the surface. To solve such a generated case, a data aiming at opening all existing cones is defined: "angleCone"
 
 
 Data
@@ -30,6 +30,8 @@ The intersection methods include the following data:
 
 -   **alarmDistance**: maximum distance between collision elements for wich a contact is created
 -   **contactDistance** : parameter used in the contact creation
+-   **angleCone**: Filtering cone extension angle
+-   **coneFactor**: Factor for filtering cone angle computation
 
 
 Usage
