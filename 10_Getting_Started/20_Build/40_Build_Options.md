@@ -102,13 +102,11 @@ APPLICATION\_RUNSOFA.
 
 ### SOFA CMake options
 
--   **CMAKE\_BUILD\_TYPE** : the typical values for that field are **Release** and **Debug** (even if
-there are other options like **ReleaseDebInfo**, there are not really
-used by SOFA internal developers and thus, not really tested). Like the
+-   **CMAKE\_BUILD\_TYPE** : the typical values for that field are **Release**, **RelWithDebInfo** and **Debug**. Like the
 value is indicating, **Release** value indicates to compile in
 **Release** mode, with optimizations for speed, size of binaries.
 **Debug** value makes it compile with the debugging symbol activated and
-no code optimization.
+no code optimization. **RelWithDebInfo** is similar to **Release**, but keeps the symbol files for debugging.
 
 
 - **SOFA\_EXTERNAL\_DIRECTORIES**: path to external directories, this can be especially useful
