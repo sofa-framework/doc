@@ -46,9 +46,9 @@ To know which Clang versions are available for your distribution, run this comma
 apt-cache search '^clang-[0-9.]+$'
 ```
 
-Then, install the latest one with the usual command (example with clang-5.0):
+Then, install the latest one with the usual command (example with clang-12):
 ```bash
-sudo apt install clang-5.0
+sudo apt install clang-12
 ```
 
 
