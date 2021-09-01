@@ -32,9 +32,9 @@ To know which GCC versions are available for your distribution, run this command
 apt-cache search '^gcc-[0-9.]+$'
 ```
 
-Then, install the latest one with the usual command (example with gcc-7):
+Then, install the latest one with the usual command (example with gcc-11):
 ```bash
-sudo apt install gcc-7
+sudo apt install gcc-11
 ```
 
 ### Clang
