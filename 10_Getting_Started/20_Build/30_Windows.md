@@ -157,6 +157,8 @@ git clone -b master https://github.com/sofa-framework/sofa.git sofa/src
 
 6. Fix eventual dependency errors by following CMake messages (see Troubleshooting section below). Do not worry about warnings.
 
+   - e.g. define the `Eigen3_DIR` with the path where you installed Eigen
+
 7. (optional) Customize SOFA via CMake variables
 
    - choose the build type by setting CMAKE_BUILD_TYPE to "Release" or "RelWithDebInfo" (recommended) or "Debug"
