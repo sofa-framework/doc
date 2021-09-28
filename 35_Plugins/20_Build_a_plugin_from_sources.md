@@ -59,8 +59,9 @@ The main CMakeFile.txt of the plugin will not different from the _in-tree_ way.
 
 Afterwards, in CMake (cmake, ccmake, cmake-gui), you just set the source to the root of your plugin, as any project based on CMake.
 
-The only mandatory requirement for your project to find SOFA is to edit the CMake variable **CMAKE\_MODULE\_PATH** and set this value to lib/cmake from your SOFA installation.
-<Image>
+The only mandatory requirement for your project to find SOFA is to edit the CMake variable **CMAKE\_MODULE\_PATH** and set the value to the path of the _lib/cmake_ dirctory of your SOFA installation:
+
+![](https://user-images.githubusercontent.com/11028016/135097125-996b2ed5-29cf-4383-a98c-572621bad8d2.PNG)
 
 After setting the eventual third-party libraries (Qt, Eigen, etc), you will be able to build your plugin.
 
