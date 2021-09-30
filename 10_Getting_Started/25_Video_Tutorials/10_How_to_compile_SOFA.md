@@ -13,4 +13,10 @@ Windows
 -------
 
 Developers of the community also created a video to assist you to compile SOFA on Windows 10:
+
+- Windows 10
+- Visual Studio 2015 32 bits, 
+- Qt 32 bits, 
+- Boost vs14 32 bits
+
 <iframe width="560" height="315" src="https://www.youtube.com/embed/q_TLeklpgs0" frameborder="0" allowfullscreen></iframe>

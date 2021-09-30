@@ -1,21 +1,5 @@
 **It is STRONGLY advised to read through this entire doc page before getting started.**
 
-## Setup script
-
-To simplify the configuration of our continuous integration machines, we created a complete setup script.
-
-### WARNING: USE AT YOUR OWN RISKS
-This script installs a lot of software directly in `C:\` without any prealable check.  
-It is meant to be used on a **fresh Windows**. We use it on disposable virtual machines only.  
-
-Setup script: [I am aware of the disclaimer above](https://github.com/sofa-framework/ci/blob/master/setup/setup-windows.bat)
-
-
-## Preconfigured Docker image
-
-Unfortunately, no Docker image has been created yet for Windows.  
-This may come in a near future, to be continued...
-
 ----------------------------
 
 # Build tools
@@ -187,9 +171,8 @@ Example with Ninja:
 Time for a coffee!
 
 
-## Troubleshooting CMake errors
+## Troubleshooting CMake: Qt detection
 
-### Qt detection error
 To solve Qt detection errors, click on **Add Entry** and add
 `CMAKE_PREFIX_PATH` with path to your Qt directory (navigate until msvcXXXX_XX directory).  
 Example: `CMAKE_PREFIX_PATH=C:/dev/Qt/5.11.3/msvc2017_64`
@@ -210,6 +193,32 @@ instead of COPYONLY. Simply edit your Qt5CoreMacros.cmake, replace
 COPY\_ONLY with COPYONLY and **Configure** again.
 
 
+
+# Support to build SOFA
+
 ## Compilation tutorial
 
-See our page presenting [video tutorial for compilation on Windows](https://www.sofa-framework.org/community/doc/getting-started/video-tutorials/how-to-compile-sofa/#windows).
+See the [video tutorial for compilation on Windows](https://www.sofa-framework.org/community/doc/getting-started/video-tutorials/how-to-compile-sofa/#windows) recorded by Simon.
+
+
+## Forum
+
+Do not hesitate to report your problems on the [dedicated forum](https://www.sofa-framework.org/community/forum/section/sofa/building-sofa/).
+
+
+## Setup script
+
+To simplify the configuration of our continuous integration machines, we created a complete setup script.
+
+**WARNING: USE AT YOUR OWN RISKS**
+
+This script installs a lot of software directly in `C:\` without any prealable check.  
+It is meant to be used on a **fresh Windows**. We use it on disposable virtual machines only.  
+
+Setup script: [I am aware of the disclaimer above](https://github.com/sofa-framework/ci/blob/master/setup/setup-windows.bat)
+
+
+<!-- # Preconfigured Docker image
+
+Unfortunately, no Docker image has been created yet for Windows.  
+This may come in a near future, to be continued... -->

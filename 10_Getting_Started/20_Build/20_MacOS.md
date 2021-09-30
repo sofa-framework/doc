@@ -1,10 +1,5 @@
 **It is STRONGLY advised to read through this entire doc page before getting started.**
 
-## Preconfigured Docker image
-
-Unfortunately, no Docker image has been created yet for MacOS.  
-This may come in a near future, to be continued...
-
 ----------------------------
 
 # Build tools
@@ -188,9 +183,8 @@ Time for a coffee!
 
 
 
-## Troubleshooting CMake errors
+## Troubleshooting CMake: Qt detection
 
-### Qt detection error
 To solve Qt detection errors, click on **Add Entry** and add
 `CMAKE_PREFIX_PATH` with path `/home/YOUR_USERNAME/Qt/QT_VERSION/COMPILER` matching your
 Qt architecture.  
@@ -210,3 +204,15 @@ A further dev warning may appear:
 This is just a typo with Qt5CoreMacros.cmake file. It uses COPY\_ONLY
 instead of COPYONLY. Simply edit your Qt5CoreMacros.cmake, replace
 COPY\_ONLY with COPYONLY and **Configure** again.
+
+# Support to build SOFA
+
+## Forum
+
+Do not hesitate to report your problems on the [dedicated forum](https://www.sofa-framework.org/community/forum/section/sofa/building-sofa/).
+
+
+<!-- # Preconfigured Docker image
+
+Unfortunately, no Docker image has been created yet for MacOS.  
+This may come in a near future, to be continued... -->

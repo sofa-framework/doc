@@ -1,15 +1,5 @@
 **It is STRONGLY advised to read through this entire doc page before getting started.**
 
-## Preconfigured Docker image
-
-We provide preconfigured Docker images based on Ubuntu or CentOS.  
-These images contain all the tools and dependencies needed to build SOFA.  
-Feel free to use them and to propose your own versions on Docker Hub!
-
-CentOS image: [https://hub.docker.com/r/sofaframework/sofabuilder_centos](https://hub.docker.com/r/sofaframework/sofabuilder_centos)
-
-Ubuntu image: [https://hub.docker.com/r/sofaframework/sofabuilder_ubuntu](https://hub.docker.com/r/sofaframework/sofabuilder_ubuntu)
-
 ----------------------------
 
 # Build tools
@@ -213,9 +203,8 @@ Time for a coffee!
 
 
 
-## Troubleshooting CMake errors
+## Troubleshooting CMake: Qt detection
 
-### Qt detection error
 To solve Qt detection errors, click on **Add Entry** and add
 `CMAKE_PREFIX_PATH` with path `/home/YOUR_USERNAME/Qt/QT_VERSION/COMPILER` matching your
 Qt architecture.  
@@ -238,6 +227,23 @@ COPY\_ONLY with COPYONLY and **Configure** again.
 
 
 
+# Support to build SOFA
+
 ## Compilation tutorial
 
 See our page presenting [video tutorial for compilation on Linux](https://www.sofa-framework.org/community/doc/getting-started/video-tutorials/how-to-compile-sofa/#linux).
+
+## Forum
+
+Do not hesitate to report your problems on the [dedicated forum](https://www.sofa-framework.org/community/forum/section/sofa/building-sofa/).
+
+
+# Preconfigured Docker image
+
+We provide preconfigured Docker images based on Ubuntu or CentOS.  
+These images contain all the tools and dependencies needed to build SOFA.  
+Feel free to use them and to propose your own versions on Docker Hub!
+
+CentOS image: [https://hub.docker.com/r/sofaframework/sofabuilder_centos](https://hub.docker.com/r/sofaframework/sofabuilder_centos)
+
+Ubuntu image: [https://hub.docker.com/r/sofaframework/sofabuilder_ubuntu](https://hub.docker.com/r/sofaframework/sofabuilder_ubuntu)
