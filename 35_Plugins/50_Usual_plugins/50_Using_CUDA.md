@@ -52,7 +52,7 @@ To use CUDA in SOFA under Linux, you need to follow these steps:
 To use CUDA in SOFA under Windows, you need to follow these steps:
 
 -   Get the required files from
-    [NVIDIA](http://www.nvidia.com/content/cuda/cuda-downloads.html).
+    [NVIDIA](https://developer.nvidia.com/cuda-downloads).
     For Cuda 5.0, there is only one file to download and install. If you
     are using an earlier version, you need to download and install three
     files, and in the correct order
@@ -60,8 +60,7 @@ To use CUDA in SOFA under Windows, you need to follow these steps:
     -   The appropriate Cuda driver for your system
     -   Cuda SDK
 -   Check that the path to Cuda has been added to your system path. (for
-    example, C:ProgramDataNVIDIA CorporationNVIDIA GPU Computing
-    SDK 4.2Ccommonbin)
+    example, `C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v11.5\bin`)
     -   Right click the My Computer icon on the desktop
     -   Select Properties
     -   Select Advanced System Settings from the left hand panel
@@ -71,7 +70,7 @@ To use CUDA in SOFA under Windows, you need to follow these steps:
     -   If the above path is not part of the Path variable, add a
         semicolon after the last path in the list, and add the
         above path.
--   In CMake, turn on the **SOFA-PLUGIN\_SOFACUDA** option, and
+-   In CMake, turn on the **PLUGIN\_SOFACUDA** option, and
     reconfigure
     -   New options relating to Cuda will appear, some with the prefix
         "SOFA-CUDA" and some with the prefix "CUDA". The SOFA-CUDA
@@ -95,11 +94,11 @@ To use CUDA in SOFA under Windows, you need to follow these steps:
             (for RadixSort) Note: THRUST is included in CUDA SDK 4.0+,
             it is recommended to use it if available
     -   If you want to use some of the more advanced features of Cuda,
-        such as atomics for floats, you should can set the
+        such as atomics for floats, you can set the
         CUDA\_NVCC\_FLAGS option to --ptxas-options=-v -arch sm\_12,
         changing sm\_12 to whatever Compute Capabilities you graphics
         card supports. See
-        ([link](https://developer.nvidia.com/cuda-gpus)s) for a table of
+        ([link](https://developer.nvidia.com/cuda-gpus)) for a table of
         Compute Capabilities.
 -   Configure, Generate, and compile
 
@@ -109,8 +108,7 @@ SofaCUDA
 --------
 
 SofaCUDA is a plugin that provides a number of Sofa components that have
-been implemented using
-[CUDA](http://www.nvidia.com/object/cuda_home_new.html), which allows
+been implemented using CUDA, which allows
 the graphics card to be used for multithreaded programming. This can
 significantly improve the performance of your scene when working with
 large meshes. To include this plugin, first follow the compilation
