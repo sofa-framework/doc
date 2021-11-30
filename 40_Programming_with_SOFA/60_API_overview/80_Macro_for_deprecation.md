@@ -2,7 +2,7 @@
 
 ## The 2 base macros
 
-### `SOFA_ATTRIBUTE_DEPRECATED(deprecateDate, disableDate, toFixMsg)`
+### SOFA_ATTRIBUTE_DEPRECATED(deprecateDate, disableDate, toFixMsg)
 
 To be used to trigger a deprecation warning. It is a simple `[[deprecated]]` interface.
 
@@ -13,7 +13,7 @@ This macro warns that something
 
 and gives the `toFixMsg` instructions to fix the deprecation warning.
 
-### `SOFA_ATTRIBUTE_DISABLED(deprecateDate, disableDate, toFixMsg)`
+### SOFA_ATTRIBUTE_DISABLED(deprecateDate, disableDate, toFixMsg)
 
 To be used jointly with `= delete` to trigger an error. It is a flavored `[[deprecated]]` interface.
 
