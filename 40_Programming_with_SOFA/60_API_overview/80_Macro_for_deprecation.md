@@ -2,21 +2,27 @@
 
 ## The 2 base macros
 
-**Do not use them directly in your code**, see "how to use them" below.
+### `SOFA_ATTRIBUTE_DEPRECATED(deprecateDate, disableDate, toFixMsg)`
 
-`SOFA_ATTRIBUTE_DEPRECATED(deprecateDate, removeDate, toFixMsg)`
 To be used to trigger a deprecation warning. It is a simple `[[deprecated]]` interface.
-Warns that something
-&nbsp;&nbsp;&nbsp; - is DEPRECATED (so still usable) since `deprecateDate`
-&nbsp;&nbsp;&nbsp; - will be removed on `removeDate`
-and gives the toFixMsg instructions to fix the deprecation warning.
-    
-`SOFA_ATTRIBUTE_DISABLED(deprecateDate, disableDate, toFixMsg)`
+
+This macro warns that something
+
+- is DEPRECATED (still usable) since `deprecateDate`
+- will be disabled on `disableDate`
+
+and gives the `toFixMsg` instructions to fix the deprecation warning.
+
+### `SOFA_ATTRIBUTE_DISABLED(deprecateDate, disableDate, toFixMsg)`
+
 To be used jointly with `= delete` to trigger an error. It is a flavored `[[deprecated]]` interface.
-Warns that something  
-&nbsp;&nbsp;&nbsp; - is DISABLED (so not usable anymore) since `disabledDate`
-&nbsp;&nbsp;&nbsp; - was firstly deprecated on `deprecateDate`
-and gives the toFixMsg instructions to fix the compilation error.
+
+This macro warns that something  
+
+- is DISABLED (not usable anymore) since `disabledDate`
+- was firstly deprecated on `deprecateDate`
+
+and gives the `toFixMsg` instructions to fix the compilation error.
 
 
 ## How to use them
