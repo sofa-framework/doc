@@ -1,109 +1,71 @@
-# Initial steps
+## SOFA binaries
 
-When you are ready for creating a release:
-
--   check the status of the build on the [dashboard](http://www.sofa-framework.org/dash/)
--   make sure the [changelog](https://github.com/sofa-framework/sofa/blob/master/CHANGELOG.md) is up-to-date
--   make sure your local SOFA repository is up-to-date  
-    ```bash
-    git checkout master  
-    git stash  
-    git pull -r
-    ```
+### Prepare the sources  
     
--   check the year in the files: README.md, Authors.txt, LICENCE.txt, CMakeList.txt (SOFA, SofaKernel, SofaFramework)
--   create a new branch for the release: `git checkout -b v1.1`
--   push this new branch on the remote repository: `git push -u origin v1.1`
-
-In this new branch:  
-
--   run header script in scripts/licenseUpdater to change the version (for both GPL / LGPL parts):
-    ```
-    licenseUpdater.sh <path_to_sofa> <year> <version>
-    ```
-    
--   update the version in CMakeLists.txt  
+- Update SOFA version in CMakeLists.txt  
     ```cmake
-    #CPack install  
-    SET(CPACK_PACKAGE_VERSION "17.06.00")  
-    SET(CPACK_PACKAGE_VERSION_MAJOR "17")  
-    SET(CPACK_PACKAGE_VERSION_MINOR "06")  
-    SET(CPACK_PACKAGE_VERSION_PATCH "00")
+    # Manually define VERSION
+    set(Sofa_VERSION_MAJOR <new release major version>)
+    set(Sofa_VERSION_MINOR <new release minor version>)
+    set(Sofa_VERSION_PATCH <new release patch version>)
     ```
-    
--   update the version in SofaKernel/SofaFramework/CMakelists.txt
+- Update External Projects versions  
+  For each ExternalProject.cmake.in file in the sources, edit the line `GIT_TAG origin/<branch of the new release>`
+- Set the CMake variables
     ```cmake
-    ## Version
-    set(SOFAFRAMEWORK_VERSION "17.06.00")
-    
-    ## sofa/version.h
-    set(SOFA_VERSION "170600")
-    set(SOFA_VERSION_STR "\"17.06\"")
+    SOFA_BUILD_RELEASE_PACKAGE=ON
+    CPACK_GENERATOR=ZIP
+    CPACK_BINARY_ZIP=ON
     ```
-     
--   enable the CMake option `SOFA_BUILD_RELEASE_PACKAGE`
+- If you want to generate an installer:
+    - Install the latest [Qt Installer Framework (Qt IFW)](https://download.qt.io/official_releases/qt-installer-framework/)
+    - Set the CMake variables  
+    ```cmake
+    CPACK_IFW_ROOT=<location of QtIFW (no "bin" at the end)>
+    CPACK_GENERATOR=ZIP;IFW
+    CPACK_BINARY_ZIP=ON
+    CPACK_BINARY_IFW=ON
+    ```
+- [MacOS] Set CMake variable for OSX compatibility version:  
+   ```
+   CMAKE_OSX_DEPLOYMENT_TARGET=10.15
+   ```
+- [MacOS] If you want to generate a bundle (.app), set the CMake variables:  
+    ```cmake
+    CPACK_GENERATOR=ZIP;DragNDrop
+    CPACK_BINARY_ZIP=ON
+    CPACK_BINARY_DRAGNDROP=ON
+    ```
 
-The next steps do depend on the operating system.
+### Generate the binaries
 
-* * *
+- Configure + Generate + Build
+- Install: `make install` or `ninja install`  
+- Make sure that `linux-postinstall-fixup.sh` or `windows-postinstall-fixup.sh` or `macos-postinstall-fixup.sh` was triggered and its output is OK
+- Your binaries should be in your build directory
 
-## Linux
 
--   configure + generate + compile
--   install: `make install` or `ninja install`  
--   in new install dir:
-    - add license directory
-    - fix wrong lib symlinks (pointing to system libs)
--   create a .zip archive of install dir
+## Plugin binaries
 
-* * *
 
-## Windows
 
--   configure + generate + compile
--   run `make package` or `ninja package` to build .exe installer (needs NSIS)
-
-* * *
-
-## OS X
-
-OS X has a special package system (bundle/.app)
-
-If you want an Unix-like archive (with normal filetree such as bin/
-lib/, etc), follow instructions for Linux. It is meaningful for people
-wishing to develop.
-
-If you want a pure Mac OS X package, you have to:
-
--   configure + generate + compile
--   install: `make install` or `ninja install`
--   create .dmg package: `cpack -G DragNDrop CPackConfig.cmake`
-
-It will create a dmg (compressed archive), with an app containing
-**all** required libraries, runSofa binary and the share directory.
-
-* * *
 
 ## Troubleshooting
 
-- (OS X) before running, to show when dylibs are loaded:  
-```bash
-DYLD_PRINT_LIBRARIES=1
-./runSofa
-```
-- Qt plugins are not loaded at runtime so to force Qt to print when plugins are loaded and used: `export QT_DEBUG_PLUGINS=1`
+- To show how Qt plugins are loaded and used: `export QT_DEBUG_PLUGINS=1`
+- [Linux][MacOS] To fix library dependency resolution: `export LD_LIBRARY_PATH=/path/to/sofa/bin:/path/to/sofa/lib:$LD_LIBRARY_PATH`
+- [MacOS] To show when dylibs are loaded: `export DYLD_PRINT_LIBRARIES=1`
 
-* * *
 
-# Final steps
+## Publishing a SOFA release
 
 Once the binaries are generated:
 
--   update the link on the [download](https://www.sofa-framework.org/download/) page for the binaries (add changes in dependencies)
--   update the doc for building SOFA:
-    -   for [Linux](https://www.sofa-framework.org/community/doc/getting-started/build/linux/)
-    -   for [MacOS](https://www.sofa-framework.org/community/doc/getting-started/build/mac-os-x/)
-    -   for [Windows](https://www.sofa-framework.org/community/doc/getting-started/build/windows/)
--   update the flag on the forum
--   create [announcement](https://www.sofa-framework.org/community/forum/section/announcements-infos/) on the forum, [twitter](https://twitter.com/SofaFramework), LinkedIn, SOFA dev, post.
--   create a [release](https://github.com/sofa-framework/sofa/releases) GitHub with a link to the changelog
+- Create a [release](https://github.com/sofa-framework/sofa/releases) on GitHub.
+- Update the link on the [download](https://www.sofa-framework.org/download/) page for the binaries (add changes in dependencies).
+- Update the doc for building SOFA:
+    - on [Linux](https://www.sofa-framework.org/community/doc/getting-started/build/linux/)
+    - on [MacOS](https://www.sofa-framework.org/community/doc/getting-started/build/mac-os-x/)
+    - on [Windows](https://www.sofa-framework.org/community/doc/getting-started/build/windows/)
+- Update the flags on the forum.
+- Create a post on the forum, on Twitter, on LinkedIn.
