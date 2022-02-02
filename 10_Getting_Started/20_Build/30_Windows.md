@@ -25,12 +25,12 @@ This may come in a near future, to be continued...
 SOFA requires a [C++17 compatible compiler](https://en.cppreference.com/w/cpp/compiler_support#C.2B.2B17_features).  
 On Windows, we officially support **Microsoft Visual Studio >= 2017** (version 15.7).  
 If you want to use **Visual Studio IDE**, install the complete Visual Studio solution.  
-If you want to use **another IDE like QtCreator**, install the Build Tools only.
+If you want to use **another IDE** (like QtCreator), install the Build Tools only.
 
-|                       | **Visual Studio 2017** | **Visual Studio 2019** |
-| --------------------- |:----------------------:|:----------------------:|
-| **Build Tools only**  | [download](https://visualstudio.microsoft.com/fr/thank-you-downloading-visual-studio/?sku=BuildTools&rel=15) | [download](https://visualstudio.microsoft.com/fr/thank-you-downloading-visual-studio/?sku=BuildTools&rel=16) |
-| **IDE + Build Tools** | [download](https://visualstudio.microsoft.com/fr/thank-you-downloading-visual-studio/?sku=Community&rel=15) | [download](https://visualstudio.microsoft.com/fr/thank-you-downloading-visual-studio/?sku=Community&rel=16) |
+|                       | **Visual Studio 2017** | **Visual Studio 2019** | **Visual Studio 2022** |
+| --------------------- |:----------------------:|:----------------------:|:----------------------:|
+| **Build Tools only**  | [download](https://visualstudio.microsoft.com/fr/thank-you-downloading-visual-studio/?sku=BuildTools&rel=15) | [download](https://visualstudio.microsoft.com/fr/thank-you-downloading-visual-studio/?sku=BuildTools&rel=16) | [download](https://visualstudio.microsoft.com/fr/thank-you-downloading-visual-studio/?sku=BuildTools&rel=17) |
+| **IDE + Build Tools** | [download](https://visualstudio.microsoft.com/fr/thank-you-downloading-visual-studio/?sku=Community&rel=15) | [download](https://visualstudio.microsoft.com/fr/thank-you-downloading-visual-studio/?sku=Community&rel=16) | [download](https://visualstudio.microsoft.com/fr/thank-you-downloading-visual-studio/?sku=Community&rel=17) |
 
 
 In the installer, you must enable:
@@ -52,10 +52,12 @@ Install CMake with [the latest official installer](https://github.com/Kitware/CM
 
 ## [optional] Ninja: build system
 
+We strongly advise you to use Ninja if you chose to install the Build Tools only (no IDE).
+
 Ninja is an alternative to NMake. It has a better handling of incremental builds.  
 You can download the latest release from [their GitHub repository](https://github.com/ninja-build/ninja/releases).
 
-Do not forget to **add ninja to your system PATH**!
+**IMPORTANT**: do not forget to **add ninja to your system PATH**.
 
 # Dependencies
 
@@ -63,33 +65,28 @@ Do not forget to **add ninja to your system PATH**!
 
 SOFA requires some libraries:
 
--   **Qt** (>= 5.12.0) with **Charts** and **WebEngine**  
+-   **Qt** (>= 5.12.0) with **Charts** and **WebEngine**. Qt6 is not fully supported yet.  
     We recommend to install Qt **in your user directory** with [the unified installer](http://download.qt.io/official_releases/online_installers).  
-    Qt6 is not yet supported.
     ![](https://github.com/sofa-framework/doc/blob/master/images/gettingstarted/install_qt_windows_1.png?raw=true")
     Make sure to enable **Charts** and **WebEngine** components.  
     ![](https://github.com/sofa-framework/doc/blob/master/images/gettingstarted/install_qt_windows_2.png?raw=true")
 
 -   **Boost** (>= 1.65.1)  
-    Download and install latest Boost from [https://boost.teeks99.com](https://boost.teeks99.com).
+    Download and install the latest version compatible with your Visual Studio from [https://boost.teeks99.com](https://boost.teeks99.com).
     
-    - **Users with Windows 64-bit and VS 2019**: choose boost_X_X_X-msvc-14.2-64.exe
-    - **Users with Windows 64-bit and VS 2017**: choose boost_X_X_X-msvc-14.1-64.exe
-    - Users with Windows 32-bit and VS 2019: choose boost_X_X_X-msvc-14.2-32.exe
-    - Users with Windows 32-bit and VS 2017: choose boost_X_X_X-msvc-14.1-32.exe
+    - **For Visual Studio 2022**: choose boost_X_X_X-msvc-14.3-64.exe
+    - **For Visual Studio 2019**: choose boost_X_X_X-msvc-14.2-64.exe
+    - **For Visual Studio 2017**: choose boost_X_X_X-msvc-14.1-64.exe
     
 -   **Python** (= 3.7.x)  
-    Download and install latest Python **3.7** from [python.org download page](https://www.python.org/downloads/windows/).
+    Download and install the latest [**Python 3.7 (amd64)**](https://www.python.org/ftp/python/3.7.9/python-3.7.9-amd64.exe).
     
-    - **Users with Windows 64-bit**: choose the "Windows x86-64 MSI installer".
-    - Users with Windows 32-bit: choose the "Windows x86 MSI installer".
-
 -   **Additional libraries**: libPNG, libJPEG, libTIFF, Glew, Zlib  
     Download the [Windows dependency pack](https://www.sofa-framework.org/download/WinDepPack/VS-2017/latest).  
     You will need to unzip it directly in SOFA sources (later in this tutorial).
 
 -   SOFA v20.06 and newer also need **Eigen** (>= 3.2.10)  
-    Download and install latest Eigen from [http://eigen.tuxfamily.org](http://eigen.tuxfamily.org)
+    Download and extract the [latest Eigen sources](https://gitlab.com/libeigen/eigen/-/releases).
 
 ### [optional] PATH modification
 
@@ -110,16 +107,16 @@ as follows:
 sofa/
 ├── build/
 │   ├── master/
-│   └── v21.06/
+│   └── v21.12/
 └── src/
     └── < SOFA sources here >
 ```
 
 **First**, checkout the sources from Git repository:
 
-Get the current **stable** version on the v21.06 branch:
+Get the current **stable** version on the v21.12 branch:
 ``` {.bash .stable}
-git clone -b v21.06 https://github.com/sofa-framework/sofa.git sofa/src
+git clone -b v21.12 https://github.com/sofa-framework/sofa.git sofa/src
 ```
 
 **OR** get the development **unstable** version on the master branch:
@@ -163,7 +160,7 @@ git clone -b master https://github.com/sofa-framework/sofa.git sofa/src
 
    - choose the build type by setting CMAKE_BUILD_TYPE to "Release" or "RelWithDebInfo" (recommended) or "Debug"
    - activate or deactivate plugins: see PLUGIN_XXX variables
-   - activate or deactivate functionalities: see SOFA_XXX variables
+   - activate or deactivate features: see SOFA_XXX variables
 
    Do not forget to **Configure** again to check if your changes are valid.
 

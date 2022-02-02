@@ -2,13 +2,13 @@
 
 ## Preconfigured Docker image
 
-We provide preconfigured Docker images based on Ubuntu or CentOS.  
+We provide preconfigured Docker images based on Ubuntu or Fedora.  
 These images contain all the tools and dependencies needed to build SOFA.  
 Feel free to use them and to propose your own versions on Docker Hub!
 
-CentOS image: [https://hub.docker.com/r/sofaframework/sofabuilder_centos](https://hub.docker.com/r/sofaframework/sofabuilder_centos)
-
 Ubuntu image: [https://hub.docker.com/r/sofaframework/sofabuilder_ubuntu](https://hub.docker.com/r/sofaframework/sofabuilder_ubuntu)
+
+Fedora image: [https://hub.docker.com/r/sofaframework/sofabuilder_fedora](https://hub.docker.com/r/sofaframework/sofabuilder_fedora)
 
 ----------------------------
 
@@ -38,7 +38,7 @@ sudo apt install gcc-11
 ```
 
 ### Clang
-Clang is an **alternative to GCC**. It compiles approximately two times faster !  
+Clang is an **alternative to GCC**. It compiles approximately two times faster!  
 We recommend to install **Clang 5 or newer**.
 
 To know which Clang versions are available for your distribution, run this command:
@@ -154,16 +154,16 @@ as follows:
 sofa/
 ├── build/
 │   ├── master/
-│   └── v21.06/
+│   └── v21.12/
 └── src/
     └── < SOFA sources here >
 ```
 
 **First**, checkout the sources from Git repository:
 
-Get the current **stable** version on the v21.06 branch:
+Get the current **stable** version on the v21.12 branch:
 ``` {.bash .stable}
-git clone -b v21.06 https://github.com/sofa-framework/sofa.git sofa/src
+git clone -b v21.12 https://github.com/sofa-framework/sofa.git sofa/src
 ```
 
 **OR** get the development **unstable** version on the master branch:
@@ -207,7 +207,6 @@ git clone -b master https://github.com/sofa-framework/sofa.git sofa/src
 ## Compile
 
 To compile, open a terminal in your build directory and run `make` or `ninja` depending on the generator you chose during CMake configuration.  
-Do not forget the `-j` option to use all your CPU cores.
 
 Time for a coffee!
 
@@ -218,9 +217,10 @@ Time for a coffee!
 ### Qt detection error
 To solve Qt detection errors, click on **Add Entry** and add
 `CMAKE_PREFIX_PATH` with path `/home/YOUR_USERNAME/Qt/QT_VERSION/COMPILER` matching your
-Qt architecture.  
-Example: `CMAKE_PREFIX_PATH=/home/bob/Qt/5.7/gcc_64`  
-**Configure** again.
+Qt installation.  
+Example: `CMAKE_PREFIX_PATH=/home/bob/Qt/5.15/gcc_64`  
+
+Then, **Configure** again.
 
 A further dev warning may appear:
 

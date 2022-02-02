@@ -22,15 +22,18 @@ If your MacOS version is too low, update your Mac from the App Store.
 If your AppleClang version is too low:
 
 1. Download and install the highest possible Xcode compatible with your MacOS.  
-   Compatibility list (taken from [Wikipedia](https://en.wikipedia.org/wiki/Xcode#Xcode_7.0_-_12.x_%28since_Free_On-Device_Development%29)):  
-   ```
-   MacOS >= 10.15.2 : Xcode 11.4   (with AppleClang 11.0.3, based on clang 9)
-   MacOS >= 10.14.4 : Xcode 11.3.1 (with AppleClang 11.0.0, based on clang 8)
-   MacOS >= 10.14.3 : Xcode 10.3   (with AppleClang 10.0.1, based on clang 7)
-   MacOS >= 10.13.6 : Xcode 10.1   (with AppleClang 10.0.0, based on clang 6)
-   MacOS >= 10.13.2 : Xcode 9.4.1  (with AppleClang 9.1.0,  based on clang 5)
+   Compatibility list (taken from [Wikipedia](https://en.wikipedia.org/wiki/Xcode#Version_comparison_table)):  
+   ```   
+   MacOS >= 11.3    : Xcode 13.2.1 (with AppleClang 13.0.0)
+   MacOS >= 11.0    : Xcode 12.5.1 (with AppleClang 12.0.5)
+   MacOS >= 10.15.4 : Xcode 12.4   (with AppleClang 12.0.0)   
+   MacOS >= 10.15.2 : Xcode 11.7   (with AppleClang 11.0.3)
+   MacOS >= 10.14.4 : Xcode 11.3.1 (with AppleClang 11.0.0)
+   MacOS >= 10.14.3 : Xcode 10.3   (with AppleClang 10.0.1)
+   MacOS >= 10.13.6 : Xcode 10.1   (with AppleClang 10.0.0)
+   MacOS >= 10.13.2 : Xcode 9.4.1  (with AppleClang  9.1.0)
    ```  
-   To download any version, go to https://developer.apple.com/download/more/ and search "Xcode".
+   To download any version, go to https://developer.apple.com/download/more/ and search for "Xcode".
 
 2. Open Xcode to automatically finalize installation
 
@@ -44,8 +47,11 @@ If your AppleClang version is too low:
 
 ## CMake: Makefile generator
 
-SOFA requires at least **CMake 3.12**.  
-We recommend to install CMake using [the latest official installer](https://github.com/Kitware/CMake/releases/latest).
+SOFA requires at least **CMake 3.12**.
+
+``` {.bash}
+brew install --cask cmake
+```
 
 
 ## [optional] Ninja: build system
@@ -135,16 +141,16 @@ as follows:
 sofa/
 ├── build/
 │   ├── master/
-│   └── v21.06/
+│   └── v21.12/
 └── src/
     └── < SOFA sources here >
 ```
 
 **First**, checkout the sources from Git repository:
 
-Get the current **stable** version on the v21.06 branch:
+Get the current **stable** version on the v21.12 branch:
 ``` {.bash .stable}
-git clone -b v21.06 https://github.com/sofa-framework/sofa.git sofa/src
+git clone -b v21.12 https://github.com/sofa-framework/sofa.git sofa/src
 ```
 
 **OR** get the development **unstable** version on the master branch:
@@ -168,9 +174,10 @@ git clone -b master https://github.com/sofa-framework/sofa.git sofa/src
 
 4. Fix eventual dependency errors by following CMake messages (see Troubleshooting section below). Do not worry about warnings.
 
-5. (optional) Customize SOFA via CMake variables
+5. Customize SOFA via CMake variables
 
    - choose the build type by setting CMAKE_BUILD_TYPE to "Release" or "RelWithDebInfo" (recommended) or "Debug"
+   - if your Mac has a M1 processor: set CMAKE_OSX_ARCHITECTURES to "arm64"
    - activate or deactivate plugins: see PLUGIN_XXX variables
    - activate or deactivate functionalities: see SOFA_XXX variables
    
