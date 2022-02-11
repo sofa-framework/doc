@@ -78,7 +78,7 @@ Therefore, it always exists a transformation <img class="latex" src="https://lat
 <img class="latex" src="https://latex.codecogs.com/png.latex?\boldsymbol{\xi}=(\xi%20,\eta%20,\zeta%20)\longrightarrow%20\textbf{x}=T^K(\boldsymbol{\xi})=\sum_{i=0}^{N}x_i%20\phi_i(\boldsymbol{\xi})" title="Transformation T^K" />
 
 
-This transformation <img class="latex" src="https://latex.codecogs.com/png.latex?T^K" title="Transformation T^K from reference configuration to global space" /> is bijective if the determinant of the Jacobian of the transmation is non-null <img class="latex" src="https://latex.codecogs.com/png.latex?det(J)\neq0" title="Non-zero Jacobian" />. Moreover, the transformation <img class="latex" src="https://latex.codecogs.com/png.latex?T^K" title="Transformation T^K from reference configuration to global space" /> will allow for the integration of the weak form by change of variables: instead of integrating over <img class="latex" src="https://latex.codecogs.com/png.latex?d\Omega=dxdydz" title="Derivative of global coordinates" />, the integration will be reported on the reference element <img class="latex" src="https://latex.codecogs.com/png.latex?d\xi%20d\eta%20d\zeta" title="Derivative of local coordinates" />. 
+This transformation <img class="latex" src="https://latex.codecogs.com/png.latex?T^K" title="Transformation T^K from reference configuration to global space" /> is bijective if the determinant of the Jacobian of the transformation is non-null <img class="latex" src="https://latex.codecogs.com/png.latex?det(J)\neq0" title="Non-zero Jacobian" />. Moreover, the transformation <img class="latex" src="https://latex.codecogs.com/png.latex?T^K" title="Transformation T^K from reference configuration to global space" /> will allow for the integration of the weak form by change of variables: instead of integrating over <img class="latex" src="https://latex.codecogs.com/png.latex?d\Omega=dxdydz" title="Derivative of global coordinates" />, the integration will be reported on the reference element <img class="latex" src="https://latex.codecogs.com/png.latex?d\xi%20d\eta%20d\zeta" title="Derivative of local coordinates" />. 
 
 
 #### Example
@@ -91,7 +91,7 @@ Let's consider an example. A density of force <img class="latex" src="https://la
 <img class="latex" src="https://latex.codecogs.com/png.latex?\int_{\Omega}%20\phi_j%20\rho%20\boldsymbol{b}d\Omega%20=\sum_{e=0}^E%20\rho%20\alpha%20\int_{V_e}%20\phi_j%20\sum_{i=0}^{N}%20\phi_i%20x_i%20dV_e" title="Integraton of the force" />
 
 <img class="latex" src="https://latex.codecogs.com/png.latex?\int_{\Omega}%20\phi_j%20\rho%20\boldsymbol{b}d\Omega%20=\sum_{e=0}^E%20\rho%20\alpha%20\int_{V_e}%20|det(J)|%20\sum_{i=0}^{N}\phi_j(\boldsymbol{\xi})%20\phi_i(\boldsymbol{\xi})%20x_i%20d%20\boldsymbol{\xi}
-" title="Integraton of the force" />
+" title="Integration of the force" />
 
 
 

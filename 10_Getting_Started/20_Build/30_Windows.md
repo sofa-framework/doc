@@ -135,7 +135,7 @@ git clone -b master https://github.com/sofa-framework/sofa.git sofa/src
 
 0. Create build directories respecting the arrangement above.
 
-1. In Windows Start menu, search for `Native Tools Command Prompt` and run the one correponding to your Windows architecture (x64 for 64-bit, x86 for 32-bit).  
+1. In Windows Start menu, search for `Native Tools Command Prompt` and run the one corresponding to your Windows architecture (x64 for 64-bit, x86 for 32-bit).  
 ![](https://www.sofa-framework.org/wp-content/uploads/2020/04/SearchCommandPrompt2.png)
 
 2. In the command prompt, type `cmake-gui` and press Enter.  
@@ -177,7 +177,7 @@ If you chose another generator you will have to run the generator from the build
 
 Example with Ninja:
 
-- In Windows Start menu, search for `Native Tools Command Prompt` and run the one correponding to your Windows architecture (x64 for 64-bit, x86 for 32-bit).
+- In Windows Start menu, search for `Native Tools Command Prompt` and run the one corresponding to your Windows architecture (x64 for 64-bit, x86 for 32-bit).
 - Go to the build directory with `cd`
 - Run `ninja`
 

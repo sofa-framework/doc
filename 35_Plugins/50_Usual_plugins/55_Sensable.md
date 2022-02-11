@@ -62,7 +62,7 @@ needs to find the MechanicalObject that it will control, and the
 ForceFeedback that will calculate the feedback for it. It will do this
 by looking for the components that have the same tag as in, in this case
 **Omni**. Next we see the **Instrument** node. First we see the
-MechancialObject:
+MechanicalObject:
 
 ```xml
 <MechanicalObject template="Rigid" name="instrumentState" tags="Omni"  />
@@ -307,7 +307,7 @@ The forces computed in your scene will vary depending on the scale of
 the objects in your scene. For example, the box in SimpleBox.scn is
 10x10x10, while the box in SimpleBoxLarge.scn is scaled to be 10 times
 bigger than that. At larger and smaller scales, a number of your
-attribuets will need to become larger and smaller as well. The
+attributes will need to become larger and smaller as well. The
 attributes that are sensitive to scale are:
 
 -   MinProximityIntersection: alarmDistance

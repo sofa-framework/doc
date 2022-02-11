@@ -63,7 +63,7 @@ The following methods are executed in parallel:
 
 The method `addKToMatrix` is not executed in parallel.
 This method is called with an assembled system, usually with a direct solver or a [CGLinearSolver](https://www.sofa-framework.org/community/doc/components/linearsolvers/cglinearsolver/) templated with types different from GraphScattered.
-In this case, the most time-consumming step is to invert the matrix. This is where efforts should be put to accelerate the simulation.
+In this case, the most time-consuming step is to invert the matrix. This is where efforts should be put to accelerate the simulation.
 
 #### Examples
 

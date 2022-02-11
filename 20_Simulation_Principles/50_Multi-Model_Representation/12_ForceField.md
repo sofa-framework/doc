@@ -50,7 +50,7 @@ Finally, gathering the unknown (depending on <img class="latex" src="https://lat
 
 <img class="latex" src="https://latex.codecogs.com/png.latex?\left(%20\mathbf{M}-dt^2%20\cdot%20\frac{\partial%20f}{\partial%20x}%20\right)%20\Delta%20v=dt\cdot%20f(x(t)+dt^2\cdot%20\frac{\partial%20f}{\partial%20x}v(t)" title="Implicit dynamic system" />
 
-We can notice the appearance of the stiffness matrix : <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{K}_{ij}=\textstyle\frac{\partial%20f_i}{\partial%20x_j}" title="Implicit contribution" />. The stiffness matrix <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{K}" title="Stiffness matrix" /> is a symetric matrix, can either be linear or non-linear regarding <img class="latex" src="https://latex.codecogs.com/png.latex?x" title="DOF" />.
+We can notice the appearance of the stiffness matrix : <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{K}_{ij}=\textstyle\frac{\partial%20f_i}{\partial%20x_j}" title="Implicit contribution" />. The stiffness matrix <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{K}" title="Stiffness matrix" /> is a symmetric matrix, can either be linear or non-linear regarding <img class="latex" src="https://latex.codecogs.com/png.latex?x" title="DOF" />.
 
 
 For the **right hand side**:

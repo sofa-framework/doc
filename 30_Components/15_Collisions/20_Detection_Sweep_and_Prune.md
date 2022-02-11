@@ -6,7 +6,7 @@ The DirectSAP component belongs to the category of [Collision Detection](https:/
 
 <a href="https://github.com/sofa-framework/doc/blob/master/images/collision/SAP.png?raw=true"><img src="https://github.com/sofa-framework/doc/blob/master/images/collision/SAP.png?raw=true" title="SAP algorithm on x- and y-axis with a non-overlapping condition (left) and an overlapping one (right). Image from paper: Collision Detection: Broad Phase Adaptation from Multi-Core to Multi-GPU Architecture"/></a>
 
-DirectSAP corresponds to the implementation of SAP in its "direct" version, i.e. at each step it sorts all the primitives along an axis (**not checking the moving ones**) and computes overlaping pairs without saving it. But the memory used to save these primitives is created just once, the first time we add CollisionModels.
+DirectSAP corresponds to the implementation of SAP in its "direct" version, i.e. at each step it sorts all the primitives along an axis (**not checking the moving ones**) and computes overlapping pairs without saving it. But the memory used to save these primitives is created just once, the first time we add CollisionModels.
 
 
 ### Preliminary phase
@@ -36,7 +36,7 @@ Only the pairs of objects whose projected bounding volumes overlap on all axes w
 
 ### Narrow phase
 
-The narrow phase browses all boxes considered as active by the broad phase. From this information, it is possible to recover the finnest CollisionModel (which is not a CubeModel) corresponding to each box. An intersection check will then be done between these pairs. This check also depends on the [intersection method](https://www.sofa-framework.org/community/doc/main-principles/collisions/#intersection-methods) used. This last phase returns the DetectionOutput vector containing elements of CollisionModels in collision and the contact points on the surface of each model.
+The narrow phase browses all boxes considered as active by the broad phase. From this information, it is possible to recover the finest CollisionModel (which is not a CubeModel) corresponding to each box. An intersection check will then be done between these pairs. This check also depends on the [intersection method](https://www.sofa-framework.org/community/doc/main-principles/collisions/#intersection-methods) used. This last phase returns the DetectionOutput vector containing elements of CollisionModels in collision and the contact points on the surface of each model.
 
 
 

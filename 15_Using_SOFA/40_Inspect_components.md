@@ -55,7 +55,7 @@ GUI. You have to select the properties you want to monitor or display.
   Forces         `ExportForces`            `false`                  `ExportForces="true"`           *forces will be exported to **\${component\_name}\_f.txt***
   Trajectories   `showTrajectories`        `false`                  `showTrajectories="true"`       *to visualize the trajectories*
   Trajectories   `TrajectoriesColor`       `(1.0, 1.0, 0.0, 1.0)`   `TrajectoriesColor="1 0 1 1"`   *to get nice purple trajectories represented as lines*
-  Trajectories   `TrajectoriesPrecision`   `1.0`                    `TrajectoriesPrecision="0.1"`   *to specify the timestep between two positions saving to reconstruct the trajectory*
+  Trajectories   `TrajectoriesPrecision`   `1.0`                    `TrajectoriesPrecision="0.1"`   *to specify the time step between two positions saving to reconstruct the trajectory*
                  `sizeFactor`              `1.0`                    `sizeFactor="true"`             *to change the size of the drawing (points, arrows or lines)*
                  `showMinThreshold`        `0.01`                   `showMinThreshold="0.01"`       *under this value, vectors are not represented*
   -------------- ------------------------- ------------------------ ------------------------------- --------------------------------------------------------------------------------------

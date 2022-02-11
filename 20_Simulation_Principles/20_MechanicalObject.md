@@ -94,5 +94,5 @@ In an XML format, this would be written as follows:
 </Node>
 ```
 
-The C++ templates avoid code redundancy between scalar types and DOFs types. All nodes in a vector have the same type, known at compilation time to allow agressive compiler optimizations. Nodes with different DOFs must be stored in two different _MechanicalObjects_.
+The C++ templates avoid code redundancy between scalar types and DOFs types. All nodes in a vector have the same type, known at compilation time to allow aggressive compiler optimizations. Nodes with different DOFs must be stored in two different _MechanicalObjects_.
 

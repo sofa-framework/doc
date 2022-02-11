@@ -384,16 +384,16 @@ AssembledSolver\_test and DampedOscillator\_test.
     creates a minimal scene with a mechanical object, a topology and the
     projective constraint. One defines the constraint parameters (points
     to project, normal of the projection...). Then one inits the scene
-    and call the projectPosition() function. Finaly one checks two
+    and call the projectPosition() function. Finally one checks two
     criteria:
     -   if constrained particle have the expected position.
     -   if unconstrained particle have not changed.
 
 Some projective constraint tests are available in SofaTest\_test:
-PRojectToLineConstraint and ProjectToPlaneConstraint.
+ProjectToLineConstraint and ProjectToPlaneConstraint.
 
 -   **Engine test**: To test engine you set input values and check if
-    the ouput values correspond to the expected ones. The test
+    the output values correspond to the expected ones. The test
     Engine\_test tests if the update method is called only if necessary.
     To test this a minimal engine TestEngine was created with a counter
     in its update method.

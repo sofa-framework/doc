@@ -1,4 +1,4 @@
-Components implement most of the simulation methods. One can rougly
+Components implement most of the simulation methods. One can roughly
 distinguish two categories of components: **Property** components
 implement a facet of one object's physical properties, such as its mass,
 stiffness, attachments. They are associated with a given simulated
@@ -308,7 +308,7 @@ class if these conditions are met :
 
 Examples:
 
--   sofa::component::engine::BoxROI depends on a template paremeter, and
+-   sofa::component::engine::BoxROI depends on a template parameter, and
     derives from sofa::core::DataEngine which does not, so the
     templateName methods are overriden.
 -   sofa::component::mapping::IdentityMapping depends on template
@@ -481,13 +481,13 @@ There is an example of such an override in the sofa::core::State class.
 
 #### contexts and nodes
 
-Contexts, also have a notion of Bouding Box. A Context bounding box is
+Contexts, also have a notion of Bounding Box. A Context bounding box is
 the inclusion of:
 
 -   the bounding boxes of all its components.
 -   the bounding boxes of all its child contexts
 
-#### accessing the bouding box value from a component
+#### accessing the bounding box value from a component
 
 You can access the value of your component bounding box using :
 

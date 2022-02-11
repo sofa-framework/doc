@@ -134,7 +134,7 @@ in the following example:
 myFixedConstraint->f_indices.setParent(&myBoxRoi->f_indices);
 ```
 
-Note that for some of the non-simple types (mainly containers), the value of the data is *COW* (Copy-On-Write), i.e if you link from a (potentially huge) `Data`, this will simply access the data in the same memory location as the original `Data`, and will avoid doing a (potentially costly) copy. But if the linked `Data` is modified, the underlying data will be copied, and the contents will be in two differents independents locations.
+Note that for some of the non-simple types (mainly containers), the value of the data is *COW* (Copy-On-Write), i.e if you link from a (potentially huge) `Data`, this will simply access the data in the same memory location as the original `Data`, and will avoid doing a (potentially costly) copy. But if the linked `Data` is modified, the underlying data will be copied, and the contents will be in two different independent locations.
 
 
 

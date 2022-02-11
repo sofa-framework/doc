@@ -23,7 +23,7 @@ Finally, gathering the unknown (depending on <img class="latex" src="https://lat
 
 <img class="latex" src="https://latex.codecogs.com/png.latex?\left(%20\mathbf{M}-dt^2%20\cdot%20\frac{\partial%20f}{\partial%20x}%20\right)%20\Delta%20v=dt\cdot%20f(x(t))+dt^2\cdot%20\frac{\partial%20f}{\partial%20x}v(t)" title="Implicit dynamic system" />
 
-We can notice the appearance of the stiffness matrix : <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{K}_{ij}=\textstyle\frac{\partial%20f_i}{\partial%20x_j}" title="Implicit contribution" />. The stiffness matrix <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{K}" title="Stiffness matrix" /> is a symetric matrix, can either be linear or non-linear regarding <img class="latex" src="https://latex.codecogs.com/png.latex?x" title="DOF" />.
+We can notice the appearance of the stiffness matrix : <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{K}_{ij}=\textstyle\frac{\partial%20f_i}{\partial%20x_j}" title="Implicit contribution" />. The stiffness matrix <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{K}" title="Stiffness matrix" /> is a symmetric matrix, can either be linear or non-linear regarding <img class="latex" src="https://latex.codecogs.com/png.latex?x" title="DOF" />.
 
 <img class="latex" src="https://latex.codecogs.com/png.latex?\left(%20\mathbf{M}-dt^2%20\cdot%20\mathbf{K}%20\right)%20\Delta%20v=dt\cdot%20f(x(t))+dt^2\cdot%20\mathbf{K}v(t)" title="Implicit dynamic system" />
 
@@ -53,7 +53,7 @@ Depending on the choice of LinearSolver (direct or iterative), the API functions
 
   - if a direct solver is used, the damping matrix <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{B}" title="Damping matrix" /> is computed in the `addBToMatrix()` in ForceFields
 
-  - if an iterative solver is used, the damping is iteratively multiplied by the unknown <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{B}%20\Delta%20v" title="Damping matrix" /> within the `addDForce()` just as the stiffness partin the function `addDForce()` in ForceFields.
+  - if an iterative solver is used, the damping is iteratively multiplied by the unknown <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{B}%20\Delta%20v" title="Damping matrix" /> within the `addDForce()` just as the stiffness part in the function `addDForce()` in ForceFields.
 
 
 
@@ -61,7 +61,7 @@ Depending on the choice of LinearSolver (direct or iterative), the API functions
 
 SOFA is a framework aiming at interactive simulations. For this purpose, dissipative schemes are very appropriate. The Euler scheme is an order 1 integration scheme (in time, since only using the current state <img class="latex" src="https://latex.codecogs.com/png.latex?x(t)" title="Current DOF" /> and no older one like <img class="latex" src="https://latex.codecogs.com/png.latex?x(t-dt)" title="Older DOF" />). It is known to be a dissipative scheme. Moreover, only one Newton step is performed in the EulerImplicit, which might harm the energy conservation.
 
-Activating the trapezoidalScheme option of the Euler implicit scheme will make the scheme less dissipative. This is due to the fact that the trapezoidal rule increases the order of the time integration. Moveover, higher order schemes are known to be less dissipative.
+Activating the trapezoidalScheme option of the Euler implicit scheme will make the scheme less dissipative. This is due to the fact that the trapezoidal rule increases the order of the time integration. Moreover, higher order schemes are known to be less dissipative.
 
 
 
@@ -84,7 +84,7 @@ This results in the following linear system:
 
 The use of the trapezoidal rule is known to increase robustness and stability to the time integration due to the order 2 in time of this trapezoidal scheme.
 
-The option is given to the user to hadd numerical Rayleigh damping using the data **rayleighStiffness** and **rayleighMass**. The description of the meaning and effect of these Rayleigh damping coefficients is given in [ODESolver](https://www.sofa-framework.org/community/doc/main-principles/system-resolution/integration-schemes/#rayleigh-damping).
+The option is given to the user to add numerical Rayleigh damping using the data **rayleighStiffness** and **rayleighMass**. The description of the meaning and effect of these Rayleigh damping coefficients is given in [ODESolver](https://www.sofa-framework.org/community/doc/main-principles/system-resolution/integration-schemes/#rayleigh-damping).
 
 The data **firstOrder** enables to use the EulerImplicitSolver at the order 1, which means that only the first derivative of the DOFs (state) x appears in the equation. Higher derivatives are absent. This option is for instance well suited for heat diffusion equation using only the first derivative of the temperature field:
 

@@ -1,7 +1,7 @@
 ShewchukPCGLinearSolver  
 =======================
 
-This component belongs to the category of [LinearSolver](https://www.sofa-framework.org/community/doc/main-principles/system-resolution/linear-solvers/), it therefore aims at solving the linear system <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{A}x=b" title="Linear system" />. The ShewchukPCGLinearSolver is an iterative solver using the [conjugate gardient method](https://en.wikipedia.org/wiki/Conjugate_gradient_method) as implemented in the [CGLinearSolver](https://www.sofa-framework.org/community/doc/components/linearsolver/cglinearsolver/) in SOFA but it adds the possibility to define a [preconditioner](https://en.wikipedia.org/wiki/Preconditioner). It must be reminded that the ShewchukPCGLinearSolver relies on the conjugate gradient method, meaning that as all iterative approaches, no exact solution can be found. The accuracy of your solution will always depend on the conditioning of your system and your input data (iterations, tolerance and threshold).
+This component belongs to the category of [LinearSolver](https://www.sofa-framework.org/community/doc/main-principles/system-resolution/linear-solvers/), it therefore aims at solving the linear system <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{A}x=b" title="Linear system" />. The ShewchukPCGLinearSolver is an iterative solver using the [conjugate gradient method](https://en.wikipedia.org/wiki/Conjugate_gradient_method) as implemented in the [CGLinearSolver](https://www.sofa-framework.org/community/doc/components/linearsolver/cglinearsolver/) in SOFA but it adds the possibility to define a [preconditioner](https://en.wikipedia.org/wiki/Preconditioner). It must be reminded that the ShewchukPCGLinearSolver relies on the conjugate gradient method, meaning that as all iterative approaches, no exact solution can be found. The accuracy of your solution will always depend on the conditioning of your system and your input data (iterations, tolerance and threshold).
 
 
 Preconditioners are used in cases where the convergence of the system is slow, which is usually due to a ill-conditioned system (high [condition number](https://en.wikipedia.org/wiki/Condition_number)). In order to preserve accuracy, while improving performance, preconditioning methods aims at projecting a matrix <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{P}" title="Precondioner matrix" /> (preconditioner) on the linear system <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{A}x=b" title="Linear system" />, in order to get closer to the solution. The efficiency of the preconditioner will depend on the choice of the preconditioner <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{P}" title="Precondioner matrix" />.
@@ -18,7 +18,7 @@ Data
 
 This LinearSolver is ruled by several breaking conditions:  
 
-- **iterations**: specified the maximum number of iterations after which the iterative descent of the conjugat gradient must stop
+- **iterations**: specified the maximum number of iterations after which the iterative descent of the conjugate gradient must stop
 - **tolerance**: defines the desired accuracy of the Conjugate Gradient solution (ratio of current residual norm over initial residual norm)"
 - **preconditioners**: name of the linear solvers to be used as preconditioner
 - **update_step**: number of steps before the next refresh of precondtioners

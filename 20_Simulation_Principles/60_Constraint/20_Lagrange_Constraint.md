@@ -30,7 +30,7 @@ Note that <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{H
 - <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{A}_1\Delta%20v_1=b_1+dt\mathbf{H}^T_1\lambda" title="Shortened constraint problem1" />
 - <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{A}_2\Delta%20v_2=b_2+dt\mathbf{H}^T_2\lambda" title="Shortened constraint problem2" />
 
-However, this system will not be solved diretly. It will be decomposed into two steps:
+However, this system will not be solved directly. It will be decomposed into two steps:
 
 
 **Step 1**: Each interacting object is solved independently, i.e. as no constraint law is defined, while setting <img class="latex" src="https://latex.codecogs.com/png.latex?\lambda=0" title="Lagrange multipliers" />. This so-called free motion aims at finding the change in velocity <img class="latex" src="https://latex.codecogs.com/png.latex?\Delta%20v_1^{free}" title="Free motion 1" /> and <img class="latex" src="https://latex.codecogs.com/png.latex?\Delta%20v_2^{free}" title="Free motion 2" /> for each object from the resolution of:
@@ -131,7 +131,7 @@ The following steps are processed one after another:
 
   - build a new constraint matrix (or Jacobian matrix) <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{H}" title="Constraint matrix" /> depending on the constraint laws available in the scene  <img class="latex" src="https://latex.codecogs.com/png.latex?\Phi" title="Phi" /> and <img class="latex" src="https://latex.codecogs.com/png.latex?\Psi" title="Psi" />. The associated visitor is _MechanicalBuildConstraintMatrix_
 
-  - acculutate additional contributions to the constraint matrix (or Jacobian matrix) <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{H}" title="Constraint matrix" /> coming from underlying mappings. The associated visitor is _MechanicalAccumulateMatrixDeriv_
+  - accumulate additional contributions to the constraint matrix (or Jacobian matrix) <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{H}" title="Constraint matrix" /> coming from underlying mappings. The associated visitor is _MechanicalAccumulateMatrixDeriv_
 
   - take into account the projective constraint <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{P}" title="Projective constraint" />. This step removes the constraints that are affecting the degrees of freedom currently concerned by a project constraint. The associated visitor is _MechanicalProjectJacobianMatrixVisitor_
 
@@ -199,7 +199,7 @@ As explained above, a _ConstraintCorrection_ is required in the simulation to de
 
   - _PrecomputedConstraintCorrection_: instead of computing <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{A}^{-1}" title="Inverse of A" /> at each time step, this constraint correction precomputes once the inverse of <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{A}" title="System matrix" /> at the initialization of the simulation and stores this matrix into a file. This speeds up the simulation but it can lead to a lack of accuracy in case the system matrix <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{A}" title="System matrix" /> changes during the simulation
 
-  - _GenericConstraintCorrection_: similar to the _LinearSolverConstraintCorrection_, it allows to declare only once all the direct solvers (one for each constraint object) used to compute the global <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{W}" title="Compliance matrix" />, whereas the previously described contraint correction needs to be added for each object
+  - _GenericConstraintCorrection_: similar to the _LinearSolverConstraintCorrection_, it allows to declare only once all the direct solvers (one for each constraint object) used to compute the global <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{W}" title="Compliance matrix" />, whereas the previously described constraint correction needs to be added for each object
 
 
 
@@ -211,7 +211,7 @@ In SOFA, you can find several of interaction constraint laws available to includ
 
   - _UnilateralInteractionConstraint_: constraint of inequality (like the <img class="latex" src="https://latex.codecogs.com/png.latex?\Psi" title="Psi" /> function described above in the [Constraint problem](https://www.sofa-framework.org/community/doc/main-principles/constraint/lagrange-constraint/#constraint-problem) section), that fits for instance contact and collision cases
 
-  - _BilateralInteractionConstraint_: constraint of equality (like the <img class="latex" src="https://latex.codecogs.com/png.latex?\Phi" title="Phi" /> function described above in the [Constraint problem](https://www.sofa-framework.org/community/doc/main-principles/constraint/lagrange-constraint/#constraint-problem) section), that fits for instance interactions, attachements between two paired objects
+  - _BilateralInteractionConstraint_: constraint of equality (like the <img class="latex" src="https://latex.codecogs.com/png.latex?\Phi" title="Phi" /> function described above in the [Constraint problem](https://www.sofa-framework.org/community/doc/main-principles/constraint/lagrange-constraint/#constraint-problem) section), that fits for instance interactions, attachments between two paired objects
 
   - _SlidingConstraint_: constraint in equality, like the _BilateralInteractionConstraint_, but only active for some vectors of the physics space (for instance only the x-direction)
 

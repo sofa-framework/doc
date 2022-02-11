@@ -66,7 +66,7 @@ The [narrow phase](https://www.sofa-framework.org/community/doc/using-sofa/compo
 
 All collision detection methods will rely on intersection methods during the broad and/or [narrow phase](https://www.sofa-framework.org/community/doc/using-sofa/components/collisions/narrowphases/narrowphase) in order to assess if the models do collide. Given 2 collision elements, these intersection methods test if an intersection is possible.
 
-In SOFA, a proximity method can be used to detect contact when two objects are getting closer from another. Evalutating this proximity allows for a better anticipation of the contact, i.e. more stable contact. The two main implementations in SOFA are:
+In SOFA, a proximity method can be used to detect contact when two objects are getting closer from another. Evaluating this proximity allows for a better anticipation of the contact, i.e. more stable contact. The two main implementations in SOFA are:
 
 - [MinProximityIntersection](https://www.sofa-framework.org/community/doc/components/collision/minproximityintersection/)
 - [LocalMinDistance](https://www.sofa-framework.org/community/doc/components/collision/localmindistance/)
@@ -98,11 +98,11 @@ Collision response
 The step of collision response is triggered in the [CollisionPipeline](https://www.sofa-framework.org/community/doc/using-sofa/components/collisions/pipelines/collisionpipeline).
 The colliding models returned by the [narrow phase](https://www.sofa-framework.org/community/doc/using-sofa/components/collisions/narrowphases/narrowphase) are finally given to the ContactManager, which creates contact interactions of various types based on customizable rules. You can specify which one you want to use in the DefaultContactManager. Response has been implemented based on:
 
-- the penality method, efficient but subject to instability if not properly tuned
+- the penalty method, efficient but subject to instability if not properly tuned
 - the persistent method
 - or on constraints using [Lagrange multipliers](https://www.sofa-framework.org/community/doc/simulation-principles/constraint/lagrange-constraint/), and is processed by the solvers together with the other forces and constraints.
 
-When stiff contact penalities or contact constraints are created by the contact manager, an optional [GroupManager](https://www.sofa-framework.org/community/doc/using-sofa/components/collisions/collisiongroupmanagers/collisiongroupmanager) component is used to create interaction groups handled by a common solver.
+When stiff contact penalties or contact constraints are created by the contact manager, an optional [GroupManager](https://www.sofa-framework.org/community/doc/using-sofa/components/collisions/collisiongroupmanagers/collisiongroupmanager) component is used to create interaction groups handled by a common solver.
 When contacts disappear, interaction groups can be split to keep them as small as possible.
 The scenegraph structure thus changes along with the interaction groups.
 

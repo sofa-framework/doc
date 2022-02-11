@@ -6,7 +6,7 @@ This component belongs to the category of [Masses](https://www.sofa-framework.or
 
 ### Volume integration
 
-As detailed in the [Physics integration](https://www.sofa-framework.org/community/doc/main-principles/multi-model-representation/physics-integration/) page, the left hand side part of the linear momentum conservation equals <img class="latex" src="https://latex.codecogs.com/png.latex?\rho\dot{v}" title="Strong form of the momentum" />. To ingegrate over the domain, its weak form will result in the mass matrix:
+As detailed in the [Physics integration](https://www.sofa-framework.org/community/doc/main-principles/multi-model-representation/physics-integration/) page, the left hand side part of the linear momentum conservation equals <img class="latex" src="https://latex.codecogs.com/png.latex?\rho\dot{v}" title="Strong form of the momentum" />. To integrate over the domain, its weak form will result in the mass matrix:
 
 <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{M}\dot{v}=\int_{\Omega}%20\phi_j%20\rho%20\dot{v}d\Omega" title="Mass integration" />
 

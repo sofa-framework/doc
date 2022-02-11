@@ -6,7 +6,7 @@ Command-line method: Advanced Timer
 
 This is the most precise and flexible way of monitoring the computation
 time in SOFA. It prints results on the standard text output. 
-This can be controlled in **runSofa** using the folllowing command line options (use --help for the full list) :
+This can be controlled in **runSofa** using the following command line options (use --help for the full list) :
 
 ```
 --computationTimeSampling arg 
@@ -90,7 +90,7 @@ Graphical Interface: Profiler
 A graphic tool has been added in order to benefit from a profiling window based on the AdvanceTimer records.
 This profiler is activated by ticking the box "Display AdvancedTimer Profiler" in the "Stats" widget in runSofa.
 
-This option allows to see the animation step duration (ms) in a graphView, then allows to navigate on the graph or on the sliders and analyze the different substeps exectuted during this animation step. Substeps are displayed in a Tree, in the right order and with their respective time and percentage (with regards to the full step duration). In its design, this tool is inspired from Unity3D profiler.
+This option allows to see the animation step duration (ms) in a graphView, then allows to navigate on the graph or on the sliders and analyze the different substeps executed during this animation step. Substeps are displayed in a Tree, in the right order and with their respective time and percentage (with regards to the full step duration). In its design, this tool is inspired from Unity3D profiler.
 
 ![](https://raw.githubusercontent.com/sofa-framework/doc/master/images/usingSOFA/TimerProfiler.png)
 
@@ -141,7 +141,7 @@ particles; -1 meaning all the particles.
 [![TraceVisitorLogTime\_Vector](https://www.sofa-framework.org/wp-content/uploads/2014/11/TraceVisitorLogTime_Vector1.png){.aligncenter
 .size-full .wp-image-1295 width="600"
 height="343"}](https://www.sofa-framework.org/wp-content/uploads/2014/11/TraceVisitorLogTime_Vector1.png)
-Here, we trace the particles numero 2 and 3. A FixedConstraint acts in
+Here, we trace the particles number 2 and 3. A FixedConstraint acts in
 this scene on the particle 3: it filters its velocity and acceleration,
 and set it to zero, to act as a fixed particle. We can visualize the
 effect of the ApplyConstraint visitor on the state vector.
@@ -171,7 +171,7 @@ log;
 -   Trace an additional state vector
 
 At any time in your code, you can monitor a state vector of a given
-mechanical state writting:
+mechanical state writing:
 
     if (sofa::simulation::Visitor::IsExportStateVectorEnabled())
     {
