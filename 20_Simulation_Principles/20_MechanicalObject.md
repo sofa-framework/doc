@@ -24,7 +24,7 @@ SOFA supports several DataTypes corresponding to the DOFs:
 *   _Vec2f_ or _Vec2d_: 2 DOFs per node are used. For instance, this can be used for cardiac electrophysiology.
 *   _Vec3f_ or _Vec3d_: 3 DOFs per node are used. For instance, this can be used for mechanics.
 *   _Vec6f_ or _Vec6d_: 6 DOFs per node are used. For instance, this can be used for beam simulations (3 translations and 3 rotations).
-*   _Rigid_: this DataType corresponds to 7 DOFs per node, this can be used to simulate rigid bodies (3 positions and 1 quaternion).
+*   _Rigid3d_: this DataType corresponds to 7 DOFs per node, this can be used to simulate rigid bodies (3 positions and 1 quaternion).
 
 
 
