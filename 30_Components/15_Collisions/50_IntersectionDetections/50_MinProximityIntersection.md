@@ -6,7 +6,7 @@ This proximity method for [intersection detection](https://www.sofa-framework.or
 - detects a possible contact as soon as pair of collision elements are close to each other (distance smaller than the alarmDistance)
 - and creates contact (aka DetectionOutput) when the distance is lower than contactDistance.
 
-This method is optimized for meshes. The intersection is implemented for the following primitives: Triangle/Point, Line/Point, Line/Line, so that it covers all Triangle/Triangle intersections. To get a proper detection, the TriangleModel, LineModel and PointModel must be simultaneaously used in the scene.
+This method is optimized for meshes. The intersection is implemented for the following primitives: Triangle/Point, Line/Point, Line/Line, so that it covers all Triangle/Triangle intersections. To get a proper detection, the TriangleModel, LineModel and PointModel must be simultaneously used in the scene.
 
 In the figure below, we describe the detection of the contacts for Object 1 due to an Object 2. It assumes here that a PointCollisionModel and a LineCollisionModel are defined. The detection gives:
 - 2 Point-Point contacts (yellow)
@@ -16,9 +16,9 @@ In the figure below, we describe the detection of the contacts for Object 1 due 
 
 <a href="https://github.com/sofa-framework/doc/blob/master/images/collision/MinProximityIntersection.png?raw=true"><img src="https://github.com/sofa-framework/doc/blob/master/images/collision/MinProximityIntersection.png?raw=true" title="Proximity detection using MinProximityIntersection" style="width: 70%;"/></a>
 
-Although the method is working properly, the intersection might result in a high number of contacts. This works just fine for Penality method (many springs will be generated). However, using a response method based on Lagrange multipliers, many constraints will be generated which might rapidly become computationnally-demanding.
+Although the method is working properly, the intersection might result in a high number of contacts. This works just fine for Penalty method (many springs will be generated). However, using a response method based on Lagrange multipliers, many constraints will be generated which might rapidly become computationally-demanding.
 
-Moreover, the contacts can be a bit degenerated: many contacts with different orientations. Again, using Penality, it might only create some numerical friction but, using the Lagrange multiplier resolution, this can lead to contradictory constraints (worsening the convergence).
+Moreover, the contacts can be a bit degenerated: many contacts with different orientations. Again, using Penalty, it might only create some numerical friction but, using the Lagrange multiplier resolution, this can lead to contradictory constraints (worsening the convergence).
 
 
 
@@ -28,7 +28,7 @@ Data
 The intersection methods include the following data:
 
 -   **alarmDistance**: threshold distance below which the collision pipeline detects the models as getting in proximity. This distance can be increased for objects with high curvatures
--   **contactDistance** : threshold distance below which a contact will be created (in DetectionOuput) to generate a contact response
+-   **contactDistance** : threshold distance below which a contact will be created (in DetectionOutput) to generate a contact response
 
 
 

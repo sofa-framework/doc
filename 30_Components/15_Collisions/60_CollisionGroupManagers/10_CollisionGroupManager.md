@@ -19,8 +19,8 @@ It is possible that two objects in contact are not solved with the same type of 
 For example, _objectA_ can be solved with [EulerImplicitSolver](https://www.sofa-framework.org/community/doc/components/integrationschemes/eulerimplicitsolver/), and _objectB_ with [EulerExplicitSolver](https://www.sofa-framework.org/community/doc/components/integrationschemes/eulerexplicitsolver/).
 In that case, some rules are pre-defined to select which one is kept.
 The other one is removed.
-Usually, the more stable or precise solver is prefered.
-For example, [EulerImplicitSolver](https://www.sofa-framework.org/community/doc/components/integrationschemes/eulerimplicitsolver/), is prefered over [EulerExplicitSolver](https://www.sofa-framework.org/community/doc/components/integrationschemes/eulerexplicitsolver/).
+Usually, the more stable or precise solver is preferred.
+For example, [EulerImplicitSolver](https://www.sofa-framework.org/community/doc/components/integrationschemes/eulerimplicitsolver/), is preferred over [EulerExplicitSolver](https://www.sofa-framework.org/community/doc/components/integrationschemes/eulerexplicitsolver/).
 
 In case both ODE solvers are of the same type, but still a different instance, pre-defined rules merge Data values of both ODE solvers.
 

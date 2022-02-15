@@ -18,7 +18,7 @@ The Algorithm
 The algorithm examines a potential collision between a pair of collision models, which has
  been detected in the broad phase.
 This test is time-consuming, this is why it is necessary to have a broad phase which eliminates a maximum number of pairs.
-For a pair of collision models, the algorihm traverses the hierarchy of collision elements to rapidly eliminate pairs of elements which are not in intersection.
+For a pair of collision models, the algorithm traverses the hierarchy of collision elements to rapidly eliminate pairs of elements which are not in intersection.
 Finally, the intersection method is called on the remaining pairs of elements.
 
 Note that the algorithm is written in its iterative form, instead of a recursive form.

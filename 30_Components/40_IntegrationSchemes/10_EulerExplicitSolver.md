@@ -1,7 +1,7 @@
 EulerExplicitSolver  
 ===================
 
-The EulerExplicitSolver component belongs to the category of [integration schemes or ODE Solver](https://www.sofa-framework.org/community/doc/main-principles/system-resolution/integration-schemes/). This scheme allows to solve dynamic systems explicitely: all forces will be computed based on the state information at the current time step <img class="latex" src="https://latex.codecogs.com/png.latex?x(t)" title="Current position"/>.
+The EulerExplicitSolver component belongs to the category of [integration schemes or ODE Solver](https://www.sofa-framework.org/community/doc/main-principles/system-resolution/integration-schemes/). This scheme allows to solve dynamic systems explicitly: all forces will be computed based on the state information at the current time step <img class="latex" src="https://latex.codecogs.com/png.latex?x(t)" title="Current position"/>.
 
 Looking at continuum mechanics, the linear system <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{A}x=b" title="Linear system" /> arises from the dynamic equation. This dynamic is written as follows but other physics (like heat transfer) result in a similar equation:
 

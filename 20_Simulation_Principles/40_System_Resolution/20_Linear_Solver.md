@@ -29,7 +29,7 @@ Direct solvers in SOFA are:
 #### In the SOFA code
 
 
-The resolution of the linear system is computed in the `solve()` function of the LinearSolver. With direct solvers, the integration scheme sucessively calls the two following functions:
+The resolution of the linear system is computed in the `solve()` function of the LinearSolver. With direct solvers, the integration scheme successively calls the two following functions:
 
 ``` cpp
 invert(Matrix& M)
@@ -44,7 +44,7 @@ solve(Matrix& A, Vector& x, Vector& b)
 Iterative solvers
 -----------------
 
-Contrary to direct solvers, iterative methods converge towards the solution gradually. The solution is approximated at each iteration a little bit more accurately, rather than computed in one single large iteration. With iterative methods, the error esimated in the solution decreases with the number of iterations.
+Contrary to direct solvers, iterative methods converge towards the solution gradually. The solution is approximated at each iteration a little bit more accurately, rather than computed in one single large iteration. With iterative methods, the error estimated in the solution decreases with the number of iterations.
 
 For well-conditioned problems (even large systems), the convergence remains monotonic. However, for ill-conditioned systems, the convergence might be much slower. Since these methods compute the residual <img class="latex" src="https://latex.codecogs.com/png.latex?r=\mathbf{A}x-b" title="Residual computation" /> at each iteration, the matrix <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{A}" title="System matrix" /> does not have to be built to improve performances (only matrix vector computations). Numerical settings of the solver (maximum number of iterations, tolerance for instance) must be appropriately defined. Two available methods are the [conjugate gradient method](http://en.wikipedia.org/wiki/Conjugate_gradient_method) (using the CGLinearSolver) or the [minimal residual method](http://en.wikipedia.org/wiki/Generalized_minimal_residual_method) (using the MinResLinearSolver).
 

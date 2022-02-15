@@ -19,14 +19,14 @@ Then, the boxes end points are sorted, according to their position projected on 
 
 Finally, the sorted end points are processed.
 A list of active end points is used.
-If an end point corresponds to the begining of an AABB, it is added to the active list.
+If an end point corresponds to the beginning of an AABB, it is added to the active list.
 If an end point corresponds to the end of an AABB, it is removed from the active list.
 For each end point, it is tested against the active list.
 
 Direct vs Inc.
 --------------
 
-_DirectSAPNarrowPhase_ corresponds to the implementation of SAP in its "direct" version, i.e. at each step it sorts all the primitives along an axis (**not checking the moving ones**) and computes overlaping pairs without saving it.
+_DirectSAPNarrowPhase_ corresponds to the implementation of SAP in its "direct" version, i.e. at each step it sorts all the primitives along an axis (**not checking the moving ones**) and computes overlapping pairs without saving it.
 But the memory used to save these primitives is created just once, the first time CollisionModels are added.
 
 Example of Usage

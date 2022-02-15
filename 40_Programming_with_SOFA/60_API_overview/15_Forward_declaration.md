@@ -50,7 +50,7 @@ sofa/core/fwd.h
 Opaque API 
 =========
 When it is not desirable to have access the full type definition it is possible to make or use what is called an opaque API. The Opaque API mimmics the methods provided by a class but relying only on forward declaration. 
-Exemple of the "transparent" API: 
+Example of the "transparent" API: 
 ```cpp
 #include <Context>
 #include <BaseNode>
@@ -65,7 +65,7 @@ class Node : public Context, public BaseNode
 }
 ```
 
-Exemple of the corresponding "opaque" API: 
+Example of the corresponding "opaque" API: 
 ```cpp
 namespace sofa::simulation::node
 {
@@ -73,7 +73,7 @@ namespace sofa::simulation::node
 }
 ```
 
-Opaque API for a given type can be located at the same location where the type is foward declared or if very long in their own dedicated file close to the one where the type definition is. 
+Opaque API for a given type can be located at the same location where the type is forward declared or if very long in their own dedicated file close to the one where the type definition is. 
 ```
 sofa/simulation/node.h
 sofa/simulation/node.cpp

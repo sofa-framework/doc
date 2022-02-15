@@ -2,7 +2,7 @@ Narrow Phase: Ray Trace Narrow Phase
 ====================================
 
 The RayTraceNarrowPhase component is a [narrow phase component](https://www.sofa-framework.org/community/doc/using-sofa/components/collisions/narrowphases/narrowphase), which is used in a [collision pipeline](https://www.sofa-framework.org/community/doc/using-sofa/components/collisions/pipelines/collisionpipeline).
-This method traces a ray for each point in one object following the oposite of the point's normal up to find a triangle in the other object.
+This method traces a ray for each point in one object following the opposite of the point's normal up to find a triangle in the other object.
 Both triangles are tested to evaluate if they are in a colliding state.
 
 It **must be used with a TriangleOctreeModel**, as an octree is used to traverse the object.

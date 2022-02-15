@@ -80,7 +80,7 @@ MyGenericClass.cpp:
     #endif
 
 For generic class where we cannot predict the kind of template
-instanciation the user will need, we do not use the import / export
+instantiation the user will need, we do not use the import / export
 macro because we cannot instantiate the template class. The user will
 directly use the definitions from a .inl file that you have to provide.
 

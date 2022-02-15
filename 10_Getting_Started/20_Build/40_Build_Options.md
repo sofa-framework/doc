@@ -110,7 +110,7 @@ no code optimization. **RelWithDebInfo** is similar to **Release**, but keeps th
 
 
 - **SOFA\_EXTERNAL\_DIRECTORIES**: path to external directories, this can be especially useful
-to build external plugins with SOFA. For more informations, please read the documentation
+to build external plugins with SOFA. For more information, please read the documentation
 about [Building a plugin](https://www.sofa-framework.org/community/doc/using-sofa/build-a-plugin "Building a plugin").
 
 
@@ -119,7 +119,7 @@ all tutorials located in *applications/tutorials*.
 
 
 - **SOFA_BUILD\_TESTS** : this option activates unit tests for SOFA.
-For more informations, please go to the [Tests
+For more information, please go to the [Tests
 page](https://www.sofa-framework.org/community/doc/writing-tests "Writing Tests").
 
 
@@ -130,12 +130,12 @@ component will be compiled (float, double or both instantiations). Note that usi
 will significantly reduce compilation time, but then you will only be able to simulate
 scenes that contain exclusively components using template parameters
 based on double (Vec3d, Rigid3d, ...). More technically, this will respectively activate or
-desactivate the macro **SOFA\_WITH\_DOUBLE** and **SOFA\_WITH\_FLOAT** in the code.
+deactivate the macro **SOFA\_WITH\_DOUBLE** and **SOFA\_WITH\_FLOAT** in the code.
 
 
-- **SOFA\_DUMP\_VISITOR\_INFO** : enabling this option allows to get more debugging informations at each
+- **SOFA\_DUMP\_VISITOR\_INFO** : enabling this option allows to get more debugging information at each
 step of the simulations. For a more complete description and how to use
-these informations, please go to the [Profiling
+these information, please go to the [Profiling
 part](https://www.sofa-framework.org/community/doc/profiling "Profiling").
 
 - **SOFA_WITH_DEVTOOLS** : enabling this option activates more features for developers such as more verbose log messages.
@@ -154,8 +154,8 @@ especially useful for people who wants to use SOFA as a library with a
 different rendering system (typically DirectX with Windows)
 
 
-- **SOFA\_NO\_UPDATE\_BBOX** : this optimization flag desactives the computation of the bounding box at
-every timestep of the simulation.
+- **SOFA\_NO\_UPDATE\_BBOX** : this optimization flag deactivates the computation of the bounding box at
+every time step of the simulation.
 
 
 - **SOFA\_OPENMP (*advanced*)** : this flag will allow to use OpenMP for specific computations in existing
@@ -177,5 +177,5 @@ as sensitive when used with constraint algorithms. Set false by default.
 
 
 - **SOFA\_WITH\_EXPERIMENTAL\_FEATURES** : activates some experimental work in progress.
-No garantee on code quality or compilation is given.
+No guarantee on code quality or compilation is given.
 However, this gives early-access to new functionalities in SOFA.

@@ -1,7 +1,7 @@
 TextureInterpolation
 --------------------
 
-This engine create texture coordinate in 1D according to an imput state vector. Coordinate can be interpolated either from min and max value of input states (default behavior) or on a manual define scale.
+This engine creates texture coordinate in 1D according to an input state vector. Coordinate can be interpolated either from min and max value of input states (default behavior) or on a manual define scale.
 
 #### Input data's
 

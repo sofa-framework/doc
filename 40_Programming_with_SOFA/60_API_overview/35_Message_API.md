@@ -60,7 +60,7 @@ The macros are not in a namespace, for ease of use.
 There are 2 macros categories:
 
 * **runtime macros** to emit messages in every context.
-* **developper macros** to emit messages only targeted to developpers (people willing to dive into the sofa source code)
+* **developer macros** to emit messages only targeted to developers (people willing to dive into the sofa source code)
 
 Typically, to output a message you can use one of these macros, depending of the criticality level:
 
@@ -95,9 +95,9 @@ Finally if you are not in a sofa component you can specify the emitter's name wi
 msg_warning("GUIManager") << "Previously used GUI not registered. Using default GUI.";
 ```
 
-If your message is for developpers, you can use the dmsg_info, dmsg_deprecated, dmsg_warning,... functions. 
+If your message is for developers, you can use the dmsg_info, dmsg_deprecated, dmsg_warning,... functions. 
 These messages are removed on end-user application (see SOFA_WITH_DEVTOOLS [build option](https://www.sofa-framework.org/community/doc/getting-started/build/build-options/)) and can be more specific and less well written than those
-that target users. A very simple way to guide the use of the dmsg_* API is to ask yourself if fixing the message needs to have the sourcode understand the message. 
+that target users. A very simple way to guide the use of the dmsg_* API is to ask yourself if fixing the message needs to have the source code to understand the message. 
 
 **NB** Please note that for classes that are not inheriting from BaseObject, an additional macro must be defined to register your class to the messaging system.
 In the header file, just add:

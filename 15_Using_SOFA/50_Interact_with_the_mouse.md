@@ -12,7 +12,7 @@ height="544"}](https://www.sofa-framework.org/wp-content/uploads/2014/11/SofaMou
 
 
 The basic interactions are from now (see below parts for further
-informations):
+information):
 
 -   **Attach an object to the Mouse:** when clicked, the mouse casts a ray,
     and create a spring between a point in the ray, and a DOF
@@ -34,7 +34,7 @@ informations):
 Operations available
 --------------------
 
-Further informations for specific mouse interactions.
+Further information for specific mouse interactions.
 
 ### Attach an object to the Mouse
 
@@ -100,7 +100,7 @@ are two methods available for performing incision:
         example, if the incision path pass near a point of a triangle,
         instead of cutting the edges and thus create a new small
         triangle, this last point will be moved on the incision path.
-        Here again the pourcentage is link to the area. Thus for a value
+        Here again the percentage is link to the area. Thus for a value
         of 100%, this mean that it the incision pass between a point and
         the barycentric point. This last point will be moved.
 

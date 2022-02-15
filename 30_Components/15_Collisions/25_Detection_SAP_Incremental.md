@@ -35,7 +35,7 @@ Only the pairs of objects whose projected bounding volumes overlap on all axes w
 
 ### Narrow phase
 
-The narrow phase browses all boxes considered as active by the broad phase. From this information, it is possible to recover the finnest CollisionModel (which is not a CubeModel) corresponding to each box. An intersection check will then be done between these pairs. This check also depends on the [intersection method](https://www.sofa-framework.org/community/doc/main-principles/collisions/#intersection-methods) used. This last phase returns the DetectionOutput vector containing elements of CollisionModels in collision and the contact points on the surface of each model.
+The narrow phase browses all boxes considered as active by the broad phase. From this information, it is possible to recover the finest CollisionModel (which is not a CubeModel) corresponding to each box. An intersection check will then be done between these pairs. This check also depends on the [intersection method](https://www.sofa-framework.org/community/doc/main-principles/collisions/#intersection-methods) used. This last phase returns the DetectionOutput vector containing elements of CollisionModels in collision and the contact points on the surface of each model.
 
 
 

@@ -153,6 +153,6 @@ one can access the command line arguments in the python scene with
 while using *ast.literal_eval* needs the *import ast*.
 
 
-**More informations** about the
+**More information** about the
 plugin itself can be found in
 *sofa/applications/plugins/SofaPython/doc/SofaPython.pdf*.
