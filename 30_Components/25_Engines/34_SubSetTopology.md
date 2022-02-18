@@ -1,10 +1,11 @@
 SubSetTopology
---------------
+==============
 
 This engine separate topology in two parts, considering a ROI, a topology inside and a topology outside the ROI which can be a sphere or a box ROI used in this engine are similar to BoxROI and SphereROI.
 ![SubsetTopology](https://www.sofa-framework.org/wp-content/uploads/2014/11/SubsetTopology.png){.wp-image-1612 .alignright width="40%" height="auto"}
 
-#### Input Data's
+Input Data
+----------
 
 -   **box**: box defined by two points (xmin,ymin,zmin, xmax,ymax,zmax)
 -   **centers**: center(s) of the sphere(s)
@@ -21,7 +22,8 @@ This engine separate topology in two parts, considering a ROI, a topology inside
 -   **triangles**: triangle Topology array
 -   **tetrahedra**: tetrahedron Topology array
 
-#### Input parameters
+Input parameters
+----------------
 
 **For display:**
 
@@ -36,7 +38,8 @@ This engine separate topology in two parts, considering a ROI, a topology inside
 
 -   **localIndices**: if true, will compute local dof indices in topological elements. (see examples below)  
 
-#### Output data's
+Output Data
+-----------
 
 -   **indices**: indices of the points contained in the ROI
 -   **edgeIndices**: indices of the edges contained in the ROI
@@ -54,7 +57,8 @@ This engine separate topology in two parts, considering a ROI, a topology inside
 
 
 
-#### Examples
+Examples
+--------
 
 Three example scenes involving the SubsetTopology engine are available:
 
