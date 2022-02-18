@@ -1,4 +1,5 @@
-### Engine
+Engine
+======
 
 As explained the documentation page on Data, SOFA allows to connect Data instances (Data link) to keep their value synchronized. An Engine (or DataEngine) is a component which relies on this concept to compute one or several output Data based on one or several input Data.
 
@@ -12,7 +13,8 @@ For instance:
 Engines are meant to perform relatively simple computations, but can easily be created in a series. The network of interconnected Data objects defines a Data dependency graph, superimposed on the scene graph. This Data dependency graph is not visible within the runSofa GUI.
 
 
-#### API of Engines
+API of Engines
+--------------
 
 The API of engines is pretty simple since only one function is to be implemented (on top of the `init()` function common to all SOFA components):
 
@@ -26,7 +28,8 @@ void doUpdate()
 This function is in charge of the computation of the ouput Data based on the input Data. It is the delegate function from the `update()` function implemented in DataEngine which updates all inputs before calling the `doUpdate()` function.
 
 
-#### List of Engines
+List of Engines
+--------------
 
 - [BoxROI](https://www.sofa-framework.org/community/doc/components/engines/roi-selection/#boxroi)
 - [PlaneROI](https://www.sofa-framework.org/community/doc/components/engines/roi-selection/#planeroi)
@@ -42,7 +45,8 @@ This function is in charge of the computation of the ouput Data based on the inp
 - [SubsetTopology](https://www.sofa-framework.org/community/doc/components/engines/subsettopology/)
 
 
-#### Example of use
+Example of use
+--------------
 
 Here is an example with the [TransformEngine](https://www.sofa-framework.org/community/doc/components/engines/transformengine/) with an input data ("input_position") and an output data ("output_position") resulting from a transformation defined by the user (here translation):
 
