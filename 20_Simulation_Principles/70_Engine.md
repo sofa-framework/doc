@@ -17,7 +17,10 @@ Engines are meant to perform relatively simple computations, but can easily be c
 The API of engines is pretty simple since only one function is to be implemented (on top of the `init()` function common to all SOFA components):
 
 ``` cpp
+
+// Update function in Engines computing the new values of outputs from inputs
 void doUpdate()
+
 ```
 
 This function is in charge of the computation of the ouput Data based on the input Data. It is the delegate function from the `update()` function implemented in DataEngine which updates all inputs before calling the `doUpdate()` function.

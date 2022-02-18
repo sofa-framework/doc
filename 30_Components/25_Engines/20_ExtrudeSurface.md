@@ -1,7 +1,7 @@
 ExtrudeSurface
 ==============
 
-This component belongs to the category of [Engines](https://www.sofa-framework.org/community/doc/simulation-principles/scene-graph/). This engine extrude a surface and returns corresponding triangles.
+This component belongs to the category of [Engines](https://www.sofa-framework.org/community/doc/simulation-principles/engine/). This engine extrude a surface and returns corresponding triangles.
 
 Input Data
 ----------

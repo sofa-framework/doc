@@ -1,7 +1,7 @@
 TransformEngine
 ===============
 
-This component belongs to the category of [Engines](https://www.sofa-framework.org/community/doc/simulation-principles/scene-graph/). The TransformEngine transforms the positions of one DataFields into new positions after applying a transformation. This transformation can be either: translation, rotation or scale.
+This component belongs to the category of [Engines](https://www.sofa-framework.org/community/doc/simulation-principles/engine/). The TransformEngine transforms the positions of one DataFields into new positions after applying a transformation. This transformation can be either: translation, rotation or scale.
 
 Input Data
 ----------

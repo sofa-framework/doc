@@ -1,7 +1,7 @@
 Spiral
 ======
 
-This component belongs to the category of [Engines](https://www.sofa-framework.org/community/doc/simulation-principles/scene-graph/). This engine turns on spiral any topological model.
+This component belongs to the category of [Engines](https://www.sofa-framework.org/community/doc/simulation-principles/engine/). This engine turns on spiral any topological model.
 
 Input Data
 ----------
