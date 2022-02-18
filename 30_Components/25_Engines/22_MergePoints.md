@@ -1,7 +1,7 @@
 MergePoints
 ===========
 
-This engine returns a merged list of positions, given 2 primary lists.
+This component belongs to the category of [Engines](https://www.sofa-framework.org/community/doc/simulation-principles/scene-graph/). This engine returns a merged list of positions, given 2 primary lists.
 
 Input Data
 ----------

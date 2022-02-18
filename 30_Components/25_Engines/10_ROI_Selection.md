@@ -1,7 +1,7 @@
 ROI Selection
 =============
 
-An Engine is a component that computes a set of output Data's from a set of input Data's. Several ROI engines (standing for "Region Of Interest") allow for selecting topological elements of an object. Three engines thus provide point indices, edges, triangles, tetrahedra and/or hexahedra as output:
+An [Engine](https://www.sofa-framework.org/community/doc/simulation-principles/scene-graph/) is a component that computes a set of output Data's from a set of input Data's. Several ROI engines (standing for "Region Of Interest") allow for selecting topological elements of an object. Three engines thus provide point indices, edges, triangles, tetrahedra and/or hexahedra as output:
 
 - BoxROI
 - PlaneROI
