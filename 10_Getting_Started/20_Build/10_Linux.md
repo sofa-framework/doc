@@ -22,7 +22,7 @@ On Linux, we officially support **GCC >= 7** and **Clang >= 5**.
 First, install the standard compilation toolkit with this command:
 
 ```bash
-sudo apt install build-essential software-properties-common python-software-properties
+sudo apt install build-essential software-properties-common
 ```
     
 ### GCC
@@ -54,9 +54,10 @@ sudo apt install clang-12
 
 ## CMake: Makefile generator
 
-SOFA requires at least **CMake 3.12**.  
-We recommend to install CMake using [the latest official installer](https://github.com/Kitware/CMake/releases/latest).
-
+CMake will be required to configure the SOFA project before compiling it. Note that SOFA requires at least **CMake 3.12**.
+```bash
+sudo apt install cmake cmake-gui
+```
 
 ## [optional] Ninja: build system
 
@@ -94,9 +95,11 @@ SOFA requires some libraries:
     sudo apt install libboost-all-dev
     ```
     
--   **Python 3.7**  
+-   **Python 3.8**  
     ```bash
-    sudo apt install python3.7-dev python-numpy python-scipy
+    sudo apt install python3.8-dev python3-pip
+    pip3 install numpy
+    pip3 install scipy
     ```
 
 -   **Additional libraries**: libPNG, libJPEG, libTIFF, Glew, Zlib   
