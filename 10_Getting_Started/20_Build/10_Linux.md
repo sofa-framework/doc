@@ -12,7 +12,7 @@ Fedora image: [https://hub.docker.com/r/sofaframework/sofabuilder_fedora](https:
 
 ## Supported Linux version
 
-SOFA policy is to support only the latest Linux LTS.
+SOFA policy is to support only the latest Ubuntu LTS.
 
 ----------------------------
 
