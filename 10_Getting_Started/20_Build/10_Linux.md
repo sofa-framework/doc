@@ -10,6 +10,10 @@ Ubuntu image: [https://hub.docker.com/r/sofaframework/sofabuilder_ubuntu](https:
 
 Fedora image: [https://hub.docker.com/r/sofaframework/sofabuilder_fedora](https://hub.docker.com/r/sofaframework/sofabuilder_fedora)
 
+## Supported Linux version
+
+SOFA policy is to support only the latest Linux LTS.
+
 ----------------------------
 
 # Build tools
@@ -97,9 +101,12 @@ SOFA requires some libraries:
     
 -   **Python 3.8**  
     ```bash
-    sudo apt install python3.8-dev python3-pip
-    pip3 install numpy
-    pip3 install scipy
+    sudo apt install python3.8-dev
+    
+    curl -L https://bootstrap.pypa.io/pip/get-pip.py --output /tmp/get-pip3.py \
+    && python3.8 /tmp/get-pip3.py \
+    && python3.8 -m pip install --upgrade pip \
+    && python3.8 -m pip install numpy scipy
     ```
 
 -   **Additional libraries**: libPNG, libJPEG, libTIFF, Glew, Zlib   
