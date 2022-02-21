@@ -99,10 +99,11 @@ SOFA requires some libraries:
     sudo apt install libboost-all-dev
     ```
     
--   **Python 3.8**  
+-   **Python 3.8** + pip + numpy + scipy
     ```bash
     sudo apt install python3.8-dev
-    
+    ```
+    ```bash
     curl -L https://bootstrap.pypa.io/pip/get-pip.py --output /tmp/get-pip3.py \
     && python3.8 /tmp/get-pip3.py \
     && python3.8 -m pip install --upgrade pip \
