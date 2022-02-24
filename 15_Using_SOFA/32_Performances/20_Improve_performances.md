@@ -1,0 +1,121 @@
+﻿# Improve the Performances
+
+There are many ways to improve the performances of a simulation.
+This page provides a few tips to help achieving this goal.
+
+## Profile the Simulation
+
+The first step toward better performances is to identify the bottleneck of the simulation.
+SOFA provides some tools to profile the simulation.
+See [this page](https://www.sofa-framework.org/community/doc/using-sofa/inspect-performances/) to learn how to use those tools.
+The principle is to measure the time taken by all major steps of the simulation.
+The timers are organized as a tree: a monitored step can call monitored substeps, making it a parent of the substeps.
+
+Let us take the example of the caduceus demo, located in [*examples/Demos/caduceus.scn*](https://github.com/sofa-framework/sofa/blob/master/examples/Demos/caduceus.scn).
+The following image is the profile of a specific time step, measured in the GUI of runSofa.
+
+![](https://raw.githubusercontent.com/sofa-framework/doc/master/images/usingSOFA/CaduceusProfiling.png)
+
+Two major steps can be identified:
+1) *FreeMotion+CollisionDetection*
+2) *ConstraintSolver*
+
+Together, both steps take 84% of the time of the time step.
+In most simulation, those two steps will be the most time-consuming.
+
+As the name suggests, the step *FreeMotion+CollisionDetection* gathers two substeps:
+1) The collision detection
+2) The free motion
+
+This timer is specific to FreeMotionAnimationLoop.
+Its particularity is that those two steps can be computed in parallel.
+It is the case in the example: collision detection takes 26% of the time. During that time, the free motion is computed in parallel.
+That is why the timer *WaitFreeMotion* is almost null.
+This parallelization is a possibility to optimize the performances of this simulation.
+This parallelization is available because the computation of the free motion is also a time-consuming step of a simulation.
+
+To summarize, the 3 major steps of a simulation, candidates for being a bottleneck, are:
+1) Collision detection
+2) Free motion
+3) Constraint solving
+
+In each of them, some substeps can be responsible of the bottleneck.
+The profiler helps to identify, which one of them.
+In the above example, the most time-consuming step is constraint solving, taking 54% of the time.
+
+## Collision Detection
+
+If collision detection has been identified as a bottleneck, here are a few tips to improve the performances:
+
+### Asynchronous Free Motion
+
+This tip requires to use a [FreeMotionAnimationLoop](https://www.sofa-framework.org/community/doc/components/animationloops/freemotionanimationloop/).
+
+The steps of collision detection and free motion are independent: they can be computed in parallel.
+The component [FreeMotionAnimationLoop](https://www.sofa-framework.org/community/doc/components/animationloops/freemotionanimationloop/) has boolean Data *parallelCollisionDetectionAndFreeMotion* to specify if both steps are computed in parallel or not.
+This optimization is the most effective when both steps takes about the same time.
+The total time of both steps computed in parallel, will be the time taken by the most time-consuming one (plus the overhead due to parallelization).
+
+### Parallel Algorithms
+
+There are high chances that a simulation uses [BruteForceBroadPhase](https://www.sofa-framework.org/community/doc/components/collisions/broadphases/bruteforcebroadphase/) and [BVHNarrowPhase](https://www.sofa-framework.org/community/doc/components/collisions/narrowphases/bvhnarrowphase/).
+Multi-threaded versions of those two components are available in the [MultiThreading plugin](https://www.sofa-framework.org/community/doc/plugins/usual-plugins/multithreading/).
+Depending on the cases, they can be sped up the collision detection.
+See details in the [MultiThreading plugin](https://www.sofa-framework.org/community/doc/plugins/usual-plugins/multithreading/) dedicated page.
+
+## Free Motion
+
+This step is computed in the [FreeMotionAnimationLoop](https://www.sofa-framework.org/community/doc/components/animationloops/freemotionanimationloop/).
+However, there are also common steps with the [DefaultAnimationLoop](https://www.sofa-framework.org/community/doc/components/animationloops/defaultanimationloop/), such as the computation of the force, the matrix assembly and the solve of the linear system.
+Therefore, most of the tips of this section are also available for [DefaultAnimationLoop](https://www.sofa-framework.org/community/doc/components/animationloops/defaultanimationloop/).
+
+### The Choice of the Linear Solver
+
+See [this page](https://www.sofa-framework.org/community/doc/simulation-principles/system-resolution/linear-solver/) for a description of the different types of linear solvers.
+
+#### Iterative Solvers
+
+The error reduces at each iteration of an iterative solver.
+Some of the parameters (e.g. *iterations*, *tolerance* and *threshold* in [CGLinearSolver](https://www.sofa-framework.org/community/doc/components/linearsolvers/cglinearsolver/)) controls when the solver stops its iterations.
+Less iterations means less computation, therefore faster simulations.
+Stopping too early can come at the price of too large error, and can even bring instabilities.
+
+#### Matrix Assembly
+
+When the linear solver assembles the system matrix in a compressed sparse row data structure, it is possible to use a matrix where the entries are blocs of 3x3.
+This is much faster to assemble.
+It is the most efficient when the simulation only involves 3d degrees of freedom.
+The template parameter to use is `CompressedRowSparseMatrixMat3x3d`.
+All solvers do not support this template parameter.
+
+#### Matrix Assembly vs. Matrix Free
+
+[CGLinearSolver](https://www.sofa-framework.org/community/doc/using-sofa/components/linearsolver/cglinearsolver/) supports both strategies:
+- `GraphScattered` is the template parameter for a matrix-free solver
+- `CompressedRowSparseMatrixd` and `CompressedRowSparseMatrixMat3x3d` are template parameters for an assembled matrix
+
+It is not always obvious which one is faster given the same number of iterations.
+However, it is easy to try both strategies: just change `<CGLinearSolver template="GraphScattered"/>` to `<CGLinearSolver template="CompressedRowSparseMatrixMat3x3d"/>`, and vice-versa, and compare the performances.
+
+#### Asynchronous Linear Solver
+
+SparseLDLSolver has an asynchronous equivalent (AsyncSparseLDLSolver), which the goal is to reduce the duration of the linear system solving.
+In your scene, just replace `<SparseLDLSolver/>` by `<AsyncSparseLDLSolver/>`.
+
+### Parallel ODE Solving
+
+This optimization requires to use a [FreeMotionAnimationLoop](https://www.sofa-framework.org/community/doc/components/animationloops/freemotionanimationloop/).
+When multiple objects evolve in a simulation, SOFA supports the following configurations:
+- There is a single ODE solver for all the objects.
+- There are multiple ODE solvers, and each one can simulate one or multiple objects.
+
+In the latter case, there are as many free motion computations as the number of ODE solvers in the scene. 
+Moreover, it is assumed there is no interaction between objects.
+Therefore, the computation of the free motion of an object is independent from the others, and each ODE solve step can be trivially parallelized.
+The component [FreeMotionAnimationLoop](https://www.sofa-framework.org/community/doc/components/animationloops/freemotionanimationloop/) has boolean Data *parallelODESolving* to specify if both ODE solve steps are computed in parallel or not.
+
+## GPGPU
+
+SOFA has a plugin allowing to compute some steps of the simulation on the GPU, based on CUDA.
+See [this page](https://www.sofa-framework.org/community/doc/plugins/usual-plugins/using-cuda/).
+In most cases, the simulation is much faster when computed on the GPU, compared to the CPU version. 
