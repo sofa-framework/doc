@@ -34,7 +34,7 @@ The CGLinearSolver **requires** the use (above in the scene graph) of an integra
 
 When using a CGLinearSolver, make sure you carefully chose the value of the free data field iterations, tolerance and threshold. Both tolerance and threshold data must be chosen in accordance with the dimension of the degrees of freedom (DOFs). Usually, the value of these two data is close to the square of the expected error on the DOFs.
 
-Remember that using an iterative linear solver like the CGLinearSolver, no exact solution can be found. The accuracy of your solution will always depend on the conditioning of your system and your input data (iterations, tolerance and threshold).
+Remember that when using an iterative linear solver like the CGLinearSolver, no exact solution can be found. The accuracy of your solution will always depend on the conditioning of your system and your input data (iterations, tolerance and threshold).
 
 
 
@@ -50,7 +50,7 @@ This component is used as follows in XML format:
 or using SofaPython3:
 
 ``` python
-node.addObject('CGLinearSolver', iterations='100' tolerance='1e-5' threshold='1e-5')
+node.addObject('CGLinearSolver', iterations='100', tolerance='1e-5', threshold='1e-5')
 ```
 
 A lot of scene examples are available in SOFA involving a CGLinearSolver. One is available in [*examples/Demos/liver.scn*](https://github.com/sofa-framework/sofa/blob/master/examples/Demos/liver.scn)
