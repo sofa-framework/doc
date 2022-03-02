@@ -34,9 +34,6 @@ Data
 
 No important data is available for the LDL since it simply computes the direct solution.
 
-However, an option for saving the matrix is given using the data **savingMatrixToFile**. You can thus choose the **savingFilename** and the precision of the digits saved in this file using **savingPrecision**.
-
-
 
 Usage
 -----
