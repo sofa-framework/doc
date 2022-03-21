@@ -1,0 +1,43 @@
+This component belongs to the category of [LinearSolver](https://www.sofa-framework.org/community/doc/main-principles/system-resolution/linear-solvers/). The role of the SparseLUSolver is to solve the linear system <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{A}x=b" title="Linear system" /> assuming that the matrix <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{A}" title="System matrix" /> is inversible and sparse.
+
+In order to solve this system, this solver will factorize the matrix <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{A}" title="system matrix" /> into the product <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{A=LU}" title="lu" /> where <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{L}" title="Lower matrix" /> is a lower triangular matrix with ones on its diagonal and <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{U}" title="upper matrix" /> is an upper triangonal matrix.
+
+As this method relies on the Gaussian elimination, we will apply a partial pivot on the lines of <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{A}" title="System matrix" /> hence its factorization will be written as <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{PA=LU}" title="factor matrix" /> .
+The LU solver is a direct solver which will compute the exact solution of the linear system by successively solving two triangular system.
+
+<img class="latex" src="https://latex.codecogs.com/png.latex?\begin{cases} \mathbf{L}z=\mathbf{P}b\\ 
+\mathbf{U} y = z \\
+\mathbf{P} x = y
+\end{case} \Longleftrightarrow Ax = b" title="System matrix" /> 
+
+Sequence diagram
+----------------
+
+<a href="https://github.com/sofa-framework/doc/blob/master/images/linearsolver/SparseLUSolver.png?raw=true"><img src="https://github.com/sofa-framework/doc/blob/master/images/linearsolver/SparseLUSolver.png?raw=true" title="Flow diagram for the SparseLUSolver"/></a>
+
+
+Usage
+-----
+
+The SparseLUSolver **requires** the use (above in the scene graph) of an integration scheme, and (below in the scene graph) of a MechanicalObject storing the state information that the SparseLUSolver will access.
+
+The SparseLUSolver is the most generic direct solver. It may be time consuming but it will be able compute the exact solution as son as <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{A}"> is inversible.
+
+Example
+-------
+
+This component is used as follows in XML format:
+
+``` xml
+<SparseLUSolver  />
+```
+
+or using SofaPython3:
+
+``` python
+node.addObject('SparseLUSolver')
+```
+
+With a description of each data
+
+An example scene involving a SparseLUSolver is available in [*examples/Components/linearsolver/FEMBAR-SparseLUSolver.scn*](https://github.com/sofa-framework/sofa/blob/master/examples/Components/linearsolver/FEMBAR-SparseLUSolver.scn)

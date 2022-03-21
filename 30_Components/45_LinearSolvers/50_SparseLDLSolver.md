@@ -10,7 +10,7 @@ As a direct solver, the SparseLDLSolver computes at each simulation time step an
 
 <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{L}\mathbf{D}\mathbf{L}^Tx=b" title="LDL system" />
 
-Using a block forward substitution, we successively solve two triangular systems. Between those two resoltion, we need to inverse <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{D}" title="Diagonal matrix" />, which is trivial as it is a diagonal matrix that has non null value on its diagonal.
+Using a block forward substitution, we successively solve two triangular systems. Between those two resoltion, we need to inverse <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{D}" title="Diagonal matrix" />, which is trivial as it is a diagonal matrix that has no null value on its diagonal.
 
 <img class="latex" src="https://latex.codecogs.com/png.latex?\begin{cases}
  \mathbf{L}^T z = b \\
@@ -43,6 +43,12 @@ By default useSymbolicDecomposition is set to true. The solver will use a symbol
 
 -applyPermutation
 
+By default it is set to true. It will apply fill reducing permutation on the rows and the columns of <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{A}" title="system matrix" /> in order to minimize the number of non null values in <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{L}" title="factor matrix" /> . Instead of solving <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{A}x=b" title="linear system" />, we will solve <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{(PAQ) (Q^{-1}}x) = Pb" title="factor matrix" />. Moreover, <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{A}" title="system matrix" /> is symetric, so we will apply the same permutation on the rows and on the columns with <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{Q}=\mathbf{P}^T=\mathbf{P}^{-1}" title="system matrix" />. We will factorize <img class="latex" src="https://latex.codecogs.com/png.latex?\tilde{\mathbf{A}} =\mathbf{PAP^T} " title="system matrix" /> and then we will solve
+
+<img class="latex" src="https://latex.codecogs.com/png.latex?\begin{cases} 
+\tilde{\mathbf{A}} y = Pb \\
+\mathbf{Q}^{-1} x = y
+ \end{cases} " title="system matrix" />
 
 
 Usage
