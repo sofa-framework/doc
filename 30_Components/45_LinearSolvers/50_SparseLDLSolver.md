@@ -1,20 +1,23 @@
 SparseLDLSolver
 ===============
 
-This component belongs to the category of [LinearSolver](https://www.sofa-framework.org/community/doc/main-principles/system-resolution/linear-solvers/). The role of the SparseLDLSolver is to solve the linear system <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{A}x=b" title="Linear system" /> without any _a priori_ on this system.
+This component belongs to the category of [LinearSolver](https://www.sofa-framework.org/community/doc/main-principles/system-resolution/linear-solvers/). The role of the SparseLDLSolver is to solve the linear system <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{A}x=b" title="Linear system" /> assuming that the matrix <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{A}" title="System matrix" /> is symetric and sparse.
 
 
-To do so, the SparseLDLSolver relies on the method of [LDL decomposition](https://en.wikipedia.org/wiki/Cholesky_decomposition#LDL_decomposition_2). The system matrix will be decomposed <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{A}=\mathbf{L}\mathbf{D}\mathbf{L}^T" title="LDL decomposition" />, where <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{L}" title="Lower part of the matrix" /> is the lower part of the matrix <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{A}" title="System matrix" /> and <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{D}" title="Diagonal of the matrix" /> is its diagonal.
+To do so, the SparseLDLSolver relies on the method of [LDL decomposition](https://en.wikipedia.org/wiki/Cholesky_decomposition#LDL_decomposition_2). The system matrix will be decomposed <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{A}=\mathbf{L}\mathbf{D}\mathbf{L}^T" title="LDL decomposition" />, where <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{L}" title="Lower part of the matrix" /> is a lower triangular matrix <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{A}" title="System matrix" /> and <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{D}" title="Diagonal of the matrix" /> is a diagonal marix. This decomposition is an extention of the Cholesky decomposition which reduces it numerical inaccuracy.
 
 As a direct solver, the SparseLDLSolver computes at each simulation time step an exact solution as follows:
 
 <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{L}\mathbf{D}\mathbf{L}^Tx=b" title="LDL system" />
 
-Using a block forward substitution, we can first find the <img class="latex" src="https://latex.codecogs.com/png.latex?z" title="First intermediate solution" /> solution of: <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{L}z=b" title="L system" />
+Using a block forward substitution, we successively solve two triangular systems. Between those two resoltion, we need to inverse <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{D}" title="Diagonal matrix" />, which is trivial as it is a diagonal matrix that has non null value on its diagonal.
 
-Next, a second solution <img class="latex" src="https://latex.codecogs.com/png.latex?y" title="Second intermediate solution" />  can be computed: <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{D}y=z" title="L system" />
-
-Finally, from the relationship <img class="latex" src="https://latex.codecogs.com/png.latex?y=z\mathbf{D}^{-1}" title="Final substitution" /> where <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{D}^{-1}" title="Inverse of diagonal" /> is easy to compute, we can find the exact solution <img class="latex" src="https://latex.codecogs.com/png.latex?x" title="Solution" /> via backward substitution: <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{L}^Tx=y" title="Final resolution" />
+<img class="latex" src="https://latex.codecogs.com/png.latex?\begin{cases}
+ \mathbf{L}^T z = b \\
+ \mathbf{D} y = z \\
+ \mathbf{L} x = y \\
+ \end{cases} \Longleftrightarrow \mathbf{L^T D L}x=b"
+title="Linear systems" />
 
 It is important to note that this decomposition considers that the system matrix <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{A}" title="System matrix" /> is symmetric.
 
@@ -32,7 +35,14 @@ Sequence diagram
 Data  
 ----
 
-No important data is available for the LDL since it simply computes the direct solution.
+There is two bolean data to change the behavoir of this solver:
+
+-useSymbolicDecomposition
+
+By default useSymbolicDecomposition is set to true. The solver will use a symbolic decomposition, meaning that it will store the shape of <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{L}" title="factor matrix" /> on the first step, or when it detects that this shape muste but updated, and then it will only update its coefficients. By setting this data to false, the solver will compute the entire decomposition at each step.
+
+-applyPermutation
+
 
 
 Usage
