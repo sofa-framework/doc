@@ -94,6 +94,11 @@ SOFA requires some libraries:
     Make sure to enable **Charts** and **WebEngine** components.  
     ![](https://www.sofa-framework.org/wp-content/uploads/2020/04/install_qt_linux.png)
 
+-   **OpenGL**
+    ```bash
+    sudo apt install libopengl0
+    ```
+
 -   **Boost** (>= 1.65.1)  
     ```bash
     sudo apt install libboost-all-dev
@@ -104,7 +109,8 @@ SOFA requires some libraries:
     sudo apt install python3.8-dev
     ```
     ```bash
-    curl -L https://bootstrap.pypa.io/pip/get-pip.py --output /tmp/get-pip3.py \
+    sudo apt-get install python3-distutils \
+    && curl -L https://bootstrap.pypa.io/pip/get-pip.py --output /tmp/get-pip3.py \
     && python3.8 /tmp/get-pip3.py \
     && python3.8 -m pip install --upgrade pip \
     && python3.8 -m pip install numpy scipy
