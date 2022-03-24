@@ -11,7 +11,7 @@ https://hal.inria.fr/hal-00688865/document
 
 ## Asynchronous Factorization
 
-The difference compared to SparseLDLSolver is the factorization of the matrix in a different thread in order to speed up a simulation step.
+The difference compared to SparseLDLSolver resides in the fact that the factorization of the matrix is performed in a different thread in order to speed up the simulation.
 
 The synchronous version performs the following operations (synchronously):
 1) Build the matrix
@@ -20,10 +20,10 @@ The synchronous version performs the following operations (synchronously):
 
 In the asynchronous version, the factorization is performed asynchronously.
 A consequence is that the solving process uses a factorization which may not be up to date.
-In practice, the factorization is at least one time step old.
+In practice, the factorization is at least one time step old, but it can be an older factorization depending on the duration of the asynchronous factorization step.
 Because of this, the solver computes an approximation of the solution, based on an old factorization.
-It changes the behavior compared to a synchronous version, but it also changes the behavior depending on the duration of the factorization step.
-It may introduce instabilities.
+It is therefore important to understand that using AsyncSparseLDLSolver changes the behavior of your simulation compared to a synchronous version.
+It may also introduce instabilities.
 
 ## A Preconditioner
 
@@ -50,6 +50,6 @@ or using SofaPython3:
 node.addObject('AsyncSparseLDLSolver')
 ```
 
-An example where AsyncSparseLDLSolver is used as a standalone linear solver is available in [*examples/Components/linearsolver/FEMBAR-AsyncSparseLDLSolver.scn*](https://github.com/sofa-framework/sofa/blob/master/examples/Components/linearsolver/FEMBAR-AsyncSparseLDLSolver.scn).
-The example in [*examples/Components/linearsolver/preconditioner/FEMBAR-ShewchukPCGLinearSolver-AsyncSparseLDLSolver.scn*](https://github.com/sofa-framework/sofa/blob/master/examples/Components/linearsolver/preconditioner/FEMBAR-ShewchukPCGLinearSolver-AsyncSparseLDLSolver.scn) shows how to use AsyncSparseLDLSolver as a preconditioner of ShewchukPCGLinearSolver.
-Finally, the example in [*examples/Components/linearsolver/preconditioner/FEMBAR-ShewchukPCGLinearSolver-WarpedAsyncSparseLDLSolver.scn*](https://github.com/sofa-framework/sofa/blob/master/examples/Components/linearsolver/preconditioner/FEMBAR-ShewchukPCGLinearSolver-WarpedAsyncSparseLDLSolver.scn) shows how the factorization in AsyncSparseLDLSolver can be warped using a WarpPreconditioner.
+- An example where AsyncSparseLDLSolver is used as a standalone linear solver is available in [*examples/Components/linearsolver/FEMBAR-AsyncSparseLDLSolver.scn*](https://github.com/sofa-framework/sofa/blob/master/examples/Components/linearsolver/FEMBAR-AsyncSparseLDLSolver.scn).
+- The example in [*examples/Components/linearsolver/preconditioner/FEMBAR-ShewchukPCGLinearSolver-AsyncSparseLDLSolver.scn*](https://github.com/sofa-framework/sofa/blob/master/examples/Components/linearsolver/preconditioner/FEMBAR-ShewchukPCGLinearSolver-AsyncSparseLDLSolver.scn) shows how to use AsyncSparseLDLSolver as a preconditioner of ShewchukPCGLinearSolver.
+- Finally, the example in [*examples/Components/linearsolver/preconditioner/FEMBAR-ShewchukPCGLinearSolver-WarpedAsyncSparseLDLSolver.scn*](https://github.com/sofa-framework/sofa/blob/master/examples/Components/linearsolver/preconditioner/FEMBAR-ShewchukPCGLinearSolver-WarpedAsyncSparseLDLSolver.scn) shows how the factorization in AsyncSparseLDLSolver can be warped using a WarpPreconditioner.
