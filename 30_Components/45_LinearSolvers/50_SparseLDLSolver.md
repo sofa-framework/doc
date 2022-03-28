@@ -37,9 +37,7 @@ Data
 
 There is two bolean data to change the behavoir of this solver:
 
--useSymbolicDecomposition
-
-By default useSymbolicDecomposition is set to true. The solver will use a symbolic decomposition, meaning that it will store the shape of <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{L}" title="factor matrix" /> on the first step, or when it detects that this shape muste but updated, and then it will only update its coefficients. By setting this data to false, the solver will compute the entire decomposition at each step.
+- **useSymbolicDecomposition**: by default useSymbolicDecomposition is set to true. The solver will use a symbolic decomposition, meaning that it will store the shape of <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{L}" title="factor matrix" /> on the first step, or when it detects that this shape must but updated, and then it will only update its coefficients. By setting this data to false, the solver will compute the entire decomposition at each step.
 
 -applyPermutation
 
