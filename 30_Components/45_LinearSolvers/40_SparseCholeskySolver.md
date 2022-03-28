@@ -16,13 +16,11 @@ Sequence diagram
 
 Data  
 ----
-There is one data that change the behaviour of the solver, **typePermutation**, that allows three choices :
-
-**-None**, we won't apply any permutation nor on the rows nor on the columns
-
-**-SuiteSparse**, use the SuiteSparse library as intended and apply a fill reducing permutaion on the columns only
-
-**-METIS**, use the METIS library to compute a fill reducing permutation and apply it on both the lines and the columns
+The SparseCholeskySolver has only one data:
+- **typePermutation**:  which defines the behavior of the solver following three options:
+  -**None**, we won't apply any permutation nor on the rows nor on the columns
+  -**SuiteSparse**, use the SuiteSparse library as intended and apply a fill reducing permutation on the columns only
+  -**METIS**, use the METIS library to compute a fill reducing permutation and apply it on both the lines and the columns
 
 Example
 -------
