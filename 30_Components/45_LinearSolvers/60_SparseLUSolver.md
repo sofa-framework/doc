@@ -17,11 +17,10 @@ Sequence diagram
 
 Data  
 ----
-The SparseLUSolver has only one data:
-- **typePermutation**:  which defines the behavior of the solver following three options:
-  -**None**, we won't apply any permutation nor on the rows nor on the columns
-  -**SuiteSparse**, use the SuiteSparse library as intended and apply a fill reducing permutation on the columns only
-  -**METIS**, use the METIS library to compute a fill reducing permutation and apply it on both the lines and the columns
+The SparseLUSolver has only one data **typePermutation** that allows three choices :
+  **-None**, we won't apply any permutation nor on the rows nor on the columns
+  **-SuiteSparse**, use the SuiteSparse library as intended and apply a fill reducing permutation on the columns only
+  **-METIS**, use the METIS library to compute a fill reducing permutation and apply it on both the lines and the columns
 
 By applying a fill reducing permutation, we aim at minimizing the number of non-null values in the decomposition, which would reduce the time spent on solving the triangular systems.
 
@@ -30,7 +29,7 @@ Usage
 
 The SparseLUSolver **requires** the use (above in the scene graph) of an integration scheme, and (below in the scene graph) of a MechanicalObject storing the state information that the SparseLUSolver will access.
 
-The SparseLUSolver is the most generic direct solver. It may be time consuming but it will be able compute the exact solution as son as <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{A}"> is inversible.
+The SparseLUSolver is the most generic direct solver. It may be time consuming but it will be able compute the exact solution as son as <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{A}"> is invertible.
 
 Example
 -------
