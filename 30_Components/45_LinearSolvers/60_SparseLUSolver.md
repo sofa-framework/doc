@@ -17,15 +17,13 @@ Sequence diagram
 
 Data  
 ----
-There is one data that change the behaviour of the solver, **typePermutation**, that allows three choices :
+The SparseLUSolver has only one data:
+- **typePermutation**:  which defines the behavior of the solver following three options:
+  -**None**, we won't apply any permutation nor on the rows nor on the columns
+  -**SuiteSparse**, use the SuiteSparse library as intended and apply a fill reducing permutation on the columns only
+  -**METIS**, use the METIS library to compute a fill reducing permutation and apply it on both the lines and the columns
 
-**-None**, we won't apply any permutation nor on the rows nor on the columns
-
-**-SuiteSparse**, use the SuiteSparse library as intended and apply a fill reducing permutation on the columns only
-
-**-METIS**, use the METIS library to compute a fill reducing permutation and apply it on both the lines and the columns
-
-By applying a fill reducing permuataion, we aim at minimizing the number of non null value of the decomposition, which would reduce the time spend on solving the triangular systems.
+By applying a fill reducing permutation, we aim at minimizing the number of non-null values in the decomposition, which would reduce the time spent on solving the triangular systems.
 
 Usage
 -----
