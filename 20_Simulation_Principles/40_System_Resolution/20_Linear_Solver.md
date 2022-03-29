@@ -70,3 +70,22 @@ and will handle these vectors as TempVectorContainer and create any new vector u
 typename Inherit::TempVectorContainer vtmp(this, params, A, x, b);
 Vector* r1 =  vtmp.createTempVector();
 ```
+
+
+### Matrix Assembly vs. Matrix Free
+
+Linear solvers can also be divided into the two following categories:
+- Matrix Assembly: the matrix of the system is explicitly assembled before being used to solve the system.
+- Matrix Free: there is no data structure or allocated memory used to store a matrix.
+Instead, the solver only calls matrix-vector operations (e.g. product), which do not require the explicit assembly of the matrix.
+
+In SOFA, the choice of the type of solver is made through the template parameter of the linear solver component.
+For example, `<SparseLDLSolver/>` is a shortcut for `<SparseLDLSolver template="CompressedRowSparseMatrixd"/>` (`CompressedRowSparseMatrixd` is the default template parameter of SparseLDLSolver).
+`CompressedRowSparseMatrixd` means the matrix is assembled in a compressed sparse row data structure.
+SparseLDLSolver also supports the template parameter `CompressedRowSparseMatrixMat3x3d`, where the entries of the matrix are 3x3 blocks.
+
+Another example is [CGLinearSolver](https://www.sofa-framework.org/community/doc/components/linearsolvers/cglinearsolver/).
+Its default template parameter is `GraphScattered`.
+This template parameter means the implementation is matrix-free.
+However, [CGLinearSolver](https://www.sofa-framework.org/community/doc/components/linearsolvers/cglinearsolver/) is a solver supporting also assembled matrices.
+For example, it is possible to declare `<CGLinearSolver template="CompressedRowSparseMatrixMat3x3d"/>`.
