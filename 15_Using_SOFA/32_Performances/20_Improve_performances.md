@@ -17,6 +17,7 @@ The following image results from the profiling of one time step, measured in the
 ![](https://raw.githubusercontent.com/sofa-framework/doc/master/images/usingSOFA/CaduceusProfiling.png)
 
 Two major steps can be identified:
+
 1) *FreeMotion+CollisionDetection*
 2) *ConstraintSolver*
 
@@ -24,6 +25,7 @@ Together, both steps account for 84% of the total computational time spent in th
 In most simulation, those two steps will be the most time-consuming.
 
 As the name suggests, the step *FreeMotion+CollisionDetection* gathers two substeps:
+
 1) The collision detection
 2) The free motion
 
@@ -35,6 +37,7 @@ This parallelization is a possible solution to optimize the performances of this
 This parallelization is available because the computation of the free motion is also a time-consuming step of a simulation.
 
 To summarize, the 3 major steps of a simulation, candidates for being a bottleneck, are:
+
 1) Collision detection
 2) Free motion
 3) Constraint solving
