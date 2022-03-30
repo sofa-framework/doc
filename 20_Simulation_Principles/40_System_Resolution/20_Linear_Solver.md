@@ -18,8 +18,8 @@ For small-size linear systems, the direct methods will be efficient. Large and s
 
 Direct solvers in SOFA are:
 
-- [SparseLDLSolver](https://www.sofa-framework.org/community/doc/using-sofa/components/linearsolver/sparseldlsolver/)
-- LULinearSolver / SparseLUSolver
+- [SparseLDLSolver](https://www.sofa-framework.org/community/doc/using-sofa/components/linearsolver/sparseldlsolver/) and [AsyncSparseLDLSolver](https://www.sofa-framework.org/community/doc/components/linearsolvers/asyncsparseldlsolver//)
+- LULinearSolver (in SofaNewmat plugin) / SparseLUSolver
 - CholeskySolver / SparseCholeskySolver
 - SVDLinearSolver (Jacobi SVD)
 - BTDLinearSolver
@@ -54,6 +54,7 @@ For well-conditioned problems (even large systems), the convergence remains mono
 Iterative solvers in SOFA are:
 
 - [CGLinearSolver](https://www.sofa-framework.org/community/doc/using-sofa/components/linearsolver/cglinearsolver/)
+- [ShewchukPCGLinearSolver](https://www.sofa-framework.org/community/doc/components/linearsolvers/preconditioned-cg/)
 - MinResLinearSolver
 
 
