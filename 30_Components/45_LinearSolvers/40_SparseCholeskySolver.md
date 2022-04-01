@@ -3,11 +3,6 @@ This component belongs to the category of [LinearSolver](https://www.sofa-framew
 The Cholesky decomposition (https://en.wikipedia.org/wiki/Cholesky_decomposition) is a numerical method that slove a linear system <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{A}x=b" title="Linear system" /> by factorizing the matrix of the system as <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{LL^T}" title="Linear system" />. By doing so, we only need to solve two triangular systems to compute the solution. It is only applyable on **symetric** matrices but is roughtly twice as efficient as the LU solver. The <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{LDL^T}" /> decomposition is heavily related to the Cholesky decomposition.
 
 
-
-
-
-
-
 Sequence diagram
 ----------------
 
@@ -18,8 +13,10 @@ Data
 ----
 There is one data that change the behaviour of the solver, **typePermutation**, that allows three choices :
 **-None**, we won't apply any permutation nor on the rows nor on the columns,
-**-SuiteSparse**, use the SuiteSparse library as intended and apply a fill reducing permutaion on the columns only,
-**-METIS**, use the METIS library to compute a fill reducing permutation and apply it on both the lines and the columns
+**-SuiteSparse**, use the SuiteSparse library as intended for a symetric matrix and apply a fill reducing permutaion on both the columns and the rows (those two permutations are the inverse of each other),
+**-METIS**, use the METIS library to compute a fill reducing permutation and apply it on both the lines and the columns.
+
+It is not currently possible to change the the type of permutation applied during a simulation.
 
 Example
 -------

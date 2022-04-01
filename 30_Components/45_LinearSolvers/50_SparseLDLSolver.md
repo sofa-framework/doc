@@ -13,10 +13,15 @@ As a direct solver, the SparseLDLSolver computes at each simulation time step an
 Using a block forward substitution, we successively solve two triangular systems. Between those two resolutions, we need to inverse <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{D}" title="Diagonal matrix" />, which is trivial as it is a diagonal matrix that has no null value on its diagonal.
 
 <img class="latex" src="https://latex.codecogs.com/png.latex?\begin{cases}
+\mathbf{A}x=b \\
+\mathbf{A}=\mathbf{LDL^T}
+\end{cases}
+\Longleftrightarrow 
+\begin{cases}
  \mathbf{L}^T z = b \\
  \mathbf{D} y = z \\
  \mathbf{L} x = y \\
- \end{cases} \Longleftrightarrow \mathbf{L^T D L}x=b"
+ \end{cases}"
 title="Linear systems" />
 
 It is important to note that this decomposition considers that the system matrix <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{A}" title="System matrix" /> is symmetric.
@@ -35,11 +40,11 @@ Sequence diagram
 Data  
 ----
 
-There is two bolean data to change the behavoir of this solver:
+There is two bolean data to change the behavior of this solver:
 
 - **useSymbolicDecomposition**: by default useSymbolicDecomposition is set to true. The solver will use a symbolic decomposition, meaning that it will store the shape of <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{L}" title="factor matrix" /> on the first step, or when it detects that this shape must but updated, and then it will only update its coefficients. By setting this data to false, the solver will compute the entire decomposition at each step.
 
-- **applyPermutation**:  by default it is set to true. It will apply fill reducing permutation on the rows and the columns of <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{A}" title="system matrix" /> in order to minimize the number of non null values in <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{L}" title="factor matrix" /> . Instead of solving <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{A}x=b" title="linear system" />, we will solve <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{(PAQ) (Q^{-1}}x) = Pb" title="factor matrix" />. Moreover, <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{A}" title="system matrix" /> is symmetric, so we will apply the same permutation on the rows and on the columns with <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{Q}=\mathbf{P}^T=\mathbf{P}^{-1}" title="system matrix" />. We will factorize <img class="latex" src="https://latex.codecogs.com/png.latex?\tilde{\mathbf{A}} =\mathbf{PAP^T} " title="system matrix" /> and then we will solve
+- **applyPermutation**:  by default it is set to true. It will apply fill reducing permutation on the rows and the columns of <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{A}" title="system matrix" /> in order to minimize the number of non null values in <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{L}" title="factor matrix" /> . Instead of solving <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{A}x=b" title="linear system" />, we will solve <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{(PAQ) (Q^{-1}}x) = Pb" title="factor matrix" />. Moreover, <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{A}" title="system matrix" /> is symmetric, so we will use the same permutation on the rows and on the columns with <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{Q}=\mathbf{P}^T=\mathbf{P}^{-1}" title="system matrix" />. We will factorize <img class="latex" src="https://latex.codecogs.com/png.latex?\tilde{\mathbf{A}} =\mathbf{PAP^T} " title="system matrix" /> and then we will solve
 
 <img class="latex" src="https://latex.codecogs.com/png.latex?\begin{cases} 
 \tilde{\mathbf{A}} y = Pb \\
