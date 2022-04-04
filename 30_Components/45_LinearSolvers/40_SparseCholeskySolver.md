@@ -2,6 +2,7 @@ This component belongs to the category of [LinearSolver](https://www.sofa-framew
 
 The Cholesky decomposition (https://en.wikipedia.org/wiki/Cholesky_decomposition) is a numerical method that slove a linear system <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{A}x=b" title="Linear system" /> by factorizing the matrix of the system as <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{LL^T}" title="Linear system" />. By doing so, we only need to solve two triangular systems to compute the solution. It is only applyable on **symetric** matrices but is roughtly twice as efficient as the LU solver. The <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{LDL^T}" /> decomposition is heavily related to the Cholesky decomposition.
 
+<div align="center">
 <img class="latex" src="https://latex.codecogs.com/png.latex?\begin{cases}
 \mathbf{A}x=b \\
 \mathbf{A}=\mathbf{LL^T}
@@ -13,12 +14,14 @@ The Cholesky decomposition (https://en.wikipedia.org/wiki/Cholesky_decomposition
  \end{cases}"
 title="Linear systems" />
 
-
+<div align="Left">
 
 Sequence diagram
 ----------------
 
 <a href="https://github.com/sofa-framework/doc/blob/master/images/linearsolver/SparseCholeskySolver.png?raw=true"><img src="https://github.com/sofa-framework/doc/blob/master/images/linearsolver/SparseCholeskySolver.png?raw=true" title="Flow diagram for the SparseCholeskySolver"/></a>
+
+The SparseCholeskySolver **requires** the use (above in the scene graph) of an integration scheme, and (below in the scene graph) of a MechanicalObject storing the state information that the SparseLDLSolver will access.
 
 
 Data  
