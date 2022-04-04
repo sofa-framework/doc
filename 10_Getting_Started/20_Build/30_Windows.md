@@ -72,7 +72,7 @@ SOFA requires some libraries:
     ![](https://github.com/sofa-framework/doc/blob/master/images/gettingstarted/install_qt_windows_2.png?raw=true")
 
 -   **Boost** (>= 1.65.1)  
-    Download and install the latest version compatible with your Visual Studio from [https://boost.teeks99.com](https://boost.teeks99.com).
+    Download and install the latest version compatible with your Visual Studio from [https://sourceforge.net/projects/boost/files/boost-binaries/](https://sourceforge.net/projects/boost/files/boost-binaries/).
     
     - **For Visual Studio 2022**: choose boost_X_X_X-msvc-14.3-64.exe
     - **For Visual Studio 2019**: choose boost_X_X_X-msvc-14.2-64.exe
