@@ -12,6 +12,7 @@ As a direct solver, the SparseLDLSolver computes at each simulation time step an
 
 Using a block forward substitution, we successively solve two triangular systems. Between those two resolutions, we need to inverse <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{D}" title="Diagonal matrix" />, which is trivial as it is a diagonal matrix that has no null value on its diagonal.
 
+<div align="center">
 <img class="latex" src="https://latex.codecogs.com/png.latex?\begin{cases}
 \mathbf{A}x=b \\
 \mathbf{A}=\mathbf{LDL^T}
@@ -24,6 +25,7 @@ Using a block forward substitution, we successively solve two triangular systems
  \end{cases}"
 title="Linear systems" />
 
+<div align="Left">
 It is important to note that this decomposition considers that the system matrix <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{A}" title="System matrix" /> is symmetric.
 
 
