@@ -54,6 +54,7 @@ There is two bolean data to change the behavior of this solver:
  \end{cases} " title="system matrix" />
 
 <div align="Left">
+As the impact of the use of fill reducing permutations on the performances is higly influenced by the repartition of the nodes used to modelize an object, we advise the users to test which type of permutation is the best suited for their simulations.
 
 Usage
 -----

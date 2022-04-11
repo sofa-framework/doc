@@ -21,7 +21,7 @@ Sequence diagram
 
 <a href="https://github.com/sofa-framework/doc/blob/master/images/linearsolver/SparseCholeskySolver.png?raw=true"><img src="https://github.com/sofa-framework/doc/blob/master/images/linearsolver/SparseCholeskySolver.png?raw=true" title="Flow diagram for the SparseCholeskySolver"/></a>
 
-The SparseCholeskySolver **requires** the use (above in the scene graph) of an integration scheme, and (below in the scene graph) of a MechanicalObject storing the state information that the SparseLDLSolver will access.
+The SparseCholeskySolver **requires** the use (above in the scene graph) of an integration scheme, and (below in the scene graph) of a MechanicalObject storing the state information that the SparseCholeskySolver will access.
 
 
 Data  
@@ -34,6 +34,9 @@ There is one data that change the behaviour of the solver, **typePermutation**, 
 It is not currently possible to change the the type of permutation applied during a simulation.
 
 By applying a fill reducing permutation, we aim at minimizing the number of non-null values in the decomposition, which would reduce the time spent on solving the triangular systems.
+
+As the impact of the use of fill reducing permutations on the performances is higly influenced by the repartition of the nodes used to modelize an object, we advise the users to test which type of permutation is the best suited for their simulations.
+
 
 Example
 -------
