@@ -15,6 +15,13 @@ The LU solver is a direct solver which will compute the exact solution of the li
 
 <div align="Left">
 
+Sequence diagram
+----------------
+
+<a href="https://github.com/sofa-framework/doc/blob/master/images/linearsolver/SparseLUSolver.png?raw=true"><img src="https://github.com/sofa-framework/doc/blob/master/images/linearsolver/SparseLUSlover.png?raw=true" title="Flow diagram for the SparseLUSolver"/></a>
+
+The SparseLUSolver **requires** the use (above in the scene graph) of an integration scheme, and (below in the scene graph) of a MechanicalObject storing the state information that the SparseLDLSolver will access.
+
 Data  
 ----
 The SparseLUSolver has only one data **typePermutation** that allows three choices :
