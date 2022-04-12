@@ -4,7 +4,7 @@ SparseLDLSolver
 This component belongs to the category of [LinearSolver](https://www.sofa-framework.org/community/doc/main-principles/system-resolution/linear-solvers/). The role of the SparseLDLSolver is to solve the linear system <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{A}x=b" title="Linear system" /> assuming that the matrix <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{A}" title="System matrix" /> is symmetric and sparse.
 
 
-To do so, the SparseLDLSolver relies on the method of [LDL decomposition](https://en.wikipedia.org/wiki/Cholesky_decomposition#LDL_decomposition_2). The system matrix will be decomposed <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{A}=\mathbf{L}\mathbf{D}\mathbf{L}^T" title="LDL decomposition" />, where <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{L}" title="Lower part of the matrix" /> is a lower triangular matrix <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{A}" title="System matrix" /> and <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{D}" title="Diagonal of the matrix" /> is a diagonal marix. This decomposition is an extention of the Cholesky decomposition which reduces its numerical inaccuracy.
+To do so, the SparseLDLSolver relies on the method of [LDL decomposition](https://en.wikipedia.org/wiki/Cholesky_decomposition#LDL_decomposition_2). The system matrix will be decomposed <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{A}=\mathbf{L}\mathbf{D}\mathbf{L}^T" title="LDL decomposition" />, where <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{L}" title="Lower part of the matrix" /> is a lower triangular matrix <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{A}" title="System matrix" /> and <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{D}" title="Diagonal of the matrix" /> is a diagonal matrix. This decomposition is an extension of the Cholesky decomposition which reduces its numerical inaccuracy.
 
 As a direct solver, the SparseLDLSolver computes at each simulation time step an exact solution as follows:
 
@@ -42,7 +42,7 @@ Sequence diagram
 Data  
 ----
 
-There is two bolean data to change the behavior of this solver:
+There are two boolean Data to change the behavior of this solver:
 
 - **useSymbolicDecomposition**: by default useSymbolicDecomposition is set to true. The solver will use a symbolic decomposition, meaning that it will store the shape of <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{L}" title="factor matrix" /> on the first step, or when its shape changes, and then it will only update its coefficients. When the shape of the matrix changes, a new factorization is computed. By setting this data to false, the solver will compute the entire decomposition at each step.
 
@@ -54,7 +54,8 @@ There is two bolean data to change the behavior of this solver:
  \end{cases} " title="system matrix" />
 
 <div align="Left">
-As the impact of the use of fill reducing permutations on the performances is higly influenced by the repartition of the nodes used to modelize an object, we advise the users to test which type of permutation is the best suited for their simulations.
+
+As the impact of the use of fill reducing permutations on the performances is highly influenced by the repartition of the nodes used to model an object, we advise the users to test which type of permutation is the best suited for their simulations.
 
 Usage
 -----
@@ -80,7 +81,5 @@ or using SofaPython3:
 ``` python
 node.addObject('SparseLDLSolver')
 ```
-
-With a description of each data
 
 An example scene involving a SparseLDLSolver is available in [*examples/Components/linearsolver/FEMBAR-SparseLDLSolver.scn*](https://github.com/sofa-framework/sofa/blob/master/examples/Components/linearsolver/FEMBAR-SparseLDLSolver.scn)
