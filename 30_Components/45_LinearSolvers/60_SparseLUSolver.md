@@ -31,7 +31,7 @@ As the impact of the use of fill reducing permutations on the performances is hi
 
 Usage
 -----
-<a href="https://github.com/sofa-framework/doc/blob/master/images/linearsolver/SparseLUSlover.png?raw=true"><img src="https://github.com/sofa-framework/doc/blob/master/images/linearsolver/SparseLUSlover.png?raw=true" title="Flow diagram for the SparseLUSolver"/></a>
+<a href="https://github.com/sofa-framework/doc/blob/master/images/linearsolver/SparseLUSolver.png?raw=true"><img src="https://github.com/sofa-framework/doc/blob/master/images/linearsolver/SparseLUSolver.png?raw=true" title="Flow diagram for the SparseLUSolver"/></a>
 
 The SparseLUSolver **requires** the use (above in the scene graph) of an integration scheme, and (below in the scene graph) of a MechanicalObject storing the state information that the SparseLUSolver will access.
 
