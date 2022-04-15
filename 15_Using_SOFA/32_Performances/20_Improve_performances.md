@@ -3,6 +3,12 @@
 There are many ways to improve the performances of a simulation.
 This page provides a few tips to help achieving this goal.
 
+## Compilation Options
+
+On Windows, the two following CMake variables may speed up the simulations:
+- `SOFA_ENABLE_FAST_MATH`: Enable floating-point model to fast (theoretically faster but can bring unexpected results/bugs)
+- `SOFA_ENABLE_SIMD`: Enable the use of SIMD instructions by the compiler (AVX/AVX2 for msvc).
+
 ## Profile the Simulation
 
 The first step toward better performances is to identify the bottleneck of the simulation.
