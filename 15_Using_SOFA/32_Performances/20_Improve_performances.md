@@ -120,6 +120,14 @@ Moreover, it is assumed there is no interaction between objects.
 Therefore, the computation of the free motion of an object is independent from the others, and each ODE solve step can be trivially parallelized.
 The component [FreeMotionAnimationLoop](https://www.sofa-framework.org/community/doc/components/animationloops/freemotionanimationloop/) has boolean Data *parallelODESolving* to specify if both ODE solve steps are to be computed in parallel or not.
 
+### Finite Element Method
+
+Several algorithms are available to simulate the same FEM model, so the simulation designer can choose depending on the constraints on the accuracy and speed of the simulation.
+For example, a component can have an alternative where the implementation uses approximations in order to speed up the computations.
+This is the case for the component `TriangularFEMForceFieldOptim` which is an alternative to `TriangularFEMForceField`.
+It has been measured that TriangularFEMForceFieldOptim is faster than TriangularFEMForceField.
+Similarly, the component `FastTetrahedralCorotationalForceField` is a faster alternative to `TetrahedronFEMForceField`, but without any compromise on the accuracy.
+
 ## GPGPU
 
 SOFA has a plugin allowing to compute some steps of the simulation on the GPU, based on CUDA.
