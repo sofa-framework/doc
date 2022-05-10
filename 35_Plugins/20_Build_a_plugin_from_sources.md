@@ -55,7 +55,7 @@ Your plugin will be considered as a standalone project, and SOFA will be simply 
 
 #### CMake configuration
 
-The main CMakeFile.txt of the plugin will not different from the _in-tree_ way.
+The main CMakeFile.txt of the plugin will not be different from the _in-tree_ way.
 
 Afterwards, in CMake (cmake, ccmake, cmake-gui), you just set the source to the root of your plugin, as any project based on CMake.
 
