@@ -59,7 +59,7 @@ The main CMakeFile.txt of the plugin will not be different from the _in-tree_ wa
 
 Afterwards, in CMake (cmake, ccmake, cmake-gui), you just set the source to the root of your plugin, as any project based on CMake.
 
-The only mandatory requirement for your project to find SOFA is to edit the CMake variable **CMAKE\_MODULE\_PATH** and set the value to the path of the _lib/cmake_ directory of your SOFA installation:
+The only mandatory requirement for your project to find SOFA is to edit the CMake variable **CMAKE\_PREFIX\_PATH** and set the value to the path of the _lib/cmake_ directory of your SOFA installation:
 
 ![](https://user-images.githubusercontent.com/11028016/135097125-996b2ed5-29cf-4383-a98c-572621bad8d2.PNG)
 
