@@ -6,6 +6,7 @@ This page provides a few tips to help achieving this goal.
 ## Compilation Options
 
 On Windows, the two following CMake variables may speed up the simulations:
+
 - `SOFA_ENABLE_FAST_MATH`: Enable floating-point model to fast (theoretically faster but can bring unexpected results/bugs)
 - `SOFA_ENABLE_SIMD`: Enable the use of SIMD instructions by the compiler (AVX/AVX2 for msvc).
 
@@ -133,6 +134,14 @@ For example, a component can have an alternative where the implementation uses a
 This is the case for the component `TriangularFEMForceFieldOptim` which is an alternative to `TriangularFEMForceField`.
 It has been measured that TriangularFEMForceFieldOptim is faster than TriangularFEMForceField.
 Similarly, the component `FastTetrahedralCorotationalForceField` is a faster alternative to `TetrahedronFEMForceField`, but without any compromise on the accuracy.
+
+## Model Order Reduction
+
+In SOFA, Model Order Reduction is a technique to reduce the computational complexity of a FEM simulation.
+It works with a premilinary step which precomputes deformation modes of an object.
+The modes are then used online, during a simulation, allowing to build and solve the same FEM problem in a reduced space, in order to dramatically increase the performances.
+
+This technique is available in a plugin: [https://github.com/SofaDefrost/ModelOrderReduction](https://github.com/SofaDefrost/ModelOrderReduction). [Binaries](https://github.com/SofaDefrost/ModelOrderReduction/releases) are also available.
 
 ## GPGPU
 
