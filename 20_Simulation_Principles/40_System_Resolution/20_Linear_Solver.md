@@ -19,8 +19,8 @@ For small-size linear systems, the direct methods will be efficient. Large and s
 Direct solvers in SOFA are:
 
 - [SparseLDLSolver](https://www.sofa-framework.org/community/doc/using-sofa/components/linearsolver/sparseldlsolver/) and [AsyncSparseLDLSolver](https://www.sofa-framework.org/community/doc/components/linearsolvers/asyncsparseldlsolver//)
-- LULinearSolver (in SofaNewmat plugin) / SparseLUSolver
-- CholeskySolver / SparseCholeskySolver
+- LULinearSolver (in SofaNewmat plugin) / [SparseLUSolver](https://www.sofa-framework.org/community/doc/components/linearsolvers/sparselusolver/)
+- CholeskySolver / [SparseCholeskySolver](https://www.sofa-framework.org/community/doc/components/linearsolvers/sparsecholeskysolver/)
 - SVDLinearSolver (Jacobi SVD)
 - BTDLinearSolver
 
