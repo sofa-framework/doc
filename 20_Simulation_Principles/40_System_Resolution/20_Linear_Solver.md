@@ -76,6 +76,7 @@ Vector* r1 =  vtmp.createTempVector();
 ### Matrix Assembly vs. Matrix Free
 
 Linear solvers can also be divided into the two following categories:
+
 - Matrix Assembly: the matrix of the system is explicitly assembled before being used to solve the system.
 - Matrix Free: there is no data structure or allocated memory used to store a matrix.
 Instead, the solver only calls matrix-vector operations (e.g. product), which do not require the explicit assembly of the matrix.
