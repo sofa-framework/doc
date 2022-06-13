@@ -36,6 +36,7 @@ The solver is ruled by several breaking (converging or diverging) conditions:
 Note that this residual tolerance threshold must be strictly positive.
 
 Two other data fields are availabe:
+
 - **should_diverge_when_residual_is_growing** is an option (bool) stopping the simulation - considered as diverging - as soon as the residual <img class="latex" src="https://latex.codecogs.com/png.latex?|f-K_i^n%20\delta%20u_i^n|" title="Residual"/> is growing
 - **newton_iterations** limits the number of Newton Raphson iterations, as stated above.
 
