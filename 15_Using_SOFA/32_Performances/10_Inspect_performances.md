@@ -90,6 +90,8 @@ Graphical Interface: Profiler
 A graphic tool has been added in order to benefit from a profiling window based on the AdvanceTimer records.
 This profiler is activated by ticking the box "Display AdvancedTimer Profiler" in the "Stats" widget in runSofa.
 
+This tool is based on Qt5Charts. If this option is grayed in the runSofa GUI, make sure you have the Qt5Charts library and that you properly filled the associated CMake variable Qt5Charts
+
 This option allows to see the animation step duration (ms) in a graphView, then allows to navigate on the graph or on the sliders and analyze the different substeps executed during this animation step. Substeps are displayed in a Tree, in the right order and with their respective time and percentage (with regards to the full step duration). In its design, this tool is inspired from Unity3D profiler.
 
 ![](https://raw.githubusercontent.com/sofa-framework/doc/master/images/usingSOFA/TimerProfiler.png)
