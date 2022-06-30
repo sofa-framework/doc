@@ -11,11 +11,11 @@ Loading a topology
 
 When simulating the physics of an object, its topology must therefore be loaded. To do so, many loaders are available in SOFA depending on the format of the loaded file. Among others:
 
-* obj = _MeshObjLoader_
-* vtk = _MeshVTKLoader_
-* stl = _MeshSTLLoader_
-* off = _MeshVTKLoader_
-* gmsh = _MeshGmshLoader_
+* obj = [_MeshOBJLoader_](https://www.sofa-framework.org/community/doc/components/loaders/meshobjloader/)
+* vtk = [_MeshVTKLoader_](https://www.sofa-framework.org/community/doc/components/loaders/meshvtkloader/)
+* stl = [_MeshSTLLoader_](https://www.sofa-framework.org/community/doc/components/loaders/meshstlloader/)
+* off = [_MeshOffLoader_](https://www.sofa-framework.org/community/doc/components/loaders/meshoffloader/)
+* gmsh = [_MeshGmshLoader_](https://www.sofa-framework.org/community/doc/components/loaders/meshgmshloader)
 
 
 <div style="text-align:center;width:90%;margin: 0 5% 0;">
