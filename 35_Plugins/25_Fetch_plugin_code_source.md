@@ -13,7 +13,7 @@ For example, here is a list of important plugins with their corresponding reposi
 | CGALPlugin          | [https://github.com/sofa-framework/CGALPlugin](https://github.com/sofa-framework/CGALPlugin)             |
 | SoftRobots          | [https://github.com/SofaDefrost/SoftRobots](https://github.com/SofaDefrost/SoftRobots)                   |
 | ModelOrderReduction | [https://github.com/SofaDefrost/ModelOrderReduction](https://github.com/SofaDefrost/ModelOrderReduction) |
-| Caribou             | [https://github.com/jnbrunet/caribou](https://github.com/jnbrunet/caribou)                               |
+| Caribou             | [https://github.com/mimesis-inria/caribou](https://github.com/mimesis-inria/caribou)                               |
 
 Some plugins from other repositories can be directly fetched from SOFA at the configuration stage with CMake.
 To fetch the code source of a plugin, follow these steps:
