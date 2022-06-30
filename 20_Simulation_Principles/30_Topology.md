@@ -9,6 +9,8 @@ We consider meshes that are cellular complexes made of k-simplices (triangulatio
 Loading a topology
 ------------------
 
+### MeshLoaders
+
 When simulating the physics of an object, its topology must therefore be loaded. To do so, many loaders are available in SOFA depending on the format of the loaded file. Among others:
 
 * obj = [_MeshOBJLoader_](https://www.sofa-framework.org/community/doc/components/loaders/meshobjloader/)
@@ -17,12 +19,34 @@ When simulating the physics of an object, its topology must therefore be loaded.
 * off = [_MeshOffLoader_](https://www.sofa-framework.org/community/doc/components/loaders/meshoffloader/)
 * gmsh = [_MeshGmshLoader_](https://www.sofa-framework.org/community/doc/components/loaders/meshgmshloader)
 
+All MeshLoaders share a common API, especially several available data:
+
+* _**filename**_: corresponding to the path and filename of the file you are aiming at loading. This data is **required**.
+* _**flipNormals**_: to flip the mesh normals
+* _**triangulate**_: to divide all polygons into triangles
+* _**createSubelements**_: to divide all n-D elements into their (n-1)-D boundary elements (e.g. tetrahedra to triangles)
+* _**onlyAttachedPoints**_: to keep only points attached to elements of the mesh
+
+Additional data (*translation*, *rotation* and *scale3d*) are available but it rather advised to use a [TransformEngine](https://www.sofa-framework.org/community/doc/components/engines/transformengine/) to apply a transformation to your geometry.
+
+All MeshLoaders propose several data as output (for the most used):
+* _**position**_: vector of vertices of the mesh loaded
+* _**edges**_: vector of edges of the mesh loaded
+* _**triangles**_: vector of triangles of the mesh loaded
+* _**quads**_: vector of quads of the mesh loaded
+* _**polygons**_: vector of polygons of the mesh loaded
+* _**tetrahedra**_: vector of tetrahedra of the mesh loaded
+* _**hexahedra**_: vector of  hexahedra of the mesh loaded
+* _**normals**_: vector of the normals per vertex
+
+
 
 <div style="text-align:center;width:90%;margin: 0 5% 0;">
 <img src="https://www.sofa-framework.org/wp-content/uploads/2016/08/Topology-types.png" style="width: 80%;"/>
 Fig. 1 - Elements of topology available in SOFA
 </div>
 
+### TopologyContainers
 
 As shown in Fig. 1, these loaders will load the different elements of the topology (if any), namely: the points, edges, triangles, quads, hexas and tetras. These elements need to be saved into a _TopologyContainer_. This container stores all the topological information in vectors. It indicates how vertices are connected to each other by edges, triangles or any type of mesh element and implements all the related functions (e.g. _getTetrahedraAroundVertex()_, _getTriangleIndex()_). There is one container per topological element:
 
