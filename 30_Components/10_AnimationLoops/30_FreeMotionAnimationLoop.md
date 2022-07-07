@@ -7,6 +7,14 @@ The FreeMotionAnimationLoop is the component that rules the simulation in two ma
 
 <a href="https://github.com/sofa-framework/doc/blob/master/images/animationloop/FreeMotionAnimationLoop.png?raw=true"><img src="https://github.com/sofa-framework/doc/blob/master/images/animationloop/FreeMotionAnimationLoop.png?raw=true" title="Flow diagram for a FreeMotionAnimationLoop"/></a>
 
+Data
+----
+
+The DefaultAnimationLoop has one data:
+
+- **computeBoundingBox**: a boolean defining whether the global bounding box of the scene is computed at each time step. Used mostly for rendering.
+
+
 Usage
 -----
 

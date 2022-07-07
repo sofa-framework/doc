@@ -154,8 +154,7 @@ especially useful for people who wants to use SOFA as a library with a
 different rendering system (typically DirectX with Windows)
 
 
-- **SOFA\_NO\_UPDATE\_BBOX** : this optimization flag deactivates the computation of the bounding box at
-every time step of the simulation.
+- **SOFA\_NO\_UPDATE\_BBOX** : this optimization flag defines the default value of the boolean data `computeBoundingBox` in the AnimationLoop, defining whether the global bounding box of the scene is computed at each time step.
 
 
 - **SOFA\_OPENMP (*advanced*)** : this flag will allow to use OpenMP for specific computations in existing

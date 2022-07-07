@@ -7,6 +7,16 @@ The MultiStepAnimationLoop derives from the [DefaultAnimationLoop](https://www.s
 
 <a href="https://github.com/sofa-framework/doc/blob/master/images/animationloop/MultiStepAnimationLoop.png?raw=true"><img src="https://github.com/sofa-framework/doc/blob/master/images/animationloop/MultiStepAnimationLoop.png?raw=true" title="Flow diagram for a MultiStepAnimationLoop"/></a>
 
+Data
+----
+
+The MultiStepAnimationLoop has the following data:
+
+- **collisionSteps**: the number of collision steps computed within one time step
+- **integrationSteps**: the number of time integration (time sub-steps involving the physics resolution) computed within one time step
+- **computeBoundingBox**: a boolean defining whether the global bounding box of the scene is computed at each time step. Used mostly for rendering.
+
+
 Usage
 -----
 

@@ -7,6 +7,15 @@ The DefaultAnimationLoop is the component that rules the steps of the simulation
 
 <a href="https://github.com/sofa-framework/doc/blob/master/images/animationloop/DefaultAnimationLoop.png?raw=true"><img src="https://github.com/sofa-framework/doc/blob/master/images/animationloop/DefaultAnimationLoop.png?raw=true" title="Flow diagram for a DefaultAnimationLoop"/></a>
 
+
+Data
+----
+
+The DefaultAnimationLoop has one data:
+
+- **computeBoundingBox**: a boolean defining whether the global bounding box of the scene is computed at each time step. Used mostly for rendering.
+
+
 Usage
 -----
 
