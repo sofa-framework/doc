@@ -51,157 +51,422 @@ When a user loads a deprecated module in its scene (either by using `RequiredPlu
 
 #### SofaBase
 
-+ SofaBaseTopology → Sofa.Component.Topology
-+ SofaBaseLinearSolver → Sofa.Component.LinearSolver.Iterative
-+ SofaBaseUtils → Sofa.Component.SceneUtility
-+ SofaBaseCollision has been split into several modules →
-    + Sofa.Component.Collision.Model
-    + Sofa.Component.Collision.Detection.Algorithm
-    + Sofa.Component.Collision.Detection.Intersection
-    + Sofa.Component.Collision.Response.Mapper
-    + Sofa.Component.Collision.Response.Contact
-+ SofaBaseMechanics has been split into several modules →
-    + Sofa.Component.Mass
-    + Sofa.Component.Mapping.Linear
-    + Sofa.Component.StateContainer
-+ SofaBaseTopology has been split into several modules →
-    + Sofa.Component.Topology.Container.Grid
-    + Sofa.Component.Topology.Container.Constant
-    + Sofa.Component.Topology.Container.Dynamic
-+ SofaBaseVisual has been split into several modules →
-    + Sofa.Component.Visual
-    + Sofa.Component.Setting
+
+<table>
+<tbody>
+  <tr>
+    <td>SofaBaseTopology</td>
+    <td>Sofa.Component.Topology</td>
+  </tr>
+  <tr>
+    <td>SofaBaseLinearSolver</td>
+    <td>Sofa.Component.LinearSolver.Iterative</td>
+  </tr>
+  <tr>
+    <td>SofaBaseUtils</td>
+    <td>Sofa.Component.SceneUtility</td>
+  </tr>
+  <tr>
+    <td rowspan="5">SofaBaseCollision</td>
+    <td>Sofa.Component.Collision.Model</td>
+  </tr>
+  <tr>
+    <td>Sofa.Component.Collision.Detection.Algorithm</td>
+  </tr>
+  <tr>
+    <td>Sofa.Component.Collision.Detection.Intersection</td>
+  </tr>
+  <tr>
+    <td>Sofa.Component.Collision.Response.Mapper</td>
+  </tr>
+  <tr>
+    <td>Sofa.Component.Collision.Response.Contact</td>
+  </tr>
+  <tr>
+    <td rowspan="3">SofaBaseMechanics</td>
+    <td>Sofa.Component.Mass</td>
+  </tr>
+  <tr>
+    <td>Sofa.Component.Mapping.Linear</td>
+  </tr>
+  <tr>
+    <td>Sofa.Component.StateContainer</td>
+  </tr>
+  <tr>
+    <td rowspan="3">SofaBaseTopology</td>
+    <td>Sofa.Component.Topology.Container.Grid</td>
+  </tr>
+  <tr>
+    <td>Sofa.Component.Topology.Container.Constant</td>
+  </tr>
+  <tr>
+    <td>Sofa.Component.Topology.Container.Dynamic</td>
+  </tr>
+  <tr>
+    <td rowspan="2">SofaBaseVisual</td>
+    <td>Sofa.Component.Visual</td>
+  </tr>
+  <tr>
+    <td>Sofa.Component.Setting</td>
+  </tr>
+</tbody>
+</table>
 
 #### SofaCommon
 
-+ SofaDeformable → Sofa.Component.SolidMechanics.Spring
-+ SofaEngine → Sofa.Component.Engine.Select
-+ SofaExplicitOdeSolver → Sofa.Component.ODESolver.Forward
-+ SofaImplicitOdeSolver → Sofa.Component.ODESolver.Backward
-+ SofaLoader → Sofa.Component.IO.Mesh
-+ SofaObjectInteraction → Sofa.Component.Collision.Response.Contact
-+ SofaMeshCollision has been split into several modules →
-    + Sofa.Component.Collision.Geometry
-    + Sofa.Component.Collision.Detection.Intersection
-    + Sofa.Component.Collision.Response.Mapper
-    + Sofa.Component.Collision.Response.Contact
-+ SofaRigid has been split into several modules →
-    + Sofa.Component.Mapping
-    + Sofa.Component.SolidMechanics.Spring
-+ SofaSimpleFem has been split into several modules →
-    + Sofa.Component.Diffusion
-    + Sofa.Component.SolidMechanics.FEM.Elastic
+<table>
+<tbody>
+  <tr>
+    <td>SofaDeformable</td>
+    <td>Sofa.Component.SolidMechanics.Spring</td>
+  </tr>
+  <tr>
+    <td>SofaEngine</td>
+    <td>Sofa.Component.Engine.Select</td>
+  </tr>
+  <tr>
+    <td>SofaExplicitOdeSolver</td>
+    <td>Sofa.Component.ODESolver.Forward</td>
+  </tr>
+  <tr>
+    <td>SofaImplicitOdeSolver</td>
+    <td>Sofa.Component.ODESolver.Backward</td>
+  </tr>
+  <tr>
+    <td>SofaLoader</td>
+    <td>Sofa.Component.IO.Mesh</td>
+  </tr>
+  <tr>
+    <td>SofaObjectInteraction</td>
+    <td>Sofa.Component.Collision.Response.Contact</td>
+  </tr>
+  <tr>
+    <td rowspan="4">SofaMeshCollision</td>
+    <td>Sofa.Component.Collision.Geometry</td>
+  </tr>
+  <tr>
+    <td>Sofa.Component.Collision.Detection.Intersection</td>
+  </tr>
+  <tr>
+    <td>Sofa.Component.Collision.Response.Mapper</td>
+  </tr>
+  <tr>
+    <td>Sofa.Component.Collision.Response.Contact</td>
+  </tr>
+  <tr>
+    <td rowspan="2">SofaRigid</td>
+    <td>Sofa.Component.Mapping</td>
+  </tr>
+  <tr>
+    <td>Sofa.Component.SolidMechanics.Spring</td>
+  </tr>
+  <tr>
+    <td rowspan="2">SofaSimpleFem</td>
+    <td>Sofa.Component.Diffusion</td>
+  </tr>
+  <tr>
+    <td>Sofa.Component.SolidMechanics.FEM.Elastic</td>
+  </tr>
+</tbody>
+</table>
+
 
 #### SofaGeneral
 
-+ SofaGeneralExplicitOdeSolver → Sofa.Component.ODESolver.Forward
-+ SofaGeneralImplicitOdeSolver → Sofa.Component.ODESolver.Backward
-+ SofaGeneralRigid → Sofa.Component.Mapping
-+ SofaGeneralSimpleFem → Sofa.Component.SolidMechanics.FEM.Elastic
-+ SofaGeneralVisual → Sofa.Component.Visual
-+ SofaBoundaryCondition has been split into several modules →
-    + Sofa.Component.Constraint.Projective
-    + Sofa.Component.MechanicalLoad
-+ SofaConstraint has been split into several modules →
-    + Sofa.Component.Mapping.MappedMatrix
-    + Sofa.Component.Constraint.Lagrangian.Model
-    + Sofa.Component.Constraint.Lagrangian.Correction
-    + Sofa.Component.Constraint.Lagrangian.Solver
-    + Sofa.Component.AnimationLoop
-    + Sofa.Component.Collision.Detection.Intersection
-    + Sofa.Component.Collision.Response.Contact
-    + Sofa.GUI.Component
-+ SofaGeneralAnimationLoop has been split into several modules →
-    + Sofa.Component.Mapping.MappedMatrix
-    + Sofa.Component.AnimationLoop
-+ SofaGeneralDeformable has been split into several modules →
-    + Sofa.Component.SolidMechanics.Spring
-    + Sofa.Component.SolidMechanics.TensorMass
-+ SofaGeneralEngine has been split into several modules →
-    + Sofa.Component.Engine.Analyze
-    + Sofa.Component.Engine.Generate
-    + Sofa.Component.Engine.Select
-    + Sofa.Component.Engine.Transform
-+ SofaGeneralLinearSolver has been split into several modules → 
-    + Sofa.Component.LinearSolver.Iterative
-    + Sofa.Component.LinearSolver.Direct
-+ SofaGeneralLoader has been split into several modules →
-    + Sofa.Component.IO.Mesh
-    + Sofa.Component.Playback
-+ SofaGeneralMeshCollision has been split into several modules →
-    + Sofa.Component.Collision.Geometry
-    + Sofa.Component.Collision.Detection.Algorithm 
-    + Sofa.Component.Collision.Detection.Intersection
-+ SofaGeneralObjectInteraction has been split into several modules →
-    + Sofa.Component.SolidMechanics.Spring
-    + Sofa.Component.Constraint.Projective
-    + Sofa.Component.MechanicalLoad
-+ SofaGeneralTopology has been split into several modules →
-    + Sofa.Component.Topology.Container.Grid
-    + Sofa.Component.Topology.Container.Constant
-+ SofaGraphComponent has been split into several modules →
-    + Sofa.Component.SceneUtility
-    + Sofa.Component.Setting
-    + Sofa.GUI.Component
-    + the plugin SceneChecking
-+ SofaUserInteraction has been split into several modules → 
-    + Sofa.Component.Collision.Geometry
-    + Sofa.Component.Collision.Detection.Algorithm
-    + Sofa.Component.Collision.Detection.Intersection
-    + Sofa.Component.Collision.Response.Contact
-    + Sofa.Component.Controller
-    + Sofa.GUI.Component (from Sofa.GUI)
-+ SofaTopologyMapping has been split into several modules →
-    + Sofa.Component.Topology.Mapping
-    + Sofa.Component.Mapping
+<table>
+<tbody>
+  <tr>
+    <td>SofaGeneralExplicitOdeSolver</td>
+    <td>Sofa.Component.ODESolver.Forward</td>
+  </tr>
+  <tr>
+    <td>SofaGeneralImplicitOdeSolver</td>
+    <td>Sofa.Component.ODESolver.Backward</td>
+  </tr>
+  <tr>
+    <td>SofaGeneralRigid</td>
+    <td>Sofa.Component.Mapping</td>
+  </tr>
+  <tr>
+    <td>SofaGeneralSimpleFem</td>
+    <td>Sofa.Component.SolidMechanics.FEM.Elastic</td>
+  </tr>
+  <tr>
+    <td>SofaGeneralVisual</td>
+    <td>Sofa.Component.Visual</td>
+  </tr>
+  <tr>
+    <td rowspan="2">SofaBoundaryCondition</td>
+    <td>Sofa.Component.Constraint.Projective</td>
+  </tr>
+  <tr>
+    <td>Sofa.Component.MechanicalLoad</td>
+  </tr>
+  <tr>
+    <td rowspan="8">SofaConstraint</td>
+    <td>Sofa.Component.Mapping.MappedMatrix</td>
+  </tr>
+  <tr>
+    <td>Sofa.Component.Constraint.Lagrangian.Model</td>
+  </tr>
+  <tr>
+    <td>Sofa.Component.Constraint.Lagrangian.Correction</td>
+  </tr>
+  <tr>
+    <td>Sofa.Component.Constraint.Lagrangian.Solver</td>
+  </tr>
+  <tr>
+    <td>Sofa.Component.AnimationLoop</td>
+  </tr>
+  <tr>
+    <td>Sofa.Component.Collision.Detection.Intersection</td>
+  </tr>
+  <tr>
+    <td>Sofa.Component.Collision.Response.Contact</td>
+  </tr>
+  <tr>
+    <td>Sofa.GUI.Component</td>
+  </tr>
+  <tr>
+    <td rowspan="2">SofaGeneralAnimationLoop</td>
+    <td>Sofa.Component.Mapping.MappedMatrix</td>
+  </tr>
+  <tr>
+    <td>Sofa.Component.AnimationLoop</td>
+  </tr>
+  <tr>
+    <td rowspan="2">SofaGeneralDeformable</td>
+    <td>Sofa.Component.SolidMechanics.Spring</td>
+  </tr>
+  <tr>
+    <td>Sofa.Component.SolidMechanics.TensorMass</td>
+  </tr>
+  <tr>
+    <td rowspan="4">SofaGeneralEngine</td>
+    <td>Sofa.Component.Engine.Analyze</td>
+  </tr>
+  <tr>
+    <td>Sofa.Component.Engine.Generate</td>
+  </tr>
+  <tr>
+    <td>Sofa.Component.Engine.Select</td>
+  </tr>
+  <tr>
+    <td>Sofa.Component.Engine.Transform</td>
+  </tr>
+  <tr>
+    <td rowspan="2">SofaGeneralLinearSolver</td>
+    <td>Sofa.Component.LinearSolver.Iterative</td>
+  </tr>
+  <tr>
+    <td>Sofa.Component.LinearSolver.Direct</td>
+  </tr>
+  <tr>
+    <td rowspan="2">SofaGeneralLoader</td>
+    <td>Sofa.Component.IO.Mesh</td>
+  </tr>
+  <tr>
+    <td>Sofa.Component.Playback</td>
+  </tr>
+  <tr>
+    <td rowspan="3">SofaGeneralMeshCollision</td>
+    <td>Sofa.Component.Collision.Geometry</td>
+  </tr>
+  <tr>
+    <td>Sofa.Component.Collision.Detection.Algorithm</td>
+  </tr>
+  <tr>
+    <td>Sofa.Component.Collision.Detection.Intersection</td>
+  </tr>
+  <tr>
+    <td rowspan="3">SofaGeneralObjectInteraction</td>
+    <td>Sofa.Component.SolidMechanics.Spring</td>
+  </tr>
+  <tr>
+    <td>Sofa.Component.Constraint.Projective</td>
+  </tr>
+  <tr>
+    <td>Sofa.Component.MechanicalLoad</td>
+  </tr>
+  <tr>
+    <td rowspan="2">SofaGeneralTopology</td>
+    <td>Sofa.Component.Topology.Container.Grid</td>
+  </tr>
+  <tr>
+    <td>Sofa.Component.Topology.Container.Constant</td>
+  </tr>
+  <tr>
+    <td rowspan="4">SofaGraphComponent</td>
+    <td>Sofa.Component.SceneUtility</td>
+  </tr>
+  <tr>
+    <td>Sofa.Component.Setting</td>
+  </tr>
+  <tr>
+    <td>Sofa.GUI.Component</td>
+  </tr>
+  <tr>
+    <td>the plugin SceneChecking</td>
+  </tr>
+  <tr>
+    <td rowspan="6">SofaUserInteraction</td>
+    <td>Sofa.Component.Collision.Geometry</td>
+  </tr>
+  <tr>
+    <td>Sofa.Component.Collision.Detection.Algorithm</td>
+  </tr>
+  <tr>
+    <td>Sofa.Component.Collision.Detection.Intersection</td>
+  </tr>
+  <tr>
+    <td>Sofa.Component.Collision.Response.Contact</td>
+  </tr>
+  <tr>
+    <td>Sofa.Component.Controller</td>
+  </tr>
+  <tr>
+    <td>Sofa.GUI.Component (from Sofa.GUI)</td>
+  </tr>
+  <tr>
+    <td rowspan="2">SofaTopologyMapping</td>
+    <td>Sofa.Component.Topology.Mapping</td>
+  </tr>
+  <tr>
+    <td>Sofa.Component.Mapping</td>
+  </tr>
+</tbody>
+</table>
+
 
 #### SofaMisc
 
-+ SofaMiscExtra → Sofa.Component.Engine.Generate
-+ SofaMiscTopology → Sofa.Component.Topology.Utility
-+ SofaMiscCollision has been split into several modules → 
-    + Sofa.Component.Collision.Geometry
-    + Sofa.Component.Collision.Detection.Intersection
-    + Sofa.Component.Collision.Response.Contact
-    + the plugin CollisionOBBCapsule
-+ SofaMiscEngine has been split into several modules →
-    + Sofa.Component.Engine.Analyze
-    + Sofa.Component.Engine.Transform
-+ SofaMiscFem has been split into several modules →
-    + Sofa.Component.SolidMechanics.FEM.Elastic
-    + Sofa.Component.SolidMechanics.FEM.HyperElastic
-    + Sofa.Component.SolidMechanics.TensorMass
-+ SofaMiscForceField has been split into several modules →
-    + Sofa.Component.Mass
-    + Sofa.Component.SolidMechanics.Spring
-+ SofaMiscSolver has been split into several modules → 
-    + Sofa.Component.ODESolver.Backward
-    + Sofa.Component.ODESolver.Forward
+<table>
+<tbody>
+  <tr>
+    <td>SofaMiscExtra</td>
+    <td>Sofa.Component.Engine.Generate</td>
+  </tr>
+  <tr>
+    <td>SofaMiscTopology</td>
+    <td>Sofa.Component.Topology.Utility</td>
+  </tr>
+  <tr>
+    <td rowspan="4">SofaMiscCollision</td>
+    <td>Sofa.Component.Collision.Geometry</td>
+  </tr>
+  <tr>
+    <td>Sofa.Component.Collision.Detection.Intersection</td>
+  </tr>
+  <tr>
+    <td>Sofa.Component.Collision.Response.Contact</td>
+  </tr>
+  <tr>
+    <td>the plugin CollisionOBBCapsule</td>
+  </tr>
+  <tr>
+    <td rowspan="2">SofaMiscEngine</td>
+    <td>Sofa.Component.Engine.Analyze</td>
+  </tr>
+  <tr>
+    <td>Sofa.Component.Engine.Transform</td>
+  </tr>
+  <tr>
+    <td rowspan="3">SofaMiscFem</td>
+    <td>Sofa.Component.SolidMechanics.FEM.Elastic</td>
+  </tr>
+  <tr>
+    <td>Sofa.Component.SolidMechanics.FEM.HyperElastic</td>
+  </tr>
+  <tr>
+    <td>Sofa.Component.SolidMechanics.TensorMass</td>
+  </tr>
+  <tr>
+    <td rowspan="2">SofaMiscForceField</td>
+    <td>Sofa.Component.Mass</td>
+  </tr>
+  <tr>
+    <td>Sofa.Component.SolidMechanics.Spring</td>
+  </tr>
+  <tr>
+    <td rowspan="2">SofaMiscSolver</td>
+    <td>Sofa.Component.ODESolver.Backward</td>
+  </tr>
+  <tr>
+    <td>Sofa.Component.ODESolver.Forward</td>
+  </tr>
+</tbody>
+</table>
+
 
 #### Plugins
 
-+ SofaDenseSolver → Sofa.Component.LinearSolver.Direct
-+ SofaExporter → Sofa.Component.IO.Mesh and Sofa.Component.Playback
-+ SofaHaptics → Sofa.Component.Haptics
-+ SofaValidation → Sofa.Component.Playback
-+ SofaNonUniformFem has been split into several modules →
-    + Sofa.Component.Topology.Container.Grid
-    + Sofa.Component.Topology.Container.Dynamic
-    + Sofa.Component.SolidMechanics.FEM.NonUniform
-+ SofaOpenglVisual has been split into several modules → 
-    + Sofa.GL.Component.Rendering2D
-    + Sofa.GL.Component.Rendering3D
-    + Sofa.GL.Component.Shader (from Sofa.GL)
-+ SofaPreconditioner has been split into several modules →
-    + Sofa.Component.LinearSolver.Iterative 
-    + Sofa.Component.LinearSolver.Preconditioner
-+ SofaSparseSolver has been split into several modules →
-    + Sofa.Component.LinearSolver.Iterative
-    + Sofa.Component.LinearSolver.Direct
+<table>
+<tbody>
+  <tr>
+    <td>SofaDenseSolver</td>
+    <td>Sofa.Component.LinearSolver.Direct</td>
+  </tr>
+  <tr>
+    <td>SofaExporter</td>
+    <td>Sofa.Component.IO.Mesh and Sofa.Component.Playback</td>
+  </tr>
+  <tr>
+    <td>SofaHaptics</td>
+    <td>Sofa.Component.Haptics</td>
+  </tr>
+  <tr>
+    <td>SofaValidation</td>
+    <td>Sofa.Component.Playback</td>
+  </tr>
+  <tr>
+    <td rowspan="3">SofaNonUniformFem</td>
+    <td>Sofa.Component.Topology.Container.Grid</td>
+  </tr>
+  <tr>
+    <td>Sofa.Component.Topology.Container.Dynamic</td>
+  </tr>
+  <tr>
+    <td>Sofa.Component.SolidMechanics.FEM.NonUniform</td>
+  </tr>
+  <tr>
+    <td rowspan="3">SofaOpenglVisual</td>
+    <td>Sofa.GL.Component.Rendering2D</td>
+  </tr>
+  <tr>
+    <td>Sofa.GL.Component.Rendering3D</td>
+  </tr>
+  <tr>
+    <td>Sofa.GL.Component.Shader (from Sofa.GL)</td>
+  </tr>
+  <tr>
+    <td rowspan="2">SofaPreconditioner</td>
+    <td>Sofa.Component.LinearSolver.Iterative</td>
+  </tr>
+  <tr>
+    <td>Sofa.Component.LinearSolver.Preconditioner</td>
+  </tr>
+  <tr>
+    <td rowspan="2">SofaSparseSolver</td>
+    <td>Sofa.Component.LinearSolver.Iterative</td>
+  </tr>
+  <tr>
+    <td>Sofa.Component.LinearSolver.Direct</td>
+  </tr>
+</tbody>
+</table>
+
 
 #### Collection
 
-+ SofaComponentAll → Sofa.Component
+
+<table>
+<tbody>
+  <tr>
+    <td>SofaComponentAll</td>
+    <td>Sofa.Component</td>
+  </tr>
+</tbody>
+</table>
 
 
 ## Framework
@@ -209,17 +474,55 @@ SOFA-NG induced also a cleaning in the framework of SOFA. All parts of the frame
 
 The list of the differents packages which are considered as part of the framework is:
 
-+ SofaHelper → Sofa.Helper
-+ SofaDefaulttype → Sofa.Defaulttype
-+ SofaCore → Sofa.Core
-+ SofaSimulationCore → Sofa.Simulation.Core
-+ SofaSimulationCommon → Sofa.Simulation.Common
-+ SofaSimulationGraph → Sofa.Simulation.Graph
-+ Sofa.Config (new), which gathers all CMake files used in SOFA projects (macros, config, flags, etc)
-+ Sofa.Type (new)
-+ Sofa.LinearAlgebra (new)
-+ Sofa.Geometry (new)
-+ Sofa.Topology (new)
+
+<table>
+<tbody>
+  <tr>
+    <td>SofaHelper</td>
+    <td>Sofa.Helper</td>
+  </tr>
+  <tr>
+    <td>SofaDefaulttype</td>
+    <td>Sofa.Defaulttype</td>
+  </tr>
+  <tr>
+    <td>SofaCore</td>
+    <td>Sofa.Core</td>
+  </tr>
+  <tr>
+    <td>SofaSimulationCore</td>
+    <td>Sofa.Simulation.Core</td>
+  </tr>
+  <tr>
+    <td>SofaSimulationCommon</td>
+    <td>Sofa.Simulation.Common</td>
+  </tr>
+  <tr>
+    <td>SofaSimulationGraph</td>
+    <td>Sofa.Simulation.Graph</td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>Sofa.Config (new), which gathers all CMake files used in SOFA projects (macros, config, flags, etc)</td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>Sofa.Type (new)</td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>Sofa.LinearAlgebra (new)</td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>Sofa.Geometry (new)</td>
+  </tr>
+  <tr>
+    <td></td>
+    <td>Sofa.Topology (new)</td>
+  </tr>
+</tbody>
+</table>
 
 
 ## Report technical issues
