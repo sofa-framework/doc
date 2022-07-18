@@ -135,6 +135,10 @@ This is the case for the component `TriangularFEMForceFieldOptim` which is an al
 It has been measured that TriangularFEMForceFieldOptim is faster than TriangularFEMForceField.
 Similarly, the component `FastTetrahedralCorotationalForceField` is a faster alternative to `TetrahedronFEMForceField`, but without any compromise on the accuracy.
 
+## Rendering
+
+A data `computeBoundingBox` is available in all [AnimationLoops](https://www.sofa-framework.org/community/doc/simulation-principles/animation-loop/) defines whether the global bounding box of the scene is computed at each time step. Setting this data to `false` will avoid the recomputation of the bounding box used for rendering, thus possibly saving computation time.
+
 ## Model Order Reduction
 
 In SOFA, Model Order Reduction is a technique to reduce the computational complexity of a FEM simulation.
