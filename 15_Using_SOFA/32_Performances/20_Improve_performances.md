@@ -9,6 +9,7 @@ On Windows, the two following CMake variables may speed up the simulations:
 
 - `SOFA_ENABLE_FAST_MATH`: Enable floating-point model to fast (theoretically faster but can bring unexpected results/bugs)
 - `SOFA_ENABLE_SIMD`: Enable the use of SIMD instructions by the compiler (AVX/AVX2 for msvc).
+- `SOFA_ENABLE_LINK_TIME_OPTIMIZATION`: Enable LTCG IN release mode (MSVC only for now) [Warning, use a lot of disk space!]
 
 ## Profile the Simulation
 
