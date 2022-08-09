@@ -7,7 +7,7 @@ The main component of a simulation in SOFA is the _MechanicalObject_. It inherit
 State vectors
 -------------
 
-The _MechanicalObject_ (MechanicalState) saves all the state vectors. These state vectors correspond to the degrees of freedom (DOFs) and their first time derivative. By gathering all state vectors, the _MechanicalObject_ avoids multiple calls of virtual functions. The vector size is the number of nodes, and the size of each vector entry depends on the template (see below).
+The _MechanicalObject_ (MechanicalState) saves all the state vectors. These state vectors correspond to the degrees of freedom (DOFs) and their first time derivative. The vector size is the number of nodes, and the size of each vector entry depends on the template (see below).
 
 **Note**: the SOFA framework being historically focused on soft tissue mechanics, the semantic is strongly related to mechanics. The state vectors (DOFs) are stored in the field named _position_, their first derivatives in the _velocity_ field and their second derivatives in the _acceleration_ field.
 
@@ -175,7 +175,7 @@ In an XML format, this would be written as follows:
 ```xml
 <Node name="root" dt="0.01" >
     <DefaultAnimationLoop />
-    <MechanicalObject template="Vec3f" name="myDOFs" position="0 0 0"/>
+    <MechanicalObject template="Vec3d" name="myDOFs" position="0 0 0"/>
 </Node>
 ```
 
