@@ -7,10 +7,9 @@ The main component of a simulation in SOFA is the _MechanicalObject_. It inherit
 State vectors
 -------------
 
-The _MechanicalState_ saves all the state vectors, namely the degrees of freedom (DOFs), their associated velocity, acceleration and the forces applied on the simulated body. By gathering all state vectors, the _MechanicalObject_ avoids multiple calls of virtual functions. The vector size is the number of nodes, and the size of each vector entry depends on the template (see below).
+The _MechanicalObject_ (MechanicalState) saves all the state vectors. These state vectors correspond to the degrees of freedom (DOFs) and their first time derivative. The vector size is the number of nodes, and the size of each vector entry depends on the template (see below).
 
-**Note**: the SOFA framework was historically focused on soft tissue mechanics. Therefore, the semantic is strongly related to mechanics. In the _MechanicalObject_, the state vectors (DOFs) are stored in the field named _position_, their first derivatives in the _velocity_ field and their second derivatives in the _acceleration_ field.
-
+**Note**: the SOFA framework being historically focused on soft tissue mechanics, the semantic is strongly related to mechanics. The state vectors (DOFs) are stored in the field named _position_, their first derivatives in the _velocity_ field and their second derivatives in the _acceleration_ field.
 
 
 Templates
@@ -27,15 +26,101 @@ SOFA supports several DataTypes corresponding to the DOFs:
 *   _Rigid3d_: this DataType corresponds to 7 DOFs per node, this can be used to simulate rigid bodies (3 positions and 1 quaternion).
 
 
-
 In the _MechanicalObject_, each of these state vectors can be accessed using (scattered) state vectors, called multi-vectors or MultiVec. 
+
+
+
+List of state vectors (MultiVec)
+--------------------------------
+
+<table>
+<tbody>
+  <tr>
+    <td></td>
+    <td>Vector name<br></td>
+    <td>Vector type</td>
+    <td>Description</td>
+  </tr>
+  <tr>
+    <td rowspan="5">State</td>
+    <td>position</td>
+    <td>VecCoord</td>
+    <td>current coordinates of the degrees of freedom</td>
+  </tr>
+  <tr>
+    <td>velocity</td>
+    <td>VecDeriv</td>
+    <td>current first derivative in time of the coordinates of the degrees of freedom</td>
+  </tr>
+  <tr>
+    <td>derivX</td>
+    <td>VecDeriv</td>
+    <td>x vector of the linear system Ax=b (therefore depends on the integration scheme)</td>
+  </tr>
+  <tr>
+    <td>reset_position</td>
+    <td>VecCoord</td>
+    <td>coordinates of the degrees of freedom used for reset</td>
+  </tr>
+  <tr>
+    <td>reset_velocity</td>
+    <td>VecDeriv</td>
+    <td>first derivative in time of the coordinates of the degrees of freedom used for reset</td>
+  </tr>
+  <tr>
+    <td rowspan="3">Force</td>
+    <td>force</td>
+    <td>VecDeriv</td>
+    <td>b vector of the linear system Ax=b (therefore depends on the integration scheme)</td>
+  </tr>
+  <tr>
+    <td>externalForce</td>
+    <td>VecDeriv</td>
+    <td>vector containing only forces resulting from InteractionForceFields and some constraint forces</td>
+  </tr>
+  <tr>
+    <td>dforce</td>
+    <td>VecDeriv</td>
+    <td>vector corresponding to the derivative of the forces (<em>no much use in the code base</em>)</td>
+  </tr>
+  <tr>
+    <td>Rest State</td>
+    <td>rest_position</td>
+    <td>VecCoord</td>
+    <td>coordinates of the degrees of freedom when the object is at rest (no force acting)</td>
+  </tr>
+  <tr>
+    <td rowspan="2">FreeMotion</td>
+    <td>free_position</td>
+    <td>VecCoord</td>
+    <td>in the FreeMotionAnimationLoop, coordinates of the degrees of freedom as if no collision would be taken into account (free motion)</td>
+  </tr>
+  <tr>
+    <td>free_velocity</td>
+    <td>VecDeriv</td>
+    <td>in the FreeMotionAnimationLoop, first derivative in time of the coordinates of the degrees of freedom as if no collision would be taken into account (free motion)</td>
+  </tr>
+  <tr>
+    <td rowspan="2">Jacobian</td>
+    <td>constraint</td>
+    <td>MatrixDeriv</td>
+    <td>matrix containing the constraint directions, i.e. derivative of the constraint laws</td>
+  </tr>
+  <tr>
+    <td>mappingJacobian</td>
+    <td>MatrixDeriv</td>
+    <td>matrix accumulating the Jacobian matrices of mappings, used only in the MechanicalMatrixMapper</td>
+  </tr>
+</tbody>
+</table>
+
 
 
 Symbolic ids
 ------------
 
 The MultiVec entries are not directly accessible by the solvers. The MultiVec are represented by identificators. The operations on the vectors are implemented using visitors which contain the identificators of the relevant vectors. The MultiVec identificators (MultiVecId) have different types, depending on the data they contain
-(positions or their derivatives) and the access mode, e.g.:
+(positions or their derivatives) and the access mode.
 
 The use of symbolic identificators (MultiVecId) prevent other components (like solvers) from handling state vectors directly and allow to easily work with abstract MultiVec by using their ids. These symbolic ids are widely used by specialized visitors, like the ones used in [ODESolver](https://www.sofa-framework.org/community/doc/main-principles/system-resolution/integration-schemes/).
 
@@ -88,9 +173,9 @@ Example
 
 In an XML format, this would be written as follows:
 ```xml
-<Node name="root" dt="0.01" gravity="0 -9.81 0">
+<Node name="root" dt="0.01" >
     <DefaultAnimationLoop />
-    <MechanicalObject template="Vec3f" name="myDOFs" />
+    <MechanicalObject template="Vec3d" name="myDOFs" position="0 0 0"/>
 </Node>
 ```
 
