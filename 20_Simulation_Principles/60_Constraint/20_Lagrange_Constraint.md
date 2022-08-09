@@ -164,15 +164,16 @@ cc->addComplianceInConstraintSpace(cParams, &current_cp->W);
 ```
 
 
-#### Solve system: ConstraintSolver ####
+#### Solve system ####
 
-The resolution of the system will be processed when the _solveSystem()_ function of the _ConstraintSolver_ is called (see). In SOFA, two different _ConstraintSolver_ implementations exist in SOFA:
+The resolution of the system will be processed when the _solveSystem()_ function of the _ConstraintSolver_ is called. In SOFA, two different _ConstraintSolver_ implementations exist in SOFA:
 
   - _LCPConstraintSolver_: this solvers targets on collision constraints, contacts with frictions which corresponds to unilateral constraints. This solver proposes one implementation of a [Gauss-Seidel algorithm](https://en.wikipedia.org/wiki/Gauss%E2%80%93Seidel_method) available in in _sofa::helper::GaussSeidel_
 
-  - _GenericConstraintSolver_: this solver handles all kind of constraints, i.e. works with any constraint resolution algorithm. This solver proposes two different resolution methods:
-    - a Projective [Gauss-Seidel algorithm](https://en.wikipedia.org/wiki/Gauss%E2%80%93Seidel_method) (PGS) algorithm implemented in _GenericConstraintSolver::GaussSeidel_. To use this PGS algorithm, you must select the data *NLCP_solver* as _ProjectedGaussSeidel_. Using the data _unbuilt_, you can choose whether the Gauss-Seidel assembles or not the constraint system.
-    - a [Non-smooth Non-linear Conjugate Gradient](https://link.springer.com/article/10.1007/s00371-010-0502-6) (NNCG) algorithm implemented in _GenericConstraintSolver::NNCG()_. To use this NNCG algorithm, you must select the data  *NLCP_solver* as _NonsmoothNonlinearConjugateGradient_. Using the data _newtonIterations_, you can define the maximum number of iterations for the classical Newton method, solving the generic roots search problem.
+  - _GenericConstraintSolver_: this solver handles all kind of constraints, i.e. works with any constraint resolution algorithm. This solver proposes three different resolution methods:
+    - a Projective [Gauss-Seidel algorithm](https://en.wikipedia.org/wiki/Gauss%E2%80%93Seidel_method) (PGS) algorithm implemented in _GenericConstraintSolver::GaussSeidel_. To use this PGS algorithm, you must select the data *resolutionMethod* as _ProjectedGaussSeidel_
+    - an Unbuilt (matrix-free) approach of the [Gauss-Seidel algorithm](https://en.wikipedia.org/wiki/Gauss%E2%80%93Seidel_method) (UGS) algorithm is also available, thus avoiding the assembly of the constraint system. To use this UGS algorithm, you must select the data *resolutionMethod* as _UnbuiltGaussSeidel_
+    - a [Non-smooth Non-linear Conjugate Gradient](https://link.springer.com/article/10.1007/s00371-010-0502-6) (NNCG) algorithm implemented in _GenericConstraintSolver::NNCG()_. To use this NNCG algorithm, you must select the data  *resolutionMethod* as _NonsmoothNonlinearConjugateGradient_. Using the data _newtonIterations_, you can define the maximum number of iterations for the classical Newton method, solving the generic roots search problem.
 
 NB: you may find the class _ConstraintSolver_. This class does not implement a real solver but actually just browses the graph in order to find and use one of the two implementations mentioned above.
 
