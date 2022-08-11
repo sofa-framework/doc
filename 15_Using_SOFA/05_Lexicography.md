@@ -31,7 +31,7 @@ Examples: Sofa.Component.Collision, Sofa.Component.Engine.Analyze, Sofa.Componen
 Plugins are optional Modules adding more SOFA features.
 
 Plugins contain Components.
-Plugins are externalizable. Some external plugins can be auto-fetched from SOFA sources.
+Plugins are externalizable. Some external plugins can be [auto-fetched into SOFA sources](https://www.sofa-framework.org/community/doc/plugins/fetch-plugin-code-source/).
 Plugins can be disabled via a CMake option. Most Plugins are OFF by default.
 
 A Plugin can "contain" other Modules and Libraries. Technically, it will have link dependencies on those Modules.
