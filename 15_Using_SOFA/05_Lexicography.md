@@ -67,40 +67,41 @@ From the system point of view, a Tutorial is an executable.
 Examples: chainHybrid, oneTetrahedron
 
 ## Simulation
-To be completed.
+Simulation corresponds to the process computing the change of state of the physical systems, given their rest and initial state.
 
 ## Scene
-To be completed.
+Scene denotes the graph structure (direct acyclic graph) describing the physical systems, their physical behavior, their properties and the numerical tools used for the computation. The Scene description starts with a root Node which then contains child Nodes (sub-Nodes). Each child Node of the root Node usually corresponds to one object (one physical system).
+Read more about the [Scene graph](https://www.sofa-framework.org/community/doc/simulation-principles/scene-graph/) 
 
 ## Example
-To be completed.
+Example refers to set of Scene files provided with SOFA. These Scene files illustrate most of the SOFA components in a dedicated Simulation. They can be found within the _examples/_ folder in the SOFA sources or within the _share/sofa/examples/_ folder in the SOFA binaries.
 
 
 ## Unit test
-To be completed.
+Scene tests correspond to C++ codes testing SOFA classes or parts of codes to assess their proper functioning.
+Unit tests can be triggered on each pull-request.
 
 ## Scene test
-To be completed.
+Scene tests correspond to Scene files which are launched to check if the associated Simulations run without error.
+Scene tests can be triggered on each pull-request.
 
 ## Regression test
-To be completed.
+Regression tests correspond to Scene files which Simulation result configuration was previously saved. These tests are launched to check if the Simulation remains consistent with the save Simulation result.
+Regression tests can be triggered on each pull-request.
 
-
-## Link
-To be completed.
-
-## Component
-To be completed.
-
-## Data
-To be completed.
-
-## DataField
-To be completed.
-
-## Link
-To be completed.
 
 ## Node
-To be completed.
+Node defines a hierarchical level of the Scene graph. The root Node is the entry point of the simulation (first Node without any parent) and it may contain several child Nodes (sub-Nodes). Each child Node of the root Node usually corresponds to one object (one physical system). Generally, a Node can have many children and it may have several parent (except the root Node). An operation performed on a Node automatically propagates its effect to all of its child Nodes. The collection of all Nodes builds the Scene graph.
 
+## Component
+Component corresponds to C++ classes implementing specific physical models or algorithms. A Component must belong to a Node.
+
+## Data
+Data is a public attribute of a Component (C++ class) visible to the user in the SOFA user interface. For a physical model or an algorithm, a Data is a parameter available for the user (e.g. the total mass `totalMass` in a mass component). Data may be defined by the user (some are compulsory - a.k.a. required - else a warning will be sent), accessed and modified.
+Read more about [Data](https://www.sofa-framework.org/community/doc/simulation-principles/scene-graph/#data).
+
+## Datafield
+DataField refers to a Data
+
+## Link
+Link corresponds to connection created between Data instances of two different Components. One Data may be link to one or several other Data (respectively called a SingleLink and a MultiLink). The network of interconnected Data objects defines a Data dependency graph, superimposed on the Scene graph.
