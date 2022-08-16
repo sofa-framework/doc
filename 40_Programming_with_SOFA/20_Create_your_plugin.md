@@ -168,7 +168,7 @@ install(TARGETS MyPlugin
 And the following must be added to *applications/plugins/CMakeLists.txt*:
 
 ``` {.cmake}
-sofa_add_plugin(MyPlugin MyPlugin)
+sofa_add_subdirectory(plugin MyPlugin MyPlugin)
 ```
 
 Keep us updated!
