@@ -37,8 +37,8 @@ cmake_minimum_required(VERSION 2.8.12)
 
 find_package(SofaFramework)
 
-sofa_add_plugin(plugin1/  name_of_project_plugin1)
-sofa_add_plugin(plugin2/  name_of_project_plugin2)
+sofa_add_subdirectory(plugin path_to_plugin1/  name_of_project_plugin1)
+sofa_add_subdirectory(plugin path_to_plugin2/  name_of_project_plugin2)
 ```
 
 #### CMake option in SOFA
