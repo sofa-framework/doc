@@ -103,6 +103,7 @@ Note that all solvers do not support this template parameter.
 #### Matrix Assembly vs. Matrix Free
 
 [CGLinearSolver](https://www.sofa-framework.org/community/doc/using-sofa/components/linearsolver/cglinearsolver/) supports both strategies:
+
 - `GraphScattered` is the template parameter for a matrix-free solver
 - `CompressedRowSparseMatrixd` and `CompressedRowSparseMatrixMat3x3d` are template parameters for an assembled matrix
 
@@ -120,6 +121,7 @@ In your scene, just replace `<SparseLDLSolver/>` by `<AsyncSparseLDLSolver/>`.
 
 This optimization requires to use a [FreeMotionAnimationLoop](https://www.sofa-framework.org/community/doc/components/animationloops/freemotionanimationloop/).
 When multiple objects evolve in a simulation, SOFA supports the following configurations:
+
 - There is a single ODE solver for all the objects.
 - There are multiple ODE solvers, and each one can simulate one or multiple objects.
 
