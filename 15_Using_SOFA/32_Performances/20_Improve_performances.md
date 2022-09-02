@@ -125,9 +125,7 @@ When multiple objects evolve in a simulation, SOFA supports the following config
 - There is a single ODE solver for all the objects.
 - There are multiple ODE solvers, and each one can simulate one or multiple objects.
 
-In the latter case, there are as many free motion computations as the number of ODE solvers in the scene. 
-Moreover, it is assumed there is no interaction between objects.
-Therefore, the computation of the free motion of an object is independent from the others, and each ODE solve step can be trivially parallelized.
+In the latter case, there are as many free motion computations as the number of ODE solvers in the scene. In this first step of the FreeMotionAnimationLoop, the free motion assumes that objects can have a "free" motion, thus ignoring possible interaction between objects. Therefore, the computation of the free motion of an object is independent from the others, and each ODE solve step can be trivially parallelized.
 The component [FreeMotionAnimationLoop](https://www.sofa-framework.org/community/doc/components/animationloops/freemotionanimationloop/) has boolean Data *parallelODESolving* to specify if both ODE solve steps are to be computed in parallel or not.
 
 ### Finite Element Method
