@@ -11,6 +11,12 @@ On Windows, the two following CMake variables may speed up the simulations:
 - `SOFA_ENABLE_SIMD`: Enable the use of SIMD instructions by the compiler (AVX/AVX2 for msvc).
 - `SOFA_ENABLE_LINK_TIME_OPTIMIZATION`: Enable LTCG IN release mode (MSVC only for now) [Warning, use a lot of disk space!]
 
+## RunSofa
+
+When running `runSofa` with the GUI, an option allows to update the visual representation of the scene graph if any change is detected (activated by default). It can affect badly the performances in high speed simulations. Disabling the option can help improving the performances.
+
+![](https://raw.githubusercontent.com/sofa-framework/doc/master/images/usingSOFA/lockSceneGraph.png)
+
 ## Profile the Simulation
 
 The first step toward better performances is to identify the bottleneck of the simulation.
@@ -138,7 +144,9 @@ Similarly, the component `FastTetrahedralCorotationalForceField` is a faster alt
 
 ## Rendering
 
-A data `computeBoundingBox` is available in all [AnimationLoops](https://www.sofa-framework.org/community/doc/simulation-principles/animation-loop/) defines whether the global bounding box of the scene is computed at each time step. Setting this data to `false` will avoid the recomputation of the bounding box used for rendering, thus possibly saving computation time.
+- A data `computeBoundingBox` is available in all [AnimationLoops](https://www.sofa-framework.org/community/doc/simulation-principles/animation-loop/) defines whether the global bounding box of the scene is computed at each time step. Setting this data to `false` will avoid the recomputation of the bounding box used for rendering, thus possibly saving computation time.
+
+- Debug visualization can be very costly. For example, drawing thousands of tetrahedra is very time consuming. Draw only what you need.
 
 ## Model Order Reduction
 
