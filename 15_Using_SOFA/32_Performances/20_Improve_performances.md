@@ -144,7 +144,7 @@ Similarly, the component `FastTetrahedralCorotationalForceField` is a faster alt
 
 ## Rendering
 
-- A data `computeBoundingBox` is available in all [AnimationLoops](https://www.sofa-framework.org/community/doc/simulation-principles/animation-loop/) defines whether the global bounding box of the scene is computed at each time step. Setting this data to `false` will avoid the recomputation of the bounding box used for rendering, thus possibly saving computation time.
+- A data `computeBoundingBox` is available in all [AnimationLoops](https://www.sofa-framework.org/community/doc/simulation-principles/animation-loop/). This data defines whether the global bounding box of the scene is computed at each time step. Setting this data to `false` will avoid the recomputation of the bounding box used for rendering, thus possibly saving computation time.
 
 - Debug visualization can be very costly. For example, drawing thousands of tetrahedra is very time consuming. Draw only what you need.
 
