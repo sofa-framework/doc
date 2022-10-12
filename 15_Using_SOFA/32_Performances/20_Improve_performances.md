@@ -13,7 +13,7 @@ On Windows, the two following CMake variables may speed up the simulations:
 
 ## RunSofa
 
-When running `runSofa` with the GUI, an option allows to update the visual representation of the scene graph if any change is detected (activated by default). It can affect badly the performances in high speed simulations. Disabling the option can help improving the performances.
+When running `runSofa` with the GUI, an option allows to update the visual representation of the scene graph if any change is detected (activated by default). It can affect badly the performances in high speed simulations. Disabling the option can help improving the performances: to do so, click on the lock icon as illustrated below.
 
 ![](https://raw.githubusercontent.com/sofa-framework/doc/master/images/usingSOFA/lockSceneGraph.png)
 
