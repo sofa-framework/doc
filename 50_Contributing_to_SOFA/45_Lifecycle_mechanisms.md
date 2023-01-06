@@ -121,3 +121,10 @@ _______________________________________________________
     - [user] in the component `parse()` method
         - remove the macro
 
+### Changing Data default value
+
+As suggested in [#3563](https://github.com/sofa-framework/sofa/pull/3563), when the default value of a Data is changed the following warning should be added in the `init()` function:
+
+``` cpp
+msg_warning_when(!d_dataName.isSet()) << "The default value of the Data " << d_dataName.getName() << " changed in v23.06 from 0.3 to 0.45.";
+```
