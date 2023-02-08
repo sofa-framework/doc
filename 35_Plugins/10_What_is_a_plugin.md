@@ -18,6 +18,6 @@ The application `runSofa` accepts an optional argument `-l,--load` to specify a 
 
 By default, the application `runSofa` reads the content of a configuration file to load automatically a list of plugins. This list can be edited to add the plugin you need. The file is either `plugin_list.conf` or `plugin_list.conf.default`. `plugin_list.conf.default` is generated automatically at compile-time and is not meant to be edited. To edit a list of plugins, `plugin_list.conf` must be used. If the file does not exist, it must be created based on `plugin_list.conf.default`.
 
-## GUI
+## GUI: Plugin Manager
 
 The Qt-based GUI allows to load a plugin through a graphical user interface. Go to `Edit > Plugin Manager ...`. You will see the list of already loaded plugins. Click on `Add...` to load another plugin.
