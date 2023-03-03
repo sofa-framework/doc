@@ -46,9 +46,25 @@ Examples of ParallelBruteForceBroadPhase can be found in:
 
 ## Parallel FEM
 
+### ParallelTetrahedronFEMForceField
+
+ParallelTetrahedronFEMForceField is the multi-threaded equivalent of [TetrahedronFEMForceField](https://www.sofa-framework.org/api/master/sofa/html/classsofa_1_1component_1_1solidmechanics_1_1fem_1_1elastic_1_1_tetrahedron_f_e_m_force_field.html).
+
+This implementation is the most efficient when the number of tetrahedron is large (> 1000).
+
+The following methods are executed in parallel:
+- `addDForce`
+- `addKToMatrix`
+
+#### Examples
+
+Examples of ParallelTetrahedronFEMForceField can be found in:
+
+* [ParallelTetrahedronFEMForceField.scn](https://github.com/sofa-framework/sofa/blob/master/applications/plugins/MultiThreading/examples/ParallelTetrahedronFEMForceField.scn)
+
 ### ParallelHexahedronFEMForceField
 
-[ParallelHexahedronFEMForceField](https://www.sofa-framework.org/api/master/plugins/MultiThreading/html/classsofa_1_1component_1_1forcefield_1_1_parallel_hexahedron_f_e_m_force_field.html) is the multi-threaded equivalent of [HexahedronFEMForceField](https://www.sofa-framework.org/api/master/sofa/html/classsofa_1_1component_1_1forcefield_1_1_hexahedron_f_e_m_force_field.html).
+ParallelHexahedronFEMForceField is the multi-threaded equivalent of [HexahedronFEMForceField](https://www.sofa-framework.org/api/master/sofa/html/classsofa_1_1component_1_1solidmechanics_1_1fem_1_1elastic_1_1_hexahedron_f_e_m_force_field.html).
 
 This implementation is the most efficient when:
 
@@ -84,6 +100,21 @@ Examples of BeamLinearMapping_mt can be found in:
 
 * [BeamLinearMapping_mt.scn](https://github.com/sofa-framework/sofa/blob/master/applications/plugins/MultiThreading/examples/BeamLinearMapping_mt.scn)
 
+## Springs
+
+### ParallelStiffSpringForceField
+
+ParallelStiffSpringForceField is the multi-threaded equivalent of StiffSpringForceField.
+
+### ParallelMeshSpringForceField
+
+ParallelMeshSpringForceField is the multi-threaded equivalent of MeshSpringForceField.
+
+### Examples
+
+Examples of ParallelMeshSpringForceField can be found in:
+
+* [ParallelMeshSpringForceField.scn](https://github.com/sofa-framework/sofa/blob/master/applications/plugins/MultiThreading/examples/ParallelMeshSpringForceField.scn)
 
 
 ## Independent SOFA Scenes
