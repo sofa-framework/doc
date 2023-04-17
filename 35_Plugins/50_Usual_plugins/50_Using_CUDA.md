@@ -7,9 +7,10 @@ To use CUDA in SOFA under Linux, you need to follow these steps:
 
 -   Get the required files from
     [NVIDIA](https://developer.nvidia.com/cuda-downloads "http://www.nvidia.com/content/cuda/cuda-downloads.html"){.external
-    .text}. For Cuda 5.0, there is only one file to download
+    .text}. For Cuda 11.0, there is only one file to download
     and install. If you are using an earlier version, you need to
     download and install three files, and in the correct order.
+    Note that *Cuda 12.0 is not yet supported*.
     -   Cuda Toolkit
     -   The appropriate Cuda driver for your system
     -   Cuda SDK
