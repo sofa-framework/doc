@@ -3,10 +3,11 @@ Installing the OpenHaptics SDK
 
 The Geomagic drivers and SDK can be directly downloaded from the 3DSystem website:
 
-- [OpenHaptics for **Windows** Developer Edition v3.4](https://3dsystems.teamplatform.com/pages/102774?t=r4nk8zvqwa91)  
-- [OpenHaptics for **Linux** Developer Edition v3.4](https://3dsystems.teamplatform.com/pages/102863?t=fptvcy2zbkcc)
+- [OpenHaptics for **Windows** Developer Edition v3.4](https://support.3dsystems.com/s/article/OpenHaptics-for-Windows-Developer-Edition-v34?language=en_US)  
+- [OpenHaptics for **Linux** Developer Edition v3.4](https://support.3dsystems.com/s/article/OpenHaptics-for-Linux-Developer-Edition-v34?language=en_US)
 
-Once the download is complete, follow the [installation guide](https://3dsystems.teamplatform.com/pages/102863?t=fptvcy2zbkcc#). The installation directory should be:
+Following the above-mentioned links, you should find a programmers guide for assistance.
+The installation directory should be:
 
 - `C:/OpenHaptics` for Windows
 - `/opt/OpenHaptics/Developer/3.4-0/` for Linux
@@ -25,7 +26,8 @@ Compilation in SOFA
 
 Now in SOFA:
 
-- activate the plugin in cmake-gui by setting the flag PLUGIN_GEOMGIC to true
+- activate the plugin in cmake-gui by setting the flag PLUGIN_GEOMGIC to true. 
+**NB**: Make sure to have closed CMake after the installation of the OpenHaptics libary, described above.
 - compile SOFA, which should trigger the compilation of the Geomagic plugin
 - enjoy the power of the Geomagic haptic interfaces with SOFA and give a try to the example scene (examples/DemoGeomagic.scn)
 
