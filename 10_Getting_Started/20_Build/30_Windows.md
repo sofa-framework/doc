@@ -78,8 +78,8 @@ SOFA requires some libraries:
     - **For Visual Studio 2019**: choose boost_X_X_X-msvc-14.2-64.exe
     - **For Visual Studio 2017**: choose boost_X_X_X-msvc-14.1-64.exe
     
--   **Python** (= 3.7.x)  
-    Download and install the latest [**Python 3.7 (amd64)**](https://www.python.org/ftp/python/3.7.9/python-3.7.9-amd64.exe).
+-   **Python** (= 3.8.x)  
+    Download and install the latest [**Python 3.8 (amd64)**](https://www.python.org/ftp/python/3.8.10/python-3.8.10-amd64.exe).
     
 -   **Additional libraries**: libPNG, libJPEG, libTIFF, Glew, Zlib  
     Download the [Windows dependency pack](https://www.sofa-framework.org/download/WinDepPack/VS-2017/latest).  
