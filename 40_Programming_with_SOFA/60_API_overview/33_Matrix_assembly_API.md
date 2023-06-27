@@ -31,6 +31,7 @@ To summarize,`GlobalSystemMatrixExporter` is useful to analyze the global system
 ## Python Bindings
 
 Python bindings have been introduced to be able to extract some matrices and vectors during a simulation:
+
 - Global system matrix
 - Global system right-hand side
 - Global system solution
@@ -63,6 +64,7 @@ compliance_matrix = root.constraint_solver.W()
 ### Global Matrix Contributors
 
 The following components contributes to the global matrix:
+
 - Force fields
 - Masses
 - Projective constraints
@@ -113,15 +115,18 @@ void addMToMatrix(sofa::linearalgebra::BaseMatrix * matrix, SReal mFact, unsigne
 ```
 
 The following questions rise:
+
 - What is `kFact`, `bFact` and `mFact`? What should the developer do with it?
 - What is `offset`? What should the developer do with it?
 
 
 As a reminder:
+
 - `kFact`, `bFact` and `mFact` are coefficients to multiply to, respectively, the stiffness matrix, the damping matrix and the mass matrix. Those coefficients come from the ODE solver. They are crucial for a simulation to work. In other words, it is required that the developper multiply each matrix coefficient by one of those factors.
 - `offset` is an index to where the force field or mass must start adding its contribution into the global matrix. Its value depends on the mechanical state the component is associated to.
 
 Now that we have answered the questions, we can observe that it is very easy for a developer to:
+
 - Forget to use the `kFact`, `mFact` and `offset`
 - Introduce errors by a wrong usage of the `kFact`, `mFact` and `offset`
 - Introduce errors by adding contributions at the wrong location in the matrix
@@ -169,6 +174,7 @@ This section is a detailed description of the main changes in SOFA in order to a
 ### Specifications
 
 Minimal impact on the current simulation scenes:
+
 - Current simulation scenes should be able to be loaded and run properly
 - If any change in the scene is required but yet supported by the new design, a message warns the user
 - It is possible to assemble more than one global matrix: for example, it should be possible to assemble the usual global matrix (weighted sum of mass matrix, damping matrix and stiffness matrix), but also other matrices, such as the mass matrix or the stiffness matrix stored independently from the global matrix.
@@ -177,12 +183,14 @@ Minimal impact on the current simulation scenes:
 - Impacts on the developpers (API changes) must be detailed to ease the transition.
 
 New features:
+
 - Matrix mapping is possible
 - All components that can have a contribution to the global matrix must be supported. In particular non-linear mappings which was not the case before.
 
 ### Uncoupling of Linear System and Linear Solver
 
 In SOFA, linear solvers are components that have several responsabilities:
+
 - Storing the linear system
 - Assembling the linear system (when the system is assembled)
 - Inverting and solving the linear system
@@ -331,6 +339,7 @@ This class is essential in the new design. It replaces all the parameters provid
 When a component will use the interface, through the `add` method, it can pass any value for `row` and `col`. In particular, if the code is buggy, the values for `row` and `col` can be out of the matrix bounds, or not in the submatrix associated to the component.
 
 Therefore, an index checking strategy has been implemented. The idea is to inherit from `MatrixAccumulatorInterface` and check indices in the `add` methods. To do that, a helper class is available: `MatrixAccumulatorIndexChecker`. Its two template parameters are:
+
 1. `TBaseMatrixAccumulator`: a type derived from `MatrixAccumulatorInterface`
 2. `TStrategy`: the type of strategy to check indices. The strategy can be `NoIndexVerification` or `RangeVerification`. More strategies can be added in the future.
 
@@ -619,8 +628,8 @@ If your version of SOFA has been compiled using the CMake option `-DSOFA_WITH_DE
 
 ## Conclusion and future work
 
-
 Features that are mentioned in this document are not yet available:
+
 - The SOFA scenes shipped with the source code will be updated according to the new design.
 - `ConstantSparsityPatternSystem` has been experimented but is not shipped in [#2777](https://github.com/sofa-framework/sofa/pull/2777). It needs to be introduced again in a later pull request.
 - Is it possible to merge the two cases in `InteractionForceField` (mstate1 == mstate2)?
