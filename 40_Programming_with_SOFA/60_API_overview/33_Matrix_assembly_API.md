@@ -288,11 +288,7 @@ There are three linear systems in the same context. The situation is similar to 
 #### Multiple Assembled Matrices
 
 The extraction of the linear system from the linear solver allows to formulate the matrix assembly with different algorithms through different components.
-In the proposed changes, two linear system components are introduced:
-
-- `MatrixLinearSystem`: default component able to store and assembly any linear system type.
-- `ConstantSparsityPatternSystem`: component to be used only if the global matrix keeps a constant sparsity pattern all along the simulation.
-<span style="color:red">Naming: missing the keyworkd Matrix -> `ConstantSparsityPatternMatrixSystem`</span>
+In the proposed changes, a linear system component is introduced: `MatrixLinearSystem`, a default component able to store and assembly any linear system type.
 
 
 ### API Changes
@@ -565,10 +561,6 @@ Uncoupling the linear system and the linear solver allows to implement multiple 
 
 `MatrixLinearSystem` can be considered as the default matrix assembly method. It supports contributions from force fields, masses, non-linear mappings and projective constraints. It also supports matrix mapping.
 
-#### ConstantSparsityPatternSystem
-
-`ConstantSparsityPatternSystem` is a matrix assembly method where the matrix pattern is considered as constant over the simulation. Using this property allows to speed up the matrix assembly.
-
 #### CompositeLinearSystem
 
 `CompositeLinearSystem` is a component to use if the user wants to assemble more than one matrix. For example, the user may want to assemble the global matrix and solve it with the linear solver, but also the stiffness matrix to analyze it.
@@ -630,7 +622,7 @@ If your version of SOFA has been compiled using the CMake option `-DSOFA_WITH_DE
 
 Features that are mentioned in this document are not yet available:
 - The SOFA scenes shipped with the source code will be updated according to the new design.
-- `ConstantSparsityPatternSystem` has been experimented but is not shipped in #2777. It needs to be introduced again in a later pull request.
+- `ConstantSparsityPatternSystem` has been experimented but is not shipped in [#2777](https://github.com/sofa-framework/sofa/pull/2777). It needs to be introduced again in a later pull request.
 - Is it possible to merge the two cases in `InteractionForceField` (mstate1 == mstate2)?
 
 
