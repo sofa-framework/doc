@@ -2,8 +2,8 @@
 
 ## Project timeline
 
-- GIthub project: https://github.com/sofa-framework/sofa/projects/9
-- The different PRs, the description of the task and the drafts for SOFA-NG can be found here: https://github.com/sofa-framework/sofa/issues/1527
+- Github [project for SOFA NG](https://github.com/sofa-framework/sofa/projects/9)
+- A [GitHub issue was referencing](https://github.com/sofa-framework/sofa/issues/1527) all different PRs, the description of the task and the drafts for SOFA-NG
 
 
 ## Components
