@@ -36,9 +36,9 @@ To know which GCC versions are available for your distribution, run this command
 apt-cache search '^gcc-[0-9.]+$'
 ```
 
-Then, install the latest one with the usual command (example with gcc-11):
+Then, install the latest one with the usual command (example with gcc-13):
 ```bash
-sudo apt install gcc-11
+sudo apt install gcc-13
 ```
 
 ### Clang
@@ -50,9 +50,9 @@ To know which Clang versions are available for your distribution, run this comma
 apt-cache search '^clang-[0-9.]+$'
 ```
 
-Then, install the latest one with the usual command (example with clang-12):
+Then, install the latest one with the usual command (example with clang-16):
 ```bash
-sudo apt install clang-12
+sudo apt install clang-16
 ```
 
 
