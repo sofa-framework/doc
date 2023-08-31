@@ -142,9 +142,7 @@ This is the case for the component `TriangularFEMForceFieldOptim` which is an al
 It has been measured that TriangularFEMForceFieldOptim is faster than TriangularFEMForceField.
 Similarly, the component `FastTetrahedralCorotationalForceField` is a faster alternative to `TetrahedronFEMForceField`, but without any compromise on the accuracy.
 
-## Constraints Solving
-
-### MultiThreading
+## Parallel Constraint Solving
 
 The following options allow to leverage multi-threaded implementations of some algorithms:
 
