@@ -20,25 +20,18 @@ _______________________________________________________
   </tr>
   <tr>
     <td>Deprecation<br>(6 months)</td>
-    <td>In Sofa.Compat:
+    <td>Remove old inl/cpp and in the old header:
 <ul>
-<li>create a compatibility header with same name and same path</li>
-<li>in compat header, include new header</li>
+<li>keep it as a compatibility header (same old name and path)</li>
+<li>in the header, include new header</li>
 <li>add macro <code>SOFA_DEPRECATED_HEADER</code></li>
-<li>add aliases for all classes, static functions, global variables</li>
-<li>add a macro <code>SOFA_ATTRIBUTE_DEPRECATED</code> on these aliases</li>
 </ul>
 </td>
     <td><ul><li>Add as CreatableMoved() in deprecatedComponents in ComponentChange</li></ul></td>
   </tr>
   <tr>
     <td>Deletion<br>(6 months)</td>
-    <td>In Sofa.Compat:
-<ul>
-<li>Change the macro for <code>SOFA_DISABLED_HEADER</code></li>
-<li>Change the alias to be on DeprecatedOrRemoved</li>
-<li>Change the alias macro for <code>SOFA_ATTRIBUTE_DISABLED</code></li>
-</ul></td>
+    <td><ul><li>In the old compatibility header, change the macro for <code>SOFA_DISABLED_HEADER</code></li></ul></td>
     <td><ul><li>Change to Removed() and move to uncreatableComponents in ComponentChange</li></ul></td>
   </tr>
   <tr>
