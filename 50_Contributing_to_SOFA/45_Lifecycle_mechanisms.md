@@ -20,8 +20,9 @@ _______________________________________________________
   </tr>
   <tr>
     <td>Deprecation<br>(6 months)</td>
-    <td>Keep a compatibility header (with same old name and path):
+    <td>
 <ul>
+<li>Keep a compatibility header (with same old name and path)</li>
 <li>in the header, include new header</li>
 <li>add macro <code>SOFA_DEPRECATED_HEADER</code></li>
 </ul>
