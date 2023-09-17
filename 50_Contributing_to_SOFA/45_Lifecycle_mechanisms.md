@@ -20,9 +20,8 @@ _______________________________________________________
   </tr>
   <tr>
     <td>Deprecation<br>(6 months)</td>
-    <td>Remove old inl/cpp and in the old header:
+    <td>Keep a compatibility header (with same old name and path):
 <ul>
-<li>keep it as a compatibility header (same old name and path)</li>
 <li>in the header, include new header</li>
 <li>add macro <code>SOFA_DEPRECATED_HEADER</code></li>
 </ul>
