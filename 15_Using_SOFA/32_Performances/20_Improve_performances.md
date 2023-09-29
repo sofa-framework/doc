@@ -125,12 +125,12 @@ In your scene, just replace `<SparseLDLSolver/>` by `<AsyncSparseLDLSolver/>`.
 
 #### Constant Sparsity Pattern
 
-Usually, the linear system resulting from a simulation is sparse. This means that a significant portion of the system's elements are zero, resulting in an efficient representation where only non-zero elements need to be considered in calculations.
-Moreover, in specific scenarios, this sparsity pattern maintains a constant characteristic. In other words, the arrangement of zero and non-zero elements within the system does not alter as the simulation progresses from one time step to the next. This constancy in the sparsity pattern can be advantageous for computational purposes, as it allows for the reuse of precomputed data related to the system's structure, thereby optimizing the overall efficiency of the simulation.
+Usually, the linear system resulting from a simulation is sparse, meaning that a significant portion of the system's elements are zero. Thus, an efficient representation where only non-zero elements can be considered to speed up calculations.
+Moreover, in specific scenarios, this sparsity maintains a constant pattern. In other words, the arrangement of zero and non-zero elements within the system does not change as the simulation progresses from one time step to the next. The simulation computation can take advantage of this time-consistent sparsity, as it allows for the use of precomputed data related to the system's structure, thereby optimizing the overall efficiency of the simulation.
 
 **Block Tridiagonal Matrix**:
 Dealing with linear structures like wires and beams leads to a specific type of mathematical representation known as a block tridiagonal matrix. This matrix structure exhibits distinct characteristics, with a pattern of non-zero elements only on the main diagonal.
-To address this particular matrix format effectively, a specialized linear solver has been developed: `BTDLinearSolver`. This dedicated solver significantly outperforms the use of a generic solver that lacks the specialized algorithms and optimizations required for block tridiagonal matrices.
+To address this particular matrix format effectively, a specialized linear solver has been developed: `BTDLinearSolver`. This dedicated solver significantly outperforms the use of a generic solver that lacks the specialized algorithms and optimizations enabled by block tridiagonal matrices.
 
 ### Parallel ODE Solving
 
