@@ -128,9 +128,28 @@ In your scene, just replace `<SparseLDLSolver/>` by `<AsyncSparseLDLSolver/>`.
 Usually, the linear system resulting from a simulation is sparse, meaning that a significant portion of the system's elements are zero. Thus, an efficient representation where only non-zero elements can be considered to speed up calculations.
 Moreover, in specific scenarios, this sparsity maintains a constant pattern. In other words, the arrangement of zero and non-zero elements within the system does not change as the simulation progresses from one time step to the next. The simulation computation can take advantage of this time-consistent sparsity, as it allows for the use of precomputed data related to the system's structure, thereby optimizing the overall efficiency of the simulation.
 
+Situations in which the sparsity pattern is not constant include the following:
+
+- **Topological Changes**: Changes in the structural or system topology can lead to alterations in the sparsity pattern of a matrix. This occurs when new elements or connections are introduced or existing ones are removed.
+- **Changes in the application of forces to degrees of freedom (DoFs)** can directly impact the sparsity pattern of a matrix. When a force is newly introduced to a DoF that was previously uninvolved, it leads to the addition of new nonzero entries in the matrix, thus altering the sparsity pattern. Conversely, if a force is removed from a DoF that was previously under its influence, it may result in the elimination of nonzero entries associated with that DoF, consequently causing changes in the sparsity pattern of the matrix.
+- **Boundary Condition Changes**: Altering boundary conditions, such as fixing or releasing certain degrees of freedom, can modify the sparsity pattern.
+
+In these scenarios, where the sparsity pattern is not constant, traditional compression techniques may be required to handle the dynamic nature of the system.
+
 **Block Tridiagonal Matrix**:
-Dealing with linear structures like wires and beams leads to a specific type of mathematical representation known as a block tridiagonal matrix. This matrix structure exhibits distinct characteristics, with a pattern of non-zero elements only on the main diagonal.
-To address this particular matrix format effectively, a specialized linear solver has been developed: `BTDLinearSolver`. This dedicated solver significantly outperforms the use of a generic solver that lacks the specialized algorithms and optimizations enabled by block tridiagonal matrices.
+Dealing with linear structures like wires and beams leads to a specific type of mathematical representation known as a block tridiagonal matrix. This matrix structure exhibits distinct characteristics, with a pattern of non-zero elements only on the main diagonal, the superdiagonal (one diagonal above the main diagonal), and the subdiagonal (one diagonal below the main diagonal).
+To address this particular matrix format effectively, a specialized linear solver has been developed: `BTDLinearSolver`, and its associated matrix format `BTDMatrix`.
+This dedicated solver significantly outperforms the use of a generic solver that lacks the specialized algorithms and optimizations enabled by block tridiagonal matrices.
+
+**Constant Insertion Order**
+In generic scenarios where the sparsity pattern of a matrix is not predetermined, it is common practice to accumulate contributions within a matrix data structure. This matrix data structure is often designed with a compressed format, which is intended to reduce memory usage and computational overhead. However, this compression process can be time-consuming, particularly for large-scale problems.
+There are specific situations where it is possible to optimize the matrix assembly process by avoiding the compression step. This optimization is applicable when the following conditions hold:
+
+- **Constant Sparsity Pattern**: The sparsity pattern of the matrix remains fixed throughout the problem-solving process. In other words, the locations of non-zero elements in the matrix do not change.
+- **Constant Insertion Order**: The order in which contributions are inserted into the matrix remains consistent over time. Contributions are added to the matrix in a predetermined order.
+- **Mapping between Insertion Location and Compressed Format**: A mapping exists that relates the location of insertion (where contributions are added) to the location of the contribution in the compressed format of the matrix. This mapping ensures that contributions are placed directly in their appropriate positions in the compressed matrix without the need for a compression step. This mapping is computed automatically in the first matrix assembly.
+
+In such scenarios, the 'ConstantSparsityPatternSystem' component is a valuable tool. By utilizing this component, it becomes possible to expedite the matrix assembly step. This can lead to significant performance improvements.
 
 ### Parallel ODE Solving
 
