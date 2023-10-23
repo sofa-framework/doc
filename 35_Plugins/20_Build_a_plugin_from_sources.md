@@ -4,6 +4,8 @@
 This page presents how to build an external plugin,
 i.e. a plugin which is not provided in the source code of SOFA.
 
+> ⚠️ **WARNING**: In most cases, the version of a plugin follows the version of SOFA. For compatibility reasons, it is preferable to compile the version of the plugin corresponding to the version of SOFA. For example, if you have the binaries for SOFA v23.06, you will need to compile plugins with version v23.06.
+
 Two ways of building a plugin is possible:
 - you are compiling SOFA and you integrate your plugin project along SOFA (aka _in-tree build_).
 - you have an install of SOFA (either you downloaded a [pre-built configuration](https://www.sofa-framework.org/download/), or you installed by yourself from a [SOFA build](https://www.sofa-framework.org/community/doc/getting-started/build/build-options/)), and you want to use this installation to build your plugin (aka _out-of-tree build_)
