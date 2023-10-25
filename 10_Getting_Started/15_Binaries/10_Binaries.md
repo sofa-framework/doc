@@ -2,10 +2,10 @@
 
 ## Downloading SOFA
 
-To download SOFA, visit the official SOFA website at https://www.sofa-framework.org/download/. On this page, you will find the latest version of SOFA. There are two types of files available:
+To download SOFA, visit the official SOFA website at https://www.sofa-framework.org/download/. On this page, you will find the latest version of SOFA. There are two types of files available, download one or the other:
 
-- Installer Files: These files are designed for easy installation of SOFA, including all the necessary binaries, on your operating system.
-- Zip Files: These files contain a folder with the SOFA application and its associated binaries.  
+- Installer Files: these files are designed for easy installation of SOFA, including all the necessary binaries, on your operating system.
+- Zip Files: these files contain a folder with the SOFA application and its associated binaries.  
 
 If you choose the zip file option, extract its contents to access the SOFA application and binaries.
 
