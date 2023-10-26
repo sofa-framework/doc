@@ -6,7 +6,8 @@ i.e. a plugin which is not provided in the source code of SOFA.
 
 > ⚠️ **WARNING**: In most cases, the version of a plugin follows the version of SOFA. For compatibility reasons, it is preferable to compile the version of the plugin corresponding to your SOFA version. For example, if you have the SOFA v23.06 binaries, you will need to compile plugins using their v23.06 version (i.e. their v23.06 branch).
 
-Two ways of building a plugin is possible:
+Two ways of building a plugin are possible:
+
 - you are compiling SOFA and you integrate your plugin project along SOFA (aka _in-tree build_).
 - you have an install of SOFA (either you downloaded a [pre-built configuration](https://www.sofa-framework.org/download/), or you installed by yourself from a [SOFA build](https://www.sofa-framework.org/community/doc/getting-started/build/build-options/)), and you want to use this installation to build your plugin (aka _out-of-tree build_)
 
