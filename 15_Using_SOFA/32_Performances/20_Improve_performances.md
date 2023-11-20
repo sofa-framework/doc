@@ -100,11 +100,16 @@ With iterative solvers, finding an appropriate trade-off between accuracy and ef
 
 #### Matrix Assembly
 
-When the linear solver assembles the system matrix in a compressed sparse row data structure, it is possible to use a matrix where the entries are blocs of 3x3.
+**Assembling by blocks**: When the linear solver assembles the system matrix in a compressed sparse row data structure, it is possible to use a matrix where the entries are blocs of 3x3.
 This is much faster to assemble.
 It is the most efficient when the simulation only involves 3 degrees of freedom per node (known as "Vec3d" in the SOFA template).
 The template parameter to use is `CompressedRowSparseMatrixMat3x3d`.
 Note that all solvers do not support this template parameter.
+
+**Parallel assembly of independent matrices**: Mapped components contributes to a matrix data structure different from the main matrix.
+Once they are assembled, the mapped matrices are projected into the main DoFs space via mappings jacobian matrices.
+Since the main matrix and the mapped matrices are independent, they can be assembled in parallel.
+To activate this option, enable the Data `parallelAssemblyIndependentMatrices` in `MatrixLinearSystem`.
 
 #### Matrix Assembly vs. Matrix Free
 
