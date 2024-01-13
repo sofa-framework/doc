@@ -1,7 +1,7 @@
 # Lexicography
 
 ## Library
-Libraries are the central elements of SOFA. They define all SOFA framework mechanisms at the very core.
+Libraries are the central elements of SOFA. They define all SOFA framework mechanisms in [Sofa/framework](https://github.com/sofa-framework/sofa/tree/master/Sofa/framework).
 
 Libraries do not contain Components.
 Libraries are not externalizable. They are all within SOFA sources.
@@ -14,7 +14,7 @@ From the system point of view, a Library is a dynamic library (.so or .dylib or 
 Examples: Sofa.Core, Sofa.Type
 
 ## Module
-Modules are the elements defining all usual SOFA features with Components.
+Modules are the elements defining all usual SOFA features with Components in [Sofa/Component](https://github.com/sofa-framework/sofa/tree/master/Sofa/Component).
 Modules can be loaded in a Simulation by the Plugin Manager via the Component `RequiredPlugin` in a scene, or the runSofa parameter `-l ModuleName`, or within the `plugin_list.conf` file.
 
 Modules contain Components.
