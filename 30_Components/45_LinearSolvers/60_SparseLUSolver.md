@@ -52,4 +52,4 @@ or using SofaPython3:
 node.addObject('SparseLUSolver')
 ```
 
-An example scene involving a SparseLUSolver is available in [*examples/Component/LinearSolver/Direct/FEMBAR_SparseLUSolver.scn*](https://github.com/sofa-framework/sofa/blob/master/examples/Component/LinearSolver/Direct/FEMBAR_SparseLUSolver.scn)
+An example scene involving a SparseLUSolver is available in [*applications/plugins/CSparseSolvers/examples/FEMBAR_SparseLUSolver.scn*](https://github.com/sofa-framework/CSparseSolvers/blob/master/examples/FEMBAR_SparseLUSolver.scn). Note that the SparseLUSolver requires the CSparseSolvers plugin to be fetched and activated.
