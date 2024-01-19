@@ -26,4 +26,4 @@ or using SofaPython3:
 node.addObject('MeshSTLLoader', name="STLLoader", filename="mesh/circle_knot_ascii.stl", flipNormals="0")
 ```
 
-An example scene involving a MeshSTLLoader is available in [*examples/Components/loader/MeshSTLLoader.scn*](https://github.com/sofa-framework/sofa/blob/master/examples/Components/loader/MeshSTLLoader.scn)
+An example scene involving a MeshSTLLoader is available in [*examples/Component/IO/Mesh/MeshSTLLoader.scn*](https://github.com/sofa-framework/sofa/blob/master/examples/Component/IO/Mesh/MeshSTLLoader.scn)

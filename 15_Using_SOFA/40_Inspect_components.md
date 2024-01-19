@@ -10,7 +10,7 @@ With this component, you can see the positions, trajectories,
 velocities, forces of chosen particles directly in the GUI or save it
 into files (readable with Gnuplot for example). You can get an idea of
 what this component can make launching the
-*Sofa/examples/Components/misc/Monitor.scn* scene.
+*examples/Component/SceneUtility/Monitor.scn* scene.
 
 #### Using the Monitor Component
 

@@ -47,4 +47,4 @@ Moreover, each constrained object must define in its node a ConstraintCorrection
 Example
 -------
 
-An example scene involving a UnilateralInteractionConstraint is available in [*examples/Components/constraint/UnilateralInteractionConstraint.scn*](https://github.com/sofa-framework/sofa/blob/master/examples/Components/constraint/UnilateralInteractionConstraint.scn). Note that in this example, the UnilateralInteractionConstraint will be created as soon as a contact point is outputed from the collision detection phase.
+An example scene involving a UnilateralInteractionConstraint is available in [*examples/Component/Constraint/Lagrangian/FrictionContact_LCP_without_friction.scn*](https://github.com/sofa-framework/sofa/blob/master/examples/Component/Constraint/Lagrangian/FrictionContact_LCP_without_friction.scn). Note that in this example, the UnilateralInteractionConstraint will be created as soon as a contact point is outputed from the collision detection phase.

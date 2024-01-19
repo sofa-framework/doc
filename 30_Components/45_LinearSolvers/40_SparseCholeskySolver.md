@@ -53,4 +53,4 @@ or using SofaPython3:
 node.addObject('SparseCholeskySolver')
 ```
 
-An example scene involving a SparseCholzskySolver is available in [*examples/Components/linearsolver/FEMBAR-SparseCholeskySolver.scn*](https://github.com/sofa-framework/sofa/blob/master/examples/Components/linearsolver/FEMBAR-SparseCholeskySolver.scn)
+An example scene involving a SparseCholzskySolver is available in [*applications/plugins/CSparseSolvers/examples/FEMBAR_SparseCholeskySolver.scn*](https://github.com/sofa-framework/sofa/blob/master/applications/plugins/CSparseSolvers/examples/FEMBAR_SparseCholeskySolver.scn)

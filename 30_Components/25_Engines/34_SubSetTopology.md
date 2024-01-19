@@ -36,7 +36,7 @@ Input parameters
 
 **For behaviour:**
 
--   **localIndices**: if true, will compute local dof indices in topological elements. (see examples below)  
+-   **localIndices**: if true, will compute local dof indices in topological elements. (see examples below)  
 
 Output Data
 -----------
@@ -50,10 +50,10 @@ Output Data
 -   **edgesInROI**: edges contained in the ROI
 -   **edgesOutROI**: edges contained out of the ROI
 -   **trianglesInROI**: triangles contained in the ROI
--   **trianglesOutROI**: triangles contained out of the ROI
+-   **trianglesOutROI**: triangles contained out of the ROI
 -   **tetrahedraInROI**: tetrahedra contained in the ROI
 -   **tetrahedraOutROI**: tetrahedra contained out of the ROI
--   **nbrborder**: if localIndices option is activated, will give the number of vertices on the border of the ROI (being the n first points of each output Topology).  
+-   **nbrborder**: if localIndices option is activated, will give the number of vertices on the border of the ROI (being the n first points of each output Topology).  
 
 
 
@@ -62,6 +62,6 @@ Examples
 
 Three example scenes involving the SubsetTopology engine are available:
 
-- [*examples/Components/engine/SubsetTopology.scn*](https://github.com/sofa-framework/sofa/blob/master/examples/Components/engine/SubsetTopology.scn)
-- [*examples/Components/engine/SubsetTopology_localIndicesOption.scn*](https://github.com/sofa-framework/sofa/blob/master/examples/Components/engine/SubsetTopology_localIndicesOption.scn)
-- [*examples/Components/engine/SubsetTopology_refiningMesh.scn*](https://github.com/sofa-framework/sofa/blob/master/examples/Components/engine/SubsetTopology_refiningMesh.scn)
+- [*examples/Component/Engine/Select/SubsetTopology.scn*](https://github.com/sofa-framework/sofa/blob/master/examples/Component/Engine/Select/SubsetTopology.scn)
+- [*examples/Component/Engine/Select/SubsetTopology_localIndicesOption.scn*](https://github.com/sofa-framework/sofa/blob/master/examples/Component/Engine/Select/SubsetTopology_localIndicesOption.scn)
+- [*examples/Component/Engine/Select/SubsetTopology_refiningMesh.scn*](https://github.com/sofa-framework/sofa/blob/master/examples/Component/Engine/Select/SubsetTopology_refiningMesh.scn)

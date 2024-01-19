@@ -26,4 +26,4 @@ or using SofaPython3:
 node.addObject('MeshVTKLoader', name="VtkLoader", filename="mesh/liver.vtk", flipNormals="0")
 ```
 
-An example scene involving a MeshVTKLoader is available in [*examples/Components/loader/MeshVTKLoader.scn*](https://github.com/sofa-framework/sofa/blob/master/examples/Components/loader/MeshVTKLoader.scn)
+An example scene involving a MeshVTKLoader is available in [*examples/Component/IO/Mesh/MeshVTKLoader.scn*](https://github.com/sofa-framework/sofa/blob/master/examples/Component/IO/Mesh/MeshVTKLoader.scn)

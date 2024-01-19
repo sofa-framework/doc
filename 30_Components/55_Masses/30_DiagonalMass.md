@@ -90,4 +90,4 @@ or using SofaPython3:
 node.addObject('DiagonalMass', massDensity='1000')
 ```
 
-An example scene involving a DiagonalMass is available in [*examples/Components/mass/DiagonalMass.scn*](https://github.com/sofa-framework/sofa/blob/master/examples/Components/mass/DiagonalMass.scn)
+An example scene involving a DiagonalMass is available in [*examples/Component/Mass/DiagonalMass.scn*](https://github.com/sofa-framework/sofa/blob/master/examples/Component/Mass/DiagonalMass.scn)

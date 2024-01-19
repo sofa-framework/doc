@@ -26,4 +26,4 @@ Important Parameter
 Examples
 --------
 
-An example scene involving the ExtrudeSurface engine is available in [*examples/Components/engine/ExtrudeSurface.scn*](https://github.com/sofa-framework/sofa/blob/master/examples/Components/engine/ExtrudeSurface.scn)
+An example scene involving the ExtrudeSurface engine is available in [*examples/Component/Engine/Generate/ExtrudeSurface.scn*](https://github.com/sofa-framework/sofa/blob/master/examples/Component/Engine/Generate/ExtrudeSurface.scn)

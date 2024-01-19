@@ -25,4 +25,4 @@ Additional parameters
 Examples
 ---------
 
-An example scene involving the TransformPosition engine is available in [*examples/Components/engine/TransformPosition.scn*](https://github.com/sofa-framework/sofa/blob/master/examples/Components/engine/TransformPosition.scn)
+An example scene involving the TransformPosition engine is available in [*examples/Component/Engine/Transform/TransformPosition.scn*](https://github.com/sofa-framework/sofa/blob/master/examples/Component/Engine/Transform/TransformPosition.scn)

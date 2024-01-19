@@ -56,4 +56,4 @@ or using SofaPython3:
 node.addObject('TriangleCollisionModel', simulated='1', contactStiffness='100', selfCollision='0', group='1')
 ```
 
-An example scene involving a TriangleCollisionModel is available in [*examples/Components/collision/TriangleModel.scn*](https://github.com/sofa-framework/sofa/blob/master/examples/Components/collision/TriangleModel.scn)
+An example scene involving a TriangleCollisionModel is available in [*examples/Component/Collision/Geometry/TriangleModel.scn*](https://github.com/sofa-framework/sofa/blob/master/examples/Component/Collision/Geometry/TriangleModel.scn)

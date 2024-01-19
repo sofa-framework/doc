@@ -50,4 +50,4 @@ or using SofaPython3:
 node.addObject('AttachConstraint', object1="@M1", object2="@M2", indices1="0 1 2", indices2="10 11 12", constraintFactor="1 1 1")
 ```
 
-An example scene involving a AttachConstraint is available in [*examples/Components/constraint/AttachConstraint.scn*](https://github.com/sofa-framework/sofa/blob/master/examples/Components/constraint/AttachConstraint.scn)
+An example scene involving a AttachConstraint is available in [*examples/Component/Constraint/Projective/AttachConstraint.scn*](https://github.com/sofa-framework/sofa/blob/master/examples/Component/Constraint/Projective/AttachConstraint.scn)

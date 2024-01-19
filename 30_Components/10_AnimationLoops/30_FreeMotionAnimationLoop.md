@@ -40,4 +40,4 @@ or using SofaPython3:
 node.addObject('FreeMotionAnimationLoop')
 ```
 
-An example scene involving a FreeAnimationLoop is available in [*examples/Components/animationloop/FreeMotionAnimationLoop.scn*](https://github.com/sofa-framework/sofa/blob/master/examples/Components/animationloop/FreeMotionAnimationLoop.scn)
+An example scene involving a FreeAnimationLoop is available in [*examples/Component/AnimationLoop/FreeMotionAnimationLoop.scn*](https://github.com/sofa-framework/sofa/blob/master/examples/Component/AnimationLoop/FreeMotionAnimationLoop.scn)

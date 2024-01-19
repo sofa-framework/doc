@@ -23,7 +23,7 @@ into a node where a BaseMeshTopology exists.
     not possible. Consequently, only one primitive can get values (as
     the number of values must equal the number of cells)
 
- 
+ 
 
 Limitations
 -----------
@@ -31,17 +31,17 @@ Limitations
 For now, this class supports only , for the data, Vec{1,2}{f/d} as an
 array of values and Vec3{f/d} as an array of vectors ('real' vector with
 arrow and so on ...) The export is processed when Control+E keys are
-pressed.Don't forget to set listening to true.  
+pressed.Don't forget to set listening to true.  
 
 Example
 -------
 
--   [example/Component/misc/VTKExporter.scn](https://github.com/sofa-framework/sofa/tree/master/examples/Components/misc/VTKExporter.scn)
+-   [example/Component/Collision/Response/VTKExporter.scn](https://github.com/sofa-framework/sofa/tree/master/examples/Component/Collision/Response/VTKExporter.scn)
 
 [![Example\_vtkexporter\_paraview](https://www.sofa-framework.org/wp-content/uploads/2014/11/Example_vtkexporter_paraview.jpg){.size-full
 .wp-image-1624 .aligncenter width="600"
 height="357"}](https://www.sofa-framework.org/wp-content/uploads/2014/11/Example_vtkexporter_paraview.jpg)
- 
+ 
 
 Reconstruct VTK mesh in ParaView
 --------------------------------

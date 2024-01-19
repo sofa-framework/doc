@@ -39,4 +39,4 @@ or using SofaPython3:
 node.addObject('DefaultAnimationLoop')
 ```
 
-An example scene involving a DefaultAnimationLoop is available in [*examples/Components/mass/UniformMass.scn*](https://github.com/sofa-framework/sofa/blob/master/examples/Components/mass/UniformMass.scn)
+An example scene involving a DefaultAnimationLoop is available in [*examples/Component/AnimationLoop/DefaultAnimationLoop.scn*](https://github.com/sofa-framework/sofa/blob/master/examples/Component/AnimationLoop/DefaultAnimationLoop.scn)

@@ -26,4 +26,4 @@ or using SofaPython3:
 node.addObject('MeshOBJLoader', name="ObjLoader", filename="mesh/floor3.obj")
 ```
 
-An example scene involving a MeshOBJLoader is available in [*examples/Components/loader/MeshOBJLoader.scn*](https://github.com/sofa-framework/sofa/blob/master/examples/Components/loader/MeshObjLoader.scn)
+An example scene involving a MeshOBJLoader is available in [*examples/Component/IO/Mesh/MeshOBJLoader.scn*](https://github.com/sofa-framework/sofa/blob/master/examples/Component/IO/Mesh/MeshObjLoader.scn)

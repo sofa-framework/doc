@@ -43,4 +43,4 @@ node.addObject('QuadBendingFEMForceField', data_field='X')
 
 With a description of each data
 
-An example scene involving a QuadBendingFEMForceField is available in [*examples/Components/forcefield/QuadBendingFEMForceField.scn*](https://github.com/sofa-framework/sofa/blob/master/examples/Components/forcefield/QuadBendingFEMForceField.scn)
+An example scene involving a QuadBendingFEMForceField is available in [*examples/Component/SolidMechanics/FEM/QuadBendingFEMForceField.scn*](https://github.com/sofa-framework/sofa/blob/master/examples/Component/SolidMechanics/FEM/QuadBendingFEMForceField.scn)

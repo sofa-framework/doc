@@ -17,7 +17,7 @@ This engine finds the topological primitives which are inside a given box. Below
 
 
 -   **box**: defined by two points (xmin,ymin,zmin, xmax,ymax,zmax)
--   **position/rest\_position**: rest position coordinates of the degrees of freedom    
+-   **position/rest\_position**: rest position coordinates of the degrees of freedom    
 
 ![](https://www.sofa-framework.org/wp-content/uploads/2014/11/BoxRoi1.png){.wp-image-1424 .aligncenter width="40%" height="auto"}
 
@@ -26,8 +26,8 @@ This engine finds the topological primitives which are inside a given box. Below
 
 This engine finds the points which are inside a given box computed from a plane defined by three points and a depth distance. Below are given its Data:
 
--    **planes**: plane defined by 3 points and a depth distance (as shown above).
--   **position/rest\_position**: rest position coordinates of the degrees of freedom  
+-    **planes**: plane defined by 3 points and a depth distance (as shown above).
+-   **position/rest\_position**: rest position coordinates of the degrees of freedom  
 
 ![](https://www.sofa-framework.org/wp-content/uploads/2014/11/PlaneRoi1.png){.wp-image-1437 .aligncenter width="40%" height="auto"}
 
@@ -66,7 +66,7 @@ Concerning topology Note that those parameters are set to true by default. So it
 
 -   **computeEdges**: if true, will compute edge list and index list inside the ROI.
 -   **computeTriangles**: if true, will compute triangle list and index list inside the ROI.
--   **computeTetrahedra**: if true, will compute tetrahedra list and index list inside the ROI.  
+-   **computeTetrahedra**: if true, will compute tetrahedra list and index list inside the ROI.  
 
 #### Output data's
 
@@ -84,19 +84,16 @@ Examples
 
 **BoxROI** usage is shown in the following scene files:
 
-- [*examples/Components/engine/BoxROI.scn*](https://github.com/sofa-framework/sofa/blob/master/examples/Components/engine/BoxROI.scn)
-- [*examples/Components/Constraint/BoxConstraint.scn*](https://github.com/sofa-framework/sofa/blob/master/examples/Components/Constraint/BoxConstraint.scn)
-- [*examples/Components/Forcefield/BoxContactForcefield.scn*](https://github.com/sofa-framework/sofa/blob/master/examples/Components/Forcefield/BoxContactForcefield.scn)
-
-
+- [*examples/Component/Engine/Select/BoxROI.scn*](https://github.com/sofa-framework/sofa/blob/master/examples/Component/Engine/Select/BoxROI.scn)
+- [*examples/Component/Constraint/Projective/BoxConstraint.scn*](https://github.com/sofa-framework/sofa/blob/master/examples/Component/Constraint/Projective/BoxConstraint.scn)
 
 
 **PlaneROI** usage is shown in the following scene files:
 
-- [*examples/Components/engine/PlaneROI.scn*](https://github.com/sofa-framework/sofa/blob/master/examples/Components/engine/PlaneROI.scn)
-- [*examples/Components/Constraint/PlaneConstraint.scn*](https://github.com/sofa-framework/sofa/blob/master/examples/Components/Constraint/PlaneConstraint.scn)
+- [*examples/Component/Engine/Select/PlaneROI.scn*](https://github.com/sofa-framework/sofa/blob/master/examples/Component/Engine/Select/PlaneROI.scn)
+- [*examples/Component/Constraint/Projective/PlaneConstraint.scn*](https://github.com/sofa-framework/sofa/blob/master/examples/Component/Constraint/Projective/PlaneConstraint.scn)
 
 
 **SphereROI** usage is shown in the following scene files:
 
-- [*examples/Components/engine/SphereROI.scn*](https://github.com/sofa-framework/sofa/blob/master/examples/Components/engine/SphereROI.scn)
+- [*examples/Component/Engine/Select/SphereROI.scn*](https://github.com/sofa-framework/sofa/blob/master/examples/Component/Engine/Select/SphereROI.scn)

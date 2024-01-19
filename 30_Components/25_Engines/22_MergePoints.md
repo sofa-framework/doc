@@ -20,4 +20,4 @@ Output Data
 Examples
 --------
 
-An example scene involving the MergePoints engine is available in [*examples/Components/engine/MergePoints.scn*](https://github.com/sofa-framework/sofa/blob/master/examples/Components/engine/MergePoints.scn)
+An example scene involving the MergePoints engine is available in [*examples/Component/Engine/Generate/MergePoints.scn*](https://github.com/sofa-framework/sofa/blob/master/examples/Component/Engine/Generate/MergePoints.scn)

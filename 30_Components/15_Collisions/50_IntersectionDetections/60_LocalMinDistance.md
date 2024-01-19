@@ -63,4 +63,4 @@ or using SofaPython3:
 node.addObject('LocalMinDistance', name='LMD-proximity', alarmDistance='.5', contactDistance='.3', angleCone='0.0')
 ```
 
-An example scene involving a LocalMinDistance is available in [*examples/Components/constraint/FrictionContact.scn*](https://github.com/sofa-framework/sofa/blob/master/examples/Components/constraint/FrictionContact.scn)
+An example scene involving a LocalMinDistance is available in [*examples/Component/Collision/Response/FrictionContact.scn*](https://github.com/sofa-framework/sofa/blob/master/examples/Component/Collision/Response/FrictionContact.scn)

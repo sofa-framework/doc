@@ -65,4 +65,4 @@ or using SofaPython3:
 node.addObject('NewmarkImplicitSolver', rayleighMass='0.01', rayleighStiffness='0.01')  
 ```  
 
-An example scene involving a NewmarkImplicitSolver is available in [*examples/Components/solver/NewmarkImplicitSolver.scn*](https://github.com/sofa-framework/sofa/blob/master/examples/Components/solver/NewmarkImplicitSolver.scn)
+An example scene involving a NewmarkImplicitSolver is available in [*examples/Component/ODESolver/Backward/NewmarkImplicitSolver.scn*](https://github.com/sofa-framework/sofa/blob/master/examples/Component/ODESolver/Backward/NewmarkImplicitSolver.scn)
