@@ -171,6 +171,44 @@ And the following must be added to *applications/plugins/CMakeLists.txt*:
 sofa_add_subdirectory(plugin MyPlugin MyPlugin)
 ```
 
+Plugin architecture
+===================
+
+The development team recommends the following architecture (here an example for the VolumetricRendering plugin):
+``` txt
+(all plugins)
+- SofaCUDA
+- VolumetricRendering (This is the root of the plugin)
+  - CMakeLists.txt
+  - src
+      - VolumetricRendering/BaseVolumetricRenderer.h
+  - examples
+      - python/
+          - all python examples
+          - volumetricrendering/\_\_init\_\_.py
+  - tests
+  - extensions
+      - CUDA (nom de la target VolumetricRendering.CUDA)
+        - CMakeLists.txt `find_package(VolumetricRendering)`
+        - src/>>>>
+            - VolumetricRendering/CUDA/BaseCudaVolumetricRenderer.h
+        - examples
+        - tests
+      - OpenCL (nom de la target VolumetricRendering.OpenCL)
+        - CMakeLists.txt `find_package(VolumetricRendering)`
+        - src/>>> 
+            - VolumetricRendering/OpenCL/BaseCLXX.h
+        - examples
+        - tests
+      - Python (bindings)
+        - CMakeLists.txt `find_package(VolumetricRendering)`
+        - src/
+        - examples
+        - tests
+  - libraries
+```
+
+
 Keep us updated!
 ================
 
