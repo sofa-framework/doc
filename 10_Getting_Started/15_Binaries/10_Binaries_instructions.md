@@ -18,3 +18,18 @@ If you downloaded an installer file, simply run the file, and follow the install
 ## Execute
 
 To run SOFA, locate and execute the application called `runSofa`. For more detailed information on how to use the application, you can refer to the official documentation on the SOFA website at [https://www.sofa-framework.org/community/doc/using-sofa/runsofa/](https://www.sofa-framework.org/community/doc/using-sofa/runsofa/). This documentation will provide you with further guidance on using SOFA effectively.
+
+### Notes for MacOS Users
+
+Unfortunately, MacOS binaries of SOFA are not code-signed. It means that MacOS adds a quarantine flag to the binaries when a user downloads them. The result is a warning window with the message "runSofa cannot be opened because the developer cannot be verified.", preventing to open the application.
+
+There are several solutions to run SOFA anyway:
+
+- Build SOFA by yourself. MacOS does not add the quarantine flags on the local builds. See the instructions [here](https://www.sofa-framework.org/community/doc/getting-started/build/macos/).
+- Run the following command:
+
+```bash
+xattr -dr com.apple.quarantine path/to/sofa/folder
+```
+
+with path/to/sofa/folder is the folder where the binaries of SOFA are located. This command removes the quarantine flags on the binary files.
