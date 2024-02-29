@@ -110,7 +110,7 @@ SOFA requires some libraries:
     
 -   **Python 3.10** + pip + numpy + scipy
     ```bash
-    sudo apt install python3.10-dev
+    sudo apt install python3.10-dev pybind11-dev
     ```
     ```bash
     sudo apt-get install python3.10-distutils \
