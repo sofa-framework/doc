@@ -79,7 +79,11 @@ brew install ccache
 ## Core (required)
 
 SOFA requires some libraries:
-
+-  **tinyXML2**
+    ```bash
+    brew install tinyxml2
+    ```
+   
 -   **Qt** (>= 5.12.0) with **Charts** and **WebEngine**    
     We recommend to install Qt **in your user directory** with [the unified installer](http://download.qt.io/official_releases/online_installers).  
     Make sure to enable **Charts** and **WebEngine** components.  
@@ -89,7 +93,15 @@ SOFA requires some libraries:
     ```bash
     brew install boost
     ```
-
+-   **Python 3.10** + pip + numpy + scipy
+    ```bash
+    brew install python@3.10
+    brew link --force python@3.10
+    python3 -m pip install --upgrade pip
+    python3 -m pip install numpy scipy
+    brew install pybind11
+    ```
+    
 -   **Additional libraries**: libPNG, libJPEG, libTIFF, Glew   
     ```bash
     brew install libpng libjpeg libtiff glew
@@ -150,7 +162,7 @@ sofa/
 
 Get the current **stable** version on the v23.06 branch:
 ``` {.bash .stable}
-git clone -b v23.06 https://github.com/sofa-framework/sofa.git sofa/src
+git clone -b v23.12 https://github.com/sofa-framework/sofa.git sofa/src
 ```
 
 **OR** get the development **unstable** version on the master branch:
