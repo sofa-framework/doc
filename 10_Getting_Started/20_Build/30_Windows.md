@@ -81,7 +81,7 @@ SOFA requires some libraries:
     
 -   **Python** (= 3.10.x)  
     Download and install the latest [**Python 3.10 (amd64)**](https://www.python.org/ftp/python/3.10.10/python-3.10.10-amd64.exe).
-    Then install the python dependencies. Run the following commands in cmd by replacing `path\to\Python310\ ` byt the path where python was installed on your OS.
+    Then install the python dependencies. Run the following commands in cmd by replacing `path\to\Python310\ ` by the path where python was installed on your OS.
     ```
     path\to\Python310\python.exe -m pip install --upgrade pip
     path\to\Python310\python.exe -m pip install numpy scipy pybind11==2.9.1
