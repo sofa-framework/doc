@@ -70,4 +70,4 @@ or using SofaPython3:
 node.addObject('MinProximityIntersection', name='Proximity', alarmDistance='.5', contactDistance='.3', useLinePoint='false')
 ```
 
-An example scene involving a MinProximityIntersection is available in [*examples/Components/collision/TriangleModel.scn*](https://github.com/sofa-framework/sofa/blob/master/examples/Components/collision/TriangleModel.scn)
+An example scene involving a MinProximityIntersection is available in [*examples/Component/Collision/Geometry/TriangleModel.scn*](https://github.com/sofa-framework/sofa/blob/master/examples/Component/Collision/Geometry/TriangleModel.scn)

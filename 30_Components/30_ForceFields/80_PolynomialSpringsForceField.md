@@ -66,4 +66,4 @@ or using Python:
 node.createObject('DiagonalMass', massDensity='1000')
 ```
 
-An example scene involving a PolynomialSpringsForceField is available in [*examples/Components/forcefield/PolynomialSpringsForceField.scn*](https://github.com/sofa-framework/sofa/blob/master/examples/Components/forcefield/PolynomialSpringsForceField.scn)
+An example scene involving a PolynomialSpringsForceField is available in [*examples/Component/SolidMechanics/Spring/PolynomialSpringsForceField.scn*](https://github.com/sofa-framework/sofa/blob/master/examples/Component/SolidMechanics/Spring/PolynomialSpringsForceField.scn)

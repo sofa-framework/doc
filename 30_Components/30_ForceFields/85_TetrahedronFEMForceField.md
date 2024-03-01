@@ -44,4 +44,4 @@ node.addObject('TetrahedronFEMForceField', data_field='X')
 
 With a description of each data
 
-An example scene involving a TetrahedronFEMForceField is available in [*examples/Components/forcefield/TetrahedronFEMForceField.scn*](https://github.com/sofa-framework/sofa/blob/master/examples/Components/forcefield/TetrahedronFEMForceField.scn)
+An example scene involving a TetrahedronFEMForceField is available in [*examples/Component/SolidMechanics/FEM/TetrahedronFEMForceField.scn*](https://github.com/sofa-framework/sofa/blob/master/examples/Component/SolidMechanics/FEM/TetrahedronFEMForceField.scn)

@@ -27,4 +27,4 @@ or using SofaPython3:
 node.addObject('MeshGmshLoader', name="ObjLoader", filename="mesh/square3.msh", createSubelements="true", flipNormals="0")
 ```
 
-An example scene involving a MeshGmshLoader is available in [*examples/Components/loader/MeshGmshLoader.scn*](https://github.com/sofa-framework/sofa/blob/master/examples/Components/loader/MeshGmshLoader.scn)
+An example scene involving a MeshGmshLoader is available in [*examples/Component/IO/Mesh/MeshGmshLoader.scn*](https://github.com/sofa-framework/sofa/blob/master/examples/Component/IO/Mesh/MeshGmshLoader.scn)

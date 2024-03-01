@@ -7,7 +7,7 @@ Customize what to render on screen
 the **VisualParams** for the current subgraph. It merges the
 **DisplayFlags** conveyed by the **VisualParams** with its own
 DisplayFlags. Example Taken from
-*examples/Components/visualmodel/VisualStyle.scn*
+[*examples/Component/Visual/VisualStyle.scn*](https://github.com/sofa-framework/sofa/blob/master/examples/Component/Visual/VisualStyle.scn)
 
 
 

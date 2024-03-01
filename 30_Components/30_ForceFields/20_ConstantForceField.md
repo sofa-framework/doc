@@ -40,4 +40,4 @@ node.addObject('ConstantForceField', indices=[0 1 2], forces=[[-1 -1 0] [1 -1 0]
 
 With a description of each data
 
-An example scene involving a ConstantForceField is available in [*examples/Components/forcefield/ConstantForceField.scn*](https://github.com/sofa-framework/sofa/blob/master/examples/Components/forcefield/ConstantForceField.scn)
+An example scene involving a ConstantForceField is available in [*examples/Component/MechanicalLoad/ConstantForceField.scn*](https://github.com/sofa-framework/sofa/blob/master/examples/Component/MechanicalLoad/ConstantForceField.scn)

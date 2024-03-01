@@ -89,4 +89,4 @@ or using SofaPython3:
 node.addObject('UniformMass', totalMass='10')
 ```
 
-An example scene involving a UniformMass is available in [*examples/Components/mass/UniformMass.scn*](https://github.com/sofa-framework/sofa/blob/master/examples/Components/mass/UniformMass.scn)
+An example scene involving a UniformMass is available in [*examples/Component/Mass/UniformMass.scn*](https://github.com/sofa-framework/sofa/blob/master/examples/Component/Mass/UniformMass.scn)

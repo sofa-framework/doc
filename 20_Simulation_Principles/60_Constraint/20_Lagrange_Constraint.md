@@ -235,11 +235,9 @@ More about Lagrange multipliers and constraints
 To read more and go further regarding constraints relying on Lagrange multipliers, please read:
 
   - Pr. Duriez's [habilitation thesis](http://tel.archives-ouvertes.fr/tel-00785118/)
-
   - Pr. Baraff's [courses](https://www.cs.cmu.edu/~baraff/sigcourse/)
 
 You can also look at examples in the scenes of SOFA like:
 
-  - _examples/Components/animationloop/FreeMotionAnimationLoop.scn_
-
-  - _examples/Components/constraint/SlidingConstraint.scn_
+  - _examples/Component/AnimationLoop/FreeMotionAnimationLoop.scn_
+  - _examples/Component/Constraint/Lagrangian/SlidingConstraint.scn_

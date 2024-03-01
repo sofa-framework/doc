@@ -22,9 +22,9 @@ Input Data
 Output Data
 -----------
 
--   **frames**: set of rigid types oriented as described before.  
+-   **frames**: set of rigid types oriented as described before.  
 
 Examples
 ---------
 
-An example scene involving the vertex2Frame engine is available in [*examples/Components/engine/vertex2Frame.scn*](https://github.com/sofa-framework/sofa/blob/master/examples/Components/engine/vertex2Frame.scn)
+An example scene involving the vertex2Frame engine is available in [*examples/Component/Engine/Transform/vertex2Frame.scn*](https://github.com/sofa-framework/sofa/blob/master/examples/Component/Engine/Transform/vertex2Frame.scn)

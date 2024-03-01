@@ -69,4 +69,4 @@ or using SofaPython3:
 node.addObject('StaticSolver', newton_iterations='10', correction_tolerance_threshold='1e-4', residual_tolerance_threshold='1e-2', should_diverge_when_residual_is_growing='0')  
 ```  
  
-An example scene involving a StaticSolver is available in [*examples/Components/solver/StaticSolver.scn*](https://github.com/sofa-framework/sofa/blob/master/examples/Components/solver/StaticSolver.scn)
+An example scene involving a StaticSolver is available in [*examples/Component/ODESolver/Backward/StaticSolver.scn*](https://github.com/sofa-framework/sofa/blob/master/examples/Component/ODESolver/Backward/StaticSolver.scn)

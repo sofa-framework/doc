@@ -13,7 +13,7 @@ coded :
   \[caption id="attachment\_1419" align="alignnone" width="400"\][![Hard shadows](https://www.sofa-framework.org/wp-content/uploads/2015/01/Hard_shadows.jpg){.wp-image-1419 width="400" height="300"}](https://www.sofa-framework.org/wp-content/uploads/2015/01/Hard_shadows.jpg) Hard shadows\[/caption\]   \[caption id="attachment\_1420" align="alignnone" width="400"\][![Soft shadows](https://www.sofa-framework.org/wp-content/uploads/2015/01/Soft_shadows1.jpg){.wp-image-1420 width="400" height="300"}](https://www.sofa-framework.org/wp-content/uploads/2015/01/Soft_shadows1.jpg) Soft shadows\[/caption\]
   -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-(example in *examples/Components/visualmodel/OglShadowShader.scn*)
+(example in [*examples/Component/Visual/OglShadowShader.scn*](https://github.com/sofa-framework/sofa/blob/master/examples/Component/Visual/OglShadowShader.scn))
 
 #### Enabling Shadows
 

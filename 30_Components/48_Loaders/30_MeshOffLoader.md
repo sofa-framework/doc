@@ -26,4 +26,4 @@ or using SofaPython3:
 node.addObject('MeshOffLoader', name="offLoader", filename="mesh/aneurysm3D_1.off")
 ```
 
-An example scene involving a MeshOffLoader is available in [*examples/Components/loader/MeshOffLoader.scn*](https://github.com/sofa-framework/sofa/blob/master/examples/Components/loader/MeshOffLoader.scn)
+An example scene involving a MeshOffLoader is available in [*examples/Component/IO/Mesh/MeshOffLoader.scn*](https://github.com/sofa-framework/sofa/blob/master/examples/Component/IO/Mesh/MeshOffLoader.scn)

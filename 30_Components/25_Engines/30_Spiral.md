@@ -21,4 +21,4 @@ Additional Parameter
 Examples
 --------
 
-An example scene involving the Spiral engine is available in [*examples/Components/engine/spiral.scn*](https://github.com/sofa-framework/sofa/blob/master/examples/Components/engine/spiral.scn)
+An example scene involving the Spiral engine is available in [*examples/Component/Engine/Generate/spiral.scn*](https://github.com/sofa-framework/sofa/blob/master/examples/Component/Engine/Generate/spiral.scn)

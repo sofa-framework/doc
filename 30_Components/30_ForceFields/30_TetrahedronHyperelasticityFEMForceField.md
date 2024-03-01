@@ -58,4 +58,4 @@ Using SofaPython3:
 node.addObject('TetrahedronHyperelasticityFEMForceField', name="HyperElasticMaterial", materialName="StVenantKirchhoff", ParameterSet="3448.2 31034.4")
 ```
 
-An example scene involving a TetrahedronHyperelasticityFEMForceField is available in [*examples/Components/forcefield/TetrahedronHyperelasticityFEMForceField.scn*](https://github.com/sofa-framework/sofa/blob/master/examples/Components/forcefield/TetrahedronHyperelasticityFEMForceField.scn)
+An example scene involving a TetrahedronHyperelasticityFEMForceField is available in [*examples/Component/SolidMechanics/FEM/TetrahedronHyperelasticityFEMForceField.scn*](https://github.com/sofa-framework/sofa/blob/master/examples/Component/SolidMechanics/FEM/TetrahedronHyperelasticityFEMForceField.scn)

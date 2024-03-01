@@ -76,4 +76,4 @@ or using SofaPython3:
 node.addObject('FixedConstraint', indices='3 39 64')
 ```
 
-An example scene involving a FixedConstraint is available in [*examples/Components/constraint/FixedConstraint.scn*](https://github.com/sofa-framework/sofa/blob/master/examples/Components/constraint/FixedConstraint.scn)
+An example scene involving a FixedConstraint is available in [*examples/Component/Constraint/Projective/FixedConstraint.scn*](https://github.com/sofa-framework/sofa/blob/master/examples/Component/Constraint/Projective/FixedConstraint.scn)

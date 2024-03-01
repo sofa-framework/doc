@@ -151,4 +151,4 @@ or using SofaPython3:
 node.addObject('MeshMatrixMass', massDensity='1000')
 ```
 
-An example scene involving a MeshMatrixMass is available in [*examples/Components/mass/MeshMatrixMass.scn*](https://github.com/sofa-framework/sofa/blob/master/examples/Components/mass/MeshMatrixMass.scn)
+An example scene involving a MeshMatrixMass is available in [*examples/Component/Mass/MeshMatrixMass.scn*](https://github.com/sofa-framework/sofa/blob/master/examples/Component/Mass/MeshMatrixMass.scn)

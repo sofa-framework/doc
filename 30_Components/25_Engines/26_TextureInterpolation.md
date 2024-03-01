@@ -26,4 +26,4 @@ Additional Parameter
 Examples
 --------
 
-An example scene involving the TextureInterpolation engine is available in [*examples/Components/engine/TextureInterpolation.scn*](https://github.com/sofa-framework/sofa/blob/master/examples/Components/engine/TextureInterpolation.scn)
+An example scene involving the TextureInterpolation engine is available in [*examples/Component/Engine/GL/TextureInterpolation.scn*](https://github.com/sofa-framework/sofa/blob/master/examples/Component/Engine/GL/TextureInterpolation.scn)

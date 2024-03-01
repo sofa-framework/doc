@@ -118,7 +118,7 @@ The XLM scene looks like:
 
 Then, the nature of the topological changes can either:
 
-* be scheduled using a specific component: the TopologicalChangeProcessor (many examples are available in the folder _examples/Components/topology/TopologicalModifiers/_)
+* be scheduled using a specific component: the TopologicalChangeProcessor (many examples are available in the folder _examples/Component/Topology/Container/Dynamic/_)
 * or be developed for a specific need, e.g. simulating of cutting when a contact is detected. A class managing the topological change can be implemented using all functions implemented in the class _SetTopologyModifier_. Functions implementing standard removal or adding of elements are available in these modifiers. The class _TopologicalChangeManager_ is a good example.
 
 
@@ -149,4 +149,4 @@ Finally, SOFA allows to select a subset of the topology using a _SubsetTopologic
 
 
 
-All examples are available in the folder _examples/Components/topology/_.
+All examples are available in the folder _examples/Component/Topology/Mapping/_.

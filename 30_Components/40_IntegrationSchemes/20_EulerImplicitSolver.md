@@ -117,4 +117,4 @@ or using SofaPython3:
 node.addObject('EulerImplicitSolver', name='ODEsolver', rayleighStiffness='0.1' rayleighMass='0.1')  
 ```  
  
-An example scene involving a StaticSolver is available in [*examples/Components/solver/EulerImplicitSolver.scn*](https://github.com/sofa-framework/sofa/blob/master/examples/Components/solver/EulerImplicitSolver.scn)
+An example scene involving a StaticSolver is available in [*examples/Component/ODESolver/Backward/EulerImplicitSolver.scn*](https://github.com/sofa-framework/sofa/blob/master/examples/Component/ODESolver/Backward/EulerImplicitSolver.scn)

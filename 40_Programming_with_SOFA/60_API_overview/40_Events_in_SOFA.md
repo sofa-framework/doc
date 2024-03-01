@@ -61,12 +61,25 @@ Specific integration events
 
 In the same way than for Mouse or Keyboard events, you can detect
 specific events during the time integration. These events are managed
-and sent by the AnimationLoop you are using. The most common events are:
+and sent by the AnimationLoop you are using.
+
+Events related to the mechanics/solving are:
 
 -   BeginAnimationStep: start of a time step
 -   EndAnimationStep: end of a time step
+-   IntegrationBeginEvent: start of the integration phase
+-   IntegrationEndEvent: end of the integration phase
 -   CollisionBeginEvent: start of the collision phase
 -   CollisionEndEvent: end of the collision phase
+
+Interaction-related events are:
+
+- KeypressedEvent
+- KeyreleasedEvent
+- MouseEvent
+- HapticDeviceEvent
+- PauseEvent
+- IdleEvent
 
 ``` cpp
 template< class DataTypes>

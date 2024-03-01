@@ -57,4 +57,4 @@ or using SofaPython3:
 node.addObject('BilateralInteractionConstraint', template='Vec3d' object1='@CUBE_2/Constraints/points' object2='@CUBE_4/Constraints/points' first_point='1' second_point='0')
 ```
 
-An example scene involving a BilateralInteractionConstraint is available in [*examples/Components/constraint/BilateralInteractionConstraint.scn*](https://github.com/sofa-framework/sofa/blob/master/examples/Components/constraint/BilateralInteractionConstraint.scn)
+An example scene involving a BilateralInteractionConstraint is available in [*examples/Component/Constraint/Lagrangian/BilateralLagrangianConstraint_PGS.scn*](https://github.com/sofa-framework/sofa/blob/master/examples/Component/Constraint/Lagrangian/BilateralLagrangianConstraint_PGS.scn)
