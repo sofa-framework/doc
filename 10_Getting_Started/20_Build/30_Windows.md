@@ -2,14 +2,15 @@
 
 ## Setup script
 
-To simplify the configuration of our continuous integration machines, we created a complete setup script.
+To simplify the configuration of our continuous integration machines, we created a complete set of setup scripts.
 
 ### WARNING: USE AT YOUR OWN RISKS
-This script installs a lot of software directly in `C:\` without any prealable check.  
+These scripts install a lot of software directly in `C:\` without any prealable check.  
 It is meant to be used on a **fresh Windows**. We use it on disposable virtual machines only.  
 
-Setup script: [I am aware of the disclaimer above](https://github.com/sofa-framework/ci/blob/master/setup/setup-windows.bat)
+Setup script: [I am aware of the disclaimer above](https://github.com/sofa-framework/ci/blob/master/setup/)
 
+The two scripts `setup-windows_1.bat` and `setup-windows_2.bat` install the minimum set of requirements.
 
 ## Preconfigured Docker image
 
@@ -42,7 +43,7 @@ In the installer, you must enable:
 
 ## CMake: Makefile generator
 
-SOFA requires at least **CMake 3.12**.  
+SOFA requires at least **CMake 3.22.1**.  
 Install CMake with [the latest official installer](https://github.com/Kitware/CMake/releases/latest).
 
 **IMPORTANT**: check the option **"Add CMake to the system PATH for all users"** during the install process.
@@ -78,10 +79,16 @@ SOFA requires some libraries:
     - **For Visual Studio 2019**: choose boost_X_X_X-msvc-14.2-64.exe
     - **For Visual Studio 2017**: choose boost_X_X_X-msvc-14.1-64.exe
     
--   **Python** (= 3.8.x)  
-    Download and install the latest [**Python 3.8 (amd64)**](https://www.python.org/ftp/python/3.8.10/python-3.8.10-amd64.exe).
+-   **Python** (= 3.10.x)  
+    Download and install the latest [**Python 3.10 (amd64)**](https://www.python.org/ftp/python/3.10.10/python-3.10.10-amd64.exe).
+    Then install the python dependencies. Run the following commands in cmd by replacing `path\to\Python310\ ` by the path where python was installed on your OS.
+    ```
+    path\to\Python310\python.exe -m pip install --upgrade pip
+    path\to\Python310\python.exe -m pip install numpy scipy pybind11==2.9.1
+    ```
     
--   **Additional libraries**: libPNG, libJPEG, libTIFF, Glew, Zlib  
+    
+-   **Additional libraries**: libPNG, libJPEG, libTIFF, Glew, Zlib, TinyXML2
     Download the [Windows dependency pack](https://www.sofa-framework.org/download/WinDepPack/VS-2017/latest).  
     You will need to unzip it directly in SOFA sources (later in this tutorial).
 
@@ -107,7 +114,7 @@ as follows:
 sofa/
 ├── build/
 │   ├── master/
-│   └── v23.06/
+│   └── v23.21/
 └── src/
     └── < SOFA sources here >
 ```
@@ -116,7 +123,7 @@ sofa/
 
 Get the current **stable** version on the v23.06 branch:
 ``` {.bash .stable}
-git clone -b v23.06 https://github.com/sofa-framework/sofa.git sofa/src
+git clone -b v23.12 https://github.com/sofa-framework/sofa.git sofa/src
 ```
 
 **OR** get the development **unstable** version on the master branch:
