@@ -90,7 +90,7 @@ sudo apt install ccache
 SOFA requires some libraries:
 
 -  **tinyXML2**
-    ```{.bash}
+    ```bash
     sudo apt install libtinyxml2-dev
     ```
    
@@ -100,20 +100,20 @@ SOFA requires some libraries:
     ![](https://www.sofa-framework.org/wp-content/uploads/2020/04/install_qt_linux.png)
 
 -   **OpenGL**
-    ```{.bash}
+    ```bash
     sudo apt install libopengl0
     ```
 
 -   **Boost** (>= 1.65.1)  
-    ```{.bash}
+    ```bash
     sudo apt install libboost-all-dev
     ```
     
 -   **Python 3.10** + pip + numpy + scipy
-    ```{.bash}
+    ```bash
     sudo apt install python3.10-dev pybind11-dev
     ```
-    ```{.bash}
+    ```bash
     sudo apt-get install python3.10-distutils \
     && curl -L https://bootstrap.pypa.io/pip/get-pip.py --output /tmp/get-pip3.py \
     && python3.10 /tmp/get-pip3.py \
@@ -122,12 +122,12 @@ SOFA requires some libraries:
     ```
 
 -   **Additional libraries**: libPNG, libJPEG, libTIFF, Glew, Zlib   
-    ```{.bash}
+    ```bash
     sudo apt install libpng-dev libjpeg-dev libtiff-dev libglew-dev zlib1g-dev
     ```
 
 -   SOFA v20.06 and newer also need **Eigen** (>= 3.2.10)  
-    ```{.bash}
+    ```bash
     sudo apt install libeigen3-dev
     ```
 
