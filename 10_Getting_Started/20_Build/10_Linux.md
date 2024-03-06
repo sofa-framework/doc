@@ -113,6 +113,7 @@ SOFA requires some libraries:
     ```
     sudo apt install python3.10-dev pybind11-dev
     ```
+    
     ```
     sudo apt-get install python3.10-distutils \
     && curl -L https://bootstrap.pypa.io/pip/get-pip.py --output /tmp/get-pip3.py \
