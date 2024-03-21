@@ -47,7 +47,7 @@ If your AppleClang version is too low:
 
 ## CMake: Makefile generator
 
-SOFA requires at least **CMake 3.12**.
+SOFA requires at least **CMake 3.22**.
 
 ``` {.bash}
 brew install --cask cmake

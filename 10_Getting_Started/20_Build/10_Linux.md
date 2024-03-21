@@ -58,7 +58,7 @@ sudo apt install clang-12
 
 ## CMake: Makefile generator
 
-CMake will be required to configure the SOFA project before compiling it. Note that SOFA requires at least **CMake 3.12**.
+CMake will be required to configure the SOFA project before compiling it. Note that SOFA requires at least **CMake 3.22**.
 ```bash
 sudo apt install cmake cmake-gui
 ```
