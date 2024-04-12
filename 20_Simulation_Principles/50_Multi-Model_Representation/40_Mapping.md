@@ -30,6 +30,8 @@ By applying the principle of virtual work, the mapping can also translate forces
 
 When a force field is associated to a mapped state, it contributes to the stiffness matrix indirectly, through the mapping. Two terms appear. The first term is the projection of the mapped stiffness matrix from the mapped space into the main state <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{J}^{T}\frac{\partial%20f_p}{\partial%20p}\mathbf{J}" title="Mapped stiffness matrix" />. The second term is called geometric stiffness: <img class="latex" src="https://latex.codecogs.com/png.latex?\frac{\partial%20\mathbf{J}^{T}}{\partial%20q}f_p" title="Geometric stiffness" />. Geometric stiffness relies on the derivative of the Jacobian matrix. This derivative is null if the mapping is linear.
 
+> ⚠️ **WARNING**: Depending on the nature of a non-linear mapping, geometric stiffness may lead to non-symmetric terms in the mechanical matrix. Such mappings have an option to make the contributions symmetric. An alternative is to use an appropriate linear solver (LU solver for example).
+
 API of mappings
 ---------------
 
