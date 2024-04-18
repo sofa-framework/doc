@@ -43,7 +43,7 @@ In the installer, you must enable:
 
 ## CMake: Makefile generator
 
-SOFA requires at least **CMake 3.24**.  
+SOFA requires at least **CMake 3.22.1**.  
 Install CMake with [the latest official installer](https://github.com/Kitware/CMake/releases/latest).
 
 **IMPORTANT**: check the option **"Add CMake to the system PATH for all users"** during the install process.
