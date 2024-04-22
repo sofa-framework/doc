@@ -263,6 +263,58 @@ instead of COPYONLY. Simply edit your Qt5CoreMacros.cmake, replace
 COPY\_ONLY with COPYONLY and **Configure** again.
 
 
+### Missing Wayland Platform Plugin for Qt Applications
+
+When setting up your environment to build and run <b>cmake-gui</b> or <b>sofa</b> on Linux, you may encounter an error related to the absence of the <b>Wayland</b> platform plugin for Qt applications. This error typically manifests as follows:
+
+```
+qt.qpa.plugin: Could not find the Qt platform plugin "wayland" in ""
+This application failed to start because no Qt platform plugin could be initialized.
+```
+
+This issue occurs because the Qt application cannot locate the Wayland platform plugin, which is necessary for running on the Wayland display server.
+
+#### Solution:
+To address this issue, you have a few options:
+
+1. **Check Qt Installation:** Ensure that your Qt installation includes the required Wayland platform plugin by inspecting the contents of the Qt plugins directory. You can do this by navigating to the appropriate directory using the following commands:
+```bash
+cd /usr/lib/x86_64-linux-gnu/qt5/plugins/platforms
+```
+or 
+
+```bash 
+cd /usr/lib/qt5/plugins
+```
+
+
+If it appears that the Wayland platform plugin (`libqwayland-egl.so`) is not present in the directory, you may need to install the Qt Wayland plugin separately. On Ubuntu, this might be available as a separate package. You can install it using the following commands:
+
+```bash
+    sudo apt update
+    sudo apt install qtwayland5
+```
+
+    This command will install the Qt Wayland plugin package, which should include the necessary files for Wayland support.
+
+2. **Set Environment Variables:** Set the `QT_QPA_PLATFORM` environment variable to `wayland` to instruct Qt applications to use the Wayland platform plugin. You can do this by running the following command in your terminal:
+
+    ```bash
+    export QT_QPA_PLATFORM=wayland
+    ```
+
+3. **Verify System Configuration:** Confirm that your system is configured to use Wayland as the display server. You can check this by examining the value of the `XDG_SESSION_TYPE` environment variable:
+
+    ```bash
+    echo $XDG_SESSION_TYPE
+    ```
+
+    If the value is `wayland`, then Wayland is being used. If it's `x11` or `xorg`, then Xorg is being used.
+
+4. **Reinstall Qt Application (if necessary):** If the issue persists, try reinstalling the Qt application to ensure that all dependencies, including the Qt platform plugin, are correctly installed.
+
+
+
 
 ## Compilation tutorial
 
