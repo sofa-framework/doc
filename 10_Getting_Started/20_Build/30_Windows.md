@@ -28,10 +28,10 @@ On Windows, we officially support **Microsoft Visual Studio >= 2017** (version 1
 If you want to use **Visual Studio IDE**, install the complete Visual Studio solution.  
 If you want to use **another IDE** (like QtCreator), install the Build Tools only.
 
-|                       | **Visual Studio 2017** | **Visual Studio 2019** | **Visual Studio 2022** |
-| --------------------- |:----------------------:|:----------------------:|:----------------------:|
+|                       |                                            **Visual Studio 2017**                                            |                                            **Visual Studio 2019**                                            |                                            **Visual Studio 2022**                                            |
+|-----------------------|:------------------------------------------------------------------------------------------------------------:|:------------------------------------------------------------------------------------------------------------:|:------------------------------------------------------------------------------------------------------------:|
 | **Build Tools only**  | [download](https://visualstudio.microsoft.com/fr/thank-you-downloading-visual-studio/?sku=BuildTools&rel=15) | [download](https://visualstudio.microsoft.com/fr/thank-you-downloading-visual-studio/?sku=BuildTools&rel=16) | [download](https://visualstudio.microsoft.com/fr/thank-you-downloading-visual-studio/?sku=BuildTools&rel=17) |
-| **IDE + Build Tools** | [download](https://visualstudio.microsoft.com/fr/thank-you-downloading-visual-studio/?sku=Community&rel=15) | [download](https://visualstudio.microsoft.com/fr/thank-you-downloading-visual-studio/?sku=Community&rel=16) | [download](https://visualstudio.microsoft.com/fr/thank-you-downloading-visual-studio/?sku=Community&rel=17) |
+| **IDE + Build Tools** | [download](https://visualstudio.microsoft.com/fr/thank-you-downloading-visual-studio/?sku=Community&rel=15)  | [download](https://visualstudio.microsoft.com/fr/thank-you-downloading-visual-studio/?sku=Community&rel=16)  | [download](https://visualstudio.microsoft.com/fr/thank-you-downloading-visual-studio/?sku=Community&rel=17)  |
 
 
 In the installer, you must enable:
@@ -140,30 +140,30 @@ git clone -b master https://github.com/sofa-framework/sofa.git sofa/src
 
 ## Generate a VS project (.sln) or a Makefile with CMake
 
-0. Create build directories respecting the arrangement above.
+1. Create build directories respecting the arrangement above.
 
-1. In Windows Start menu, search for `Native Tools Command Prompt` and run the one corresponding to your Windows architecture (x64 for 64-bit, x86 for 32-bit).  
+2. In Windows Start menu, search for `Native Tools Command Prompt` and run the one corresponding to your Windows architecture (x64 for 64-bit, x86 for 32-bit).  
 ![](https://www.sofa-framework.org/wp-content/uploads/2020/04/SearchCommandPrompt2.png)
 
-2. In the command prompt, type `cmake-gui` and press Enter.  
+3. In the command prompt, type `cmake-gui` and press Enter.  
    If you get the error `'cmake-gui' is not recognized as an internal or external command`, it means that your system PATH does not correctly include the path to cmake-gui. In this case, you need to provide the full path to your cmake-gui.
 
-3. In CMake-GUI, set source folder and build folder.
+4. In CMake-GUI, set source folder and build folder.
 
-4. Run **Configure**.
+5. Run **Configure**.
    
-5. A popup will ask you to specify the generator for the project.
+6. A popup will ask you to specify the generator for the project.
 
    - If you want use **Visual Studio IDE**, select "Visual Studio 15 2017 Win64" or "Visual Studio 16 2019 Win64" (or without the "Win64" if you are on Windows 32-bit).
    - If you want to use **another IDE like QtCreator**, select "CodeBlocks - Ninja" (recommended, needs [Ninja](#optional-ninja-build-system)) or "CodeBlocks - NMake".
    
    Keep "Use default native compilers" and press "Finish".
 
-6. Fix eventual dependency errors by following CMake messages (see Troubleshooting section below). Do not worry about warnings.
+7. Fix eventual dependency errors by following CMake messages (see Troubleshooting section below). Do not worry about warnings.
 
    - e.g. define the `Eigen3_DIR` with the path where you installed Eigen
 
-7. (optional) Customize SOFA via CMake variables
+8. (optional) Customize SOFA via CMake variables
 
    - choose the build type by setting CMAKE_BUILD_TYPE to "Release" or "RelWithDebInfo" (recommended) or "Debug"
    - activate or deactivate plugins: see PLUGIN_XXX variables
@@ -171,7 +171,7 @@ git clone -b master https://github.com/sofa-framework/sofa.git sofa/src
 
    Do not forget to **Configure** again to check if your changes are valid.
 
-8. When you are ready, run **Generate**. In the build directory, this will create a Visual Studio project (.sln) or a Makefile depending on the generator you chose at step 4.
+9. When you are ready, run **Generate**. In the build directory, this will create a Visual Studio project (.sln) or a Makefile depending on the generator you chose at step 4.
 
 
 ## Compile

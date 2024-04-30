@@ -1,7 +1,7 @@
 Intersection Method
 ===================
 
-In SOFA, a proximity method can be used to detect contact when two objects are getting closer from another.
+In SOFA, a proximity method can be used to detect contact when two objects are getting closer to another.
 Evaluating this proximity allows for a better anticipation of the contact, i.e. more stable contact.
 
 Examples of Components

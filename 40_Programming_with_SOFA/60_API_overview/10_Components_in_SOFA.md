@@ -468,7 +468,7 @@ Data< sofa::defaulttype::BoundingBox > f_bbox;
 
 #### components
 
-The default value for the bounding box is a the neutral element for the
+The default value for the bounding box is a neutral element for the
 inclusion operation. A component can describe how its bounding box is
 computed by redefining the virtual method.
 

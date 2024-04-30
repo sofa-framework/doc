@@ -3,7 +3,7 @@ Wrap your own Data types for Python
 
 If you are using SofaPython to create your scenes, you are probably interested in accessing your component's data fields and reading / writing their values from python, as done in the example below:
 
-```xml
+```python
  # Modify a scalar data field from Python
   self.myComponent.findData('integerValue').value = 1
 

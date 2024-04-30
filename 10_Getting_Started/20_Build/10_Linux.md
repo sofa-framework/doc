@@ -198,25 +198,25 @@ git clone -b master https://github.com/sofa-framework/sofa.git sofa/src
 
 ## Generate a Makefile with CMake
 
-0. Create build directories respecting the arrangement above.
+1. Create build directories respecting the arrangement above.
 
-1. Run CMake-GUI and set source folder and build folder.
+2. Run CMake-GUI and set source folder and build folder.
 
-2. Run **Configure**. A popup will ask you to specify the generator for the project.
+3. Run **Configure**. A popup will ask you to specify the generator for the project.
 
    - If you installed [Ninja](#optional-ninja-build-system), select "Ninja".
    - Otherwise, select "Unix Makefile".
 
-3. Choose "Specify native compilers" and press "Next"
+4. Choose "Specify native compilers" and press "Next"
 
-4. Set the C compiler to `/usr/bin/gcc` **or** `/usr/bin/clang`  
+5. Set the C compiler to `/usr/bin/gcc` **or** `/usr/bin/clang`  
    Set the C++ compiler to `/usr/bin/g++` **or** `/usr/bin/clang++`
 
-5. Run **Configure**.
+6. Run **Configure**.
 
-6. Fix eventual dependency errors by following CMake messages (see Troubleshooting section below). Do not worry about warnings.
+7. Fix eventual dependency errors by following CMake messages (see Troubleshooting section below). Do not worry about warnings.
 
-7. (optional) Customize SOFA via CMake variables
+8. (optional) Customize SOFA via CMake variables
 
    - choose the build type by setting CMAKE_BUILD_TYPE to "Release" or "RelWithDebInfo" (recommended) or "Debug"   
    - activate or deactivate plugins: see PLUGIN_XXX variables
@@ -224,7 +224,7 @@ git clone -b master https://github.com/sofa-framework/sofa.git sofa/src
    
    Do not forget to **Configure** again to check if your changes are valid.
 
-8. When you are ready, run **Generate**.
+9. When you are ready, run **Generate**.
 
 
 
