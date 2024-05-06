@@ -16,10 +16,10 @@ chevrons are called "Tags". There are 2 types of tags: Nodes, and
 Leaves.
 
 In terms of simulation, the **Node** tag is used to create a
-hierarchical level of modeling (e.g behavior model, collision model,
+hierarchical level of modeling (e.g. behavior model, collision model,
 visual model etc.). A scene file **always** contains a root node, that
 encapsulates your whole graph, and defines some overall specificities
-for your simulation (e.g gravity, dt, ...):
+for your simulation (e.g. gravity, dt, ...):
 
 ```xml
 <Node name="root" gravity="0 -1000 0" dt="0.04">
@@ -78,8 +78,8 @@ in following example:
 
 ```xml
 <Node name="myNode">
-    <meshobjloader name="myLoader" filename="mesh.obj">
-    <mesh name="myMesh" src="@myLoader">
+    <MeshOBJLoader name="myLoader" filename="mesh.obj"/>
+    <MeshTopology name="myMesh" src="@myLoader"/>
 </Node>
 ```
 
@@ -91,16 +91,16 @@ as long as those data are of the same type:
 ```xml
 <Node name="root" gravity="0 -1000 0" dt="0.04">
     <Node name="Loader">
-        <meshvtkloader name="vtkLoader" filename="liver">
+        <MeshVTKLoader name="vtkLoader" filename="liver"/>
     </Node>
     <Node name="MechanicalModel">
-        <mechanicalobject name="liverMO" scale="1" position="@../Loader/vtkLoader.position">
+        <MechanicalObject name="liverMO" scale="1" position="@../Loader/vtkLoader.position"/>
     </Node>
 </Node>
 ```
 
 The example above also shows the possibility to link to a component
-located in an other node. Here, the component vtkLoader is not located
+located in another node. Here, the component vtkLoader is not located
 in the same node as the mechanical object component. by using
 "../Loader/" before component's name we want to link with, we are going
 up from one node, search for the "Loader" node, look for the component
@@ -120,23 +120,24 @@ your scene. This can be achieved using the tag. For instance, the
 
 ```xml
 <Node name="root" gravity="0 -1000 0" dt="0.04">
-    <visualstyle displayFlags="showVisual  "> <!--showBehaviorModels showCollisionModels-->
-    <lcpconstraintsolver tolerance="1e-3" initial_guess="false" build_lcp="false"  printLog="0" mu="0.2">
-    <freemotionanimationloop>
-    <collisionpipeline depth="15" verbose="0" draw="0">
-    <bruteforcedetection name="N2">
-    <minproximityintersection name="Proximity" alarmDistance="1.5" contactDistance="1">
-    <lightmanager>
-    <spotlight name="light1" color="1 1 1" position="0 80 25" direction="0 -1 -0.8" cutoff="30" exponent="1">
-    <spotlight name="light2" color="1 1 1" position="0 40 100" direction="0 0 -1" cutoff="30" exponent="1">
-    <collisionresponse name="Response" response="FrictionContact">
+    <VisualStyle displayFlags="showVisual  "/> <!--showBehaviorModels showCollisionModels-->
+    <LCPConstraintSolver tolerance="1e-3" initial_guess="false" build_lcp="false"  printLog="0" mu="0.2"/>
+    <FreeMotionAnimationLoop/>
+    <CollisionPipeline depth="15" verbose="0" draw="0"/>
+    <BruteForceBroadPhase name="N2"/>
+    <BVHNarrowPhase />
+    <MinProximityIntersection name="Proximity" alarmDistance="1.5" contactDistance="1"/>
+    <LightManager/>
+    <SpotLight name="light1" color="1 1 1" position="0 80 25" direction="0 -1 -0.8" cutoff="30" exponent="1"/>
+    <SpotLight name="light2" color="1 1 1" position="0 40 100" direction="0 0 -1" cutoff="30" exponent="1"/>
+    <CollisionResponse name="Response" response="FrictionContactConstraint"/>
 
     <Node name="Snake">
-        <include href="snake.scn">
+        <include href="snake.scn"/>
     </Node>
 
     <Node name="Base" >
-        <include href="base.scn">
+        <include href="base.scn"/>
     </Node>
 </Node>
 ```
