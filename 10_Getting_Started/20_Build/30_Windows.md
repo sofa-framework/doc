@@ -66,7 +66,7 @@ You can download the latest release from [their GitHub repository](https://githu
 
 SOFA requires some libraries:
 
--   **Qt** (>= 5.12.0) with **Charts** and **WebEngine**. Qt6 is not fully supported yet.  
+-   **Qt** (>= 5.12.0) with **Charts** and **WebEngine**.
     We recommend to install Qt **in your user directory** with [the unified installer](http://download.qt.io/official_releases/online_installers).  
     ![](https://github.com/sofa-framework/doc/blob/master/images/gettingstarted/install_qt_windows_1.png?raw=true")
     Make sure to enable **Charts** and **WebEngine** components.  
