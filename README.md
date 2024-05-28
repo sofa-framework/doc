@@ -19,24 +19,26 @@ Files are written in Markdown. If you don't understand the syntax, you can refer
 
 ### Hierarchy ###
 Files are parsed in alphabetical order to generate the online documentation. To change some file/folder order in the hierarchy, you can simply edit its number.
+
 - 10_Folder_A
-  - 10_File_AA.md
-  - 20_File_AB.md
-  - 30_File_AC.md
+    - 10_File_AA.md
+    - 20_File_AB.md
+    - 30_File_AC.md
 - 20_Folder_B
-  - 21_File_BA.md
+    - 21_File_BA.md
 
 Will become
+
 - Folder A
-  - File AA
-  - File AB
-  - File AC
+    - File AA
+    - File AB
+    - File AC
 - Folder B
-  - File BA
-  
+    - File BA
+
 ### Naming ###
 Page title and URL depend on file name.  
-File name become page title following this principles: 10_Folder_A -> Folder A  and  10_File_AA.md -> File AA  
-File name become page url following this principles: 10_Folder_A -> folder-a  and  10_File_AA.md -> file-aa  
+File name become page title following these principles: 10_Folder_A -> Folder A  and  10_File_AA.md -> File AA  
+File name become page url following these principles: 10_Folder_A -> folder-a  and  10_File_AA.md -> file-aa  
 
 **WARNING**: Changing file or folder names (except numbers and case) will change page URL. Use with caution.
