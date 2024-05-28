@@ -6,6 +6,16 @@ i.e. a plugin which is not provided in the source code of SOFA.
 
 > ⚠️ **WARNING**: In most cases, the version of a plugin follows the version of SOFA. For compatibility reasons, it is preferable to compile the version of the plugin corresponding to your SOFA version. For example, if you have the SOFA v23.06 binaries, you will need to compile plugins using their v23.06 version (i.e. their v23.06 branch).
 
+> Note: Some plugins are switched off my default and require a cmake variable PLUGIN_{PLUGIN_NAME}=ON to switch them on.
+### Example:
+To add cmake variable
+```bash
+    -DPLUGIN_CIMGPLUGIN=ON
+```
+simply add a new entry in cmake-gui like so:
+![image](https://github.com/sofa-framework/doc/assets/13259735/6cf6e758-f9f0-497f-b705-7c2d3f728957)
+
+
 Two ways of building a plugin are possible:
 
 - you are compiling SOFA and you integrate your plugin project along SOFA (aka _in-tree build_).
