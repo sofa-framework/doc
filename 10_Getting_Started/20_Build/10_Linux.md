@@ -99,6 +99,18 @@ SOFA requires some libraries:
     Make sure to enable **Charts** and **WebEngine** components.  
     ![](https://www.sofa-framework.org/wp-content/uploads/2020/04/install_qt_linux.png)
 
+    Install the Qt Wayland Plugin
+
+    ```bash
+    sudo apt install qtwayland5
+    ```
+
+    Set Environment Variable
+
+    ```bash
+    export QT_QPA_PLATFORM=wayland
+    ```
+
 -   **OpenGL**
     ```
     sudo apt install libopengl0
@@ -261,7 +273,6 @@ A further dev warning may appear:
 This is just a typo with Qt5CoreMacros.cmake file. It uses COPY\_ONLY
 instead of COPYONLY. Simply edit your Qt5CoreMacros.cmake, replace
 COPY\_ONLY with COPYONLY and **Configure** again.
-
 
 
 ## Compilation tutorial
