@@ -1,22 +1,5 @@
 **It is STRONGLY advised to read through this entire doc page before getting started.**
 
-## Setup script
-
-To simplify the configuration of our continuous integration machines, we created a complete set of setup scripts.
-
-### WARNING: USE AT YOUR OWN RISKS
-These scripts install a lot of software directly in `C:\` without any prealable check.  
-It is meant to be used on a **fresh Windows**. We use it on disposable virtual machines only.  
-
-Setup script: [I am aware of the disclaimer above](https://github.com/sofa-framework/ci/blob/master/setup/)
-
-The two scripts `setup-windows_1.bat` and `setup-windows_2.bat` install the minimum set of requirements.
-
-## Preconfigured Docker image
-
-Unfortunately, no Docker image has been created yet for Windows.  
-This may come in a near future, to be continued...
-
 ----------------------------
 
 # Build tools
@@ -212,6 +195,21 @@ A further dev warning may appear:
 This is just a typo with Qt5CoreMacros.cmake file. It uses COPY\_ONLY
 instead of COPYONLY. Simply edit your Qt5CoreMacros.cmake, replace
 COPY\_ONLY with COPYONLY and **Configure** again.
+
+
+## Setup script
+
+To simplify the configuration of our continuous integration machines, we created a complete set of setup scripts.
+
+
+These scripts install a lot of software directly in `C:\` without any prealable check.  
+It is meant to be used on a **fresh Windows**. We use it on disposable virtual machines only.  
+
+Setup script: [I am aware of the disclaimer above](https://github.com/sofa-framework/ci/blob/master/setup/)
+**WARNING: USE AT YOUR OWN RISKS**
+
+The two scripts `setup-windows_1.bat` and `setup-windows_2.bat` install the minimum set of requirements.
+
 
 
 ## Compilation tutorial
