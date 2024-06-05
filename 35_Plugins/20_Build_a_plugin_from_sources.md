@@ -6,7 +6,7 @@ i.e. a plugin which is not provided in the source code of SOFA.
 
 > ⚠️ **WARNING**: In most cases, the version of a plugin follows the version of SOFA. For compatibility reasons, it is preferable to compile the version of the plugin corresponding to your SOFA version. For example, if you have the SOFA v23.06 binaries, you will need to compile plugins using their v23.06 version (i.e. their v23.06 branch).
 
-> Note: Some plugins are switched off my default and require a cmake variable PLUGIN_{PLUGIN_NAME}=ON to switch them on.
+> Note: Some plugins are switched off by default and require a CMake variable PLUGIN_{PLUGIN_NAME}=ON to switch them on.
 ### Example:
 To add cmake variable
 ```bash
