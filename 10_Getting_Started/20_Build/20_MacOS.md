@@ -1,10 +1,5 @@
 **It is STRONGLY advised to read through this entire doc page before getting started.**
 
-## Preconfigured Docker image
-
-Unfortunately, no Docker image has been created yet for MacOS.  
-This may come in a near future, to be continued...
-
 ----------------------------
 
 # Build tools
