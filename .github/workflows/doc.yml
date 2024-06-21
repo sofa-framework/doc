@@ -46,11 +46,11 @@ jobs:
           path: 'merged_doc'
           ref: 'merged_doc'
 
-      - name: Checkout merged doc branch
+      - name: Checkout doc branch
         uses: actions/checkout@v4
         with:
           path: 'doc'
-          ref: 'doc'
+          ref: 'master'
 
       - name: Install tinyxml2
         run: sudo apt-get install -y libtinyxml2-dev
