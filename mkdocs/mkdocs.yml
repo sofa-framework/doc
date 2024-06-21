@@ -1,0 +1,62 @@
+site_name: SOFA Documentation
+site_url: https://alxbilger.github.io/SofaDocGenerator/
+site_description: documentation website of the framework SOFA (https://www.sofa-framework.org/)
+
+# Repository
+repo_name: sofa-framework/sofa
+repo_url: https://github.com/sofa-framework/sofa
+
+theme:
+  name: material
+  logo: assets/logo.png
+  favicon: assets/favicon.png
+  palette:
+    - media: "(prefers-color-scheme)"
+      toggle:
+        icon: material/link
+        name: Switch to light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/toggle-switch
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: black
+      accent: indigo
+      toggle:
+        icon: material/toggle-switch-off
+        name: Switch to system preference
+  font:
+    text: Roboto
+    code: Roboto Mono
+  features:
+    - content.code.copy
+    - content.code.select
+    - content.tabs.link
+
+# Additional configuration
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/sofa-framework/sofa
+    - icon: fontawesome/brands/x-twitter
+      link: https://x.com/SofaFramework
+    - icon: fontawesome/brands/linkedin
+      link: https://www.linkedin.com/company/sofa-framework
+    - icon: fontawesome/brands/discord
+      link: https://discord.gg/G63t3a8Ra6
+
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+
