@@ -1,0 +1,173 @@
+name: Generate and publish documentation
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - gen
+
+permissions:
+  id-token: write
+  pages: write
+
+jobs:
+  build:
+    name: Run on ${{ matrix.os }} with SOFA ${{ matrix.sofa_branch }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-22.04]
+        sofa_branch: [master]
+
+    permissions:
+      # Give the default GITHUB_TOKEN write permission to commit and push the
+      # added or changed files to the repository.
+      contents: write
+
+    steps:
+
+      - name: Setup SOFA and environment
+        id: sofa
+        uses: sofa-framework/sofa-setup-action@v5
+        with:
+          sofa_root: ${{ github.workspace }}/sofa
+          sofa_version: ${{ matrix.sofa_branch }}
+          sofa_scope: 'full'
+
+      - name: Checkout source code
+        uses: actions/checkout@v4
+        with:
+          path: 'SofaDocGenerator'
+
+      - name: Checkout merged doc branch
+        uses: actions/checkout@v4
+        with:
+          path: 'merged_doc'
+          ref: 'merged_doc'
+
+      - name: Checkout merged doc branch
+        uses: actions/checkout@v4
+        with:
+          path: 'doc'
+          ref: 'doc'
+
+      - name: Install tinyxml2
+        run: sudo apt-get install -y libtinyxml2-dev
+
+      - name: Build and install
+        shell: bash
+        run: |
+          cd "$WORKSPACE_BUILD_PATH"
+          ccache -z
+          cmake \
+            -GNinja \
+            -DCMAKE_C_COMPILER_LAUNCHER=ccache \
+            -DCMAKE_CXX_COMPILER_LAUNCHER=ccache \
+            -DCMAKE_PREFIX_PATH=$SOFA_ROOT/lib/cmake \
+            -DCMAKE_BUILD_TYPE=Release \
+            -DCMAKE_INSTALL_PREFIX="$WORKSPACE_INSTALL_PATH" \
+            ../SofaDocGenerator
+          ninja -v install
+          echo ${CCACHE_BASEDIR}
+          ccache -s
+
+      - name: Create artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: SofaDocGenerator_${{ steps.sofa.outputs.run_branch }}_for-SOFA-${{ steps.sofa.outputs.sofa_version }}_${{ runner.os }}
+          path: ${{ env.WORKSPACE_INSTALL_PATH }}
+
+      - name: Install artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: SofaDocGenerator_${{ steps.sofa.outputs.run_branch }}_for-SOFA-${{ steps.sofa.outputs.sofa_version }}_${{ runner.os }}
+          path: ${{ env.WORKSPACE_ARTIFACT_PATH }}
+
+      - name: Set env vars for binaries
+        shell: bash
+        run: |
+          echo '------ ls -laR "$WORKSPACE_BUILD_PATH" ------'
+          ls -laR "$WORKSPACE_BUILD_PATH"
+          echo '------ ls -laR "$WORKSPACE_INSTALL_PATH" ------'
+          ls -la "$WORKSPACE_INSTALL_PATH"
+          echo '------ ls -laR "$WORKSPACE_ARTIFACT_PATH" ------'
+          ls -la "$WORKSPACE_ARTIFACT_PATH"
+          # Set env vars for tests
+          if [[ "$RUNNER_OS" == "Windows" ]]; then
+            echo "$(cd $WORKSPACE_ARTIFACT_PATH/lib && pwd -W)" >> $GITHUB_PATH
+            echo "$(cd $WORKSPACE_ARTIFACT_PATH/bin && pwd -W)" >> $GITHUB_PATH
+          elif [[ "$RUNNER_OS" == "macOS" ]]; then
+            echo "DYLD_LIBRARY_PATH=$WORKSPACE_ARTIFACT_PATH/lib:$SOFA_ROOT/lib:$DYLD_LIBRARY_PATH" | tee -a $GITHUB_ENV
+          fi
+          echo "LD_LIBRARY_PATH=$WORKSPACE_ARTIFACT_PATH/lib:$SOFA_ROOT/lib:$LD_LIBRARY_PATH" | tee -a $GITHUB_ENV
+          # Add execution right on the tests
+          chmod +x $WORKSPACE_INSTALL_PATH/bin/*${{ steps.sofa.outputs.exe }}
+
+      - name: Markdown generation
+        shell: bash
+        run: |
+          echo '------ ls -laR "$WORKSPACE_INSTALL_PATH" ------'
+          ls -la "$WORKSPACE_INSTALL_PATH"
+          cd $WORKSPACE_INSTALL_PATH
+          ./bin/SofaDocGenerator${{ steps.sofa.outputs.exe }} -o ${{ github.workspace }}/SofaDocGenerator/markdown --examples ${{ github.workspace }}/sofa/share/sofa/examples
+          rm ${{ github.workspace }}/SofaDocGenerator/markdown/image/ImageViewer.md
+          rm ${{ github.workspace }}/SofaDocGenerator/markdown/image_gui/ImageToolBox.md
+
+      - name: Save markdown doc
+        uses: actions/upload-artifact@v4
+        with:
+          name: doc_markdown
+          path: ${{ github.workspace }}/SofaDocGenerator/markdown
+          overwrite: true
+          if-no-files-found: error
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Merge doc
+        run: |
+          ls -la ${{ github.workspace }}/SofaDocGenerator/markdown/
+          python ${{ github.workspace }}/SofaDocGenerator/script/merge_docs.py ${{ github.workspace }}/SofaDocGenerator/markdown/Sofa/Component ${{ github.workspace }}/doc/30_Components
+          python ${{ github.workspace }}/SofaDocGenerator/script/merge_docs.py ${{ github.workspace }}/SofaDocGenerator/markdown/Sofa/GL/Component ${{ github.workspace }}/doc/30_Components
+          python ${{ github.workspace }}/SofaDocGenerator/script/merge_docs.py ${{ github.workspace }}/SofaDocGenerator/markdown/Sofa/GUI/Component ${{ github.workspace }}/doc/30_Components/GUI
+          python ${{ github.workspace }}/SofaDocGenerator/script/merge_docs.py ${{ github.workspace }}/SofaDocGenerator/markdown ${{ github.workspace }}/doc/35_Plugins/50_Usual_plugins
+          rm -rf ${{ github.workspace }}/doc/35_Plugins/50_Usual_plugins/Sofa
+          python ${{ github.workspace }}/SofaDocGenerator/script/title_metadata.py ${{ github.workspace }}/doc
+          python ${{ github.workspace }}/SofaDocGenerator/script/generate_nav.py ${{ github.workspace }}/SofaDocGenerator/mkdocs/mkdocs.yml ${{ github.workspace }}/doc
+
+      - name: Save merged doc
+        uses: actions/upload-artifact@v4
+        with:
+          name: doc_merged_markdown
+          path: ${{ github.workspace }}/doc
+          overwrite: true
+          if-no-files-found: error
+
+      - name: Commit merged doc
+        continue-on-error: true
+        run: |
+          cd ${{ github.workspace }}/merged_doc
+          rm -rf *
+          cp -a --verbose ${{ github.workspace }}/doc/* ${{ github.workspace }}/merged_doc
+          git config --global user.name "doc generator"
+          git config --global user.email "username@users.noreply.github.com"
+          git status
+          git add *
+          git status
+          git commit -a -m "Update documentation"
+          git push --force
+
+      - name: Install dependencies
+        run: pip install mkdocs mkdocs-material
+
+      - name: Copy files for mkdocs
+        run: |
+          mkdir -p ${{ github.workspace }}/SofaDocGenerator/mkdocs/docs
+          cp -a ${{ github.workspace }}/merged_doc/* ${{ github.workspace }}/SofaDocGenerator/mkdocs/docs
+
+      - name: Mkdocs build and deploy
+        run: |
+          cd ${{ github.workspace }}/SofaDocGenerator/mkdocs
+          mkdocs gh-deploy --force
