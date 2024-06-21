@@ -1,3 +1,7 @@
+---
+title: runSofa with Qt
+---
+
 
 
 ### How to use the SOFA GUI (Qt)

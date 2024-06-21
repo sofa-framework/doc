@@ -1,3 +1,7 @@
+---
+title: Visual Model
+---
+
 Visualization
 =============
 

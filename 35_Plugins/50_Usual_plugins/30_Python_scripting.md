@@ -1,3 +1,7 @@
+---
+title: Python scripting
+---
+
 SofaPython3
 -----------
 

@@ -1,3 +1,7 @@
+---
+title: Use SOFA in Matlab
+---
+
 This was done for Ubuntu.
 
 Launch Matlab preloading libraries that Sofa uses

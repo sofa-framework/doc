@@ -1,3 +1,7 @@
+---
+title: SofaCarving
+---
+
 The SofaCarving plugin provides basic functionality for removing
 tetrahedra from a mesh. This can be used to simulate tissue destruction
 in medical simulations. []()

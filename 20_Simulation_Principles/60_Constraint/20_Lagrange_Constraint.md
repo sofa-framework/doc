@@ -1,3 +1,7 @@
+---
+title: Lagrange Constraint
+---
+
 Constraint based on Lagrange Multipliers
 ========================================
 

@@ -1,3 +1,7 @@
+---
+title: DataTypes
+---
+
 DataTypes
 =========
 

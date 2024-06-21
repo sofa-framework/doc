@@ -1,3 +1,7 @@
+---
+title: Collision
+---
+
 Collisions
 ==========
 

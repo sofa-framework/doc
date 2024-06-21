@@ -1,3 +1,7 @@
+---
+title: Linux
+---
+
 **It is STRONGLY advised to read through this entire doc page before getting started.**
 
 ## Preconfigured Docker image

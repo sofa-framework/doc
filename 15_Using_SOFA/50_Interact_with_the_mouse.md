@@ -1,3 +1,7 @@
+---
+title: Interact with the mouse
+---
+
 Sofa Mouse Manager
 ------------------
 

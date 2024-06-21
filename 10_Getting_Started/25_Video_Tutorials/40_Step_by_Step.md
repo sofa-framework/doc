@@ -1,3 +1,7 @@
+---
+title: Step by Step
+---
+
 This video presents how to create a simulation in SOFA. Find the associated presentation [here (PDF version)](https://www.sofa-framework.org/wp-content/uploads/2016/08/2-Tutorial.pdf "Tutorial.pdf")
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/YWC9kcHhzBE" frameborder="0" allowfullscreen></iframe>

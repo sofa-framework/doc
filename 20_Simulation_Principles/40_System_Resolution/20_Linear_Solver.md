@@ -1,3 +1,7 @@
+---
+title: Linear Solver
+---
+
 Linear solvers
 ==============
 

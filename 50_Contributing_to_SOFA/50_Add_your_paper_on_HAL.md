@@ -1,3 +1,7 @@
+---
+title: Add your paper on HAL
+---
+
 You want your papers, which rely on SOFA, to be listed on our website? Just follow the following explanations for HAL.
 
 ![](https://www.sofa-framework.org/wp-content/uploads/2016/06/tampon-hal.jpg)

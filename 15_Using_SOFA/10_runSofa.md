@@ -1,3 +1,7 @@
+---
+title: runSofa
+---
+
 ### runSOFA
 
 The default compilation of SOFA produces a binary file called **runSofa**, which can be

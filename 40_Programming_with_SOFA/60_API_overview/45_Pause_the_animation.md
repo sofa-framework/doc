@@ -1,3 +1,7 @@
+---
+title: Pause the animation
+---
+
 Pause the Animation
 -------------------
 

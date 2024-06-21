@@ -1,3 +1,7 @@
+---
+title: Customizing the UI
+---
+
 #### AttachBodyButtonSetting
 
 Tune the attachBody mouse operation, like which button is used for the

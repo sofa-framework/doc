@@ -1,3 +1,7 @@
+---
+title: Detection Sweep and Prune
+---
+
 Collisions Detection: DirectSAP
 ===============================
 

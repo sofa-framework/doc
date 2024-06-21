@@ -1,3 +1,7 @@
+---
+title: Inspect components
+---
+
 The Monitor Component
 ---------------------
 

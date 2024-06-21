@@ -1,3 +1,7 @@
+---
+title: What is a plugin
+---
+
 # What is a Plugin?
 
 SOFA allows to extend its feature with a plugin mechanism. A plugin is a shared library that can be loaded dynamically at run-time by SOFA. More features become available, such as new components or alternative scene loaders.

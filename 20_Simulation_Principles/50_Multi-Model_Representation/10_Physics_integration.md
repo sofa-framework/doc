@@ -1,3 +1,7 @@
+---
+title: Physics integration
+---
+
 Since SOFA is working a lot on solid mechanics, this introduction to physics integration using the FEM is applied on continuum mechanics.
 
 Conservation of linear momentum

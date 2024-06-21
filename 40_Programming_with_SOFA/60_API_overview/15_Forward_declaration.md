@@ -1,3 +1,7 @@
+---
+title: Forward declaration
+---
+
 Forward declaration
 ===============
 To reduce the amount of file inclusion in Sofa and thus compilation time it is possible to use forward declaration. 

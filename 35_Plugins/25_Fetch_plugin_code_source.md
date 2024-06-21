@@ -1,3 +1,7 @@
+---
+title: Fetch plugin code source
+---
+
 ﻿# Fetch Plugin Code Source
 
 A few number of plugins are directly embedded in SOFA repository, under `applications/plugins`.

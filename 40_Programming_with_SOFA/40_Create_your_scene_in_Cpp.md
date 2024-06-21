@@ -1,3 +1,7 @@
+---
+title: Create your scene in Cpp
+---
+
 First of all, you can really get inspiration from all **Tutorials available** in _applications/Tutorials_, that are C++ files implementing the XML tutorials available in _examples/Tutorials/_. In addition, you can read the **Main.cpp** of runSofa from _applications/projects/runSofa/_.
 
 Here is a short template about how to write a scene in C++:

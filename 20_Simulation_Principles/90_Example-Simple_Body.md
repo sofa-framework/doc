@@ -1,3 +1,7 @@
+---
+title: Example-Simple Body
+---
+
 This page presents the basic components required to simulate a single object.
 
 The animation loop

@@ -1,3 +1,7 @@
+---
+title: Advanced Timer
+---
+
 Advanced Timer: How to log computation time
 ===========================================
 

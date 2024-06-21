@@ -1,3 +1,7 @@
+---
+title: How to compile SOFA
+---
+
 In order to assist you in the compilation of SOFA, we recorded a video detailing the steps to follow to download, but most importantly install SOFA sources.
 
 Linux

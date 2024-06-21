@@ -1,3 +1,7 @@
+---
+title: Binaries instructions
+---
+
 ﻿SOFA provides pre-compiled binaries, eliminating the need to compile the software from its source code. This simplifies the process for users to get started with SOFA. Below are detailed instructions on how to download, install, and execute SOFA:
 
 ## Download

@@ -1,3 +1,7 @@
+---
+title: CollisionGroupManager
+---
+
 Collision Group Managers
 ========================
 

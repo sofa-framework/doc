@@ -1,3 +1,7 @@
+---
+title: Matrix assembly API
+---
+
 Matrix Assembly API
 ===
 

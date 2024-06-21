@@ -1,3 +1,7 @@
+---
+title: Events in SOFA
+---
+
 Recovering the events from the keyboard or the mouse can be very useful
 for interactive simulation (ex: controlling surgical instruments) There
 is already implemented in SOFA a very easy way to access these so-called

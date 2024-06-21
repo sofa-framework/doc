@@ -1,3 +1,7 @@
+---
+title: Projective Constraint
+---
+
 Projective constraint
 =====================
 

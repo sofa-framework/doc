@@ -1,3 +1,7 @@
+---
+title: MultiThreading
+---
+
 # MultiThreading
 
 SOFA has some multithreading capabilities in its core, but more features are available in the MultiThreading plugin.

@@ -1,3 +1,7 @@
+---
+title: The ObjectFactory
+---
+
 The ObjectFactory
 -----------------
 

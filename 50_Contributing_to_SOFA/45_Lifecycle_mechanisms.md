@@ -1,3 +1,7 @@
+---
+title: Lifecycle mechanisms
+---
+
 This page aims at detailing the steps to follow when moving, renaming or removing code in SOFA. It focuses on: components and data field.
 
 _______________________________________________________

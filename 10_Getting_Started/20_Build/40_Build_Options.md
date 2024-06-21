@@ -1,3 +1,7 @@
+---
+title: Build Options
+---
+
 This section explains how to modify the build configuration of SOFA and
 attempts to document the available options.
 

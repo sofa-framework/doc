@@ -1,3 +1,7 @@
+---
+title: Macro for DLL import export
+---
+
 Sofa is a very modular framework and thus it extensively uses shared
 libraries.
 

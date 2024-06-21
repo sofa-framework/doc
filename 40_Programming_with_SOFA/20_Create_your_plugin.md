@@ -1,3 +1,7 @@
+---
+title: Create your plugin
+---
+
 This page describes how to get started writing your own SOFA components
 in C++, and how to integrate them with SOFA by creating a plugin.
 

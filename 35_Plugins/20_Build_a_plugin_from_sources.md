@@ -1,3 +1,7 @@
+---
+title: Build a plugin from sources
+---
+
 # Build a plugin
 
 

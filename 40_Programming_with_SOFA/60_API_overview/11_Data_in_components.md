@@ -1,3 +1,7 @@
+---
+title: Data in components
+---
+
 Each SOFA component can define **Data**. These data correspond to properties
 of the Components, i.e. member variable of the corresponding C++ class,
 which are made available and visible to the rest of the simulation.

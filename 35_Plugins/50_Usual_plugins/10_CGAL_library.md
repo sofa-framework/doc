@@ -1,3 +1,7 @@
+---
+title: CGAL library
+---
+
 CGAL is a C++ library specialized on geometric computations. CGAL is a
 big project, therefore it is not included natively into SOFA extlibs'
 directory. Here is the way to compile it for SOFA using **CMake**.

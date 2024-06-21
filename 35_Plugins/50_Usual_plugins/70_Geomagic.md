@@ -1,3 +1,7 @@
+---
+title: Geomagic
+---
+
 Installing the OpenHaptics SDK
 ------------------------------
 

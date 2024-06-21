@@ -1,3 +1,7 @@
+---
+title: Components in SOFA
+---
+
 Components implement most of the simulation methods. One can roughly
 distinguish two categories of components: **Property** components
 implement a facet of one object's physical properties, such as its mass,

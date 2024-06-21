@@ -1,3 +1,7 @@
+---
+title: Improve performances
+---
+
 ﻿# Improve the Performances
 
 There are many ways to improve the performances of a simulation.

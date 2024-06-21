@@ -1,3 +1,7 @@
+---
+title: BruteForceBroadPhase
+---
+
 Broad Phase: Brute Force Broad Phase
 ====================================
 

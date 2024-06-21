@@ -1,3 +1,7 @@
+---
+title: Writing tests
+---
+
 Motivation
 ----------
 

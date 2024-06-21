@@ -1,3 +1,7 @@
+---
+title: MacOS
+---
+
 **It is STRONGLY advised to read through this entire doc page before getting started.**
 
 ----------------------------

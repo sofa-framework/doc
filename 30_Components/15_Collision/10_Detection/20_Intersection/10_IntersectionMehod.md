@@ -1,3 +1,7 @@
+---
+title: IntersectionMehod
+---
+
 Intersection Method
 ===================
 

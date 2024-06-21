@@ -1,3 +1,7 @@
+---
+title: NarrowPhase
+---
+
 Narrow Phase Components
 ======================
 

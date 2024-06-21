@@ -1,3 +1,7 @@
+---
+title: DefaultPipeline
+---
+
 Collision Pipelines: DefaultPipeline
 ==============================================
 

@@ -1,3 +1,7 @@
+---
+title: Create your scene in XML
+---
+
 Write an XML scene
 ==================
 

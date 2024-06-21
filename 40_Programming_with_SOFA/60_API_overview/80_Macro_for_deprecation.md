@@ -1,3 +1,7 @@
+---
+title: Macro for deprecation
+---
+
 # Deprecation macros
 
 ## The 2 base macros

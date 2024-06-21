@@ -1,3 +1,7 @@
+---
+title: Using CUDA
+---
+
 CUDA Compilation
 ----------------
 

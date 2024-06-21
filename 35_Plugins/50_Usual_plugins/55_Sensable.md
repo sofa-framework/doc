@@ -1,3 +1,7 @@
+---
+title: Sensable
+---
+
 Installing the Sensable Plugin
 ------------------------------
 

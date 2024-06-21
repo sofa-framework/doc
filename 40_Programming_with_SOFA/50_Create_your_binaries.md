@@ -1,3 +1,7 @@
+---
+title: Create your binaries
+---
+
 ## SOFA binaries
 
 ### Prepare the sources  

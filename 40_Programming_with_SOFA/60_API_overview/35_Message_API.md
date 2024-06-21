@@ -1,3 +1,7 @@
+---
+title: Message API
+---
+
 # SOFA Logging
 
 

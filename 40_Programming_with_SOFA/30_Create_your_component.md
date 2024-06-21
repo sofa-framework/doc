@@ -1,3 +1,7 @@
+---
+title: Create your component
+---
+
 A **SOFA component** is a class or a class template that inherits,
 directly or not, from `sofa::core::objectmodel::BaseObject`. A component
 must also respect some conventions:

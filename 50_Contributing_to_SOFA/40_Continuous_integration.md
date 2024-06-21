@@ -1,3 +1,7 @@
+---
+title: Continuous integration
+---
+
 Each commit or pull-request is built and tested using Jenkins.
 You can find the Jenkins platform for continuous integration here:
 

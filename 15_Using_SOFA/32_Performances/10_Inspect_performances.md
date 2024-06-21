@@ -1,3 +1,7 @@
+---
+title: Inspect performances
+---
+
 Sofa provides two ways of monitoring the computation time, one with a
 text output, the other one with a graphical output.
 

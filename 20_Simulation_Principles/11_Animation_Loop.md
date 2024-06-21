@@ -1,3 +1,7 @@
+---
+title: Animation Loop
+---
+
 Animation loop
 ==============
 

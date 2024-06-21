@@ -1,3 +1,7 @@
+---
+title: Shaders
+---
+
 General use of Shaders
 ----------------------
 

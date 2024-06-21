@@ -1,3 +1,7 @@
+---
+title: SparseCholeskySolver
+---
+
 This component belongs to the category of [LinearSolver](https://www.sofa-framework.org/community/doc/main-principles/system-resolution/linear-solvers/). The role of the SparseLUSolver is to solve the linear system <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{A}x=b" title="Linear system" /> assuming that the matrix <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{A}" title="System matrix" /> is symmetric and sparse.
 
 The Cholesky decomposition (https://en.wikipedia.org/wiki/Cholesky_decomposition) is a numerical method that solves a linear system <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{A}x=b" title="Linear system" /> by factorizing the matrix of the system as <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{LL^T}" title="Linear system" />. By doing so, we only need to solve two triangular systems to compute the solution. It is only applyable on **symetric** matrices but is roughtly twice as efficient as the LU solver. The <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{LDL^T}" /> decomposition is heavily related to the Cholesky decomposition.

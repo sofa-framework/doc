@@ -1,3 +1,7 @@
+---
+title: Scene Graph
+---
+
 Scene graph
 ===========
 

@@ -1,3 +1,7 @@
+---
+title: Xitact
+---
+
 Xitact are haptic device product by **Mentice**, two models are handle
 in SOFA:
 

@@ -1,3 +1,7 @@
+---
+title: Recorded Camera
+---
+
 How to manage the recorded camera
 ---------------------------------
 

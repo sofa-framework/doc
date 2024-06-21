@@ -1,3 +1,7 @@
+---
+title: SOFA-NG migration
+---
+
 # SOFA-NG transition
 
 ## Project timeline

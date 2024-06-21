@@ -1,3 +1,7 @@
+---
+title: How to compile a plugin
+---
+
 In order to develop your own codes, SOFA allows to develop plugins separately from the SOFA open-source core. This tutorial shows how to organize and compile one or several plugins outside from SOFA.
 
 Linux (with SOFA sources)
