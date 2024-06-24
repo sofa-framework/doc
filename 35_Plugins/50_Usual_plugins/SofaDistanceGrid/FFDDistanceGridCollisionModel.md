@@ -236,3 +236,153 @@ Links:
 
 
 
+## Examples
+
+SofaDistanceGrid/share/sofa/examples/SofaDistanceGrid/FFDDistanceGridCollisionModel.scn
+
+=== "XML"
+
+    ```xml
+    <?xml version="1.0"?>
+    <Node name="root" dt="0.005" gravity="0.0 -9.81 0">
+        <RequiredPlugin name="Sofa.Component.Collision.Detection.Algorithm"/> <!-- Needed to use components [BVHNarrowPhase BruteForceBroadPhase CollisionPipeline] -->
+        <RequiredPlugin name="Sofa.Component.Collision.Detection.Intersection"/> <!-- Needed to use components [DiscreteIntersection] -->
+        <RequiredPlugin name="Sofa.Component.Collision.Geometry"/> <!-- Needed to use components [PointCollisionModel TriangleCollisionModel] -->
+        <RequiredPlugin name="Sofa.Component.Collision.Response.Contact"/> <!-- Needed to use components [CollisionResponse] -->
+        <RequiredPlugin name="Sofa.Component.Constraint.Projective"/> <!-- Needed to use components [FixedProjectiveConstraint] -->
+        <RequiredPlugin name="Sofa.Component.Engine.Select"/> <!-- Needed to use components [BoxROI] -->
+        <RequiredPlugin name="Sofa.Component.IO.Mesh"/> <!-- Needed to use components [MeshOBJLoader] -->
+        <RequiredPlugin name="Sofa.Component.LinearSolver.Iterative"/> <!-- Needed to use components [CGLinearSolver] -->
+        <RequiredPlugin name="Sofa.Component.Mapping.Linear"/> <!-- Needed to use components [BarycentricMapping IdentityMapping] -->
+        <RequiredPlugin name="Sofa.Component.Mass"/> <!-- Needed to use components [UniformMass] -->
+        <RequiredPlugin name="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+        <RequiredPlugin name="Sofa.Component.SolidMechanics.FEM.Elastic"/> <!-- Needed to use components [HexahedronFEMForceField TriangularFEMForceField] -->
+        <RequiredPlugin name="Sofa.Component.SolidMechanics.Spring"/> <!-- Needed to use components [TriangularBendingSprings] -->
+        <RequiredPlugin name="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
+        <RequiredPlugin name="Sofa.Component.Topology.Container.Dynamic"/> <!-- Needed to use components [TriangleSetGeometryAlgorithms TriangleSetTopologyContainer TriangleSetTopologyModifier] -->
+        <RequiredPlugin name="Sofa.Component.Topology.Container.Grid"/> <!-- Needed to use components [RegularGridTopology SparseGridTopology] -->
+        <RequiredPlugin name="Sofa.Component.Topology.Mapping"/> <!-- Needed to use components [Quad2TriangleTopologicalMapping] -->
+        <RequiredPlugin name="Sofa.Component.Visual"/> <!-- Needed to use components [VisualStyle] -->
+        <RequiredPlugin name="Sofa.GL.Component.Rendering3D"/> <!-- Needed to use components [OglModel] -->
+        <RequiredPlugin name="SofaDistanceGrid"/> <!-- Needed to use components [FFDDistanceGridCollisionModel] -->
+        <CollisionPipeline name="pipeline" depth="6" verbose="0" />
+        <BruteForceBroadPhase/>
+        <BVHNarrowPhase/>
+        <CollisionResponse name="response" response="PenalityContactForceField" />
+        <DiscreteIntersection name="proximity" />
+        
+        <EulerImplicitSolver name="cg_odesolver" printLog="false"  rayleighStiffness="0.1" rayleighMass="0.1" />
+        <CGLinearSolver iterations="25" name="linear solver" tolerance="1.0e-9" threshold="1.0e-9" />
+            
+        
+        <Node name="DeformableLiver">
+            
+            <VisualStyle displayFlags="showForceFields" />
+            
+            <MechanicalObject />
+            <UniformMass totalMass="1000.0" />
+            <SparseGridTopology n="8 6 6" fileTopology="mesh/liver-smooth.obj" />
+            <BoxROI name="box1" box="-2.5 0 -2.5 7.5 3 2" />
+            <FixedProjectiveConstraint indices="@box1.indices"/>
+            <HexahedronFEMForceField poissonRatio="0" youngModulus="7000"/>
+            <FFDDistanceGridCollisionModel  fileFFDDistanceGrid="mesh/liver-smooth.obj" scale="1.0" usePoints="0" proximity="0.1" contactStiffness="500.0" contactFriction="0.0" />
+            <Node name="Visu">
+                <MeshOBJLoader name="meshLoader_0" filename="mesh/liver-smooth.obj" translation="0 0 0" handleSeams="1" />
+                <OglModel name="Visual" src="@meshLoader_0" color="red" />
+                <BarycentricMapping input="@.." output="@Visual" />
+            </Node>
+        </Node>
+        
+        
+        <Node name="Cloth">
+            
+            <VisualStyle displayFlags="hideForceFields" />
+            
+            <RegularGridTopology nx="50" ny="1" nz="50" xmin="-6" xmax="2" ymin="6" ymax="6" zmin="-4" zmax="4" name="Container" />
+            <MechanicalObject name="dofs" />
+            <UniformMass totalMass="100" />
+            <Node name="T">
+                <include href="Objects/TriangleSetTopology.xml" />
+                <Quad2TriangleTopologicalMapping input="@../Container" output="@Container" />
+                <TriangularFEMForceField name="FEM" youngModulus="60" poissonRatio="0.3" method="large" />
+                <TriangularBendingSprings name="FEM-Bend" stiffness="300" damping="1.0" />
+                <TriangleCollisionModel />
+                <PointCollisionModel />
+                <Node name="Visu">
+                    <OglModel name="Visual" material="mat1 Diffuse 1 0.5 1.0 0.75 0.8 Ambient 1 0.2 0.2 0.2 1 Specular 1 0.6 0.6 0.6 0.6  Emissive 0 0 0 0 0 Shininess 0 45" />
+                    <IdentityMapping input="@../../dofs" output="@Visual" />
+                </Node>
+            </Node>
+        </Node>
+        
+    </Node>
+    ```
+
+=== "Python"
+
+    ```python
+    def createScene(rootNode):
+
+        root = rootNode.addChild('root', dt="0.005", gravity="0.0 -9.81 0")
+        root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Algorithm")
+        root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Intersection")
+        root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Geometry")
+        root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Response.Contact")
+        root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Projective")
+        root.addObject('RequiredPlugin', name="Sofa.Component.Engine.Select")
+        root.addObject('RequiredPlugin', name="Sofa.Component.IO.Mesh")
+        root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Iterative")
+        root.addObject('RequiredPlugin', name="Sofa.Component.Mapping.Linear")
+        root.addObject('RequiredPlugin', name="Sofa.Component.Mass")
+        root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
+        root.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.FEM.Elastic")
+        root.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.Spring")
+        root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
+        root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Dynamic")
+        root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Grid")
+        root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Mapping")
+        root.addObject('RequiredPlugin', name="Sofa.Component.Visual")
+        root.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
+        root.addObject('RequiredPlugin', name="SofaDistanceGrid")
+        root.addObject('CollisionPipeline', name="pipeline", depth="6", verbose="0")
+        root.addObject('BruteForceBroadPhase')
+        root.addObject('BVHNarrowPhase')
+        root.addObject('CollisionResponse', name="response", response="PenalityContactForceField")
+        root.addObject('DiscreteIntersection', name="proximity")
+        root.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
+        root.addObject('CGLinearSolver', iterations="25", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
+
+        DeformableLiver = root.addChild('DeformableLiver')
+        DeformableLiver.addObject('VisualStyle', displayFlags="showForceFields")
+        DeformableLiver.addObject('MechanicalObject')
+        DeformableLiver.addObject('UniformMass', totalMass="1000.0")
+        DeformableLiver.addObject('SparseGridTopology', n="8 6 6", fileTopology="mesh/liver-smooth.obj")
+        DeformableLiver.addObject('BoxROI', name="box1", box="-2.5 0 -2.5 7.5 3 2")
+        DeformableLiver.addObject('FixedProjectiveConstraint', indices="@box1.indices")
+        DeformableLiver.addObject('HexahedronFEMForceField', poissonRatio="0", youngModulus="7000")
+        DeformableLiver.addObject('FFDDistanceGridCollisionModel', fileFFDDistanceGrid="mesh/liver-smooth.obj", scale="1.0", usePoints="0", proximity="0.1", contactStiffness="500.0", contactFriction="0.0")
+
+        Visu = DeformableLiver.addChild('Visu')
+        Visu.addObject('MeshOBJLoader', name="meshLoader_0", filename="mesh/liver-smooth.obj", translation="0 0 0", handleSeams="1")
+        Visu.addObject('OglModel', name="Visual", src="@meshLoader_0", color="red")
+        Visu.addObject('BarycentricMapping', input="@..", output="@Visual")
+
+        Cloth = root.addChild('Cloth')
+        Cloth.addObject('VisualStyle', displayFlags="hideForceFields")
+        Cloth.addObject('RegularGridTopology', nx="50", ny="1", nz="50", xmin="-6", xmax="2", ymin="6", ymax="6", zmin="-4", zmax="4", name="Container")
+        Cloth.addObject('MechanicalObject', name="dofs")
+        Cloth.addObject('UniformMass', totalMass="100")
+
+        T = Cloth.addChild('T')
+        T.addObject('include', href="Objects/TriangleSetTopology.xml")
+        T.addObject('Quad2TriangleTopologicalMapping', input="@../Container", output="@Container")
+        T.addObject('TriangularFEMForceField', name="FEM", youngModulus="60", poissonRatio="0.3", method="large")
+        T.addObject('TriangularBendingSprings', name="FEM-Bend", stiffness="300", damping="1.0")
+        T.addObject('TriangleCollisionModel')
+        T.addObject('PointCollisionModel')
+
+        Visu = T.addChild('Visu')
+        Visu.addObject('OglModel', name="Visual", material="mat1 Diffuse 1 0.5 1.0 0.75 0.8 Ambient 1 0.2 0.2 0.2 1 Specular 1 0.6 0.6 0.6 0.6  Emissive 0 0 0 0 0 Shininess 0 45")
+        Visu.addObject('IdentityMapping', input="@../../dofs", output="@Visual")
+    ```
+

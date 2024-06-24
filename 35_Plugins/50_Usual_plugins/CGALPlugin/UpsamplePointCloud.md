@@ -112,3 +112,53 @@ Links:
 
 
 
+## Examples
+
+CGALPlugin/share/sofa/examples/CGALPlugin/UpsamplePointCloud.scn
+
+=== "XML"
+
+    ```xml
+    <?xml version="1.0"?>
+    <Node name="root" gravity="0 0 0" dt="1"  >
+    	<RequiredPlugin pluginName="CGALPlugin"/>
+      <RequiredPlugin pluginName='SofaOpenglVisual'/>
+    
+    	<VisualStyle displayFlags="showVisual" />
+    
+    	<Node name="PointCloud">
+    		<MeshOBJLoader name="loader" filename="mesh/liver.obj"/>
+    		<MeshTopology src="@loader"/>
+    		<MechanicalObject showObject="1" showObjectScale="5" showColor="1 0 0"/>
+    	</Node>
+    
+    	<Node name="UpsamplePointCloud">
+    		<UpsamplePointCloud name="engine" src="@../PointCloud/loader"/>
+    		<MeshTopology name="topology" position="@engine.outputPosition"/>
+    		<MechanicalObject src="@topology" showObject="1" showObjectScale="5"/>
+    	</Node>
+    
+    </Node>
+    ```
+
+=== "Python"
+
+    ```python
+    def createScene(rootNode):
+
+        root = rootNode.addChild('root', gravity="0 0 0", dt="1")
+        root.addObject('RequiredPlugin', pluginName="CGALPlugin")
+        root.addObject('RequiredPlugin', pluginName="SofaOpenglVisual")
+        root.addObject('VisualStyle', displayFlags="showVisual")
+
+        PointCloud = root.addChild('PointCloud')
+        PointCloud.addObject('MeshOBJLoader', name="loader", filename="mesh/liver.obj")
+        PointCloud.addObject('MeshTopology', src="@loader")
+        PointCloud.addObject('MechanicalObject', showObject="1", showObjectScale="5", showColor="1 0 0")
+
+        UpsamplePointCloud = root.addChild('UpsamplePointCloud')
+        UpsamplePointCloud.addObject('UpsamplePointCloud', name="engine", src="@../PointCloud/loader")
+        UpsamplePointCloud.addObject('MeshTopology', name="topology", position="@engine.outputPosition")
+        UpsamplePointCloud.addObject('MechanicalObject', src="@topology", showObject="1", showObjectScale="5")
+    ```
+

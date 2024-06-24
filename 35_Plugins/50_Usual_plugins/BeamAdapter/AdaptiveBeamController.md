@@ -166,3 +166,94 @@ Links:
 
 
 
+## Examples
+
+BeamAdapter/examples/AdaptiveBeamController.scn
+
+=== "XML"
+
+    ```xml
+    <?xml version="1.0"?>
+    <Node name="root" gravity="0 -9.81 0" dt="0.01" >
+    	<RequiredPlugin name="Sofa.Component.Constraint.Projective"/> <!-- Needed to use components [FixedConstraint] -->
+    	<RequiredPlugin name="Sofa.Component.LinearSolver.Direct"/> <!-- Needed to use components [EigenSparseLU] -->
+    	<RequiredPlugin name="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+    	<RequiredPlugin name="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
+    	<RequiredPlugin name="Sofa.Component.Topology.Container.Constant"/> <!-- Needed to use components [MeshTopology] -->
+    	<RequiredPlugin name="Sofa.Component.Visual"/> <!-- Needed to use components [VisualStyle] -->
+    
+    	<VisualStyle displayFlags="showBehaviorModels showCollisionModels hideBoundingCollisionModels showForceFields" />
+    	
+    	<Node name="AdaptiveBeam1">
+    		<EulerImplicitSolver rayleighStiffness="0" rayleighMass="0" printLog="false" />
+    		<EigenSparseLU template="CompressedRowSparseMatrixMat3x3d"/>
+    		<MechanicalObject template="Rigid3d" name="DOFs" position="0 0 0 0 0 0 1  0.5 0 0 0 0 0 1  1 0 0 0 0 0 1  1.5 0 0 0 0 0 1  2 0 0 0 0 0 1  2.5 0 0 0 0 0 1  3 0 0 0 0 0 1"/> 
+    		<MeshTopology name="lines" lines="0 1 1 2 2 3 3 4 4 5 5 6" /> 
+    		<FixedConstraint name="FixedConstraint" indices="0" />
+    		<BeamInterpolation name="BeamInterpolation" radius="0.1"/> 
+    		<AdaptiveBeamForceFieldAndMass name="BeamForceField"   computeMass="1" massDensity="50"/> 
+    <!--
+    		<Node name="Collision">
+    			<CubeTopology nx="13" ny="2" nz="2" min="0 -0.2 -0.2" max="3 0.2 0.2" />
+    			<MechanicalObject name="collision"/>
+    			<AdaptiveBeamMapping isMechanical="true" input="@../DOFs" output="@collision"/>
+    			<Triangle />
+    		</Node>
+    -->
+    	</Node>
+    
+    	<Node name="AdaptiveBeam2">
+    		<EulerImplicitSolver rayleighStiffness="0" rayleighMass="0" printLog="false" />
+    		<EigenSparseLU template="CompressedRowSparseMatrixMat3x3d"/>
+    		<MeshTopology name="lines" lines="0 1 1 2 2 3" /> 
+    		<MechanicalObject template="Rigid3d" name="DOFs" position="0 0 2 0 0 0 1  1 0 2 0 0 0 1  2 0 2 0 0 0 1  3 0 2 0 0 0 1"/> 
+    		<BeamInterpolation name="BeamInterpolation2" radius="0.1" /> 
+    		<FixedConstraint name="FixedConstraint" indices="0" />
+    		<AdaptiveBeamController template="Rigid3d" name="m_controller"/>	
+    		<AdaptiveBeamForceFieldAndMass name="BeamForceField"  computeMass="1" massDensity="50"/> 
+    <!--
+    		<Node name="Collision">
+    			<CubeTopology nx="13" ny="2" nz="2" min="0 -0.2 -0.2" max="3 0.2 0.2" />
+    			<MechanicalObject name="collision"/>
+    			<AdaptiveBeamMapping isMechanical="true" input="@../DOFs" output="@collision"/>
+    			<Triangle />
+    		</Node>
+    -->
+    	</Node>
+    </Node>
+    ```
+
+=== "Python"
+
+    ```python
+    def createScene(rootNode):
+
+        root = rootNode.addChild('root', gravity="0 -9.81 0", dt="0.01")
+        root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Projective")
+        root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Direct")
+        root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
+        root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
+        root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Constant")
+        root.addObject('RequiredPlugin', name="Sofa.Component.Visual")
+        root.addObject('VisualStyle', displayFlags="showBehaviorModels showCollisionModels hideBoundingCollisionModels showForceFields")
+
+        AdaptiveBeam1 = root.addChild('AdaptiveBeam1')
+        AdaptiveBeam1.addObject('EulerImplicitSolver', rayleighStiffness="0", rayleighMass="0", printLog="false")
+        AdaptiveBeam1.addObject('EigenSparseLU', template="CompressedRowSparseMatrixMat3x3d")
+        AdaptiveBeam1.addObject('MechanicalObject', template="Rigid3d", name="DOFs", position="0 0 0 0 0 0 1  0.5 0 0 0 0 0 1  1 0 0 0 0 0 1  1.5 0 0 0 0 0 1  2 0 0 0 0 0 1  2.5 0 0 0 0 0 1  3 0 0 0 0 0 1")
+        AdaptiveBeam1.addObject('MeshTopology', name="lines", lines="0 1 1 2 2 3 3 4 4 5 5 6")
+        AdaptiveBeam1.addObject('FixedConstraint', name="FixedConstraint", indices="0")
+        AdaptiveBeam1.addObject('BeamInterpolation', name="BeamInterpolation", radius="0.1")
+        AdaptiveBeam1.addObject('AdaptiveBeamForceFieldAndMass', name="BeamForceField", computeMass="1", massDensity="50")
+
+        AdaptiveBeam2 = root.addChild('AdaptiveBeam2')
+        AdaptiveBeam2.addObject('EulerImplicitSolver', rayleighStiffness="0", rayleighMass="0", printLog="false")
+        AdaptiveBeam2.addObject('EigenSparseLU', template="CompressedRowSparseMatrixMat3x3d")
+        AdaptiveBeam2.addObject('MeshTopology', name="lines", lines="0 1 1 2 2 3")
+        AdaptiveBeam2.addObject('MechanicalObject', template="Rigid3d", name="DOFs", position="0 0 2 0 0 0 1  1 0 2 0 0 0 1  2 0 2 0 0 0 1  3 0 2 0 0 0 1")
+        AdaptiveBeam2.addObject('BeamInterpolation', name="BeamInterpolation2", radius="0.1")
+        AdaptiveBeam2.addObject('FixedConstraint', name="FixedConstraint", indices="0")
+        AdaptiveBeam2.addObject('AdaptiveBeamController', template="Rigid3d", name="m_controller")
+        AdaptiveBeam2.addObject('AdaptiveBeamForceFieldAndMass', name="BeamForceField", computeMass="1", massDensity="50")
+    ```
+

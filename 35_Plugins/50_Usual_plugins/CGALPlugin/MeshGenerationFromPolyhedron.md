@@ -267,3 +267,58 @@ Links:
 
 
 
+## Examples
+
+CGALPlugin/share/sofa/examples/CGALPlugin/MeshGenerationFromPolyhedron.scn
+
+=== "XML"
+
+    ```xml
+    <?xml version="1.0"?>
+    <Node name="root" dt="0.05" showBoundingTree="0" gravity="0 -9 1">
+        <VisualStyle displayFlags="showVisual" />
+        <RequiredPlugin pluginName="CGALPlugin"/>
+    
+        <MeshOBJLoader name="loader" filename="mesh/torus.obj" />	
+    
+        <Node name="visu_surface">
+            <MechanicalObject name="dofs" position="@../loader.position"/>
+            <TriangleSetTopologyContainer name="topo" triangles="@../loader.triangles"/>
+            <TriangleSetTopologyModifier   name="Modifier" />
+            <TriangleSetGeometryAlgorithms template="Vec3d" name="GeomAlgo" drawTriangles="1" />
+        </Node>
+    
+        <Node name="tetra_mesh">
+            <MeshGenerationFromPolyhedron name="MeshGenerator" inputPoints="@../loader.position" inputTriangles="@../loader.triangles" inputQuads="@../loader.quads"/>
+            <MechanicalObject name="dofs" position="@MeshGenerator.outputPoints"/>
+            <TetrahedronSetTopologyContainer name="topo" tetrahedra="@MeshGenerator.outputTetras"/>
+            <TetrahedronSetGeometryAlgorithms template="Vec3d" name="GeomAlgo" drawTetrahedra="1" drawScaleTetrahedra="0.8"/>
+        </Node>
+        
+    
+    </Node>
+    ```
+
+=== "Python"
+
+    ```python
+    def createScene(rootNode):
+
+        root = rootNode.addChild('root', dt="0.05", showBoundingTree="0", gravity="0 -9 1")
+        root.addObject('VisualStyle', displayFlags="showVisual")
+        root.addObject('RequiredPlugin', pluginName="CGALPlugin")
+        root.addObject('MeshOBJLoader', name="loader", filename="mesh/torus.obj")
+
+        visu_surface = root.addChild('visu_surface')
+        visu_surface.addObject('MechanicalObject', name="dofs", position="@../loader.position")
+        visu_surface.addObject('TriangleSetTopologyContainer', name="topo", triangles="@../loader.triangles")
+        visu_surface.addObject('TriangleSetTopologyModifier', name="Modifier")
+        visu_surface.addObject('TriangleSetGeometryAlgorithms', template="Vec3d", name="GeomAlgo", drawTriangles="1")
+
+        tetra_mesh = root.addChild('tetra_mesh')
+        tetra_mesh.addObject('MeshGenerationFromPolyhedron', name="MeshGenerator", inputPoints="@../loader.position", inputTriangles="@../loader.triangles", inputQuads="@../loader.quads")
+        tetra_mesh.addObject('MechanicalObject', name="dofs", position="@MeshGenerator.outputPoints")
+        tetra_mesh.addObject('TetrahedronSetTopologyContainer', name="topo", tetrahedra="@MeshGenerator.outputTetras")
+        tetra_mesh.addObject('TetrahedronSetGeometryAlgorithms', template="Vec3d", name="GeomAlgo", drawTetrahedra="1", drawScaleTetrahedra="0.8")
+    ```
+

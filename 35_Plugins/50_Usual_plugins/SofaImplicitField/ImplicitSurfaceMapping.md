@@ -249,3 +249,62 @@ Links:
 
 
 
+## Examples
+
+SofaImplicitField/share/sofa/examples/SofaImplicitField/ImplicitSurfaceMapping.scn
+
+=== "XML"
+
+    ```xml
+    <Node dt="0.005" gravity="0 -10 0">
+        <RequiredPlugin name="Sofa.Component.IO.Mesh"/> <!-- Needed to use components [MeshGmshLoader] -->
+        <RequiredPlugin name="Sofa.Component.LinearSolver.Iterative"/> <!-- Needed to use components [CGLinearSolver] -->
+        <RequiredPlugin name="Sofa.Component.Mass"/> <!-- Needed to use components [UniformMass] -->
+        <RequiredPlugin name="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+        <RequiredPlugin name="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
+        <RequiredPlugin name="Sofa.Component.Visual"/> <!-- Needed to use components [VisualStyle] -->
+        <RequiredPlugin name="Sofa.GL.Component.Rendering3D"/> <!-- Needed to use components [OglModel] -->
+        <RequiredPlugin name="SofaImplicitField"/> <!-- Needed to use components [ImplicitSurfaceMapping] -->
+        <VisualStyle displayFlags="showBehaviorModels showForceFields" />
+        <Node name="Liver">
+            <EulerImplicitSolver name="cg_odesolver" printLog="false"  rayleighStiffness="0.1" rayleighMass="0.1" />
+            <CGLinearSolver iterations="25" name="linear solver" tolerance="1.0e-9" threshold="1.0e-9" />
+            <MeshGmshLoader name="loader" filename="mesh/liver.msh" />
+            <MechanicalObject src="@loader" name="dofs" />
+            <UniformMass name="M1" vertexMass="1" />
+            <Node id="Visual">
+                <OglModel name="VModel" color="blue" />
+                <ImplicitSurfaceMapping name="MarchingCube" input="@../dofs" output="@VModel" isoValue="0.5" radius="0.75" step="0.25" />
+            </Node>
+        </Node>
+    </Node>
+    ```
+
+=== "Python"
+
+    ```python
+    def createScene(rootNode):
+
+        rootNode = rootNode.addChild('rootNode', dt="0.005", gravity="0 -10 0")
+        rootNode.addObject('RequiredPlugin', name="Sofa.Component.IO.Mesh")
+        rootNode.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Iterative")
+        rootNode.addObject('RequiredPlugin', name="Sofa.Component.Mass")
+        rootNode.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
+        rootNode.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
+        rootNode.addObject('RequiredPlugin', name="Sofa.Component.Visual")
+        rootNode.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
+        rootNode.addObject('RequiredPlugin', name="SofaImplicitField")
+        rootNode.addObject('VisualStyle', displayFlags="showBehaviorModels showForceFields")
+
+        Liver = rootNode.addChild('Liver')
+        Liver.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
+        Liver.addObject('CGLinearSolver', iterations="25", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
+        Liver.addObject('MeshGmshLoader', name="loader", filename="mesh/liver.msh")
+        Liver.addObject('MechanicalObject', src="@loader", name="dofs")
+        Liver.addObject('UniformMass', name="M1", vertexMass="1")
+
+        Liver = Liver.addChild('Liver', id="Visual")
+        Liver.addObject('OglModel', name="VModel", color="blue")
+        Liver.addObject('ImplicitSurfaceMapping', name="MarchingCube", input="@../dofs", output="@VModel", isoValue="0.5", radius="0.75", step="0.25")
+    ```
+

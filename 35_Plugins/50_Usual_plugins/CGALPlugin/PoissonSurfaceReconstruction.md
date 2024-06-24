@@ -133,3 +133,53 @@ Links:
 
 
 
+## Examples
+
+CGALPlugin/share/sofa/examples/CGALPlugin/PoissonSurfaceReconstruction.scn
+
+=== "XML"
+
+    ```xml
+    <?xml version="1.0"?>
+    <Node name="root" gravity="0 0 0" dt="1"  >
+    	<RequiredPlugin pluginName="CGALPlugin"/>
+      <RequiredPlugin pluginName='SofaOpenglVisual'/>
+    
+    	<VisualStyle displayFlags="showVisual" />
+    
+    	<Node name="PointCloud">
+    		<MeshOBJLoader name="loader" filename="mesh/liver.obj"/>
+    		<MeshTopology src="@loader"/>
+    		<MechanicalObject showObject="1" showObjectScale="5"/>
+    	</Node>
+    
+    	<Node name="PoissonSurfaceReconstruction">
+    		<PoissonSurfaceReconstruction name="engine" src="@../PointCloud/loader" angle="20" radius="30" distance="0.375"/>
+    		<MeshTopology position="@engine.outputPosition" triangles="@engine.outputTriangles"/>
+    		<OglModel color="1 0 0"/>
+    	</Node>
+    
+    </Node>
+    ```
+
+=== "Python"
+
+    ```python
+    def createScene(rootNode):
+
+        root = rootNode.addChild('root', gravity="0 0 0", dt="1")
+        root.addObject('RequiredPlugin', pluginName="CGALPlugin")
+        root.addObject('RequiredPlugin', pluginName="SofaOpenglVisual")
+        root.addObject('VisualStyle', displayFlags="showVisual")
+
+        PointCloud = root.addChild('PointCloud')
+        PointCloud.addObject('MeshOBJLoader', name="loader", filename="mesh/liver.obj")
+        PointCloud.addObject('MeshTopology', src="@loader")
+        PointCloud.addObject('MechanicalObject', showObject="1", showObjectScale="5")
+
+        PoissonSurfaceReconstruction = root.addChild('PoissonSurfaceReconstruction')
+        PoissonSurfaceReconstruction.addObject('PoissonSurfaceReconstruction', name="engine", src="@../PointCloud/loader", angle="20", radius="30", distance="0.375")
+        PoissonSurfaceReconstruction.addObject('MeshTopology', position="@engine.outputPosition", triangles="@engine.outputTriangles")
+        PoissonSurfaceReconstruction.addObject('OglModel', color="1 0 0")
+    ```
+

@@ -182,3 +182,101 @@ Links:
 
 
 
+## Examples
+
+CGALPlugin/share/sofa/examples/CGALPlugin/BooleanOperations.scn
+
+=== "XML"
+
+    ```xml
+    <?xml version="1.0"?>
+    <Node name="root" gravity="0 0 0" dt="1"  >
+    	<RequiredPlugin pluginName="CGALPlugin"/>
+      <RequiredPlugin pluginName='SofaOpenglVisual'/>
+    
+    	<VisualStyle displayFlags="showWireframe showVisual" />
+    
+    	<Node name="Mesh1">
+    		<MeshOBJLoader name="loader" filename="mesh/cube.obj" translation="50 50 50" scale="50"/>
+    		<OglModel src="@loader" color="1 0 0"/>
+    	</Node>
+    
+    	<Node name="Mesh2">
+    		<MeshOBJLoader name="loader" filename="mesh/sphere_05.obj"/>
+    		<OglModel src="@loader" color="0 1 0"/>
+    	</Node>
+    
+    	<Node name="Union">
+    		<BooleanOperations name="engine" position1="@../Mesh1/loader.position" triangles1="@../Mesh1/loader.triangles"
+    																		 position2="@../Mesh2/loader.position" triangles2="@../Mesh2/loader.triangles"
+    																		 operation="union"/>
+    		<MeshTopology position="@engine.outputPosition" triangles="@engine.outputTriangles"/>
+    		<OglModel color="0 0 1" translation="200 0 0"/>
+    	</Node>
+    
+    	<Node name="Intersection">
+    		<BooleanOperations name="engine" position1="@../Mesh1/loader.position" triangles1="@../Mesh1/loader.triangles"
+    																		 position2="@../Mesh2/loader.position" triangles2="@../Mesh2/loader.triangles"
+    																		 operation="intersection"/>
+    		<MeshTopology position="@engine.outputPosition" triangles="@engine.outputTriangles"/>
+    		<OglModel color="0 0 1" translation="375 0 0"/>
+    	</Node>
+    
+    	<Node name="Difference1">
+    		<BooleanOperations name="engine" position1="@../Mesh1/loader.position" triangles1="@../Mesh1/loader.triangles"
+    																		 position2="@../Mesh2/loader.position" triangles2="@../Mesh2/loader.triangles"
+    																		 operation="difference"/>
+    		<MeshTopology position="@engine.outputPosition" triangles="@engine.outputTriangles"/>
+    		<OglModel color="0 0 1" translation="500 0 0"/>
+    	</Node>
+    
+    	<Node name="Difference2">
+    		<BooleanOperations name="engine" position1="@../Mesh2/loader.position" triangles1="@../Mesh2/loader.triangles"
+    																		 position2="@../Mesh1/loader.position" triangles2="@../Mesh1/loader.triangles"
+    																		 operation="difference"/>
+    		<MeshTopology position="@engine.outputPosition" triangles="@engine.outputTriangles"/>
+    		<OglModel color="0 0 1" translation="700 0 0"/>
+    	</Node>
+    
+    </Node>
+    ```
+
+=== "Python"
+
+    ```python
+    def createScene(rootNode):
+
+        root = rootNode.addChild('root', gravity="0 0 0", dt="1")
+        root.addObject('RequiredPlugin', pluginName="CGALPlugin")
+        root.addObject('RequiredPlugin', pluginName="SofaOpenglVisual")
+        root.addObject('VisualStyle', displayFlags="showWireframe showVisual")
+
+        Mesh1 = root.addChild('Mesh1')
+        Mesh1.addObject('MeshOBJLoader', name="loader", filename="mesh/cube.obj", translation="50 50 50", scale="50")
+        Mesh1.addObject('OglModel', src="@loader", color="1 0 0")
+
+        Mesh2 = root.addChild('Mesh2')
+        Mesh2.addObject('MeshOBJLoader', name="loader", filename="mesh/sphere_05.obj")
+        Mesh2.addObject('OglModel', src="@loader", color="0 1 0")
+
+        Union = root.addChild('Union')
+        Union.addObject('BooleanOperations', name="engine", position1="@../Mesh1/loader.position", triangles1="@../Mesh1/loader.triangles", position2="@../Mesh2/loader.position", triangles2="@../Mesh2/loader.triangles", operation="union")
+        Union.addObject('MeshTopology', position="@engine.outputPosition", triangles="@engine.outputTriangles")
+        Union.addObject('OglModel', color="0 0 1", translation="200 0 0")
+
+        Intersection = root.addChild('Intersection')
+        Intersection.addObject('BooleanOperations', name="engine", position1="@../Mesh1/loader.position", triangles1="@../Mesh1/loader.triangles", position2="@../Mesh2/loader.position", triangles2="@../Mesh2/loader.triangles", operation="intersection")
+        Intersection.addObject('MeshTopology', position="@engine.outputPosition", triangles="@engine.outputTriangles")
+        Intersection.addObject('OglModel', color="0 0 1", translation="375 0 0")
+
+        Difference1 = root.addChild('Difference1')
+        Difference1.addObject('BooleanOperations', name="engine", position1="@../Mesh1/loader.position", triangles1="@../Mesh1/loader.triangles", position2="@../Mesh2/loader.position", triangles2="@../Mesh2/loader.triangles", operation="difference")
+        Difference1.addObject('MeshTopology', position="@engine.outputPosition", triangles="@engine.outputTriangles")
+        Difference1.addObject('OglModel', color="0 0 1", translation="500 0 0")
+
+        Difference2 = root.addChild('Difference2')
+        Difference2.addObject('BooleanOperations', name="engine", position1="@../Mesh2/loader.position", triangles1="@../Mesh2/loader.triangles", position2="@../Mesh1/loader.position", triangles2="@../Mesh1/loader.triangles", operation="difference")
+        Difference2.addObject('MeshTopology', position="@engine.outputPosition", triangles="@engine.outputTriangles")
+        Difference2.addObject('OglModel', color="0 0 1", translation="700 0 0")
+    ```
+

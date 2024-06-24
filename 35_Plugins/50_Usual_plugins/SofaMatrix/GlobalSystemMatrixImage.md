@@ -89,3 +89,86 @@ Links:
 
 
 
+## Examples
+
+SofaMatrix/share/sofa/examples/SofaMatrix/GlobalSystemMatrixImage.scn
+
+=== "XML"
+
+    ```xml
+    <Node name="root" dt="0.02" gravity="0 -10 0">
+        <RequiredPlugin name="Sofa.Component.Constraint.Projective"/> <!-- Needed to use components [FixedProjectiveConstraint] -->
+        <RequiredPlugin name="Sofa.Component.LinearSolver.Direct"/> <!-- Needed to use components [SparseLDLSolver] -->
+        <RequiredPlugin name="Sofa.Component.Mass"/> <!-- Needed to use components [UniformMass] -->
+        <RequiredPlugin name="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+        <RequiredPlugin name="Sofa.Component.SolidMechanics.FEM.Elastic"/> <!-- Needed to use components [HexahedronFEMForceField] -->
+        <RequiredPlugin name="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
+        <RequiredPlugin name="Sofa.Component.Topology.Container.Grid"/> <!-- Needed to use components [RegularGridTopology] -->
+        <RequiredPlugin name="Sofa.Component.Visual"/> <!-- Needed to use components [VisualStyle] -->
+        <RequiredPlugin name="SofaMatrix"/> <!-- Needed to use components [GlobalSystemMatrixImage] -->
+    
+        <VisualStyle displayFlags="showBehaviorModels showForceFields" />
+    
+        <!-- Node containing 2 objects under a single linear solver -->
+        <Node name="M3">
+            <EulerImplicitSolver name="odesolver"  rayleighStiffness="0.1" rayleighMass="0.1" />
+            <MatrixLinearSystem template="CompressedRowSparseMatrixMat3x3d"/>
+            <SparseLDLSolver printLog="false" template="CompressedRowSparseMatrixMat3x3d"/>
+            <GlobalSystemMatrixImage/>
+    
+            <Node name="N1">
+                <MechanicalObject />
+                <UniformMass vertexMass="1"/>
+                <RegularGridTopology nx="4" ny="4" nz="10" xmin="-3" xmax="0" ymin="0" ymax="3" zmin="0" zmax="9" />
+                <FixedProjectiveConstraint indices="0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15" />
+                <HexahedronFEMForceField name="FEM" youngModulus="4000" poissonRatio="0.3" method="large" />
+            </Node>
+            <Node name="N2">
+                <MechanicalObject />
+                <UniformMass vertexMass="1"/>
+                <RegularGridTopology nx="4" ny="4" nz="10" xmin="0" xmax="3" ymin="0" ymax="3" zmin="0" zmax="9" />
+                <FixedProjectiveConstraint indices="0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15" />
+                <HexahedronFEMForceField name="FEM" youngModulus="4000" poissonRatio="0.3" method="large" />
+            </Node>
+        </Node>
+    </Node>
+    ```
+
+=== "Python"
+
+    ```python
+    def createScene(rootNode):
+
+        root = rootNode.addChild('root', dt="0.02", gravity="0 -10 0")
+        root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Projective")
+        root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Direct")
+        root.addObject('RequiredPlugin', name="Sofa.Component.Mass")
+        root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
+        root.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.FEM.Elastic")
+        root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
+        root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Grid")
+        root.addObject('RequiredPlugin', name="Sofa.Component.Visual")
+        root.addObject('RequiredPlugin', name="SofaMatrix")
+        root.addObject('VisualStyle', displayFlags="showBehaviorModels showForceFields")
+
+        M3 = root.addChild('M3')
+        M3.addObject('EulerImplicitSolver', name="odesolver", rayleighStiffness="0.1", rayleighMass="0.1")
+        M3.addObject('MatrixLinearSystem', template="CompressedRowSparseMatrixMat3x3d")
+        M3.addObject('SparseLDLSolver', printLog="false", template="CompressedRowSparseMatrixMat3x3d")
+        M3.addObject('GlobalSystemMatrixImage')
+
+        N1 = M3.addChild('N1')
+        N1.addObject('MechanicalObject')
+        N1.addObject('UniformMass', vertexMass="1")
+        N1.addObject('RegularGridTopology', nx="4", ny="4", nz="10", xmin="-3", xmax="0", ymin="0", ymax="3", zmin="0", zmax="9")
+        N1.addObject('FixedProjectiveConstraint', indices="0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15")
+        N1.addObject('HexahedronFEMForceField', name="FEM", youngModulus="4000", poissonRatio="0.3", method="large")
+
+        N2 = M3.addChild('N2')
+        N2.addObject('MechanicalObject')
+        N2.addObject('UniformMass', vertexMass="1")
+        N2.addObject('RegularGridTopology', nx="4", ny="4", nz="10", xmin="0", xmax="3", ymin="0", ymax="3", zmin="0", zmax="9")
+        N2.addObject('FixedProjectiveConstraint', indices="0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15")
+        N2.addObject('HexahedronFEMForceField', name="FEM", youngModulus="4000", poissonRatio="0.3", method="large")
+    ```
+

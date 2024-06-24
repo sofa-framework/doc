@@ -141,3 +141,31 @@ Links:
 
 
 
+## Examples
+
+SofaEulerianFluid/share/sofa/examples/SofaEulerianFluid/Fluid3D.scn
+
+=== "XML"
+
+    ```xml
+    <Node dt="0.04" gravity="0 -10 0">
+        <VisualStyle displayFlags="showForceFields showCollisionModels showMappings" />
+        <RequiredPlugin name="Sofa.Component.Visual"/> <!-- Needed to use components [VisualStyle] -->
+        <RequiredPlugin name="SofaEulerianFluid"/> <!-- Needed to use components [Fluid3D] -->
+    
+        <Fluid3D nx="32" ny="32" nz="32" tstart="0" tstop="0" height="20.5" dir="0.5 0 1" />
+    </Node>
+    ```
+
+=== "Python"
+
+    ```python
+    def createScene(rootNode):
+
+        rootNode = rootNode.addChild('rootNode', dt="0.04", gravity="0 -10 0")
+        rootNode.addObject('VisualStyle', displayFlags="showForceFields showCollisionModels showMappings")
+        rootNode.addObject('RequiredPlugin', name="Sofa.Component.Visual")
+        rootNode.addObject('RequiredPlugin', name="SofaEulerianFluid")
+        rootNode.addObject('Fluid3D', nx="32", ny="32", nz="32", tstart="0", tstop="0", height="20.5", dir="0.5 0 1")
+    ```
+

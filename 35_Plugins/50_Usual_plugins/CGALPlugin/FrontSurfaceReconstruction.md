@@ -119,3 +119,53 @@ Links:
 
 
 
+## Examples
+
+CGALPlugin/share/sofa/examples/CGALPlugin/FrontSurfaceReconstruction.scn
+
+=== "XML"
+
+    ```xml
+    <?xml version="1.0"?>
+    <Node name="root" gravity="0 0 0" dt="1"  >
+    	<RequiredPlugin pluginName="CGALPlugin"/>
+      <RequiredPlugin pluginName='SofaOpenglVisual'/>
+    
+    	<VisualStyle displayFlags="showVisual" />
+    
+    	<Node name="PointCloud">
+    		<MeshOBJLoader name="loader" filename="mesh/liver2.obj"/>
+    		<MeshTopology src="@loader"/>
+    		<MechanicalObject showObject="1" showObjectScale="5"/>
+    	</Node>
+    
+    	<Node name="FrontSurfaceReconstruction">
+    		<FrontSurfaceReconstruction name="engine" src="@../PointCloud/loader" radiusRatioBound="5" beta="0.52"/>
+    		<MeshTopology position="@engine.outputPosition" triangles="@engine.outputTriangles"/>
+    		<OglModel color="1 0 0"/>
+    	</Node>
+    
+    </Node>
+    ```
+
+=== "Python"
+
+    ```python
+    def createScene(rootNode):
+
+        root = rootNode.addChild('root', gravity="0 0 0", dt="1")
+        root.addObject('RequiredPlugin', pluginName="CGALPlugin")
+        root.addObject('RequiredPlugin', pluginName="SofaOpenglVisual")
+        root.addObject('VisualStyle', displayFlags="showVisual")
+
+        PointCloud = root.addChild('PointCloud')
+        PointCloud.addObject('MeshOBJLoader', name="loader", filename="mesh/liver2.obj")
+        PointCloud.addObject('MeshTopology', src="@loader")
+        PointCloud.addObject('MechanicalObject', showObject="1", showObjectScale="5")
+
+        FrontSurfaceReconstruction = root.addChild('FrontSurfaceReconstruction')
+        FrontSurfaceReconstruction.addObject('FrontSurfaceReconstruction', name="engine", src="@../PointCloud/loader", radiusRatioBound="5", beta="0.52")
+        FrontSurfaceReconstruction.addObject('MeshTopology', position="@engine.outputPosition", triangles="@engine.outputTriangles")
+        FrontSurfaceReconstruction.addObject('OglModel', color="1 0 0")
+    ```
+

@@ -208,3 +208,54 @@ Links:
 
 
 
+## Examples
+
+CGALPlugin/share/sofa/examples/CGALPlugin/Refine2DMesh.scn
+
+=== "XML"
+
+    ```xml
+    <Node name="root" dt="0.01" gravity="0 -1 0">
+    	<VisualStyle displayFlags="showVisual showCollisionModels showWireframe"/>
+        <RequiredPlugin pluginName="CGALPlugin"/>
+        <RequiredPlugin pluginName='SofaOpenglVisual'/>
+        
+        <MeshVTKLoader name="meshLoader" filename="data/mesh/edges.vtk" />
+    
+        <Refine2DMesh template="Vec3d" name="cgalTool"
+                        inputPoints="@meshLoader.position" inputEdges="@meshLoader.edges"
+                        useInteriorPoints="false"
+                        seedPoints="200 50 0"
+                        regionPoints="50 50 0"
+                        shapeCriteria="0.125"
+                        sizeCriteria="10"
+                        viewSeedPoints="1"
+                        viewRegionPoints="1"
+                        />
+      
+    	<Node>
+            <MechanicalObject position="@../cgalTool.outputPoints" />
+            <TriangleSetTopologyContainer position="@../cgalTool.outputPoints" triangles="@../cgalTool.outputTriangles" />
+            <TriangleSetGeometryAlgorithms drawTriangles="true"/>        
+    	</Node>
+    </Node>
+    ```
+
+=== "Python"
+
+    ```python
+    def createScene(rootNode):
+
+        root = rootNode.addChild('root', dt="0.01", gravity="0 -1 0")
+        root.addObject('VisualStyle', displayFlags="showVisual showCollisionModels showWireframe")
+        root.addObject('RequiredPlugin', pluginName="CGALPlugin")
+        root.addObject('RequiredPlugin', pluginName="SofaOpenglVisual")
+        root.addObject('MeshVTKLoader', name="meshLoader", filename="data/mesh/edges.vtk")
+        root.addObject('Refine2DMesh', template="Vec3d", name="cgalTool", inputPoints="@meshLoader.position", inputEdges="@meshLoader.edges", useInteriorPoints="false", seedPoints="200 50 0", regionPoints="50 50 0", shapeCriteria="0.125", sizeCriteria="10", viewSeedPoints="1", viewRegionPoints="1")
+
+        root = root.addChild('root')
+        root.addObject('MechanicalObject', position="@../cgalTool.outputPoints")
+        root.addObject('TriangleSetTopologyContainer', position="@../cgalTool.outputPoints", triangles="@../cgalTool.outputTriangles")
+        root.addObject('TriangleSetGeometryAlgorithms', drawTriangles="true")
+    ```
+

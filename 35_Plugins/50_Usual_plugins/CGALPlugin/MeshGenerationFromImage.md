@@ -281,3 +281,93 @@ Links:
 
 
 
+## Examples
+
+CGALPlugin/share/sofa/examples/CGALPlugin/MeshGenerationFromImage.scn
+
+=== "XML"
+
+    ```xml
+    <?xml version="1.0"?>
+    <Node name="root" gravity="0 0 0" dt="1"  >
+    	<RequiredPlugin pluginName="CGALPlugin"/>
+    	<RequiredPlugin pluginName="image"/>
+        <RequiredPlugin pluginName='SofaOpenglVisual'/>
+        
+    	<BackgroundSetting color="0 0.16862745098 0.21176470588"/>
+    	<VisualStyle displayFlags="showVisual" />
+    	<VisualGrid/>
+    	<OglSceneFrame/>
+    	<LineAxis/>
+    
+    	<ImageContainer name="image" template="ImageUC" filename="data/image/image-cube.inr"/>
+    	<!-- <ImageViewer template="ImageUC" src="@image"/> -->
+    		
+    	<MeshGenerationFromImage template="Vec3d,ImageUC" name="generator" printLog="0" drawTetras="true"
+    	image="@image.image" transform="@image.transform"
+    	cellSize="0.5" facetAngle="30" facetSize="1" cellRatio="3" facetApproximation="1" ordering="0"
+    	label="1 2 3" labelCellSize="0.2 0.5 0.1" labelCellData="100 200 300"/>
+    		
+    	<MeshTopology name="volume" points="@generator.outputPoints" 	tetras="@generator.outputTetras"/> 
+    	<!--<VTKExporter name="exporter" filename="data/output.vtu"  XMLformat="1" edges="0" tetras="1"  listening="true" exportAtBegin="true" cellsDataFields="generator.outputCellData" overwrite="true"/>-->
+    </Node>
+    ```
+
+=== "Python"
+
+    ```python
+    def createScene(rootNode):
+
+        root = rootNode.addChild('root', gravity="0 0 0", dt="1")
+        root.addObject('RequiredPlugin', pluginName="CGALPlugin")
+        root.addObject('RequiredPlugin', pluginName="image")
+        root.addObject('RequiredPlugin', pluginName="SofaOpenglVisual")
+        root.addObject('BackgroundSetting', color="0 0.16862745098 0.21176470588")
+        root.addObject('VisualStyle', displayFlags="showVisual")
+        root.addObject('VisualGrid')
+        root.addObject('OglSceneFrame')
+        root.addObject('LineAxis')
+        root.addObject('ImageContainer', name="image", template="ImageUC", filename="data/image/image-cube.inr")
+        root.addObject('MeshGenerationFromImage', template="Vec3d,ImageUC", name="generator", printLog="0", drawTetras="true", image="@image.image", transform="@image.transform", cellSize="0.5", facetAngle="30", facetSize="1", cellRatio="3", facetApproximation="1", ordering="0", label="1 2 3", labelCellSize="0.2 0.5 0.1", labelCellData="100 200 300")
+        root.addObject('MeshTopology', name="volume", points="@generator.outputPoints", tetras="@generator.outputTetras")
+    ```
+
+CGALPlugin/share/sofa/examples/CGALPlugin/MeshGenerationFromImageWithFeatures.scn
+
+=== "XML"
+
+    ```xml
+    <?xml version="1.0"?>
+    <Node name="root" gravity="0 0 0" dt="1"  >
+    	<RequiredPlugin pluginName="CGALPlugin"/>
+    	<RequiredPlugin pluginName="image"/>
+    	
+    	<MeshVTKLoader name="loader" filename="data/edgePoints.vtk" scale3d="1.0 1.0 1.0"/>
+    	<ImageContainer name="image" template="ImageUC" filename="data/image/image-cube.inr"/>
+    	<ImageViewer template="ImageUC" src="@image" plane="0 0 0"/>
+    	
+       	<MeshGenerationFromImage template="Vec3d,ImageUC" name="generator" printLog="0" drawTetras="true"
+                image="@image.image" transform="@image.transform"  features="@loader.position"
+                cellSize="5" edgeSize="5"  facetSize="5" facetApproximation="0.1"  facetAngle="30" cellRatio="3"  ordering="0"
+    			label="1 2 3" labelCellSize="0.15 0.15 0.15" labelCellData="100 200 300"/>/> 
+    	
+    	<MeshTopology name="generatedMesh" points="@generator.outputPoints" 	tetras="@generator.outputTetras"/> 	
+    	<!--<VTKExporter name="exporter" filename="cubeWithFeatures.vtk"  XMLformat="0" edges="0" tetras="1" exportAtBegin="1" cellsDataFields="generator.outputCellData"/>-->
+    </Node>
+    ```
+
+=== "Python"
+
+    ```python
+    def createScene(rootNode):
+
+        root = rootNode.addChild('root', gravity="0 0 0", dt="1")
+        root.addObject('RequiredPlugin', pluginName="CGALPlugin")
+        root.addObject('RequiredPlugin', pluginName="image")
+        root.addObject('MeshVTKLoader', name="loader", filename="data/edgePoints.vtk", scale3d="1.0 1.0 1.0")
+        root.addObject('ImageContainer', name="image", template="ImageUC", filename="data/image/image-cube.inr")
+        root.addObject('ImageViewer', template="ImageUC", src="@image", plane="0 0 0")
+        root.addObject('MeshGenerationFromImage', template="Vec3d,ImageUC", name="generator", printLog="0", drawTetras="true", image="@image.image", transform="@image.transform", features="@loader.position", cellSize="5", edgeSize="5", facetSize="5", facetApproximation="0.1", facetAngle="30", cellRatio="3", ordering="0", label="1 2 3", labelCellSize="0.15 0.15 0.15", labelCellData="100 200 300")
+        root.addObject('MeshTopology', name="generatedMesh", points="@generator.outputPoints", tetras="@generator.outputTetras")
+    ```
+

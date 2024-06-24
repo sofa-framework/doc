@@ -217,3 +217,146 @@ Component/Visual/PointSplatModel.scn
         World.addObject('OglModel', name="VModel", color="blue", printLog="true")
     ```
 
+SofaSphFluid/share/sofa/examples/SofaSphFluid/PointSplatModel.scn
+
+=== "XML"
+
+    ```xml
+    <?xml version="1.0" ?>
+    <!-- Mechanical PointSplatModel Example -->
+    <Node dt="0.005" gravity="0 -10 0">
+        <RequiredPlugin name="Sofa.Component.Collision.Detection.Algorithm"/> <!-- Needed to use components [BVHNarrowPhase BruteForceBroadPhase CollisionPipeline] -->
+        <RequiredPlugin name="Sofa.Component.Collision.Detection.Intersection"/> <!-- Needed to use components [NewProximityIntersection] -->
+        <RequiredPlugin name="Sofa.Component.Collision.Geometry"/> <!-- Needed to use components [LineCollisionModel PointCollisionModel TriangleCollisionModel] -->
+        <RequiredPlugin name="Sofa.Component.Collision.Response.Contact"/> <!-- Needed to use components [CollisionResponse] -->
+        <RequiredPlugin name="Sofa.Component.Mass"/> <!-- Needed to use components [UniformMass] -->
+        <RequiredPlugin name="Sofa.Component.ODESolver.Forward"/> <!-- Needed to use components [RungeKutta4Solver] -->
+        <RequiredPlugin name="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
+        <RequiredPlugin name="Sofa.Component.Topology.Container.Constant"/> <!-- Needed to use components [MeshTopology] -->
+        <RequiredPlugin name="Sofa.Component.Topology.Container.Dynamic"/> <!-- Needed to use components [PointSetTopologyContainer PointSetTopologyModifier] -->
+        <RequiredPlugin name="Sofa.GL.Component.Rendering3D"/> <!-- Needed to use components [OglModel PointSplatModel] -->
+        <RequiredPlugin name="SofaSphFluid"/> <!-- Needed to use components [ParticleSink ParticleSource SPHFluidForceField SpatialGridContainer SpatialGridPointModel] -->
+    
+        <DefaultAnimationLoop/>
+        <CollisionPipeline verbose="0" />
+        <NewProximityIntersection alarmDistance="0.5" contactDistance="0.3" />
+        <BruteForceBroadPhase/>
+        <BVHNarrowPhase/>
+        <CollisionResponse response="PenalityContactForceField" />
+        <Node name="Fluid">
+            <RungeKutta4Solver />
+            <PointSetTopologyContainer />
+            <MechanicalObject name="MModel" />
+    
+    		<PointSetTopologyContainer name="con" />
+            <PointSetTopologyModifier name="mod" />
+    		<ParticleSource name="Source" translation="0 3 0" radius="0.01 0.1 0.01" velocity="0 -20 0" delay="0.01875" start="-0.1" stop="2" 
+            center="-0.375 0 -0.75 
+                0.0 0.0 -0.75 
+                0.375 0.0 -0.75 
+                -0.75  0.0 -0.375 
+                -0.375 0.0 -0.375 
+                0.0 0.0 -0.375 
+                0.375 0.0 -0.375 
+                0.75 0.0 -0.375 
+                -0.75 0.0 0.0 
+                -0.375 0.0 0.0 
+                0.0 0.0 0.0 
+                0.375 0.0 0.0 
+                0.75 0.0 0.0 
+                -0.75 0.0 0.375 
+                -0.375 0.0 0.375 
+                0.0 0.0 0.375 
+                0.375 0.0 0.375 
+                0.75 0.0 0.375 
+                -0.375 0.0 0.75 
+                0.0 0.0 0.75 
+                0.375 0.0 0.75"/> 
+    		<ParticleSink normal="0 1 0" d0="-10" d1="-11" showPlane="true" printLog="true" />
+    
+            <UniformMass name="M1" vertexMass="1" />
+            <SpatialGridContainer cellWidth="0.75" sortPoints="true" />
+            <SPHFluidForceField radius="0.75" density="15" viscosity="10" pressure="1000" surfaceTension="-1000" />
+            <!-- Visual model -->
+            <PointSplatModel name="VModel" radius="0.5" alpha="0.04" color="cyan" />
+            <!-- Collision model -->
+            <SpatialGridPointModel contactStiffness="1000" />
+        </Node>
+        <Node name="World">
+            <MechanicalObject position="-4 -1.6 -4    4 -5.6 -4    4 -6.4 4    -4 -2.4 4" scale="1.075" />
+            <MeshTopology triangles="0 1 2  0 2 3" />
+            <TriangleCollisionModel contactStiffness="20" moving="false" simulated="false" />
+            <LineCollisionModel contactStiffness="20" moving="false" simulated="false" />
+            <PointCollisionModel contactStiffness="20" moving="false" simulated="false" />
+            <OglModel name="VModel" color="blue" printLog="true" />
+        </Node>
+    </Node>
+    ```
+
+=== "Python"
+
+    ```python
+    def createScene(rootNode):
+
+        rootNode = rootNode.addChild('rootNode', dt="0.005", gravity="0 -10 0")
+        rootNode.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Algorithm")
+        rootNode.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Intersection")
+        rootNode.addObject('RequiredPlugin', name="Sofa.Component.Collision.Geometry")
+        rootNode.addObject('RequiredPlugin', name="Sofa.Component.Collision.Response.Contact")
+        rootNode.addObject('RequiredPlugin', name="Sofa.Component.Mass")
+        rootNode.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Forward")
+        rootNode.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
+        rootNode.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Constant")
+        rootNode.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Dynamic")
+        rootNode.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
+        rootNode.addObject('RequiredPlugin', name="SofaSphFluid")
+        rootNode.addObject('DefaultAnimationLoop')
+        rootNode.addObject('CollisionPipeline', verbose="0")
+        rootNode.addObject('NewProximityIntersection', alarmDistance="0.5", contactDistance="0.3")
+        rootNode.addObject('BruteForceBroadPhase')
+        rootNode.addObject('BVHNarrowPhase')
+        rootNode.addObject('CollisionResponse', response="PenalityContactForceField")
+
+        Fluid = rootNode.addChild('Fluid')
+        Fluid.addObject('RungeKutta4Solver')
+        Fluid.addObject('PointSetTopologyContainer')
+        Fluid.addObject('MechanicalObject', name="MModel")
+        Fluid.addObject('PointSetTopologyContainer', name="con")
+        Fluid.addObject('PointSetTopologyModifier', name="mod")
+        Fluid.addObject('ParticleSource', name="Source", translation="0 3 0", radius="0.01 0.1 0.01", velocity="0 -20 0", delay="0.01875", start="-0.1", stop="2", center="-0.375 0 -0.75 
+            0.0 0.0 -0.75 
+            0.375 0.0 -0.75 
+            -0.75  0.0 -0.375 
+            -0.375 0.0 -0.375 
+            0.0 0.0 -0.375 
+            0.375 0.0 -0.375 
+            0.75 0.0 -0.375 
+            -0.75 0.0 0.0 
+            -0.375 0.0 0.0 
+            0.0 0.0 0.0 
+            0.375 0.0 0.0 
+            0.75 0.0 0.0 
+            -0.75 0.0 0.375 
+            -0.375 0.0 0.375 
+            0.0 0.0 0.375 
+            0.375 0.0 0.375 
+            0.75 0.0 0.375 
+            -0.375 0.0 0.75 
+            0.0 0.0 0.75 
+            0.375 0.0 0.75")
+        Fluid.addObject('ParticleSink', normal="0 1 0", d0="-10", d1="-11", showPlane="true", printLog="true")
+        Fluid.addObject('UniformMass', name="M1", vertexMass="1")
+        Fluid.addObject('SpatialGridContainer', cellWidth="0.75", sortPoints="true")
+        Fluid.addObject('SPHFluidForceField', radius="0.75", density="15", viscosity="10", pressure="1000", surfaceTension="-1000")
+        Fluid.addObject('PointSplatModel', name="VModel", radius="0.5", alpha="0.04", color="cyan")
+        Fluid.addObject('SpatialGridPointModel', contactStiffness="1000")
+
+        World = rootNode.addChild('World')
+        World.addObject('MechanicalObject', position="-4 -1.6 -4    4 -5.6 -4    4 -6.4 4    -4 -2.4 4", scale="1.075")
+        World.addObject('MeshTopology', triangles="0 1 2  0 2 3")
+        World.addObject('TriangleCollisionModel', contactStiffness="20", moving="false", simulated="false")
+        World.addObject('LineCollisionModel', contactStiffness="20", moving="false", simulated="false")
+        World.addObject('PointCollisionModel', contactStiffness="20", moving="false", simulated="false")
+        World.addObject('OglModel', name="VModel", color="blue", printLog="true")
+    ```
+

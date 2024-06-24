@@ -336,3 +336,91 @@ Links:
 
 
 
+## Examples
+
+SofaSphFluid/share/sofa/examples/SofaSphFluid/ParticleSource.scn
+
+=== "XML"
+
+    ```xml
+    <?xml version="1.0" ?>
+    <Node dt="0.005" gravity="0 -10 0" bbox="-4 -4 -4 4 4 4">
+        <RequiredPlugin name="Sofa.Component.Mass"/> <!-- Needed to use components [UniformMass] -->
+        <RequiredPlugin name="Sofa.Component.ODESolver.Forward"/> <!-- Needed to use components [EulerExplicitSolver] -->
+        <RequiredPlugin name="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
+        <RequiredPlugin name="Sofa.Component.Visual"/> <!-- Needed to use components [VisualStyle] -->
+        <RequiredPlugin name="SofaSphFluid"/> <!-- Needed to use components [ParticleSource] -->
+        <VisualStyle displayFlags="showBehaviorModels showForceFields showWireframe" />
+    
+        <DefaultAnimationLoop/>
+        <Node name="Particles">
+            <EulerExplicitSolver symplectic="1" />
+            <MechanicalObject name="MModel" showObject="1"/>        
+            <ParticleSource name="Source" translation="0 4 0" radius="0.01 0.1 0.01" velocity="0 -1 0" delay="0.1" start="-0.1" stop="10" printLog="0"
+            center="-0.375 0 -0.75 
+                0.0 0.0 -0.75 
+                0.375 0.0 -0.75 
+                -0.75  0.0 -0.375 
+                -0.375 0.0 -0.375 
+                0.0 0.0 -0.375 
+                0.375 0.0 -0.375 
+                0.75 0.0 -0.375 
+                -0.75 0.0 0.0 
+                -0.375 0.0 0.0 
+                0.0 0.0 0.0 
+                0.375 0.0 0.0 
+                0.75 0.0 0.0 
+                -0.75 0.0 0.375 
+                -0.375 0.0 0.375 
+                0.0 0.0 0.375 
+                0.375 0.0 0.375 
+                0.75 0.0 0.375 
+                -0.375 0.0 0.75 
+                0.0 0.0 0.75 
+                0.375 0.0 0.75"  />
+            <UniformMass name="M1" vertexMass="1.0" />
+        </Node>
+    </Node>
+    ```
+
+=== "Python"
+
+    ```python
+    def createScene(rootNode):
+
+        rootNode = rootNode.addChild('rootNode', dt="0.005", gravity="0 -10 0", bbox="-4 -4 -4 4 4 4")
+        rootNode.addObject('RequiredPlugin', name="Sofa.Component.Mass")
+        rootNode.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Forward")
+        rootNode.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
+        rootNode.addObject('RequiredPlugin', name="Sofa.Component.Visual")
+        rootNode.addObject('RequiredPlugin', name="SofaSphFluid")
+        rootNode.addObject('VisualStyle', displayFlags="showBehaviorModels showForceFields showWireframe")
+        rootNode.addObject('DefaultAnimationLoop')
+
+        Particles = rootNode.addChild('Particles')
+        Particles.addObject('EulerExplicitSolver', symplectic="1")
+        Particles.addObject('MechanicalObject', name="MModel", showObject="1")
+        Particles.addObject('ParticleSource', name="Source", translation="0 4 0", radius="0.01 0.1 0.01", velocity="0 -1 0", delay="0.1", start="-0.1", stop="10", printLog="0", center="-0.375 0 -0.75 
+            0.0 0.0 -0.75 
+            0.375 0.0 -0.75 
+            -0.75  0.0 -0.375 
+            -0.375 0.0 -0.375 
+            0.0 0.0 -0.375 
+            0.375 0.0 -0.375 
+            0.75 0.0 -0.375 
+            -0.75 0.0 0.0 
+            -0.375 0.0 0.0 
+            0.0 0.0 0.0 
+            0.375 0.0 0.0 
+            0.75 0.0 0.0 
+            -0.75 0.0 0.375 
+            -0.375 0.0 0.375 
+            0.0 0.0 0.375 
+            0.375 0.0 0.375 
+            0.75 0.0 0.375 
+            -0.375 0.0 0.75 
+            0.0 0.0 0.75 
+            0.375 0.0 0.75")
+        Particles.addObject('UniformMass', name="M1", vertexMass="1.0")
+    ```
+

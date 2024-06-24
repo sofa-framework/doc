@@ -177,3 +177,76 @@ Links:
 
 
 
+## Examples
+
+BeamAdapter/examples/AdaptiveBeamMapping.scn
+
+=== "XML"
+
+    ```xml
+    <?xml version="1.0"?>
+    <Node name="root" gravity="0 -9.81 0" dt="0.01" >
+     	<RequiredPlugin name="Sofa.Component.Collision.Geometry"/> <!-- Needed to use components [TriangleCollisionModel] -->
+     	<RequiredPlugin name="Sofa.Component.Constraint.Projective"/> <!-- Needed to use components [FixedConstraint] -->
+     	<RequiredPlugin name="Sofa.Component.LinearSolver.Direct"/> <!-- Needed to use components [BTDLinearSolver] -->
+     	<RequiredPlugin name="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+     	<RequiredPlugin name="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
+     	<RequiredPlugin name="Sofa.Component.Topology.Container.Constant"/> <!-- Needed to use components [CubeTopology MeshTopology] -->
+     	<RequiredPlugin name="Sofa.Component.Visual"/> <!-- Needed to use components [VisualStyle] -->
+    	<VisualStyle displayFlags="showBehaviorModels showCollisionModels hideBoundingCollisionModels showForceFields" />
+    
+    	<DefaultAnimationLoop />
+    	<DefaultVisualManagerLoop />
+    
+    	<Node name="AdaptiveBeam2">
+    		<EulerImplicitSolver rayleighStiffness="0" rayleighMass="0" printLog="false" />
+    		<BTDLinearSolver verbose="0"/>
+    		<MechanicalObject template="Rigid3d" name="DOFs" position="0 0 2 0 0 0 1  1 0 2 0 0 0 1  2 0 2 0 0 0 1  3 0 2 0 0 0 1"/> 
+    		<MeshTopology name="lines" lines="0 1 1 2 2 3" /> 
+    		<FixedConstraint name="FixedConstraint" indices="0" />
+    		<BeamInterpolation name="BeamInterpolation" radius="0.1" /> 
+    		<AdaptiveBeamForceFieldAndMass name="BeamForceField"  computeMass="1" massDensity="10"/>
+    		<Node name="Collision">
+    			<CubeTopology nx="20" ny="2" nz="2" min="0 -0.1 -0.1" max="3 0.1 0.1" />
+    			<MechanicalObject template="Vec3d" name="collision"/>
+    			<TriangleCollisionModel color="0.5 1 0.5 1" />
+    			<AdaptiveBeamMapping isMechanical="true" input="@../DOFs"  output="@collision" mapForces="0" mapMasses="0"/>		
+    		</Node>
+    	</Node>  
+    
+    </Node>
+    ```
+
+=== "Python"
+
+    ```python
+    def createScene(rootNode):
+
+        root = rootNode.addChild('root', gravity="0 -9.81 0", dt="0.01")
+        root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Geometry")
+        root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Projective")
+        root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Direct")
+        root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
+        root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
+        root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Constant")
+        root.addObject('RequiredPlugin', name="Sofa.Component.Visual")
+        root.addObject('VisualStyle', displayFlags="showBehaviorModels showCollisionModels hideBoundingCollisionModels showForceFields")
+        root.addObject('DefaultAnimationLoop')
+        root.addObject('DefaultVisualManagerLoop')
+
+        AdaptiveBeam2 = root.addChild('AdaptiveBeam2')
+        AdaptiveBeam2.addObject('EulerImplicitSolver', rayleighStiffness="0", rayleighMass="0", printLog="false")
+        AdaptiveBeam2.addObject('BTDLinearSolver', verbose="0")
+        AdaptiveBeam2.addObject('MechanicalObject', template="Rigid3d", name="DOFs", position="0 0 2 0 0 0 1  1 0 2 0 0 0 1  2 0 2 0 0 0 1  3 0 2 0 0 0 1")
+        AdaptiveBeam2.addObject('MeshTopology', name="lines", lines="0 1 1 2 2 3")
+        AdaptiveBeam2.addObject('FixedConstraint', name="FixedConstraint", indices="0")
+        AdaptiveBeam2.addObject('BeamInterpolation', name="BeamInterpolation", radius="0.1")
+        AdaptiveBeam2.addObject('AdaptiveBeamForceFieldAndMass', name="BeamForceField", computeMass="1", massDensity="10")
+
+        Collision = AdaptiveBeam2.addChild('Collision')
+        Collision.addObject('CubeTopology', nx="20", ny="2", nz="2", min="0 -0.1 -0.1", max="3 0.1 0.1")
+        Collision.addObject('MechanicalObject', template="Vec3d", name="collision")
+        Collision.addObject('TriangleCollisionModel', color="0.5 1 0.5 1")
+        Collision.addObject('AdaptiveBeamMapping', isMechanical="true", input="@../DOFs", output="@collision", mapForces="0", mapMasses="0")
+    ```
+

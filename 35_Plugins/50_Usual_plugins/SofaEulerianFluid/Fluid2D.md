@@ -127,3 +127,31 @@ Links:
 
 
 
+## Examples
+
+SofaEulerianFluid/share/sofa/examples/SofaEulerianFluid/Fluid2D.scn
+
+=== "XML"
+
+    ```xml
+    <Node dt="0.04" gravity="0 -10 0">
+        <VisualStyle displayFlags="showForceFields showCollisionModels showMappings" />
+        <RequiredPlugin name="Sofa.Component.Visual"/> <!-- Needed to use components [VisualStyle] -->
+        <RequiredPlugin name="SofaEulerianFluid"/> <!-- Needed to use components [Fluid2D] -->
+    
+        <Fluid2D nx="32" ny="32" tstart="30" tstop="60" height="15.5" dir="1 0" />
+    </Node>
+    ```
+
+=== "Python"
+
+    ```python
+    def createScene(rootNode):
+
+        rootNode = rootNode.addChild('rootNode', dt="0.04", gravity="0 -10 0")
+        rootNode.addObject('VisualStyle', displayFlags="showForceFields showCollisionModels showMappings")
+        rootNode.addObject('RequiredPlugin', name="Sofa.Component.Visual")
+        rootNode.addObject('RequiredPlugin', name="SofaEulerianFluid")
+        rootNode.addObject('Fluid2D', nx="32", ny="32", tstart="30", tstop="60", height="15.5", dir="1 0")
+    ```
+

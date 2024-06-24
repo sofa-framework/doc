@@ -234,3 +234,119 @@ Links:
 
 
 
+## Examples
+
+SofaDistanceGrid/share/sofa/examples/SofaDistanceGrid/DistanceGridForceField-liver.scn
+
+=== "XML"
+
+    ```xml
+    <Node name="root" dt="0.01" showBoundingTree="0" gravity="0 -9.81 0">
+        <RequiredPlugin name="Sofa.Component.Collision.Detection.Algorithm"/> <!-- Needed to use components [BVHNarrowPhase BruteForceBroadPhase CollisionPipeline] -->
+        <RequiredPlugin name="Sofa.Component.Collision.Detection.Intersection"/> <!-- Needed to use components [MinProximityIntersection] -->
+        <RequiredPlugin name="Sofa.Component.Collision.Response.Contact"/> <!-- Needed to use components [CollisionResponse] -->
+        <RequiredPlugin name="Sofa.Component.IO.Mesh"/> <!-- Needed to use components [MeshGmshLoader] -->
+        <RequiredPlugin name="Sofa.Component.LinearSolver.Iterative"/> <!-- Needed to use components [CGLinearSolver] -->
+        <RequiredPlugin name="Sofa.Component.Mapping.Linear"/> <!-- Needed to use components [BarycentricMapping] -->
+        <RequiredPlugin name="Sofa.Component.Mass"/> <!-- Needed to use components [DiagonalMass] -->
+        <RequiredPlugin name="Sofa.Component.MechanicalLoad"/> <!-- Needed to use components [PlaneForceField] -->
+        <RequiredPlugin name="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+        <RequiredPlugin name="Sofa.Component.SolidMechanics.FEM.Elastic"/> <!-- Needed to use components [TetrahedronFEMForceField] -->
+        <RequiredPlugin name="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
+        <RequiredPlugin name="Sofa.Component.Topology.Container.Dynamic"/> <!-- Needed to use components [TetrahedronSetGeometryAlgorithms TetrahedronSetTopologyContainer TetrahedronSetTopologyModifier] -->
+        <RequiredPlugin name="Sofa.Component.Visual"/> <!-- Needed to use components [VisualStyle] -->
+        <RequiredPlugin name="Sofa.GL.Component.Rendering3D"/> <!-- Needed to use components [OglModel] -->
+        <RequiredPlugin name="SofaDistanceGrid"/> <!-- Needed to use components [DistanceGridForceField] -->
+        <VisualStyle displayFlags="showBehaviorModels showForceFields showCollisionModels" />
+        <CollisionPipeline verbose="0" />
+        <BruteForceBroadPhase/>
+        <BVHNarrowPhase/>
+        <CollisionResponse response="PenalityContactForceField" />
+        <MinProximityIntersection name="Proximity" alarmDistance="2" contactDistance="0.1" />
+        
+        <Node name="Simulation">
+    
+            <Node name="CubeObstacle">
+                <OglModel name="cubeVisual" filename="mesh/cube.obj" color="green"/>
+            </Node>
+    
+            <Node name="liver">
+                <EulerImplicitSolver name="cg_odesolver" printLog="false"  rayleighStiffness="0.1" rayleighMass="0.1" />
+                <CGLinearSolver iterations="150" name="linear solver" tolerance="1.0e-9" threshold="1.0e-9" />
+    
+                <MeshGmshLoader name="loader" filename="mesh/liver.msh"/>
+    
+                <TetrahedronSetTopologyContainer name="tetras" src="@loader"/>
+                <TetrahedronSetTopologyModifier   name="Modifier" />
+                <TetrahedronSetGeometryAlgorithms name="GeomAlgo"  template="Vec3d" />
+    
+                <MechanicalObject name="meca"/>
+                <DiagonalMass vertexMass="100"/>
+    
+                <TetrahedronFEMForceField youngModulus="1000000" poissonRatio="0.45"/>
+                <DistanceGridForceField filename="mesh/cubeDistanceGrid.fmesh" stiffnessIn="100000000" stiffnessOut="0" draw="true" drawPoints="true" printLog="false" drawSize="2"/>
+    
+                <Node name="visual">
+                    <OglModel name="visu" filename="mesh/liver.obj"/>
+                    <BarycentricMapping input="@../meca" output="@visu"/>
+                </Node>
+    
+                <PlaneForceField stiffness="1000000" d="-1"/>
+    
+            </Node>
+    
+        </Node>
+    </Node>
+    ```
+
+=== "Python"
+
+    ```python
+    def createScene(rootNode):
+
+        root = rootNode.addChild('root', dt="0.01", showBoundingTree="0", gravity="0 -9.81 0")
+        root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Algorithm")
+        root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Intersection")
+        root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Response.Contact")
+        root.addObject('RequiredPlugin', name="Sofa.Component.IO.Mesh")
+        root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Iterative")
+        root.addObject('RequiredPlugin', name="Sofa.Component.Mapping.Linear")
+        root.addObject('RequiredPlugin', name="Sofa.Component.Mass")
+        root.addObject('RequiredPlugin', name="Sofa.Component.MechanicalLoad")
+        root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
+        root.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.FEM.Elastic")
+        root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
+        root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Dynamic")
+        root.addObject('RequiredPlugin', name="Sofa.Component.Visual")
+        root.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
+        root.addObject('RequiredPlugin', name="SofaDistanceGrid")
+        root.addObject('VisualStyle', displayFlags="showBehaviorModels showForceFields showCollisionModels")
+        root.addObject('CollisionPipeline', verbose="0")
+        root.addObject('BruteForceBroadPhase')
+        root.addObject('BVHNarrowPhase')
+        root.addObject('CollisionResponse', response="PenalityContactForceField")
+        root.addObject('MinProximityIntersection', name="Proximity", alarmDistance="2", contactDistance="0.1")
+
+        Simulation = root.addChild('Simulation')
+
+        CubeObstacle = Simulation.addChild('CubeObstacle')
+        CubeObstacle.addObject('OglModel', name="cubeVisual", filename="mesh/cube.obj", color="green")
+
+        liver = Simulation.addChild('liver')
+        liver.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
+        liver.addObject('CGLinearSolver', iterations="150", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
+        liver.addObject('MeshGmshLoader', name="loader", filename="mesh/liver.msh")
+        liver.addObject('TetrahedronSetTopologyContainer', name="tetras", src="@loader")
+        liver.addObject('TetrahedronSetTopologyModifier', name="Modifier")
+        liver.addObject('TetrahedronSetGeometryAlgorithms', name="GeomAlgo", template="Vec3d")
+        liver.addObject('MechanicalObject', name="meca")
+        liver.addObject('DiagonalMass', vertexMass="100")
+        liver.addObject('TetrahedronFEMForceField', youngModulus="1000000", poissonRatio="0.45")
+        liver.addObject('DistanceGridForceField', filename="mesh/cubeDistanceGrid.fmesh", stiffnessIn="100000000", stiffnessOut="0", draw="true", drawPoints="true", printLog="false", drawSize="2")
+
+        visual = liver.addChild('visual')
+        visual.addObject('OglModel', name="visu", filename="mesh/liver.obj")
+        visual.addObject('BarycentricMapping', input="@../meca", output="@visu")
+        liver.addObject('PlaneForceField', stiffness="1000000", d="-1")
+    ```
+

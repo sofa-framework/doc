@@ -114,3 +114,71 @@ Links:
 
 
 
+## Examples
+
+SofaSphFluid/share/sofa/examples/SofaSphFluid/SpatialGridContainer.scn
+
+=== "XML"
+
+    ```xml
+    <?xml version="1.0" ?>
+    <Node dt="0.005" gravity="0 -10 0">
+        <RequiredPlugin name="Sofa.Component.LinearSolver.Iterative"/> <!-- Needed to use components [CGLinearSolver] -->
+        <RequiredPlugin name="Sofa.Component.Mass"/> <!-- Needed to use components [UniformMass] -->
+        <RequiredPlugin name="Sofa.Component.MechanicalLoad"/> <!-- Needed to use components [PlaneForceField] -->
+        <RequiredPlugin name="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+        <RequiredPlugin name="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
+        <RequiredPlugin name="Sofa.Component.Topology.Container.Grid"/> <!-- Needed to use components [RegularGridTopology] -->
+        <RequiredPlugin name="Sofa.Component.Visual"/> <!-- Needed to use components [VisualStyle] -->
+        <RequiredPlugin name="SofaSphFluid"/> <!-- Needed to use components [SPHFluidForceField SpatialGridContainer] -->
+    
+        <VisualStyle displayFlags="showBehaviorModels showForceFields" />
+    
+        <DefaultAnimationLoop/>
+        <Node name="Liver">
+            <EulerImplicitSolver name="cg_odesolver" printLog="false"  rayleighStiffness="0.1" rayleighMass="0.1" />
+            <CGLinearSolver iterations="25" name="linear solver" tolerance="1.0e-9" threshold="1.0e-9" />
+            
+            <!-- A topology is used here just to set initial particles positions. It is a bad idea because this object has no real topology, but it works... -->
+            <RegularGridTopology nx="5" ny="40" nz="5" xmin="-1.5" xmax="0" ymin="-3" ymax="12" zmin="-1.5" zmax="0"/>
+            
+            <MechanicalObject name="MModel" />
+            <UniformMass name="M1" vertexMass="1" />
+            
+            <SpatialGridContainer showGrid="1"/>
+            <SPHFluidForceField radius="0.745" density="15" kernelType="1" viscosityType="2" viscosity="10" pressure="1000" surfaceTension="-1000" printLog="0" />
+            
+            <!-- The following force fields handle collision with walls and an inclined floor -->
+            <PlaneForceField normal="0.5 1 0.1" d="-4" showPlane="1"/>        
+        </Node>
+    </Node>
+    ```
+
+=== "Python"
+
+    ```python
+    def createScene(rootNode):
+
+        rootNode = rootNode.addChild('rootNode', dt="0.005", gravity="0 -10 0")
+        rootNode.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Iterative")
+        rootNode.addObject('RequiredPlugin', name="Sofa.Component.Mass")
+        rootNode.addObject('RequiredPlugin', name="Sofa.Component.MechanicalLoad")
+        rootNode.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
+        rootNode.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
+        rootNode.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Grid")
+        rootNode.addObject('RequiredPlugin', name="Sofa.Component.Visual")
+        rootNode.addObject('RequiredPlugin', name="SofaSphFluid")
+        rootNode.addObject('VisualStyle', displayFlags="showBehaviorModels showForceFields")
+        rootNode.addObject('DefaultAnimationLoop')
+
+        Liver = rootNode.addChild('Liver')
+        Liver.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
+        Liver.addObject('CGLinearSolver', iterations="25", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
+        Liver.addObject('RegularGridTopology', nx="5", ny="40", nz="5", xmin="-1.5", xmax="0", ymin="-3", ymax="12", zmin="-1.5", zmax="0")
+        Liver.addObject('MechanicalObject', name="MModel")
+        Liver.addObject('UniformMass', name="M1", vertexMass="1")
+        Liver.addObject('SpatialGridContainer', showGrid="1")
+        Liver.addObject('SPHFluidForceField', radius="0.745", density="15", kernelType="1", viscosityType="2", viscosity="10", pressure="1000", surfaceTension="-1000", printLog="0")
+        Liver.addObject('PlaneForceField', normal="0.5 1 0.1", d="-4", showPlane="1")
+    ```
+

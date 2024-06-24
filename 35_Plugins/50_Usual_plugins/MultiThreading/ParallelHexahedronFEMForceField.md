@@ -186,3 +186,100 @@ Links:
 
 
 
+## Examples
+
+MultiThreading/share/sofa/examples/MultiThreading/ParallelHexahedronFEMForceField.scn
+
+=== "XML"
+
+    ```xml
+    <?xml version="1.0" ?>
+    <Node name="root" dt="0.02">
+        <RequiredPlugin name="MultiThreading"/> <!-- Needed to use components [ParallelHexahedronFEMForceField] -->
+        <RequiredPlugin name="Sofa.Component.Constraint.Projective"/> <!-- Needed to use components [FixedProjectiveConstraint] -->
+        <RequiredPlugin name="Sofa.Component.Engine.Select"/> <!-- Needed to use components [BoxROI] -->
+        <RequiredPlugin name="Sofa.Component.LinearSolver.Iterative"/> <!-- Needed to use components [CGLinearSolver] -->
+        <RequiredPlugin name="Sofa.Component.Mass"/> <!-- Needed to use components [UniformMass] -->
+        <RequiredPlugin name="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+        <RequiredPlugin name="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
+        <RequiredPlugin name="Sofa.Component.Topology.Container.Grid"/> <!-- Needed to use components [RegularGridTopology] -->
+        <RequiredPlugin name="Sofa.Component.Visual"/> <!-- Needed to use components [VisualStyle] -->
+        <RequiredPlugin name="Sofa.Component.Mapping.Linear"/> <!-- Needed to use components [IdentityMapping] -->
+        <RequiredPlugin name="Sofa.Component.Topology.Container.Dynamic"/> <!-- Needed to use components [HexahedronSetTopologyContainer, HexahedronSetTopologyModifier, QuadSetTopologyContainer, QuadSetTopologyModifier] -->
+        <RequiredPlugin name="Sofa.Component.Topology.Mapping"/> <!-- Needed to use components [Hexa2QuadTopologicalMapping] -->
+        <RequiredPlugin name="Sofa.GL.Component.Rendering3D"/> <!-- Needed to use components [OglModel] -->
+    
+    
+        <VisualStyle displayFlags="showBehaviorModels hideForceFields showWireframe" />
+    
+        <Node name="M1">
+            <EulerImplicitSolver name="cg_odesolver" printLog="false" rayleighStiffness="0.1" rayleighMass="0.1" />
+            <CGLinearSolver iterations="25" name="linear solver" tolerance="1.0e-9" threshold="1.0e-9" />
+            <MechanicalObject name="Volume" template="Vec3"/>
+            <UniformMass vertexMass="1" />
+            <RegularGridTopology name="grid" nx="8" ny="8" nz="40" xmin="-1.5" xmax="1.5" ymin="-1.5" ymax="1.5" zmin="0" zmax="19" />
+    
+            <HexahedronSetTopologyContainer name="Container" src="@grid"/>
+            <HexahedronSetTopologyModifier name="Modifier" />
+    
+            <BoxROI box="-1.5 -1.5 0 1.5 1.5 0.0001" name="box"/>
+            <FixedProjectiveConstraint indices="@box.indices" />
+            <ParallelHexahedronFEMForceField name="FEM" youngModulus="400000" poissonRatio="0.4" method="large" updateStiffnessMatrix="false"/>
+    
+            <Node name="surface">
+                <QuadSetTopologyContainer name="Container" />
+                <QuadSetTopologyModifier name="Modifier" />
+    
+                <Hexa2QuadTopologicalMapping input="@../Container" output="@Container" />
+                <Node name="Visu">
+                    <OglModel name="Visual" color="red" />
+                    <IdentityMapping input="@../../Volume" output="@Visual" />
+                </Node>
+            </Node>
+        </Node>
+    </Node>
+    ```
+
+=== "Python"
+
+    ```python
+    def createScene(rootNode):
+
+        root = rootNode.addChild('root', dt="0.02")
+        root.addObject('RequiredPlugin', name="MultiThreading")
+        root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Projective")
+        root.addObject('RequiredPlugin', name="Sofa.Component.Engine.Select")
+        root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Iterative")
+        root.addObject('RequiredPlugin', name="Sofa.Component.Mass")
+        root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
+        root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
+        root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Grid")
+        root.addObject('RequiredPlugin', name="Sofa.Component.Visual")
+        root.addObject('RequiredPlugin', name="Sofa.Component.Mapping.Linear")
+        root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Dynamic")
+        root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Mapping")
+        root.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
+        root.addObject('VisualStyle', displayFlags="showBehaviorModels hideForceFields showWireframe")
+
+        M1 = root.addChild('M1')
+        M1.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
+        M1.addObject('CGLinearSolver', iterations="25", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
+        M1.addObject('MechanicalObject', name="Volume", template="Vec3")
+        M1.addObject('UniformMass', vertexMass="1")
+        M1.addObject('RegularGridTopology', name="grid", nx="8", ny="8", nz="40", xmin="-1.5", xmax="1.5", ymin="-1.5", ymax="1.5", zmin="0", zmax="19")
+        M1.addObject('HexahedronSetTopologyContainer', name="Container", src="@grid")
+        M1.addObject('HexahedronSetTopologyModifier', name="Modifier")
+        M1.addObject('BoxROI', box="-1.5 -1.5 0 1.5 1.5 0.0001", name="box")
+        M1.addObject('FixedProjectiveConstraint', indices="@box.indices")
+        M1.addObject('ParallelHexahedronFEMForceField', name="FEM", youngModulus="400000", poissonRatio="0.4", method="large", updateStiffnessMatrix="false")
+
+        surface = M1.addChild('surface')
+        surface.addObject('QuadSetTopologyContainer', name="Container")
+        surface.addObject('QuadSetTopologyModifier', name="Modifier")
+        surface.addObject('Hexa2QuadTopologicalMapping', input="@../Container", output="@Container")
+
+        Visu = surface.addChild('Visu')
+        Visu.addObject('OglModel', name="Visual", color="red")
+        Visu.addObject('IdentityMapping', input="@../../Volume", output="@Visual")
+    ```
+
