@@ -359,6 +359,11 @@ void generateDoc(std::string outputDirectory, bool skipEmptyModuleName, const st
         std::stringstream ss;
         for (const auto& dir : examplesDirectories)
         {
+            if (!sofa::helper::system::FileSystem::exists(dir))
+            {
+                continue;
+            }
+
             std::vector<std::string> absoluteFiles, relativeFiles;
             find_files_by_prefix(dir, content.componentName, dir, absoluteFiles, relativeFiles);
 
