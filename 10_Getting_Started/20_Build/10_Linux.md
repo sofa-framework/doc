@@ -178,16 +178,16 @@ as follows:
 sofa/
 ├── build/
 │   ├── master/
-│   └── v23.12/
+│   └── v24.06/
 └── src/
     └── < SOFA sources here >
 ```
 
 **First**, checkout the sources from Git repository:
 
-Get the current **stable** version on the v23.06 branch:
+Get the current **stable** version on the v24.06 branch:
 ``` {.bash .stable}
-git clone -b v23.12 https://github.com/sofa-framework/sofa.git sofa/src
+git clone -b v24.06 https://github.com/sofa-framework/sofa.git sofa/src
 ```
 
 **OR** get the development **unstable** version on the master branch:
