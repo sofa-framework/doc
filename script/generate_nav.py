@@ -1,3 +1,14 @@
+"""
+generate_nav.py
+
+This script visits all the files of a directory and generates a table of content for mkdocs, in the configuration
+file mkdocs.yml.
+
+Usage:
+    python script.py <input_file> <input_directory>
+"""
+
+
 import sys
 import os
 import re

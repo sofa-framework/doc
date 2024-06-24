@@ -5,6 +5,8 @@ on:
   push:
     branches:
       - gen
+  schedule:
+    - cron: '0 0 * * *'    # every day at midnight
 
 permissions:
   id-token: write
@@ -110,7 +112,9 @@ jobs:
           echo '------ ls -laR "$WORKSPACE_INSTALL_PATH" ------'
           ls -la "$WORKSPACE_INSTALL_PATH"
           cd $WORKSPACE_INSTALL_PATH
-          ./bin/SofaDocGenerator${{ steps.sofa.outputs.exe }} -o ${{ github.workspace }}/SofaDocGenerator/markdown --examples ${{ github.workspace }}/sofa/share/sofa/examples
+          ./bin/SofaDocGenerator${{ steps.sofa.outputs.exe }} -o ${{ github.workspace }}/SofaDocGenerator/markdown --examples ${{ github.workspace }}/sofa/share/sofa/examples,${{ github.workspace }}/sofa/plugins
+          
+          # Those files generate errors
           rm ${{ github.workspace }}/SofaDocGenerator/markdown/image/ImageViewer.md
           rm ${{ github.workspace }}/SofaDocGenerator/markdown/image_gui/ImageToolBox.md
 
@@ -129,11 +133,16 @@ jobs:
       - name: Merge doc
         run: |
           ls -la ${{ github.workspace }}/SofaDocGenerator/markdown/
+          
+          # Merge the doc from Component, GL/Component and GUI/Component
           python ${{ github.workspace }}/SofaDocGenerator/script/merge_docs.py ${{ github.workspace }}/SofaDocGenerator/markdown/Sofa/Component ${{ github.workspace }}/doc/30_Components
           python ${{ github.workspace }}/SofaDocGenerator/script/merge_docs.py ${{ github.workspace }}/SofaDocGenerator/markdown/Sofa/GL/Component ${{ github.workspace }}/doc/30_Components
           python ${{ github.workspace }}/SofaDocGenerator/script/merge_docs.py ${{ github.workspace }}/SofaDocGenerator/markdown/Sofa/GUI/Component ${{ github.workspace }}/doc/30_Components/GUI
+          
+          # Merge the doc from plugins: 1) copy everything (including SOFA), 2) remove SOFA
           python ${{ github.workspace }}/SofaDocGenerator/script/merge_docs.py ${{ github.workspace }}/SofaDocGenerator/markdown ${{ github.workspace }}/doc/35_Plugins/50_Usual_plugins
           rm -rf ${{ github.workspace }}/doc/35_Plugins/50_Usual_plugins/Sofa
+          
           python ${{ github.workspace }}/SofaDocGenerator/script/title_metadata.py ${{ github.workspace }}/doc
           python ${{ github.workspace }}/SofaDocGenerator/script/generate_nav.py ${{ github.workspace }}/SofaDocGenerator/mkdocs/mkdocs.yml ${{ github.workspace }}/doc
 

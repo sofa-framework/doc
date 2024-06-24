@@ -1,3 +1,17 @@
+"""
+merge_docs.py
+
+This script merges the manual SOFA documentation with the automatically generated documentation. This assumes the
+same folder structure.
+
+Usage:
+    python merge_docs.py <source_dir> <dest_dir>
+
+<source_dir>: Directory containing the automatically generated documentation
+<dest_dir>: Directory containing the manual SOFA documentation
+"""
+
+
 import shutil
 import os
 import sys
@@ -130,7 +144,7 @@ def copy_subfolder(source_dir, source_subfolder, dest_dir, dest_subfolder):
 if __name__ == "__main__":
     # Get folder paths from command line arguments (assuming 2 arguments provided)
     if len(sys.argv) != 3:
-        print("Usage: python copy_subfolder.py <source_dir> <dest_dir>")
+        print("Usage: python merge_docs.py <source_dir> <dest_dir>")
         exit(1)
 
     source_dir, dest_dir = sys.argv[1:]
