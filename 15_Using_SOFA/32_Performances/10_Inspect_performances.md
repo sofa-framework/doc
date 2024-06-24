@@ -92,7 +92,7 @@ This profiler is activated by ticking the box "Display AdvancedTimer Profiler" i
 
 This tool is based on Qt5Charts. If this option is grayed in the runSofa GUI, make sure you have the Qt5Charts library and that you properly filled the associated CMake variable Qt5Charts
 
-This option allows to see the animation step duration (ms) in a graphView, then allows to navigate on the graph or on the sliders and analyze the different substeps executed during this animation step. Substeps are displayed in a Tree, in the right order and with their respective time and percentage (with regards to the full step duration). In its design, this tool is inspired from Unity3D profiler.
+This option allows to see the animation step duration (ms) in a graphView, then allows to navigate on the graph or on the sliders and analyze the different substeps executed during this animation step. Substeps are displayed in a Tree, in the right order and with their respective time and percentage (with regard to the full step duration). In its design, this tool is inspired from Unity3D profiler.
 
 ![](https://raw.githubusercontent.com/sofa-framework/doc/master/images/usingSOFA/TimerProfiler.png)
 
@@ -100,12 +100,12 @@ Description of the columns:
 
 1. **Total (%)**: Percentage of duration of this step compared to the duration of the root step.
 2. **Self (%)**:
-- If the step has child steps: percentage of the duration of this step minus the sum of durations of its children, compared to the duration of the root step.
-- If the step has no child step: percentage of the average duration of this step in case of multiple calls of this step during this time step, compared to the duration of the root step.
+   - If the step has child steps: percentage of the duration of this step minus the sum of durations of its children, compared to the duration of the root step.
+   - If the step has no child step: percentage of the average duration of this step in case of multiple calls of this step during this time step, compared to the duration of the root step.
 3. **Time (ms)**: Duration in milliseconds of this step.
 4. **Self (ms)**:
-- If the step has child steps: duration in milliseconds of this step minus the sum of durations of its children.
-- If the step has no child step: average duration in milliseconds of this step in case of multiple calls of this step during this time step.
+   - If the step has child steps: duration in milliseconds of this step minus the sum of durations of its children.
+   - If the step has no child step: average duration in milliseconds of this step in case of multiple calls of this step during this time step.
 
 
 
@@ -137,7 +137,7 @@ height="343"}](https://www.sofa-framework.org/wp-content/uploads/2014/11/TraceVi
 
 #### View State vectors
 
-An other interesting feature is the possibility to trace the evolution
+Another interesting feature is the possibility to trace the evolution
 of the state vectors: Just enable the option, and specify the number of
 particles; -1 meaning all the particles.
 [![TraceVisitorLogTime\_Vector](https://www.sofa-framework.org/wp-content/uploads/2014/11/TraceVisitorLogTime_Vector1.png){.aligncenter

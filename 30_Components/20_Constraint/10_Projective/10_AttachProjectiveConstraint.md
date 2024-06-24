@@ -1,7 +1,7 @@
 AttachProjectiveConstraint
 ================
 
-This component belongs to the category of [Projective Constraint](https://www.sofa-framework.org/community/doc/main-principles/constraint/projective-constraint/). The AttachProjectiveConstraint works with a pair of objects and it projects the degrees of freedom (e.g. position) and their derivatives (e.g. velocity), so that both objects are attached. As being a projective constraint, this projective constraints ensures a geometrical connection between both objects at the end of the time step but it does not integrate the physics of both object (contrary to Lagrange based constraints).
+This component belongs to the category of [Projective Constraint](https://www.sofa-framework.org/community/doc/main-principles/constraint/projective-constraint/). The AttachProjectiveConstraint works with a pair of objects, and it projects the degrees of freedom (e.g. position) and their derivatives (e.g. velocity), so that both objects are attached. As being a projective constraint, this projective constraints ensures a geometrical connection between both objects at the end of the time step, but it does not integrate the physics of both object (contrary to Lagrange based constraints).
 
 
 

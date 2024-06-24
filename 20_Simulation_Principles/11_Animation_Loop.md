@@ -1,7 +1,7 @@
 Animation loop
 ==============
 
-All the scenes in SOFA must include an _AnimationLoop_. This components orders all steps of the simulation and the system resolution. At each time step, the animation loop triggers each event (solving the matrix system, managing the constraints, detecting the collision, etc.) through a [_Visitor_](https://www.sofa-framework.org/community/doc/main-principles/visitors/) mechanism (see below). In a scene, if no animation loop is defined, a "DefaultAnimationLoop" is automatically created.
+All the scenes in SOFA must include an _AnimationLoop_. This component orders all steps of the simulation and the system resolution. At each time step, the animation loop triggers each event (solving the matrix system, managing the constraints, detecting the collision, etc.) through a [_Visitor_](https://www.sofa-framework.org/community/doc/main-principles/visitors/) mechanism (see below). In a scene, if no animation loop is defined, a "DefaultAnimationLoop" is automatically created.
 
 Several _AnimationLoops_ are already available in SOFA:
 
@@ -21,7 +21,7 @@ Several _AnimationLoops_ are already available in SOFA:
     2. update the system (new values of the dofs), the context (dt++), the mappings and the bounding box (volume covering all objects of the scene)
 
 * [_MultiStepAnimationLoop_](https://www.sofa-framework.org/community/doc/using-sofa/components/animationloop/multistepanimationloop/):
-  given one time step, this animation loop allows for running several collision (_C_ being the number of collision steps) and several integration time in one step (_I_ being the number of integration time steps), where _C_ and _I_ can be different. If the global time step is noted _dt_, the time integration time is actually: _dt' = dt / (C.I)_. The loop in one animation step is:
+  given one time step, this animation loop allows for running several collision (_C_ being the number of collision steps) and several time integrations in one step (_I_ being the number of integration time steps), where _C_ and _I_ can be different. If the global time step is noted _dt_, the time integration time is actually: _dt' = dt / (C.I)_. The loop in one animation step is:
   
     1. compute _C_ times the [collision pipeline](https://www.sofa-framework.org/community/doc/using-sofa/components/collisions/pipelines/collisionpipeline) within one time step _dt_
     2. For each collision step, solve _I_ times the linear system for time integration using the time step _dt'_

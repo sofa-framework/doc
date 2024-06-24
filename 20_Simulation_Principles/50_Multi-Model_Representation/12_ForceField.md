@@ -75,16 +75,16 @@ For the **left hand side**, the API used to compute it depends on the type of [I
 For explicit case, we have:
 
 | Linear solver | <img class="latex" src="https://latex.codecogs.com/png.latex?dt%20\cdot%20f(x(t))" title="Explicit forces" /> |
-|:-------------:|:------------:|
-| **Iterative** | `addForce()` | 
-| **Direct**    | `addForce()` | 
+|:-------------:|:-------------------------------------------------------------------------------------------------------------:|
+| **Iterative** |                                                 `addForce()`                                                  | 
+|  **Direct**   |                                                 `addForce()`                                                  | 
 
 For implicit case, we have:
 
 | Linear solver | <img class="latex" src="https://latex.codecogs.com/png.latex?-dt^2%20\cdot%20\textstyle\frac{\partial%20f}{\partial%20x}\Delta%20v" title="Implicit stiffness" /> | <img class="latex" src="https://latex.codecogs.com/png.latex?dt%20\cdot%20f(x(t))" title="Explicit forces" /> | <img class="latex" src="https://latex.codecogs.com/png.latex?dt^2\textstyle\frac{\partial%20f}{\partial%20x}v(t)" title="Explicit stiffness" /> |
-|:-------------:|:--------------:|:--------------:|:----------:|
-| **Iterative** | `addDForce()`    | `addForce()` | `addDForce()` |
-| **Direct**    | `addKToMatrix()` | `addForce()` | `addDForce()` |
+|:-------------:|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------:|:-------------------------------------------------------------------------------------------------------------:|:-----------------------------------------------------------------------------------------------------------------------------------------------:|
+| **Iterative** |                                                                           `addDForce()`                                                                           |                                                 `addForce()`                                                  |                                                                  `addDForce()`                                                                  |
+|  **Direct**   |                                                                         `addKToMatrix()`                                                                          |                                                 `addForce()`                                                  |                                                                  `addDForce()`                                                                  |
 
 
 ForceField implementations

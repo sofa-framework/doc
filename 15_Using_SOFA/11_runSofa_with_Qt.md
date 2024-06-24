@@ -39,7 +39,7 @@ the tab "Viewer":
 
 ### Video recording
 #### Frames
-By default, Video recording consists in dumping each frame of rendering (so even if the simulation is paused, it it will record if you are moving the camera) in PNG (lossless). All frames are recorded in *%{SOFA\_DIR}/share/screenshots*. If the folder does not exist, it needs to be created. If you wish to make a video with those images, you can use your favorite encoder (ffmpeg, libavi...).
+By default, Video recording consists in dumping each frame of rendering (so even if the simulation is paused, it will record if you are moving the camera) in PNG (lossless). All frames are recorded in *%{SOFA\_DIR}/share/screenshots*. If the folder does not exist, it needs to be created. If you wish to make a video with those images, you can use your favorite encoder (ffmpeg, libavi...).
 After pressing the **"V"** key in your interface, you should see something like that:
 ```shell
 [INFO]    [QtViewer] Saved 782x598 screen image to C:/Work/sofa/build/sandbox/screenshots/caduceus_00000001.png
@@ -51,7 +51,7 @@ Dumping will be stopped either if you quit the process, or press **"V"** again.
 
 #### Video
 
-You can choose instead to directly record a video using an external ffmpeg executable. This is not really recommended as you will not have a total control on the input, contrary to the previous way, i.e dump frames + using your own tool with your options.
+You can choose instead to directly record a video using an external ffmpeg executable. This is not really recommended as you will not have a total control on the input, contrary to the previous way, i.e. dump frames + using your own tool with your options.
 
 If it is still okay for you, you will need first to download **ffmpeg** on your system and tell SOFA its location by different means:
 1. you set your system PATH with ffmpeg inside (it will the best choice for the Linux users)
