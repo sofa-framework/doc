@@ -55,7 +55,7 @@ This engine finds the topological primitives which are inside a given sphere.
 Output
 ------
 
-These three engines also have shared input and output parameters that can be used depending of the need in the scene :
+These three engines also have shared input and output parameters that can be used depending on the need in the scene :
 
 #### Input topology
 
@@ -66,7 +66,7 @@ These three engines also have shared input and output parameters that can be use
 
 #### Input parameters
 
-Concerning topology Note that those parameters are set to true by default. So it means that as default behaviour, all topological component array will be parse. Set some parameters to false if you just need a part of the information and want to speed-up your simulation.
+Concerning topology Note that those parameters are set to true by default. So it means that as default behaviour, all topological component array will be parsed. Set some parameters to false if you just need a part of the information and want to speed up your simulation.
 
 -   **computeEdges**: if true, will compute edge list and index list inside the ROI.
 -   **computeTriangles**: if true, will compute triangle list and index list inside the ROI.

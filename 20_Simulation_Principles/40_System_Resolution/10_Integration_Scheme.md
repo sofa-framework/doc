@@ -104,7 +104,7 @@ Again, Depending on the scheme (explicit or implicit, see previous paragraph), t
 
 ### State vectors in ODESolver
 
-In order to build the linear matrix system, the ODESolver uses information contained in [state vectors](https://www.sofa-framework.org/community/doc/main-principles/mechanicalobject/#state-vectors) (like DOFs and their derivatives) within the scope of the ODESolver. The ODESolver does not access the state vectors directly. It accesses the state vectors remotely using visitors, which traverse the graph starting from the node which contains the solver. This keeps the implementation of the solver independent from the simulated objects and their types.
+In order to build the linear matrix system, the ODESolver uses information contained in [state vectors](https://www.sofa-framework.org/community/doc/main-principles/mechanicalobject/#state-vectors) (like DOFs and their derivatives) within the scope of the ODESolver. The ODESolver does not access the state vectors directly. It accesses the state vectors remotely using visitors, which traverse the graph starting from the node which contains the solver. This keeps the implementation of the solver independent of the simulated objects and their types.
 
 Each type of solver may use different auxiliary state vectors to implement their simulation method. State vectors (MultiVec) are allocated and processed in the scope of the solver in a thread-safe way using an instance of _simulation::common::VectorOperations_. For instance, a Runge-Kutta algorithms needs to save the result of previous time steps.
 

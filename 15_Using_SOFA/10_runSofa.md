@@ -6,7 +6,7 @@ title: runSofa
 
 The default compilation of SOFA produces a binary file called **runSofa**, which can be
 found in the folder *%{SOFA\_BUILD\_DIR}/bin*.
-The execution of the binary - either via the terminal or by double clicking the executable -
+The execution of the binary - either via the terminal or by double-clicking the executable -
 launches a default [XML scene](https://www.sofa-framework.org/community/doc/write-a-scene-in-xml "Write XML scene") with the name caduceus.scn, using the Qt library.
 ![Execution of runSofa using the
 default scene caduceus](https://www.sofa-framework.org/wp-content/uploads/2014/11/Screenshot-from-2015-01-14-1839152.png)

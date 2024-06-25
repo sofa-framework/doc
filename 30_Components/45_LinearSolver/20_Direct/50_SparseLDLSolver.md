@@ -57,7 +57,7 @@ There are two boolean Data to change the behavior of this solver:
 \mathbf{Q}^{-1} x = y
  \end{cases} " title="system matrix" />
 
-<div align="Left">
+<div align="Left"/>
 
 As the impact of the use of fill reducing permutations on the performances is highly influenced by the repartition of the nodes used to model an object, we advise the users to test which type of permutation is the best suited for their simulations.
 

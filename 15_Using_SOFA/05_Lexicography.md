@@ -95,7 +95,7 @@ Regression tests can be triggered on each pull-request.
 
 
 ## Node
-Node defines a hierarchical level of the Scene graph. The root Node is the entry point of the simulation (first Node without any parent) and it may contain several child Nodes (sub-Nodes). Each child Node of the root Node usually corresponds to one object (one physical system). Generally, a Node can have many children and it may have several parent (except the root Node). An operation performed on a Node automatically propagates its effect to all of its child Nodes. The collection of all Nodes builds the Scene graph.
+Node defines a hierarchical level of the Scene graph. The root Node is the entry point of the simulation (first Node without any parent) and it may contain several child Nodes (sub-Nodes). Each child Node of the root Node usually corresponds to one object (one physical system). Generally, a Node can have many children, and it may have several parent (except the root Node). An operation performed on a Node automatically propagates its effect to all of its child Nodes. The collection of all Nodes builds the Scene graph.
 
 ## Component
 Component corresponds to C++ classes implementing specific physical models or algorithms. A Component must belong to a Node.
@@ -108,4 +108,4 @@ Read more about [Data](https://www.sofa-framework.org/community/doc/simulation-p
 DataField refers to a Data
 
 ## Link
-Link corresponds to connection created between Data instances of two different Components. One Data may be link to one or several other Data (respectively called a SingleLink and a MultiLink). The network of interconnected Data objects defines a Data dependency graph, superimposed on the Scene graph.
+Link corresponds to connection created between Data instances of two different Components. One Data may be linked to one or several other Data (respectively called a SingleLink and a MultiLink). The network of interconnected Data objects defines a Data dependency graph, superimposed on the Scene graph.

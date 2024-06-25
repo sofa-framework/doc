@@ -157,13 +157,6 @@ if true, handle the events, otherwise ignore the events
 		<td>0</td>
 	</tr>
 	<tr>
-		<td>isCompliance</td>
-		<td>
-Consider the component as a compliance, else as a stiffness
-</td>
-		<td>0</td>
-	</tr>
-	<tr>
 		<td>rayleighStiffness</td>
 		<td>
 Rayleigh damping - stiffness matrix coefficient
@@ -347,13 +340,6 @@ The state of the component among (Dirty, Valid, Undefined, Loading, Invalid).
 		<td>listening</td>
 		<td>
 if true, handle the events, otherwise ignore the events
-</td>
-		<td>0</td>
-	</tr>
-	<tr>
-		<td>isCompliance</td>
-		<td>
-Consider the component as a compliance, else as a stiffness
 </td>
 		<td>0</td>
 	</tr>
@@ -544,13 +530,6 @@ The state of the component among (Dirty, Valid, Undefined, Loading, Invalid).
 		<td>listening</td>
 		<td>
 if true, handle the events, otherwise ignore the events
-</td>
-		<td>0</td>
-	</tr>
-	<tr>
-		<td>isCompliance</td>
-		<td>
-Consider the component as a compliance, else as a stiffness
 </td>
 		<td>0</td>
 	</tr>

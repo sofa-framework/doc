@@ -61,7 +61,7 @@ See an example in [_DefaultPipeline_](https://www.sofa-framework.org/community/d
 Notes:
 In some cases, the 3 steps are called manually by the animation loop through 3 dedicated visitors ([CollisionResetVisitor](https://www.sofa-framework.org/api/master/sofa/html/classsofa_1_1simulation_1_1_collision_reset_visitor.html), [CollisionDetectionVisitor](https://www.sofa-framework.org/api/master/sofa/html/classsofa_1_1simulation_1_1_collision_detection_visitor.html) and [CollisionResponseVisitor](https://www.sofa-framework.org/api/master/sofa/html/classsofa_1_1simulation_1_1_collision_response_visitor.html)).
 Each of these visitors executes only one step (instead of the 3).
-This is to avoid race conditions in a multi-threaded environment.
+This is to avoid race conditions in a multithreaded environment.
 
 Examples of Components
 ======================

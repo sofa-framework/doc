@@ -3,7 +3,7 @@ title: CGAL library
 ---
 
 CGAL is a C++ library specialized on geometric computations. CGAL is a
-big project, therefore it is not included natively into SOFA extlibs'
+big project, therefore it is not included natively into SOFA extlibs
 directory. Here is the way to compile it for SOFA using **CMake**.
 
 Install the CGAL plugin - Linux
@@ -23,10 +23,10 @@ With Linux, follow the next steps to install CGAL:
 
 You can now compile CGalPlugin.
 
-Install the CGAL plugin - MacOS
+Install the CGAL plugin - macOS
 -------------------------------
 
-With MacOS, follow the next steps to install CGAL:
+With macOS, follow the next steps to install CGAL:
 
 - Install Boost, GMP and MPFR libraries with Homebrew
 

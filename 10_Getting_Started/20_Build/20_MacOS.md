@@ -152,16 +152,16 @@ as follows:
 sofa/
 ├── build/
 │   ├── master/
-│   └── v23.06/
+│   └── v24.06/
 └── src/
     └── < SOFA sources here >
 ```
 
 **First**, checkout the sources from Git repository:
 
-Get the current **stable** version on the v23.06 branch:
+Get the current **stable** version on the v24.06 branch:
 ``` {.bash .stable}
-git clone -b v23.12 https://github.com/sofa-framework/sofa.git sofa/src
+git clone -b v24.06 https://github.com/sofa-framework/sofa.git sofa/src
 ```
 
 **OR** get the development **unstable** version on the master branch:
@@ -172,20 +172,20 @@ git clone -b master https://github.com/sofa-framework/sofa.git sofa/src
 
 ## Generate a Makefile with CMake
 
-0. Create build directories respecting the arrangement above.
+1. Create build directories respecting the arrangement above.
 
-1. Run CMake.app and set source folder and build folder.
+2. Run CMake.app and set source folder and build folder.
 
-2. Run **Configure**. A popup will ask you to specify the generator for the project.
+3. Run **Configure**. A popup will ask you to specify the generator for the project.
 
    - If you installed [Ninja](#optional-ninja-build-system) (recommended), select "CodeBlocks - Ninja".
    - Otherwise, select "CodeBlocks - Unix Makefile".
 
-3. Keep "Use default native compilers" and press "Done".
+4. Keep "Use default native compilers" and press "Done".
 
-4. Fix eventual dependency errors by following CMake messages (see Troubleshooting section below). Do not worry about warnings.
+5. Fix eventual dependency errors by following CMake messages (see Troubleshooting section below). Do not worry about warnings.
 
-5. Customize SOFA via CMake variables
+6. Customize SOFA via CMake variables
 
    - choose the build type by setting CMAKE_BUILD_TYPE to "Release" or "RelWithDebInfo" (recommended) or "Debug"
    - if your Mac has a M1 processor: set CMAKE_OSX_ARCHITECTURES to "arm64"
@@ -194,7 +194,7 @@ git clone -b master https://github.com/sofa-framework/sofa.git sofa/src
    
    Do not forget to **Configure** again to check if your changes are valid.
 
-6. When you are ready, run **Generate**.
+7. When you are ready, run **Generate**.
 
 
 ## Compile

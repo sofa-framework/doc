@@ -5,7 +5,7 @@ title: Mass
 Mass
 ====
 
-In simulation, the mass usually results from the volume integration of a density (see the [Physics Integration](https://www.sofa-framework.org/community/doc/main-principles/multi-model-representation/physics-integration/) section). It can be a mass density, but it can be a electrical or electrical conductivity among others. In all these equations, the density appears in the left hand side part of the equation. The mass matrix therefore contributes to <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{A}" title="System matrix" />, in the linear System <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{A}x=b" title="Linear system" />.
+In simulation, the mass usually results from the volume integration of a density (see the [Physics Integration](https://www.sofa-framework.org/community/doc/main-principles/multi-model-representation/physics-integration/) section). It can be a mass density, but it can be an electrical or electrical conductivity among others. In all these equations, the density appears on the left hand side part of the equation. The mass matrix therefore contributes to <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{A}" title="System matrix" />, in the linear System <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{A}x=b" title="Linear system" />.
 
 Mass API
 --------------

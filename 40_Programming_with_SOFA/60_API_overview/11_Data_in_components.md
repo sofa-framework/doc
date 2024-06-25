@@ -23,28 +23,28 @@ in SOFA specifies that Data name must be preceeded from `d_`.
 
 1. A Data called `d_isEnabled` is usually declared as follows:
 
-``` cpp
-//Previous declaration of the Data
-Data<bool> d_isEnabled;
-```
+    ``` cpp
+    //Previous declaration of the Data
+    Data<bool> d_isEnabled;
+    ```
 
 2.  in the constructor of you class MyClass, initialize the Data
 
-``` cpp
-//In Component constructor
-MyComponent():
-d_isEnabled(initData(&d_isEnabled, (bool)true, "isEnabled", "Boolean indicating if the component is enabled"))) //ptr to the data, default value, name used for the parameter (the same that will appear later in the XML/Python file), description of the parameter (its purpose)
-{
-};
-```
+    ``` cpp
+    //In Component constructor
+    MyComponent():
+    d_isEnabled(initData(&d_isEnabled, (bool)true, "isEnabled", "Boolean indicating if the component is enabled"))) //ptr to the data, default value, name used for the parameter (the same that will appear later in the XML/Python file), description of the parameter (its purpose)
+    {
+    };
+    ```
 
 3. and it eventually can be defined in an XML scene file:
 
-```xml
-<Node name="Root">
-   <MyClass isEnabled="true"/>
-</Node>
-```
+    ```xml
+    <Node name="Root">
+       <MyClass isEnabled="true"/>
+    </Node>
+    ```
 
 
 #### Data for standard containers
@@ -95,7 +95,7 @@ struct MyStruct
 Data<MyStruct> d_configureStruct;
 ```
 
-While Data are passed to other components **by copy**, the stream operators are used to display a data field's content, e.g in the console, in a GUI or simply into a file. This data serialization may also also have other uses, such as sending data over the network, through the Communication plugin for instance.
+While Data are passed to other components **by copy**, the stream operators are used to display a data field's content, e.g. in the console, in a GUI or simply into a file. This data serialization may also have other uses, such as sending data over the network, through the Communication plugin for instance.
 
 
 
@@ -108,7 +108,7 @@ In your C++ code, you can define several features for each Data:
 -   `d_isEnabled.setRequired(bool b)` whether the Data has to be set by the user for the owner component to be valid
 -   `d_isEnabled.setDisplayed(bool b)` whether this Data should be displayed in GUIs
 -   `d_isEnabled.setReadOnly(bool b)` whether this Data is read-only (applicable in the GUI only, no effect in the code itself)
--   `d_isEnabled.setPersistent(bool b)` whether this Data contains persistent information (i.e should it be exported when saving the scene)
+-   `d_isEnabled.setPersistent(bool b)` whether this Data contains persistent information (i.e. should it be exported when saving the scene)
 -   `d_isEnabled.setAutoLink(bool b)` whether this data should be autolinked when using the src="" syntax
 
 
@@ -138,7 +138,7 @@ in the following example:
 myFixedConstraint->f_indices.setParent(&myBoxRoi->f_indices);
 ```
 
-Note that for some of the non-simple types (mainly containers), the value of the data is *COW* (Copy-On-Write), i.e if you link from a (potentially huge) `Data`, this will simply access the data in the same memory location as the original `Data`, and will avoid doing a (potentially costly) copy. But if the linked `Data` is modified, the underlying data will be copied, and the contents will be in two different independent locations.
+Note that for some of the non-simple types (mainly containers), the value of the data is *COW* (Copy-On-Write), i.e. if you link from a (potentially huge) `Data`, this will simply access the data in the same memory location as the original `Data`, and will avoid doing a (potentially costly) copy. But if the linked `Data` is modified, the underlying data will be copied, and the contents will be in two different independent locations.
 
 
 
@@ -150,7 +150,7 @@ accessing it are presented in the following.
 
 #### setValue/getValue
 
-To have a read only access to the data, use the method `getValue()`:
+To have read-only access to the data, use the method `getValue()`:
 
 ``` cpp
 //with Data<bool> activeOption;
@@ -191,7 +191,7 @@ void MyClass::changeParameters(bool b)
 #### ReadAccessor/WriteAccessor
 
 These objects encapsulate `beginEdit()` and `endEdit()` (described below) in their constructor or
-destructor, respectively. These ensures that you do not forget to `endEdit()`
+destructor, respectively. This ensures that you do not forget to `endEdit()`
 since the WriteAccessor manages it for you (through *RAII*).
 This also allows to distinguish read-only and write access. This is
 the **preferred** method for accessing arrays in write-access.
@@ -237,7 +237,7 @@ void MyClass::doOperation()
 
 #### beginEdit/endEdit
 
-**NB**: _this methods are not recommended to use, use ReadAccessor/WriteAccessor instead._
+**NB**: _this method is not recommended to use, use ReadAccessor/WriteAccessor instead._
 
 This method is useful when you need to change multiple values (such as
 array cells) before to notify the change to other Data, and to prevent
