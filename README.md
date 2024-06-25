@@ -1,11 +1,10 @@
 SOFA Documentation
 ==================
 
-This documentation contains all information about SOFA, from historical presentation to developer instructions.  
-It is automatically rendered in SOFA website: https://www.sofa-framework.org/doc
+This section provides articles to help the community starting using SOFA and developing interactive applications.
 
 
-## Content ##
+### Content
 - **Getting Started**: instructions about building and installing SOFA.
 - **Main Principles**: everything you need to know about what is SOFA and how it works.
 - **Video Tutorials**: list videos helping new users starting with SOFA.
@@ -13,32 +12,21 @@ It is automatically rendered in SOFA website: https://www.sofa-framework.org/doc
 - **Programming with SOFA**: how to write your own code and then contribute it to SOFA (developer documentation).
 
 
-## Contribution ##
-Everyone is very welcome to contribute to this documentation. Here are some information you have to read.  
+### Support forum
+
+Feel free to leverage the [SOFA Discussions forum](http://github.com/sofa-framework/sofa/discussions/) to elaborate on your queries. The supportive SOFA community is eager to offer assistance and guidance.
+
+### List of plugins
+
+Before crafting your own code, explore the [SOFA plugin list](https://www.sofa-framework.org/applications/plugins/). You might just find exactly what you are searching for!
+
+### Cite SOFA
+
+Detailed introductions about SOFA and SOFA in soft-robotics were written:
+*   SOFA Framework: **SOFA: A Multi-Model Framework for Interactive Physical Simulation**. F. Faure et al. _Soft Tissue Biomechanical Modeling for Computer Assisted Surgery_, 2012 \[[BibTex](https://hal.inria.fr/hal-00681539v1/bibtex)\]
+*   SoftRobot: **Software toolkit for modeling, simulation and control of soft robots**. E. Coevoet et al. _Advanced Robotics_, 2017 \[[BibTex](https://hal.inria.fr/hal-01649355v1/bibtex)\]
+
+### Contribution
+Everyone is very welcome to contribute to this documentation. This can be done by pull-requesting changes on the [documentation GitHub repository](https://github.com/sofa-framework/doc/) or by [reporting any missing information](https://github.com/sofa-framework/doc/issues/new) so that this documentation may constantly improve!
+
 Files are written in Markdown. If you don't understand the syntax, you can refer to [this useful cheatsheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet).
-
-### Hierarchy ###
-Files are parsed in alphabetical order to generate the online documentation. To change some file/folder order in the hierarchy, you can simply edit its number.
-
-- 10_Folder_A
-    - 10_File_AA.md
-    - 20_File_AB.md
-    - 30_File_AC.md
-- 20_Folder_B
-    - 21_File_BA.md
-
-Will become
-
-- Folder A
-    - File AA
-    - File AB
-    - File AC
-- Folder B
-    - File BA
-
-### Naming ###
-Page title and URL depend on file name.  
-File name become page title following these principles: 10_Folder_A -> Folder A  and  10_File_AA.md -> File AA  
-File name become page url following these principles: 10_Folder_A -> folder-a  and  10_File_AA.md -> file-aa  
-
-**WARNING**: Changing file or folder names (except numbers and case) will change page URL. Use with caution.
