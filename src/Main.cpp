@@ -5,6 +5,7 @@
 #include <iostream>
 #include <mutex>
 #include <thread>
+#include <sofa/core/CategoryLibrary.h>
 #include <sofa/core/ComponentLibrary.h>
 
 #include <sofa/helper/logging/Messaging.h>
@@ -256,6 +257,22 @@ void generateComponentDoc(
             templateContent += "- `#!c++ " + parent->className + "`\n";
         }
         templateContent += "\n";
+    }
+
+    if (creator->getClass())
+    {
+        std::vector<std::string> categories;
+        sofa::core::CategoryLibrary::getCategories(creator->getClass(), categories);
+
+        if (!categories.empty())
+        {
+            templateContent += "__categories__: \n\n";
+            for (const auto& category : categories)
+            {
+                templateContent += "- " + category + "\n";
+            }
+            templateContent += "\n";
+        }
     }
 
     const auto tmpNode = sofa::core::objectmodel::New<sofa::simulation::graph::DAGNode>("tmp");
