@@ -1,0 +1,17 @@
+name: Trigger doc generation
+
+on:
+  push:
+    branches:
+      - master
+  schedule:
+    - cron: '0 0 * * *'    # every day at midnight
+
+jobs:
+  upload:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Empty action
+        run: |
+          echo "Empty action triggering the generation of the documentation"
