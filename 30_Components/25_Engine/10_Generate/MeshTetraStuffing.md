@@ -65,7 +65,7 @@ if true, handle the events, otherwise ignore the events
 		<td>0</td>
 	</tr>
 	<tr>
-		<td>d_vbbox</td>
+		<td>vbbox</td>
 		<td>
 BBox to restrict the volume to
 </td>

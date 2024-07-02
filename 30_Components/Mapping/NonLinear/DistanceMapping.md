@@ -1,6 +1,6 @@
 # DistanceMapping
 
-Compute edge extensions
+Mapping each connected pair of Degrees of Freedom (DoFs) in a topology to a scalar value representing the distance between them.
 
 
 __Templates__:
@@ -196,12 +196,12 @@ Component/Mapping/NonLinear/DistanceMapping.scn
     
         <EdgeSetTopologyContainer name="topology" position="@loader.position" edges="@loader.edges" />
         <MechanicalObject name="defoDOF" template="Vec3" />
-        <EdgeSetGeometryAlgorithms drawEdges="true" />
+        <EdgeSetGeometryAlgorithms drawEdges="false" />
         <FixedProjectiveConstraint indices="0" />
         <DiagonalMass  name="mass" totalMass="1e-2"/>
         <Node name="extensionsNode" >
             <MechanicalObject template="Vec1" name="extensionsDOF" />
-            <DistanceMapping name="distanceMapping" topology="@../topology" input="@../defoDOF" output="@extensionsDOF" geometricStiffness="2" applyRestPosition="true" computeDistance="true"/>
+            <DistanceMapping name="distanceMapping" topology="@../topology" input="@../defoDOF" output="@extensionsDOF" geometricStiffness="Stabilized" applyRestPosition="true" computeDistance="true" showObjectScale="0.01"/>
             <RestShapeSpringsForceField template="Vec1" stiffness="10000"/>
         </Node>
     
@@ -234,13 +234,13 @@ Component/Mapping/NonLinear/DistanceMapping.scn
         Root.addObject('CGLinearSolver', iterations="2500", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
         Root.addObject('EdgeSetTopologyContainer', name="topology", position="@loader.position", edges="@loader.edges")
         Root.addObject('MechanicalObject', name="defoDOF", template="Vec3")
-        Root.addObject('EdgeSetGeometryAlgorithms', drawEdges="true")
+        Root.addObject('EdgeSetGeometryAlgorithms', drawEdges="false")
         Root.addObject('FixedProjectiveConstraint', indices="0")
         Root.addObject('DiagonalMass', name="mass", totalMass="1e-2")
 
         extensionsNode = Root.addChild('extensionsNode')
         extensionsNode.addObject('MechanicalObject', template="Vec1", name="extensionsDOF")
-        extensionsNode.addObject('DistanceMapping', name="distanceMapping", topology="@../topology", input="@../defoDOF", output="@extensionsDOF", geometricStiffness="2", applyRestPosition="true", computeDistance="true")
+        extensionsNode.addObject('DistanceMapping', name="distanceMapping", topology="@../topology", input="@../defoDOF", output="@extensionsDOF", geometricStiffness="Stabilized", applyRestPosition="true", computeDistance="true", showObjectScale="0.01")
         extensionsNode.addObject('RestShapeSpringsForceField', template="Vec1", stiffness="10000")
     ```
 

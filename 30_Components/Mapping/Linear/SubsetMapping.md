@@ -137,7 +137,7 @@ search radius to find corresponding points in case no indices are given
 	<tr>
 		<td>handleTopologyChange</td>
 		<td>
-Enable support of topological changes for indices (disable if it is linked from SubsetTopologicalMapping::d_pointD2S)
+Enable support of topological changes for indices (disable if it is linked from SubsetTopologicalMapping::pointD2S)
 </td>
 		<td>1</td>
 	</tr>

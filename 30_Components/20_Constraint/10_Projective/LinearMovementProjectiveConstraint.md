@@ -117,7 +117,10 @@ If true, movements are relative to first position, absolute otherwise
 		<td>1</td>
 	</tr>
 	<tr>
-		<td>d_showMovement</td>
+		<td colspan="3">Visualization</td>
+	</tr>
+	<tr>
+		<td>showMovement</td>
 		<td>
 Visualization of the movement to be applied to constrained dofs.
 </td>

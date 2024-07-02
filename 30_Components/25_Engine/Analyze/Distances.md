@@ -76,7 +76,7 @@ translation offset between the topology and the point set.
 		<td>0 0 0</td>
 	</tr>
 	<tr>
-		<td>distanceType</td>
+		<td>d_distanceType</td>
 		<td>
 type of distance to compute for inserted frames.
 </td>
