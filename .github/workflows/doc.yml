@@ -5,6 +5,8 @@ on:
     workflows: [Trigger doc generation]
     types:
       - completed
+    branches:
+      - master
   push:
     branches:
       - gen
