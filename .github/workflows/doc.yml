@@ -1,12 +1,8 @@
 name: Generate and publish documentation
 
 on:
-  workflow_run:
-    workflows: ["Trigger doc generation"]
-    types:
-      - completed
-    branches:
-      - master
+  repository_dispatch:
+    types: [generate-doc]
   push:
     branches:
       - gen
