@@ -13,6 +13,7 @@ permissions:
   id-token: write
   pages: write
 
+
 jobs:
   build:
     name: Run on ${{ matrix.os }} with SOFA ${{ matrix.sofa_branch }}
