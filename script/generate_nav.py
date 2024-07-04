@@ -36,6 +36,14 @@ def clean_title(s):
     return title
 
 
+def clean_url(s):
+    if s.endswith('.md'):
+        s = remove_extension(s)
+    # Use regex to replace the starting substring that matches ^\d+_
+    url = re.sub(r'^\d+_', '', s)
+    return url
+
+
 def contains_md_file(directory):
     for root, dirs, files in os.walk(directory):
         for file in files:
@@ -61,6 +69,7 @@ def analyze_folder(yml_file, folder_path):
                 subindent = TAB * (level + 1)
                 for filename in sorted(files):
                     if filename.endswith('.md'):
+                        clean_filename = clean_url(filename)
                         relative_file_path = os.path.relpath(os.path.join(root, filename), folder_path)
                         nav_content += f"{subindent}- {clean_title(filename)}: {relative_file_path}\n"
         if nav_content != '':
