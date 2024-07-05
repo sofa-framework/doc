@@ -41,6 +41,7 @@ def clean_url(s):
         s = remove_extension(s)
     # Use regex to replace the starting substring that matches ^\d+_
     url = re.sub(r'^\d+_', '', s)
+    url = url.replace("_", "-")
     return url
 
 
