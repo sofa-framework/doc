@@ -32,7 +32,13 @@ def remove_extension(filename):
 def clean_filename(s):
     # Use regex to replace the starting substring that matches ^\d+_
     s = re.sub(r'^\d+_', '', s)
+    s = to_lowercase(s)
     return s
+
+
+def to_lowercase(input_string):
+    # Function to convert uppercase letters to lowercase
+    return input_string.lower()
 
 
 def clean_title(s):
