@@ -23,7 +23,8 @@ $$\Psi(x_1,x_2%20...)~\geq~0$$
 
 where $$\Phi$$ represents the bilateral interaction laws (attachments, sliding joints, etc.) whereas $$\Psi$$ represents unilateral interaction laws (contact, needle puncture, friction, etc.). These functions can be nonlinear. In the constrained system presented above, the constraint matrix $$\mathbf{H}$$ appeared. The definition of the constraint laws $$\Phi$$ and $$\Psi$$ allows to define:
 
-$$\mathbf{H}_1(x)=\left[\frac{\partial%20\Phi}{\partial%20x1};\frac{\partial%20\Psi}{\partial%20x_1}\right]~~$$$$~~\mathbf{H}_2(x)=\left[\frac{\partial%20\Phi}{\partial%20x2};\frac{\partial%20\Psi}{\partial%20x_2}\right]$$
+$$\mathbf{H}_1(x)=\left[\frac{\partial%20\Phi}{\partial%20x1};\frac{\partial%20\Psi}{\partial%20x_1}\right]$$
+$$\mathbf{H}_2(x)=\left[\frac{\partial%20\Phi}{\partial%20x2};\frac{\partial%20\Psi}{\partial%20x_2}\right]$$
 
 Note that $$\mathbf{H}$$ the matrix containing the constraint directions can be considered as the Jacobian of the mapping between the physics space and the constraint space. The constraint will always be linearized in SOFA. For two interacting objects (object 1 and object 2), the complete constrained system therefore corresponds to:
 
