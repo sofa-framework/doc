@@ -6,12 +6,12 @@ All dynamic simulations assume to discretize the temporal evolution of the syste
 They are usually called **ODESolver** in SOFA. 
 
 Let's write our ordinary differential equation of a function *y* as follows:
-<img class="latex" src="https://latex.codecogs.com/png.latex?\frac{dy}{dt}=f\left(%20t,y(t)\right)" title="Ordinary differential equation" />.
+$$\frac{dy}{dt}=f\left(%20t,y(t)\right)$$.
 
-ODESolver defines how to go from the current time step (t) to the next (t + dt), which will structure the linear system <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{A}x=b" title="Linear system" />. The integration scheme therefore defines which forces impact the left hand side matrix <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{A}" title="System matrix" /> and which forces contribute to the right hand side vector *b*:
+ODESolver defines how to go from the current time step (t) to the next (t + dt), which will structure the linear system $$\mathbf{A}x=b$$. The integration scheme therefore defines which forces impact the left hand side matrix $$\mathbf{A}$$ and which forces contribute to the right hand side vector *b*:
 
-- explicit contributions depending on the degrees of freedom (DOFs) at the current time step <img class="latex" src="https://latex.codecogs.com/png.latex?x(t)" title="Current position"/> will contribute to the *b* vector
-- while implicit contributions depending on the degrees of freedom (DOFs) at the next step <img class="latex" src="https://latex.codecogs.com/png.latex?x(t+dt)" title="Unknown position"/> (unknown) will contribute to <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{A}" title="System matrix" />. 
+- explicit contributions depending on the degrees of freedom (DOFs) at the current time step $$x(t)$$ will contribute to the *b* vector
+- while implicit contributions depending on the degrees of freedom (DOFs) at the next step $$x(t+dt)$$ (unknown) will contribute to $$\mathbf{A}$$. 
 
 
 Two categories
@@ -113,7 +113,7 @@ MultiVecCoord previousPos(&vop, previousPosID);         // additional vector
 
 ### Compute the solution
 
-In most cases, the matrix system <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{A}x=b" title="Linear system" /> can then be sent to a [LinearSolver](../system-resolution/linear-solver/) in charge of finally solving the system defined according to the chosen scheme. Within the function *ODESolver::solve()*, the call to the LinearSolver will appear through the function call:
+In most cases, the matrix system $$\mathbf{A}x=b$$ can then be sent to a [LinearSolver](../system-resolution/linear-solver/) in charge of finally solving the system defined according to the chosen scheme. Within the function *ODESolver::solve()*, the call to the LinearSolver will appear through the function call:
 
 ``` cpp
 matrix.solve(x, b);
@@ -129,7 +129,7 @@ mop.accFromF(acc, f);
 Rayleigh damping
 ----------------
 
-The Rayleigh damping is a numerical damping. This damping has therefore no physical meaning and must not be mixed up with physical damping (like _DiagonalVelocityDampingForceField_ in SOFA). The Rayleigh damping corresponds to a damping matrix that is proportional to the mass or/and stiffness matrices using coefficients, respectively Rayleigh stiffness factor <img class="latex" src="https://latex.codecogs.com/png.latex?r_K" title="Rayleigh stiffness" /> or Rayleigh mass factor <img class="latex" src="https://latex.codecogs.com/png.latex?r_M" title="Rayleigh mass" />. This numerical damping is usually used to stabilize or ease convergence of the simulation. However, it has to be used carefully.
+The Rayleigh damping is a numerical damping. This damping has therefore no physical meaning and must not be mixed up with physical damping (like _DiagonalVelocityDampingForceField_ in SOFA). The Rayleigh damping corresponds to a damping matrix that is proportional to the mass or/and stiffness matrices using coefficients, respectively Rayleigh stiffness factor $$r_K$$ or Rayleigh mass factor $$r_M$$. This numerical damping is usually used to stabilize or ease convergence of the simulation. However, it has to be used carefully.
 
 When Rayleigh damping is used, the matrix $$\mathbf{A}$$ equals $$\mathbf{A}%20=%20\mathbf{B}%20-%20\mathbf{M}%20\cdot%20r_M+%20\mathbf{K}%20\cdot%20r_K$$ where $$\mathbf{M}$$ is the mass matrix, $$\mathbf{B}$$ is the damping matrix and $$\mathbf{K}$$ is the stiffness matrix.
 You can see the use of Rayleigh mass and stiffness in the _solve()_ function of the _EulerImplicit_ class (see EulerImplicitSolver.cpp).
