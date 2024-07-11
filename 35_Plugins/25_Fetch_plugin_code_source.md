@@ -26,4 +26,4 @@ To fetch the source code of a plugin, follow these steps:
 
 Fetching the source code of a plugin uses git to clone a repository (usually the master branch) in the SOFA build directory.
 It is done one time, and it is then up to the developer to update and manage the git directory.
-For developing on a plugin repository, it is advised to follow [these steps](https://www.sofa-framework.org/community/doc/plugins/build-a-plugin-from-sources/) rather than fetching the code source. 
+For developing on a plugin repository, it is advised to follow [these steps](./build-a-plugin-from-sources/) rather than fetching the code source. 

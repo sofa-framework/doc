@@ -2,9 +2,9 @@
 
 SOFA allows to extend its feature with a plugin mechanism. A plugin is a shared library that can be loaded dynamically at run-time by SOFA. More features become available, such as new components or alternative scene loaders.
 
-# Marketplace
+# Online plugin list
 
-The [Marketplace](https://www.sofa-framework.org/applications/marketplace/) lists some SOFA plugins.
+The [Online plugin list](https://www.sofa-framework.org/applications/plugins/) highlights some of the SOFA plugins. Never hesitate to request, inquire for one or to [submit your own plugin](https://www.sofa-framework.org/applications/submit/). 
 
 # Plugin Loading
 
@@ -20,4 +20,4 @@ By default, the application `runSofa` reads the content of a configuration file 
 
 ## GUI: Plugin Manager
 
-The Qt-based GUI allows to load a plugin through a graphical user interface. Go to `Edit > Plugin Manager ...`. You will see the list of already loaded plugins. Click on `Add...` to load another plugin.
+The GUI allows to load a plugin through a graphical user interface. Go to `Edit > Plugin Manager ...`. You will see the list of already loaded plugins. Click on `Add...` to load another plugin.
