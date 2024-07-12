@@ -43,10 +43,11 @@ Omni, and a simple box serves as something for us to feel. Taking a look
 at the scene in more detail, we see our collision pipeline:
 
 ```xml
-<CollisionPipeline name="pipeline" depth="6" verbose="0"/>
-<BruteForceDetection name="detection" />
-<CollisionResponse name="response" response="default" />
+<CollisionPipeline name="pipeline" depth="6" />
+<BruteForceBroadPhase/>
+<BVHNarrowPhase/>
 <MinProximityIntersection name="proximity" alarmDistance="0.8" contactDistance="0.5" />
+<CollisionResponse name="response" response="PenalityContactForceField" />
 ```
 
 This is what does the collision detection for the scene. Next, we see
@@ -65,7 +66,7 @@ by looking for the components that have the same tag as in, in this case
 MechanicalObject:
 
 ```xml
-<MechanicalObject template="Rigid" name="instrumentState" tags="Omni"  />
+<MechanicalObject template="Rigid3d" name="instrumentState" tags="Omni"  />
 ```
 
 Here, the template type is important. The NewOmniDriver is looking for a
@@ -77,7 +78,7 @@ node, the **OglModel** loads the mesh that is used to visualize the
 instrument.
 
 ```xml
-<OglModel template="ExtVec3f" name="InstrumentVisualModel"  fileMesh="data/mesh/dental_instrument.obj" scale3d="10 10 10" translation="-2.12256 1.32361 35.5" rotation="180 0 150" material="Default Diffuse 1 1 0.2 0.2 1 Ambient 1 0.2 0.04 0.04 1 Specular 0 1 0.2 0.2 1 Emissive 0 1 0.2 0.2 1 Shininess 0 45" />
+<OglModel template="Vec3d" name="InstrumentVisualModel"  fileMesh="data/mesh/dental_instrument.obj" scale3d="10 10 10" translation="-2.12256 1.32361 35.5" rotation="180 0 150" material="Default Diffuse 1 1 0.2 0.2 1 Ambient 1 0.2 0.04 0.04 1 Specular 0 1 0.2 0.2 1 Emissive 0 1 0.2 0.2 1 Shininess 0 45" />
 ```
 
 Note the translation and rotation attributes. We will come back to them
@@ -90,8 +91,8 @@ Model** node, there are a number of important details.
 ```xml
 <MechanicalObject template="Vec3d" name="Particle" position="0 0 0" />
 <Point name="ParticleModel" contactStiffness="2" />
-<RigidMapping template="MechanicalMapping&lt;Rigid,Vec3d&gt;" name="MM->CM mapping"  object1="instrumentState"  object2="Particles" />
-    <EnslavementForceFeedback name="forcefeedback" tags="Omni" collisionModel1="@ParticleModel" collisionModel2="" relativeStiffness="4" attractionDistance="0.3" normalsPointOut="false"/>
+<RigidMapping template="Rigid3d,Vec3d" name="MM->CM mapping"  object1="instrumentState"  object2="Particles" />
+<EnslavementForceFeedback name="forcefeedback" tags="Omni" collisionModel1="@ParticleModel" collisionModel2="" relativeStiffness="4" attractionDistance="0.3" normalsPointOut="false"/>
 ```
 
 First, we see the MechanicalObject named **Particle**, and the attribute

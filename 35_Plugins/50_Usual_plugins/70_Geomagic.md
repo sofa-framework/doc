@@ -26,8 +26,8 @@ Compilation in SOFA
 
 Now in SOFA:
 
-- activate the plugin in cmake-gui by setting the flag PLUGIN_GEOMGIC to true. 
-**NB**: Make sure to have closed CMake after the installation of the OpenHaptics libary, described above.
+- activate the plugin in cmake-gui by setting the flag `PLUGIN_GEOMAGIC` to true. 
+**NB**: Make sure to have closed CMake after the installation of the OpenHaptics library, described above.
 - compile SOFA, which should trigger the compilation of the Geomagic plugin
 - enjoy the power of the Geomagic haptic interfaces with SOFA and give a try to the example scene (examples/DemoGeomagic.scn)
 
@@ -69,18 +69,21 @@ Then, as in any SOFA simulation, you can map this rigid point to any other objec
 
 ### Get haptic feedback
 
-Now, if you wan to control an object and get haptic feedback due to collision, the scene becomes more complicated.
+Now, if you want to control an object and get haptic feedback due to collision, the scene becomes more complicated.
 You will need to set up the entire collision pipeline in order to solve the Linear Complementary Problem (LCP), thus finding its solutions: the Lagrange multipliers.
 
 In the root node, the collision pipeline needs to be defined with:
 ```xml
 <RequiredPlugin name="Geomagic plugin" pluginName="Geomagic" />
-    
-<CollisionPipeline name="pipeline" depth="6" verbose="0"/>
-<BruteForceDetection name="detection" />
-<CollisionResponse name="response" response="FrictionContact" />
-<LocalMinDistance name="proximity" />
+
 <FreeMotionAnimationLoop/>
+
+<CollisionPipeline name="pipeline" depth="6" verbose="0"/>
+<BruteForceBroadPhase/>
+<BVHNarrowPhase/>
+<LocalMinDistance name="proximity" />
+<CollisionResponse name="response" response="FrictionContactConstraint" />
+
 <LCPConstraintSolver tolerance="0.001" maxIt="1000"/>
 <GeomagicDriver name="GeomagicDevice" deviceName="Default Device" scale="1" drawDeviceFrame="1" positionBase="0 0 0" orientationBase="0 0 0 1" />
 ```
@@ -91,18 +94,18 @@ In the node describing your object on which you want to recover the force feedba
 <Node name="Instrument-1" >
     <EulerImplicitSolver name="ODE solver" rayleighStiffness="0.05" rayleighMass="1.0" />
     <CGLinearSolver name="linear solver" iterations="25" tolerance="1e-10" threshold="10e-10" /> 
-    <MechanicalObject name="instrumentState" position="@PATH_TO_GEOMAGICDRIVER/GeomagicDevice.positionDevice" template="Rigid" />
-    <UniformMass name="mass" totalmass="0.005" />
+    <MechanicalObject name="instrumentState" position="@PATH_TO_GEOMAGICDRIVER/GeomagicDevice.positionDevice" template="Rigid3d" />
+    <UniformMass name="mass" totalMass="0.005" />
     <LCPForceFeedback activate="true" forceCoef="0.005"/> <!-- this class computes the force to return back -->
     <UncoupledConstraintCorrection/>
 
     <!-- This node is the collision model associated to our controlled object -->
     <Node name="CollisionModel" >
-        <MeshObjLoader filename="MY_COLLISION_SURFACE_MODEL.obj"  name="loader"/>
+        <MeshOBJLoader filename="MY_COLLISION_SURFACE_MODEL.obj"  name="loader"/>
         <Mesh src="@loader" name="InstrumentCollisionModel" />
         <MechanicalObject src="@loader" name="instrumentCollisionState"  />
-        <Line name="instrument" />
-        <Point name="instrument"  /> 
+        <LineCollisionModel name="instrument" />
+        <PointCollisionModel name="instrument"  /> 
         <RigidMapping name="CollisionMapping" input="@instrumentState" output="@instrumentCollisionState" />
     </Node>
 </Node>

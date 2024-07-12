@@ -16,7 +16,7 @@ The collision pipeline follows three steps:
   2. a collision detection
   3. a collision response
 
-See a more detailed description of the collision pipeline [here](../../components/collision/detection/algorithm/collisionpipeline/).
+See a more detailed description of the [collision pipeline here](../../components/collision/detection/algorithm/collisionpipeline/).
 
 ### Sequence Diagram
 

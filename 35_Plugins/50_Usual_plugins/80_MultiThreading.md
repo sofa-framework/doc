@@ -5,21 +5,20 @@ SOFA has some multithreading capabilities in its core, but more features are ava
 ## Plugin Compilation
 
 1. Enable `PLUGIN_MULTITHREADING` in your CMake configuration. It is disabled by default.
-2. Configure, Generate and build.
+2. Configure, generate and build.
 
 ## Parallel Collision Detection
 
-Most SOFA scenes use a component defining the [collision pipeline](https://www.sofa-framework.org/community/doc/components/collisions/pipelines/collisionpipeline/).
-This pipeline requires two components for the [broad phase collision detection](https://www.sofa-framework.org/community/doc/components/collisions/broadphases/broadphase/), and the [narrow phase collision detection](https://www.sofa-framework.org/community/doc/components/collisions/narrowphases/narrowphase/).
-A usual choice for the broad phase is [BruteForceBroadPhase](https://www.sofa-framework.org/community/doc/components/collisions/broadphases/bruteforcebroadphase/), and [BVHNarrowPhase](https://www.sofa-framework.org/community/doc/components/collisions/narrowphases/bvhnarrowphase/) for the narrow phase.
-
-In the MultiThreading plugin, two components can replace [BruteForceBroadPhase](https://www.sofa-framework.org/community/doc/components/collisions/broadphases/bruteforcebroadphase/) and [BVHNarrowPhase](https://www.sofa-framework.org/community/doc/components/collisions/narrowphases/bvhnarrowphase/).
+Most SOFA scenes use a component defining the [collision pipeline](../../components/collision/detection/algorithm/collisionpipeline/).
+This pipeline requires two components for the [broad phase](../../components/components/collision/detection/algorithm/broadphases/broadphase/) and the [narrow phase](../../components/components/collision/detection/algorithm/narrowphases/narrowphase) of the collision detection.
+A usual choice is [BruteForceBroadPhase](../../components/collision/detection/algorithm/broadphases/bruteforcebroadphase/) for the broad phase, and [BVHNarrowPhase](../../components/collision/detection/algorithm/narrowphases/bvhnarrowphase/) for the narrow phase.
+Both of these components can be replaced with a parallel version from the MultiThreading plugin.
 
 ### ParallelBruteForceBroadPhase
 
-This component is a parallel implementation of [BruteForceBroadPhase](https://www.sofa-framework.org/community/doc/components/collisions/broadphases/bruteforcebroadphase/) using a global thread pool.
-It means the result of a simulation with [BruteForceBroadPhase](https://www.sofa-framework.org/community/doc/components/collisions/broadphases/bruteforcebroadphase/) or with ParallelBruteForceBroadPhase is expected to be equal.
-ParallelBruteForceBroadPhase is the most efficient compared to [BruteForceBroadPhase](https://www.sofa-framework.org/community/doc/components/collisions/broadphases/bruteforcebroadphase/) when there is a lot of objects in the scene.
+This component is a parallel implementation of [BruteForceBroadPhase](../../components/collision/detection/algorithm/broadphases/bruteforcebroadphase/) using a global thread pool.
+It means the result of a simulation with [BruteForceBroadPhase](../../components/collision/detection/algorithm/broadphases/bruteforcebroadphase/) or with ParallelBruteForceBroadPhase is expected to be equal.
+ParallelBruteForceBroadPhase is the most efficient compared to [BruteForceBroadPhase](../../components/collision/detection/algorithm/broadphases/bruteforcebroadphase/) when there is a lot of objects in the scene.
 
 #### Examples
 
@@ -31,8 +30,8 @@ Examples of ParallelBruteForceBroadPhase can be found in:
 
 ### ParallelBVHNarrowPhase
 
-This component is a parallel implementation of [BVHNarrowPhase](https://www.sofa-framework.org/community/doc/components/collisions/narrowphases/bvhnarrowphase/) using a global thread pool.
-It means the result of a simulation with [BVHNarrowPhase](https://www.sofa-framework.org/community/doc/components/collisions/narrowphases/bvhnarrowphase/) or with ParallelBVHNarrowPhase is expected to be equal.
+This component is a parallel implementation of [BVHNarrowPhase](../../components/collision/detection/algorithm/narrowphases/bvhnarrowphase/) using a global thread pool.
+It means the result of a simulation with [BVHNarrowPhase](../../components/collision/detection/algorithm/narrowphases/bvhnarrowphase/) or with ParallelBVHNarrowPhase is expected to be equal.
 
 #### Examples
 
@@ -48,7 +47,7 @@ Examples of ParallelBruteForceBroadPhase can be found in:
 
 ### ParallelTetrahedronFEMForceField
 
-ParallelTetrahedronFEMForceField is the multi-threaded equivalent of [TetrahedronFEMForceField](https://www.sofa-framework.org/api/master/sofa/html/classsofa_1_1component_1_1solidmechanics_1_1fem_1_1elastic_1_1_tetrahedron_f_e_m_force_field.html).
+ParallelTetrahedronFEMForceField is the multi-threaded equivalent of [TetrahedronFEMForceField](../../components/solidmechanics/fem/elastic/TetrahedronFEMForceField).
 
 This implementation is the most efficient when the number of tetrahedron is large (> 1000).
 
@@ -64,12 +63,12 @@ Examples of ParallelTetrahedronFEMForceField can be found in:
 
 ### ParallelHexahedronFEMForceField
 
-ParallelHexahedronFEMForceField is the multi-threaded equivalent of [HexahedronFEMForceField](https://www.sofa-framework.org/api/master/sofa/html/classsofa_1_1component_1_1solidmechanics_1_1fem_1_1elastic_1_1_hexahedron_f_e_m_force_field.html).
+ParallelHexahedronFEMForceField is the multi-threaded equivalent of [HexahedronFEMForceField](../../components/solidmechanics/fem/elastic/HexahedronFEMForceField).
 
 This implementation is the most efficient when:
 
 1) the number of hexahedron is large (> 1000)
-2) the global system matrix is not assembled. It is usually the case with a [CGLinearSolver](https://www.sofa-framework.org/community/doc/components/linearsolvers/cglinearsolver/) templated with GraphScattered types.
+2) the global system matrix is not assembled. It is usually the case with a [CGLinearSolver](../../components/linearsolver/iterative/cglinearsolver/) templated with GraphScattered types.
 3) the method is 'large'. If the method is 'polar' or 'small', `addForce` is executed sequentially, but `addDForce` in parallel.
 
 The following methods are executed in parallel:
@@ -78,7 +77,7 @@ The following methods are executed in parallel:
 - `addDForce`
 
 The method `addKToMatrix` is not executed in parallel.
-This method is called with an assembled system, usually with a direct solver or a [CGLinearSolver](https://www.sofa-framework.org/community/doc/components/linearsolvers/cglinearsolver/) templated with types different from GraphScattered.
+This method is called with an assembled system, usually with a direct solver or a [CGLinearSolver](../../components/linearsolver/iterative/cglinearsolver/) templated with types different from GraphScattered.
 In this case, the most time-consuming step is to invert the matrix. This is where efforts should be put to accelerate the simulation.
 
 #### Examples
@@ -120,7 +119,7 @@ Examples of ParallelMeshSpringForceField can be found in:
 ## Independent SOFA Scenes
 
 The AnimationLoopParallelScheduler component was implemented to run the physics simulation of independent scenes in parallel.
-The component looks for [BaseAnimationLoop components](https://www.sofa-framework.org/community/doc/simulation-principles/animation-loop/) in all its child nodes and executes the `step()` function of each AnimationLoop in parallel.
+The component looks for [BaseAnimationLoop components](../../simulation-principles/animation-loop/) in all its child nodes and executes the `step()` function of each AnimationLoop in parallel.
 
 The DataExchange component can manage the sharing of data between all the concurrent scenes without being bound by synchronization locks.
 To avoid the use of synchronization locks, each component in different scenes must have its own copy of the same data to share, and the data synchronization is executed serially.
