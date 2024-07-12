@@ -73,7 +73,7 @@ This component is used as follows in XML format:
 <BruteForceBroadPhase name="N2" />
 <BVHNarrowPhase/>
 <MinProximityIntersection name="Proximity" alarmDistance="1.5" contactDistance="1" />
-<DefaultContactManager name="Response" response="FrictionContact" />
+<DefaultContactManager name="Response" response="FrictionContactConstraint" />
 ```
 
 Note [DefaultPipeline](https://www.sofa-framework.org/api/master/sofa/html/classsofa_1_1component_1_1collision_1_1_default_pipeline.html) is defined alongside other required components.

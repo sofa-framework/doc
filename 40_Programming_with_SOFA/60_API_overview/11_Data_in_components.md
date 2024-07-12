@@ -124,7 +124,7 @@ it updates its value based on the source, recursively.
 In XML, links are set using the `@` symbol as in the following example:
 
 ```xml
-<FixedConstraint  indices="@box_roi.indices"/>
+<FixedProjectiveConstraint  indices="@box_roi.indices"/>
 ```
 
 In C++, links are set using method `BaseData::setParent( BaseData* )`, as

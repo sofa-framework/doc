@@ -23,5 +23,5 @@ This component is used as follows in XML format:
 <BruteForceBroadPhase name="N2" />
 <BVHNarrowPhase/>
 <MinProximityIntersection name="Proximity" alarmDistance="1.5" contactDistance="1" />
-<DefaultContactManager name="Response" response="FrictionContact" />
+<DefaultContactManager name="Response" response="FrictionContactConstraint" />
 ```

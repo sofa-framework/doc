@@ -155,7 +155,7 @@ is slightly different:
 <CollisionPipeline depth="8" />
 <BruteForceDetection name="N2" />
 <LocalMinDistance name="Proximity" alarmDistance="0.6" contactDistance="0.3" />
-<RuleBasedContactManager name="Response" response="FrictionContact"
+<RuleBasedContactManager name="Response" response="FrictionContactConstraint"
                             rules="1 * FrictionContact?mu=0.01
                             " />
 <DefaultVisualManagerLoop />
@@ -192,7 +192,7 @@ Next we create our rigid object:
 
 ```xml
 <MechanicalObject name="ms" template="Rigid"/>
-<UniformMass totalmass="0.1" />
+<UniformMass totalMass="0.1" />
 ```
 
 And we provide a ForceFeedback component to calculate the force feedback

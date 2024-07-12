@@ -122,7 +122,7 @@ the Mechanical Object in your scene. Consider the following scene:
     <IndexValueMapper name="ind_box1" inputValues="@ind_box0.outputValues" indices="@box1.tetrahedronIndices" value="1000000" />
     <TetrahedronFEMForceField name="FEM" youngModulus="@ind_box1.outputValues" poissonRatio="0.4" listening="true" />
     <BoxROI name="box3" box="-2.2 -0.3 -9.2    2.2 0.110668 2.88584" drawBoxes="1" drawSize="2" />
-    <FixedConstraint indices="@box3.indices" />
+    <FixedProjectiveConstraint indices="@box3.indices" />
     <BoxROI name="boxF" box="-2.2 -1 6.88 2.2  10  10" drawBoxes="true" />
     <ConstantForceField points="@boxF.indices" force="7.5 -6.63 -15" arrowSizeCoef="0.1" />
     <PlaneForceField normal="0 1 0" d="-0.2" stiffness="100"  draw="1" drawSize="20" />
@@ -162,7 +162,7 @@ with the scene:
         <IndexValueMapper name="ind_box1" inputValues="@ind_box0.outputValues" indices="@box1.tetrahedronIndices" value="1000000" />
         <TetrahedronFEMForceField name="FEM" youngModulus="@ind_box1.outputValues" poissonRatio="0.4" listening="true" />
         <BoxROI name="box3" box="-2.2 -0.3 -9.2    2.2 0.110668 2.88584" drawBoxes="1" drawSize="2" />
-        <FixedConstraint indices="@box3.indices" />
+        <FixedProjectiveConstraint indices="@box3.indices" />
         <BoxROI name="boxF" box="-2.2 -1 6.88 2.2  10  10" drawBoxes="true" />
         <ConstantForceField points="@boxF.indices" force="7.5 -6.63 -15" arrowSizeCoef="0.1" />
         <PlaneForceField normal="0 1 0" d="-0.2" stiffness="100"  draw="1" drawSize="20" />
