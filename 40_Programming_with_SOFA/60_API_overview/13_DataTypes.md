@@ -13,7 +13,7 @@ All DOF Types must implement (or define) all the following types:
 
 - **VecCoord** or **VecDeriv**: correspond to a vector of respectively _Coord_ or _Deriv_
 
-- **DataVecCoord or DataVecDeriv**: correspond to a [Data](https://www.sofa-framework.org/community/doc/main-principles/scene-graph/#data) containing a vector of respectively _Coord_ or _Deriv_. As noted in the associated article, the Data are variable of the class exposed to the user and other components in the scene
+- **DataVecCoord or DataVecDeriv**: correspond to a [Data](../../simulation-principles/scene-graph/#data) containing a vector of respectively _Coord_ or _Deriv_. As noted in the associated article, the Data are variable of the class exposed to the user and other components in the scene
 
 - **MatrixCoord or MatrixDeriv**: correspond to a matrix of respectively _Coord_ or _Deriv_, this is more especially used by solvers and constraint algorithms
 
