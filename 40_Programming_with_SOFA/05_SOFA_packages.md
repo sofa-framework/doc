@@ -1,8 +1,8 @@
 Intro
 =====
 
-In order to allow building plugins separately from Sofa and building an
-external application or library which depends on sofa, we provide cmake
+In order to allow building plugins separately from SOFA and building an
+external application or library which depends on SOFA, we provide cmake
 package configurations files. Those files are what cmake looks for when
 you call find_package(Something), which is now how you find the
 dependencies for your plugins.

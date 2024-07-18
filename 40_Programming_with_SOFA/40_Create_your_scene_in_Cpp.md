@@ -94,10 +94,10 @@ myComponent *addMyComponent(sofa::simulation::tree::GNode *node) {
 }
 ```
 
-In your CMakeList.txt, do not forget to find the SofaFramework package:
+In your CMakeList.txt, do not forget to find the Sofa.Framework package:
 
 ```
-find_package(SofaFramework REQUIRED)
+find_package(Sofa.Framework REQUIRED)
 ```
 
 To define your executable:
@@ -113,7 +113,7 @@ endif()
 And then, depending on the components used in your Main.cpp, add the dependencies:
 
 ```
-target_link_libraries(${PROJECT_NAME} SofaComponentCommon)
+target_link_libraries(${PROJECT_NAME} Sofa.Core)
 ```
 
 Note
@@ -121,7 +121,7 @@ Note
 
 Just to mention that an easy way to write scenes is to use Python. Running SOFA scenes using Python might also reduce the learning curve, since you’ll only focus on the scene creation rather than SOFA internal book-keeping.
 
-In case you choose this option, you need to enable the ```SofaPython``` plugin during compilation. Then a minimal python scene would look like:
+In case you choose this option, you need to enable the ```SofaPython3``` plugin during compilation. Then a minimal python scene would look like:
 
 ```
 def createScene(node):
@@ -132,4 +132,4 @@ def createScene(node):
     child_dofs = child_node.addObject('MechanicalObject', template = 'Vec3', name = 'dofs')
 ```
 
-Please refer to the [documentation](https://www.sofa-framework.org/community/doc/using-sofa/optional-features/python-scripting/) for further details.
+Please refer to the [documentation](../plugins/usual-plugins/python-scripting/) for further details.

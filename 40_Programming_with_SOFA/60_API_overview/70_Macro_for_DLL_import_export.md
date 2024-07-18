@@ -8,20 +8,20 @@ in the shared library, you don't have to do anything. On Windows, the
 default behaviour is to not export anything implicitly. You must use the
 **\_\_declspec(dllexport)** symbol to export classes and functions you
 need. And you must use **\_\_declspec(dllimport)** to import classes and
-functions from a shared library. On Sofa, we use a specific macro for
-each library to silently import / export. This macro is define this way
+functions from a shared library. On SOFA, we use a specific macro for
+each library to silently import / export. This macro is defined this way
 : **SOFA\_mylib\_API** and is automatically set as
 \_\_declspec(dllexport) if we are inside the library "mylib" because we
 want to expose its class and function definitions. On the other side, if
-we are outside the library, for instance in an other lib or in an
+we are outside the library, for instance in another lib or in an
 application, the same macro is automatically defined as
 \_\_declspec(dllimport) because we want to import class and function
-definitions that we don't know yet but we notify the compiler it will
-find them in one of its linker dependencies. In common Sofa libraries,
+definitions that we don't know yet but, we notify the compiler it will
+find them in one of its linker dependencies. In common SOFA libraries,
 the macros are all defined in the component.h file and for plugins, you
 will find a initMyPlugin.h setting this macro. In each file you want to
-use it you must include the corresponding file. Thus "component.h" if
-you are adding a component in the common Sofa libraries or the
+use it you must include the corresponding file. Thus, "component.h" if
+you are adding a component in the common SOFA libraries or the
 "**initMyPlugin.h**" if you are implementing a new component in a
 plugin.
 
@@ -94,7 +94,7 @@ directly use the definitions from a .inl file that you have to provide.
 
 You should not use the SOFA\_MyPlugin\_API macro for member functions,
 you just have to set the macro for the class owning the member functions
-and they will all be exported.
+and, they will all be exported.
 
 Common mistakes
 ---------------
@@ -103,5 +103,5 @@ If you are experiencing linking issues about dllimport the problem may
 come from an omission or a bad use of the macro **SOFA\_\*\_API**. For
 instance if you copied a class from a library to another without editing
 its macro, its definitions will not be exported and worse the linker
-will expect to find them in a dependency although they are in the
+will expect to find them in a dependency, although they are in the
 currently compiled library.

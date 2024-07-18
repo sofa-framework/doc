@@ -294,7 +294,7 @@ int TemplateMassClass = core::RegisterObject("Description of your TemplateMass c
 
 
 /// Template Initialization
-/// Force template specialization for the most common sofa type.
+/// Force template specialization for the most common SOFA type.
 /// This goes with the extern template declaration in the .h. Declaring extern template
 /// avoid the code generation of the template for each compilation unit
 

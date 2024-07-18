@@ -1,6 +1,6 @@
 Forward declaration
 ===============
-To reduce the amount of file inclusion in Sofa and thus compilation time it is possible to use forward declaration. 
+To reduce the amount of file inclusion in SOFA and thus compilation time it is possible to use forward declaration. 
 A forward declaration is an incomplete type which complete definition is not provided. 
 ```cpp
 class AClass; ///< this is a forward declaration of a type

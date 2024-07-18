@@ -19,7 +19,7 @@ In order to get python support for your [custom Data types](https://www.sofa-fra
 2. Declaring and Registering your bindings to SOFA's Python Factory
 
 
-As an example, we will consider the native Sofa type [`DataFileName`](https://www.sofa-framework.org/api/SOFA/classsofa_1_1core_1_1objectmodel_1_1_data_file_name.html), whose bindings are implemented in the SofaPython plugin.
+As an example, we will consider the native SOFA type [`DataFileName`](https://www.sofa-framework.org/api/SOFA/classsofa_1_1core_1_1objectmodel_1_1_data_file_name.html), whose bindings are implemented in the SofaPython plugin.
 In any case, it is very informative to look into the "native" binding implementations present in the SofaPython plugin.
 
 An overview of the complete code for this example can be found at the end of this page.
