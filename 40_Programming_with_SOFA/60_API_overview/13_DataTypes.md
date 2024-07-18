@@ -1,7 +1,7 @@
 DataTypes
 =========
 
-As you may know, many SOFA C++ classes are templated, mostly on the type of DOF you want to simulate. Examples of templates can be found in the [MechanicalObject page](https://www.sofa-framework.org/community/doc/simulation-principles/mechanicalobject/), in the [templates section](https://www.sofa-framework.org/community/doc/simulation-principles/mechanicalobject/#templates). In the code, the use of templates can be confusing, especially when the type used in place of the template has itself many types. This page provides a short introduction to all these DOF types.
+As you may know, many SOFA C++ classes are templated, mostly on the type of DOF you want to simulate. Examples of templates can be found in the [MechanicalObject page](../../simulation-principles/mechanicalobject/), in the [templates section](../../simulation-principles/mechanicalobject/#templates). In the code, the use of templates can be confusing, especially when the type used in place of the template has itself many types. This page provides a short introduction to all these DOF types.
 
 All DOF Types must implement (or define) all the following types:
 
@@ -17,4 +17,4 @@ All DOF Types must implement (or define) all the following types:
 
 - **MatrixCoord or MatrixDeriv**: correspond to a matrix of respectively _Coord_ or _Deriv_, this is more especially used by solvers and constraint algorithms
 
-- **VecCoordId, VecDerivId, MatrixCoordId or MatrixDerivId**: correspond to an identifiant value (int) pointing to a vector or matrix of respectively _Coord_ or _Deriv_. This is very useful to access specific vectors or matrix in the simulation. [State vectors](https://www.sofa-framework.org/community/doc/simulation-principles/mechanicalobject/#state-vectors) for instance are managed with specific protected Ids by the solvers.
+- **VecCoordId, VecDerivId, MatrixCoordId or MatrixDerivId**: correspond to an identifiant value (int) pointing to a vector or matrix of respectively _Coord_ or _Deriv_. This is very useful to access specific vectors or matrix in the simulation. [State vectors](../../simulation-principles/mechanicalobject/#state-vectors) for instance are managed with specific protected Ids by the solvers.

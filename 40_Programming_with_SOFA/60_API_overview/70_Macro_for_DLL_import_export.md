@@ -1,10 +1,9 @@
-Sofa is a very modular framework and thus it extensively uses shared
-libraries.
+SOFA is a very modular framework, it therefore uses shared libraries extensively.
 
 Differences between Windows and Linux/Mac when creating a shared library
 ------------------------------------------------------------------------
 
-On Linux, every classes and every functions are automatically exported
+On Linux, every class and every function are automatically exported
 in the shared library, you don't have to do anything. On Windows, the
 default behaviour is to not export anything implicitly. You must use the
 **\_\_declspec(dllexport)** symbol to export classes and functions you

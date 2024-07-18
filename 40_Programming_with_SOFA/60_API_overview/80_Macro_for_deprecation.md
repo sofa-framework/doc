@@ -61,7 +61,7 @@ warning: 'myDeprecatedMethod' is deprecated: It is still usable but has been DEP
 
 Now forward in time ...
 Latest release is v20.12, next release (currently under development) is v21.06, after that will come the v21.12.
-It is time to stop the deprecation period. To provide a clear message to my users, I will not just remove my deprecated method but I will disable it with `= delete` and use a deprecation macro.
+It is time to stop the deprecation period. To provide a clear message to my users, I will not remove my deprecated method but instead, I will disable it with `= delete` and use a deprecation macro.
 
 In my config.h.in
 ```cpp

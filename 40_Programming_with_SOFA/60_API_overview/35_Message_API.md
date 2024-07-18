@@ -96,7 +96,7 @@ msg_warning("GUIManager") << "Previously used GUI not registered. Using default 
 ```
 
 If your message is for developers, you can use the dmsg_info, dmsg_deprecated, dmsg_warning,... functions. 
-These messages are removed on end-user application (see SOFA_WITH_DEVTOOLS [build option](https://www.sofa-framework.org/community/doc/getting-started/build/build-options/)) and can be more specific and less well written than those
+These messages are removed on end-user application (see SOFA_WITH_DEVTOOLS [build option](../../getting-started/build/build-options/)) and can be more specific and less well written than those
 that target users. A very simple way to guide the use of the dmsg_* API is to ask yourself if fixing the message needs to have the source code to understand the message. 
 
 **NB** Please note that for classes that are not inheriting from BaseObject, an additional macro must be defined to register your class to the messaging system.
