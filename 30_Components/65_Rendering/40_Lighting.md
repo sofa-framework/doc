@@ -33,6 +33,6 @@ After that, we can add 3 different kinds of lights :
 
 #### Example
 
--   example/Component/visualmodel/LightManager.scn
+-   [example/Component/visualmodel/LightManager.scn](https://github.com/sofa-framework/sofa/blob/master/examples/Component/Visual/LightManager.scn)
 
 

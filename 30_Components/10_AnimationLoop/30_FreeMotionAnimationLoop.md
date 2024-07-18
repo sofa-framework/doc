@@ -1,18 +1,11 @@
 FreeMotionAnimationLoop
 =======================
 
-This component belongs to the category of [AnimationLoop](https://www.sofa-framework.org/community/doc/main-principles/animation-loop/).
+This component belongs to the category of [AnimationLoop](../../simulation-principles/animation-loop/).
 
-The FreeMotionAnimationLoop is the component that rules the simulation in two main steps: a free motion, then a correction step. First, the free motion computes the projective constraints, the physics, solving the resulting free linear system. Second, the correction step solves the constraints based on the Lagrange multipliers. More information on the constraint resolution can be found [here](https://www.sofa-framework.org/community/doc/main-principles/constraints/lagrange-constraint/).
+The FreeMotionAnimationLoop is the component that rules the simulation in two main steps: a free motion, then a correction step. First, the free motion computes the projective constraints, the physics, solving the resulting free linear system. Second, the correction step solves the constraints based on the Lagrange multipliers. More information on the constraint resolution can be found [here](../../simulation-principles/constraint/lagrange-constraint/).
 
 <a href="https://github.com/sofa-framework/doc/blob/master/images/animationloop/FreeMotionAnimationLoop.png?raw=true"><img src="https://github.com/sofa-framework/doc/blob/master/images/animationloop/FreeMotionAnimationLoop.png?raw=true" title="Flow diagram for a FreeMotionAnimationLoop"/></a>
-
-Data
-----
-
-The DefaultAnimationLoop has one data:
-
-- **computeBoundingBox**: a boolean defining whether the global bounding box of the scene is computed at each time step. Used mostly for rendering.
 
 
 Usage
@@ -20,24 +13,7 @@ Usage
 
 The FreeMotionAnimationLoop must be used specifically for constraint resolution based on the Lagrange multiplier. It therefore **requires**:
 
-- a [ConstraintSolver](https://www.sofa-framework.org/community/doc/main-principles/constraints/lagrange-constraint/#constraintsolver-in-sofa). If no constraint solver can be found, a LCPConstraintSolver is automatically created by default.
+- a [ConstraintSolver](../../simulation-principles/constraint/lagrange-constraint/#constraintsolver-in-sofa). If no constraint solver can be found, a LCPConstraintSolver is automatically created by default.
 
-Note that one or multiple [ConstraintCorrection](https://www.sofa-framework.org/community/doc/main-principles/constraints/lagrange-constraint/#constraintcorrection) may be required by the [ConstraintSolver](https://www.sofa-framework.org/community/doc/main-principles/constraints/lagrange-constraint/#constraintsolver-in-sofa).
+Note that one or multiple [ConstraintCorrection](../../simulation-principles/constraint/lagrange-constraint/#constraintcorrection) may be required by the [ConstraintSolver](../../simulation-principles/constraint/lagrange-constraint/#constraintsolver-in-sofa).
 
-
-Example
--------
-
-This component is used as follows in XML format:
-
-``` xml
-<FreeMotionAnimationLoop />
-```
-
-or using SofaPython3:
-
-``` python
-node.addObject('FreeMotionAnimationLoop')
-```
-
-An example scene involving a FreeAnimationLoop is available in [*examples/Component/AnimationLoop/FreeMotionAnimationLoop.scn*](https://github.com/sofa-framework/sofa/blob/master/examples/Component/AnimationLoop/FreeMotionAnimationLoop.scn)

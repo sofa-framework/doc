@@ -28,6 +28,5 @@ is available :
     of float and vec{2,3,4}
 -   OglMatrix{2,3,4}x{2,3,4} : for matrix n\*m where n and m = {2,3,4}
 
-<!-- -->
 
 
