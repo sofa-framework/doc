@@ -32,7 +32,12 @@ def remove_extension(filename):
 def clean_filename(s):
     # Use regex to replace the starting substring that matches ^\d+_
     s = re.sub(r'^\d+_', '', s)
+    s = to_lowercase(s)
     return s
+
+def to_lowercase(input_string):
+    # Function to convert uppercase letters to lowercase
+    return input_string.lower()
 
 
 def clean_title(s):
@@ -42,13 +47,18 @@ def clean_title(s):
     s = s.replace("_", " ")
     return s
 
+def clean_file_url(s):
+    s = clean_filename(s)
+    s = s.replace("_", "-")
+    return s
+
 
 def clean_path(path):
     # Split the path into components
     components = path.split(os.sep)
 
     # Apply clean_filename to each component
-    cleaned_components = [clean_filename(component) for component in components]
+    cleaned_components = [clean_file_url(component) for component in components]
 
     # Join the cleaned components back into a path
     cleaned_path = os.sep.join(cleaned_components)
@@ -66,7 +76,7 @@ def contains_md_file(directory):
 
 def rename_directory(directory):
     [dir_head, dir_basename] = os.path.split(directory)
-    new_directory_name = os.path.join(dir_head, clean_filename(dir_basename))
+    new_directory_name = os.path.join(dir_head, clean_file_url(dir_basename))
     if not os.path.exists(new_directory_name):
         print('rename', directory, new_directory_name)
         os.rename(directory, new_directory_name)
@@ -89,7 +99,7 @@ def analyze_folder(yml_file, folder_path):
                 subindent = TAB * (level + 1)
                 for filename in sorted(files):
                     if filename.endswith('.md'):
-                        cleaned_filename = clean_filename(filename)
+                        cleaned_filename = clean_file_url(filename)
                         os.rename(os.path.join(root, filename), os.path.join(root, cleaned_filename))
                         relative_file_path = os.path.relpath(os.path.join(root, cleaned_filename), folder_path)
                         relative_file_path = clean_path(relative_file_path)
