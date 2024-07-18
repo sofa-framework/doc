@@ -2,7 +2,9 @@
 
 ## Project timeline
 
-- Github [project for SOFA NG](https://github.com/sofa-framework/sofa/projects/9)
+Project is now over and all changes are integrated within SOFA.
+
+- [A dedicated Github project](https://github.com/sofa-framework/sofa/projects/9) was created for SOFA NG
 - A [GitHub issue was referencing](https://github.com/sofa-framework/sofa/issues/1527) all different PRs, the description of the task and the drafts for SOFA-NG
 
 
