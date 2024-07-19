@@ -1,7 +1,7 @@
 Animation loop
 ==============
 
-All the scenes in SOFA must include an _AnimationLoop_. This component orders all steps of the simulation and the system resolution. At each time step, the animation loop triggers each event (solving the matrix system, managing the constraints, detecting the collision, etc.) through a [_Visitor_](https://www.sofa-framework.org/community/doc/main-principles/visitors/) mechanism (see below). In a scene, if no animation loop is defined, a "DefaultAnimationLoop" is automatically created.
+All the scenes in SOFA must include an _AnimationLoop_. This component orders all steps of the simulation and the system resolution. At each time step, the animation loop triggers each event (solving the matrix system, managing the constraints, detecting the collision, etc.) through a [_Visitor_](./visitors/) mechanism (see below). In a scene, if no animation loop is defined, a "DefaultAnimationLoop" is automatically created.
 
 Several _AnimationLoops_ are already available in SOFA:
 

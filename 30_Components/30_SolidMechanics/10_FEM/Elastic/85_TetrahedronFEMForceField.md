@@ -1,7 +1,7 @@
 TetrahedronFEMForceField
 ========================
 
-This component belongs to the category of [ForceField](https://www.sofa-framework.org/community/doc/simulation-principles/multi-model-representation/forcefield/). The page is still incomplete, but give us a bit of time to work on it!
+This component belongs to the category of [ForceField](../../../simulation-principles/multi-model-representation/forcefield/). The page is still incomplete, but give us a bit of time to work on it!
 
 Description of the component ...
 
