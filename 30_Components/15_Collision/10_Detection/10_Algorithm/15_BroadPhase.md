@@ -16,7 +16,7 @@ For performances reasons, this approach is never selected because of its quadrat
 Instead, the collision detection will be divided in two parts:
 
 1. The broad phase collision detection
-2. The [narrow phase collision detection](../narrowphases/narrowphase)
+2. The [narrow phase collision detection](../narrowphase)
 
 The Broad Phase
 ===============
@@ -66,7 +66,7 @@ After the execution of the broad phase, the list of potential colliding pairs is
 ```cpp
 sofa::helper::vector< CollisionModelPair > BroadPhaseDetection::cmPairs;
 ```
-Finally, the [collision pipeline](../collisionpipeline) provides this list to a [narrow phase collision detection](../narrowphases/narrowphase).
+Finally, the [collision pipeline](../collisionpipeline) provides this list to a [narrow phase collision detection](../narrowphase).
 
 Examples of Components
 ======================

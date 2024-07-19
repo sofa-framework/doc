@@ -75,7 +75,7 @@ The total time of both steps computed in parallel will be the time taken by the 
 
 ### Parallel Algorithms
 
-There are high chances that a simulation uses [BruteForceBroadPhase](../../components/collision/detection/algorithm/broadphases/bruteforcebroadphase/) and [BVHNarrowPhase](../../components/collision/detection/algorithm/narrowphases/bvhnarrowphase/).
+There are high chances that a simulation uses [BruteForceBroadPhase](../../components/collision/detection/algorithm/bruteforcebroadphase/) and [BVHNarrowPhase](../../components/collision/detection/algorithm/bvhnarrowphase/).
 Multi-threaded versions of those two components are available in the [MultiThreading plugin](../../plugins/usual-plugins/multithreading/).
 Depending on the cases, the parallelization can help speeding up the collision detection phase.
 See details in the [MultiThreading plugin](../../plugins/usual-plugins/multithreading/) dedicated page.

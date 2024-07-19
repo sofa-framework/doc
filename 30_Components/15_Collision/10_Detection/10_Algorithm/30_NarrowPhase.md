@@ -14,7 +14,7 @@ The number of tests depends on the number of objects, and the number of collisio
 For performances reasons, this approach is never selected because of its quadratic complexity.
 
 Instead, the collision detection will be divided in two parts:
-1. The [broad phase collision detection](../broadphases/broadphase)
+1. The [broad phase collision detection](../broadphase)
 2. The narrow phase collision detection
 
 The Narrow Phase
@@ -68,7 +68,7 @@ Examples of Components
 
 The following components are all narrow phase collision detections, and can be placed in a simulation scene:
 
-- [BVHNarrowPhase](../narrowphases/bvhnarrowphase)
+- [BVHNarrowPhase](../bvhnarrowphase)
 - ParallelBVHNarrowPhase (plugin MultiThreading)
 - DirectSAPNarrowPhase
 

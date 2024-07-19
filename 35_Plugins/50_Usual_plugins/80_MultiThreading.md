@@ -10,15 +10,15 @@ SOFA has some multithreading capabilities in its core, but more features are ava
 ## Parallel Collision Detection
 
 Most SOFA scenes use a component defining the [collision pipeline](../../components/collision/detection/algorithm/collisionpipeline/).
-This pipeline requires two components for the [broad phase](../../components/components/collision/detection/algorithm/broadphases/broadphase/) and the [narrow phase](../../components/components/collision/detection/algorithm/narrowphases/narrowphase) of the collision detection.
-A usual choice is [BruteForceBroadPhase](../../components/collision/detection/algorithm/broadphases/bruteforcebroadphase/) for the broad phase, and [BVHNarrowPhase](../../components/collision/detection/algorithm/narrowphases/bvhnarrowphase/) for the narrow phase.
+This pipeline requires two components for the [broad phase](../../components/components/collision/detection/algorithm/broadphase/) and the [narrow phase](../../components/components/collision/detection/algorithm/narrowphase) of the collision detection.
+A usual choice is [BruteForceBroadPhase](../../components/collision/detection/algorithm/bruteforcebroadphase/) for the broad phase, and [BVHNarrowPhase](../../components/collision/detection/algorithm/bvhnarrowphase/) for the narrow phase.
 Both of these components can be replaced with a parallel version from the MultiThreading plugin.
 
 ### ParallelBruteForceBroadPhase
 
-This component is a parallel implementation of [BruteForceBroadPhase](../../components/collision/detection/algorithm/broadphases/bruteforcebroadphase/) using a global thread pool.
-It means the result of a simulation with [BruteForceBroadPhase](../../components/collision/detection/algorithm/broadphases/bruteforcebroadphase/) or with ParallelBruteForceBroadPhase is expected to be equal.
-ParallelBruteForceBroadPhase is the most efficient compared to [BruteForceBroadPhase](../../components/collision/detection/algorithm/broadphases/bruteforcebroadphase/) when there is a lot of objects in the scene.
+This component is a parallel implementation of [BruteForceBroadPhase](../../components/collision/detection/algorithm/bruteforcebroadphase/) using a global thread pool.
+It means the result of a simulation with [BruteForceBroadPhase](../../components/collision/detection/algorithm/bruteforcebroadphase/) or with ParallelBruteForceBroadPhase is expected to be equal.
+ParallelBruteForceBroadPhase is the most efficient compared to [BruteForceBroadPhase](../../components/collision/detection/algorithm/bruteforcebroadphase/) when there is a lot of objects in the scene.
 
 #### Examples
 
@@ -30,8 +30,8 @@ Examples of ParallelBruteForceBroadPhase can be found in:
 
 ### ParallelBVHNarrowPhase
 
-This component is a parallel implementation of [BVHNarrowPhase](../../components/collision/detection/algorithm/narrowphases/bvhnarrowphase/) using a global thread pool.
-It means the result of a simulation with [BVHNarrowPhase](../../components/collision/detection/algorithm/narrowphases/bvhnarrowphase/) or with ParallelBVHNarrowPhase is expected to be equal.
+This component is a parallel implementation of [BVHNarrowPhase](../../components/collision/detection/algorithm/bvhnarrowphase/) using a global thread pool.
+It means the result of a simulation with [BVHNarrowPhase](../../components/collision/detection/algorithm/bvhnarrowphase/) or with ParallelBVHNarrowPhase is expected to be equal.
 
 #### Examples
 

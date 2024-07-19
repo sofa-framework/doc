@@ -12,8 +12,8 @@ Interaction with Other Components
 _DefaultPipeline_ requires other components defined in the same context:
 
 - An intersection method (e.g. MinProximityIntersection, LocalMinDistance)
-- A broad phase detection (e.g. [_BruteForceBroadPhase_](./broadphases/bruteforcebroadphase))
-- A narrow phase detection (e.g. [_BVHNarrowPhase_](./narrowphases/bvhnarrowphase))
+- A broad phase detection (e.g. [_BruteForceBroadPhase_](./bruteforcebroadphase))
+- A narrow phase detection (e.g. [_BVHNarrowPhase_](./bvhnarrowphase))
 - A contact manager (e.g. DefaultContactManager)
 - [optional] A group manager (e.g. [_DefaultCollisionGroupManager_](../../collisiongroupmanagers/collisiongroupmanager))
 
