@@ -7,21 +7,17 @@ Here is a short template about how to write a scene in C++:
 using std::ostringstream ;
 #include <fstream>
 
-#include <sofa/helper/ArgumentParser.h>
-#include <SofaSimulationCommon/common.h>
 #include <sofa/simulation/Node.h>
 #include <sofa/helper/system/PluginManager.h>
 #include <sofa/simulation/config.h> // #defines SOFA_HAVE_DAG (or not)
-#include <SofaSimulationCommon/init.h>
-#include <SofaSimulationTree/init.h>
-#include <SofaSimulationTree/TreeSimulation.h>
+#include <sofa/simulation/common/init.h>
+#include <sofa/simulation/graph/init.h>
+#include <sofa/simulation/graph/DAGSimulation.h>
 
-#include <SofaComponentCommon/initComponentCommon.h>
-#include <SofaComponentBase/initComponentBase.h>
-#include <SofaComponentGeneral/initComponentGeneral.h>
-#include <SofaComponentAdvanced/initComponentAdvanced.h>
-#include <SofaComponentMisc/initComponentMisc.h>
 #include <sofa/helper/BackTrace.h>
+#include <sofa/gui/common/ArgumentParser.h>
+#include <sofa/core/ObjectFactory.h>
+
 
 // Add any other includes needed by your scene
 // #include<path_to/myComponent.h>
@@ -42,16 +38,24 @@ int main(int argc, char** argv)
     sofa::component::initComponentAdvanced();
     sofa::component::initComponentMisc();
 
-	sofa::simulation::setSimulation(new sofa::simulation::tree::TreeSimulation());
+    sofa::simulation::graph::init();
 
-	std::ostringstream no_error_message;
-    sofa::helper::system::PluginManager::getInstance().loadPlugin("MyPlugin",&no_error_message);
-    sofa::helper::system::PluginManager::getInstance().init();
+    if (simulationType == "tree")
+        msg_warning("runSofa") << "Tree based simulation, switching back to graph simulation.";
+    
+    assert(sofa::simulation::getSimulation());
+
+	auto& pluginManager = PluginManager::getInstance();
+    for (const auto& plugin : plugins)
+    {
+        pluginManager.loadPlugin(plugin);
+    }
+
 
     // Here start the description of your scene in C++
 
     // you can create nodes
-    sofa::simulation::tree::GNode* groot = new sofa::simulation::tree::GNode;
+    sofa::simulation::Node::SPtr groot = New<sofa::simulation::graph::DAGNode>();
     groot->setName ("root");
     sofa::defaulttype::Vec3d g = sofa::defaulttype::Vec3d (0,-9.81,0);
     groot->setGravityInWorld(g);
@@ -60,13 +64,14 @@ int main(int argc, char** argv)
 	addMyComponent(groot);
 
 	// you can add new child nodes and repeat the process to build your scene
-	sofa::simulation::tree::GNode* childNode = new sofa::simulation::tree::GNode;
- 	childNode->setName( "child_of_root" );\r
+    sofa::simulation::Node::SPtr childNode = New<sofa::simulation::graph::DAGNode>();
+ 	childNode->setName( "child_of_root" );
 	groot->addChild(childNode);
 
 	addMyComponent(childNode);
 
-    sofa::simulation::getSimulation()->init(groot.get());
+    // initialization of the graph
+    sofa::simulation::node::initRoot(groot.get());
 	
 
     // Run the simulation
@@ -77,7 +82,7 @@ int main(int argc, char** argv)
         sofa::simulation::getSimulation()->unload(groot);
 
     sofa::simulation::common::cleanup();
-    sofa::simulation::tree::cleanup();
+    sofa::simulation::graph::cleanup();
     return 0;
 }
 
