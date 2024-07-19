@@ -1,10 +1,9 @@
 Narrow Phase: BVH Narrow Phase
 ==============================
 
-BVHNarrowPhase is narrow phase component, which is used in a [Collision Detection](https://www.sofa-framework.org/community/doc/main-principles/collision/#collision-detection) pipeline.
+BVHNarrowPhase is [narrow phase component](./narrowphase), which is used in the detection phase of a [CollisionPipeline](../collisionpipeline/#collision-detection).
 The algorithm is based on a Bounding Volume Hierarchy (BVH).
 
-BVHNarrowPhase is used as the narrow phase in the BruteForceDetection component.
 
 Bounding Volume Hierarchy
 =========================
@@ -15,8 +14,7 @@ The hierarchy is contained internally into the collision models, through linked 
 The Algorithm
 =============
 
-The algorithm examines a potential collision between a pair of collision models, which has
- been detected in the broad phase.
+The algorithm examines a potential collision between a pair of collision models, which has been detected in the broad phase.
 This test is time-consuming, this is why it is necessary to have a broad phase which eliminates a maximum number of pairs.
 For a pair of collision models, the algorithm traverses the hierarchy of collision elements to rapidly eliminate pairs of elements which are not in intersection.
 Finally, the intersection method is called on the remaining pairs of elements.

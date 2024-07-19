@@ -1,15 +1,15 @@
 Narrow Phase: Direct SAP Narrow Phase
 =====================================
 
-_DirectSAPNarrowPhase_ is a [narrow phase component](https://www.sofa-framework.org/community/doc/using-sofa/components/collisions/narrowphases/narrowphase), which is used in a [collision pipeline](https://www.sofa-framework.org/community/doc/using-sofa/components/collisions/pipelines/collisionpipeline).
+_DirectSAPNarrowPhase_ is a [narrow phase component](./narrowphase), which is used in the detection phase of a [CollisionPipeline](../collisionpipeline/#collision-detection).
 The algorithm is based on the "[Sweep and Prune](https://en.wikipedia.org/wiki/Sweep_and_prune)" algorithm, noted SAP.
 
 The Algorithm
 =============
 
-As mentioned in [Narrow Phase](https://www.sofa-framework.org/community/doc/using-sofa/components/collisions/narrowphases/narrowphase), _DirectSAPNarrowPhase_ input is a list of pairs of [collision models](https://www.sofa-framework.org/community/doc/using-sofa/components/collisions/collisionmodels/).
-Among this list, if it is the first time that a [collision model](https://www.sofa-framework.org/community/doc/using-sofa/components/collisions/collisionmodels/collisionmodels) is provided to _DirectSAPNarrowPhase_, a list of Axis-Aligned Bounding Box (AABB) is created.
-Each associated to a collision element of the new [collision model](https://www.sofa-framework.org/community/doc/using-sofa/components/collisions/collisionmodels/).
+As mentioned in [Narrow Phase](./narrowphase), _DirectSAPNarrowPhase_ input is a list of pairs of [collision models](../../../geometry/collisionmodels/).
+Among this list, if it is the first time that a [collision model](../../../geometry/collisionmodels/) is provided to _DirectSAPNarrowPhase_, a list of Axis-Aligned Bounding Box (AABB) is created.
+Each associated to a collision element of the new [collision model](../../../geometry/collisionmodels/).
 This list is saved from a time step to the next.
 
 In the second step, all the AABB are updated according to the geometry of the collision elements in the current time step.
