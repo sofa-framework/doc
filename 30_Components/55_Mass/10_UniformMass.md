@@ -9,7 +9,7 @@ $$\mathbf{M}=\begin{bmatrix}m&0&\cdots&0\\&m&\cdots&0\\%20\vdots&\vdots&\ddots&\
 Each diagonal term equals the nodal mass $$m=\frac{m_{\textnormal{total}}}{N}$$ where $$m_{\textnormal{total}}$$ is the total mass of the objet and $$N$$ is the number of nodes of the object. Spreading the mass over the nodes without considering their connectivity results in this diagonal mass matrix $$\mathbf{M}$$.
 
 
-As all mass components, the UniformMass $$\mathbf{M}$$ will contribute to the main matrix $$\mathbf{A}$$ in the system $$\mathbf{A}x=b$$. Depending on the type of [LinearSolver](../../simulation-principles/system-resolution/linear-solvers/) used:
+As all mass components, the UniformMass $$\mathbf{M}$$ will contribute to the main matrix $$\mathbf{A}$$ in the system $$\mathbf{A}x=b$$. Depending on the type of [LinearSolver](../../simulation-principles/system-resolution/linear-solver/) used:
 
 - for iterative solvers, the result of the multiplication between the mass matrix $$\mathbf{M}$$ and an approximated solution is computed by the function:
 

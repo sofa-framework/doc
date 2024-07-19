@@ -122,7 +122,7 @@ Symbolic ids
 The MultiVec entries are not directly accessible by the solvers. The MultiVec are represented by identificators. The operations on the vectors are implemented using visitors which contain the identificators of the relevant vectors. The MultiVec identificators (MultiVecId) have different types, depending on the data they contain
 (positions or their derivatives) and the access mode.
 
-The use of symbolic identificators (MultiVecId) prevent other components (like solvers) from handling state vectors directly and allow to easily work with abstract MultiVec by using their ids. These symbolic ids are widely used by specialized visitors, like the ones used in [ODESolver](../simulation-principles/system-resolution/integration-schemes/).
+The use of symbolic identificators (MultiVecId) prevent other components (like solvers) from handling state vectors directly and allow to easily work with abstract MultiVec by using their ids. These symbolic ids are widely used by specialized visitors, like the ones used in [ODESolver](./system-resolution/integration-scheme/).
 
 ``` cpp
 typedef TMultiVecId<V_COORD, V_READ>  ConstMultiVecCoordId;

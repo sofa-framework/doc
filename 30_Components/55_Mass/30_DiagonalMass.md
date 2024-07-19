@@ -18,7 +18,7 @@ By making the matrix diagonal (i.e. removing extra-diagonal terms), the lumping 
 
 ### API
 
-Depending on the type of [LinearSolver](../../simulation-principles/system-resolution/linear-solvers/) used:
+Depending on the type of [LinearSolver](../../simulation-principles/system-resolution/linear-solver/) used:
 
 - for iterative solvers, the result of the multiplication between the mass matrix $$\mathbf{M}$$ and an approximated solution is computed by the function:
 
