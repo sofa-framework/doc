@@ -1,6 +1,6 @@
 # SquareMapping
 
-This component is classified under the category of Mappings.
+This component is classified under the category of [Mappings](../../../simulation-principles/multi-model-representation/mapping/).
 
 In this particular mapping, we designate the input as the parent state and the output as the child state.
 
@@ -42,7 +42,7 @@ $$
 
 ## Hessian Tensor
 
-The Hessian tensor represents the second-order partial derivatives of the output with respect to the input. For the `SquareMapping` component, the Hessian tensor is non-zero because the Jacobian matrix depends on the input $x$
+The Hessian tensor represents the second-order partial derivatives of the output with respect to the input. For the `SquareMapping` component, the Hessian tensor is non-zero because the Jacobian matrix depends on the input $x$.
 
 The elements of the Hessian tensor are given by:
 
