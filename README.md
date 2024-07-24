@@ -4,22 +4,8 @@ Generate the SOFA documentation automatically
 
 The repository contains:
 
-1. A SOFA application, called `SofaDocGenerator`:
-2. Python scripts to process the documentation
-3. Configuration for mkdocs
-
-## SofaDocGenerator
-
-SofaDocGenerator is a SOFA application. It can be built using the method described in https://www.sofa-framework.org/community/doc/plugins/build-a-plugin-from-sources/.
-
-This plugin uses the SOFA API in order to access to the information about SOFA components, data etc.
-For each component, it will generate a markdown file containing its description, the available templates (if any), the list of Data and Links, and examples.
-
-### How to use
-
-```bash
-SofaDocGenerator --ouput path/to/output/folder --examples path/to/examples
-```
+1. Python scripts to process the documentation
+2. Configuration for mkdocs
 
 ## Python Scripts
 

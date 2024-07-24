@@ -28,7 +28,8 @@ def extract_content(filename, starting_content, ending_content):
                 if ending_content and line.startswith(ending_content):
                     in_target_block = False
                 else:
-                    target_content.append(line)
+                    if not line.startswith('# '):
+                        target_content.append(line)
     return ''.join(target_content)
 
 
@@ -48,16 +49,13 @@ def replace_target_content(filename, starting_content, ending_content, replaceme
             else:
                 new_content.append(line)
     new_file_content = ''.join(new_content)
-    if filename.endswith('FreeMotionAnimationLoop.md'):
-        print(replacement)
-        print(new_file_content)
     with open(filename, 'w', encoding='utf-8') as f:
         f.write(new_file_content)
 
 
 def merge_files(source_file, target_file):
     print('Extracting content from source', source_file)
-    source_content = extract_content(source_file, "__Target__", "")
+    source_content = extract_content(source_file, "<!-- generate_doc -->", "")
 
     start_autodoc = "<!-- automatically generated doc START -->"
     end_autodoc = "<!-- automatically generated doc END -->"
@@ -141,6 +139,14 @@ def copy_subfolder(source_dir, source_subfolder, dest_dir, dest_subfolder):
     print(f"Subfolder '{source_subfolder}' copied from '{source_dir}' to '{dest_path}'.")
 
 
+def merge_docs(source_dir, dest_dir):
+    if os.path.exists(source_dir):
+        print(f"Merging docs from '{source_dir}' to '{dest_dir}'")
+        copy_subfolder(source_dir, '', dest_dir, '')
+    else:
+        print(f"Source directory '{source_dir}' does not exist.")
+
+
 if __name__ == "__main__":
     # Get folder paths from command line arguments (assuming 2 arguments provided)
     if len(sys.argv) != 3:
@@ -152,5 +158,4 @@ if __name__ == "__main__":
     print(f"Source dir: {source_dir}")
     print(f"Dest dir: {dest_dir}")
 
-    # Call the copy function
-    copy_subfolder(source_dir, '', dest_dir, '')
+    merge_docs(source_dir, dest_dir)
