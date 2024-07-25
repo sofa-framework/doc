@@ -5,12 +5,14 @@ on:
   push:
     branches:
       - gen
+      - master
   schedule:
     - cron: '0 0 * * *'    # every day at midnight
 
 permissions:
   id-token: write
   pages: write
+
 
 jobs:
   build:
