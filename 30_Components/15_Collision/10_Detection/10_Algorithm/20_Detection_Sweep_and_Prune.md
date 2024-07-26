@@ -30,7 +30,7 @@ It is one of the most used methods in the broad-phase algorithms because it prov
 
 - the first one is in charge of the bounding volume update of each active virtual objects. In SOFA, these bounding volume are defined in DSAPBoxes which are simple bounding boxes. Each DSAPBox contains a Cube which contains only one final CollisionElement and pointers to min and max EndPoints.
 - the second part is in charge of the detection of overlapping between objects. To do that a projection of higher and upper bounds on the three axis of coordinates (x, y and z) of each
-AABBs is made. .
+AABBs is made.
 
 Only the pairs of objects whose projected bounding volumes overlap on all axes will be saved in the set of active boxes to be considered for the narrow phase. We can notice two related but different concepts on the way the SAP operates internally: the **DirectSAP** starts from scratch each time even though internal structures could be updated as performed in the [IncrSAP](./incrsap/).
 
