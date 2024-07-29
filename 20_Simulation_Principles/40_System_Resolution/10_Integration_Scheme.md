@@ -6,7 +6,7 @@ All dynamic simulations assume to discretize the temporal evolution of the syste
 They are usually called **ODESolver** in SOFA. 
 
 Let's write our ordinary differential equation of a function *y* as follows:
-$$\frac{dy}{dt}=f\left(%20t,y(t)\right)$$.
+$$\frac{dy}{dt}=f\left( t,y(t)\right)$$.
 
 ODESolver defines how to go from the current time step (t) to the next (t + dt), which will structure the linear system $$\mathbf{A}x=b$$. The integration scheme therefore defines which forces impact the left hand side matrix $$\mathbf{A}$$ and which forces contribute to the right hand side vector *b*:
 
@@ -23,10 +23,10 @@ Two main categories of integration schemes exist: **explicit** and **implicit** 
 
 An explicit scheme means that the new time step (t + dt) is computed based on information of the previous time step (t):
 $$
-y(t+dt)=y(t)+dt%20\cdot%20f(y(t))
+y(t+dt)=y(t)+dt \cdot f(y(t))
 $$
 For instance, in mechanics, internal or external forces would be computed on current known positions $$x(t)$$. The ordinary differential equation looks like:
-$$x(t+dt)=x(t)+dt%20\cdot%20v(t)
+$$x(t+dt)=x(t)+dt \cdot v(t)
 $$
 Explicit schemes are usually known as being fast to solve (since the created linear system is lighter) but they require very small time steps, unless they may undergo stability issues. They are known to efficiently solve non-stiff problems.
 
@@ -41,11 +41,11 @@ Explicit ODESolvers in SOFA:
 
 An implicit scheme means that the new time step (t + dt) is computed based on information of this next time step (t + dt):
 $$
-y(t+dt)=y(t)+dt%20\cdot%20f(y(t+dt))
+y(t+dt)=y(t)+dt \cdot f(y(t+dt))
 $$
 For instance, in mechanics, internal or external forces would be computed on unknown positions at the next time step $$x(t+dt)$$. The ordinary differential equation looks like:
 $$
-x(t+dt)=x(t)+dt%20\cdot%20v(t+dt)
+x(t+dt)=x(t)+dt \cdot v(t+dt)
 $$
 Implicit schemes are known as being slower to solve (the outcoming linear system is more complex) but they are way more stable than explicit schemes. Stiff differential equations require the use of implicit schemes.
 
@@ -131,7 +131,7 @@ Rayleigh damping
 
 The Rayleigh damping is a numerical damping. This damping has therefore no physical meaning and must not be mixed up with physical damping (like _DiagonalVelocityDampingForceField_ in SOFA). The Rayleigh damping corresponds to a damping matrix that is proportional to the mass or/and stiffness matrices using coefficients, respectively Rayleigh stiffness factor $$r_K$$ or Rayleigh mass factor $$r_M$$. This numerical damping is usually used to stabilize or ease convergence of the simulation. However, it has to be used carefully.
 
-When Rayleigh damping is used, the matrix $$\mathbf{A}$$ equals $$\mathbf{A}%20=%20\mathbf{B}%20-%20\mathbf{M}%20\cdot%20r_M+%20\mathbf{K}%20\cdot%20r_K$$ where $$\mathbf{M}$$ is the mass matrix, $$\mathbf{B}$$ is the damping matrix and $$\mathbf{K}$$ is the stiffness matrix.
+When Rayleigh damping is used, the matrix $$\mathbf{A}$$ equals $$\mathbf{A} = \mathbf{B} - \mathbf{M} \cdot r_M+ \mathbf{K} \cdot r_K$$ where $$\mathbf{M}$$ is the mass matrix, $$\mathbf{B}$$ is the damping matrix and $$\mathbf{K}$$ is the stiffness matrix.
 You can see the use of Rayleigh mass and stiffness in the _solve()_ function of the _EulerImplicit_ class (see EulerImplicitSolver.cpp).
 
 NB: The negative sign in front of M, a positive matrix, represents the fact that viscosity opposes motion. Elasticity also opposes it, however K is a negative matrix. This formula therefore provides two positive coefficients.

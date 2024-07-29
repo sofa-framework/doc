@@ -8,37 +8,37 @@ This component belongs to the category of [Masses](../../simulation-principles/m
 
 As detailed in the [Physics integration](../../simulation-principles/multi-model-representation/physics-integration/) page, the left hand side part of the linear momentum conservation equals $$\rho\dot{v}$$. To integrate over the domain, its weak form will result in the mass matrix:
 
-$$\mathbf{M}\dot{v}=\int_{\Omega}%20\phi_j%20\rho%20\dot{v}d\Omega$$
+$$\mathbf{M}\dot{v}=\int_{\Omega} \phi_j \rho \dot{v}d\Omega$$
 
 where $$\phi_j$$ are the test functions, which are basis functions ensuring the existence of a solution. Since no exact integration can be performed on a random domain $$\Omega$$, the MeshMatrixMass relies on the Finite Element Method (FEM) and accumulates the result of the integral over each finite element (triangles, quads, tetrahedra or hexahedra):
 
-$$\mathbf{M}\dot{v}=\sum_{e=0}^E%20\int_{V_e}%20\phi_j%20\rho%20\dot{v}dV_e$$
+$$\mathbf{M}\dot{v}=\sum_{e=0}^E \int_{V_e} \phi_j \rho \dot{v}dV_e$$
 
 The FEM relies on simple geometries in which any field can be interpolated using shape functions $$\phi_i$$ (see [FEM at a glance](../../simulation-principles/multi-model-representation/physics-integration/#fem-at-a-glance)). Note that the same basis functions are chosen for both the test and the shape functions. The interpolation of the acceleration term $$\dot{v}$$ thus gives:
 
-$$\mathbf{M}\dot{v}=\sum_{e=0}^E%20\rho%20\int_{V_e}%20\phi_j%20\sum_{i=0}^{N}%20\phi_i%20\dot{v}_i%20dV_e$$
+$$\mathbf{M}\dot{v}=\sum_{e=0}^E \rho \int_{V_e} \phi_j \sum_{i=0}^{N} \phi_i \dot{v}_i dV_e$$
 
 By change of variables, the computation of the mass matrix results in solving the following integration of the shape functions $$\phi$$ in each element:
 
-$$\mathbf{M}\dot{v}=\sum_{e=0}^E%20\rho%20\int_{V_e}%20|det(J)|%20\sum_{i=0}^{N}\phi_j(\boldsymbol{\xi})%20\phi_i(\boldsymbol{\xi})%20\dot{v}_i%20d%20\boldsymbol{\xi}$$
+$$\mathbf{M}\dot{v}=\sum_{e=0}^E \rho \int_{V_e} |det(J)| \sum_{i=0}^{N}\phi_j(\boldsymbol{\xi}) \phi_i(\boldsymbol{\xi}) \dot{v}_i d \boldsymbol{\xi}$$
 
 
 ### Case of a linear tetrahedron
 In the case of a linear tetrahedron, the shape functions are:
 
-$$\begin{align*}&\phi_1=1-\xi%20-\eta%20-\zeta%20\\&\phi_2=\xi%20\\&\phi_3=\eta%20\\&\phi_4=\zeta%20\\%20\end{align*}$$
+$$\begin{align*}&\phi_1=1-\xi -\eta -\zeta \\&\phi_2=\xi \\&\phi_3=\eta \\&\phi_4=\zeta \\ \end{align*}$$
 
 By replacing the shape functions, we therefore obtain:
 
-$$\mathbf{M}\dot{v}=\sum_{e=0}^E%20\rho%20\int_{V_e}%20|det(J)|%20\phi_j%20\phi_i%20\dot{v}_i%20d%20\boldsymbol{\xi}$$
+$$\mathbf{M}\dot{v}=\sum_{e=0}^E \rho \int_{V_e} |det(J)| \phi_j \phi_i \dot{v}_i d \boldsymbol{\xi}$$
 
-$$\mathbf{M}\dot{v}=\sum_{e=0}^E%20\rho%20\int_{V_e}%20|det(J)|%20\begin{bmatrix}\phi_1^2&\phi_1\phi_2&\phi_1\phi_3&\phi_1\phi_4%20\\\phi_2\phi_1&\phi_2^2&\phi_2\phi_3&\phi_2\phi_4%20\\\phi_3\phi_1&\phi_3\phi_2&\phi_3^2&\phi_3\phi_4%20\\\phi_4\phi_1&\phi_4\phi_2&\phi_4\phi_3&\phi_4^2%20\\%20\end{bmatrix}%20\begin{bmatrix}\dot{v}_1\\%20\dot{v}_2\\%20\dot{v}_3\\%20\dot{v}_4\\%20\end{bmatrix}%20d%20\boldsymbol{\xi}$$
+$$\mathbf{M}\dot{v}=\sum_{e=0}^E \rho \int_{V_e} |det(J)| \begin{bmatrix}\phi_1^2&\phi_1\phi_2&\phi_1\phi_3&\phi_1\phi_4 \\\phi_2\phi_1&\phi_2^2&\phi_2\phi_3&\phi_2\phi_4 \\\phi_3\phi_1&\phi_3\phi_2&\phi_3^2&\phi_3\phi_4 \\\phi_4\phi_1&\phi_4\phi_2&\phi_4\phi_3&\phi_4^2 \\ \end{bmatrix} \begin{bmatrix}\dot{v}_1\\ \dot{v}_2\\ \dot{v}_3\\ \dot{v}_4\\ \end{bmatrix} d \boldsymbol{\xi}$$
 
-$$\mathbf{M}\dot{v}=\sum_{e=0}^E%20\rho%20\int_{\xi}%20\int_{\eta}%20\int_{\zeta}%20|det(J)|%20\begin{bmatrix}(1-\xi%20-\eta%20-\zeta)^2&\xi-\xi^2%20-\eta\xi%20-\zeta\xi&\eta-\xi\eta%20-\eta^2%20-\zeta\eta&\zeta-\xi\zeta%20-\eta\zeta\zeta%20-\zeta^2%20\\\phi_2\phi_1&\xi^2&\xi\eta&\xi\zeta%20\\\phi_3\phi_1&\phi_3\phi_2&\eta^2&\eta\zeta%20\\\phi_4\phi_1&\phi_4\phi_2&\phi_4\phi_3&\zeta^2%20\\%20\end{bmatrix}%20\begin{bmatrix}\dot{v}_1\\%20\dot{v}_2\\%20\dot{v}_3\\%20\dot{v}_4\\%20\end{bmatrix}%20d\xi%20d\eta%20d\zeta$$
+$$\mathbf{M}\dot{v}=\sum_{e=0}^E \rho \int_{\xi} \int_{\eta} \int_{\zeta} |det(J)| \begin{bmatrix}(1-\xi -\eta -\zeta)^2&\xi-\xi^2 -\eta\xi -\zeta\xi&\eta-\xi\eta -\eta^2 -\zeta\eta&\zeta-\xi\zeta -\eta\zeta\zeta -\zeta^2 \\\phi_2\phi_1&\xi^2&\xi\eta&\xi\zeta \\\phi_3\phi_1&\phi_3\phi_2&\eta^2&\eta\zeta \\\phi_4\phi_1&\phi_4\phi_2&\phi_4\phi_3&\zeta^2 \\ \end{bmatrix} \begin{bmatrix}\dot{v}_1\\ \dot{v}_2\\ \dot{v}_3\\ \dot{v}_4\\ \end{bmatrix} d\xi d\eta d\zeta$$
 
 We can note that the matrix is symmetric. The integration in the reference (or parent) space $$\boldsymbol{\xi}$$ can be numerically computed using a [Gauss quadrature](https://en.wikipedia.org/wiki/Gaussian_quadrature) (or Gauss point integration). The resulting mass matrix is:
 
-$$\mathbf{M}\dot{v}=\sum_{e=0}^E%20\frac{\rho%20V_e}{20}\begin{bmatrix}2&1&1&1\\1&2&1&1\\1&1&2&1\\1&1&1&2\\%20\end{bmatrix}\begin{bmatrix}\dot{v}_1\\%20\dot{v}_2\\%20\dot{v}_3\\%20\dot{v}_4\\%20\end{bmatrix}$$
+$$\mathbf{M}\dot{v}=\sum_{e=0}^E \frac{\rho V_e}{20}\begin{bmatrix}2&1&1&1\\1&2&1&1\\1&1&2&1\\1&1&1&2\\ \end{bmatrix}\begin{bmatrix}\dot{v}_1\\ \dot{v}_2\\ \dot{v}_3\\ \dot{v}_4\\ \end{bmatrix}$$
 
 
 ### API
@@ -113,7 +113,7 @@ void MeshMatrixMass<DataTypes, MassType>::addMToMatrix(const core::MechanicalPar
 
 Note that using the optional data **lumping**, it is possible to simply the mass matrix by making it diagonal. This is called mass lumping and it consists in summing all mass values of a line on the diagonal. The DiagonalMass is an optimized version of this mass lumping approach. In case of a linear tetrahedron, if the data **lumping** is true, the (lumped) mass matrix becomes:
 
-$$\mathbf{M}\dot{v}=\sum_{e=0}^E%20\frac{\rho%20V_e}{4}\begin{bmatrix}1&0&0&0\\&1&0&0\\&0&1&0\\&0&0&1\\%20\end{bmatrix}\begin{bmatrix}\dot{v}_1\\%20\dot{v}_2\\%20\dot{v}_3\\%20\dot{v}_4\\%20\end{bmatrix}$$
+$$\mathbf{M}\dot{v}=\sum_{e=0}^E \frac{\rho V_e}{4}\begin{bmatrix}1&0&0&0\\&1&0&0\\&0&1&0\\&0&0&1\\ \end{bmatrix}\begin{bmatrix}\dot{v}_1\\ \dot{v}_2\\ \dot{v}_3\\ \dot{v}_4\\ \end{bmatrix}$$
 
 Use lumping with caution since it is a numerical approximation, thus decreasing the accuracy of the integration.
 

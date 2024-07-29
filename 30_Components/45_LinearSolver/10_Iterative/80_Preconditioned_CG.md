@@ -6,7 +6,7 @@ This component belongs to the category of [LinearSolver](../../../simulation-pri
 
 Preconditioners are used in cases where the convergence of the system is slow, which is usually due to a ill-conditioned system (high [condition number](https://en.wikipedia.org/wiki/Condition_number)). In order to preserve accuracy, while improving performance, preconditioning methods aims at projecting a matrix $$\mathbf{P}$$ (preconditioner) on the linear system $$\mathbf{A}x=b$$, in order to get closer to the solution. The efficiency of the preconditioner will depend on the choice of the preconditioner $$\mathbf{P}$$.
 
-The ShewchukPCGLinearSolver allows to choose the preconditioner of our choice based on an external direct linear solver: LULinearSolver, [SparseLDLSolver](../direct/sparseldlsolver/), etc. These solvers will allow to compute $$\mathbf{P}%20\approx \mathbf{A}$$ and use it to compute at each iteration _k_ of the conjugate gradient:
+The ShewchukPCGLinearSolver allows to choose the preconditioner of our choice based on an external direct linear solver: LULinearSolver, [SparseLDLSolver](../direct/sparseldlsolver/), etc. These solvers will allow to compute $$\mathbf{P} \approx \mathbf{A}$$ and use it to compute at each iteration _k_ of the conjugate gradient:
 
 $$\mathbf{P}^{-1}(\mathbf{A}x_k-b)=0$$
 

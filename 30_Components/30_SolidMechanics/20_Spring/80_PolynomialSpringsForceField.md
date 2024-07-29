@@ -7,14 +7,14 @@ This component belongs to the category of [ForceField](../../../simulation-princ
 - $$S$$ the cross section (always 1.0)
 - $$\sigma$$ the stress-strain non-linear function
 - $$l_0$$ the original length and $$l$$ the current length of the spring
-- $$\Delta%20u%20%3D%20\left\{\begin{matrix}%20\Delta%20x\\%20\Delta%20y\\%20\Delta%20z\\%20\end{matrix}\right.$$ the point displacement
+- $$\Delta u %3D \left\{\begin{matrix} \Delta x\\ \Delta y\\ \Delta z\\ \end{matrix}\right.$$ the point displacement
 
 the generic non-linear force can thus be written:
-$$F=S%7E\sigma%20\left(%20\frac{l-l_0}{l_0}%20\right%29%20\frac{\Delta%20u}{l}$$ 
+$$F=S%7E\sigma \left( \frac{l-l_0}{l_0} \right%29 \frac{\Delta u}{l}$$ 
 where $$\sigma$$ is polynom as follows:
-$$\sigma%20\left(%20\frac{l-l_0}{l_0}%20\right)%20=\sigma(L)=a_1L+a_2L^2+\cdots+a_nL^n$$
+$$\sigma \left( \frac{l-l_0}{l_0} \right) =\sigma(L)=a_1L+a_2L^2+\cdots+a_nL^n$$
 and
-$$\frac{\partial%20\sigma}{\partial%20L}=a_1+a_2L+\cdots+a_nL^{n-1}$$
+$$\frac{\partial \sigma}{\partial L}=a_1+a_2L+\cdots+a_nL^{n-1}$$
 
 The dedication of Jacobian matrix for PolynomialSpringForceField is given below:
 

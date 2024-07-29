@@ -32,7 +32,7 @@ In SOFA, the collision detection takes as input the collision models (geometric 
 This contact information is passed to the contact manager, which creates contact interactions of various types based on customizable rules.
 
 Given $$n$$ moving objects in a virtual environment, testing all objects pairs tend to perform $$n^2$$ pairwise checks.
-When $$%20\mathcal{O%20}(n^2)$$ complexity, the collision detection is usually divided into two successive steps:
+When $$ \mathcal{O }(n^2)$$ complexity, the collision detection is usually divided into two successive steps:
 
 - a [broad phase](../../components/components/collision/detection/algorithm/broadphase/)
 - a [narrow phase](../../components/components/collision/detection/algorithm/narrowphase)

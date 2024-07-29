@@ -9,53 +9,53 @@ General presentation of the constraint problem
 
 To solve the dynamic of two constrained objects, we use a Lagrange Multipliers approach and a single linearization by time step. From the [physical system](../multi-model-representation/physics-integration/) to solve, the constraint problem can be expressed with the linear system as:
 
-$$\left(\mathbf{M}+dt\textstyle\frac{\partial%20f}{\partial%20\dot{x}}+dt^2\textstyle\frac{\partial%20f}{\partial%20x}\right)\Delta%20v=-dt(f+dt\textstyle\frac{\partial%20f}{\partial%20x}v%20-%20\mathbf{H}^T\lambda)$$
+$$\left(\mathbf{M}+dt\textstyle\frac{\partial f}{\partial \dot{x}}+dt^2\textstyle\frac{\partial f}{\partial x}\right)\Delta v=-dt(f+dt\textstyle\frac{\partial f}{\partial x}v - \mathbf{H}^T\lambda)$$
 
 that can be written in a simpler way as:
 
-$$\mathbf{A}\Delta%20v=b+dt\mathbf{H}^T\lambda$$
+$$\mathbf{A}\Delta v=b+dt\mathbf{H}^T\lambda$$
 
 where $$\mathbf{H}^T\lambda$$ is the vector of constraint forces contribution with $$\mathbf{H}$$ matrix containing the constraint directions and $$\lambda$$ are the so-called Lagrange multipliers. Both holonomic and nonholonomic constraints can be used to model the various mechanical interactions involved in the simulation. For each constraint, a constraint law is assigned, which depends on the relative position of the interacting objects:
 
-$$\Phi(x_1,x_2%20...)~=~0$$
+$$\Phi(x_1,x_2 ...)~=~0$$
 
-$$\Psi(x_1,x_2%20...)~\geq~0$$
+$$\Psi(x_1,x_2 ...)~\geq~0$$
 
 where $$\Phi$$ represents the bilateral interaction laws (attachments, sliding joints, etc.) whereas $$\Psi$$ represents unilateral interaction laws (contact, needle puncture, friction, etc.). These functions can be nonlinear. In the constrained system presented above, the constraint matrix $$\mathbf{H}$$ appeared. The definition of the constraint laws $$\Phi$$ and $$\Psi$$ allows to define:
 
-$$\mathbf{H}_1(x)=\left[\frac{\partial%20\Phi}{\partial%20x1};\frac{\partial%20\Psi}{\partial%20x_1}\right]$$
-$$\mathbf{H}_2(x)=\left[\frac{\partial%20\Phi}{\partial%20x2};\frac{\partial%20\Psi}{\partial%20x_2}\right]$$
+$$\mathbf{H}_1(x)=\left[\frac{\partial \Phi}{\partial x1};\frac{\partial \Psi}{\partial x_1}\right]$$
+$$\mathbf{H}_2(x)=\left[\frac{\partial \Phi}{\partial x2};\frac{\partial \Psi}{\partial x_2}\right]$$
 
 Note that $$\mathbf{H}$$ the matrix containing the constraint directions can be considered as the Jacobian of the mapping between the physics space and the constraint space. The constraint will always be linearized in SOFA. For two interacting objects (object 1 and object 2), the complete constrained system therefore corresponds to:
 
-- $$\mathbf{A}_1\Delta%20v_1=b_1+dt\mathbf{H}^T_1\lambda$$
-- $$\mathbf{A}_2\Delta%20v_2=b_2+dt\mathbf{H}^T_2\lambda$$
+- $$\mathbf{A}_1\Delta v_1=b_1+dt\mathbf{H}^T_1\lambda$$
+- $$\mathbf{A}_2\Delta v_2=b_2+dt\mathbf{H}^T_2\lambda$$
 
 However, this system will not be solved directly. It will be decomposed into two steps:
 
 
-**Step 1**: Each interacting object is solved independently, i.e. as no constraint law is defined, while setting $$\lambda=0$$. This so-called free motion aims at finding the change in velocity $$\Delta%20v_1^{free}$$ and $$\Delta%20v_2^{free}$$ for each object from the resolution of:
+**Step 1**: Each interacting object is solved independently, i.e. as no constraint law is defined, while setting $$\lambda=0$$. This so-called free motion aims at finding the change in velocity $$\Delta v_1^{free}$$ and $$\Delta v_2^{free}$$ for each object from the resolution of:
 
-- $$\mathbf{A}_1\Delta%20v_1^{free}=b_1$$
-- $$\mathbf{A}_2\Delta%20v_2^{free}=b_2$$
+- $$\mathbf{A}_1\Delta v_1^{free}=b_1$$
+- $$\mathbf{A}_2\Delta v_2^{free}=b_2$$
 
 
-**Step 2**: now, the constraints are taken into account while considering $$b_1=b_2=0$$. We are looking for a corrective change in velocity  $$\Delta%20v_1^{corr}$$ and $$\Delta%20v_2^{corr}$$ for each object from the resolution of:
+**Step 2**: now, the constraints are taken into account while considering $$b_1=b_2=0$$. We are looking for a corrective change in velocity  $$\Delta v_1^{corr}$$ and $$\Delta v_2^{corr}$$ for each object from the resolution of:
 
-- $$\mathbf{A}_1\Delta%20v_1^{corr}=dt\mathbf{H}^T_1\lambda$$
-- $$\mathbf{A}_2\Delta%20v_2^{corr}=dt\mathbf{H}^T_2\lambda$$
+- $$\mathbf{A}_1\Delta v_1^{corr}=dt\mathbf{H}^T_1\lambda$$
+- $$\mathbf{A}_2\Delta v_2^{corr}=dt\mathbf{H}^T_2\lambda$$
 
 Defining $$\lambda$$ the Lagrange multipliers, as the forces to be applied in the constraint space to satisfy all constraint laws, the constrained system can therefore be presented as:
 
-$$\dot{\delta}=\mathbf{H}_1%20v_1^{free}-\mathbf{H}_2%20v_2^{free}+dt\left[\mathbf{H}_1\mathbf{A}_1^{-1}\mathbf{H}_1^T+\mathbf{H}_2\mathbf{A}_2^{-1}\mathbf{H}_2^T\right]\lambda$$
+$$\dot{\delta}=\mathbf{H}_1 v_1^{free}-\mathbf{H}_2 v_2^{free}+dt\left[\mathbf{H}_1\mathbf{A}_1^{-1}\mathbf{H}_1^T+\mathbf{H}_2\mathbf{A}_2^{-1}\mathbf{H}_2^T\right]\lambda$$
 
 where $$\mathbf{W}=dt\left[\mathbf{H}_1\mathbf{A}_1^{-1}\mathbf{H}_1^T+\mathbf{H}_2\mathbf{A}_2^{-1}\mathbf{H}_2^T\right]$$ is the matrix of our linearized constraint system, this matrix $$\mathbf{W}$$ is homogeneous to a compliance. $$\dot{\delta}$$ is the constraint violation (here in velocity), that can be directly obtained from the expression of our constraint laws $$\Phi$$ and $$\Psi$$.
 
 Finally, the resolution of the constraint problem is done using the [Gauss-Seidel algorithm](https://en.wikipedia.org/wiki/Gauss%E2%80%93Seidel_method). After resolution of this new linear system, the motion can be corrected as follows:
 
-- $$x_1=x_1^{free}+dt\cdot%20\Delta%20v_1^{cor}$$
-- $$x_1=x_2^{free}+dt\cdot%20\Delta%20v_2^{cor}$$ 
-  with $$\Delta%20v_1^{cor}=dt\mathbf{A}_1^{-1}\mathbf{H}_1\lambda$$ and $$\Delta%20v_2^{cor}=dt\mathbf{A}_2^{-1}\mathbf{H}_2\lambda$$
+- $$x_1=x_1^{free}+dt\cdot \Delta v_1^{cor}$$
+- $$x_1=x_2^{free}+dt\cdot \Delta v_2^{cor}$$ 
+  with $$\Delta v_1^{cor}=dt\mathbf{A}_1^{-1}\mathbf{H}_1\lambda$$ and $$\Delta v_2^{cor}=dt\mathbf{A}_2^{-1}\mathbf{H}_2\lambda$$
 
 
 FreeMotionAnimationLoop
@@ -112,13 +112,13 @@ bool applyCorrection(const core::ConstraintParams * , MultiVecId res1, MultiVecI
 
 Each of these functions corresponds to a step described below:
 
-  - **Prepare states**: allocates in memory vectors corresponding to the corrective motion $$\Delta%20v^{cor}$$ and the Lagrange multipliers $$\lambda$$
+  - **Prepare states**: allocates in memory vectors corresponding to the corrective motion $$\Delta v^{cor}$$ and the Lagrange multipliers $$\lambda$$
 
   - **Build system**: ensures itself the construction of the constraint matrix system
 
   - **Solve system**: the constraint resolution finds a solution for the constraint problem
 
-  - **Apply the correction**: recovers the result $$\Delta%20v^{cor}$$ and applies this corrective motion to the free motion $$x=x^{free}+dt\cdot%20\Delta%20v^{cor}$$
+  - **Apply the correction**: recovers the result $$\Delta v^{cor}$$ and applies this corrective motion to the free motion $$x=x^{free}+dt\cdot \Delta v^{cor}$$
 
 The step of building the system (see the [Build system](#build-system), [Constraint laws](#constraint-laws) and [ConstraintCorrection](#constraintcorrection) sections) and solving it will now be detailed.
 
@@ -138,7 +138,7 @@ The following steps are processed one after another:
 
   - clear previous values of the Lagrange multipliers
 
-  - project the free motion $$v^{free}$$ (computed at Step 1) into the constraint space $$\dot{\delta}=\mathbf{H}%20v^{free}$$ where $$\dot{\delta}$$ is the violation in velocity. See the visitor _MechanicalGetConstraintViolationVisitor_
+  - project the free motion $$v^{free}$$ (computed at Step 1) into the constraint space $$\dot{\delta}=\mathbf{H} v^{free}$$ where $$\dot{\delta}$$ is the violation in velocity. See the visitor _MechanicalGetConstraintViolationVisitor_
 
   - select which method will be used to solve the constraint problem. The associated visitor is _MechanicalGetConstraintResolutionVisitor_
 
@@ -178,7 +178,7 @@ The resolution of the system will be processed when the _solveSystem()_ function
 
 NB: you may find the class _ConstraintSolver_. This class does not implement a real solver but actually just browses the graph in order to find and use one of the two implementations mentioned above.
 
-The output of the constraint resolution is the corrected motion $$\Delta%20v^{cor}$$ for each object involved.
+The output of the constraint resolution is the corrected motion $$\Delta v^{cor}$$ for each object involved.
 
 
 

@@ -8,7 +8,7 @@ However, the DiagonalMass makes a strong simplification: it considers the mass m
 For details on the volume integration, please report to the [MeshMatrixMass](./meshmatrixmass/) page. As demonstrated in the [MeshMatrixMass](./meshmatrixmass/#case-of-a-linear-tetrahedron) page, in case of a topology using linear tetrahedra, the diagonal mass matrix corresponds to:
 
 
-$$\mathbf{M}\dot{v}=\sum_{e=0}^E%20\frac{\rho%20V_e}{4}\begin{bmatrix}1&0&0&0\\&1&0&0\\&0&1&0\\&0&0&1\\%20\end{bmatrix}\begin{bmatrix}\dot{v}_1\\%20\dot{v}_2\\%20\dot{v}_3\\%20\dot{v}_4\\%20\end{bmatrix}$$
+$$\mathbf{M}\dot{v}=\sum_{e=0}^E \frac{\rho V_e}{4}\begin{bmatrix}1&0&0&0\\&1&0&0\\&0&1&0\\&0&0&1\\ \end{bmatrix}\begin{bmatrix}\dot{v}_1\\ \dot{v}_2\\ \dot{v}_3\\ \dot{v}_4\\ \end{bmatrix}$$
 
 
 By making the matrix diagonal (i.e. removing extra-diagonal terms), the lumping method removes the connectivity (neighborhood) information from the matrix. Due to this numerical approximation, the accuracy of the integration is decreased compared to the MeshMatrixMass integration. It is therefore advised to use the DiagonalMass carefully.
