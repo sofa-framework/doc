@@ -56,6 +56,11 @@ jobs:
           path: 'doc'
           ref: 'master'
 
+      - name: Add the CONTRIBUTING.md
+        run: |
+          wget https://github.com/sofa-framework/sofa/blob/master/CONTRIBUTING.md
+          mv ${{ github.workspace }}/CONTRIBUTING.md ${{ github.workspace }}/doc/50_Contributing_to_SOFA/01_Contributing.md
+
       - name: Install tinyxml2
         run: sudo apt-get install -y libtinyxml2-dev
 
