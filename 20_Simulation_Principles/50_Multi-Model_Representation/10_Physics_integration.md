@@ -22,7 +22,7 @@ where $$\boldsymbol{\sigma}$$ is the Cauchy's stress tensor (as a reminder $$\na
 
 
 
-In order to find a solution over the domain of simulation, we need to integrate this momentum equation. However, in much cases, no exact solution can directly be found. To ensure the existence of a solution, this strong form must be converted into a discrete problem, known as the weak or variational formulation. This is done by taking the product of a test function with the momentum equation and integrating over the current configuration. It is equivalent to formulating the problem to require a solution in the sense of a distribution. The test function is also known as weight function or basis functions, noted $$\psi_j$$. Let $$\Omega$$ denote the volume of our domain and $\Gamma$ denote the surface of the domain, the weak form of the momentum equation becomes:
+In order to find a solution over the domain of simulation, we need to integrate this momentum equation. However, in much cases, no exact solution can directly be found. To ensure the existence of a solution, this strong form must be converted into a discrete problem, known as the weak or variational formulation. This is done by taking the product of a test function with the momentum equation and integrating over the current configuration. The test function is also known as weight function or basis functions, noted $$\psi_j$$. Let $$\Omega$$ denote the volume of our domain and $\Gamma$ denote the surface of the domain, the weak form of the momentum equation becomes:
 
 $$\int_{\Omega} \psi_j \rho \dot{v}d\Omega =\int_{\Omega} \psi_j \rho \boldsymbol{b}d\Omega+\int_{\Omega} \psi_j \nabla \cdot \boldsymbol{\sigma}d\Omega$$
 

@@ -40,6 +40,8 @@ When $$ \mathcal{O }(n^2)$$ complexity, the collision detection is usually divid
 Several [broad phase](../../components/components/collision/detection/algorithm/broadphase/) and [narrow phase](../../components/components/collision/detection/algorithm/narrowphase) methods are available in SOFA.
 All of these methods will compute the contact points between collision models. The evaluation of these contacts will be done using Intersection Methods. Here again, various [intersection methods](../../components/collision/detection/intersection/intersectionmethod/) are available in SOFA. The choice of the collision detection method and the intersection method depends on your specific simulation use case.
 
+All collision detection algorithms are available in *components/collision/detection/algorithm*, see for instance the [BruteForceBroadPhase](../../components/collision/detection/algorithm/bruteforcebroadphase/).
+
 
 ### Broad phase
 
