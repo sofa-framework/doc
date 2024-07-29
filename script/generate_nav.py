@@ -43,7 +43,7 @@ def to_lowercase(input_string):
 def clean_title(s):
     if s.endswith('.md'):
         s = remove_extension(s)
-    s = clean_filename(s)
+    s = re.sub(r'^\d+_', '', s)
     s = s.replace("_", " ")
     return s
 
