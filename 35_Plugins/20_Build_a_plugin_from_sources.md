@@ -67,6 +67,7 @@ The only mandatory requirement for your project to find SOFA is to edit the CMak
 ![](https://user-images.githubusercontent.com/11028016/135097125-996b2ed5-29cf-4383-a98c-572621bad8d2.PNG)
 
 In some cases, having the `SOFA_ROOT` environment variable properly defined might also help in the configuration step.
+
 After setting the eventual third-party libraries (Qt, Eigen, etc), you will be able to generate and build your plugin.
 
 Finally, you are advised to install directly your plugin into the SOFA installation, essentially to load it more easily with runSofa.
