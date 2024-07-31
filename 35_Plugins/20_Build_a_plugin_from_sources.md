@@ -6,6 +6,8 @@ i.e. a plugin which is not provided in the source code of SOFA.
 
 > ⚠️ **WARNING**: In most cases, the version of a plugin follows the version of SOFA. For compatibility reasons, it is preferable to compile the version of the plugin corresponding to your SOFA version. For example, if you have the SOFA v23.06 binaries, you will need to compile plugins using their v23.06 version (i.e. their v23.06 branch).
 
+> Note: Some plugins are switched off by default. To switch them on, make sure to have the following CMake variable defined `-DPLUGIN_{PLUGIN_NAME}=ON`.
+
 Two ways of building a plugin are possible:
 
 - you are compiling SOFA and you integrate your plugin project along SOFA (aka _in-tree build_).
