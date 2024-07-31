@@ -9,7 +9,7 @@ i.e. a plugin which is not provided in the source code of SOFA.
 > Note: Some plugins are switched off by default and require a CMake variable PLUGIN_{PLUGIN_NAME}=ON to switch them on.
 
 ### Example:
-To add CMake variable (or modify if it is already existing):
+To add CMake variable (or modify it if it is already existing):
 ```bash
     -DPLUGIN_CIMGPLUGIN=ON
 ```
