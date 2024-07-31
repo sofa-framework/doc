@@ -131,7 +131,7 @@ Rayleigh damping
 
 The Rayleigh damping is a numerical damping. This damping has therefore no physical meaning and must not be mixed up with physical damping (like _DiagonalVelocityDampingForceField_ in SOFA). The Rayleigh damping corresponds to a damping matrix that is proportional to the mass or/and stiffness matrices using coefficients, respectively Rayleigh stiffness factor $$r_K$$ or Rayleigh mass factor $$r_M$$. This numerical damping is usually used to stabilize or ease convergence of the simulation. However, it has to be used carefully.
 
-When Rayleigh damping is used, the matrix $$\mathbf{A}$$ equals $$\mathbf{A} = \mathbf{B} - \mathbf{M} \cdot r_M+ \mathbf{K} \cdot r_K$$ where $$\mathbf{M}$$ is the mass matrix, $$\mathbf{B}$$ is the damping matrix and $$\mathbf{K}$$ is the stiffness matrix.
-You can see the use of Rayleigh mass and stiffness in the _solve()_ function of the _EulerImplicit_ class (see EulerImplicitSolver.cpp).
+When Rayleigh damping is used, the damping matrix becomes the sum of the physical and the numerical (Rayleigh) damping: $$\mathbf{B} = \mathbf{B}_{\text{phys}} - \mathbf{M} \cdot r_M+ \mathbf{K} \cdot r_K$$ where $$\mathbf{B}_{\text{phys}}$$ is the physical damping matrix, $$\mathbf{M}$$ is the mass matrix and $$\mathbf{K}$$ is the stiffness matrix.
+The negative sign in front of $$\mathbf{M}$$, a positive matrix, represents the fact that viscosity opposes motion. Elasticity also opposes it, however $$\mathbf{K}$$ is a negative matrix. This formula therefore provides two positive coefficients $$r_K$$ and $$r_M$$.
 
-NB: The negative sign in front of M, a positive matrix, represents the fact that viscosity opposes motion. Elasticity also opposes it, however K is a negative matrix. This formula therefore provides two positive coefficients.
+You can see the use of Rayleigh mass and stiffness dampings in the `solve()` function of the _EulerImplicit_ class (see EulerImplicitSolver.cpp).
