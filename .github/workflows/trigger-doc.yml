@@ -1,0 +1,15 @@
+name: Trigger DocGenerateAndPublish Workflow
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - master
+
+jobs:
+  trigger_workflow:
+    runs-on: ubuntu-latest
+    steps:
+      - run: gh workflow run DocGenerateAndPublish --ref gen
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
