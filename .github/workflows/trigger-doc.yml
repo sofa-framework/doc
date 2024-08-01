@@ -10,6 +10,7 @@ jobs:
   trigger_workflow:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v3
       - run: gh workflow run DocGenerateAndPublish --ref gen
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
