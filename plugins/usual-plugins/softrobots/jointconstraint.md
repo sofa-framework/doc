@@ -1,0 +1,181 @@
+# JointConstraint
+
+Lagrange multiplier approach to apply a force/displacement on a Joint (Vec1)
+
+
+__Templates__:
+
+- `#!c++ Vec1d`
+
+__Target__: `SoftRobots`
+
+__namespace__: `#!c++ softrobots::constraint`
+
+__parents__: 
+
+- `#!c++ SoftRobotsConstraint`
+
+__categories__: 
+
+- ConstraintSet
+
+Data: 
+
+<table>
+<thead>
+    <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Default value</th>
+    </tr>
+</thead>
+<tbody>
+	<tr>
+		<td>name</td>
+		<td>
+object name
+</td>
+		<td>unnamed</td>
+	</tr>
+	<tr>
+		<td>printLog</td>
+		<td>
+if true, emits extra messages at runtime.
+</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>tags</td>
+		<td>
+list of the subsets the objet belongs to
+</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>bbox</td>
+		<td>
+this object bounding box
+</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>componentState</td>
+		<td>
+The state of the component among (Dirty, Valid, Undefined, Loading, Invalid).
+</td>
+		<td>Undefined</td>
+	</tr>
+	<tr>
+		<td>listening</td>
+		<td>
+if true, handle the events, otherwise ignore the events
+</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>group</td>
+		<td>
+ID of the group containing this constraint. This ID is used to specify which constraints are solved by which solver, by specifying in each solver which groups of constraints it should handle.
+</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>constraintIndex</td>
+		<td>
+Constraint index (first index in the right hand term resolution vector)
+</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>endTime</td>
+		<td>
+The SoftRobotsConstraint stops acting after the given value.
+Use a negative value for infinite SoftRobotsConstraints
+</td>
+		<td>-1</td>
+	</tr>
+	<tr>
+		<td>index</td>
+		<td>
+Index of the node subjected to the force. 
+If no index given, first node of mechanical context considered.
+</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>force</td>
+		<td>
+Output force. Warning: to get the actual force you should divide this value by dt.
+</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>displacement</td>
+		<td>
+Output displacement compared to the initial position.
+</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>maxForce</td>
+		<td>
+Maximum force allowed. 
+If unspecified no maximum value will be considered.
+</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>minForce</td>
+		<td>
+Minimum force allowed. 
+If unspecified no minimum value will be considered.
+</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>maxDisplacement</td>
+		<td>
+Maximum displacement. 
+If unspecified no maximum value will be considered.
+</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>minDisplacement</td>
+		<td>
+Minimum displacement. 
+If unspecified no minimum value will be considered.
+</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>value</td>
+		<td>
+Displacement or force to impose.
+
+</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>valueType</td>
+		<td>
+displacement = the constraint will impose the displacement provided in data value[valueIndex] 
+force = the constraint will impose the force provided in data value[valueIndex] 
+If unspecified, the default value is displacement
+</td>
+		<td>displacement</td>
+	</tr>
+
+</tbody>
+</table>
+
+Links: 
+
+| Name | Description |
+| ---- | ----------- |
+|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|
+|slaves|Sub-objects used internally by this object|
+|master|nullptr for regular objects, or master object for which this object is one sub-objects|
+
+
+
