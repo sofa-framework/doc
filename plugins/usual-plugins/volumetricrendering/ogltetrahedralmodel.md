@@ -1,6 +1,7 @@
 # OglTetrahedralModel
 
 Tetrahedral model for OpenGL display
+Tetrahedral model for OpenGL display
 
 
 __Templates__:

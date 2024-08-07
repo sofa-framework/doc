@@ -28,14 +28,14 @@ _______________________________________________________
 <ul>
 <li>Keep a compatibility header (with same old name and path)</li>
 <li>in the header, include new header</li>
-<li>add macro <code>SOFA_DEPRECATED_HEADER</code></li>
+<li>add macro <code>SOFA_HEADER_DEPRECATED</code></li>
 </ul>
 </td>
     <td><ul><li>Add as CreatableMoved() in deprecatedComponents in ComponentChange</li></ul></td>
   </tr>
   <tr>
     <td>Deletion<br>(6 months)</td>
-    <td><ul><li>In the old compatibility header, change the macro for <code>SOFA_DISABLED_HEADER</code></li></ul></td>
+    <td><ul><li>In the old compatibility header, change the macro for <code>SOFA_HEADER_DISABLED</code></li></ul></td>
     <td><ul><li>Change to Removed() and move to uncreatableComponents in ComponentChange</li></ul></td>
   </tr>
   <tr>
@@ -73,9 +73,12 @@ _______________________________________________________
     <td>Deprecation<br>(6 months)</td>
     <td>
 <ul>
-<li>Let an empty header with old name including the new file</li>
-<li>Add a C++ alias for the component name</li>
-<li>Add a macro <code>SOFA_ATTRIBUTE_DEPRECATED</code> on this alias</li>
+<li>Let an (almost-) empty header with the old name which:<ul>
+<li>includes the new file</li>
+<li>Add a macro <code>SOFA_HEADER_DEPRECATED</code> after the include</li>
+<li>Add a C++ <code>using</code> alias with the new component name preceeded by a macro <code>SOFA_ATTRIBUTE_DEPRECATED</code></li>
+</ul>
+</li>
 </ul>
 </td>
     <td>
@@ -86,10 +89,11 @@ _______________________________________________________
 </td>
   </tr>
   <tr>
-    <td>Renaming<br>(6 months)</td>
+    <td>Disabling<br>(6 months)</td>
     <td>
 <ul>
 <li>Change the C++ alias to be on DeprecatedOrRemoved in the component class</li>
+<li>Change the macro for <code>SOFA_HEADER_DISABLED</code></li>
 <li>Change the macro for <code>SOFA_ATTRIBUTE_DISABLED</code></li>
 </ul></td>
     <td>
@@ -101,7 +105,7 @@ _______________________________________________________
   </tr>
   <tr>
     <td>Cleanup</td>
-    <td><ul><li>Remove the C++ alias in the component class</li></ul></td>
+    <td><ul><li>Remove the old-name component class</li></ul></td>
     <td></td>
   </tr>
 </tbody>
@@ -115,7 +119,7 @@ _______________________________________________________
 2. disabale phase (6 months)
    - [dev] in Sofa.Compat
         - create a compatibility header with same name and same path
-        - add macro SOFA_DISABLED_HEADER
+        - add macro SOFA_HEADER_DISABLED
         - add aliases for all classes, static functions, global variables
         - add a macro SOFA_ATTRIBUTE_DISABLED on these aliases
 -->
@@ -135,12 +139,12 @@ _______________________________________________________
   </tr>
   <tr>
     <td>Deprecation<br>(6 months)</td>
-    <td><ul><li>use a macro to deprecate the class <code>SOFA_DEPRECATED_HEADER_NOT_REPLACED</code></li></ul></td>
+    <td><ul><li>use a macro to deprecate the class <code>SOFA_HEADER_DEPRECATED_NOT_REPLACED</code></li></ul></td>
     <td><ul><li>Add as Deprecated() in deprecatedComponents in ComponentChange</li></ul></td>
   </tr>
   <tr>
     <td>Deletion<br>(6 months)</td>
-    <td><ul><li>Empty the class and use the macro <code>SOFA_DISABLED_HEADER_NOT_REPLACED</code></li></ul></td>
+    <td><ul><li>Empty the class and use the macro <code>SOFA_HEADER_DISABLED_NOT_REPLACED</code></li></ul></td>
     <td><ul><li>Change to Removed() and move to uncreatableComponents in ComponentChange</li></ul></td>
   </tr>
   <tr>
