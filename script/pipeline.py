@@ -51,7 +51,7 @@ if __name__ == "__main__":
     cloned_doc_folder = os.path.join(tmp_folder, "cloned_doc")
     if not os.path.exists(cloned_doc_folder):
         print("Cloning the doc...")
-        repo = git.Repo.clone_from('https://github.com/alxbilger/doc.git',
+        repo = git.Repo.clone_from('https://github.com/sofa-framework/doc.git',
                                    cloned_doc_folder,
                                    branch='master')
         print("Finished to clone the doc...")
