@@ -6,7 +6,6 @@ on:
     branches:
       - gen
       - master
-      - allinpython #temporary: to remove before merging the PR
   schedule:
     - cron: '0 0 * * *'    # every day at midnight
 
