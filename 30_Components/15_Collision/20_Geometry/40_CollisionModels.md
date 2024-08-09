@@ -3,13 +3,13 @@ Collision Models
 
 SOFA implements a series of collision primitives called CollisionModel. A CollisionModel contains a list of same-type elements. It can be part of a list of CollisionModels or a hierarchy. Here is a list of them:
 
-- [PointCollisionModel](./../PointCollisionModel)
-- [LineCollisionModel](./../LineCollisionModel)
-- [TriangleCollisionModel](./../TriangleCollisionModel)
-- [SphereCollisionModel](./../SphereCollisionModel)
-- [CylinderCollisionModel](./../CylinderCollisionModel)
-- [CubeCollisionModel](./../CubeCollisionModel)
-- [RayCollisionModel](./../RayCollisionModel)
+- [pointcollisionmodel](./../PointCollisionModel)
+- [linecollisionmodel](./../LineCollisionModel)
+- [trianglecollisionmodel](./../TriangleCollisionModel)
+- [spherecollisionmodel](./../SphereCollisionModel)
+- [cylindercollisionmodel](./../CylinderCollisionModel)
+- [cubecollisionmodel](./../CubeCollisionModel)
+- [raycollisionmodel](./../RayCollisionModel)
 
 See the detailed description of the [CollisionModel class](https://www.sofa-framework.org/api/master/sofa/html/classsofa_1_1core_1_1_collision_model.html).
 
