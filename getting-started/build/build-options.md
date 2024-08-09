@@ -115,7 +115,7 @@ no code optimization. **RelWithDebInfo** is similar to **Release**, but keeps th
 
 - **SOFA\_EXTERNAL\_DIRECTORIES**: path to external directories, this can be especially useful
 to build external plugins with SOFA. For more information, please read the documentation
-about [Building a plugin](../../../using-sofa/build-a-plugin "Building a plugin").
+about [Building a plugin](../../../plugins/build-a-plugin-from-sources/ "Building a plugin").
 
 
 - **SOFA_BUILD\_TUTORIALS** : this options activates the build of
@@ -124,7 +124,7 @@ all tutorials located in *applications/tutorials*.
 
 - **SOFA_BUILD\_TESTS** : this option activates unit tests for SOFA.
 For more information, please go to the [Tests
-page](../../../contributing-to-sofa/writing-tests "Writing Tests").
+page](../../../contributing-to-sofa/writing-tests/ "Writing Tests").
 
 
 - **SOFA\_FLOATING\_POINT\_TYPE** : this option determines the type(s) (float, double or both)

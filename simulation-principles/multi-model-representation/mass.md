@@ -22,7 +22,7 @@ Mass implementations
 
 See examples of Mass implementation:
 
-- [UniformMass](../../../components/mass/UniformMass/)
+- [UniformMass](../../../components/mass/uniformmass/)
 - [MeshMatrixMass](../../../components/mass/meshmatrixmass/)
 - [DiagonalMass](../../../components/mass/diagonalmass/)
 

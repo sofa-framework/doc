@@ -5,7 +5,7 @@ title: CollisionGroupManager
 Collision Group Managers
 ========================
 
-The collision group manager components are used in a [collision pipeline](../../../../using-sofa/components/collision/detection/algorithm/collisionpipeline).
+The collision group manager components are used in a [collision pipeline](../../../../components/collision/detection/algorithm/collisionpipeline).
 
 The role of a collision group manager is to find and merge solvers for a contact, i.e. two different objects in collision, into groups.
 The term 'group' refers to a group of integration components.
@@ -13,7 +13,7 @@ It includes an [ODE solver](../../../../using-sofa/simulation-principles/system-
 _DefaultCollisionGroupManager_ modifies the scene graph so that two objects in contact share the same node with a single integration algorithm.
 In that case, the integration algorithm solves the ODE of the two objects simultaneously.
 
-In [DefaultPipeline](../../../../using-sofa/components/collision/detection/algorithm/defaultpipeline), groups are created only for contacts between two non-static objects.
+In [DefaultPipeline](../../../../components/collision/detection/algorithm/defaultpipeline), groups are created only for contacts between two non-static objects.
 
 After creating the groups, _DefaultCollisionGroupManager_ is also in charge to create the contact responses. 
 
@@ -37,13 +37,13 @@ Interaction with Other Components
 ==============
 
 A collision group manager is optional in a simulation scene.
-A [collision pipeline](../../../../using-sofa/components/collision/detection/algorithm/collisionpipeline) uses it if one is defined in the scene.
-It is usually a good practice to place the group manager near the [collision pipeline](../../../../using-sofa/components/collision/detection/algorithm/collisionpipeline), at the same level (not in a child node).
+A [collision pipeline](../../../../components/collision/detection/algorithm/collisionpipeline) uses it if one is defined in the scene.
+It is usually a good practice to place the group manager near the [collision pipeline](../../../../components/collision/detection/algorithm/collisionpipeline), at the same level (not in a child node).
 
 Implementation
 ==============
 
-The following function must be called in the [collision pipeline](../../../../using-sofa/components/collision/detection/algorithm/collisionpipeline), once contacts have been detected:
+The following function must be called in the [collision pipeline](../../../../components/collision/detection/algorithm/collisionpipeline), once contacts have been detected:
 ```cpp
 /// Create the integration groups
 void CollisionGroupManager::createGroups(objectmodel::BaseContext* scene, const sofa::helper::vector<Contact::SPtr>& contacts)
@@ -60,12 +60,3 @@ Examples of Components
 The following components are collision group managers, and can be placed in a simulation scene:
 
 - DefaultCollisionGroupManager (plugin SofaMiscCollision)
-
-Inheritance Diagram
-===================
-
-<a href="https://www.sofa-framework.org/api/master/sofa/html/classsofa_1_1core_1_1collision_1_1_collision_group_manager.html">
-<img src="https://www.sofa-framework.org/api/master/sofa/html/classsofa_1_1core_1_1collision_1_1_collision_group_manager__inherit__graph.png" title="NarrowPhaseDetection diagram class"/>
-</a>
-
-Read more on [SOFA API documentation](https://www.sofa-framework.org/api/master/sofa/html/classsofa_1_1core_1_1collision_1_1_collision_group_manager.html)

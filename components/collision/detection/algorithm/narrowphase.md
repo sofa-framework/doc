@@ -76,11 +76,3 @@ The following components are all narrow phase collision detections, and can be p
 - ParallelBVHNarrowPhase (plugin MultiThreading)
 - DirectSAPNarrowPhase
 
-Inheritance Diagram
-===================
-
-<a href="https://www.sofa-framework.org/api/master/sofa/html/classsofa_1_1core_1_1collision_1_1_narrow_phase_detection.html">
-<img src="https://www.sofa-framework.org/api/master/sofa/html/classsofa_1_1core_1_1collision_1_1_narrow_phase_detection__inherit__graph.png" title="NarrowPhaseDetection diagram class"/>
-</a>
-
-Read more on [SOFA API documentation](https://www.sofa-framework.org/api/master/sofa/html/classsofa_1_1core_1_1collision_1_1_narrow_phase_detection.html)

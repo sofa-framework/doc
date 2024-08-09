@@ -83,11 +83,3 @@ The following components are all broad phase collision detections, and can be pl
 - THMPGSpatialHashing (plugin THMPGSpatialHashing)
 - BulletCollisionDetection (plugin BulletCollisionDetection)
 
-Inheritance Diagram
-===================
-
-<a href="https://www.sofa-framework.org/api/master/sofa/html/classsofa_1_1core_1_1collision_1_1_broad_phase_detection.html">
-<img src="https://www.sofa-framework.org/api/master/sofa/html/classsofa_1_1core_1_1collision_1_1_broad_phase_detection__inherit__graph.png" title="BroadPhaseDetection diagram class"/>
-</a>
-
-Read more on [SOFA API documentation](https://www.sofa-framework.org/api/master/sofa/html/classsofa_1_1core_1_1collision_1_1_broad_phase_detection.html)
