@@ -28,6 +28,18 @@ def onerror(func, path, exc_info):
         raise
 
 
+def download_guidelines_file(cloned_doc_folder):
+    url = 'https://raw.githubusercontent.com/sofa-framework/sofa/master/GUIDELINES.md'
+    response = requests.get(url)
+    contributing_filepath = os.path.join(cloned_doc_folder, "40_Programming_with_SOFA", "01_Guidelines.md")
+    if response.status_code == 200:
+        with open(contributing_filepath, 'wb') as file:
+            file.write(response.content)
+        print(f'File {contributing_filepath} downloaded successfully.')
+    else:
+        print(f'Failed to download file. Status code: {response.status_code}')
+
+
 def download_contributing_file(cloned_doc_folder):
     url = 'https://raw.githubusercontent.com/sofa-framework/sofa/master/CONTRIBUTING.md'
     response = requests.get(url)
@@ -56,6 +68,7 @@ if __name__ == "__main__":
                                    branch='master')
         print("Finished to clone the doc...")
 
+    download_guidelines_file(cloned_doc_folder)
     download_contributing_file(cloned_doc_folder)
 
     auto_doc_folder = os.path.join(tmp_folder, "auto_doc")
