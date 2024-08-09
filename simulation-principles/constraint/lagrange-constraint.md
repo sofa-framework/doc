@@ -227,7 +227,7 @@ In SOFA, you can find several of interaction constraint laws available to includ
 
   - [BilateralLagrangianConstraint](../../../components/constraint/lagrangian/model/bilaterallagrangianconstraint/): constraint of equality (like the $\Phi$ function described above in the [Constraint problem](#constraint-problem) section), that fits for instance interactions, attachments between two paired objects
 
-  - [SlidingLagrangianConstraint](../../../components/constraint/lagrangian/model/slidinglagrangianconstraint/): constraint in equality, like the _BilateralInteractionConstraint_, but only active for some vectors of the physics space (for instance only the x-direction)
+  - [SlidingLagrangianConstraint](../../../components/constraint/lagrangian/model/slidinglagrangianconstraint/): constraint in equality, like the _BilateralLagrangianConstraint_, but only active for some vectors of the physics space (for instance only the x-direction)
 
 Classes defining constraints between a pair of objects inherit from the class _PairInteractionConstraint_. The associated API functions are:
 
