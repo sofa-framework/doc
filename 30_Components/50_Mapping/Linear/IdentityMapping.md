@@ -9,7 +9,9 @@ In other words, the identity function directly maps each element to itself witho
 
 Mathematically, this can be expressed as:
 
-$$ f(x)=x $$
+$$
+f(x)=x
+$$
 
 for all $x$ in the domain.
 
