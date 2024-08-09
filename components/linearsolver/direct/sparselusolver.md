@@ -5,19 +5,21 @@ title: SparseLUSolver
 SparseLUSolver
 ==============
 
-This component belongs to the category of [LinearSolver](../../../../simulation-principles/system-resolution/linear-solver/). The role of the SparseLUSolver is to solve the linear system $$\mathbf{A}x=b$$ assuming that the matrix $$\mathbf{A}$$ is invertible and sparse.
+This component belongs to the category of [LinearSolver](../../../../simulation-principles/system-resolution/linear-solver/). The role of the SparseLUSolver is to solve the linear system $\mathbf{A}x=b$ assuming that the matrix $\mathbf{A}$ is invertible and sparse.
 
-In order to solve this system, this solver will factorize the matrix $$\mathbf{A}$$ into the product $$\mathbf{A=LU}$$ where $$\mathbf{L}$$ is a lower triangular matrix with ones on its diagonal and $$\mathbf{U}$$ is an upper triangular matrix (for more, see [LU decomposition article](https://en.wikipedia.org/wiki/LU_decomposition)).
+In order to solve this system, this solver will factorize the matrix $\mathbf{A}$ into the product $\mathbf{A=LU}$ where $\mathbf{L}$ is a lower triangular matrix with ones on its diagonal and $\mathbf{U}$ is an upper triangular matrix (for more, see [LU decomposition article](https://en.wikipedia.org/wiki/LU_decomposition)).
 
-As this method relies on the Gaussian elimination, a partial pivot is applied on the lines of $$\mathbf{A}$$ hence its factorization will be written as $$\mathbf{PA=LU}$$ .
+As this method relies on the Gaussian elimination, a partial pivot is applied on the lines of $\mathbf{A}$ hence its factorization will be written as $\mathbf{PA=LU}$ .
 The LU solver is a direct solver which will compute the exact solution of the linear system by successively solving two triangular systems.
 
-$$\begin{cases} \mathbf{A}x = b\\
+$$
+\begin{cases} \mathbf{A}x = b\\
 \mathbf{PA}=\mathbf{LU}
  \end{case} \Longleftrightarrow 
 \begin{cases} \mathbf{L}y=\mathbf{P}b\\ 
 \mathbf{U} x = y \\
-\end{case}$$
+\end{case}
+$$
 
 
 Usage

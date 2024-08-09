@@ -183,7 +183,7 @@ Similarly, the component `FastTetrahedralCorotationalForceField` is a faster alt
 
 The following options allow to leverage multi-threaded implementations of some algorithms:
 
-- `parallelInverseProduct` in `SparseLDLSolver` allows to parallelize the computation of the product $$\mathbf{J}\cdot\mathbf{M}^{-1}\cdot\mathbf{J}^T$$, which is used to compute the compliance matrix projected in the constraint space (see `LinearSolverConstraintCorrection`).
+- `parallelInverseProduct` in `SparseLDLSolver` allows to parallelize the computation of the product $\mathbf{J}\cdot\mathbf{M}^{-1}\cdot\mathbf{J}^T$, which is used to compute the compliance matrix projected in the constraint space (see `LinearSolverConstraintCorrection`).
 - `multithreading` in `GenericConstraintSolver` allows to build the compliances concurrently.
 
 ## Rendering

@@ -9,11 +9,15 @@ ForceFields are components that are adding "forces". These forces will influence
 
 In continuum mechanics, these forces can be either internal or external forces. Internal forces corresponds to the effect of the soft body mechanics (elasticity, plasticity etc) and the external forces arise from external phenomenon (gravity, pressure etc). As detailed in the page [Physics Integration](./../physics-integration/), the conservation of linear momentum in its generalized form can be written:
 
-$$\rho \dot{v}=\rho \boldsymbol{b}+\nabla \cdot \boldsymbol{\sigma}$$
+$$
+\rho \dot{v}=\rho \boldsymbol{b}+\nabla \cdot \boldsymbol{\sigma}
+$$
 
 The analogy can be done on other physics. In thermodynamics, all thermal effects (like diffusion, blood heat, metabolic heat, etc.) of the bioheat equation can be considered as ForceFields as well since these terms appear in the equilibrium:
 
-$$\rho c\dot{T}=\nabla \cdot k\nabla T+\rho_{b}c_{b}w(T_a-T)+Q_m$$
+$$
+\rho c\dot{T}=\nabla \cdot k\nabla T+\rho_{b}c_{b}w(T_a-T)+Q_m
+$$
 
 
 
@@ -23,49 +27,62 @@ ForceField API
 
 To explain the API associated to the ForceField, we will consider the system resulting from the conservation of linear momentum (mechanics):
 
-$$\mathbf{M}\Delta{v}=dt \cdot f(x)$$
+$$
+\mathbf{M}\Delta{v}=dt \cdot f(x)
+$$
 
-where $$x$$ is the position (degrees of freedom), $$v$$ is the velocity (derivative in time of the degrees of freedom) and $$\mathbf{M}$$ is the mass matrix.
+where $x$ is the position (degrees of freedom), $v$ is the velocity (derivative in time of the degrees of freedom) and $\mathbf{M}$ is the mass matrix.
 
-As it is explained in the section [Integration Scheme](../../system-resolution/integration-scheme/), the choice of the temporal scheme will influence the way the linear system $$\mathbf{A}x=b$$ is built.
+As it is explained in the section [Integration Scheme](../../system-resolution/integration-scheme/), the choice of the temporal scheme will influence the way the linear system $\mathbf{A}x=b$ is built.
 
 
 ### Explicit force
 
-Using an [explicit scheme](../../../components/odesolver/forward/eulerexplicitsolver/) means that forces $$f(x)$$ are computed using the degrees of freedom of the current time step $$t$$ (which are known): $$f(x)=f(x(t))$$. Regardless the form of the function $$f$$, the value of $$f(x(t))$$ can directly be obtained and set in the right hand side vector $$b$$ of our linear system $$\mathbf{A}x=b$$.
+Using an [explicit scheme](../../../components/odesolver/forward/eulerexplicitsolver/) means that forces $f(x)$ are computed using the degrees of freedom of the current time step $t$ (which are known): $f(x)=f(x(t))$. Regardless the form of the function $f$, the value of $f(x(t))$ can directly be obtained and set in the right hand side vector $b$ of our linear system $\mathbf{A}x=b$.
 
-The computation of the term $$f$$, the value of $$dt\cdot f(x(t))$$ is done through the function `addForce()` of the ForceField class, called by the integration scheme (ODESolver).
+The computation of the term $f$, the value of $dt\cdot f(x(t))$ is done through the function `addForce()` of the ForceField class, called by the integration scheme (ODESolver).
 
 
 
 ### Implicit force
 
 
-Using an [implicit scheme](../../../components/odesolver/backward/eulerimplicitsolver/) means that forces $$f(x)$$ are computed using the degrees of freedom of the next time step $$t+dt$$ (unknown yet): $$f(x)=f(x(t+dt))$$.
-The value of $$f(x(t))$$ can not be directly be computed. By using a Taylor expansion, we get:
+Using an [implicit scheme](../../../components/odesolver/backward/eulerimplicitsolver/) means that forces $f(x)$ are computed using the degrees of freedom of the next time step $t+dt$ (unknown yet): $f(x)=f(x(t+dt))$.
+The value of $f(x(t))$ can not be directly be computed. By using a Taylor expansion, we get:
 
-$$\mathbf{M} \Delta v=dt \cdot \left( f(x(t)+\cdot \frac{\partial f}{\partial x} \Delta x \right)$$
-since we have: $$\Delta x=dt(v(t)+\Delta v)$$, then:
-$$\mathbf{M}\Delta v=dt\cdot \left( f(x(t)+dt\cdot \frac{\partial f}{\partial x}v(t)+dt\cdot \frac{\partial f}{\partial x} \Delta v \right)$$
+$$
+\mathbf{M} \Delta v=dt \cdot \left( f(x(t)+\cdot \frac{\partial f}{\partial x} \Delta x \right)
+$$
 
-Finally, gathering the unknown (depending on $$\Delta v$$) in the left hand side, we have:
-$$\left( \mathbf{M}-dt^2 \cdot \frac{\partial f}{\partial x} \right) \Delta v=dt\cdot f(x(t)+dt^2\cdot \frac{\partial f}{\partial x}v(t)$$
+since we have: $\Delta x=dt(v(t)+\Delta v)$, then:
 
-We can notice the appearance of the stiffness matrix : $$\mathbf{K}_{ij}=\textstyle\frac{\partial f_i}{\partial x_j}$$. The stiffness matrix $$\mathbf{K}$$ is a symmetric matrix, can either be linear or non-linear regarding $$x$$.
+$$
+\mathbf{M}\Delta v=dt\cdot \left( f(x(t)+dt\cdot \frac{\partial f}{\partial x}v(t)+dt\cdot \frac{\partial f}{\partial x} \Delta v \right)
+$$
+
+Finally, gathering the unknown (depending on $\Delta v$) in the left hand side, we have:
+
+$$
+\left( \mathbf{M}-dt^2 \cdot \frac{\partial f}{\partial x} \right) \Delta v=dt\cdot f(x(t)+dt^2\cdot \frac{\partial f}{\partial x}v(t)
+$$
+
+We can notice the appearance of the stiffness matrix : $\mathbf{K}_{ij}=\textstyle\frac{\partial f_i}{\partial x_j}$. The stiffness matrix $\mathbf{K}$ is a symmetric matrix, can either be linear or non-linear regarding $x$.
 
 
 For the **right hand side**:
 
-- the term $$dt\cdot f(x(t)$$ is computed by the function: `addForce()` (as in explicit case)
-- the term $$dt^2\cdot \frac{\partial f}{\partial x}v(t)$$ is computed by the function: `addDForce()`
+- the term $dt\cdot f(x(t)$ is computed by the function: `addForce()` (as in explicit case)
+- the term $dt^2\cdot \frac{\partial f}{\partial x}v(t)$ is computed by the function: `addDForce()`
 
 
-For the **left hand side**, the API used to compute it depends on the type of [Integration Scheme](../../system-resolution/integration-scheme/) used: direct (the system matrix $$\mathbf{A}$$ is built and inversed) or iterative (unbuilt approach). We have:
+For the **left hand side**, the API used to compute it depends on the type of [Integration Scheme](../../system-resolution/integration-scheme/) used: direct (the system matrix $\mathbf{A}$ is built and inversed) or iterative (unbuilt approach). We have:
 
-$$\mathbf{A}=\left( M-dt^2 \cdot \frac{\partial f}{\partial x} \right)$$
+$$
+\mathbf{A}=\left( M-dt^2 \cdot \frac{\partial f}{\partial x} \right)
+$$
 
-- for iterative solvers, the term $$-dt^2 \cdot \frac{\partial f}{\partial x}$$ is computed by the function: `addDForce()`
-- for direct solvers, the term $$dt^2\cdot \frac{\partial f}{\partial x}v(t)$$ is computed by the function: `addKToMatrix()`
+- for iterative solvers, the term $-dt^2 \cdot \frac{\partial f}{\partial x}$ is computed by the function: `addDForce()`
+- for direct solvers, the term $dt^2\cdot \frac{\partial f}{\partial x}v(t)$ is computed by the function: `addKToMatrix()`
 
 
 
@@ -73,14 +90,14 @@ $$\mathbf{A}=\left( M-dt^2 \cdot \frac{\partial f}{\partial x} \right)$$
 
 For explicit case, we have:
 
-| Linear solver | $$dt \cdot f(x(t))$$ |
+| Linear solver | $dt \cdot f(x(t))$ |
 |:-------------:|:-------------------------------------------------------------------------------------------------------------:|
 | **Iterative** |                                                 `addForce()`                                                  | 
 |  **Direct**   |                                                 `addForce()`                                                  | 
 
 For implicit case, we have:
 
-| Linear solver | $$-dt^2 \cdot \textstyle\frac{\partial f}{\partial x}\Delta v$$ | $$dt \cdot f(x(t))$$ | $$dt^2\textstyle\frac{\partial f}{\partial x}v(t)$$ |
+| Linear solver | $-dt^2 \cdot \textstyle\frac{\partial f}{\partial x}\Delta v$ | $dt \cdot f(x(t))$ | $dt^2\textstyle\frac{\partial f}{\partial x}v(t)$ |
 |:-------------:|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------:|:-------------------------------------------------------------------------------------------------------------:|:-----------------------------------------------------------------------------------------------------------------------------------------------:|
 | **Iterative** |                                                                           `addDForce()`                                                                           |                                                 `addForce()`                                                  |                                                                  `addDForce()`                                                                  |
 |  **Direct**   |                                                                         `addKToMatrix()`                                                                          |                                                 `addForce()`                                                  |                                                                  `addDForce()`                                                                  |

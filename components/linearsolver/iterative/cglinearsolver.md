@@ -5,9 +5,9 @@ title: CGLinearSolver
 CGLinearSolver  
 ==============
 
-This component belongs to the category of [LinearSolver](../../../../simulation-principles/system-resolution/linear-solver/). The role of the CGLinearSolver is to solve the linear system $$\mathbf{A}x=b$$ without any _a priori_ on this system.
+This component belongs to the category of [LinearSolver](../../../../simulation-principles/system-resolution/linear-solver/). The role of the CGLinearSolver is to solve the linear system $\mathbf{A}x=b$ without any _a priori_ on this system.
 
-In SOFA, the CGLinearSolver follows the well-known [conjugate gradient method](https://en.wikipedia.org/wiki/Conjugate_gradient_method), which consists in iteratively solving $$r=b-\mathbf{A}x^k$$ where *r* is known as the residual. This residual will be used to compute mutually conjugate vectors *p* (see the sequence diagram below) which will be used as a basis to find a new approximated solution $$x^{k+1}$$.
+In SOFA, the CGLinearSolver follows the well-known [conjugate gradient method](https://en.wikipedia.org/wiki/Conjugate_gradient_method), which consists in iteratively solving $r=b-\mathbf{A}x^k$ where *r* is known as the residual. This residual will be used to compute mutually conjugate vectors *p* (see the sequence diagram below) which will be used as a basis to find a new approximated solution $x^{k+1}$.
 
 **Note**: the CGLinearSolver in SOFA assumes that the right hand side (RHS) vector *b* is already computed. The computation of *b* is usually called in the [integration scheme](../../../../simulation-principles/system-resolution/integration-scheme/) through the function `computeForce()`.
 

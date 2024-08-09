@@ -18,13 +18,13 @@ This component belongs to the category of [ForceField](../../../../../simulation
 
 
 Note that the **ParameterSet** data changes depending on the chosen material. It corresponds to:
-	- for "ArrudaBoyce", two parameters are required: $$\left[ \mu ,k_0\right]$$
-	- for "Costa", eight parameters are required: $$\left[ a,k_{0},b_{ff},b_{fs},b_{ss},b_{fn},b_{sn},b_{nn}\right]$$
-	- for "MooneyRivlin", three parameters are required: $$\left[ C_{01},C_{10},k_{0}\right]$$
-	- for "NeoHookean", two parameters are required: $$\left[ \mu,k\right]$$
-	- for "Ogden", three parameters are required: $$\left[ k,\mu_1,\alpha_1\right]$$
-	- for "StVenantKirchhoff", two parameters are required: $$\left[ \mu,\lambda \right]$$
-	- for "VerondaWestman", parameters are required: $$\left[ C_{1},C_{2},k_0\right]$$
+	- for "ArrudaBoyce", two parameters are required: $\left[ \mu ,k_0\right]$
+	- for "Costa", eight parameters are required: $\left[ a,k_{0},b_{ff},b_{fs},b_{ss},b_{fn},b_{sn},b_{nn}\right]$
+	- for "MooneyRivlin", three parameters are required: $\left[ C_{01},C_{10},k_{0}\right]$
+	- for "NeoHookean", two parameters are required: $\left[ \mu,k\right]$
+	- for "Ogden", three parameters are required: $\left[ k,\mu_1,\alpha_1\right]$
+	- for "StVenantKirchhoff", two parameters are required: $\left[ \mu,\lambda \right]$
+	- for "VerondaWestman", parameters are required: $\left[ C_{1},C_{2},k_0\right]$
 
 
 Usage

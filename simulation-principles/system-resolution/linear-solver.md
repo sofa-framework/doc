@@ -5,16 +5,16 @@ title: Linear Solver
 Linear solvers
 ==============
 
-Once the [integration scheme](./../integration-scheme/) described how the linear matrix system is built, this system $$\mathbf{A}x=b$$ must be solved in order to find the solution $$x(t+dt)$$ at the next time step.
+Once the [integration scheme](./../integration-scheme/) described how the linear matrix system is built, this system $\mathbf{A}x=b$ must be solved in order to find the solution $x(t+dt)$ at the next time step.
 
 To solve this system, two main categories of algorithms exist: the **direct** solvers and the **iterative** solvers.
 
 Direct solvers
 --------------
 
-These solvers aim at finding the exact solution $$x(t+dt)$$ of the system by computing in one single step $$\mathbf{A}^{-1}b$$. To do so, various methods exist to compute the inverse matrix of $$\mathbf{A}$$.
+These solvers aim at finding the exact solution $x(t+dt)$ of the system by computing in one single step $\mathbf{A}^{-1}b$. To do so, various methods exist to compute the inverse matrix of $\mathbf{A}$.
 
-For small-size linear systems, the direct methods will be efficient. Large and sparse systems may imply time-consuming inverse of the matrix $$\mathbf{A}$$. The advantage of direct methods is that they succeed to solve well-conditioned and even some quite ill-conditioned problems. The computation of the inverse of $$\mathbf{A}$$ often relies on decomposition of this matrix: Cholesky, LU or LDL and their sparse versions are available.
+For small-size linear systems, the direct methods will be efficient. Large and sparse systems may imply time-consuming inverse of the matrix $\mathbf{A}$. The advantage of direct methods is that they succeed to solve well-conditioned and even some quite ill-conditioned problems. The computation of the inverse of $\mathbf{A}$ often relies on decomposition of this matrix: Cholesky, LU or LDL and their sparse versions are available.
 
 
 #### Direct solver implementation
@@ -49,7 +49,7 @@ Iterative solvers
 
 Contrary to direct solvers, iterative methods converge towards the solution gradually. The solution is approximated at each iteration a little bit more accurately, rather than computed in one single large iteration. With iterative methods, the error estimated in the solution decreases with the number of iterations.
 
-For well-conditioned problems (even large systems), the convergence remains monotonic. However, for ill-conditioned systems, the convergence might be much slower. Since these methods compute the residual $$r=\mathbf{A}x-b$$ at each iteration, the matrix $$\mathbf{A}$$ does not have to be built to improve performances (only matrix vector computations). Numerical settings of the solver (maximum number of iterations, tolerance for instance) must be appropriately defined. Two available methods are the [conjugate gradient method](http://en.wikipedia.org/wiki/Conjugate_gradient_method) (using the CGLinearSolver) or the [minimal residual method](http://en.wikipedia.org/wiki/Generalized_minimal_residual_method) (using the MinResLinearSolver).
+For well-conditioned problems (even large systems), the convergence remains monotonic. However, for ill-conditioned systems, the convergence might be much slower. Since these methods compute the residual $r=\mathbf{A}x-b$ at each iteration, the matrix $\mathbf{A}$ does not have to be built to improve performances (only matrix vector computations). Numerical settings of the solver (maximum number of iterations, tolerance for instance) must be appropriately defined. Two available methods are the [conjugate gradient method](http://en.wikipedia.org/wiki/Conjugate_gradient_method) (using the CGLinearSolver) or the [minimal residual method](http://en.wikipedia.org/wiki/Generalized_minimal_residual_method) (using the MinResLinearSolver).
 
 
 #### Iterative solver implementation

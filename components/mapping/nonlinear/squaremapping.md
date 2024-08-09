@@ -51,6 +51,7 @@ H_{ijk} = \frac{\partial J_{ij}(x)}{\partial x_k} = \frac{\partial (\delta_{ij} 
 $$
 
 Then, for any vector $v$
+
 $$
 (H \cdot v)_{ij} = \sum_k H_{ijk} v_k = 2 \delta_{ij} \sum_k \delta_{jk} v_k = 2 \delta_{ij} v_j
 $$
