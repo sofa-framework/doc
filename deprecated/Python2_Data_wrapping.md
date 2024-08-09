@@ -13,13 +13,13 @@ If you are using SofaPython to create your scenes, you are probably interested i
 
 This is possible, because the Data `integerValue` from `myComponent` is a scalar, and SofaPython provides natively the access to those Data types. In addition to Scalars, SofaPython also provides a python wrapper for more complex types such as `defaulttype::Vec<T, real>` or `defaulttype::Matrix<T>`, but also containers classes such as `helper::vector` or `helper::SVector` for instance.
 
-In order to get python support for your [custom Data types](https://www.sofa-framework.org/community/doc/programming-with-sofa/start-coding/components-api/components-and-datas/#data-for-custom-types), you will need to implement bindings for your custom type. This is done by:
+In order to get python support for your [custom Data types](../programming-with-sofa/api-overview/data-in-components/#data-for-custom-types), you will need to implement bindings for your custom type. This is done by:
 
 1. Implementing data / methods accessors and bindings in CPython
 2. Declaring and Registering your bindings to SOFA's Python Factory
 
 
-As an example, we will consider the native Sofa type [`DataFileName`](https://www.sofa-framework.org/api/SOFA/classsofa_1_1core_1_1objectmodel_1_1_data_file_name.html), whose bindings are implemented in the SofaPython plugin.
+As an example, we will consider the native SOFA type [`DataFileName`](https://www.sofa-framework.org/api/SOFA/classsofa_1_1core_1_1objectmodel_1_1_data_file_name.html), whose bindings are implemented in the SofaPython plugin.
 In any case, it is very informative to look into the "native" binding implementations present in the SofaPython plugin.
 
 An overview of the complete code for this example can be found at the end of this page.

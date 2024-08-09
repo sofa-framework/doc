@@ -66,7 +66,7 @@ linked to a particular node or component). For example:
 -   and many other functions.
 
 The following small example gives an idea on the various possibilities
-of the sofa python plugin. In any of the module methods (presented
+of the SofaPython plugin. In any of the module methods (presented
 above), you can:
 
 -   have access to a node (here in the function initGraph):

@@ -1,7 +1,7 @@
 ROI Selection
 =============
 
-An [Engine](https://www.sofa-framework.org/community/doc/simulation-principles/engine/) is a component that computes a set of output Data's from a set of input Data's. Several ROI engines (standing for "Region Of Interest") allow for selecting topological elements of an object. Three engines thus provide point indices, edges, triangles, tetrahedra and/or hexahedra as output:
+An [Engine](../../../simulation-principles/engine/) is a component that computes a set of output Data's from a set of input Data's. Several ROI engines (standing for "Region Of Interest") allow for selecting topological elements of an object. Three engines thus provide point indices, edges, triangles, tetrahedra and/or hexahedra as output:
 
 - BoxROI
 - PlaneROI
@@ -78,22 +78,3 @@ Concerning topology Note that those parameters are set to true by default. So it
 -   **edgesInROI**: edges contained in the ROI
 -   **trianglesInROI**: triangles contained in the ROI
 -   **tetrahedraInROI**: tetrahedra contained in the ROI
-
-Examples
---------
-
-**BoxROI** usage is shown in the following scene files:
-
-- [*examples/Component/Engine/Select/BoxROI.scn*](https://github.com/sofa-framework/sofa/blob/master/examples/Component/Engine/Select/BoxROI.scn)
-- [*examples/Component/Constraint/Projective/BoxConstraint.scn*](https://github.com/sofa-framework/sofa/blob/master/examples/Component/Constraint/Projective/BoxConstraint.scn)
-
-
-**PlaneROI** usage is shown in the following scene files:
-
-- [*examples/Component/Engine/Select/PlaneROI.scn*](https://github.com/sofa-framework/sofa/blob/master/examples/Component/Engine/Select/PlaneROI.scn)
-- [*examples/Component/Constraint/Projective/PlaneConstraint.scn*](https://github.com/sofa-framework/sofa/blob/master/examples/Component/Constraint/Projective/PlaneConstraint.scn)
-
-
-**SphereROI** usage is shown in the following scene files:
-
-- [*examples/Component/Engine/Select/SphereROI.scn*](https://github.com/sofa-framework/sofa/blob/master/examples/Component/Engine/Select/SphereROI.scn)

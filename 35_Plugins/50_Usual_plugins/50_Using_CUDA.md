@@ -6,13 +6,7 @@ CUDA Compilation
 To use CUDA in SOFA under Linux, you need to follow these steps:
 
 -   Get the required files from
-    [NVIDIA](https://developer.nvidia.com/cuda-downloads "http://www.nvidia.com/content/cuda/cuda-downloads.html"){.external
-    .text}. For Cuda 5.0, there is only one file to download
-    and install. If you are using an earlier version, you need to
-    download and install three files, and in the correct order.
-    -   Cuda Toolkit
-    -   The appropriate Cuda driver for your system
-    -   Cuda SDK
+    [NVIDIA](https://developer.nvidia.com/cuda-downloads "http://www.nvidia.com/content/cuda/cuda-downloads.html") by specifying your operating system, distribution, architecture, version and desired installer type
 -   Set the environment variables CUDA\_HOME to the location of cuda,
     for example: export CUDA\_HOME="/usr/local/cuda"
 -   Add cuda to your path: export PATH=\${CUDA\_HOME}/bin:\${PATH}
@@ -51,14 +45,8 @@ To use CUDA in SOFA under Linux, you need to follow these steps:
 
 To use CUDA in SOFA under Windows, you need to follow these steps:
 
--   Get the required files from
-    [NVIDIA](https://developer.nvidia.com/cuda-downloads).
-    For Cuda 5.0, there is only one file to download and install. If you
-    are using an earlier version, you need to download and install three
-    files, and in the correct order
-    -   Cuda Toolkit
-    -   The appropriate Cuda driver for your system
-    -   Cuda SDK
+-   Get the required installer from
+    [NVIDIA](https://developer.nvidia.com/cuda-downloads) by specifying your operating system, architecture, version and desired installer type.
 -   Check that the path to Cuda has been added to your system path. (for
     example, `C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v11.5\bin`)
     -   Right click the My Computer icon on the desktop
@@ -134,7 +122,7 @@ the Mechanical Object in your scene. Consider the following scene:
     <IndexValueMapper name="ind_box1" inputValues="@ind_box0.outputValues" indices="@box1.tetrahedronIndices" value="1000000" />
     <TetrahedronFEMForceField name="FEM" youngModulus="@ind_box1.outputValues" poissonRatio="0.4" listening="true" />
     <BoxROI name="box3" box="-2.2 -0.3 -9.2    2.2 0.110668 2.88584" drawBoxes="1" drawSize="2" />
-    <FixedConstraint indices="@box3.indices" />
+    <FixedProjectiveConstraint indices="@box3.indices" />
     <BoxROI name="boxF" box="-2.2 -1 6.88 2.2  10  10" drawBoxes="true" />
     <ConstantForceField points="@boxF.indices" force="7.5 -6.63 -15" arrowSizeCoef="0.1" />
     <PlaneForceField normal="0 1 0" d="-0.2" stiffness="100"  draw="1" drawSize="20" />
@@ -161,25 +149,24 @@ with the scene:
 ```xml
 <Node name="root" dt="0.04" showBehaviorModels="0" showCollisionModels="0" showMappings="0" showForceFields="1">
     <RequiredPlugin name="CUDA computing" pluginName="SofaCUDA" />
-  <Node name="M1">
-    <MeshVTKLoader name="volume" filename="mesh/raptorTetra_19409.vtu" onlyAttachedPoints="false" />
-    <EulerImplicit rayleighMass="0.01" rayleighStiffness="0.01" />
-    <CGLinearSolver iterations="25" tolerance="1e-6" threshold="1e-20"/>
-    <MeshTopology src="@volume" />
-    <MechanicalObject template="CudaVec3f" />
-    <UniformMass vertexMass="0.01" />
-    <BoxROI name="box0" box="-2.2 -1 -10 2.2  10  10" drawBoxes="1" />
-    <BoxROI name="box1" box="-2.2 -1  -1 2.2 2.5 1.5" drawBoxes="1" />
-    <IndexValueMapper name="ind_box0"                                      indices="@box0.tetrahedronIndices" value="100000" />
-    <IndexValueMapper name="ind_box1" inputValues="@ind_box0.outputValues" indices="@box1.tetrahedronIndices" value="1000000" />
-    <TetrahedronFEMForceField name="FEM" youngModulus="@ind_box1.outputValues" poissonRatio="0.4" listening="true" />
-    <BoxROI name="box3" box="-2.2 -0.3 -9.2    2.2 0.110668 2.88584" drawBoxes="1" drawSize="2" />
-    <FixedConstraint indices="@box3.indices" />
-    <BoxROI name="boxF" box="-2.2 -1 6.88 2.2  10  10" drawBoxes="true" />
-    <ConstantForceField points="@boxF.indices" force="7.5 -6.63 -15" arrowSizeCoef="0.1" />
-    <PlaneForceField normal="0 1 0" d="-0.2" stiffness="100"  draw="1" drawSize="20" />
-
-  </Node>
+    <Node name="M1">
+        <MeshVTKLoader name="volume" filename="mesh/raptorTetra_19409.vtu" onlyAttachedPoints="false" />
+        <EulerImplicit rayleighMass="0.01" rayleighStiffness="0.01" />
+        <CGLinearSolver iterations="25" tolerance="1e-6" threshold="1e-20"/>
+        <MeshTopology src="@volume" />
+        <MechanicalObject template="CudaVec3f" />
+        <UniformMass vertexMass="0.01" />
+        <BoxROI name="box0" box="-2.2 -1 -10 2.2  10  10" drawBoxes="1" />
+        <BoxROI name="box1" box="-2.2 -1  -1 2.2 2.5 1.5" drawBoxes="1" />
+        <IndexValueMapper name="ind_box0"                                      indices="@box0.tetrahedronIndices" value="100000" />
+        <IndexValueMapper name="ind_box1" inputValues="@ind_box0.outputValues" indices="@box1.tetrahedronIndices" value="1000000" />
+        <TetrahedronFEMForceField name="FEM" youngModulus="@ind_box1.outputValues" poissonRatio="0.4" listening="true" />
+        <BoxROI name="box3" box="-2.2 -0.3 -9.2    2.2 0.110668 2.88584" drawBoxes="1" drawSize="2" />
+        <FixedProjectiveConstraint indices="@box3.indices" />
+        <BoxROI name="boxF" box="-2.2 -1 6.88 2.2  10  10" drawBoxes="true" />
+        <ConstantForceField points="@boxF.indices" force="7.5 -6.63 -15" arrowSizeCoef="0.1" />
+        <PlaneForceField normal="0 1 0" d="-0.2" stiffness="100"  draw="1" drawSize="20" />
+    </Node>
 </Node>
 ```
 

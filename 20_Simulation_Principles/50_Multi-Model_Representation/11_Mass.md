@@ -1,16 +1,15 @@
 Mass
 ====
 
-In simulation, the mass usually results from the volume integration of a density (see the [Physics Integration](https://www.sofa-framework.org/community/doc/main-principles/multi-model-representation/physics-integration/) section). It can be a mass density, but it can be an electrical or electrical conductivity among others. In all these equations, the density appears on the left hand side part of the equation. The mass matrix therefore contributes to <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{A}" title="System matrix" />, in the linear System <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{A}x=b" title="Linear system" />.
+In simulation, the mass usually results from the volume integration of a density (see the [Physics Integration](./physics-integration/) section). It can be a mass density, but it can be an electrical or electrical conductivity among others. In all these equations, the density appears on the left hand side part of the equation. The mass matrix therefore contributes to $$\mathbf{A}$$, in the linear System $$\mathbf{A}x=b$$.
 
 Mass API
 --------------
 
-The choice of the temporal scheme will influence the way the linear system <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{A}x=b" title="Linear system" /> is built. As a consequence, it also impacts the API:
+The choice of the temporal scheme will influence the way the linear system $$\mathbf{A}x=b$$ is built. As a consequence, it also impacts the API:
 
-- for iterative solvers, the result of the multiplication between the mass matrix <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{M}" title="Mass matrix" /> and an approximated solution is computed by the function: `addMDx()` 
-
-- for direct solvers, the mass matrix <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{M}" title="Mass matrix" /> is built by the function: `addMToMatrix()` and will be used later when the system matrix will be inversed
+- for iterative solvers, the result of the multiplication between the mass matrix $$\mathbf{M}$$ and an approximated solution is computed by the function: `addMDx()`
+- for direct solvers, the mass matrix $$\mathbf{M}$$ is built by the function: `addMToMatrix()` and will be used later when the system matrix will be inversed
 
 
 
@@ -19,9 +18,9 @@ Mass implementations
 
 See examples of Mass implementation:
 
-- [UniformMass](https://www.sofa-framework.org/community/doc/using-sofa/components/mass/UniformMass/)
-- [MeshMatrixMass](https://www.sofa-framework.org/community/doc/using-sofa/components/mass/meshmatrixmass/)
-- [DiagonalMass](https://www.sofa-framework.org/community/doc/using-sofa/components/mass/diagonalmass/)
+- [UniformMass](../../components/mass/UniformMass/)
+- [MeshMatrixMass](../../components/mass/meshmatrixmass/)
+- [DiagonalMass](../../components/mass/diagonalmass/)
 
 
 Template of a Mass
@@ -84,7 +83,7 @@ public:
     void addMDx(const core::MechanicalParams* mparams, DataVecDeriv& f, const DataVecDeriv& dx, SReal factor) override;
 
     // IF direct solver, compute the mass contribution to global Matrix assembling
-    void addMToMatrix(const core::MechanicalParams *mparams, const sofa::core::behavior::MultiMatrixAccessor* matrix) override;
+    void buildMassMatrix(sofa::core::behavior::MassMatrixAccumulator* matrices) override;
 
     // Compute the acceleration resulting from the acc = F/M
     // in explicit cases, the solution can directly be found when the matrix is diagonal
@@ -195,7 +194,7 @@ void TemplateMass<DataTypes, MassType>::addMDx(const core::MechanicalParams* mpa
 }
 
 template <class DataTypes, class MassType>
-void TemplateMass<DataTypes, MassType>::addMToMatrix(const core::MechanicalParams *mparams, const sofa::core::behavior::MultiMatrixAccessor* matrix)
+void TemplateMass<DataTypes, MassType>::buildMassMatrix(sofa::core::behavior::MassMatrixAccumulator* matrices)
 {
     // Build the mass matrix and store it in the system matrix
 }
@@ -295,7 +294,7 @@ int TemplateMassClass = core::RegisterObject("Description of your TemplateMass c
 
 
 /// Template Initialization
-/// Force template specialization for the most common sofa type.
+/// Force template specialization for the most common SOFA type.
 /// This goes with the extern template declaration in the .h. Declaring extern template
 /// avoid the code generation of the template for each compilation unit
 

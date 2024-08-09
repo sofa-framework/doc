@@ -1,7 +1,7 @@
 LocalMinDistance
 ================
 
-This proximity method is an [intersection detection](https://www.sofa-framework.org/community/doc/simulation-principles/multi-model-representation/collision/#narrow-phase-detect-intersection) close to the previous [MinProximityIntersection](https://www.sofa-framework.org/community/doc/components/collision/minproximityintersection/) but in addition, it filters the list of DetectionOutput to keep only the contacts with the local minimal distance.
+This proximity method is an [intersection detection](../../../../simulation-principles/multi-model-representation/collision/#narrow-phase-detect-intersection) close to the previous [MinProximityIntersection](./minproximityintersection/) but in addition, it filters the list of DetectionOutput to keep only the contacts with the local minimal distance.
 
 To find an optimal number of contact points, the LocalMinDistance computes cones on all nodes of the collision model. A cone is the combination of the orthogonal directions/planes of the neighboring lines/surfaces.
 
@@ -23,21 +23,12 @@ The cones on the sides (no 1 and 3) are open with an 90 degree angle, while the 
 - In case of a soft body, the LocalMinDistance would not detect the middle point as a contact since the cone is closed. The method would therefore fail to keep the object over the surface. To solve such a generated case, a data aiming at opening all existing cones is defined: "angleCone"
 
 
-Data
-----
-
-The intersection methods include the following data:
-
--   **alarmDistance**: maximum distance between collision elements for wich a contact is created
--   **contactDistance** : parameter used in the contact creation
--   **angleCone**: Filtering cone extension angle
--   **coneFactor**: Factor for filtering cone angle computation
 
 
 Usage
 -----
 
-The MinProximityIntersection must be placed right after the CollisionPipeline and the associated Detection method (usually [BruteForce](https://www.sofa-framework.org/community/doc/components/collisions/detection-brute-force/)) on top the scene graph.
+The MinProximityIntersection must be placed right after the CollisionPipeline and the associated Detection method (usually [BruteForce](../algorithm/bruteforcebroadphase/)) on top the scene graph.
 
 
 Additional information
@@ -46,21 +37,3 @@ Additional information
 - collision models in the scene will have the data **proximity** corresponding to an enlargement of the collision model, i.e., value added to the alarmDistance and the contactDistance and also when building AABBs in the broad phase
 - a different alarmDistance and contactDistance can be specified for each CollisionModel by setting alarmDistance and contactDistance to zero and changing the proximity parameter
 
-
-
-Example of Usage
-----------------
-
-This component is used as follows in XML format:
-
-``` xml
-<LocalMinDistance name="LMD-proximity" alarmDistance="0.5" contactDistance="0.3" angleCone="0.0" />
-```
-
-or using SofaPython3:
-
-``` python
-node.addObject('LocalMinDistance', name='LMD-proximity', alarmDistance='.5', contactDistance='.3', angleCone='0.0')
-```
-
-An example scene involving a LocalMinDistance is available in [*examples/Component/Collision/Response/FrictionContact.scn*](https://github.com/sofa-framework/sofa/blob/master/examples/Component/Collision/Response/FrictionContact.scn)

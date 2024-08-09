@@ -12,7 +12,7 @@ component, you need:
     is not activated by default.The best way to activate it is to
     specify it in the scene file that while writing "listening=1". You
     can otherwise "hard" code it in your C++ component as
-    follow "myComponent.f\_listening.setValue(true)".
+    follows "myComponent.f\_listening.setValue(true)".
 
 Now, you will be able to recover the events and therefore to interact
 with your simulation. Have fun !
@@ -59,7 +59,7 @@ void myComponent< datatypes >::handleEvent(core::objectmodel::Event *event)
 Specific integration events
 ---------------------------
 
-In the same way than for Mouse or Keyboard events, you can detect
+Similarly to Mouse or Keyboard events, you can detect
 specific events during the time integration. These events are managed
 and sent by the AnimationLoop you are using.
 

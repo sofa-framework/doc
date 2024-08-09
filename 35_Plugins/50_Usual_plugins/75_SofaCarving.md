@@ -12,7 +12,7 @@ CarvingManager
 -----------------------------------------------
 
 The plugin provides one component, the CarvingManager. When added to a
-scene, it automatically looks for a collision model that will acts as
+scene, it automatically looks for a collision model that will act as
 the tool from removing tetrahedra, and a surface model that will have
 its tetrahedra removed by the tool. If your scene has many possible
 collision or surface models, you can specify the ones that the

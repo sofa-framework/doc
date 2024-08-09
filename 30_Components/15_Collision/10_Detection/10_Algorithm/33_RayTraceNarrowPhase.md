@@ -1,7 +1,7 @@
 Narrow Phase: Ray Trace Narrow Phase
 ====================================
 
-The RayTraceNarrowPhase component is a [narrow phase component](https://www.sofa-framework.org/community/doc/using-sofa/components/collisions/narrowphases/narrowphase), which is used in a [collision pipeline](https://www.sofa-framework.org/community/doc/using-sofa/components/collisions/pipelines/collisionpipeline).
+The RayTraceNarrowPhase component is a [narrow phase component](./narrowphase), which is used in the detection phase of a [CollisionPipeline](../collisionpipeline/#collision-detection).
 This method traces a ray for each point in one object following the opposite of the point's normal up to find a triangle in the other object.
 Both triangles are tested to evaluate if they are in a colliding state.
 
@@ -23,7 +23,7 @@ This component can be used as follows in XML format:
 <BruteForceBroadPhase name="N2" />
 <RayTraceNarrowPhase/>
 <MinProximityIntersection name="Proximity" alarmDistance="1.5" contactDistance="1" />
-<DefaultContactManager name="Response" response="FrictionContact" />
+<DefaultContactManager name="Response" response="FrictionContactConstraint" />
 ```
 
 Colliding objects must have a TriangleOctreeModel:

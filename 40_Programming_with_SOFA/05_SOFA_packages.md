@@ -1,8 +1,8 @@
 Intro
 =====
 
-In order to allow building plugins separately from Sofa and building an
-external application or library which depends on sofa, we provide cmake
+In order to allow building plugins separately from SOFA and building an
+external application or library which depends on SOFA, we provide cmake
 package configurations files. Those files are what cmake looks for when
 you call find_package(Something), which is now how you find the
 dependencies for your plugins.
@@ -20,88 +20,64 @@ The following section lists the libraries is each package.
 Packages
 ========
 
-SofaFramework
--------------
-
--   SofaCore
--   SofaDefaultType
--   SofaHelper
--   SofaSimulationCore
-
-SofaSimulation
+Sofa.Framework
 --------------
 
--   SofaSimulationCommon
--   SofaSimulationGraph
--   SofaSimulationTree
+- Sofa.Type
+- Sofa.LinearAlgebra
+- Sofa.Core
+- Sofa.Config
+- Sofa.Topology
+- Sofa.Testing
+- Sofa.Simulation
+- Sofa.SimpleApi
+- Sofa.Helper
+- Sofa.Geometry
+- Sofa.DefaultType
 
-SofaBase
---------
 
--   SofaBaseCollision
--   SofaBaseLinearSolver
--   SofaBaseMechanics
--   SofaBaseTopology
--   SofaBaseVisual
--   SofaBaseUtils
+Sofa.Component
+--------------
 
-SofaCommon
-----------
+- Sofa.Component.AnimationLoop
+- Sofa.Component.Collision
+- Sofa.Component.Constraint
+- Sofa.Component.Controller
+- Sofa.Component.Diffusion
+- Sofa.Component.Engine
+- Sofa.Component.Haptics
+- Sofa.Component.IO
+- Sofa.Component.LinearSolver
+- Sofa.Component.LinearSystem
+- Sofa.Component.Mapping
+- Sofa.Component.Mass
+- Sofa.Component.MechanicalLoad
+- Sofa.Component.ODESolver
+- Sofa.Component.Playback
+- Sofa.Component.SceneUtility
+- Sofa.Component.Setting
+- Sofa.Component.SolidMechanics
+- Sofa.Component.StateContainer
+- Sofa.Component.Topology
+- Sofa.Component.Visual
 
--   SofaDeformable
--   SofaEigen2Solver
--   SofaEngine
--   SofaExplicitOdeSolver
--   SofaImplicitOdeSolver
--   SofaLoader
--   SofaMeshCollision
--   SofaObjectInteraction
--   SofaRigid
--   SofaSimpleFem
 
-SofaGeneral
------------
+Sofa.GL
+--------------
 
--   SofaGeneralAnimationLoop
--   SofaGeneralDeformable
--   SofaGeneralExplicitOdeSolver
--   SofaGeneralImplicitOdeSolver
--   SofaGeneralLinearSolver
--   SofaGeneralLoader
--   SofaGeneralMeshCollision
--   SofaGeneralObjectInteraction
--   SofaGeneralRigid
--   SofaGeneralSimpleFem
--   SofaGeneralTopology
--   SofaGeneralVisual
--   SofaBoundaryCondition
--   SofaConstraint
--   SofaGeneralEngine
--   SofaGraphComponent
--   SofaTopologyMapping
--   SofaUserInteraction
--   SofaValidation
+- Sofa.GL
+- Sofa.GL.Component.Engine
+- Sofa.GL.Component.Rendering2D
+- Sofa.GL.Component.Rendering3D
+- Sofa.GL.Component.Shader
 
-SofaAdvanced
-------------
 
--   SofaNonUniformFem
+Sofa.GUI
+--------------
 
-SofaMisc
---------
-
--   SofaMiscExtra
--   SofaMiscEngine
--   SofaMiscFem
--   SofaMiscForceField
--   SofaMiscMapping
--   SofaMiscSolver
--   SofaMiscTopology
-
-SofaGui
--------
-
--   SofaGuiCommon
--   SofaGuiQt
--   SofaGuiMain
--   SofaHeadlessRecorder
+- Sofa.GUI
+- Sofa.GUI.Batch
+- Sofa.GUI.Common
+- Sofa.GUI.Component
+- Sofa.GUI.HeadlessRecorder
+- Sofa.GUI.Qt

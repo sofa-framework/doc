@@ -10,8 +10,8 @@ i.e. a plugin which is not provided in the source code of SOFA.
 
 Two ways of building a plugin are possible:
 
-- you are compiling SOFA and you integrate your plugin project along SOFA (aka _in-tree build_).
-- you have an install of SOFA (either you downloaded a [pre-built configuration](https://www.sofa-framework.org/download/), or you installed by yourself from a [SOFA build](https://www.sofa-framework.org/community/doc/getting-started/build/build-options/)), and you want to use this installation to build your plugin (aka _out-of-tree build_)
+- you are compiling SOFA and you integrate your plugin project along SOFA (aka [_in-tree build_](#in-tree-build)).
+- you have an install of SOFA (either you downloaded a [pre-built configuration](https://www.sofa-framework.org/download/), or you installed by yourself from a [SOFA build](../getting-started/build/build-options/)), and you want to use this installation to build your plugin (aka [_out-of-tree build_](#out-of-tree-build))
 
 ## In-tree build
 
@@ -38,7 +38,7 @@ In order to handle this repository as one single set of external plugins,
 you need to write a short CMakeList.txt file as follows:
 
 ```
-cmake_minimum_required(VERSION 2.8.12)
+cmake_minimum_required(VERSION 3.22)
 
 find_package(SofaFramework)
 

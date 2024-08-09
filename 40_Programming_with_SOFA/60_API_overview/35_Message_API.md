@@ -60,9 +60,9 @@ The macros are not in a namespace, for ease of use.
 There are 2 macros categories:
 
 * **runtime macros** to emit messages in every context.
-* **developer macros** to emit messages only targeted to developers (people willing to dive into the sofa source code)
+* **developer macros** to emit messages only targeted to developers (people willing to dive into the SOFA source code)
 
-Typically, to output a message you can use one of these macros, depending of the criticality level:
+Typically, to output a message you can use one of these macros, depending on the criticality level:
 
 * msg_info
 * msg_deprecated
@@ -72,7 +72,7 @@ Typically, to output a message you can use one of these macros, depending of the
 
 Note that for `msg_info` messages to appear in the console, the component from which it is called must have its `printLog` attribute set to `true`.
 
-Just include *Messaging.h* and you can use these macros like any output stream:
+By including *Messaging.h*, you can use these macros like any output stream:
 
 ```
 #include <sofa/helper/logging/Messaging.h>
@@ -90,13 +90,13 @@ You can also send a message bound to a different component as in:
 msg_warning(otherComponent) << "Previously used GUI not registered. Using default GUI.";
 ```
 
-Finally if you are not in a sofa component you can specify the emitter's name with a string. 
+Finally if you are not in a SOFA component you can specify the emitter's name with a string. 
 ```
 msg_warning("GUIManager") << "Previously used GUI not registered. Using default GUI.";
 ```
 
 If your message is for developers, you can use the dmsg_info, dmsg_deprecated, dmsg_warning,... functions. 
-These messages are removed on end-user application (see SOFA_WITH_DEVTOOLS [build option](https://www.sofa-framework.org/community/doc/getting-started/build/build-options/)) and can be more specific and less well written than those
+These messages are removed on end-user application (see SOFA_WITH_DEVTOOLS [build option](../../getting-started/build/build-options/)) and can be more specific and less well written than those
 that target users. A very simple way to guide the use of the dmsg_* API is to ask yourself if fixing the message needs to have the source code to understand the message. 
 
 **NB** Please note that for classes that are not inheriting from BaseObject, an additional macro must be defined to register your class to the messaging system.
@@ -105,13 +105,13 @@ In the header file, just add:
 MSG_REGISTER_CLASS(sofa::...::myClass, "myClassName")
 ```
 
-## How are handled the messages in Sofa Component
-Component have a 'printLog' data field that controls whether or not the msg_info() are emitted on the component side. An user that don't want the component to emit info messages have to set the 'printLog' to false. There is no equivalent way to prevent warning/error/fatal message to be emitted. The reason is that they are important in indicating the state of the sofa component and other componant may use them to validate that the componant is in a valid state. 
+## How are handled the messages in SOFA Component
+Component have a 'printLog' data field that controls whether or not the msg_info() are emitted on the component side. An user that don't want the component to emit info messages have to set the 'printLog' to false. There is no equivalent way to prevent warning/error/fatal message to be emitted. The reason is that they are important in indicating the state of the SOFA component and other componant may use them to validate that the componant is in a valid state. 
 
-The fact that the warning/error and fatal message are always emitted by the component does not means they have to be shown to the user. If needed, a third party application can implement its own message handler that discards (on demand) these message instead of printing them
+The fact that the warning/error and fatal message are always emitted by the component does not mean they have to be shown to the user. If needed, a third party application can implement its own message handler that discards (on demand) these message instead of printing them
 
 ## Message and unit-testing
-Messages play an important role in Sofa as they are the principal way to convey information about the 
+Messages play an important role in SOFA as they are the principal way to convey information about the 
 component state. Messages are part of the behavior of a component and should be tested accordingly. 
 
 For that there are two dedicated classes in the file *applications/plugins/SofaTest/TestMessageHandler.h*

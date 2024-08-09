@@ -3,13 +3,13 @@ ForceField
 
 ForceFields are components that are adding "forces". These forces will influence the equilibrium of a system by contributing to its change of state.
 
-In continuum mechanics, these forces can be either internal or external forces. Internal forces corresponds to the effect of the soft body mechanics (elasticity, plasticity etc) and the external forces arise from external phenomenon (gravity, pressure etc). As detailed in the page [Physics Integration](https://www.sofa-framework.org/community/doc/main-principles/multi-model-representation/physics-integration/), the conservation of linear momentum in its generalized form can be written:
+In continuum mechanics, these forces can be either internal or external forces. Internal forces corresponds to the effect of the soft body mechanics (elasticity, plasticity etc) and the external forces arise from external phenomenon (gravity, pressure etc). As detailed in the page [Physics Integration](./physics-integration/), the conservation of linear momentum in its generalized form can be written:
 
-<img class="latex" src="https://latex.codecogs.com/png.latex?\rho%20\dot{v}=\rho%20\boldsymbol{b}+\nabla%20\cdot%20\boldsymbol{\sigma}" title="Dynamic differential equation with internal and external forces (strong form)" />
+$$\rho \dot{v}=\rho \boldsymbol{b}+\nabla \cdot \boldsymbol{\sigma}$$
 
 The analogy can be done on other physics. In thermodynamics, all thermal effects (like diffusion, blood heat, metabolic heat, etc.) of the bioheat equation can be considered as ForceFields as well since these terms appear in the equilibrium:
 
-<img class="latex" src="https://latex.codecogs.com/png.latex?\rho%20c\dot{T}=\nabla%20\cdot%20k\nabla%20T+\rho_{b}c_{b}w(T_a-T)+Q_m" title="Dynamic bio-heat equation" />
+$$\rho c\dot{T}=\nabla \cdot k\nabla T+\rho_{b}c_{b}w(T_a-T)+Q_m$$
 
 
 
@@ -19,54 +19,49 @@ ForceField API
 
 To explain the API associated to the ForceField, we will consider the system resulting from the conservation of linear momentum (mechanics):
 
-<img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{M}\Delta{v}=dt%20\cdot%20f(x)" title="Dynamic mechanical system" />
+$$\mathbf{M}\Delta{v}=dt \cdot f(x)$$
 
-where <img class="latex" src="https://latex.codecogs.com/png.latex?x" title="Position" /> is the position (degrees of freedom), <img class="latex" src="https://latex.codecogs.com/png.latex?v" title="Velocity" /> is the velocity (derivative in time of the degrees of freedom) and <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{M}" title="Mass matrix" /> is the mass matrix.
+where $$x$$ is the position (degrees of freedom), $$v$$ is the velocity (derivative in time of the degrees of freedom) and $$\mathbf{M}$$ is the mass matrix.
 
-As it is explained in the section [Integration Scheme](https://www.sofa-framework.org/community/doc/simulation-principles/system-resolution/integration-scheme/), the choice of the temporal scheme will influence the way the linear system <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{A}x=b" title="Linear system" /> is built.
+As it is explained in the section [Integration Scheme](../system-resolution/integration-scheme/), the choice of the temporal scheme will influence the way the linear system $$\mathbf{A}x=b$$ is built.
 
 
 ### Explicit force
 
-Using an [explicit scheme](https://www.sofa-framework.org/community/doc/using-sofa/components/integrationscheme/eulerexplicitsolver/) means that forces <img class="latex" src="https://latex.codecogs.com/png.latex?f(x)" title="Forces" /> are computed using the degrees of freedom of the current time step <img class="latex" src="https://latex.codecogs.com/png.latex?t" title="Current time" /> (which are known): <img class="latex" src="https://latex.codecogs.com/png.latex?f(x)=f(x(t))" title="Explicit forces" />. Regardless the form of the function <img class="latex" src="https://latex.codecogs.com/png.latex?f" title="Forces" />, the value of <img class="latex" src="https://latex.codecogs.com/png.latex?f(x(t))" title="Explicit forces" /> can directly be obtained and set in the right hand side vector <img class="latex" src="https://latex.codecogs.com/png.latex?b" title="RHS vector" />  of our linear system <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{A}x=b" title="Linear system" />.
+Using an [explicit scheme](../../components/odesolver/forward/eulerexplicitsolver/) means that forces $$f(x)$$ are computed using the degrees of freedom of the current time step $$t$$ (which are known): $$f(x)=f(x(t))$$. Regardless the form of the function $$f$$, the value of $$f(x(t))$$ can directly be obtained and set in the right hand side vector $$b$$ of our linear system $$\mathbf{A}x=b$$.
 
-The computation of the term <img class="latex" src="https://latex.codecogs.com/png.latex?f" title="Forces" />, the value of <img class="latex" src="https://latex.codecogs.com/png.latex?dt\cdot%20f(x(t))" title="Explicit forces" /> is done through the function `addForce()` of the ForceField class, called by the integration scheme (ODESolver).
+The computation of the term $$f$$, the value of $$dt\cdot f(x(t))$$ is done through the function `addForce()` of the ForceField class, called by the integration scheme (ODESolver).
 
 
 
 ### Implicit force
 
 
-Using an [implicit scheme](https://www.sofa-framework.org/community/doc/using-sofa/components/integrationscheme/eulerimplicitsolver/) means that forces <img class="latex" src="https://latex.codecogs.com/png.latex?f(x)" title="Forces" /> are computed using the degrees of freedom of the next time step <img class="latex" src="https://latex.codecogs.com/png.latex?t+dt" title="Current time" /> (unknown yet): <img class="latex" src="https://latex.codecogs.com/png.latex?f(x)=f(x(t+dt))" title="Explicit forces" />.
-The value of <img class="latex" src="https://latex.codecogs.com/png.latex?f(x(t))" title="Explicit forces" /> can not be directly be computed. By using a Taylor expansion, we get:
+Using an [implicit scheme](../../components/odesolver/backward/eulerimplicitsolver/) means that forces $$f(x)$$ are computed using the degrees of freedom of the next time step $$t+dt$$ (unknown yet): $$f(x)=f(x(t+dt))$$.
+The value of $$f(x(t))$$ can not be directly be computed. By using a Taylor expansion, we get:
 
-<img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{M}%20\Delta%20v=dt%20\cdot%20\left(%20f(x(t)+\cdot%20\frac{\partial%20f}{\partial%20x}%20\Delta%20x%20\right)" title="Implicit dynamic system" />
+$$\mathbf{M} \Delta v=dt \cdot \left( f(x(t)+\cdot \frac{\partial f}{\partial x} \Delta x \right)$$
+since we have: $$\Delta x=dt(v(t)+\Delta v)$$, then:
+$$\mathbf{M}\Delta v=dt\cdot \left( f(x(t)+dt\cdot \frac{\partial f}{\partial x}v(t)+dt\cdot \frac{\partial f}{\partial x} \Delta v \right)$$
 
-since we have: <img class="latex" src="https://latex.codecogs.com/png.latex?\Delta%20x=dt(v(t)+\Delta%20v)" title="Implicit scheme" />, then:
+Finally, gathering the unknown (depending on $$\Delta v$$) in the left hand side, we have:
+$$\left( \mathbf{M}-dt^2 \cdot \frac{\partial f}{\partial x} \right) \Delta v=dt\cdot f(x(t)+dt^2\cdot \frac{\partial f}{\partial x}v(t)$$
 
-<img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{M}\Delta%20v=dt\cdot%20\left(%20f(x(t)+dt\cdot%20\frac{\partial%20f}{\partial%20x}v(t)+dt\cdot%20\frac{\partial%20f}{\partial%20x}%20\Delta%20v%20\right)" title="Implicit dynamic system" />
-
-Finally, gathering the unknown (depending on <img class="latex" src="https://latex.codecogs.com/png.latex?\Delta%20v" title="Unknown delta of velocity" />) in the left hand side, we have:
-
-<img class="latex" src="https://latex.codecogs.com/png.latex?\left(%20\mathbf{M}-dt^2%20\cdot%20\frac{\partial%20f}{\partial%20x}%20\right)%20\Delta%20v=dt\cdot%20f(x(t)+dt^2\cdot%20\frac{\partial%20f}{\partial%20x}v(t)" title="Implicit dynamic system" />
-
-We can notice the appearance of the stiffness matrix : <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{K}_{ij}=\textstyle\frac{\partial%20f_i}{\partial%20x_j}" title="Implicit contribution" />. The stiffness matrix <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{K}" title="Stiffness matrix" /> is a symmetric matrix, can either be linear or non-linear regarding <img class="latex" src="https://latex.codecogs.com/png.latex?x" title="DOF" />.
+We can notice the appearance of the stiffness matrix : $$\mathbf{K}_{ij}=\textstyle\frac{\partial f_i}{\partial x_j}$$. The stiffness matrix $$\mathbf{K}$$ is a symmetric matrix, can either be linear or non-linear regarding $$x$$.
 
 
 For the **right hand side**:
 
-- the term <img class="latex" src="https://latex.codecogs.com/png.latex?dt\cdot%20f(x(t)" title="Explicit forces" /> is computed by the function: `addForce()` (as in explicit case)
+- the term $$dt\cdot f(x(t)$$ is computed by the function: `addForce()` (as in explicit case)
+- the term $$dt^2\cdot \frac{\partial f}{\partial x}v(t)$$ is computed by the function: `addDForce()`
 
-- the term <img class="latex" src="https://latex.codecogs.com/png.latex?dt^2\cdot%20\frac{\partial%20f}{\partial%20x}v(t)" title="Derivative explicit forces" /> is computed by the function: `addDForce()`
 
+For the **left hand side**, the API used to compute it depends on the type of [Integration Scheme](../system-resolution/integration-scheme/) used: direct (the system matrix $$\mathbf{A}$$ is built and inversed) or iterative (unbuilt approach). We have:
 
-For the **left hand side**, the API used to compute it depends on the type of [Integration Scheme](https://www.sofa-framework.org/community/doc/main-principles/system-resolution/integration-schemes/) used: direct (the system matrix <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{A}" title="System matrix" /> is built and inversed) or iterative (unbuilt approach). We have:
+$$\mathbf{A}=\left( M-dt^2 \cdot \frac{\partial f}{\partial x} \right)$$
 
-<img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{A}=\left(%20M-dt^2%20\cdot%20\frac{\partial%20f}{\partial%20x}%20\right)" title="System matrix" />
-
-- for iterative solvers, the term <img class="latex" src="https://latex.codecogs.com/png.latex?-dt^2%20\cdot%20\frac{\partial%20f}{\partial%20x}" title="Derivative implicit forces" /> is computed by the function: `addDForce()` 
-
-- for direct solvers, the term <img class="latex" src="https://latex.codecogs.com/png.latex?dt^2\cdot%20\frac{\partial%20f}{\partial%20x}v(t)" title="Derivative forces" /> is computed by the function: `addKToMatrix()`
+- for iterative solvers, the term $$-dt^2 \cdot \frac{\partial f}{\partial x}$$ is computed by the function: `addDForce()`
+- for direct solvers, the term $$dt^2\cdot \frac{\partial f}{\partial x}v(t)$$ is computed by the function: `addKToMatrix()`
 
 
 
@@ -74,14 +69,14 @@ For the **left hand side**, the API used to compute it depends on the type of [I
 
 For explicit case, we have:
 
-| Linear solver | <img class="latex" src="https://latex.codecogs.com/png.latex?dt%20\cdot%20f(x(t))" title="Explicit forces" /> |
+| Linear solver | $$dt \cdot f(x(t))$$ |
 |:-------------:|:-------------------------------------------------------------------------------------------------------------:|
 | **Iterative** |                                                 `addForce()`                                                  | 
 |  **Direct**   |                                                 `addForce()`                                                  | 
 
 For implicit case, we have:
 
-| Linear solver | <img class="latex" src="https://latex.codecogs.com/png.latex?-dt^2%20\cdot%20\textstyle\frac{\partial%20f}{\partial%20x}\Delta%20v" title="Implicit stiffness" /> | <img class="latex" src="https://latex.codecogs.com/png.latex?dt%20\cdot%20f(x(t))" title="Explicit forces" /> | <img class="latex" src="https://latex.codecogs.com/png.latex?dt^2\textstyle\frac{\partial%20f}{\partial%20x}v(t)" title="Explicit stiffness" /> |
+| Linear solver | $$-dt^2 \cdot \textstyle\frac{\partial f}{\partial x}\Delta v$$ | $$dt \cdot f(x(t))$$ | $$dt^2\textstyle\frac{\partial f}{\partial x}v(t)$$ |
 |:-------------:|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------:|:-------------------------------------------------------------------------------------------------------------:|:-----------------------------------------------------------------------------------------------------------------------------------------------:|
 | **Iterative** |                                                                           `addDForce()`                                                                           |                                                 `addForce()`                                                  |                                                                  `addDForce()`                                                                  |
 |  **Direct**   |                                                                         `addKToMatrix()`                                                                          |                                                 `addForce()`                                                  |                                                                  `addDForce()`                                                                  |
@@ -92,8 +87,8 @@ ForceField implementations
 
 See examples of ForceField implementation:
 
-- [ConstantForceField](https://www.sofa-framework.org/community/doc/using-sofa/components/forcefield/constantforcefield/)
-- [TetrahedronFEMForceField](https://www.sofa-framework.org/community/doc/using-sofa/components/forcefield/tetrahedronfemforcefield/)
+- [ConstantForceField](../../components/mechanicalload/constantforcefield/)
+- [TetrahedronFEMForceField](../../components/solidmechanics/fem/elasticity/tetrahedronfemforcefield/)
 
 
 
@@ -161,9 +156,8 @@ public:
     /// IF iterative solver: add the implicit derivatives of the forces (contributing to the left hand side matrix A)
     void addDForce(const core::MechanicalParams* mparams, DataVecDeriv& d_df , const DataVecDeriv& d_dx) override;
 
-
     /// IF direct solver: add the implicit derivatives of the forces (contributing to the left hand side matrix A)
-    void addKToMatrix(sofa::defaulttype::BaseMatrix *m, SReal kFactor, unsigned int &offset) override;
+    void buildStiffnessMatrix(core::behavior::StiffnessMatrix* matrix) override;
 
     /// Same as previous, but using accessor
     void addKToMatrix(const sofa::core::behavior::MultiMatrixAccessor* /*matrix*/, SReal /*kFact*/) ;
@@ -277,19 +271,9 @@ void TemplateForceField<DataTypes>::addDForce(const core::MechanicalParams* mpar
 
 
 template<class DataTypes>
-void TemplateForceField<DataTypes>::addKToMatrix(sofa::defaulttype::BaseMatrix * /* mat */,
-                                                 SReal /* k */, unsigned int & /* offset */)
+void TemplateForceField<DataTypes>::buildStiffnessMatrix(core::behavior::StiffnessMatrix* matrix)
 {
     // Compute the force derivative d_df from the current and store the resulting matrix
-}
-
-
-template<class DataTypes>
-void TemplateForceField<DataTypes>::addKToMatrix(const sofa::core::behavior::MultiMatrixAccessor* /*matrix*/,
-                                                 SReal /*kFact*/)
-{
-    // Same as previously
-    // but using accessor
 }
 
 

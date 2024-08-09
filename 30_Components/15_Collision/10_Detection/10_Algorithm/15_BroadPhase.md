@@ -1,7 +1,7 @@
 Broad Phase Components
 ======================
 
-The broad phase collision detection components are executed in a [collision pipeline](https://www.sofa-framework.org/community/doc/using-sofa/components/collisions/pipelines/collisionpipeline).
+The broad phase collision detection components are executed in a [collision pipeline](../collisionpipeline).
 
 Introduction
 ============
@@ -16,13 +16,13 @@ For performances reasons, this approach is never selected because of its quadrat
 Instead, the collision detection will be divided in two parts:
 
 1. The broad phase collision detection
-2. The [narrow phase collision detection](https://www.sofa-framework.org/community/doc/using-sofa/components/collisions/narrowphases/narrowphase)
+2. The [narrow phase collision detection](../narrowphase)
 
 The Broad Phase
 ===============
 
 In SOFA, the role of the broad phase is usually to prune a maximum number of pairs of collision models which are not in intersection.
-Considering <img class="latex" src="https://latex.codecogs.com/png.latex?n" title="Number of objects" /> collision models (usually there are more than one collision model per object), there are between <img class="latex" src="https://latex.codecogs.com/png.latex?n*(n-1)/2" title="Complexity of pairwise checks" />(no self collision) and <img class="latex" src="https://latex.codecogs.com/png.latex?n^2/2" title="Complexity of pairwise checks" />(if all collision models can self collide) pairs of collision models.
+Considering $$n$$ collision models (usually there are more than one collision model per object), there are between $$n*(n-1)/2$$(no self collision) and $$n^2/2$$(if all collision models can self collide) pairs of collision models.
 
 The output of the broad phase is a collection of pairs of collision models which are potentially in intersection.
 At this stage, it is not known if those pairs are actually in intersection or not.
@@ -66,14 +66,14 @@ After the execution of the broad phase, the list of potential colliding pairs is
 ```cpp
 sofa::helper::vector< CollisionModelPair > BroadPhaseDetection::cmPairs;
 ```
-Finally, the [collision pipeline](https://www.sofa-framework.org/community/doc/using-sofa/components/collisions/pipelines/collisionpipeline) provides this list to a [narrow phase collision detection](https://www.sofa-framework.org/community/doc/using-sofa/components/collisions/narrowphases/narrowphase).
+Finally, the [collision pipeline](../collisionpipeline) provides this list to a [narrow phase collision detection](../narrowphase).
 
 Examples of Components
 ======================
 
 The following components are all broad phase collision detections, and can be placed in a simulation scene:
 
-- [BruteForceBroadPhase](https://www.sofa-framework.org/community/doc/using-sofa/components/collisions/broadphases/bruteforcebroadphase)
+- [BruteForceBroadPhase](./bruteforcebroadphase)
 - ParallelBruteForceBroadPhase (plugin MultiThreading)
 - BruteForceDetection
 - THMPGSpatialHashing (plugin THMPGSpatialHashing)
