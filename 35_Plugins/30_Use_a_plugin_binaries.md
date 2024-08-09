@@ -12,4 +12,4 @@ In such a case, one must firstly check that the compilation environment of the p
 
 ## Load in SOFA
 
-See [What is a plugin > Plugin loading](./what-is-a-plugin/#plugin_loading).
+See [What is a plugin > Plugin loading](./../what-is-a-plugin/#plugin_loading).

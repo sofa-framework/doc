@@ -93,5 +93,5 @@ Integration of physics
 
 In SOFA, the physics will be mainly implemented in Mass components and ForceField. You can have a look at the integration of:
 
-- the mass in [MeshMatrixMass](../../components/mass/meshmatrixmass/)
-- the integration of linear elasticity in [TetrahedronFEMForceField](../../components/solidmechanics/fem/elastic/tetrahedronfemforcefield/)
+- the mass in [MeshMatrixMass](../../../components/mass/meshmatrixmass/)
+- the integration of linear elasticity in [TetrahedronFEMForceField](../../../components/solidmechanics/fem/elastic/tetrahedronfemforcefield/)

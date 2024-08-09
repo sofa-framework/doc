@@ -3,7 +3,7 @@ ForceField
 
 ForceFields are components that are adding "forces". These forces will influence the equilibrium of a system by contributing to its change of state.
 
-In continuum mechanics, these forces can be either internal or external forces. Internal forces corresponds to the effect of the soft body mechanics (elasticity, plasticity etc) and the external forces arise from external phenomenon (gravity, pressure etc). As detailed in the page [Physics Integration](./physics-integration/), the conservation of linear momentum in its generalized form can be written:
+In continuum mechanics, these forces can be either internal or external forces. Internal forces corresponds to the effect of the soft body mechanics (elasticity, plasticity etc) and the external forces arise from external phenomenon (gravity, pressure etc). As detailed in the page [Physics Integration](./../physics-integration/), the conservation of linear momentum in its generalized form can be written:
 
 $$\rho \dot{v}=\rho \boldsymbol{b}+\nabla \cdot \boldsymbol{\sigma}$$
 
@@ -23,12 +23,12 @@ $$\mathbf{M}\Delta{v}=dt \cdot f(x)$$
 
 where $$x$$ is the position (degrees of freedom), $$v$$ is the velocity (derivative in time of the degrees of freedom) and $$\mathbf{M}$$ is the mass matrix.
 
-As it is explained in the section [Integration Scheme](../system-resolution/integration-scheme/), the choice of the temporal scheme will influence the way the linear system $$\mathbf{A}x=b$$ is built.
+As it is explained in the section [Integration Scheme](../../system-resolution/integration-scheme/), the choice of the temporal scheme will influence the way the linear system $$\mathbf{A}x=b$$ is built.
 
 
 ### Explicit force
 
-Using an [explicit scheme](../../components/odesolver/forward/eulerexplicitsolver/) means that forces $$f(x)$$ are computed using the degrees of freedom of the current time step $$t$$ (which are known): $$f(x)=f(x(t))$$. Regardless the form of the function $$f$$, the value of $$f(x(t))$$ can directly be obtained and set in the right hand side vector $$b$$ of our linear system $$\mathbf{A}x=b$$.
+Using an [explicit scheme](../../../components/odesolver/forward/eulerexplicitsolver/) means that forces $$f(x)$$ are computed using the degrees of freedom of the current time step $$t$$ (which are known): $$f(x)=f(x(t))$$. Regardless the form of the function $$f$$, the value of $$f(x(t))$$ can directly be obtained and set in the right hand side vector $$b$$ of our linear system $$\mathbf{A}x=b$$.
 
 The computation of the term $$f$$, the value of $$dt\cdot f(x(t))$$ is done through the function `addForce()` of the ForceField class, called by the integration scheme (ODESolver).
 
@@ -37,7 +37,7 @@ The computation of the term $$f$$, the value of $$dt\cdot f(x(t))$$ is done thro
 ### Implicit force
 
 
-Using an [implicit scheme](../../components/odesolver/backward/eulerimplicitsolver/) means that forces $$f(x)$$ are computed using the degrees of freedom of the next time step $$t+dt$$ (unknown yet): $$f(x)=f(x(t+dt))$$.
+Using an [implicit scheme](../../../components/odesolver/backward/eulerimplicitsolver/) means that forces $$f(x)$$ are computed using the degrees of freedom of the next time step $$t+dt$$ (unknown yet): $$f(x)=f(x(t+dt))$$.
 The value of $$f(x(t))$$ can not be directly be computed. By using a Taylor expansion, we get:
 
 $$\mathbf{M} \Delta v=dt \cdot \left( f(x(t)+\cdot \frac{\partial f}{\partial x} \Delta x \right)$$
@@ -56,7 +56,7 @@ For the **right hand side**:
 - the term $$dt^2\cdot \frac{\partial f}{\partial x}v(t)$$ is computed by the function: `addDForce()`
 
 
-For the **left hand side**, the API used to compute it depends on the type of [Integration Scheme](../system-resolution/integration-scheme/) used: direct (the system matrix $$\mathbf{A}$$ is built and inversed) or iterative (unbuilt approach). We have:
+For the **left hand side**, the API used to compute it depends on the type of [Integration Scheme](../../system-resolution/integration-scheme/) used: direct (the system matrix $$\mathbf{A}$$ is built and inversed) or iterative (unbuilt approach). We have:
 
 $$\mathbf{A}=\left( M-dt^2 \cdot \frac{\partial f}{\partial x} \right)$$
 
@@ -87,8 +87,8 @@ ForceField implementations
 
 See examples of ForceField implementation:
 
-- [ConstantForceField](../../components/mechanicalload/constantforcefield/)
-- [TetrahedronFEMForceField](../../components/solidmechanics/fem/elasticity/tetrahedronfemforcefield/)
+- [ConstantForceField](../../../components/mechanicalload/constantforcefield/)
+- [TetrahedronFEMForceField](../../../components/solidmechanics/fem/elasticity/tetrahedronfemforcefield/)
 
 
 

@@ -64,8 +64,8 @@ Once the binaries are generated:
 - Create a [release](https://github.com/sofa-framework/sofa/releases) on GitHub.
 - Update the link on the [download](https://www.sofa-framework.org/download/) page for the binaries (add changes in dependencies).
 - Update the doc for building SOFA:
-    - on [Linux](../getting-started/build/linux/)
-    - on [MacOS](../getting-started/build/mac-os-x/)
-    - on [Windows](../getting-started/build/windows/)
+    - on [Linux](../../getting-started/build/linux/)
+    - on [MacOS](../../getting-started/build/mac-os-x/)
+    - on [Windows](../../getting-started/build/windows/)
 - Update the flags on the forum.
 - Create a post on the forum, on Twitter, on LinkedIn.

@@ -1,7 +1,7 @@
 Broad Phase Components
 ======================
 
-The broad phase collision detection components are executed in a [collision pipeline](../collisionpipeline).
+The broad phase collision detection components are executed in a [collision pipeline](../../collisionpipeline).
 
 Introduction
 ============
@@ -16,7 +16,7 @@ For performances reasons, this approach is never selected because of its quadrat
 Instead, the collision detection will be divided in two parts:
 
 1. The broad phase collision detection
-2. The [narrow phase collision detection](../narrowphase)
+2. The [narrow phase collision detection](../../narrowphase)
 
 The Broad Phase
 ===============
@@ -66,14 +66,14 @@ After the execution of the broad phase, the list of potential colliding pairs is
 ```cpp
 sofa::helper::vector< CollisionModelPair > BroadPhaseDetection::cmPairs;
 ```
-Finally, the [collision pipeline](../collisionpipeline) provides this list to a [narrow phase collision detection](../narrowphase).
+Finally, the [collision pipeline](../../collisionpipeline) provides this list to a [narrow phase collision detection](../../narrowphase).
 
 Examples of Components
 ======================
 
 The following components are all broad phase collision detections, and can be placed in a simulation scene:
 
-- [BruteForceBroadPhase](./bruteforcebroadphase)
+- [BruteForceBroadPhase](./../bruteforcebroadphase)
 - ParallelBruteForceBroadPhase (plugin MultiThreading)
 - BruteForceDetection
 - THMPGSpatialHashing (plugin THMPGSpatialHashing)

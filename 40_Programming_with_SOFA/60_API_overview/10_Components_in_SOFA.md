@@ -28,7 +28,7 @@ to store all the parameters of your component, and handle this way the
 input (parametrize the component from XML/Python files for instance), and
 output (save at a time T the configuration of your component).
 Everything that needs to be saved in your component must be kept into
-memory inside a Data (find out more about the [Data here](./data-in-components/)).
+memory inside a Data (find out more about the [Data here](./../data-in-components/)).
 Basically to initialize a data, you must do the following:
 
 ``` cpp
@@ -108,7 +108,7 @@ Every SOFA component has a context. By casting this context to a
 component. A Node is a very useful component, as you can launch visitors
 from them, or quickly get information about the content of the node. However,
 we insist on the fact that accessing other components through the context
-is not recommended: instead create [Link](./create-links/)/DataLink. 
+is not recommended: instead create [Link](./../create-links/)/DataLink. 
 
 ``` cpp
 sofa::core::objectmodel::BaseContext* getContext();
@@ -123,8 +123,8 @@ simulation::Node* currentNode = static_cast<simulation::Node*>(myComponent->getC
 #### handleEvent( Event\* )
 
 
-Every SOFA component inherits a [Data](./data-in-components/) **f\_listening** from BaseObject.
-If **f\_listening** is true, then each time an [Event](./events-in-sofa/) is sent to
+Every SOFA component inherits a [Data](./../data-in-components/) **f\_listening** from BaseObject.
+If **f\_listening** is true, then each time an [Event](./../events-in-sofa/) is sent to
 the node containing your component, this method will be called. This
 way, you can execute specific operations when an event is triggered.
 
@@ -155,14 +155,14 @@ triggered. The most common SOFA events are:
 -   TopologyChangeEvent
 -   UpdateMappingEndEvent
 
-Find out more about the [Events here](./events-in-sofa/).
+Find out more about the [Events here](./../events-in-sofa/).
 
 
 ## Member variables
 
 #### Component state
 
-The [Data](./data-in-components/) attribute `d_componentState` defined in Base.h corresponds to
+The [Data](./../data-in-components/) attribute `d_componentState` defined in Base.h corresponds to
 the state of every component. This enum defines the following states:
 
 - Undefined: for a component that does not make use of this field have this one
@@ -175,7 +175,7 @@ the state of every component. This enum defines the following states:
 
 #### Print log
 
-The [Data](./data-in-components/) attribute `f_printLog` defined in Base.h is a boolean triggering
+The [Data](./../data-in-components/) attribute `f_printLog` defined in Base.h is a boolean triggering
 the emission of log messages at runtime. If true, all messages as follows will be emitted:
 
 ```cpp

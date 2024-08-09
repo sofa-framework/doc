@@ -1,4 +1,4 @@
-A [Link](../../using-sofa/lexicography/#link) allow you to access a SOFA component from another one anywhere
+A [Link](../../../using-sofa/lexicography/#link) allow you to access a SOFA component from another one anywhere
 in the simulation graph. In your scene creation file, it usually appears
 as : input=@../component. In this page we explain how to use it. In your
 .h, declare your link :

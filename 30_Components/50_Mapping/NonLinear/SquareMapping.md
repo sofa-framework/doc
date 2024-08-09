@@ -1,6 +1,6 @@
 # SquareMapping
 
-This component is classified under the category of [Mappings](../../../simulation-principles/multi-model-representation/mapping/).
+This component is classified under the category of [Mappings](../../../../simulation-principles/multi-model-representation/mapping/).
 
 In this particular mapping, we designate the input as the parent state and the output as the child state.
 

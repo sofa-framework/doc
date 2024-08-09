@@ -1,7 +1,7 @@
 Mass
 ====
 
-In simulation, the mass usually results from the volume integration of a density (see the [Physics Integration](./physics-integration/) section). It can be a mass density, but it can be an electrical or electrical conductivity among others. In all these equations, the density appears on the left hand side part of the equation. The mass matrix therefore contributes to $$\mathbf{A}$$, in the linear System $$\mathbf{A}x=b$$.
+In simulation, the mass usually results from the volume integration of a density (see the [Physics Integration](./../physics-integration/) section). It can be a mass density, but it can be an electrical or electrical conductivity among others. In all these equations, the density appears on the left hand side part of the equation. The mass matrix therefore contributes to $$\mathbf{A}$$, in the linear System $$\mathbf{A}x=b$$.
 
 Mass API
 --------------
@@ -18,9 +18,9 @@ Mass implementations
 
 See examples of Mass implementation:
 
-- [UniformMass](../../components/mass/UniformMass/)
-- [MeshMatrixMass](../../components/mass/meshmatrixmass/)
-- [DiagonalMass](../../components/mass/diagonalmass/)
+- [UniformMass](../../../components/mass/UniformMass/)
+- [MeshMatrixMass](../../../components/mass/meshmatrixmass/)
+- [DiagonalMass](../../../components/mass/diagonalmass/)
 
 
 Template of a Mass
