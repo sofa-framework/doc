@@ -1,75 +1,74 @@
+<!-- generate_doc -->
 # ProximityROI
 
 Find the N closest primitives from a given position
 
 
-__Templates__:
+## Vec3d
 
-- `#!c++ Vec3d`
+Templates:
 
-__Target__: `Sofa.Component.Engine.Select`
+- Vec3d
 
-__namespace__: `#!c++ sofa::component::engine::select`
+__Target__: Sofa.Component.Engine.Select
 
-__parents__: 
+__namespace__: sofa::component::engine::select
 
-- `#!c++ DataEngine`
+__parents__:
 
-__categories__: 
+- DataEngine
 
-- Engine
-
-Data: 
+### Data
 
 <table>
-<thead>
-    <tr>
-        <th>Name</th>
-        <th>Description</th>
-        <th>Default value</th>
-    </tr>
-</thead>
-<tbody>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Default value</th>
+        </tr>
+    </thead>
+    <tbody>
 	<tr>
 		<td>name</td>
 		<td>
 object name
-</td>
+		</td>
 		<td>unnamed</td>
 	</tr>
 	<tr>
 		<td>printLog</td>
 		<td>
 if true, emits extra messages at runtime.
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>tags</td>
 		<td>
 list of the subsets the objet belongs to
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>bbox</td>
 		<td>
 this object bounding box
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>componentState</td>
 		<td>
 The state of the component among (Dirty, Valid, Undefined, Loading, Invalid).
-</td>
+		</td>
 		<td>Undefined</td>
 	</tr>
 	<tr>
 		<td>listening</td>
 		<td>
 if true, handle the events, otherwise ignore the events
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
@@ -79,28 +78,28 @@ if true, handle the events, otherwise ignore the events
 		<td>centers</td>
 		<td>
 Center(s) of the sphere(s)
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>radii</td>
 		<td>
 Radius(i) of the sphere(s)
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>N</td>
 		<td>
 Maximum number of points to select
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>position</td>
 		<td>
 Rest position coordinates of the degrees of freedom
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
@@ -110,28 +109,28 @@ Rest position coordinates of the degrees of freedom
 		<td>indices</td>
 		<td>
 Indices of the points contained in the ROI
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>pointsInROI</td>
 		<td>
 Points contained in the ROI
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>distance</td>
 		<td>
 distance between the points contained in the ROI and the closest center.
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>indicesOut</td>
 		<td>
 Indices of the points not contained in the ROI
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
@@ -141,40 +140,39 @@ Indices of the points not contained in the ROI
 		<td>drawSphere</td>
 		<td>
 Draw shpere(s)
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>drawPoints</td>
 		<td>
 Draw Points
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>drawSize</td>
 		<td>
 rendering size for box and topological elements
-</td>
+		</td>
 		<td>1</td>
 	</tr>
 
 </tbody>
 </table>
 
-Links: 
-
-| Name | Description |
-| ---- | ----------- |
-|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|
-|slaves|Sub-objects used internally by this object|
-|master|nullptr for regular objects, or master object for which this object is one sub-objects|
+### Links
 
 
+| Name | Description | Destination type name |
+| ---- | ----------- | --------------------- |
+|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
+|slaves|Sub-objects used internally by this object|BaseObject|
+|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
 
-## Examples
+## Examples 
 
-Component/Engine/Select/ProximityROI.scn
+ProximityROI.scn
 
 === "XML"
 
@@ -239,67 +237,74 @@ Component/Engine/Select/ProximityROI.scn
             </Node>
         </Node>
     </Node>
+
     ```
 
 === "Python"
 
     ```python
-    def createScene(rootNode):
+    def createScene(root_node):
 
-        root = rootNode.addChild('root', dt="0.05", showBoundingTree="0", gravity="0 -9 0")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Algorithm")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Intersection")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Geometry")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Response.Contact")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Projective")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Engine.Select")
-        root.addObject('RequiredPlugin', name="Sofa.Component.IO.Mesh")
-        root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Iterative")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Mapping.Linear")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Mass")
-        root.addObject('RequiredPlugin', name="Sofa.Component.MechanicalLoad")
-        root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
-        root.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.FEM.Elastic")
-        root.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.Spring")
-        root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Dynamic")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Mapping")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Visual")
-        root.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
-        root.addObject('DefaultAnimationLoop')
-        root.addObject('VisualStyle', displayFlags="showBehaviorModels showWireframe")
-        root.addObject('CollisionPipeline', verbose="0")
-        root.addObject('BruteForceBroadPhase')
-        root.addObject('BVHNarrowPhase')
-        root.addObject('CollisionResponse', response="PenalityContactForceField")
-        root.addObject('MinProximityIntersection', name="Proximity", alarmDistance="0.8", contactDistance="0.5")
+       root = root_node.addChild('root', dt="0.05", showBoundingTree="0", gravity="0 -9 0")
 
-        TT = root.addChild('TT')
-        TT.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
-        TT.addObject('CGLinearSolver', iterations="25", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
-        TT.addObject('MeshGmshLoader', name="loader", filename="mesh/cylinder.msh")
-        TT.addObject('MechanicalObject', src="@loader", name="Volume")
-        TT.addObject('include', href="Objects/TetrahedronSetTopology.xml", src="@loader")
-        TT.addObject('DiagonalMass', massDensity="5")
-        TT.addObject('ProximityROI', name="fixedROI", centers="0 0 1 0 0 0 0 0 0.5", radii="0.1 0.2", N="40", drawSphere="1", drawPoints="1")
-        TT.addObject('FixedProjectiveConstraint', indices="@fixedROI.indices")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Algorithm")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Intersection")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Geometry")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Response.Contact")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Projective")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Engine.Select")
+       root.addObject('RequiredPlugin', name="Sofa.Component.IO.Mesh")
+       root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Iterative")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Mapping.Linear")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Mass")
+       root.addObject('RequiredPlugin', name="Sofa.Component.MechanicalLoad")
+       root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.FEM.Elastic")
+       root.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.Spring")
+       root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Dynamic")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Mapping")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Visual")
+       root.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
+       root.addObject('DefaultAnimationLoop', )
+       root.addObject('VisualStyle', displayFlags="showBehaviorModels showWireframe")
+       root.addObject('CollisionPipeline', verbose="0")
+       root.addObject('BruteForceBroadPhase', )
+       root.addObject('BVHNarrowPhase', )
+       root.addObject('CollisionResponse', response="PenalityContactForceField")
+       root.addObject('MinProximityIntersection', name="Proximity", alarmDistance="0.8", contactDistance="0.5")
 
-        doNothing = TT.addChild('doNothing')
-        doNothing.addObject('ProximityROI', name="p1", centers="0 0 1", radii="0.1 0.2 0.3", N="40")
-        doNothing.addObject('ProximityROI', name="p2", centers="0 0 1 0 0 0", N="40")
-        doNothing.addObject('ProximityROI', name="p3", centers="0 0 1 0 0 0", radii="0.1 0.1")
-        TT.addObject('TetrahedralCorotationalFEMForceField', name="FEM", youngModulus="20", poissonRatio="0.4", method="large")
+       tt = root.addChild('TT')
 
-        T = TT.addChild('T')
-        T.addObject('include', href="Objects/TriangleSetTopology.xml", src="@../loader", tags=" ")
-        T.addObject('Tetra2TriangleTopologicalMapping', input="@../Container", output="@Container")
-        T.addObject('TriangularFEMForceField', name="FEM", youngModulus="50", poissonRatio="0.3", method="large")
-        T.addObject('TriangularBendingSprings', name="FEM-Bend", stiffness="300", damping="1.0")
-        T.addObject('TrianglePressureForceField', normal="0 -0.2 1", dmin="0.9", dmax="1.1", pressure="0.4 0 0")
-        T.addObject('TriangleCollisionModel')
+       tt.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
+       tt.addObject('CGLinearSolver', iterations="25", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
+       tt.addObject('MeshGmshLoader', name="loader", filename="mesh/cylinder.msh")
+       tt.addObject('MechanicalObject', src="@loader", name="Volume")
+       tt.addObject('include', href="Objects/TetrahedronSetTopology.xml", src="@loader")
+       tt.addObject('DiagonalMass', massDensity="5")
+       tt.addObject('ProximityROI', name="fixedROI", centers="0 0 1 0 0 0 0 0 0.5", radii="0.1 0.2", N="40", drawSphere="1", drawPoints="1")
+       tt.addObject('FixedProjectiveConstraint', indices="@fixedROI.indices")
 
-        Visu = T.addChild('Visu')
-        Visu.addObject('OglModel', template="Vec3", name="Visual", material="Default Diffuse 1 0 0 1 0.5 Ambient 1 0.2 0 0 1 Specular 0 1 0 0 1 Emissive 0 1 0 0 1 Shininess 0 45")
-        Visu.addObject('IdentityMapping', input="@../../Volume", output="@Visual")
+       do_nothing = TT.addChild('doNothing')
+
+       do_nothing.addObject('ProximityROI', name="p1", centers="0 0 1", radii="0.1 0.2 0.3", N="40")
+       do_nothing.addObject('ProximityROI', name="p2", centers="0 0 1 0 0 0", N="40")
+       do_nothing.addObject('ProximityROI', name="p3", centers="0 0 1 0 0 0", radii="0.1 0.1")
+
+       tt.addObject('TetrahedralCorotationalFEMForceField', name="FEM", youngModulus="20", poissonRatio="0.4", method="large")
+
+       t = TT.addChild('T')
+
+       t.addObject('include', href="Objects/TriangleSetTopology.xml", src="@../loader", tags=" ")
+       t.addObject('Tetra2TriangleTopologicalMapping', input="@../Container", output="@Container")
+       t.addObject('TriangularFEMForceField', name="FEM", youngModulus="50", poissonRatio="0.3", method="large")
+       t.addObject('TriangularBendingSprings', name="FEM-Bend", stiffness="300", damping="1.0")
+       t.addObject('TrianglePressureForceField', normal="0 -0.2 1", dmin="0.9", dmax="1.1", pressure="0.4 0 0")
+       t.addObject('TriangleCollisionModel', )
+
+       visu = T.addChild('Visu')
+
+       visu.addObject('OglModel', template="Vec3", name="Visual", material="Default Diffuse 1 0 0 1 0.5 Ambient 1 0.2 0 0 1 Specular 0 1 0 0 1 Emissive 0 1 0 0 1 Shininess 0 45")
+       visu.addObject('IdentityMapping', input="@../../Volume", output="@Visual")
     ```
 

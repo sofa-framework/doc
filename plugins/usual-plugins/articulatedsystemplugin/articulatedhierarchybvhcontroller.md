@@ -1,139 +1,135 @@
+<!-- generate_doc -->
 # ArticulatedHierarchyBVHController
 
 Implements a handler that controls the values of the articulations of an articulated hierarchy container using a .bvh file.
 
 
-__Target__: `ArticulatedSystemPlugin`
+__Target__: ArticulatedSystemPlugin
 
-__namespace__: `#!c++ sofa::component::controller`
+__namespace__: sofa::component::controller
 
-__parents__: 
+__parents__:
 
-- `#!c++ ArticulatedHierarchyController`
+- ArticulatedHierarchyController
 
-__categories__: 
-
-- Controller
-
-Data: 
+### Data
 
 <table>
-<thead>
-    <tr>
-        <th>Name</th>
-        <th>Description</th>
-        <th>Default value</th>
-    </tr>
-</thead>
-<tbody>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Default value</th>
+        </tr>
+    </thead>
+    <tbody>
 	<tr>
 		<td>name</td>
 		<td>
 object name
-</td>
+		</td>
 		<td>unnamed</td>
 	</tr>
 	<tr>
 		<td>printLog</td>
 		<td>
 if true, emits extra messages at runtime.
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>tags</td>
 		<td>
 list of the subsets the objet belongs to
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>bbox</td>
 		<td>
 this object bounding box
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>componentState</td>
 		<td>
 The state of the component among (Dirty, Valid, Undefined, Loading, Invalid).
-</td>
+		</td>
 		<td>Undefined</td>
 	</tr>
 	<tr>
 		<td>listening</td>
 		<td>
 if true, handle the events, otherwise ignore the events
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>handleEventTriggersUpdate</td>
 		<td>
 Event handling frequency controls the controller update frequency
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>articulationsIndices</td>
 		<td>
 Indices of articulations controlled by the keyboard
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>bindingKeys</td>
 		<td>
 Keys to press to control the articulations
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>angleDelta</td>
 		<td>
 Angle incrementation due to each user interaction
-</td>
+		</td>
 		<td>0.01</td>
 	</tr>
 	<tr>
 		<td>propagateUserInteraction</td>
 		<td>
 Says wether or not the user interaction is local on the articulations, or must be propagated to children recursively
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>useExternalTime</td>
 		<td>
 use the external time line
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>externalTime</td>
 		<td>
  value of the External Time
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 
 </tbody>
 </table>
 
-Links: 
-
-| Name | Description |
-| ---- | ----------- |
-|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|
-|slaves|Sub-objects used internally by this object|
-|master|nullptr for regular objects, or master object for which this object is one sub-objects|
+### Links
 
 
+| Name | Description | Destination type name |
+| ---- | ----------- | --------------------- |
+|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
+|slaves|Sub-objects used internally by this object|BaseObject|
+|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
 
-## Examples
+## Examples 
 
-ArticulatedSystemPlugin/share/sofa/examples/ArticulatedSystemPlugin/ArticulatedHierarchyBVHController.scn
+ArticulatedHierarchyBVHController.scn
 
 === "XML"
 
@@ -176,46 +172,52 @@ ArticulatedSystemPlugin/share/sofa/examples/ArticulatedSystemPlugin/ArticulatedH
             <OglModel name="FloorV" src="@loader" texturename="textures/floor.bmp" scale="2" dy="-40.0" />
         </Node>
     </Node>
+
     ```
 
 === "Python"
 
     ```python
-    def createScene(rootNode):
+    def createScene(root_node):
 
-        root = rootNode.addChild('root', gravity="0 -.98 0", dt="0.5")
-        root.addObject('VisualStyle', displayFlags="showVisual showBehaviorModels")
-        root.addObject('RequiredPlugin', name="ArticulatedSystemPlugin")
-        root.addObject('RequiredPlugin', name="Sofa.Component.AnimationLoop")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Algorithm")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Intersection")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Response.Contact")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Lagrangian.Solver")
-        root.addObject('RequiredPlugin', name="Sofa.Component.IO.Mesh")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Mass")
-        root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Visual")
-        root.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
-        root.addObject('DefaultVisualManagerLoop')
-        root.addObject('FreeMotionAnimationLoop')
-        root.addObject('BruteForceBroadPhase')
-        root.addObject('BVHNarrowPhase')
-        root.addObject('MinProximityIntersection', name="Proximity", alarmDistance="1.0", contactDistance="0.5")
-        root.addObject('CollisionResponse', name="Response", response="FrictionContactConstraint")
-        root.addObject('LCPConstraintSolver', maxIt="1000", tolerance="0.001")
+       root = root_node.addChild('root', gravity="0 -.98 0", dt="0.5")
 
-        articulatedObject1 = root.addChild('articulatedObject1')
-        articulatedObject1.addObject('MechanicalObject', name="ArticulatedObject", template="Vec1d")
+       root.addObject('VisualStyle', displayFlags="showVisual showBehaviorModels")
+       root.addObject('RequiredPlugin', name="ArticulatedSystemPlugin")
+       root.addObject('RequiredPlugin', name="Sofa.Component.AnimationLoop")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Algorithm")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Intersection")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Response.Contact")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Lagrangian.Solver")
+       root.addObject('RequiredPlugin', name="Sofa.Component.IO.Mesh")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Mass")
+       root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Visual")
+       root.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
+       root.addObject('DefaultVisualManagerLoop', )
+       root.addObject('FreeMotionAnimationLoop', )
+       root.addObject('BruteForceBroadPhase', )
+       root.addObject('BVHNarrowPhase', )
+       root.addObject('MinProximityIntersection', name="Proximity", alarmDistance="1.0", contactDistance="0.5")
+       root.addObject('CollisionResponse', name="Response", response="FrictionContactConstraint")
+       root.addObject('LCPConstraintSolver', maxIt="1000", tolerance="0.001")
 
-        6D_DOFs1 = articulatedObject1.addChild('6D_DOFs1')
-        6D_DOFs1.addObject('MechanicalObject', name="6D_Dof", template="Rigid3d")
-        6D_DOFs1.addObject('UniformMass', totalMass="0.5")
-        6D_DOFs1.addObject('ArticulatedSystemMapping', input1="@../ArticulatedObject", input2="", output="@6D_Dof")
-        articulatedObject1.addObject('ArticulatedHierarchyContainer', filename="bvh/manWalking.bvh")
-        articulatedObject1.addObject('ArticulatedHierarchyBVHController')
+       articulated_object1 = root.addChild('articulatedObject1')
 
-        Floor = root.addChild('Floor')
-        Floor.addObject('MeshOBJLoader', name="loader", filename="mesh/floor.obj")
-        Floor.addObject('OglModel', name="FloorV", src="@loader", texturename="textures/floor.bmp", scale="2", dy="-40.0")
+       articulated_object1.addObject('MechanicalObject', name="ArticulatedObject", template="Vec1d")
+
+       6_d__do_fs1 = articulatedObject1.addChild('6D_DOFs1')
+
+       6_d__do_fs1.addObject('MechanicalObject', name="6D_Dof", template="Rigid3d")
+       6_d__do_fs1.addObject('UniformMass', totalMass="0.5")
+       6_d__do_fs1.addObject('ArticulatedSystemMapping', input1="@../ArticulatedObject", input2="", output="@6D_Dof")
+
+       articulated_object1.addObject('ArticulatedHierarchyContainer', filename="bvh/manWalking.bvh")
+       articulated_object1.addObject('ArticulatedHierarchyBVHController', )
+
+       floor = root.addChild('Floor')
+
+       floor.addObject('MeshOBJLoader', name="loader", filename="mesh/floor.obj")
+       floor.addObject('OglModel', name="FloorV", src="@loader", texturename="textures/floor.bmp", scale="2", dy="-40.0")
     ```
 

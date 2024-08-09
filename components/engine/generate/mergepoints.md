@@ -1,86 +1,83 @@
+<!-- generate_doc -->
 # MergePoints
 
 Merge 2 cordinate vectors
 
 
-__Templates__:
+Templates:
 
-- `#!c++ Rigid2d`
-- `#!c++ Rigid3d`
-- `#!c++ Vec1d`
-- `#!c++ Vec2d`
-- `#!c++ Vec3d`
+- Rigid2d
+- Rigid3d
+- Vec1d
+- Vec2d
+- Vec3d
 
-__Target__: `Sofa.Component.Engine.Generate`
+__Target__: Sofa.Component.Engine.Generate
 
-__namespace__: `#!c++ sofa::component::engine::generate`
+__namespace__: sofa::component::engine::generate
 
-__parents__: 
+__parents__:
 
-- `#!c++ DataEngine`
+- DataEngine
 
-__categories__: 
-
-- Engine
-
-Data: 
+### Data
 
 <table>
-<thead>
-    <tr>
-        <th>Name</th>
-        <th>Description</th>
-        <th>Default value</th>
-    </tr>
-</thead>
-<tbody>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Default value</th>
+        </tr>
+    </thead>
+    <tbody>
 	<tr>
 		<td>name</td>
 		<td>
 object name
-</td>
+		</td>
 		<td>unnamed</td>
 	</tr>
 	<tr>
 		<td>printLog</td>
 		<td>
 if true, emits extra messages at runtime.
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>tags</td>
 		<td>
 list of the subsets the objet belongs to
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>bbox</td>
 		<td>
 this object bounding box
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>componentState</td>
 		<td>
 The state of the component among (Dirty, Valid, Undefined, Loading, Invalid).
-</td>
+		</td>
 		<td>Undefined</td>
 	</tr>
 	<tr>
 		<td>listening</td>
 		<td>
 if true, handle the events, otherwise ignore the events
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>noUpdate</td>
 		<td>
 do not update the output at each time step (false)
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
@@ -90,21 +87,21 @@ do not update the output at each time step (false)
 		<td>position1</td>
 		<td>
 position coordinates of the degrees of freedom of the first object
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>position2</td>
 		<td>
 Rest position coordinates of the degrees of freedom of the second object
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>mappingX2</td>
 		<td>
 Mapping of indices to inject position2 inside position1 vertex buffer
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
@@ -114,40 +111,39 @@ Mapping of indices to inject position2 inside position1 vertex buffer
 		<td>indices1</td>
 		<td>
 Indices of the points of the first object
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>indices2</td>
 		<td>
 Indices of the points of the second object
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>points</td>
 		<td>
 position coordinates resulting from the merge
-</td>
+		</td>
 		<td></td>
 	</tr>
 
 </tbody>
 </table>
 
-Links: 
-
-| Name | Description |
-| ---- | ----------- |
-|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|
-|slaves|Sub-objects used internally by this object|
-|master|nullptr for regular objects, or master object for which this object is one sub-objects|
+### Links
 
 
+| Name | Description | Destination type name |
+| ---- | ----------- | --------------------- |
+|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
+|slaves|Sub-objects used internally by this object|BaseObject|
+|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
 
-## Examples
+## Examples 
 
-Component/Engine/Generate/MergePoints.scn
+MergePoints.scn
 
 === "XML"
 
@@ -222,67 +218,74 @@ Component/Engine/Generate/MergePoints.scn
     		</Node>
         </Node>
     </Node>
+
     ```
 
 === "Python"
 
     ```python
-    def createScene(rootNode):
+    def createScene(root_node):
 
-        root = rootNode.addChild('root', dt="0.05", showBoundingTree="0", gravity="0 -9 1")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Algorithm")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Intersection")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Response.Contact")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Lagrangian.Correction")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Projective")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Engine.Generate")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Engine.Select")
-        root.addObject('RequiredPlugin', name="Sofa.Component.IO.Mesh")
-        root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Iterative")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Mapping.Linear")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Mass")
-        root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
-        root.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.FEM.Elastic")
-        root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Dynamic")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Grid")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Visual")
-        root.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
-        root.addObject('RequiredPlugin', name="Sofa.GL.Component.Shader")
-        root.addObject('DefaultAnimationLoop')
-        root.addObject('VisualStyle', displayFlags="showVisual showBehaviorModels")
-        root.addObject('CollisionPipeline', verbose="0")
-        root.addObject('BruteForceBroadPhase')
-        root.addObject('BVHNarrowPhase')
-        root.addObject('CollisionResponse', response="PenalityContactForceField")
-        root.addObject('MinProximityIntersection', name="Proximity", alarmDistance="0.8", contactDistance="0.5")
-        root.addObject('LightManager')
-        root.addObject('SpotLight', name="light1", color="1 1 1", position="0 80 25", direction="0 -1 -0.8", cutoff="30", exponent="1")
-        root.addObject('SpotLight', name="light2", color="1 1 1", position="0 40 100", direction="0 0 -1", cutoff="30", exponent="1")
+       root = root_node.addChild('root', dt="0.05", showBoundingTree="0", gravity="0 -9 1")
 
-        mesh = root.addChild('mesh')
-        mesh.addObject('MeshOBJLoader', name="meshLoader", filename="mesh/raptor_35kp.obj")
-        mesh.addObject('SubsetTopology', template="Vec3", name="subset_head", box="-2 4 4 2 8 8", drawROI="1", src="@meshLoader", rest_position="@meshLoader.position", localIndices="1")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Algorithm")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Intersection")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Response.Contact")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Lagrangian.Correction")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Projective")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Engine.Generate")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Engine.Select")
+       root.addObject('RequiredPlugin', name="Sofa.Component.IO.Mesh")
+       root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Iterative")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Mapping.Linear")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Mass")
+       root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.FEM.Elastic")
+       root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Dynamic")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Grid")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Visual")
+       root.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
+       root.addObject('RequiredPlugin', name="Sofa.GL.Component.Shader")
+       root.addObject('DefaultAnimationLoop', )
+       root.addObject('VisualStyle', displayFlags="showVisual showBehaviorModels")
+       root.addObject('CollisionPipeline', verbose="0")
+       root.addObject('BruteForceBroadPhase', )
+       root.addObject('BVHNarrowPhase', )
+       root.addObject('CollisionResponse', response="PenalityContactForceField")
+       root.addObject('MinProximityIntersection', name="Proximity", alarmDistance="0.8", contactDistance="0.5")
+       root.addObject('LightManager', )
+       root.addObject('SpotLight', name="light1", color="1 1 1", position="0 80 25", direction="0 -1 -0.8", cutoff="30", exponent="1")
+       root.addObject('SpotLight', name="light2", color="1 1 1", position="0 40 100", direction="0 0 -1", cutoff="30", exponent="1")
 
-        simu_head = mesh.addChild('simu_head')
-        simu_head.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
-        simu_head.addObject('CGLinearSolver', iterations="25", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
-        simu_head.addObject('SparseGridRamificationTopology', position="@../subset_head.pointsInROI", n="10 10 10", nbVirtualFinerLevels="0", finestConnectivity="0")
-        simu_head.addObject('MechanicalObject', template="Vec3", name="mecaObj2")
-        simu_head.addObject('BoxConstraint', box="-2 4 4 2 8 4.5", drawBoxes="0")
-        simu_head.addObject('UniformMass', totalMass="50.0")
-        simu_head.addObject('HexahedronFEMForceField', name="FEM", youngModulus="4000.0", poissonRatio="0.30", method="large", updateStiffnessMatrix="false", printLog="0", drawing="1")
-        simu_head.addObject('UncoupledConstraintCorrection')
+       mesh = root.addChild('mesh')
 
-        Visu = simu_head.addChild('Visu')
-        Visu.addObject('QuadSetTopologyContainer', name="Container", position="@../../subset_head.pointsInROI", quads="@../../subset_head.quadsInROI")
-        Visu.addObject('QuadSetTopologyModifier', name="Modifier")
-        Visu.addObject('QuadSetGeometryAlgorithms', name="GeomAlgo", template="Vec3", drawEdges="0")
-        Visu.addObject('MechanicalObject', name="CollisModel")
-        Visu.addObject('BarycentricMapping', input="@..", output="@CollisModel")
-        mesh.addObject('MergePoints', template="Vec3", name="merge_subsets", position1="@meshLoader.position", position2="@simu_head/Visu/CollisModel.position", mappingX2="@subset_head.indices")
+       mesh.addObject('MeshOBJLoader', name="meshLoader", filename="mesh/raptor_35kp.obj")
+       mesh.addObject('SubsetTopology', template="Vec3", name="subset_head", box="-2 4 4 2 8 8", drawROI="1", src="@meshLoader", rest_position="@meshLoader.position", localIndices="1")
 
-        mesh = mesh.addChild('mesh')
-        mesh.addObject('OglModel', name="Visual", position="@../merge_subsets.points", src="@../meshLoader", texturename="textures/snakeskin.png", scaleTex="20 20")
+       simu_head = mesh.addChild('simu_head')
+
+       simu_head.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
+       simu_head.addObject('CGLinearSolver', iterations="25", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
+       simu_head.addObject('SparseGridRamificationTopology', position="@../subset_head.pointsInROI", n="10 10 10", nbVirtualFinerLevels="0", finestConnectivity="0")
+       simu_head.addObject('MechanicalObject', template="Vec3", name="mecaObj2")
+       simu_head.addObject('BoxConstraint', box="-2 4 4 2 8 4.5", drawBoxes="0")
+       simu_head.addObject('UniformMass', totalMass="50.0")
+       simu_head.addObject('HexahedronFEMForceField', name="FEM", youngModulus="4000.0", poissonRatio="0.30", method="large", updateStiffnessMatrix="false", printLog="0", drawing="1")
+       simu_head.addObject('UncoupledConstraintCorrection', )
+
+       visu = simu_head.addChild('Visu')
+
+       visu.addObject('QuadSetTopologyContainer', name="Container", position="@../../subset_head.pointsInROI", quads="@../../subset_head.quadsInROI")
+       visu.addObject('QuadSetTopologyModifier', name="Modifier")
+       visu.addObject('QuadSetGeometryAlgorithms', name="GeomAlgo", template="Vec3", drawEdges="0")
+       visu.addObject('MechanicalObject', name="CollisModel")
+       visu.addObject('BarycentricMapping', input="@..", output="@CollisModel")
+
+       mesh.addObject('MergePoints', template="Vec3", name="merge_subsets", position1="@meshLoader.position", position2="@simu_head/Visu/CollisModel.position", mappingX2="@subset_head.indices")
+
+       node = mesh.addChild('node')
+
+       node.addObject('OglModel', name="Visual", position="@../merge_subsets.points", src="@../meshLoader", texturename="textures/snakeskin.png", scaleTex="20 20")
     ```
 

@@ -1,129 +1,125 @@
+<!-- generate_doc -->
 # BoxROI
 
 Find the primitives (vertex/edge/triangle/quad/tetrahedron/hexahedron) inside given boxes
-Supports GPU-side computations using CUDA
 
 
-__Templates__:
+Templates:
 
-- `#!c++ Rigid3d`
-- `#!c++ Vec1d`
-- `#!c++ Vec2d`
-- `#!c++ Vec3d`
-- `#!c++ Vec6d`
+- Rigid3d
+- Vec1d
+- Vec2d
+- Vec3d
+- Vec6d
 
-__Target__: `Sofa.Component.Engine.Select`
+__Target__: Sofa.Component.Engine.Select
 
-__namespace__: `#!c++ sofa::component::engine::select::boxroi`
+__namespace__: sofa::component::engine::select::boxroi
 
-__parents__: 
+__parents__:
 
-- `#!c++ BaseROI`
+- BaseROI
 
-__categories__: 
-
-- Engine
-
-Data: 
+### Data
 
 <table>
-<thead>
-    <tr>
-        <th>Name</th>
-        <th>Description</th>
-        <th>Default value</th>
-    </tr>
-</thead>
-<tbody>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Default value</th>
+        </tr>
+    </thead>
+    <tbody>
 	<tr>
 		<td>name</td>
 		<td>
 object name
-</td>
+		</td>
 		<td>unnamed</td>
 	</tr>
 	<tr>
 		<td>printLog</td>
 		<td>
 if true, emits extra messages at runtime.
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>tags</td>
 		<td>
 list of the subsets the objet belongs to
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>bbox</td>
 		<td>
 this object bounding box
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>componentState</td>
 		<td>
 The state of the component among (Dirty, Valid, Undefined, Loading, Invalid).
-</td>
+		</td>
 		<td>Undefined</td>
 	</tr>
 	<tr>
 		<td>listening</td>
 		<td>
 if true, handle the events, otherwise ignore the events
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>computeEdges</td>
 		<td>
 If true, will compute edge list and index list inside the ROI.
-</td>
+		</td>
 		<td>1</td>
 	</tr>
 	<tr>
 		<td>computeTriangles</td>
 		<td>
 If true, will compute triangle list and index list inside the ROI.
-</td>
+		</td>
 		<td>1</td>
 	</tr>
 	<tr>
 		<td>computeQuads</td>
 		<td>
 If true, will compute quad list and index list inside the ROI.
-</td>
+		</td>
 		<td>1</td>
 	</tr>
 	<tr>
 		<td>computeTetrahedra</td>
 		<td>
 If true, will compute tetrahedra list and index list inside the ROI.
-</td>
+		</td>
 		<td>1</td>
 	</tr>
 	<tr>
 		<td>computeHexahedra</td>
 		<td>
 If true, will compute hexahedra list and index list inside the ROI.
-</td>
+		</td>
 		<td>1</td>
 	</tr>
 	<tr>
 		<td>strict</td>
 		<td>
 If true, an element is inside the box if all of its nodes are inside. If False, only the center point of the element is checked.
-</td>
+		</td>
 		<td>1</td>
 	</tr>
 	<tr>
 		<td>doUpdate</td>
 		<td>
 If true, updates the selection at the beginning of simulation steps.
-</td>
+		</td>
 		<td>1</td>
 	</tr>
 	<tr>
@@ -135,49 +131,49 @@ If true, updates the selection at the beginning of simulation steps.
 Rest position coordinates of the degrees of freedom. 
 If empty the positions from a MechanicalObject then a MeshLoader are searched in the current context. 
 If none are found the parent's context is searched for MechanicalObject.
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>edges</td>
 		<td>
 Edge Topology
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>triangles</td>
 		<td>
 Triangle Topology
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>quads</td>
 		<td>
 Quad Topology
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>tetrahedra</td>
 		<td>
 Tetrahedron Topology
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>hexahedra</td>
 		<td>
 Hexahedron Topology
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>box</td>
 		<td>
 List of boxes, each defined by two 3D points : xmin,ymin,zmin, xmax,ymax,zmax
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
@@ -187,7 +183,7 @@ List of boxes defined by 3 points (p0, p1, p2) and a depth distance
 A parallelogram will be defined by (p0, p1, p2, p3 = p0 + (p2-p1)). 
 The box will finaly correspond to the parallelogram extrusion of depth/2 
 along its normal and depth/2 in the opposite direction. 
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
@@ -197,147 +193,147 @@ along its normal and depth/2 in the opposite direction.
 		<td>indices</td>
 		<td>
 Indices of the points contained in the ROI
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>edgeIndices</td>
 		<td>
 Indices of the edges contained in the ROI
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>triangleIndices</td>
 		<td>
 Indices of the triangles contained in the ROI
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>quadIndices</td>
 		<td>
 Indices of the quad contained in the ROI
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>tetrahedronIndices</td>
 		<td>
 Indices of the tetrahedra contained in the ROI
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>hexahedronIndices</td>
 		<td>
 Indices of the hexahedra contained in the ROI
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>pointsInROI</td>
 		<td>
 Points contained in the ROI
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>edgesInROI</td>
 		<td>
 Edges contained in the ROI
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>trianglesInROI</td>
 		<td>
 Triangles contained in the ROI
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>quadsInROI</td>
 		<td>
 Quad contained in the ROI
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>tetrahedraInROI</td>
 		<td>
 Tetrahedra contained in the ROI
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>hexahedraInROI</td>
 		<td>
 Hexahedra contained in the ROI
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>nbIndices</td>
 		<td>
 Number of selected indices
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>pointsOutROI</td>
 		<td>
 Points not contained in the ROI
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>edgesOutROI</td>
 		<td>
 Edges not contained in the ROI
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>trianglesOutROI</td>
 		<td>
 Triangles not contained in the ROI
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>tetrahedraOutROI</td>
 		<td>
 Tetrahedra not contained in the ROI
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>indicesOut</td>
 		<td>
 Indices of the points not contained in the ROI
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>edgeOutIndices</td>
 		<td>
 Indices of the edges not contained in the ROI
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>triangleOutIndices</td>
 		<td>
 Indices of the triangles not contained in the ROI
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>tetrahedronOutIndices</td>
 		<td>
 Indices of the tetrahedra not contained in the ROI
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
@@ -347,75 +343,74 @@ Indices of the tetrahedra not contained in the ROI
 		<td>drawROI</td>
 		<td>
 Draw the ROI.
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>drawPoints</td>
 		<td>
 Draw Points.
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>drawEdges</td>
 		<td>
 Draw Edges.
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>drawTriangles</td>
 		<td>
 Draw Triangles.
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>drawQuads</td>
 		<td>
 Draw Quads.
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>drawTetrahedra</td>
 		<td>
 Draw Tetrahedra.
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>drawHexahedra</td>
 		<td>
 Draw Tetrahedra.
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>drawSize</td>
 		<td>
 rendering size for ROI and topological elements
-</td>
+		</td>
 		<td>1</td>
 	</tr>
 
 </tbody>
 </table>
 
-Links: 
-
-| Name | Description |
-| ---- | ----------- |
-|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|
-|slaves|Sub-objects used internally by this object|
-|master|nullptr for regular objects, or master object for which this object is one sub-objects|
+### Links
 
 
+| Name | Description | Destination type name |
+| ---- | ----------- | --------------------- |
+|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
+|slaves|Sub-objects used internally by this object|BaseObject|
+|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
 
-## Examples
+## Examples 
 
-Component/Engine/Select/BoxROI_2d.scn
+BoxROI_2d.scn
 
 === "XML"
 
@@ -448,39 +443,42 @@ Component/Engine/Select/BoxROI_2d.scn
             <MeshSpringForceField stiffness="10000"/>
         </Node>
     </Node>
+
     ```
 
 === "Python"
 
     ```python
-    def createScene(rootNode):
+    def createScene(root_node):
 
-        root = rootNode.addChild('root', gravity="0 -9.81 1", dt="0.02")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Projective")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Engine.Select")
-        root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Iterative")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Mass")
-        root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
-        root.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.Spring")
-        root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Grid")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Visual")
-        root.addObject('VisualStyle', displayFlags="showBehaviorModels showForceFields")
-        root.addObject('DefaultAnimationLoop')
-        root.addObject('DefaultVisualManagerLoop')
+       root = root_node.addChild('root', gravity="0 -9.81 1", dt="0.02")
 
-        M1 = root.addChild('M1')
-        M1.addObject('EulerImplicitSolver', name="odesolver", rayleighStiffness="0.1", rayleighMass="0.1")
-        M1.addObject('CGLinearSolver', template="CompressedRowSparseMatrix", iterations="1000", threshold="1e-9", tolerance="1e-9")
-        M1.addObject('MechanicalObject', template="Vec2")
-        M1.addObject('UniformMass', vertexMass="1")
-        M1.addObject('RegularGridTopology', nx="21", ny="5", nz="1", xmin="0", xmax="20", ymin="0", ymax="4", zmin="0", zmax="0")
-        M1.addObject('BoxROI', name="box", box="-0.1 -0.1 -1e4  0.1 4.1 1e4")
-        M1.addObject('FixedProjectiveConstraint', indices="@box.indices")
-        M1.addObject('MeshSpringForceField', stiffness="10000")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Projective")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Engine.Select")
+       root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Iterative")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Mass")
+       root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.Spring")
+       root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Grid")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Visual")
+       root.addObject('VisualStyle', displayFlags="showBehaviorModels showForceFields")
+       root.addObject('DefaultAnimationLoop', )
+       root.addObject('DefaultVisualManagerLoop', )
+
+       m1 = root.addChild('M1')
+
+       m1.addObject('EulerImplicitSolver', name="odesolver", rayleighStiffness="0.1", rayleighMass="0.1")
+       m1.addObject('CGLinearSolver', template="CompressedRowSparseMatrix", iterations="1000", threshold="1e-9", tolerance="1e-9")
+       m1.addObject('MechanicalObject', template="Vec2")
+       m1.addObject('UniformMass', vertexMass="1")
+       m1.addObject('RegularGridTopology', nx="21", ny="5", nz="1", xmin="0", xmax="20", ymin="0", ymax="4", zmin="0", zmax="0")
+       m1.addObject('BoxROI', name="box", box="-0.1 -0.1 -1e4  0.1 4.1 1e4")
+       m1.addObject('FixedProjectiveConstraint', indices="@box.indices")
+       m1.addObject('MeshSpringForceField', stiffness="10000")
     ```
 
-Component/Engine/Select/BoxROI.scn
+BoxROI.scn
 
 === "XML"
 
@@ -533,61 +531,65 @@ Component/Engine/Select/BoxROI.scn
             </Node>
         </Node>
     </Node>
+
     ```
 
 === "Python"
 
     ```python
-    def createScene(rootNode):
+    def createScene(root_node):
 
-        root = rootNode.addChild('root', gravity="0 -9 1", dt="0.05")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Algorithm")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Intersection")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Geometry")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Response.Contact")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Projective")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Engine.Select")
-        root.addObject('RequiredPlugin', name="Sofa.Component.IO.Mesh")
-        root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Iterative")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Mapping.Linear")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Mass")
-        root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
-        root.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.FEM.Elastic")
-        root.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.Spring")
-        root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Dynamic")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Visual")
-        root.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
-        root.addObject('DefaultAnimationLoop')
-        root.addObject('VisualStyle', displayFlags="showBehaviorModels showWireframe")
-        root.addObject('CollisionPipeline', name="default0", verbose="0")
-        root.addObject('BruteForceBroadPhase')
-        root.addObject('BVHNarrowPhase')
-        root.addObject('CollisionResponse', name="default1", response="PenalityContactForceField")
-        root.addObject('MinProximityIntersection', name="Proximity", alarmDistance="0.8", contactDistance="0.5")
+       root = root_node.addChild('root', gravity="0 -9 1", dt="0.05")
 
-        SquareGravity = root.addChild('SquareGravity', gravity="0 -9.81 0")
-        SquareGravity.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
-        SquareGravity.addObject('CGLinearSolver', iterations="25", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
-        SquareGravity.addObject('MeshGmshLoader', name="loader", filename="mesh/square3.msh", createSubelements="true")
-        SquareGravity.addObject('MechanicalObject', src="@loader", template="Vec3", name="mecaObj", scale3d="10 10 10", restScale="1")
-        SquareGravity.addObject('TriangleSetTopologyContainer', src="@loader", name="Container")
-        SquareGravity.addObject('TriangleSetTopologyModifier', name="Modifier")
-        SquareGravity.addObject('TriangleSetGeometryAlgorithms', template="Vec3", name="GeomAlgo")
-        SquareGravity.addObject('DiagonalMass', name="default5", massDensity="0.15")
-        SquareGravity.addObject('BoxROI', template="Vec3", box="2 9.5 -0.5 8 10.5 0.5", drawBoxes="1", position="@mecaObj.rest_position", name="FixedROI", computeTriangles="0", computeTetrahedra="0", computeEdges="0")
-        SquareGravity.addObject('FixedProjectiveConstraint', template="Vec3", name="default6", indices="@FixedROI.indices")
-        SquareGravity.addObject('TriangularFEMForceField', template="Vec3", name="FEM", method="large", poissonRatio="0.3", youngModulus="60")
-        SquareGravity.addObject('TriangularBendingSprings', template="Vec3", name="FEM-Bend", stiffness="300", damping="1")
-        SquareGravity.addObject('TriangleCollisionModel', template="Vec3", name="default7")
-        SquareGravity.addObject('BoxROI', template="Vec3", box="3 3 0 6 6 1", orientedBox="3 9 0 6 7 0 3 7 0 1   8 3 0 9 5.5 0 8 6 0 1", drawBoxes="1", position="@mecaObj.position", drawTriangles="1", triangles="@Container.triangles", name="boxROI")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Algorithm")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Intersection")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Geometry")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Response.Contact")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Projective")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Engine.Select")
+       root.addObject('RequiredPlugin', name="Sofa.Component.IO.Mesh")
+       root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Iterative")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Mapping.Linear")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Mass")
+       root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.FEM.Elastic")
+       root.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.Spring")
+       root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Dynamic")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Visual")
+       root.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
+       root.addObject('DefaultAnimationLoop', )
+       root.addObject('VisualStyle', displayFlags="showBehaviorModels showWireframe")
+       root.addObject('CollisionPipeline', name="default0", verbose="0")
+       root.addObject('BruteForceBroadPhase', )
+       root.addObject('BVHNarrowPhase', )
+       root.addObject('CollisionResponse', name="default1", response="PenalityContactForceField")
+       root.addObject('MinProximityIntersection', name="Proximity", alarmDistance="0.8", contactDistance="0.5")
 
-        visu = SquareGravity.addChild('visu')
-        visu.addObject('OglModel', template="Vec3", name="Visual", material="Default Diffuse 1 1 0 0 0.6 Ambient 1 0.2 0 0 1 Specular 0 1 0 0 1 Emissive 0 1 0 0 1 Shininess 0 45")
-        visu.addObject('IdentityMapping', template="Vec3,Vec3", name="default8", input="@..", output="@Visual")
+       square_gravity = root.addChild('SquareGravity', gravity="0 -9.81 0")
+
+       square_gravity.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
+       square_gravity.addObject('CGLinearSolver', iterations="25", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
+       square_gravity.addObject('MeshGmshLoader', name="loader", filename="mesh/square3.msh", createSubelements="true")
+       square_gravity.addObject('MechanicalObject', src="@loader", template="Vec3", name="mecaObj", scale3d="10 10 10", restScale="1")
+       square_gravity.addObject('TriangleSetTopologyContainer', src="@loader", name="Container")
+       square_gravity.addObject('TriangleSetTopologyModifier', name="Modifier")
+       square_gravity.addObject('TriangleSetGeometryAlgorithms', template="Vec3", name="GeomAlgo")
+       square_gravity.addObject('DiagonalMass', name="default5", massDensity="0.15")
+       square_gravity.addObject('BoxROI', template="Vec3", box="2 9.5 -0.5 8 10.5 0.5", drawBoxes="1", position="@mecaObj.rest_position", name="FixedROI", computeTriangles="0", computeTetrahedra="0", computeEdges="0")
+       square_gravity.addObject('FixedProjectiveConstraint', template="Vec3", name="default6", indices="@FixedROI.indices")
+       square_gravity.addObject('TriangularFEMForceField', template="Vec3", name="FEM", method="large", poissonRatio="0.3", youngModulus="60")
+       square_gravity.addObject('TriangularBendingSprings', template="Vec3", name="FEM-Bend", stiffness="300", damping="1")
+       square_gravity.addObject('TriangleCollisionModel', template="Vec3", name="default7")
+       square_gravity.addObject('BoxROI', template="Vec3", box="3 3 0 6 6 1", orientedBox="3 9 0 6 7 0 3 7 0 1   8 3 0 9 5.5 0 8 6 0 1", drawBoxes="1", position="@mecaObj.position", drawTriangles="1", triangles="@Container.triangles", name="boxROI")
+
+       visu = SquareGravity.addChild('visu')
+
+       visu.addObject('OglModel', template="Vec3", name="Visual", material="Default Diffuse 1 1 0 0 0.6 Ambient 1 0.2 0 0 1 Specular 0 1 0 0 1 Emissive 0 1 0 0 1 Shininess 0 45")
+       visu.addObject('IdentityMapping', template="Vec3,Vec3", name="default8", input="@..", output="@Visual")
     ```
 
-Component/Engine/Select/BoxROI_1d.scn
+BoxROI_1d.scn
 
 === "XML"
 
@@ -620,35 +622,38 @@ Component/Engine/Select/BoxROI_1d.scn
             <MeshSpringForceField stiffness="500"/>
         </Node>
     </Node>
+
     ```
 
 === "Python"
 
     ```python
-    def createScene(rootNode):
+    def createScene(root_node):
 
-        root = rootNode.addChild('root', gravity="9.81 0 0", dt="0.02")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Projective")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Engine.Select")
-        root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Iterative")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Mass")
-        root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
-        root.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.Spring")
-        root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Grid")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Visual")
-        root.addObject('VisualStyle', displayFlags="showBehaviorModels showForceFields")
-        root.addObject('DefaultAnimationLoop')
-        root.addObject('DefaultVisualManagerLoop')
+       root = root_node.addChild('root', gravity="9.81 0 0", dt="0.02")
 
-        M1 = root.addChild('M1')
-        M1.addObject('EulerImplicitSolver', name="odesolver", rayleighStiffness="0.1", rayleighMass="0.1")
-        M1.addObject('CGLinearSolver', template="CompressedRowSparseMatrix", iterations="1000", threshold="1e-9", tolerance="1e-9")
-        M1.addObject('MechanicalObject', template="Vec1", showObject="true", showObjectScale="10")
-        M1.addObject('UniformMass', vertexMass="1")
-        M1.addObject('RegularGridTopology', nx="21", ny="1", nz="1", xmin="0", xmax="20", ymin="0", ymax="0", zmin="0", zmax="0")
-        M1.addObject('BoxROI', name="box", box="-0.1 -1e4 -1e4  0.1 1e4 1e4")
-        M1.addObject('FixedProjectiveConstraint', indices="@box.indices")
-        M1.addObject('MeshSpringForceField', stiffness="500")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Projective")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Engine.Select")
+       root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Iterative")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Mass")
+       root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.Spring")
+       root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Grid")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Visual")
+       root.addObject('VisualStyle', displayFlags="showBehaviorModels showForceFields")
+       root.addObject('DefaultAnimationLoop', )
+       root.addObject('DefaultVisualManagerLoop', )
+
+       m1 = root.addChild('M1')
+
+       m1.addObject('EulerImplicitSolver', name="odesolver", rayleighStiffness="0.1", rayleighMass="0.1")
+       m1.addObject('CGLinearSolver', template="CompressedRowSparseMatrix", iterations="1000", threshold="1e-9", tolerance="1e-9")
+       m1.addObject('MechanicalObject', template="Vec1", showObject="true", showObjectScale="10")
+       m1.addObject('UniformMass', vertexMass="1")
+       m1.addObject('RegularGridTopology', nx="21", ny="1", nz="1", xmin="0", xmax="20", ymin="0", ymax="0", zmin="0", zmax="0")
+       m1.addObject('BoxROI', name="box", box="-0.1 -1e4 -1e4  0.1 1e4 1e4")
+       m1.addObject('FixedProjectiveConstraint', indices="@box.indices")
+       m1.addObject('MeshSpringForceField', stiffness="500")
     ```
 

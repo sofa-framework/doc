@@ -1,203 +1,199 @@
+<!-- generate_doc -->
 # OglShader
 
 OglShader
 
 
-__Target__: `Sofa.GL.Component.Shader`
+__Target__: Sofa.GL.Component.Shader
 
-__namespace__: `#!c++ sofa::gl::component::shader`
+__namespace__: sofa::gl::component::shader
 
-__parents__: 
+__parents__:
 
-- `#!c++ Shader`
-- `#!c++ VisualModel`
-
-__categories__: 
-
+- Shader
 - VisualModel
 
-Data: 
+### Data
 
 <table>
-<thead>
-    <tr>
-        <th>Name</th>
-        <th>Description</th>
-        <th>Default value</th>
-    </tr>
-</thead>
-<tbody>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Default value</th>
+        </tr>
+    </thead>
+    <tbody>
 	<tr>
 		<td>name</td>
 		<td>
 object name
-</td>
+		</td>
 		<td>unnamed</td>
 	</tr>
 	<tr>
 		<td>printLog</td>
 		<td>
 if true, emits extra messages at runtime.
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>tags</td>
 		<td>
 list of the subsets the objet belongs to
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>bbox</td>
 		<td>
 this object bounding box
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>componentState</td>
 		<td>
 The state of the component among (Dirty, Valid, Undefined, Loading, Invalid).
-</td>
+		</td>
 		<td>Undefined</td>
 	</tr>
 	<tr>
 		<td>listening</td>
 		<td>
 if true, handle the events, otherwise ignore the events
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>enable</td>
 		<td>
 Display the object or not
-</td>
+		</td>
 		<td>1</td>
 	</tr>
 	<tr>
 		<td>turnOn</td>
 		<td>
 Turn On the shader?
-</td>
+		</td>
 		<td>1</td>
 	</tr>
 	<tr>
 		<td>passive</td>
 		<td>
 Will this shader be activated manually or automatically?
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>fileVertexShaders</td>
 		<td>
 Set the vertex shader filename to load
-</td>
+		</td>
 		<td>[ 'shaders/toonShading.vert' ]</td>
 	</tr>
 	<tr>
 		<td>fileFragmentShaders</td>
 		<td>
 Set the fragment shader filename to load
-</td>
+		</td>
 		<td>[ 'shaders/toonShading.frag' ]</td>
 	</tr>
 	<tr>
 		<td>fileGeometryShaders</td>
 		<td>
 Set the geometry shader filename to load
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>fileTessellationControlShaders</td>
 		<td>
 Set the tessellation control filename to load
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>fileTessellationEvaluationShaders</td>
 		<td>
 Set the tessellation evaluation filename to load
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>geometryInputType</td>
 		<td>
 Set input types for the geometry shader
-</td>
+		</td>
 		<td>-1</td>
 	</tr>
 	<tr>
 		<td>geometryOutputType</td>
 		<td>
 Set output types for the geometry shader
-</td>
+		</td>
 		<td>-1</td>
 	</tr>
 	<tr>
 		<td>geometryVerticesOut</td>
 		<td>
 Set max number of vertices in output for the geometry shader
-</td>
+		</td>
 		<td>-1</td>
 	</tr>
 	<tr>
 		<td>tessellationOuterLevel</td>
 		<td>
 For tessellation without control shader: default outer level (edge subdivisions)
-</td>
+		</td>
 		<td>1</td>
 	</tr>
 	<tr>
 		<td>tessellationInnerLevel</td>
 		<td>
 For tessellation without control shader: default inner level (face subdivisions)
-</td>
+		</td>
 		<td>1</td>
 	</tr>
 	<tr>
 		<td>indexActiveShader</td>
 		<td>
 Set current active shader
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>backfaceWriting</td>
 		<td>
 it enables writing to gl_BackColor inside a GLSL vertex shader
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>clampVertexColor</td>
 		<td>
 clamp the vertex color between 0 and 1
-</td>
+		</td>
 		<td>1</td>
 	</tr>
 
 </tbody>
 </table>
 
-Links: 
-
-| Name | Description |
-| ---- | ----------- |
-|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|
-|slaves|Sub-objects used internally by this object|
-|master|nullptr for regular objects, or master object for which this object is one sub-objects|
+### Links
 
 
+| Name | Description | Destination type name |
+| ---- | ----------- | --------------------- |
+|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
+|slaves|Sub-objects used internally by this object|BaseObject|
+|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
 
-## Examples
+## Examples 
 
-Component/Visual/OglShader.scn
+OglShader.scn
 
 === "XML"
 
@@ -249,60 +245,65 @@ Component/Visual/OglShader.scn
             </Node>
         </Node>
     </Node>
+
     ```
 
 === "Python"
 
     ```python
-    def createScene(rootNode):
+    def createScene(root_node):
 
-        root = rootNode.addChild('root', dt="0.02")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Algorithm")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Intersection")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Geometry")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Response.Contact")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Projective")
-        root.addObject('RequiredPlugin', name="Sofa.Component.IO.Mesh")
-        root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Iterative")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Mapping.Linear")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Mass")
-        root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
-        root.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.FEM.Elastic")
-        root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Constant")
-        root.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
-        root.addObject('RequiredPlugin', name="Sofa.GL.Component.Shader")
-        root.addObject('CollisionPipeline', verbose="0")
-        root.addObject('BruteForceBroadPhase')
-        root.addObject('BVHNarrowPhase')
-        root.addObject('CollisionResponse', response="PenalityContactForceField")
-        root.addObject('DiscreteIntersection')
-        root.addObject('DefaultAnimationLoop')
+       root = root_node.addChild('root', dt="0.02")
 
-        Liver = root.addChild('Liver')
-        Liver.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
-        Liver.addObject('CGLinearSolver', iterations="25", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
-        Liver.addObject('MeshGmshLoader', name="loader", filename="mesh/liver.msh")
-        Liver.addObject('MeshTopology', src="@loader")
-        Liver.addObject('MechanicalObject', src="@loader", name="Liver")
-        Liver.addObject('UniformMass', name="mass", vertexMass="0.05")
-        Liver.addObject('TetrahedronFEMForceField', name="FEM", youngModulus="500", poissonRatio="0.3", computeGlobalMatrix="false", method="large")
-        Liver.addObject('FixedProjectiveConstraint', name="FixedProjectiveConstraint", indices="3 39 64")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Algorithm")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Intersection")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Geometry")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Response.Contact")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Projective")
+       root.addObject('RequiredPlugin', name="Sofa.Component.IO.Mesh")
+       root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Iterative")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Mapping.Linear")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Mass")
+       root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.FEM.Elastic")
+       root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Constant")
+       root.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
+       root.addObject('RequiredPlugin', name="Sofa.GL.Component.Shader")
+       root.addObject('CollisionPipeline', verbose="0")
+       root.addObject('BruteForceBroadPhase', )
+       root.addObject('BVHNarrowPhase', )
+       root.addObject('CollisionResponse', response="PenalityContactForceField")
+       root.addObject('DiscreteIntersection', )
+       root.addObject('DefaultAnimationLoop', )
 
-        Visu = Liver.addChild('Visu')
-        Visu.addObject('OglShader', fileFragmentShaders="['shaders/toonShading.frag']", fileVertexShaders="['shaders/toonShading.vert']")
-        Visu.addObject('MeshOBJLoader', name="meshLoader_0", filename="mesh/liver-smooth.obj", handleSeams="1")
-        Visu.addObject('OglModel', name="VisualModel", src="@meshLoader_0", color="red")
-        Visu.addObject('BarycentricMapping', input="@..", output="@VisualModel")
+       liver = root.addChild('Liver')
 
-        Surf = Liver.addChild('Surf')
-        Surf.addObject('SphereLoader', filename="mesh/liver.sph")
-        Surf.addObject('MechanicalObject', position="@[-1].position")
-        Surf.addObject('SphereCollisionModel', name="CollisionModel", listRadius="@[-2].listRadius")
-        Surf.addObject('BarycentricMapping')
+       liver.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
+       liver.addObject('CGLinearSolver', iterations="25", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
+       liver.addObject('MeshGmshLoader', name="loader", filename="mesh/liver.msh")
+       liver.addObject('MeshTopology', src="@loader")
+       liver.addObject('MechanicalObject', src="@loader", name="Liver")
+       liver.addObject('UniformMass', name="mass", vertexMass="0.05")
+       liver.addObject('TetrahedronFEMForceField', name="FEM", youngModulus="500", poissonRatio="0.3", computeGlobalMatrix="false", method="large")
+       liver.addObject('FixedProjectiveConstraint', name="FixedProjectiveConstraint", indices="3 39 64")
+
+       visu = Liver.addChild('Visu')
+
+       visu.addObject('OglShader', fileFragmentShaders="['shaders/toonShading.frag']", fileVertexShaders="['shaders/toonShading.vert']")
+       visu.addObject('MeshOBJLoader', name="meshLoader_0", filename="mesh/liver-smooth.obj", handleSeams="1")
+       visu.addObject('OglModel', name="VisualModel", src="@meshLoader_0", color="red")
+       visu.addObject('BarycentricMapping', input="@..", output="@VisualModel")
+
+       surf = Liver.addChild('Surf')
+
+       surf.addObject('SphereLoader', filename="mesh/liver.sph")
+       surf.addObject('MechanicalObject', position="@[-1].position")
+       surf.addObject('SphereCollisionModel', name="CollisionModel", listRadius="@[-2].listRadius")
+       surf.addObject('BarycentricMapping', )
     ```
 
-Component/Visual/OglShader_tessellation.scn
+OglShader_tessellation.scn
 
 === "XML"
 
@@ -364,58 +365,62 @@ Component/Visual/OglShader_tessellation.scn
             </Node>
         </Node>
     </Node>
+
     ```
 
 === "Python"
 
     ```python
-    def createScene(rootNode):
+    def createScene(root_node):
 
-        root = rootNode.addChild('root', dt="0.02")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Algorithm")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Intersection")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Geometry")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Response.Contact")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Projective")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Engine.Select")
-        root.addObject('RequiredPlugin', name="Sofa.Component.IO.Mesh")
-        root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Iterative")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Mapping.Linear")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Mass")
-        root.addObject('RequiredPlugin', name="Sofa.Component.MechanicalLoad")
-        root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
-        root.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.FEM.Elastic")
-        root.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.Spring")
-        root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Dynamic")
-        root.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
-        root.addObject('RequiredPlugin', name="Sofa.GL.Component.Shader")
-        root.addObject('DefaultAnimationLoop')
-        root.addObject('CollisionPipeline', verbose="0")
-        root.addObject('BruteForceBroadPhase')
-        root.addObject('BVHNarrowPhase')
-        root.addObject('CollisionResponse', response="PenalityContactForceField")
-        root.addObject('DiscreteIntersection')
+       root = root_node.addChild('root', dt="0.02")
 
-        Liver = root.addChild('Liver')
-        Liver.addObject('EulerImplicitSolver', name="cg_odesolver", rayleighMass="0.1", rayleighStiffness="0.2", printLog="false")
-        Liver.addObject('CGLinearSolver', iterations="25", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
-        Liver.addObject('MeshOBJLoader', name="loader", filename="mesh/sphere_02b.obj", scale="0.25 0.25 0.25", rotation="-90 0 0", triangulate="1")
-        Liver.addObject('TriangleSetTopologyContainer', src="@loader")
-        Liver.addObject('MechanicalObject', src="@loader", template="Vec3", name="DOFs")
-        Liver.addObject('TriangleSetTopologyModifier')
-        Liver.addObject('TriangleSetGeometryAlgorithms')
-        Liver.addObject('BoxConstraint', box="-10 -10 -10  10 -5 10")
-        Liver.addObject('TriangularFEMForceFieldOptim', name="FEM", youngModulus="10000", poissonRatio="0.4", restScale="0.97", method="large")
-        Liver.addObject('FastTriangularBendingSprings', name="Bending", bendingStiffness="100")
-        Liver.addObject('TaitSurfacePressureForceField', name="Pressure", gamma="5", B="10000", injectedVolume="100", printLog="1")
-        Liver.addObject('DiagonalMass', name="mass", massDensity="1", printLog="0")
-        Liver.addObject('TriangleCollisionModel', name="CM")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Algorithm")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Intersection")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Geometry")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Response.Contact")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Projective")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Engine.Select")
+       root.addObject('RequiredPlugin', name="Sofa.Component.IO.Mesh")
+       root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Iterative")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Mapping.Linear")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Mass")
+       root.addObject('RequiredPlugin', name="Sofa.Component.MechanicalLoad")
+       root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.FEM.Elastic")
+       root.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.Spring")
+       root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Dynamic")
+       root.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
+       root.addObject('RequiredPlugin', name="Sofa.GL.Component.Shader")
+       root.addObject('DefaultAnimationLoop', )
+       root.addObject('CollisionPipeline', verbose="0")
+       root.addObject('BruteForceBroadPhase', )
+       root.addObject('BVHNarrowPhase', )
+       root.addObject('CollisionResponse', response="PenalityContactForceField")
+       root.addObject('DiscreteIntersection', )
 
-        Visu = Liver.addChild('Visu')
-        Visu.addObject('OglShader', fileVertexShaders="['shaders/tessellationPNTriangle.glsl']", fileTessellationControlShaders="['shaders/tessellationPNTriangle.glsl']", fileTessellationEvaluationShaders="['shaders/tessellationPNTriangle.glsl']", fileGeometryShaders="['shaders/tessellationPNTriangle.glsl']", fileFragmentShaders="['shaders/tessellationPNTriangle.glsl']", printLog="1")
-        Visu.addObject('OglFloatVariable', name="TessellationLevel", value="6")
-        Visu.addObject('OglModel', name="VisualModel", src="@../loader", color="white", primitiveType="PATCHES")
-        Visu.addObject('IdentityMapping')
+       liver = root.addChild('Liver')
+
+       liver.addObject('EulerImplicitSolver', name="cg_odesolver", rayleighMass="0.1", rayleighStiffness="0.2", printLog="false")
+       liver.addObject('CGLinearSolver', iterations="25", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
+       liver.addObject('MeshOBJLoader', name="loader", filename="mesh/sphere_02b.obj", scale="0.25 0.25 0.25", rotation="-90 0 0", triangulate="1")
+       liver.addObject('TriangleSetTopologyContainer', src="@loader")
+       liver.addObject('MechanicalObject', src="@loader", template="Vec3", name="DOFs")
+       liver.addObject('TriangleSetTopologyModifier', )
+       liver.addObject('TriangleSetGeometryAlgorithms', )
+       liver.addObject('BoxConstraint', box="-10 -10 -10  10 -5 10")
+       liver.addObject('TriangularFEMForceFieldOptim', name="FEM", youngModulus="10000", poissonRatio="0.4", restScale="0.97", method="large")
+       liver.addObject('FastTriangularBendingSprings', name="Bending", bendingStiffness="100")
+       liver.addObject('TaitSurfacePressureForceField', name="Pressure", gamma="5", B="10000", injectedVolume="100", printLog="1")
+       liver.addObject('DiagonalMass', name="mass", massDensity="1", printLog="0")
+       liver.addObject('TriangleCollisionModel', name="CM")
+
+       visu = Liver.addChild('Visu')
+
+       visu.addObject('OglShader', fileVertexShaders="['shaders/tessellationPNTriangle.glsl']", fileTessellationControlShaders="['shaders/tessellationPNTriangle.glsl']", fileTessellationEvaluationShaders="['shaders/tessellationPNTriangle.glsl']", fileGeometryShaders="['shaders/tessellationPNTriangle.glsl']", fileFragmentShaders="['shaders/tessellationPNTriangle.glsl']", printLog="1")
+       visu.addObject('OglFloatVariable', name="TessellationLevel", value="6")
+       visu.addObject('OglModel', name="VisualModel", src="@../loader", color="white", primitiveType="PATCHES")
+       visu.addObject('IdentityMapping', )
     ```
 

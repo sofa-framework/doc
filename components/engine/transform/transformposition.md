@@ -10,97 +10,104 @@ This component belongs to the category of [Engines](../../../simulation-principl
 -   Projection on a plane (plane defined by an origin and a normal vector)
 -   Translation, rotation, scale and some combinations of translation rotation and scale
 <!-- automatically generated doc START -->
-__Target__: `Sofa.Component.Engine.Transform`
+<!-- generate_doc -->
 
-__namespace__: `#!c++ sofa::component::engine::transform`
+Transform position of 3d points
 
-__parents__: 
 
-- `#!c++ DataEngine`
+## Vec3d
 
-__categories__: 
+Templates:
 
-- Engine
+- Vec3d
 
-Data: 
+__Target__: Sofa.Component.Engine.Transform
+
+__namespace__: sofa::component::engine::transform
+
+__parents__:
+
+- DataEngine
+
+### Data
 
 <table>
-<thead>
-    <tr>
-        <th>Name</th>
-        <th>Description</th>
-        <th>Default value</th>
-    </tr>
-</thead>
-<tbody>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Default value</th>
+        </tr>
+    </thead>
+    <tbody>
 	<tr>
 		<td>name</td>
 		<td>
 object name
-</td>
+		</td>
 		<td>unnamed</td>
 	</tr>
 	<tr>
 		<td>printLog</td>
 		<td>
 if true, emits extra messages at runtime.
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>tags</td>
 		<td>
 list of the subsets the objet belongs to
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>bbox</td>
 		<td>
 this object bounding box
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>componentState</td>
 		<td>
 The state of the component among (Dirty, Valid, Undefined, Loading, Invalid).
-</td>
+		</td>
 		<td>Undefined</td>
 	</tr>
 	<tr>
 		<td>listening</td>
 		<td>
 if true, handle the events, otherwise ignore the events
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>method</td>
 		<td>
 transformation method either translation or scale or rotation or random or projectOnPlane
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>seedValue</td>
 		<td>
 the seed value for the random generator
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>maxRandomDisplacement</td>
 		<td>
 the maximum displacement around initial position for the random transformation
-</td>
+		</td>
 		<td>1</td>
 	</tr>
 	<tr>
 		<td>filename</td>
 		<td>
 filename of an affine matrix. Supported extensions are: .trm, .tfm, .xfm and .txt(read as .xfm)
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
@@ -110,56 +117,56 @@ filename of an affine matrix. Supported extensions are: .trm, .tfm, .xfm and .tx
 		<td>origin</td>
 		<td>
 A 3d point on the plane/Center of the scale
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>input_position</td>
 		<td>
 input array of 3d points
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>normal</td>
 		<td>
 plane normal
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>translation</td>
 		<td>
 translation vector 
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>rotation</td>
 		<td>
 rotation vector 
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>scale</td>
 		<td>
 scale factor
-</td>
+		</td>
 		<td>1 1 1</td>
 	</tr>
 	<tr>
 		<td>matrix</td>
 		<td>
 4x4 affine matrix
-</td>
+		</td>
 		<td>[1 0 0 0,0 1 0 0,0 0 1 0,0 0 0 1]</td>
 	</tr>
 	<tr>
 		<td>fixedIndices</td>
 		<td>
 Indices of the entries that are not transformed
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
@@ -169,7 +176,7 @@ Indices of the entries that are not transformed
 		<td>output_position</td>
 		<td>
 output array of 3d points projected on a plane
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
@@ -179,40 +186,39 @@ output array of 3d points projected on a plane
 		<td>drawInput</td>
 		<td>
 Draw input points
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>drawOutput</td>
 		<td>
 Draw output points
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>pointSize</td>
 		<td>
 Point size
-</td>
+		</td>
 		<td>1</td>
 	</tr>
 
 </tbody>
 </table>
 
-Links: 
-
-| Name | Description |
-| ---- | ----------- |
-|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|
-|slaves|Sub-objects used internally by this object|
-|master|nullptr for regular objects, or master object for which this object is one sub-objects|
+### Links
 
 
+| Name | Description | Destination type name |
+| ---- | ----------- | --------------------- |
+|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
+|slaves|Sub-objects used internally by this object|BaseObject|
+|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
 
-## Examples
+## Examples 
 
-Component/Engine/Transform/TransformPosition.scn
+TransformPosition.scn
 
 === "XML"
 
@@ -261,55 +267,60 @@ Component/Engine/Transform/TransformPosition.scn
             <OglModel name="VisualModel" src="@./ObjLoader" translation="0 0 -9" rotation="90 0 0"/>
         </Node>
     </Node>
+
     ```
 
 === "Python"
 
     ```python
-    def createScene(rootNode):
+    def createScene(root_node):
 
-        root = rootNode.addChild('root', gravity="0 0 -9.81", dt="0.05")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Algorithm")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Intersection")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Response.Contact")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Engine.Transform")
-        root.addObject('RequiredPlugin', name="Sofa.Component.IO.Mesh")
-        root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Iterative")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Mapping.Linear")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Mass")
-        root.addObject('RequiredPlugin', name="Sofa.Component.MechanicalLoad")
-        root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
-        root.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.FEM.Elastic")
-        root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Grid")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Visual")
-        root.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
-        root.addObject('DefaultAnimationLoop')
-        root.addObject('VisualStyle', displayFlags="showVisual showBehaviorModels")
-        root.addObject('CollisionPipeline', name="DefaultCollisionPipeline", verbose="0", draw="0", depth="6")
-        root.addObject('BruteForceBroadPhase')
-        root.addObject('BVHNarrowPhase')
-        root.addObject('MinProximityIntersection', name="Proximity", alarmDistance="3", contactDistance="2")
-        root.addObject('CollisionResponse', name="Response", response="PenalityContactForceField")
+       root = root_node.addChild('root', gravity="0 0 -9.81", dt="0.05")
 
-        Object = root.addChild('Object', gravity="0 -9.81 0")
-        Object.addObject('EulerImplicitSolver', name="Implicit Euler Solver", rayleighStiffness="0.1", rayleighMass="0.1")
-        Object.addObject('CGLinearSolver', name="Conjugate Gradient", tolerance="1e-05", threshold="1e-05", iterations="5")
-        Object.addObject('SparseGridTopology', name="grid", fileTopology="mesh/dragon.obj", n="7 6 5")
-        Object.addObject('TransformPosition', name="transfo", method="fromFile", filename="transfo.tfm", input_position="@grid.position")
-        Object.addObject('MechanicalObject', name="Particles", restScale="1", position="@transfo.output_position")
-        Object.addObject('UniformMass', name="Mass")
-        Object.addObject('PlaneForceField', name="Plane", normal="0 0 1", d="-10")
-        Object.addObject('HexahedronFEMForceField', name="FEM", youngModulus="200", poissonRatio="0.45")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Algorithm")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Intersection")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Response.Contact")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Engine.Transform")
+       root.addObject('RequiredPlugin', name="Sofa.Component.IO.Mesh")
+       root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Iterative")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Mapping.Linear")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Mass")
+       root.addObject('RequiredPlugin', name="Sofa.Component.MechanicalLoad")
+       root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.FEM.Elastic")
+       root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Grid")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Visual")
+       root.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
+       root.addObject('DefaultAnimationLoop', )
+       root.addObject('VisualStyle', displayFlags="showVisual showBehaviorModels")
+       root.addObject('CollisionPipeline', name="DefaultCollisionPipeline", verbose="0", draw="0", depth="6")
+       root.addObject('BruteForceBroadPhase', )
+       root.addObject('BVHNarrowPhase', )
+       root.addObject('MinProximityIntersection', name="Proximity", alarmDistance="3", contactDistance="2")
+       root.addObject('CollisionResponse', name="Response", response="PenalityContactForceField")
 
-        VisualNode = Object.addChild('VisualNode', gravity="0 -9.81 0")
-        VisualNode.addObject('MeshOBJLoader', name="meshLoader_0", filename="mesh/dragon.obj", handleSeams="1")
-        VisualNode.addObject('OglModel', name="Objective", src="@meshLoader_0")
-        VisualNode.addObject('BarycentricMapping', name="Visual Mapping", output="@Objective")
+       object = root.addChild('Object', gravity="0 -9.81 0")
 
-        Floor = root.addChild('Floor')
-        Floor.addObject('MeshOBJLoader', name="ObjLoader", filename="mesh/floor.obj")
-        Floor.addObject('OglModel', name="VisualModel", src="@./ObjLoader", translation="0 0 -9", rotation="90 0 0")
+       object.addObject('EulerImplicitSolver', name="Implicit Euler Solver", rayleighStiffness="0.1", rayleighMass="0.1")
+       object.addObject('CGLinearSolver', name="Conjugate Gradient", tolerance="1e-05", threshold="1e-05", iterations="5")
+       object.addObject('SparseGridTopology', name="grid", fileTopology="mesh/dragon.obj", n="7 6 5")
+       object.addObject('TransformPosition', name="transfo", method="fromFile", filename="transfo.tfm", input_position="@grid.position")
+       object.addObject('MechanicalObject', name="Particles", restScale="1", position="@transfo.output_position")
+       object.addObject('UniformMass', name="Mass")
+       object.addObject('PlaneForceField', name="Plane", normal="0 0 1", d="-10")
+       object.addObject('HexahedronFEMForceField', name="FEM", youngModulus="200", poissonRatio="0.45")
+
+       visual_node = Object.addChild('VisualNode', gravity="0 -9.81 0")
+
+       visual_node.addObject('MeshOBJLoader', name="meshLoader_0", filename="mesh/dragon.obj", handleSeams="1")
+       visual_node.addObject('OglModel', name="Objective", src="@meshLoader_0")
+       visual_node.addObject('BarycentricMapping', name="Visual Mapping", output="@Objective")
+
+       floor = root.addChild('Floor')
+
+       floor.addObject('MeshOBJLoader', name="ObjLoader", filename="mesh/floor.obj")
+       floor.addObject('OglModel', name="VisualModel", src="@./ObjLoader", translation="0 0 -9", rotation="90 0 0")
     ```
 
 

@@ -1,96 +1,94 @@
+<!-- generate_doc -->
 # MatrixProjectionMethod
 
 Matrix mapping computing the matrix projection using the Eigen library
 
 
-__Templates__:
+## CompressedRowSparseMatrixd
 
-- `#!c++ CompressedRowSparseMatrixd`
+Templates:
 
-__Target__: `Sofa.Component.LinearSystem`
+- CompressedRowSparseMatrixd
 
-__namespace__: `#!c++ sofa::component::linearsystem`
+__Target__: Sofa.Component.LinearSystem
 
-__parents__: 
+__namespace__: sofa::component::linearsystem
 
-- `#!c++ BaseMatrixProjectionMethod`
+__parents__:
 
-__categories__: 
+- BaseMatrixProjectionMethod
 
-- _Miscellaneous
-
-Data: 
+### Data
 
 <table>
-<thead>
-    <tr>
-        <th>Name</th>
-        <th>Description</th>
-        <th>Default value</th>
-    </tr>
-</thead>
-<tbody>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Default value</th>
+        </tr>
+    </thead>
+    <tbody>
 	<tr>
 		<td>name</td>
 		<td>
 object name
-</td>
+		</td>
 		<td>unnamed</td>
 	</tr>
 	<tr>
 		<td>printLog</td>
 		<td>
 if true, emits extra messages at runtime.
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>tags</td>
 		<td>
 list of the subsets the objet belongs to
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>bbox</td>
 		<td>
 this object bounding box
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>componentState</td>
 		<td>
 The state of the component among (Dirty, Valid, Undefined, Loading, Invalid).
-</td>
+		</td>
 		<td>Undefined</td>
 	</tr>
 	<tr>
 		<td>listening</td>
 		<td>
 if true, handle the events, otherwise ignore the events
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>areJacobiansConstant</td>
 		<td>
 True if mapping jacobians are considered constant over time. They are computed only the first time.
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 
 </tbody>
 </table>
 
-Links: 
-
-| Name | Description |
-| ---- | ----------- |
-|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|
-|slaves|Sub-objects used internally by this object|
-|master|nullptr for regular objects, or master object for which this object is one sub-objects|
-|mechanicalStates|List of mechanical states to which this component is associated|
+### Links
 
 
+| Name | Description | Destination type name |
+| ---- | ----------- | --------------------- |
+|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
+|slaves|Sub-objects used internally by this object|BaseObject|
+|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
+|mechanicalStates|List of mechanical states to which this component is associated|BaseMechanicalState|
 

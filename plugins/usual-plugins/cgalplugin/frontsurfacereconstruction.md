@@ -1,71 +1,68 @@
+<!-- generate_doc -->
 # FrontSurfaceReconstruction
 
 Generate triangular surface mesh from point cloud
 
 
-__Target__: `CGALPlugin`
+__Target__: CGALPlugin
 
-__namespace__: `#!c++ cgal`
+__namespace__: cgal
 
-__parents__: 
+__parents__:
 
-- `#!c++ DataEngine`
+- DataEngine
 
-__categories__: 
-
-- Engine
-
-Data: 
+### Data
 
 <table>
-<thead>
-    <tr>
-        <th>Name</th>
-        <th>Description</th>
-        <th>Default value</th>
-    </tr>
-</thead>
-<tbody>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Default value</th>
+        </tr>
+    </thead>
+    <tbody>
 	<tr>
 		<td>name</td>
 		<td>
 object name
-</td>
+		</td>
 		<td>unnamed</td>
 	</tr>
 	<tr>
 		<td>printLog</td>
 		<td>
 if true, emits extra messages at runtime.
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>tags</td>
 		<td>
 list of the subsets the objet belongs to
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>bbox</td>
 		<td>
 this object bounding box
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>componentState</td>
 		<td>
 The state of the component among (Dirty, Valid, Undefined, Loading, Invalid).
-</td>
+		</td>
 		<td>Undefined</td>
 	</tr>
 	<tr>
 		<td>listening</td>
 		<td>
 if true, handle the events, otherwise ignore the events
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
@@ -75,21 +72,21 @@ if true, handle the events, otherwise ignore the events
 		<td>position</td>
 		<td>
 Input point cloud positions
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>radiusRatioBound</td>
 		<td>
 Candidates incident to surface triangles which are not in the beta-wedge are discarded, if the ratio of their radius and the radius of the surface triangle is larger than radius_ratio_bound
-</td>
+		</td>
 		<td>5</td>
 	</tr>
 	<tr>
 		<td>beta</td>
 		<td>
 Half the angle of the wedge in which only the radius of triangles counts for the plausibility of candidates.
-</td>
+		</td>
 		<td>0.52</td>
 	</tr>
 	<tr>
@@ -99,33 +96,32 @@ Half the angle of the wedge in which only the radius of triangles counts for the
 		<td>outputPosition</td>
 		<td>
 Output position of the surface mesh
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>outputTriangles</td>
 		<td>
 Output triangles of the surface mesh
-</td>
+		</td>
 		<td></td>
 	</tr>
 
 </tbody>
 </table>
 
-Links: 
-
-| Name | Description |
-| ---- | ----------- |
-|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|
-|slaves|Sub-objects used internally by this object|
-|master|nullptr for regular objects, or master object for which this object is one sub-objects|
+### Links
 
 
+| Name | Description | Destination type name |
+| ---- | ----------- | --------------------- |
+|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
+|slaves|Sub-objects used internally by this object|BaseObject|
+|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
 
-## Examples
+## Examples 
 
-CGALPlugin/share/sofa/examples/CGALPlugin/FrontSurfaceReconstruction.scn
+FrontSurfaceReconstruction.scn
 
 === "XML"
 
@@ -150,26 +146,30 @@ CGALPlugin/share/sofa/examples/CGALPlugin/FrontSurfaceReconstruction.scn
     	</Node>
     
     </Node>
+
     ```
 
 === "Python"
 
     ```python
-    def createScene(rootNode):
+    def createScene(root_node):
 
-        root = rootNode.addChild('root', gravity="0 0 0", dt="1")
-        root.addObject('RequiredPlugin', pluginName="CGALPlugin")
-        root.addObject('RequiredPlugin', pluginName="SofaOpenglVisual")
-        root.addObject('VisualStyle', displayFlags="showVisual")
+       root = root_node.addChild('root', gravity="0 0 0", dt="1")
 
-        PointCloud = root.addChild('PointCloud')
-        PointCloud.addObject('MeshOBJLoader', name="loader", filename="mesh/liver2.obj")
-        PointCloud.addObject('MeshTopology', src="@loader")
-        PointCloud.addObject('MechanicalObject', showObject="1", showObjectScale="5")
+       root.addObject('RequiredPlugin', pluginName="CGALPlugin")
+       root.addObject('RequiredPlugin', pluginName="SofaOpenglVisual")
+       root.addObject('VisualStyle', displayFlags="showVisual")
 
-        FrontSurfaceReconstruction = root.addChild('FrontSurfaceReconstruction')
-        FrontSurfaceReconstruction.addObject('FrontSurfaceReconstruction', name="engine", src="@../PointCloud/loader", radiusRatioBound="5", beta="0.52")
-        FrontSurfaceReconstruction.addObject('MeshTopology', position="@engine.outputPosition", triangles="@engine.outputTriangles")
-        FrontSurfaceReconstruction.addObject('OglModel', color="1 0 0")
+       point_cloud = root.addChild('PointCloud')
+
+       point_cloud.addObject('MeshOBJLoader', name="loader", filename="mesh/liver2.obj")
+       point_cloud.addObject('MeshTopology', src="@loader")
+       point_cloud.addObject('MechanicalObject', showObject="1", showObjectScale="5")
+
+       front_surface_reconstruction = root.addChild('FrontSurfaceReconstruction')
+
+       front_surface_reconstruction.addObject('FrontSurfaceReconstruction', name="engine", src="@../PointCloud/loader", radiusRatioBound="5", beta="0.52")
+       front_surface_reconstruction.addObject('MeshTopology', position="@engine.outputPosition", triangles="@engine.outputTriangles")
+       front_surface_reconstruction.addObject('OglModel', color="1 0 0")
     ```
 

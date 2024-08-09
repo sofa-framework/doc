@@ -1,89 +1,88 @@
+<!-- generate_doc -->
 # ExtrudeSurface
 
 This class truns on spiral any topological model
 
 
-__Templates__:
+## Vec3d
 
-- `#!c++ Vec3d`
+Templates:
 
-__Target__: `Sofa.Component.Engine.Generate`
+- Vec3d
 
-__namespace__: `#!c++ sofa::component::engine::generate`
+__Target__: Sofa.Component.Engine.Generate
 
-__parents__: 
+__namespace__: sofa::component::engine::generate
 
-- `#!c++ DataEngine`
+__parents__:
 
-__categories__: 
+- DataEngine
 
-- Engine
-
-Data: 
+### Data
 
 <table>
-<thead>
-    <tr>
-        <th>Name</th>
-        <th>Description</th>
-        <th>Default value</th>
-    </tr>
-</thead>
-<tbody>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Default value</th>
+        </tr>
+    </thead>
+    <tbody>
 	<tr>
 		<td>name</td>
 		<td>
 object name
-</td>
+		</td>
 		<td>unnamed</td>
 	</tr>
 	<tr>
 		<td>printLog</td>
 		<td>
 if true, emits extra messages at runtime.
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>tags</td>
 		<td>
 list of the subsets the objet belongs to
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>bbox</td>
 		<td>
 this object bounding box
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>componentState</td>
 		<td>
 The state of the component among (Dirty, Valid, Undefined, Loading, Invalid).
-</td>
+		</td>
 		<td>Undefined</td>
 	</tr>
 	<tr>
 		<td>listening</td>
 		<td>
 if true, handle the events, otherwise ignore the events
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>isVisible</td>
 		<td>
 is Visible ?
-</td>
+		</td>
 		<td>1</td>
 	</tr>
 	<tr>
 		<td>heightFactor</td>
 		<td>
 Factor for the height of the extrusion (based on normal)
-</td>
+		</td>
 		<td>1</td>
 	</tr>
 	<tr>
@@ -93,21 +92,21 @@ Factor for the height of the extrusion (based on normal)
 		<td>triangles</td>
 		<td>
 Triangle topology (list of BaseMeshTopology::Triangle)
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>surfaceVertices</td>
 		<td>
 Position coordinates of the surface
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>surfaceTriangles</td>
 		<td>
 Indices of the triangles of the surface to extrude
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
@@ -117,33 +116,32 @@ Indices of the triangles of the surface to extrude
 		<td>extrusionVertices</td>
 		<td>
 Position coordinates of the extrusion
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>extrusionTriangles</td>
 		<td>
 Subset triangle topology used for the extrusion
-</td>
+		</td>
 		<td></td>
 	</tr>
 
 </tbody>
 </table>
 
-Links: 
-
-| Name | Description |
-| ---- | ----------- |
-|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|
-|slaves|Sub-objects used internally by this object|
-|master|nullptr for regular objects, or master object for which this object is one sub-objects|
+### Links
 
 
+| Name | Description | Destination type name |
+| ---- | ----------- | --------------------- |
+|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
+|slaves|Sub-objects used internally by this object|BaseObject|
+|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
 
-## Examples
+## Examples 
 
-Component/Engine/Generate/ExtrudeSurface.scn
+ExtrudeSurface.scn
 
 === "XML"
 
@@ -175,36 +173,41 @@ Component/Engine/Generate/ExtrudeSurface.scn
             <OglModel src='@myLoader'/>
         </Node>
     </Node>
+
     ```
 
 === "Python"
 
     ```python
-    def createScene(rootNode):
+    def createScene(root_node):
 
-        root = rootNode.addChild('root', dt="0.02")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Engine.Generate")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Engine.Select")
-        root.addObject('RequiredPlugin', name="Sofa.Component.IO.Mesh")
-        root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Constant")
-        root.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
-        root.addObject('DefaultAnimationLoop')
+       root = root_node.addChild('root', dt="0.02")
 
-        extrude = root.addChild('extrude')
-        extrude.addObject('MeshOBJLoader', name="meshLoader", filename="mesh/liver.obj")
-        extrude.addObject('MechanicalObject', src="@meshLoader")
-        extrude.addObject('SphereROI', name="surface1", centers="2 4 0", radii="0.88", drawSize="0", isVisible="0", src="@meshLoader")
-        extrude.addObject('ExtrudeSurface', template="Vec3", name="extrusion", triangles="@meshLoader.triangles", surfaceVertices="@meshLoader.position", surfaceTriangles="@surface1.triangleIndices", isVisible="0")
-        extrude.addObject('RandomPointDistributionInSurface', template="Vec3", vertices="@extrusion.extrusionVertices", triangles="@extrusion.extrusionTriangles", numberOfInPoints="100", numberOfTests="3", minDistanceBetweenPoints="0.1")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Engine.Generate")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Engine.Select")
+       root.addObject('RequiredPlugin', name="Sofa.Component.IO.Mesh")
+       root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Constant")
+       root.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
+       root.addObject('DefaultAnimationLoop', )
 
-        Extrusion = root.addChild('Extrusion')
-        Extrusion.addObject('MeshTopology', points="@../extrude/extrusion.extrusionVertices", triangles="@../extrude/extrusion.extrusionTriangles")
-        Extrusion.addObject('MechanicalObject', position="@../extrude/extrusion.extrusionVertices")
-        Extrusion.addObject('OglModel', color="red")
+       extrude = root.addChild('extrude')
 
-        root = root.addChild('root')
-        root.addObject('MeshOBJLoader', name="myLoader", filename="mesh/liver.obj")
-        root.addObject('OglModel', src="@myLoader")
+       extrude.addObject('MeshOBJLoader', name="meshLoader", filename="mesh/liver.obj")
+       extrude.addObject('MechanicalObject', src="@meshLoader")
+       extrude.addObject('SphereROI', name="surface1", centers="2 4 0", radii="0.88", drawSize="0", isVisible="0", src="@meshLoader")
+       extrude.addObject('ExtrudeSurface', template="Vec3", name="extrusion", triangles="@meshLoader.triangles", surfaceVertices="@meshLoader.position", surfaceTriangles="@surface1.triangleIndices", isVisible="0")
+       extrude.addObject('RandomPointDistributionInSurface', template="Vec3", vertices="@extrusion.extrusionVertices", triangles="@extrusion.extrusionTriangles", numberOfInPoints="100", numberOfTests="3", minDistanceBetweenPoints="0.1")
+
+       extrusion = root.addChild('Extrusion')
+
+       extrusion.addObject('MeshTopology', points="@../extrude/extrusion.extrusionVertices", triangles="@../extrude/extrusion.extrusionTriangles")
+       extrusion.addObject('MechanicalObject', position="@../extrude/extrusion.extrusionVertices")
+       extrusion.addObject('OglModel', color="red")
+
+       node = root.addChild('node')
+
+       node.addObject('MeshOBJLoader', name="myLoader", filename="mesh/liver.obj")
+       node.addObject('OglModel', src="@myLoader")
     ```
 

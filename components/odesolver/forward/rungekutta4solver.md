@@ -1,90 +1,86 @@
+<!-- generate_doc -->
 # RungeKutta4Solver
 
 A popular explicit time integrator
 
 
-__Target__: `Sofa.Component.ODESolver.Forward`
+__Target__: Sofa.Component.ODESolver.Forward
 
-__namespace__: `#!c++ sofa::component::odesolver::forward`
+__namespace__: sofa::component::odesolver::forward
 
-__parents__: 
-
-- `#!c++ OdeSolver`
-
-__categories__: 
+__parents__:
 
 - OdeSolver
 
-Data: 
+### Data
 
 <table>
-<thead>
-    <tr>
-        <th>Name</th>
-        <th>Description</th>
-        <th>Default value</th>
-    </tr>
-</thead>
-<tbody>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Default value</th>
+        </tr>
+    </thead>
+    <tbody>
 	<tr>
 		<td>name</td>
 		<td>
 object name
-</td>
+		</td>
 		<td>unnamed</td>
 	</tr>
 	<tr>
 		<td>printLog</td>
 		<td>
 if true, emits extra messages at runtime.
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>tags</td>
 		<td>
 list of the subsets the objet belongs to
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>bbox</td>
 		<td>
 this object bounding box
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>componentState</td>
 		<td>
 The state of the component among (Dirty, Valid, Undefined, Loading, Invalid).
-</td>
+		</td>
 		<td>Undefined</td>
 	</tr>
 	<tr>
 		<td>listening</td>
 		<td>
 if true, handle the events, otherwise ignore the events
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 
 </tbody>
 </table>
 
-Links: 
-
-| Name | Description |
-| ---- | ----------- |
-|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|
-|slaves|Sub-objects used internally by this object|
-|master|nullptr for regular objects, or master object for which this object is one sub-objects|
+### Links
 
 
+| Name | Description | Destination type name |
+| ---- | ----------- | --------------------- |
+|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
+|slaves|Sub-objects used internally by this object|BaseObject|
+|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
 
-## Examples
+## Examples 
 
-Component/ODESolver/Forward/RungeKutta4Solver.scn
+RungeKutta4Solver.scn
 
 === "XML"
 
@@ -119,42 +115,46 @@ Component/ODESolver/Forward/RungeKutta4Solver.scn
             </Node>
         </Node>
     </Node>
+
     ```
 
 === "Python"
 
     ```python
-    def createScene(rootNode):
+    def createScene(root_node):
 
-        root = rootNode.addChild('root', gravity="-1.8 0 100", dt="0.001")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Projective")
-        root.addObject('RequiredPlugin', name="Sofa.Component.IO.Mesh")
-        root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Iterative")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Mapping.Linear")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Mass")
-        root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Forward")
-        root.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.FEM.Elastic")
-        root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Constant")
-        root.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
-        root.addObject('DefaultAnimationLoop')
+       root = root_node.addChild('root', gravity="-1.8 0 100", dt="0.001")
 
-        DeformableObject = root.addChild('DeformableObject')
-        DeformableObject.addObject('RungeKutta4Solver', name="odeExplicitSolver")
-        DeformableObject.addObject('CGLinearSolver', iterations="100", tolerance="1e-5", threshold="1e-5")
-        DeformableObject.addObject('MeshGmshLoader', name="loader", filename="mesh/truthcylinder1.msh")
-        DeformableObject.addObject('MeshTopology', src="@loader")
-        DeformableObject.addObject('MechanicalObject', src="@loader")
-        DeformableObject.addObject('UniformMass', totalMass="15")
-        DeformableObject.addObject('FixedProjectiveConstraint', indices="0 1 2 3 4 5 6 7 8 9 10 
+       root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Projective")
+       root.addObject('RequiredPlugin', name="Sofa.Component.IO.Mesh")
+       root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Iterative")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Mapping.Linear")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Mass")
+       root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Forward")
+       root.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.FEM.Elastic")
+       root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Constant")
+       root.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
+       root.addObject('DefaultAnimationLoop', )
+
+       deformable_object = root.addChild('DeformableObject')
+
+       deformable_object.addObject('RungeKutta4Solver', name="odeExplicitSolver")
+       deformable_object.addObject('CGLinearSolver', iterations="100", tolerance="1e-5", threshold="1e-5")
+       deformable_object.addObject('MeshGmshLoader', name="loader", filename="mesh/truthcylinder1.msh")
+       deformable_object.addObject('MeshTopology', src="@loader")
+       deformable_object.addObject('MechanicalObject', src="@loader")
+       deformable_object.addObject('UniformMass', totalMass="15")
+       deformable_object.addObject('FixedProjectiveConstraint', indices="0 1 2 3 4 5 6 7 8 9 10 
 							11 12 13 14 15 16 17 18 19 20 
 							21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 
 							41 42 43 44 45 46 47 268 269 270 271 343 345")
-        DeformableObject.addObject('TetrahedronFEMForceField', name="FEM", youngModulus="1000", poissonRatio="0.45", method="large")
+       deformable_object.addObject('TetrahedronFEMForceField', name="FEM", youngModulus="1000", poissonRatio="0.45", method="large")
 
-        DeformableObject = DeformableObject.addChild('DeformableObject')
-        DeformableObject.addObject('MeshOBJLoader', name="meshLoader_0", filename="mesh/truthcylinder1.obj", handleSeams="1")
-        DeformableObject.addObject('OglModel', name="m_Visual", src="@meshLoader_0", color="red")
-        DeformableObject.addObject('BarycentricMapping', input="@..", output="@m_Visual")
+       node = DeformableObject.addChild('node')
+
+       node.addObject('MeshOBJLoader', name="meshLoader_0", filename="mesh/truthcylinder1.obj", handleSeams="1")
+       node.addObject('OglModel', name="m_Visual", src="@meshLoader_0", color="red")
+       node.addObject('BarycentricMapping', input="@..", output="@m_Visual")
     ```
 

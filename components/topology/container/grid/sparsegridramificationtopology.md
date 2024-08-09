@@ -1,218 +1,215 @@
+<!-- generate_doc -->
 # SparseGridRamificationTopology
 
 Sparse grid in 3D (modified)
 
 
-__Target__: `Sofa.Component.Topology.Container.Grid`
+__Target__: Sofa.Component.Topology.Container.Grid
 
-__namespace__: `#!c++ sofa::component::topology::container::grid`
+__namespace__: sofa::component::topology::container::grid
 
-__parents__: 
+__parents__:
 
-- `#!c++ SparseGridTopology`
+- SparseGridTopology
 
-__categories__: 
-
-- Topology
-
-Data: 
+### Data
 
 <table>
-<thead>
-    <tr>
-        <th>Name</th>
-        <th>Description</th>
-        <th>Default value</th>
-    </tr>
-</thead>
-<tbody>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Default value</th>
+        </tr>
+    </thead>
+    <tbody>
 	<tr>
 		<td>name</td>
 		<td>
 object name
-</td>
+		</td>
 		<td>unnamed</td>
 	</tr>
 	<tr>
 		<td>printLog</td>
 		<td>
 if true, emits extra messages at runtime.
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>tags</td>
 		<td>
 list of the subsets the objet belongs to
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>bbox</td>
 		<td>
 this object bounding box
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>componentState</td>
 		<td>
 The state of the component among (Dirty, Valid, Undefined, Loading, Invalid).
-</td>
+		</td>
 		<td>Undefined</td>
 	</tr>
 	<tr>
 		<td>listening</td>
 		<td>
 if true, handle the events, otherwise ignore the events
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>filename</td>
 		<td>
 Filename of the mesh
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>position</td>
 		<td>
 List of point positions
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>edges</td>
 		<td>
 List of edge indices
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>triangles</td>
 		<td>
 List of triangle indices
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>quads</td>
 		<td>
 List of quad indices
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>tetrahedra</td>
 		<td>
 List of tetrahedron indices
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>hexahedra</td>
 		<td>
 List of hexahedron indices
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>uv</td>
 		<td>
 List of uv coordinates
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>fillWeighted</td>
 		<td>
 Is quantity of matter inside a cell taken into account? (.5 for boundary, 1 for inside)
-</td>
+		</td>
 		<td>1</td>
 	</tr>
 	<tr>
 		<td>onlyInsideCells</td>
 		<td>
 Select only inside cells (exclude boundary cells)
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>n</td>
 		<td>
 grid resolution
-</td>
+		</td>
 		<td>2 2 2</td>
 	</tr>
 	<tr>
 		<td>min</td>
 		<td>
 Min
-</td>
+		</td>
 		<td>0 0 0</td>
 	</tr>
 	<tr>
 		<td>max</td>
 		<td>
 Max
-</td>
+		</td>
 		<td>0 0 0</td>
 	</tr>
 	<tr>
 		<td>cellWidth</td>
 		<td>
-if &gt; 0 : dimension of each cell in the created grid
-</td>
+if > 0 : dimension of each cell in the created grid
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>nbVirtualFinerLevels</td>
 		<td>
 create virtual (not in the animation tree) finer sparse grids in order to dispose of finest information (usefull to compute better mechanical properties for example)
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>dataResolution</td>
 		<td>
 Dimension of the voxel File
-</td>
+		</td>
 		<td>0 0 0</td>
 	</tr>
 	<tr>
 		<td>voxelSize</td>
 		<td>
 Dimension of one voxel
-</td>
+		</td>
 		<td>1 1 1</td>
 	</tr>
 	<tr>
 		<td>marchingCubeStep</td>
 		<td>
 Step of the Marching Cube algorithm
-</td>
+		</td>
 		<td>1</td>
 	</tr>
 	<tr>
 		<td>convolutionSize</td>
 		<td>
 Dimension of the convolution kernel to smooth the voxels. 0 if no smoothing is required.
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>facets</td>
 		<td>
 Input mesh facets
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>finestConnectivity</td>
 		<td>
 Test for connectivity at the finest level? (more precise but slower by testing all intersections between the model mesh and the faces between boundary cubes)
-</td>
+		</td>
 		<td>1</td>
 	</tr>
 	<tr>
@@ -222,54 +219,53 @@ Test for connectivity at the finest level? (more precise but slower by testing a
 		<td>drawEdges</td>
 		<td>
 if true, draw the topology Edges
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>drawTriangles</td>
 		<td>
 if true, draw the topology Triangles
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>drawQuads</td>
 		<td>
 if true, draw the topology Quads
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>drawTetrahedra</td>
 		<td>
 if true, draw the topology Tetrahedra
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>drawHexahedra</td>
 		<td>
 if true, draw the topology hexahedra
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 
 </tbody>
 </table>
 
-Links: 
-
-| Name | Description |
-| ---- | ----------- |
-|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|
-|slaves|Sub-objects used internally by this object|
-|master|nullptr for regular objects, or master object for which this object is one sub-objects|
+### Links
 
 
+| Name | Description | Destination type name |
+| ---- | ----------- | --------------------- |
+|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
+|slaves|Sub-objects used internally by this object|BaseObject|
+|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
 
-## Examples
+## Examples 
 
-Component/Topology/Container/Grid/SparseGridRamificationTopology.scn
+SparseGridRamificationTopology.scn
 
 === "XML"
 
@@ -367,102 +363,113 @@ Component/Topology/Container/Grid/SparseGridRamificationTopology.scn
             </Node>
         </Node>
     </Node>
+
     ```
 
 === "Python"
 
     ```python
-    def createScene(rootNode):
+    def createScene(root_node):
 
-        root = rootNode.addChild('root', gravity="0 0 -9", dt="0.02")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Algorithm")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Intersection")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Geometry")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Response.Contact")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Projective")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Engine.Select")
-        root.addObject('RequiredPlugin', name="Sofa.Component.IO.Mesh")
-        root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Iterative")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Mapping.Linear")
-        root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
-        root.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.FEM.Elastic")
-        root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Constant")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Grid")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Visual")
-        root.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
-        root.addObject('VisualStyle', displayFlags="showVisual showBehaviorModels showForceFields")
-        root.addObject('DefaultAnimationLoop')
-        root.addObject('CollisionPipeline', depth="6", verbose="0", draw="0")
-        root.addObject('BruteForceBroadPhase')
-        root.addObject('BVHNarrowPhase')
-        root.addObject('MinProximityIntersection', name="Proximity", alarmDistance="0.5", contactDistance="0.3")
-        root.addObject('CollisionResponse', name="Response", response="PenalityContactForceField")
+       root = root_node.addChild('root', gravity="0 0 -9", dt="0.02")
 
-        UniformC Rough = root.addChild('UniformC Rough')
-        UniformC Rough.addObject('SparseGridRamificationTopology', n="5 2 2", fileTopology="mesh/c.obj", nbVirtualFinerLevels="3", finestConnectivity="0")
-        UniformC Rough.addObject('EulerImplicitSolver', rayleighStiffness="0.1", rayleighMass="0.1")
-        UniformC Rough.addObject('CGLinearSolver', iterations="10", tolerance="1e-5", threshold="1e-5")
-        UniformC Rough.addObject('MechanicalObject')
-        UniformC Rough.addObject('HexahedronFEMForceFieldAndMass', youngModulus="100000", poissonRatio="0.3", method="large", density="3", updateStiffnessMatrix="false", printLog="0")
-        UniformC Rough.addObject('BoxConstraint', box="-16 -10 -3 -14 10 3")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Algorithm")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Intersection")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Geometry")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Response.Contact")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Projective")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Engine.Select")
+       root.addObject('RequiredPlugin', name="Sofa.Component.IO.Mesh")
+       root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Iterative")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Mapping.Linear")
+       root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.FEM.Elastic")
+       root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Constant")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Grid")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Visual")
+       root.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
+       root.addObject('VisualStyle', displayFlags="showVisual showBehaviorModels showForceFields")
+       root.addObject('DefaultAnimationLoop', )
+       root.addObject('CollisionPipeline', depth="6", verbose="0", draw="0")
+       root.addObject('BruteForceBroadPhase', )
+       root.addObject('BVHNarrowPhase', )
+       root.addObject('MinProximityIntersection', name="Proximity", alarmDistance="0.5", contactDistance="0.3")
+       root.addObject('CollisionResponse', name="Response", response="PenalityContactForceField")
 
-        Visu = UniformC Rough.addChild('Visu')
-        Visu.addObject('MeshOBJLoader', name="meshLoader_1", filename="mesh/c.obj", handleSeams="1")
-        Visu.addObject('OglModel', name="Visual", src="@meshLoader_1", color="blue")
-        Visu.addObject('BarycentricMapping', input="@..", output="@Visual")
+       uniform_c__rough = root.addChild('UniformC Rough')
 
-        Surf = UniformC Rough.addChild('Surf')
-        Surf.addObject('MeshOBJLoader', name="loader", filename="mesh/c.obj")
-        Surf.addObject('MeshTopology', src="@loader")
-        Surf.addObject('MechanicalObject', src="@loader")
-        Surf.addObject('TriangleCollisionModel')
-        Surf.addObject('PointCollisionModel')
-        Surf.addObject('LineCollisionModel')
-        Surf.addObject('BarycentricMapping')
+       uniform_c__rough.addObject('SparseGridRamificationTopology', n="5 2 2", fileTopology="mesh/c.obj", nbVirtualFinerLevels="3", finestConnectivity="0")
+       uniform_c__rough.addObject('EulerImplicitSolver', rayleighStiffness="0.1", rayleighMass="0.1")
+       uniform_c__rough.addObject('CGLinearSolver', iterations="10", tolerance="1e-5", threshold="1e-5")
+       uniform_c__rough.addObject('MechanicalObject', )
+       uniform_c__rough.addObject('HexahedronFEMForceFieldAndMass', youngModulus="100000", poissonRatio="0.3", method="large", density="3", updateStiffnessMatrix="false", printLog="0")
+       uniform_c__rough.addObject('BoxConstraint', box="-16 -10 -3 -14 10 3")
 
-        UniformC = root.addChild('UniformC')
-        UniformC.addObject('SparseGridRamificationTopology', n="5 2 2", fileTopology="mesh/c.obj", nbVirtualFinerLevels="3", finestConnectivity="0")
-        UniformC.addObject('EulerImplicitSolver', rayleighStiffness="0.1", rayleighMass="0.1")
-        UniformC.addObject('CGLinearSolver', iterations="10", tolerance="1e-5", threshold="1e-5")
-        UniformC.addObject('MechanicalObject', dx="40")
-        UniformC.addObject('HexahedronFEMForceFieldAndMass', youngModulus="100000", poissonRatio="0.3", method="large", density="3", updateStiffnessMatrix="false", printLog="0")
-        UniformC.addObject('BoxConstraint', box="24 -10 -3 26 10 3")
+       visu = UniformC Rough.addChild('Visu')
 
-        Visu = UniformC.addChild('Visu')
-        Visu.addObject('MeshOBJLoader', name="meshLoader_0", filename="mesh/c.obj", handleSeams="1")
-        Visu.addObject('OglModel', name="Visual", src="@meshLoader_0", color="red")
-        Visu.addObject('BarycentricMapping', input="@..", output="@Visual")
+       visu.addObject('MeshOBJLoader', name="meshLoader_1", filename="mesh/c.obj", handleSeams="1")
+       visu.addObject('OglModel', name="Visual", src="@meshLoader_1", color="blue")
+       visu.addObject('BarycentricMapping', input="@..", output="@Visual")
 
-        Surf = UniformC.addChild('Surf')
-        Surf.addObject('MeshOBJLoader', name="loader", filename="mesh/c.obj")
-        Surf.addObject('MeshTopology', src="@loader")
-        Surf.addObject('MechanicalObject', src="@loader")
-        Surf.addObject('TriangleCollisionModel')
-        Surf.addObject('PointCollisionModel')
-        Surf.addObject('LineCollisionModel')
-        Surf.addObject('BarycentricMapping')
+       surf = UniformC Rough.addChild('Surf')
 
-        UniformC and finestConnectivity = root.addChild('UniformC and finestConnectivity')
-        UniformC and finestConnectivity.addObject('SparseGridRamificationTopology', n="5 3 3", fileTopology="mesh/c.obj", nbVirtualFinerLevels="0", finestConnectivity="1")
-        UniformC and finestConnectivity.addObject('EulerImplicitSolver', rayleighStiffness="0.1", rayleighMass="0.1")
-        UniformC and finestConnectivity.addObject('CGLinearSolver', iterations="10", tolerance="1e-5", threshold="1e-5")
-        UniformC and finestConnectivity.addObject('MechanicalObject', dx="80")
-        UniformC and finestConnectivity.addObject('HexahedronFEMForceFieldAndMass', youngModulus="100000", poissonRatio="0.3", method="large", density="3", updateStiffnessMatrix="false", printLog="0")
-        UniformC and finestConnectivity.addObject('BoxConstraint', box="64 -10 -3 66 10 3")
+       surf.addObject('MeshOBJLoader', name="loader", filename="mesh/c.obj")
+       surf.addObject('MeshTopology', src="@loader")
+       surf.addObject('MechanicalObject', src="@loader")
+       surf.addObject('TriangleCollisionModel', )
+       surf.addObject('PointCollisionModel', )
+       surf.addObject('LineCollisionModel', )
+       surf.addObject('BarycentricMapping', )
 
-        Visu = UniformC and finestConnectivity.addChild('Visu')
-        Visu.addObject('MeshOBJLoader', name="meshLoader_2", filename="mesh/c.obj", handleSeams="1")
-        Visu.addObject('OglModel', name="Visual", src="@meshLoader_2", color="yellow")
-        Visu.addObject('BarycentricMapping', input="@..", output="@Visual")
+       uniform_c = root.addChild('UniformC')
 
-        Surf = UniformC and finestConnectivity.addChild('Surf')
-        Surf.addObject('MeshOBJLoader', name="loader", filename="mesh/c.obj")
-        Surf.addObject('MeshTopology', src="@loader")
-        Surf.addObject('MechanicalObject', src="@loader")
-        Surf.addObject('TriangleCollisionModel')
-        Surf.addObject('PointCollisionModel')
-        Surf.addObject('LineCollisionModel')
-        Surf.addObject('BarycentricMapping')
+       uniform_c.addObject('SparseGridRamificationTopology', n="5 2 2", fileTopology="mesh/c.obj", nbVirtualFinerLevels="3", finestConnectivity="0")
+       uniform_c.addObject('EulerImplicitSolver', rayleighStiffness="0.1", rayleighMass="0.1")
+       uniform_c.addObject('CGLinearSolver', iterations="10", tolerance="1e-5", threshold="1e-5")
+       uniform_c.addObject('MechanicalObject', dx="40")
+       uniform_c.addObject('HexahedronFEMForceFieldAndMass', youngModulus="100000", poissonRatio="0.3", method="large", density="3", updateStiffnessMatrix="false", printLog="0")
+       uniform_c.addObject('BoxConstraint', box="24 -10 -3 26 10 3")
+
+       visu = UniformC.addChild('Visu')
+
+       visu.addObject('MeshOBJLoader', name="meshLoader_0", filename="mesh/c.obj", handleSeams="1")
+       visu.addObject('OglModel', name="Visual", src="@meshLoader_0", color="red")
+       visu.addObject('BarycentricMapping', input="@..", output="@Visual")
+
+       surf = UniformC.addChild('Surf')
+
+       surf.addObject('MeshOBJLoader', name="loader", filename="mesh/c.obj")
+       surf.addObject('MeshTopology', src="@loader")
+       surf.addObject('MechanicalObject', src="@loader")
+       surf.addObject('TriangleCollisionModel', )
+       surf.addObject('PointCollisionModel', )
+       surf.addObject('LineCollisionModel', )
+       surf.addObject('BarycentricMapping', )
+
+       uniform_c_and_finest_connectivity = root.addChild('UniformC and finestConnectivity')
+
+       uniform_c_and_finest_connectivity.addObject('SparseGridRamificationTopology', n="5 3 3", fileTopology="mesh/c.obj", nbVirtualFinerLevels="0", finestConnectivity="1")
+       uniform_c_and_finest_connectivity.addObject('EulerImplicitSolver', rayleighStiffness="0.1", rayleighMass="0.1")
+       uniform_c_and_finest_connectivity.addObject('CGLinearSolver', iterations="10", tolerance="1e-5", threshold="1e-5")
+       uniform_c_and_finest_connectivity.addObject('MechanicalObject', dx="80")
+       uniform_c_and_finest_connectivity.addObject('HexahedronFEMForceFieldAndMass', youngModulus="100000", poissonRatio="0.3", method="large", density="3", updateStiffnessMatrix="false", printLog="0")
+       uniform_c_and_finest_connectivity.addObject('BoxConstraint', box="64 -10 -3 66 10 3")
+
+       visu = UniformC and finestConnectivity.addChild('Visu')
+
+       visu.addObject('MeshOBJLoader', name="meshLoader_2", filename="mesh/c.obj", handleSeams="1")
+       visu.addObject('OglModel', name="Visual", src="@meshLoader_2", color="yellow")
+       visu.addObject('BarycentricMapping', input="@..", output="@Visual")
+
+       surf = UniformC and finestConnectivity.addChild('Surf')
+
+       surf.addObject('MeshOBJLoader', name="loader", filename="mesh/c.obj")
+       surf.addObject('MeshTopology', src="@loader")
+       surf.addObject('MechanicalObject', src="@loader")
+       surf.addObject('TriangleCollisionModel', )
+       surf.addObject('PointCollisionModel', )
+       surf.addObject('LineCollisionModel', )
+       surf.addObject('BarycentricMapping', )
     ```
 

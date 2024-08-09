@@ -1,162 +1,159 @@
+<!-- generate_doc -->
 # OglViewport
 
 OglViewport
 
 
-__Target__: `Sofa.GL.Component.Rendering2D`
+__Target__: Sofa.GL.Component.Rendering2D
 
-__namespace__: `#!c++ sofa::gl::component::rendering2d`
+__namespace__: sofa::gl::component::rendering2d
 
-__parents__: 
+__parents__:
 
-- `#!c++ VisualManager`
+- VisualManager
 
-__categories__: 
-
-- VisualModel
-
-Data: 
+### Data
 
 <table>
-<thead>
-    <tr>
-        <th>Name</th>
-        <th>Description</th>
-        <th>Default value</th>
-    </tr>
-</thead>
-<tbody>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Default value</th>
+        </tr>
+    </thead>
+    <tbody>
 	<tr>
 		<td>name</td>
 		<td>
 object name
-</td>
+		</td>
 		<td>unnamed</td>
 	</tr>
 	<tr>
 		<td>printLog</td>
 		<td>
 if true, emits extra messages at runtime.
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>tags</td>
 		<td>
 list of the subsets the objet belongs to
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>bbox</td>
 		<td>
 this object bounding box
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>componentState</td>
 		<td>
 The state of the component among (Dirty, Valid, Undefined, Loading, Invalid).
-</td>
+		</td>
 		<td>Undefined</td>
 	</tr>
 	<tr>
 		<td>listening</td>
 		<td>
 if true, handle the events, otherwise ignore the events
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>enable</td>
 		<td>
 Display the object or not
-</td>
+		</td>
 		<td>1</td>
 	</tr>
 	<tr>
 		<td>screenPosition</td>
 		<td>
 Viewport position
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>screenSize</td>
 		<td>
 Viewport size
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>cameraPosition</td>
 		<td>
 Camera's position in eye's space
-</td>
+		</td>
 		<td>0 0 0</td>
 	</tr>
 	<tr>
 		<td>cameraOrientation</td>
 		<td>
 Camera's orientation
-</td>
+		</td>
 		<td>0 0 0 1</td>
 	</tr>
 	<tr>
 		<td>cameraRigid</td>
 		<td>
 Camera's rigid coord
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>zNear</td>
 		<td>
 Camera's ZNear
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>zFar</td>
 		<td>
 Camera's ZFar
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>fovy</td>
 		<td>
 Field of View (Y axis)
-</td>
+		</td>
 		<td>60</td>
 	</tr>
 	<tr>
 		<td>enabled</td>
 		<td>
 Enable visibility of the viewport
-</td>
+		</td>
 		<td>1</td>
 	</tr>
 	<tr>
 		<td>advancedRendering</td>
 		<td>
 If true, viewport will be hidden if advancedRendering visual flag is not enabled
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>useFBO</td>
 		<td>
 Use a FBO to render the viewport
-</td>
+		</td>
 		<td>1</td>
 	</tr>
 	<tr>
 		<td>swapMainView</td>
 		<td>
 Swap this viewport with the main view
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
@@ -166,26 +163,25 @@ Swap this viewport with the main view
 		<td>drawCamera</td>
 		<td>
 Draw a frame representing the camera (see it in main viewport)
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 
 </tbody>
 </table>
 
-Links: 
-
-| Name | Description |
-| ---- | ----------- |
-|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|
-|slaves|Sub-objects used internally by this object|
-|master|nullptr for regular objects, or master object for which this object is one sub-objects|
+### Links
 
 
+| Name | Description | Destination type name |
+| ---- | ----------- | --------------------- |
+|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
+|slaves|Sub-objects used internally by this object|BaseObject|
+|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
 
-## Examples
+## Examples 
 
-Component/Visual/OglViewport.scn
+OglViewport.scn
 
 === "XML"
 
@@ -242,58 +238,64 @@ Component/Visual/OglViewport.scn
         <OglViewport screenPosition="0 0" screenSize="250 250" cameraPosition="-1 2.7 5" cameraOrientation="-0 -0 -0 1" />
         <OglViewport screenPosition="300 0" screenSize="400 400" cameraRigid="-1 2.7 13 -0 -0 -0 1" />
     </Node>
+
     ```
 
 === "Python"
 
     ```python
-    def createScene(rootNode):
+    def createScene(root_node):
 
-        root = rootNode.addChild('root', dt="0.02")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Algorithm")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Intersection")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Geometry")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Response.Contact")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Projective")
-        root.addObject('RequiredPlugin', name="Sofa.Component.IO.Mesh")
-        root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Iterative")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Mapping.Linear")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Mass")
-        root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
-        root.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.FEM.Elastic")
-        root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Dynamic")
-        root.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering2D")
-        root.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
-        root.addObject('DefaultAnimationLoop')
-        root.addObject('CollisionPipeline', verbose="0", name="CollisionPipeline")
-        root.addObject('BruteForceBroadPhase')
-        root.addObject('BVHNarrowPhase')
-        root.addObject('CollisionResponse', response="PenalityContactForceField", name="collision response")
-        root.addObject('DiscreteIntersection')
+       root = root_node.addChild('root', dt="0.02")
 
-        Liver = root.addChild('Liver', depend="topo dofs")
-        Liver.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
-        Liver.addObject('CGLinearSolver', iterations="25", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
-        Liver.addObject('MeshGmshLoader', name="loader", filename="mesh/liver.msh")
-        Liver.addObject('TetrahedronSetTopologyContainer', src="@loader", name="topo")
-        Liver.addObject('MechanicalObject', src="@loader", name="dofs")
-        Liver.addObject('TetrahedronSetGeometryAlgorithms', name="GeomAlgo")
-        Liver.addObject('DiagonalMass', massDensity="1", name="computed using mass density")
-        Liver.addObject('TetrahedralCorotationalFEMForceField', name="FEM", youngModulus="3000", poissonRatio="0.3", computeGlobalMatrix="false", method="large")
-        Liver.addObject('FixedProjectiveConstraint', name="FixedProjectiveConstraint", indices="3 39 64")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Algorithm")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Intersection")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Geometry")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Response.Contact")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Projective")
+       root.addObject('RequiredPlugin', name="Sofa.Component.IO.Mesh")
+       root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Iterative")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Mapping.Linear")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Mass")
+       root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.FEM.Elastic")
+       root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Dynamic")
+       root.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering2D")
+       root.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
+       root.addObject('DefaultAnimationLoop', )
+       root.addObject('CollisionPipeline', verbose="0", name="CollisionPipeline")
+       root.addObject('BruteForceBroadPhase', )
+       root.addObject('BVHNarrowPhase', )
+       root.addObject('CollisionResponse', response="PenalityContactForceField", name="collision response")
+       root.addObject('DiscreteIntersection', )
 
-        Visu = Liver.addChild('Visu', tags="Visual")
-        Visu.addObject('MeshOBJLoader', name="meshLoader_0", filename="mesh/liver-smooth.obj", handleSeams="1")
-        Visu.addObject('OglModel', name="VisualModel", src="@meshLoader_0")
-        Visu.addObject('BarycentricMapping', input="@..", output="@VisualModel", name="visual mapping")
+       liver = root.addChild('Liver', depend="topo dofs")
 
-        Surf = Liver.addChild('Surf')
-        Surf.addObject('SphereLoader', filename="mesh/liver.sph")
-        Surf.addObject('MechanicalObject', position="@[-1].position")
-        Surf.addObject('SphereCollisionModel', name="CollisionModel", listRadius="@[-2].listRadius")
-        Surf.addObject('BarycentricMapping', name="sphere mapping")
-        root.addObject('OglViewport', screenPosition="0 0", screenSize="250 250", cameraPosition="-1 2.7 5", cameraOrientation="-0 -0 -0 1")
-        root.addObject('OglViewport', screenPosition="300 0", screenSize="400 400", cameraRigid="-1 2.7 13 -0 -0 -0 1")
+       liver.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
+       liver.addObject('CGLinearSolver', iterations="25", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
+       liver.addObject('MeshGmshLoader', name="loader", filename="mesh/liver.msh")
+       liver.addObject('TetrahedronSetTopologyContainer', src="@loader", name="topo")
+       liver.addObject('MechanicalObject', src="@loader", name="dofs")
+       liver.addObject('TetrahedronSetGeometryAlgorithms', name="GeomAlgo")
+       liver.addObject('DiagonalMass', massDensity="1", name="computed using mass density")
+       liver.addObject('TetrahedralCorotationalFEMForceField', name="FEM", youngModulus="3000", poissonRatio="0.3", computeGlobalMatrix="false", method="large")
+       liver.addObject('FixedProjectiveConstraint', name="FixedProjectiveConstraint", indices="3 39 64")
+
+       visu = Liver.addChild('Visu', tags="Visual")
+
+       visu.addObject('MeshOBJLoader', name="meshLoader_0", filename="mesh/liver-smooth.obj", handleSeams="1")
+       visu.addObject('OglModel', name="VisualModel", src="@meshLoader_0")
+       visu.addObject('BarycentricMapping', input="@..", output="@VisualModel", name="visual mapping")
+
+       surf = Liver.addChild('Surf')
+
+       surf.addObject('SphereLoader', filename="mesh/liver.sph")
+       surf.addObject('MechanicalObject', position="@[-1].position")
+       surf.addObject('SphereCollisionModel', name="CollisionModel", listRadius="@[-2].listRadius")
+       surf.addObject('BarycentricMapping', name="sphere mapping")
+
+       root.addObject('OglViewport', screenPosition="0 0", screenSize="250 250", cameraPosition="-1 2.7 5", cameraOrientation="-0 -0 -0 1")
+       root.addObject('OglViewport', screenPosition="300 0", screenSize="400 400", cameraRigid="-1 2.7 13 -0 -0 -0 1")
     ```
 

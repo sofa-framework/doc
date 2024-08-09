@@ -1,75 +1,74 @@
+<!-- generate_doc -->
 # PointsFromIndices
 
 Find the points given a list of indices
 
 
-__Templates__:
+## Vec3d
 
-- `#!c++ Vec3d`
+Templates:
 
-__Target__: `Sofa.Component.Engine.Select`
+- Vec3d
 
-__namespace__: `#!c++ sofa::component::engine::select`
+__Target__: Sofa.Component.Engine.Select
 
-__parents__: 
+__namespace__: sofa::component::engine::select
 
-- `#!c++ DataEngine`
+__parents__:
 
-__categories__: 
+- DataEngine
 
-- Engine
-
-Data: 
+### Data
 
 <table>
-<thead>
-    <tr>
-        <th>Name</th>
-        <th>Description</th>
-        <th>Default value</th>
-    </tr>
-</thead>
-<tbody>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Default value</th>
+        </tr>
+    </thead>
+    <tbody>
 	<tr>
 		<td>name</td>
 		<td>
 object name
-</td>
+		</td>
 		<td>unnamed</td>
 	</tr>
 	<tr>
 		<td>printLog</td>
 		<td>
 if true, emits extra messages at runtime.
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>tags</td>
 		<td>
 list of the subsets the objet belongs to
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>bbox</td>
 		<td>
 this object bounding box
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>componentState</td>
 		<td>
 The state of the component among (Dirty, Valid, Undefined, Loading, Invalid).
-</td>
+		</td>
 		<td>Undefined</td>
 	</tr>
 	<tr>
 		<td>listening</td>
 		<td>
 if true, handle the events, otherwise ignore the events
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
@@ -79,14 +78,14 @@ if true, handle the events, otherwise ignore the events
 		<td>position</td>
 		<td>
 Position coordinates of the degrees of freedom
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>indices</td>
 		<td>
 Indices of the points
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
@@ -96,26 +95,25 @@ Indices of the points
 		<td>indices_position</td>
 		<td>
 Coordinates of the points contained in indices
-</td>
+		</td>
 		<td></td>
 	</tr>
 
 </tbody>
 </table>
 
-Links: 
-
-| Name | Description |
-| ---- | ----------- |
-|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|
-|slaves|Sub-objects used internally by this object|
-|master|nullptr for regular objects, or master object for which this object is one sub-objects|
+### Links
 
 
+| Name | Description | Destination type name |
+| ---- | ----------- | --------------------- |
+|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
+|slaves|Sub-objects used internally by this object|BaseObject|
+|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
 
-## Examples
+## Examples 
 
-Component/Engine/Select/PointsFromIndices.scn
+PointsFromIndices.scn
 
 === "XML"
 
@@ -158,44 +156,48 @@ Component/Engine/Select/PointsFromIndices.scn
     
         </Node>
     </Node>
+
     ```
 
 === "Python"
 
     ```python
-    def createScene(rootNode):
+    def createScene(root_node):
 
-        root = rootNode.addChild('root', gravity="0 -9 1", dt="0.05")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Projective")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Engine.Select")
-        root.addObject('RequiredPlugin', name="Sofa.Component.IO.Mesh")
-        root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Iterative")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Mass")
-        root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
-        root.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.FEM.Elastic")
-        root.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.Spring")
-        root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Dynamic")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Visual")
-        root.addObject('VisualStyle', displayFlags="showForceFields")
-        root.addObject('DefaultAnimationLoop')
+       root = root_node.addChild('root', gravity="0 -9 1", dt="0.05")
 
-        SquareGravity = root.addChild('SquareGravity', gravity="0 -9.81 0")
-        SquareGravity.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
-        SquareGravity.addObject('CGLinearSolver', iterations="25", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
-        SquareGravity.addObject('MeshGmshLoader', name="loader", filename="mesh/square3.msh", createSubelements="true")
-        SquareGravity.addObject('MechanicalObject', src="@loader", template="Vec3", name="mecaObj", scale3d="10 10 10", restScale="1")
-        SquareGravity.addObject('TriangleSetTopologyContainer', src="@loader", name="Container")
-        SquareGravity.addObject('TriangleSetTopologyModifier', name="Modifier")
-        SquareGravity.addObject('TriangleSetGeometryAlgorithms', template="Vec3", name="GeomAlgo")
-        SquareGravity.addObject('DiagonalMass', name="default5", massDensity="0.15")
-        SquareGravity.addObject('BoxROI', template="Vec3", name="FixedROI", box="2 9.5 -0.5 8 10.5 0.5", drawBoxes="1", position="@mecaObj.rest_position", computeTriangles="0", computeTetrahedra="0", computeEdges="0")
-        SquareGravity.addObject('FixedProjectiveConstraint', template="Vec3", name="default6", indices="@FixedROI.indices")
-        SquareGravity.addObject('TriangularFEMForceField', template="Vec3", name="FEM", method="large", poissonRatio="0.3", youngModulus="60")
-        SquareGravity.addObject('TriangularBendingSprings', template="Vec3", name="FEM-Bend", stiffness="300", damping="1")
-        SquareGravity.addObject('PointsFromIndices', name="PFI", position="@mecaObj.position", indices="10 20 30")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Projective")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Engine.Select")
+       root.addObject('RequiredPlugin', name="Sofa.Component.IO.Mesh")
+       root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Iterative")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Mass")
+       root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.FEM.Elastic")
+       root.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.Spring")
+       root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Dynamic")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Visual")
+       root.addObject('VisualStyle', displayFlags="showForceFields")
+       root.addObject('DefaultAnimationLoop', )
 
-        Selection = SquareGravity.addChild('Selection')
-        Selection.addObject('MechanicalObject', template="Vec3", position="@../PFI.indices_position", name="SelectedDOFs", showIndices="1", showIndicesScale="0.2")
+       square_gravity = root.addChild('SquareGravity', gravity="0 -9.81 0")
+
+       square_gravity.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
+       square_gravity.addObject('CGLinearSolver', iterations="25", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
+       square_gravity.addObject('MeshGmshLoader', name="loader", filename="mesh/square3.msh", createSubelements="true")
+       square_gravity.addObject('MechanicalObject', src="@loader", template="Vec3", name="mecaObj", scale3d="10 10 10", restScale="1")
+       square_gravity.addObject('TriangleSetTopologyContainer', src="@loader", name="Container")
+       square_gravity.addObject('TriangleSetTopologyModifier', name="Modifier")
+       square_gravity.addObject('TriangleSetGeometryAlgorithms', template="Vec3", name="GeomAlgo")
+       square_gravity.addObject('DiagonalMass', name="default5", massDensity="0.15")
+       square_gravity.addObject('BoxROI', template="Vec3", name="FixedROI", box="2 9.5 -0.5 8 10.5 0.5", drawBoxes="1", position="@mecaObj.rest_position", computeTriangles="0", computeTetrahedra="0", computeEdges="0")
+       square_gravity.addObject('FixedProjectiveConstraint', template="Vec3", name="default6", indices="@FixedROI.indices")
+       square_gravity.addObject('TriangularFEMForceField', template="Vec3", name="FEM", method="large", poissonRatio="0.3", youngModulus="60")
+       square_gravity.addObject('TriangularBendingSprings', template="Vec3", name="FEM-Bend", stiffness="300", damping="1")
+       square_gravity.addObject('PointsFromIndices', name="PFI", position="@mecaObj.position", indices="10 20 30")
+
+       selection = SquareGravity.addChild('Selection')
+
+       selection.addObject('MechanicalObject', template="Vec3", position="@../PFI.indices_position", name="SelectedDOFs", showIndices="1", showIndicesScale="0.2")
     ```
 

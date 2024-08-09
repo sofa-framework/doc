@@ -42,126 +42,126 @@ Additional information
 - a different alarmDistance and contactDistance can be specified for each CollisionModel by setting alarmDistance and contactDistance to zero and changing the proximity parameter
 
 <!-- automatically generated doc START -->
-__Target__: `Sofa.Component.Collision.Detection.Intersection`
+<!-- generate_doc -->
 
-__namespace__: `#!c++ sofa::component::collision::detection::intersection`
+A set of methods to compute (for constraint methods) if two primitives are close enough to consider they collide
 
-__parents__: 
 
-- `#!c++ BaseProximityIntersection`
+__Target__: Sofa.Component.Collision.Detection.Intersection
 
-__categories__: 
+__namespace__: sofa::component::collision::detection::intersection
 
-- CollisionAlgorithm
+__parents__:
 
-Data: 
+- BaseProximityIntersection
+
+### Data
 
 <table>
-<thead>
-    <tr>
-        <th>Name</th>
-        <th>Description</th>
-        <th>Default value</th>
-    </tr>
-</thead>
-<tbody>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Default value</th>
+        </tr>
+    </thead>
+    <tbody>
 	<tr>
 		<td>name</td>
 		<td>
 object name
-</td>
+		</td>
 		<td>unnamed</td>
 	</tr>
 	<tr>
 		<td>printLog</td>
 		<td>
 if true, emits extra messages at runtime.
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>tags</td>
 		<td>
 list of the subsets the objet belongs to
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>bbox</td>
 		<td>
 this object bounding box
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>componentState</td>
 		<td>
 The state of the component among (Dirty, Valid, Undefined, Loading, Invalid).
-</td>
+		</td>
 		<td>Undefined</td>
 	</tr>
 	<tr>
 		<td>listening</td>
 		<td>
 if true, handle the events, otherwise ignore the events
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>alarmDistance</td>
 		<td>
 Distance above which the intersection computations ignores the promixity pair. This distance can also be used in some broad phase algorithms to reduce the search area
-</td>
+		</td>
 		<td>1</td>
 	</tr>
 	<tr>
 		<td>contactDistance</td>
 		<td>
 Distance below which a contact is created
-</td>
+		</td>
 		<td>0.5</td>
 	</tr>
 	<tr>
 		<td>filterIntersection</td>
 		<td>
 Activate LMD filter
-</td>
+		</td>
 		<td>1</td>
 	</tr>
 	<tr>
 		<td>angleCone</td>
 		<td>
 Filtering cone extension angle
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>coneFactor</td>
 		<td>
 Factor for filtering cone angle computation
-</td>
+		</td>
 		<td>0.5</td>
 	</tr>
 	<tr>
 		<td>useLMDFilters</td>
 		<td>
 Use external cone computation
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 
 </tbody>
 </table>
 
-Links: 
-
-| Name | Description |
-| ---- | ----------- |
-|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|
-|slaves|Sub-objects used internally by this object|
-|master|nullptr for regular objects, or master object for which this object is one sub-objects|
+### Links
 
 
+| Name | Description | Destination type name |
+| ---- | ----------- | --------------------- |
+|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
+|slaves|Sub-objects used internally by this object|BaseObject|
+|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
 
 
 <!-- automatically generated doc END -->

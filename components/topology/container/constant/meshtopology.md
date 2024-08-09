@@ -1,127 +1,124 @@
+<!-- generate_doc -->
 # MeshTopology
 
 Generic mesh topology
 
 
-__Target__: `Sofa.Component.Topology.Container.Constant`
+__Target__: Sofa.Component.Topology.Container.Constant
 
-__namespace__: `#!c++ sofa::component::topology::container::constant`
+__namespace__: sofa::component::topology::container::constant
 
-__parents__: 
+__parents__:
 
-- `#!c++ BaseMeshTopology`
+- BaseMeshTopology
 
-__categories__: 
-
-- Topology
-
-Data: 
+### Data
 
 <table>
-<thead>
-    <tr>
-        <th>Name</th>
-        <th>Description</th>
-        <th>Default value</th>
-    </tr>
-</thead>
-<tbody>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Default value</th>
+        </tr>
+    </thead>
+    <tbody>
 	<tr>
 		<td>name</td>
 		<td>
 object name
-</td>
+		</td>
 		<td>unnamed</td>
 	</tr>
 	<tr>
 		<td>printLog</td>
 		<td>
 if true, emits extra messages at runtime.
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>tags</td>
 		<td>
 list of the subsets the objet belongs to
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>bbox</td>
 		<td>
 this object bounding box
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>componentState</td>
 		<td>
 The state of the component among (Dirty, Valid, Undefined, Loading, Invalid).
-</td>
+		</td>
 		<td>Undefined</td>
 	</tr>
 	<tr>
 		<td>listening</td>
 		<td>
 if true, handle the events, otherwise ignore the events
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>filename</td>
 		<td>
 Filename of the mesh
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>position</td>
 		<td>
 List of point positions
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>edges</td>
 		<td>
 List of edge indices
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>triangles</td>
 		<td>
 List of triangle indices
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>quads</td>
 		<td>
 List of quad indices
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>tetrahedra</td>
 		<td>
 List of tetrahedron indices
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>hexahedra</td>
 		<td>
 List of hexahedron indices
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>uv</td>
 		<td>
 List of uv coordinates
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
@@ -131,54 +128,53 @@ List of uv coordinates
 		<td>drawEdges</td>
 		<td>
 if true, draw the topology Edges
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>drawTriangles</td>
 		<td>
 if true, draw the topology Triangles
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>drawQuads</td>
 		<td>
 if true, draw the topology Quads
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>drawTetrahedra</td>
 		<td>
 if true, draw the topology Tetrahedra
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>drawHexahedra</td>
 		<td>
 if true, draw the topology hexahedra
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 
 </tbody>
 </table>
 
-Links: 
-
-| Name | Description |
-| ---- | ----------- |
-|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|
-|slaves|Sub-objects used internally by this object|
-|master|nullptr for regular objects, or master object for which this object is one sub-objects|
+### Links
 
 
+| Name | Description | Destination type name |
+| ---- | ----------- | --------------------- |
+|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
+|slaves|Sub-objects used internally by this object|BaseObject|
+|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
 
-## Examples
+## Examples 
 
-Component/Topology/Container/Constant/MeshTopology.scn
+MeshTopology.scn
 
 === "XML"
 
@@ -232,57 +228,62 @@ Component/Topology/Container/Constant/MeshTopology.scn
             </Node>
         </Node>
     </Node>
+
     ```
 
 === "Python"
 
     ```python
-    def createScene(rootNode):
+    def createScene(root_node):
 
-        root = rootNode.addChild('root', dt="0.02")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Algorithm")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Intersection")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Geometry")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Response.Contact")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Projective")
-        root.addObject('RequiredPlugin', name="Sofa.Component.IO.Mesh")
-        root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Iterative")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Mapping.Linear")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Mass")
-        root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
-        root.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.FEM.Elastic")
-        root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Constant")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Visual")
-        root.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
-        root.addObject('VisualStyle', displayFlags="showBehaviorModels showForceFields showVisual")
-        root.addObject('DefaultAnimationLoop')
-        root.addObject('CollisionPipeline', verbose="0", name="CollisionPipeline")
-        root.addObject('BruteForceBroadPhase')
-        root.addObject('BVHNarrowPhase')
-        root.addObject('CollisionResponse', response="PenalityContactForceField", name="collision response")
-        root.addObject('DiscreteIntersection')
+       root = root_node.addChild('root', dt="0.02")
 
-        TorusFEM = root.addChild('TorusFEM')
-        TorusFEM.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
-        TorusFEM.addObject('CGLinearSolver', iterations="25", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
-        TorusFEM.addObject('MeshGmshLoader', name="loader", filename="mesh/torus2_low_res.msh")
-        TorusFEM.addObject('MeshTopology', src="@loader")
-        TorusFEM.addObject('MechanicalObject', src="@loader")
-        TorusFEM.addObject('FixedProjectiveConstraint', name="FixedProjectiveConstraint", indices="0")
-        TorusFEM.addObject('UniformMass', totalMass="5")
-        TorusFEM.addObject('TetrahedronFEMForceField', name="FEM", youngModulus="1000", poissonRatio="0.4", computeGlobalMatrix="false", method="large")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Algorithm")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Intersection")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Geometry")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Response.Contact")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Projective")
+       root.addObject('RequiredPlugin', name="Sofa.Component.IO.Mesh")
+       root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Iterative")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Mapping.Linear")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Mass")
+       root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.FEM.Elastic")
+       root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Constant")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Visual")
+       root.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
+       root.addObject('VisualStyle', displayFlags="showBehaviorModels showForceFields showVisual")
+       root.addObject('DefaultAnimationLoop', )
+       root.addObject('CollisionPipeline', verbose="0", name="CollisionPipeline")
+       root.addObject('BruteForceBroadPhase', )
+       root.addObject('BVHNarrowPhase', )
+       root.addObject('CollisionResponse', response="PenalityContactForceField", name="collision response")
+       root.addObject('DiscreteIntersection', )
 
-        Visu = TorusFEM.addChild('Visu')
-        Visu.addObject('MeshOBJLoader', name="meshLoader_0", filename="mesh/torus2.obj", handleSeams="1")
-        Visu.addObject('OglModel', name="Visual", src="@meshLoader_0", color="red")
-        Visu.addObject('BarycentricMapping', input="@..", output="@Visual")
+       torus_fem = root.addChild('TorusFEM')
 
-        Surf2 = TorusFEM.addChild('Surf2')
-        Surf2.addObject('MeshOBJLoader', name="loader", filename="mesh/torus2_for_collision.obj")
-        Surf2.addObject('MeshTopology', src="@loader")
-        Surf2.addObject('MechanicalObject', src="@loader")
-        Surf2.addObject('TriangleCollisionModel')
-        Surf2.addObject('BarycentricMapping')
+       torus_fem.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
+       torus_fem.addObject('CGLinearSolver', iterations="25", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
+       torus_fem.addObject('MeshGmshLoader', name="loader", filename="mesh/torus2_low_res.msh")
+       torus_fem.addObject('MeshTopology', src="@loader")
+       torus_fem.addObject('MechanicalObject', src="@loader")
+       torus_fem.addObject('FixedProjectiveConstraint', name="FixedProjectiveConstraint", indices="0")
+       torus_fem.addObject('UniformMass', totalMass="5")
+       torus_fem.addObject('TetrahedronFEMForceField', name="FEM", youngModulus="1000", poissonRatio="0.4", computeGlobalMatrix="false", method="large")
+
+       visu = TorusFEM.addChild('Visu')
+
+       visu.addObject('MeshOBJLoader', name="meshLoader_0", filename="mesh/torus2.obj", handleSeams="1")
+       visu.addObject('OglModel', name="Visual", src="@meshLoader_0", color="red")
+       visu.addObject('BarycentricMapping', input="@..", output="@Visual")
+
+       surf2 = TorusFEM.addChild('Surf2')
+
+       surf2.addObject('MeshOBJLoader', name="loader", filename="mesh/torus2_for_collision.obj")
+       surf2.addObject('MeshTopology', src="@loader")
+       surf2.addObject('MechanicalObject', src="@loader")
+       surf2.addObject('TriangleCollisionModel', )
+       surf2.addObject('BarycentricMapping', )
     ```
 

@@ -1,183 +1,180 @@
+<!-- generate_doc -->
 # GeomagicEmulator
 
 Driver allowing interfacing with Geomagic haptic devices.
 
 
-__Target__: `Geomagic`
+__Target__: Geomagic
 
-__namespace__: `#!c++ sofa::component::controller`
+__namespace__: sofa::component::controller
 
-__parents__: 
+__parents__:
 
-- `#!c++ GeomagicDriver`
+- GeomagicDriver
 
-__categories__: 
-
-- Controller
-
-Data: 
+### Data
 
 <table>
-<thead>
-    <tr>
-        <th>Name</th>
-        <th>Description</th>
-        <th>Default value</th>
-    </tr>
-</thead>
-<tbody>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Default value</th>
+        </tr>
+    </thead>
+    <tbody>
 	<tr>
 		<td>name</td>
 		<td>
 object name
-</td>
+		</td>
 		<td>unnamed</td>
 	</tr>
 	<tr>
 		<td>printLog</td>
 		<td>
 if true, emits extra messages at runtime.
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>tags</td>
 		<td>
 list of the subsets the objet belongs to
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>bbox</td>
 		<td>
 this object bounding box
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>componentState</td>
 		<td>
 The state of the component among (Dirty, Valid, Undefined, Loading, Invalid).
-</td>
+		</td>
 		<td>Undefined</td>
 	</tr>
 	<tr>
 		<td>listening</td>
 		<td>
 if true, handle the events, otherwise ignore the events
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>handleEventTriggersUpdate</td>
 		<td>
 Event handling frequency controls the controller update frequency
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>deviceName</td>
 		<td>
 Name of device Configuration
-</td>
+		</td>
 		<td>Default Device</td>
 	</tr>
 	<tr>
 		<td>positionBase</td>
 		<td>
 Position of the device base in the SOFA scene world coordinates
-</td>
+		</td>
 		<td>0 0 0</td>
 	</tr>
 	<tr>
 		<td>orientationBase</td>
 		<td>
 Orientation of the device base in the SOFA scene world coordinates
-</td>
+		</td>
 		<td>0 0 0 1</td>
 	</tr>
 	<tr>
 		<td>orientationTool</td>
 		<td>
 Orientation of the tool in the SOFA scene world coordinates
-</td>
+		</td>
 		<td>0 0 0 1</td>
 	</tr>
 	<tr>
 		<td>scale</td>
 		<td>
 Default scale applied to the Device coordinates
-</td>
+		</td>
 		<td>1</td>
 	</tr>
 	<tr>
 		<td>forceScale</td>
 		<td>
 Default scaling factor applied to the force feedback
-</td>
+		</td>
 		<td>1</td>
 	</tr>
 	<tr>
 		<td>maxInputForceFeedback</td>
 		<td>
 Maximum value of the normed input force feedback for device security
-</td>
+		</td>
 		<td>1</td>
 	</tr>
 	<tr>
 		<td>inputForceFeedback</td>
 		<td>
 Input force feedback in case of no LCPForceFeedback is found (manual setting)
-</td>
+		</td>
 		<td>0 0 0</td>
 	</tr>
 	<tr>
 		<td>manualStart</td>
 		<td>
 If true, will not automatically initDevice at component init phase.
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>emitButtonEvent</td>
 		<td>
 If true, will send event through the graph when button are pushed/released
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>positionDevice</td>
 		<td>
 position of the base of the part of the device
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>angle</td>
 		<td>
 Angluar values of joint (rad)
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>button1</td>
 		<td>
 Button state 1
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>button2</td>
 		<td>
 Button state 2
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>speedFactor</td>
 		<td>
 factor to increase/decrease the movements speed
-</td>
+		</td>
 		<td>0.1</td>
 	</tr>
 	<tr>
@@ -187,34 +184,33 @@ factor to increase/decrease the movements speed
 		<td>drawDeviceFrame</td>
 		<td>
 Visualize the frame corresponding to the device tooltip
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>drawDevice</td>
 		<td>
 Visualize the Geomagic device in the virtual scene
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 
 </tbody>
 </table>
 
-Links: 
-
-| Name | Description |
-| ---- | ----------- |
-|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|
-|slaves|Sub-objects used internally by this object|
-|master|nullptr for regular objects, or master object for which this object is one sub-objects|
-|forceFeedBack|link to the forceFeedBack component, if not set will search through graph and take first one encountered.|
+### Links
 
 
+| Name | Description | Destination type name |
+| ---- | ----------- | --------------------- |
+|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
+|slaves|Sub-objects used internally by this object|BaseObject|
+|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
+|forceFeedBack|link to the forceFeedBack component, if not set will search through graph and take first one encountered.|ForceFeedback|
 
-## Examples
+## Examples 
 
-Geomagic/share/sofa/examples/Geomagic/GeomagicEmulator-RigidCubes.scn
+GeomagicEmulator-RigidCubes.scn
 
 === "XML"
 
@@ -330,104 +326,116 @@ Geomagic/share/sofa/examples/Geomagic/GeomagicEmulator-RigidCubes.scn
         </Node> 
     
     </Node>
+
     ```
 
 === "Python"
 
     ```python
-    def createScene(rootNode):
+    def createScene(root_node):
 
-        root = rootNode.addChild('root', dt="0.05", showBoundingTree="0", gravity="0 0 0")
-        root.addObject('RequiredPlugin', name="Geomagic")
-        root.addObject('RequiredPlugin', name="Sofa.Component.AnimationLoop")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Algorithm")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Intersection")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Geometry")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Response.Contact")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Lagrangian.Correction")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Lagrangian.Solver")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Controller")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Haptics")
-        root.addObject('RequiredPlugin', name="Sofa.Component.IO.Mesh")
-        root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Iterative")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Mapping.Linear")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Mapping.NonLinear")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Mass")
-        root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
-        root.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.Spring")
-        root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Constant")
-        root.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
-        root.addObject('DefaultVisualManagerLoop')
-        root.addObject('CollisionPipeline', name="pipeline", depth="6", verbose="0")
-        root.addObject('BruteForceBroadPhase')
-        root.addObject('BVHNarrowPhase')
-        root.addObject('CollisionResponse', name="response", response="FrictionContactConstraint")
-        root.addObject('LocalMinDistance', name="proximity", alarmDistance="0.15", contactDistance="0.05", angleCone="0.0")
-        root.addObject('FreeMotionAnimationLoop')
-        root.addObject('LCPConstraintSolver', tolerance="0.001", maxIt="1000")
-        root.addObject('GeomagicEmulator', name="GeomagicDevice", deviceName="Default Device", scale="1", positionBase="0 0 0", orientationBase="0 0.707 0 -0.707", drawDevice="1", drawDeviceFrame="1", forceFeedBack="@Instrument/LCPFF1")
+       root = root_node.addChild('root', dt="0.05", showBoundingTree="0", gravity="0 0 0")
 
-        CubeStatic1 = root.addChild('CubeStatic1')
-        CubeStatic1.addObject('MeshOBJLoader', name="loaderC", filename="mesh/cube.obj", scale3d="4 6 1", translation="-2 -2 -8")
-        CubeStatic1.addObject('MechanicalObject', name="Cube", position="@loaderC.position")
-        CubeStatic1.addObject('MeshTopology', name="grid", src="@loaderC")
-        CubeStatic1.addObject('TriangleCollisionModel', simulated="0", moving="0", bothSide="false", group="1")
-        CubeStatic1.addObject('LineCollisionModel', simulated="0", moving="0", group="1")
-        CubeStatic1.addObject('PointCollisionModel', simulated="0", moving="0", group="1")
+       root.addObject('RequiredPlugin', name="Geomagic")
+       root.addObject('RequiredPlugin', name="Sofa.Component.AnimationLoop")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Algorithm")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Intersection")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Geometry")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Response.Contact")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Lagrangian.Correction")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Lagrangian.Solver")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Controller")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Haptics")
+       root.addObject('RequiredPlugin', name="Sofa.Component.IO.Mesh")
+       root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Iterative")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Mapping.Linear")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Mapping.NonLinear")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Mass")
+       root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.Spring")
+       root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Constant")
+       root.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
+       root.addObject('DefaultVisualManagerLoop', )
+       root.addObject('CollisionPipeline', name="pipeline", depth="6", verbose="0")
+       root.addObject('BruteForceBroadPhase', )
+       root.addObject('BVHNarrowPhase', )
+       root.addObject('CollisionResponse', name="response", response="FrictionContactConstraint")
+       root.addObject('LocalMinDistance', name="proximity", alarmDistance="0.15", contactDistance="0.05", angleCone="0.0")
+       root.addObject('FreeMotionAnimationLoop', )
+       root.addObject('LCPConstraintSolver', tolerance="0.001", maxIt="1000")
+       root.addObject('GeomagicEmulator', name="GeomagicDevice", deviceName="Default Device", scale="1", positionBase="0 0 0", orientationBase="0 0.707 0 -0.707", drawDevice="1", drawDeviceFrame="1", forceFeedBack="@Instrument/LCPFF1")
 
-        CubeVisu = CubeStatic1.addChild('CubeVisu')
-        CubeVisu.addObject('OglModel', name="CubeVisualModel")
-        CubeVisu.addObject('IdentityMapping', input="@../", output="@CubeVisualModel")
+       cube_static1 = root.addChild('CubeStatic1')
 
-        CubeStatic2 = root.addChild('CubeStatic2')
-        CubeStatic2.addObject('MeshOBJLoader', name="loaderC2", filename="mesh/cube.obj", scale3d="4 6 1", translation="-2 -2 8")
-        CubeStatic2.addObject('MechanicalObject', position="@loaderC2.position")
-        CubeStatic2.addObject('MeshTopology', name="grid", src="@loaderC2")
-        CubeStatic2.addObject('TriangleCollisionModel', bothSide="false")
-        CubeStatic2.addObject('LineCollisionModel')
-        CubeStatic2.addObject('PointCollisionModel')
+       cube_static1.addObject('MeshOBJLoader', name="loaderC", filename="mesh/cube.obj", scale3d="4 6 1", translation="-2 -2 -8")
+       cube_static1.addObject('MechanicalObject', name="Cube", position="@loaderC.position")
+       cube_static1.addObject('MeshTopology', name="grid", src="@loaderC")
+       cube_static1.addObject('TriangleCollisionModel', simulated="0", moving="0", bothSide="false", group="1")
+       cube_static1.addObject('LineCollisionModel', simulated="0", moving="0", group="1")
+       cube_static1.addObject('PointCollisionModel', simulated="0", moving="0", group="1")
 
-        Cube2Visu = CubeStatic2.addChild('Cube2Visu')
-        Cube2Visu.addObject('OglModel', name="Cube2VisualModel")
-        Cube2Visu.addObject('IdentityMapping', input="@../", output="@Cube2VisualModel")
+       cube_visu = CubeStatic1.addChild('CubeVisu')
 
-        Floor = root.addChild('Floor')
-        Floor.addObject('MeshOBJLoader', name="loaderF", filename="mesh/cube.obj", scale3d="20 0.5 20", translation="0 -10 0")
-        Floor.addObject('MeshTopology', src="@loaderF")
-        Floor.addObject('MechanicalObject', src="@loaderF")
-        Floor.addObject('TriangleCollisionModel', simulated="0", moving="0", bothSide="false", group="1")
-        Floor.addObject('LineCollisionModel', simulated="0", moving="0", group="1")
-        Floor.addObject('PointCollisionModel', simulated="0", moving="0", group="1")
+       cube_visu.addObject('OglModel', name="CubeVisualModel")
+       cube_visu.addObject('IdentityMapping', input="@../", output="@CubeVisualModel")
 
-        VisuFloor = Floor.addChild('VisuFloor')
-        VisuFloor.addObject('OglModel', name="FloorVisualModel")
-        VisuFloor.addObject('IdentityMapping', input="@../", output="@FloorVisualModel")
+       cube_static2 = root.addChild('CubeStatic2')
 
-        Omni = root.addChild('Omni')
-        Omni.addObject('MechanicalObject', template="Rigid3", name="DOFs", position="@GeomagicDevice.positionDevice")
-        Omni.addObject('MechanicalStateController', template="Rigid3", listening="true", mainDirection="-1.0 0.0 0.0", handleEventTriggersUpdate="true")
+       cube_static2.addObject('MeshOBJLoader', name="loaderC2", filename="mesh/cube.obj", scale3d="4 6 1", translation="-2 -2 8")
+       cube_static2.addObject('MechanicalObject', position="@loaderC2.position")
+       cube_static2.addObject('MeshTopology', name="grid", src="@loaderC2")
+       cube_static2.addObject('TriangleCollisionModel', bothSide="false")
+       cube_static2.addObject('LineCollisionModel', )
+       cube_static2.addObject('PointCollisionModel', )
 
-        Instrument = root.addChild('Instrument')
-        Instrument.addObject('EulerImplicitSolver', name="ODE solver", rayleighStiffness="0.05", rayleighMass="1.0")
-        Instrument.addObject('CGLinearSolver', name="linear solver", iterations="25", tolerance="1e-10", threshold="10e-10")
-        Instrument.addObject('MechanicalObject', name="instrumentState", template="Rigid3")
-        Instrument.addObject('UniformMass', name="mass", totalMass="0.5")
-        Instrument.addObject('RestShapeSpringsForceField', stiffness="1000000", angularStiffness="1000000", external_rest_shape="@../Omni/DOFs", points="0", external_points="0")
-        Instrument.addObject('LCPForceFeedback', name="LCPFF1", activate="true", forceCoef="1.0")
-        Instrument.addObject('UncoupledConstraintCorrection')
+       cube2_visu = CubeStatic2.addChild('Cube2Visu')
 
-        VisuTool = Instrument.addChild('VisuTool')
-        VisuTool.addObject('MeshOBJLoader', name="meshLoader_1", filename="Demos/Dentistry/data/mesh/dental_instrument.obj", handleSeams="1")
-        VisuTool.addObject('OglModel', name="InstrumentVisualModel", src="@meshLoader_1", color="1.0 0.2 0.2 1.0", ry="-180", rz="-90", dz="3.5", dx="-0.3")
-        VisuTool.addObject('RigidMapping', name="MM->VM mapping", input="@instrumentState", output="@InstrumentVisualModel")
+       cube2_visu.addObject('OglModel', name="Cube2VisualModel")
+       cube2_visu.addObject('IdentityMapping', input="@../", output="@Cube2VisualModel")
 
-        CollisionModel = Instrument.addChild('CollisionModel')
-        CollisionModel.addObject('MeshOBJLoader', filename="Demos/Dentistry/data/mesh/dental_instrument_centerline.obj", name="loader")
-        CollisionModel.addObject('MeshTopology', src="@loader", name="InstrumentCollisionModel")
-        CollisionModel.addObject('MechanicalObject', src="@loader", name="instrumentCollisionState", ry="-180", rz="-90", dz="3.5", dx="-0.3")
-        CollisionModel.addObject('LineCollisionModel', contactStiffness="100")
-        CollisionModel.addObject('PointCollisionModel', contactStiffness="100")
-        CollisionModel.addObject('RigidMapping', name="MM->CM mapping", input="@instrumentState", output="@instrumentCollisionState")
+       floor = root.addChild('Floor')
+
+       floor.addObject('MeshOBJLoader', name="loaderF", filename="mesh/cube.obj", scale3d="20 0.5 20", translation="0 -10 0")
+       floor.addObject('MeshTopology', src="@loaderF")
+       floor.addObject('MechanicalObject', src="@loaderF")
+       floor.addObject('TriangleCollisionModel', simulated="0", moving="0", bothSide="false", group="1")
+       floor.addObject('LineCollisionModel', simulated="0", moving="0", group="1")
+       floor.addObject('PointCollisionModel', simulated="0", moving="0", group="1")
+
+       visu_floor = Floor.addChild('VisuFloor')
+
+       visu_floor.addObject('OglModel', name="FloorVisualModel")
+       visu_floor.addObject('IdentityMapping', input="@../", output="@FloorVisualModel")
+
+       omni = root.addChild('Omni')
+
+       omni.addObject('MechanicalObject', template="Rigid3", name="DOFs", position="@GeomagicDevice.positionDevice")
+       omni.addObject('MechanicalStateController', template="Rigid3", listening="true", mainDirection="-1.0 0.0 0.0", handleEventTriggersUpdate="true")
+
+       instrument = root.addChild('Instrument')
+
+       instrument.addObject('EulerImplicitSolver', name="ODE solver", rayleighStiffness="0.05", rayleighMass="1.0")
+       instrument.addObject('CGLinearSolver', name="linear solver", iterations="25", tolerance="1e-10", threshold="10e-10")
+       instrument.addObject('MechanicalObject', name="instrumentState", template="Rigid3")
+       instrument.addObject('UniformMass', name="mass", totalMass="0.5")
+       instrument.addObject('RestShapeSpringsForceField', stiffness="1000000", angularStiffness="1000000", external_rest_shape="@../Omni/DOFs", points="0", external_points="0")
+       instrument.addObject('LCPForceFeedback', name="LCPFF1", activate="true", forceCoef="1.0")
+       instrument.addObject('UncoupledConstraintCorrection', )
+
+       visu_tool = Instrument.addChild('VisuTool')
+
+       visu_tool.addObject('MeshOBJLoader', name="meshLoader_1", filename="Demos/Dentistry/data/mesh/dental_instrument.obj", handleSeams="1")
+       visu_tool.addObject('OglModel', name="InstrumentVisualModel", src="@meshLoader_1", color="1.0 0.2 0.2 1.0", ry="-180", rz="-90", dz="3.5", dx="-0.3")
+       visu_tool.addObject('RigidMapping', name="MM->VM mapping", input="@instrumentState", output="@InstrumentVisualModel")
+
+       collision_model = Instrument.addChild('CollisionModel')
+
+       collision_model.addObject('MeshOBJLoader', filename="Demos/Dentistry/data/mesh/dental_instrument_centerline.obj", name="loader")
+       collision_model.addObject('MeshTopology', src="@loader", name="InstrumentCollisionModel")
+       collision_model.addObject('MechanicalObject', src="@loader", name="instrumentCollisionState", ry="-180", rz="-90", dz="3.5", dx="-0.3")
+       collision_model.addObject('LineCollisionModel', contactStiffness="100")
+       collision_model.addObject('PointCollisionModel', contactStiffness="100")
+       collision_model.addObject('RigidMapping', name="MM->CM mapping", input="@instrumentState", output="@instrumentCollisionState")
     ```
 

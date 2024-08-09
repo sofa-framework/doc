@@ -1,3 +1,4 @@
+<!-- generate_doc -->
 # TaitSurfacePressureForceField
 
 This component computes the volume enclosed by a surface mesh and apply a pressure force following Tait's equation: $P = P_0 - B((V/V_0)^\gamma - 1)$.
@@ -7,87 +8,85 @@ This ForceField can be used to apply :
  * a pressure from water (set $\gamma=7$ and use $B$)
 
 
-__Templates__:
+## Vec3d
 
-- `#!c++ Vec3d`
+Templates:
 
-__Target__: `Sofa.Component.MechanicalLoad`
+- Vec3d
 
-__namespace__: `#!c++ sofa::component::mechanicalload`
+__Target__: Sofa.Component.MechanicalLoad
 
-__parents__: 
+__namespace__: sofa::component::mechanicalload
 
-- `#!c++ ForceField`
-
-__categories__: 
+__parents__:
 
 - ForceField
 
-Data: 
+### Data
 
 <table>
-<thead>
-    <tr>
-        <th>Name</th>
-        <th>Description</th>
-        <th>Default value</th>
-    </tr>
-</thead>
-<tbody>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Default value</th>
+        </tr>
+    </thead>
+    <tbody>
 	<tr>
 		<td>name</td>
 		<td>
 object name
-</td>
+		</td>
 		<td>unnamed</td>
 	</tr>
 	<tr>
 		<td>printLog</td>
 		<td>
 if true, emits extra messages at runtime.
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>tags</td>
 		<td>
 list of the subsets the objet belongs to
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>bbox</td>
 		<td>
 this object bounding box
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>componentState</td>
 		<td>
 The state of the component among (Dirty, Valid, Undefined, Loading, Invalid).
-</td>
+		</td>
 		<td>Undefined</td>
 	</tr>
 	<tr>
 		<td>listening</td>
 		<td>
 if true, handle the events, otherwise ignore the events
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>rayleighStiffness</td>
 		<td>
 Rayleigh damping - stiffness matrix coefficient
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>pressureTriangles</td>
 		<td>
 OUT: list of triangles where a pressure is applied (mesh triangles + tesselated quads)
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
@@ -97,35 +96,35 @@ OUT: list of triangles where a pressure is applied (mesh triangles + tesselated 
 		<td>p0</td>
 		<td>
 IN: Rest pressure when V = V0
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>B</td>
 		<td>
 IN: Bulk modulus (resistance to uniform compression)
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>gamma</td>
 		<td>
 IN: Bulk modulus (resistance to uniform compression)
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>injectedVolume</td>
 		<td>
 IN: Injected (or extracted) volume since the start of the simulation
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>maxInjectionRate</td>
 		<td>
 IN: Maximum injection rate (volume per second)
-</td>
+		</td>
 		<td>1000</td>
 	</tr>
 	<tr>
@@ -135,56 +134,56 @@ IN: Maximum injection rate (volume per second)
 		<td>initialVolume</td>
 		<td>
 OUT: Initial volume, as computed from the surface rest position
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>currentInjectedVolume</td>
 		<td>
 OUT: Current injected (or extracted) volume (taking into account maxInjectionRate)
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>v0</td>
 		<td>
 OUT: Rest volume (as computed from initialVolume + injectedVolume)
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>currentVolume</td>
 		<td>
 OUT: Current volume, as computed from the last surface position
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>currentPressure</td>
 		<td>
 OUT: Current pressure, as computed from the last surface position
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>currentStiffness</td>
 		<td>
 OUT: dP/dV at current volume and pressure
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>volumeAfterTC</td>
 		<td>
 OUT: Volume after a topology change
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>surfaceAreaAfterTC</td>
 		<td>
 OUT: Surface area after a topology change
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
@@ -194,14 +193,14 @@ OUT: Surface area after a topology change
 		<td>initialSurfaceArea</td>
 		<td>
 OUT: Initial surface area, as computed from the surface rest position
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>currentSurfaceArea</td>
 		<td>
 OUT: Current surface area, as computed from the last surface position
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
@@ -211,36 +210,35 @@ OUT: Current surface area, as computed from the last surface position
 		<td>drawForceScale</td>
 		<td>
 DEBUG: scale used to render force vectors
-</td>
+		</td>
 		<td>0.001</td>
 	</tr>
 	<tr>
 		<td>drawForceColor</td>
 		<td>
 DEBUG: color used to render force vectors
-</td>
+		</td>
 		<td>0 1 1 1</td>
 	</tr>
 
 </tbody>
 </table>
 
-Links: 
-
-| Name | Description |
-| ---- | ----------- |
-|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|
-|slaves|Sub-objects used internally by this object|
-|master|nullptr for regular objects, or master object for which this object is one sub-objects|
-|mechanicalStates|List of mechanical states to which this component is associated|
-|mstate|MechanicalState used by this component|
-|topology|link to the topology container|
+### Links
 
 
+| Name | Description | Destination type name |
+| ---- | ----------- | --------------------- |
+|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
+|slaves|Sub-objects used internally by this object|BaseObject|
+|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
+|mechanicalStates|List of mechanical states to which this component is associated|BaseMechanicalState|
+|mstate|MechanicalState used by this component|MechanicalState&lt;Vec3d&gt;|
+|topology|link to the topology container|BaseMeshTopology|
 
-## Examples
+## Examples 
 
-Component/MechanicalLoad/TaitSurfacePressureForceField.scn
+TaitSurfacePressureForceField.scn
 
 === "XML"
 
@@ -290,55 +288,59 @@ Component/MechanicalLoad/TaitSurfacePressureForceField.scn
             </Node>
         </Node>
     </Node>
+
     ```
 
 === "Python"
 
     ```python
-    def createScene(rootNode):
+    def createScene(root_node):
 
-        root = rootNode.addChild('root', dt="0.02", gravity="0 0 0")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Algorithm")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Intersection")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Geometry")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Response.Contact")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Projective")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Engine.Select")
-        root.addObject('RequiredPlugin', name="Sofa.Component.IO.Mesh")
-        root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Iterative")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Mapping.Linear")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Mass")
-        root.addObject('RequiredPlugin', name="Sofa.Component.MechanicalLoad")
-        root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
-        root.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.FEM.Elastic")
-        root.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.Spring")
-        root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Dynamic")
-        root.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
-        root.addObject('DefaultAnimationLoop')
-        root.addObject('CollisionPipeline', verbose="0")
-        root.addObject('BruteForceBroadPhase')
-        root.addObject('BVHNarrowPhase')
-        root.addObject('CollisionResponse', response="PenalityContactForceField")
-        root.addObject('DiscreteIntersection')
+       root = root_node.addChild('root', dt="0.02", gravity="0 0 0")
 
-        sphere = root.addChild('sphere')
-        sphere.addObject('EulerImplicitSolver', name="cg_odesolver", rayleighMass="0.1", rayleighStiffness="0.2", printLog="false")
-        sphere.addObject('CGLinearSolver', iterations="25", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
-        sphere.addObject('MeshOBJLoader', name="loader", filename="mesh/sphere_02b.obj", scale="0.25 0.25 0.25", rotation="-90 0 0", triangulate="1")
-        sphere.addObject('TriangleSetTopologyContainer', src="@loader")
-        sphere.addObject('MechanicalObject', src="@loader", template="Vec3", name="DOFs")
-        sphere.addObject('TriangleSetTopologyModifier')
-        sphere.addObject('TriangleSetGeometryAlgorithms')
-        sphere.addObject('BoxConstraint', box="-10 -10 -10  10 -5 10")
-        sphere.addObject('TriangularFEMForceFieldOptim', name="FEM", youngModulus="10000", poissonRatio="0.4", restScale="0.97", method="large")
-        sphere.addObject('FastTriangularBendingSprings', name="Bending", bendingStiffness="100")
-        sphere.addObject('TaitSurfacePressureForceField', name="Pressure", gamma="5", B="10000", injectedVolume="100", printLog="1")
-        sphere.addObject('DiagonalMass', name="mass", massDensity="1", printLog="0")
-        sphere.addObject('TriangleCollisionModel', name="CM")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Algorithm")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Intersection")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Geometry")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Response.Contact")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Projective")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Engine.Select")
+       root.addObject('RequiredPlugin', name="Sofa.Component.IO.Mesh")
+       root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Iterative")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Mapping.Linear")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Mass")
+       root.addObject('RequiredPlugin', name="Sofa.Component.MechanicalLoad")
+       root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.FEM.Elastic")
+       root.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.Spring")
+       root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Dynamic")
+       root.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
+       root.addObject('DefaultAnimationLoop', )
+       root.addObject('CollisionPipeline', verbose="0")
+       root.addObject('BruteForceBroadPhase', )
+       root.addObject('BVHNarrowPhase', )
+       root.addObject('CollisionResponse', response="PenalityContactForceField")
+       root.addObject('DiscreteIntersection', )
 
-        Visu = sphere.addChild('Visu')
-        Visu.addObject('OglModel', name="VisualModel", src="@../loader", color="white")
-        Visu.addObject('IdentityMapping')
+       sphere = root.addChild('sphere')
+
+       sphere.addObject('EulerImplicitSolver', name="cg_odesolver", rayleighMass="0.1", rayleighStiffness="0.2", printLog="false")
+       sphere.addObject('CGLinearSolver', iterations="25", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
+       sphere.addObject('MeshOBJLoader', name="loader", filename="mesh/sphere_02b.obj", scale="0.25 0.25 0.25", rotation="-90 0 0", triangulate="1")
+       sphere.addObject('TriangleSetTopologyContainer', src="@loader")
+       sphere.addObject('MechanicalObject', src="@loader", template="Vec3", name="DOFs")
+       sphere.addObject('TriangleSetTopologyModifier', )
+       sphere.addObject('TriangleSetGeometryAlgorithms', )
+       sphere.addObject('BoxConstraint', box="-10 -10 -10  10 -5 10")
+       sphere.addObject('TriangularFEMForceFieldOptim', name="FEM", youngModulus="10000", poissonRatio="0.4", restScale="0.97", method="large")
+       sphere.addObject('FastTriangularBendingSprings', name="Bending", bendingStiffness="100")
+       sphere.addObject('TaitSurfacePressureForceField', name="Pressure", gamma="5", B="10000", injectedVolume="100", printLog="1")
+       sphere.addObject('DiagonalMass', name="mass", massDensity="1", printLog="0")
+       sphere.addObject('TriangleCollisionModel', name="CM")
+
+       visu = sphere.addChild('Visu')
+
+       visu.addObject('OglModel', name="VisualModel", src="@../loader", color="white")
+       visu.addObject('IdentityMapping', )
     ```
 

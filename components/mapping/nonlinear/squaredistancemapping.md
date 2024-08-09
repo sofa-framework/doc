@@ -1,111 +1,109 @@
+<!-- generate_doc -->
 # SquareDistanceMapping
 
 Compute square edge extensions
 
 
-__Templates__:
+## Rigid3d,Vec1d
 
-- `#!c++ Rigid3d,Vec1d`
-- `#!c++ Vec3d,Vec1d`
+Templates:
 
-__Target__: `Sofa.Component.Mapping.NonLinear`
+- Rigid3d,Vec1d
 
-__namespace__: `#!c++ sofa::component::mapping::nonlinear`
+__Target__: Sofa.Component.Mapping.NonLinear
 
-__parents__: 
+__namespace__: sofa::component::mapping::nonlinear
 
-- `#!c++ Mapping`
-
-__categories__: 
+__parents__:
 
 - Mapping
 
-Data: 
+### Data
 
 <table>
-<thead>
-    <tr>
-        <th>Name</th>
-        <th>Description</th>
-        <th>Default value</th>
-    </tr>
-</thead>
-<tbody>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Default value</th>
+        </tr>
+    </thead>
+    <tbody>
 	<tr>
 		<td>name</td>
 		<td>
 object name
-</td>
+		</td>
 		<td>unnamed</td>
 	</tr>
 	<tr>
 		<td>printLog</td>
 		<td>
 if true, emits extra messages at runtime.
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>tags</td>
 		<td>
 list of the subsets the objet belongs to
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>bbox</td>
 		<td>
 this object bounding box
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>componentState</td>
 		<td>
 The state of the component among (Dirty, Valid, Undefined, Loading, Invalid).
-</td>
+		</td>
 		<td>Undefined</td>
 	</tr>
 	<tr>
 		<td>listening</td>
 		<td>
 if true, handle the events, otherwise ignore the events
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>mapForces</td>
 		<td>
 Are forces mapped ?
-</td>
+		</td>
 		<td>1</td>
 	</tr>
 	<tr>
 		<td>mapConstraints</td>
 		<td>
 Are constraints mapped ?
-</td>
+		</td>
 		<td>1</td>
 	</tr>
 	<tr>
 		<td>mapMasses</td>
 		<td>
 Are masses mapped ?
-</td>
+		</td>
 		<td>1</td>
 	</tr>
 	<tr>
 		<td>mapMatrices</td>
 		<td>
 Are matrix explicit mapped?
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>applyRestPosition</td>
 		<td>
 set to true to apply this mapping to restPosition at init
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
@@ -115,7 +113,7 @@ Method used to compute the geometric stiffness:
 -None: geometric stiffness is not computed
 -Exact: the exact geometric stiffness is computed
 -Stabilized: the exact geometric stiffness is approximated in order to improve stability
-</td>
+		</td>
 		<td>Stabilized</td>
 	</tr>
 	<tr>
@@ -125,36 +123,181 @@ Method used to compute the geometric stiffness:
 		<td>showObjectScale</td>
 		<td>
 Scale for object display
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>showColor</td>
 		<td>
 Color for object display. (default=[1.0,1.0,0.0,1.0])
-</td>
+		</td>
 		<td>1 1 0 1</td>
 	</tr>
 
 </tbody>
 </table>
 
-Links: 
-
-| Name | Description |
-| ---- | ----------- |
-|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|
-|slaves|Sub-objects used internally by this object|
-|master|nullptr for regular objects, or master object for which this object is one sub-objects|
-|input|Input object to map|
-|output|Output object to map|
-|topology|link to the topology container|
+### Links
 
 
+| Name | Description | Destination type name |
+| ---- | ----------- | --------------------- |
+|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
+|slaves|Sub-objects used internally by this object|BaseObject|
+|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
+|input|Input object to map|State&lt;Rigid3d&gt;|
+|output|Output object to map|State&lt;Vec1d&gt;|
+|topology|link to the topology container|BaseMeshTopology|
 
-## Examples
+<!-- generate_doc -->
+## Vec3d,Vec1d
 
-Component/Mapping/NonLinear/SquareDistanceMapping.scn
+Templates:
+
+- Vec3d,Vec1d
+
+__Target__: Sofa.Component.Mapping.NonLinear
+
+__namespace__: sofa::component::mapping::nonlinear
+
+__parents__:
+
+- Mapping
+
+### Data
+
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Default value</th>
+        </tr>
+    </thead>
+    <tbody>
+	<tr>
+		<td>name</td>
+		<td>
+object name
+		</td>
+		<td>unnamed</td>
+	</tr>
+	<tr>
+		<td>printLog</td>
+		<td>
+if true, emits extra messages at runtime.
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>tags</td>
+		<td>
+list of the subsets the objet belongs to
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>bbox</td>
+		<td>
+this object bounding box
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>componentState</td>
+		<td>
+The state of the component among (Dirty, Valid, Undefined, Loading, Invalid).
+		</td>
+		<td>Undefined</td>
+	</tr>
+	<tr>
+		<td>listening</td>
+		<td>
+if true, handle the events, otherwise ignore the events
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>mapForces</td>
+		<td>
+Are forces mapped ?
+		</td>
+		<td>1</td>
+	</tr>
+	<tr>
+		<td>mapConstraints</td>
+		<td>
+Are constraints mapped ?
+		</td>
+		<td>1</td>
+	</tr>
+	<tr>
+		<td>mapMasses</td>
+		<td>
+Are masses mapped ?
+		</td>
+		<td>1</td>
+	</tr>
+	<tr>
+		<td>mapMatrices</td>
+		<td>
+Are matrix explicit mapped?
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>applyRestPosition</td>
+		<td>
+set to true to apply this mapping to restPosition at init
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>geometricStiffness</td>
+		<td>
+Method used to compute the geometric stiffness:
+-None: geometric stiffness is not computed
+-Exact: the exact geometric stiffness is computed
+-Stabilized: the exact geometric stiffness is approximated in order to improve stability
+		</td>
+		<td>Stabilized</td>
+	</tr>
+	<tr>
+		<td colspan="3">Visualization</td>
+	</tr>
+	<tr>
+		<td>showObjectScale</td>
+		<td>
+Scale for object display
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>showColor</td>
+		<td>
+Color for object display. (default=[1.0,1.0,0.0,1.0])
+		</td>
+		<td>1 1 0 1</td>
+	</tr>
+
+</tbody>
+</table>
+
+### Links
+
+
+| Name | Description | Destination type name |
+| ---- | ----------- | --------------------- |
+|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
+|slaves|Sub-objects used internally by this object|BaseObject|
+|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
+|input|Input object to map|State&lt;Vec3d&gt;|
+|output|Output object to map|State&lt;Vec1d&gt;|
+|topology|link to the topology container|BaseMeshTopology|
+
+## Examples 
+
+SquareDistanceMapping.scn
 
 === "XML"
 
@@ -196,41 +339,45 @@ Component/Mapping/NonLinear/SquareDistanceMapping.scn
         </Node>
     
     </Node>
+
     ```
 
 === "Python"
 
     ```python
-    def createScene(rootNode):
+    def createScene(root_node):
 
-        Root = rootNode.addChild('Root', gravity="0 -10 0", time="0", animate="0", dt="0.01")
+       root = root_node.addChild('Root', gravity="0 -10 0", time="0", animate="0", dt="0.01")
 
-        plugins = Root.addChild('plugins')
-        plugins.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Projective")
-        plugins.addObject('RequiredPlugin', name="Sofa.Component.IO.Mesh")
-        plugins.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Iterative")
-        plugins.addObject('RequiredPlugin', name="Sofa.Component.Mapping.NonLinear")
-        plugins.addObject('RequiredPlugin', name="Sofa.Component.Mass")
-        plugins.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
-        plugins.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.Spring")
-        plugins.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
-        plugins.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Dynamic")
-        plugins.addObject('RequiredPlugin', name="Sofa.Component.Visual")
-        Root.addObject('DefaultVisualManagerLoop')
-        Root.addObject('VisualStyle', displayFlags="showVisualModels showBehaviorModels showMappings showForceFields showMechanicalMappings")
-        Root.addObject('DefaultAnimationLoop')
-        Root.addObject('StringMeshCreator', name="loader", resolution="20")
-        Root.addObject('EulerImplicitSolver', rayleighStiffness="0.1", rayleighMass="0.1")
-        Root.addObject('CGLinearSolver', iterations="2500", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
-        Root.addObject('EdgeSetTopologyContainer', name="topology", position="@loader.position", edges="@loader.edges")
-        Root.addObject('MechanicalObject', name="defoDOF", template="Vec3")
-        Root.addObject('EdgeSetGeometryAlgorithms', drawEdges="true")
-        Root.addObject('FixedProjectiveConstraint', indices="0")
-        Root.addObject('DiagonalMass', name="mass", totalMass="1e-2")
+       plugins = Root.addChild('plugins')
 
-        extensionsNode = Root.addChild('extensionsNode')
-        extensionsNode.addObject('MechanicalObject', template="Vec1", name="extensionsDOF")
-        extensionsNode.addObject('SquareDistanceMapping', name="distanceMapping", topology="@../topology", input="@../defoDOF", output="@extensionsDOF", geometricStiffness="1", applyRestPosition="true")
-        extensionsNode.addObject('RestShapeSpringsForceField', template="Vec1", stiffness="10000")
+       plugins.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Projective")
+       plugins.addObject('RequiredPlugin', name="Sofa.Component.IO.Mesh")
+       plugins.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Iterative")
+       plugins.addObject('RequiredPlugin', name="Sofa.Component.Mapping.NonLinear")
+       plugins.addObject('RequiredPlugin', name="Sofa.Component.Mass")
+       plugins.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
+       plugins.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.Spring")
+       plugins.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
+       plugins.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Dynamic")
+       plugins.addObject('RequiredPlugin', name="Sofa.Component.Visual")
+
+       root.addObject('DefaultVisualManagerLoop', )
+       root.addObject('VisualStyle', displayFlags="showVisualModels showBehaviorModels showMappings showForceFields showMechanicalMappings")
+       root.addObject('DefaultAnimationLoop', )
+       root.addObject('StringMeshCreator', name="loader", resolution="20")
+       root.addObject('EulerImplicitSolver', rayleighStiffness="0.1", rayleighMass="0.1")
+       root.addObject('CGLinearSolver', iterations="2500", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
+       root.addObject('EdgeSetTopologyContainer', name="topology", position="@loader.position", edges="@loader.edges")
+       root.addObject('MechanicalObject', name="defoDOF", template="Vec3")
+       root.addObject('EdgeSetGeometryAlgorithms', drawEdges="true")
+       root.addObject('FixedProjectiveConstraint', indices="0")
+       root.addObject('DiagonalMass', name="mass", totalMass="1e-2")
+
+       extensions_node = Root.addChild('extensionsNode')
+
+       extensions_node.addObject('MechanicalObject', template="Vec1", name="extensionsDOF")
+       extensions_node.addObject('SquareDistanceMapping', name="distanceMapping", topology="@../topology", input="@../defoDOF", output="@extensionsDOF", geometricStiffness="1", applyRestPosition="true")
+       extensions_node.addObject('RestShapeSpringsForceField', template="Vec1", stiffness="10000")
     ```
 

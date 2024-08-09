@@ -1,131 +1,130 @@
+<!-- generate_doc -->
 # TetrahedralCorotationalFEMForceField
 
 Corotational FEM Tetrahedral finite elements
 
 
-__Templates__:
+## Vec3d
 
-- `#!c++ Vec3d`
+Templates:
 
-__Target__: `Sofa.Component.SolidMechanics.FEM.Elastic`
+- Vec3d
 
-__namespace__: `#!c++ sofa::component::solidmechanics::fem::elastic`
+__Target__: Sofa.Component.SolidMechanics.FEM.Elastic
 
-__parents__: 
+__namespace__: sofa::component::solidmechanics::fem::elastic
 
-- `#!c++ BaseLinearElasticityFEMForceField`
+__parents__:
 
-__categories__: 
+- BaseLinearElasticityFEMForceField
 
-- ForceField
-
-Data: 
+### Data
 
 <table>
-<thead>
-    <tr>
-        <th>Name</th>
-        <th>Description</th>
-        <th>Default value</th>
-    </tr>
-</thead>
-<tbody>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Default value</th>
+        </tr>
+    </thead>
+    <tbody>
 	<tr>
 		<td>name</td>
 		<td>
 object name
-</td>
+		</td>
 		<td>unnamed</td>
 	</tr>
 	<tr>
 		<td>printLog</td>
 		<td>
 if true, emits extra messages at runtime.
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>tags</td>
 		<td>
 list of the subsets the objet belongs to
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>bbox</td>
 		<td>
 this object bounding box
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>componentState</td>
 		<td>
 The state of the component among (Dirty, Valid, Undefined, Loading, Invalid).
-</td>
+		</td>
 		<td>Undefined</td>
 	</tr>
 	<tr>
 		<td>listening</td>
 		<td>
 if true, handle the events, otherwise ignore the events
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>rayleighStiffness</td>
 		<td>
 Rayleigh damping - stiffness matrix coefficient
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>poissonRatio</td>
 		<td>
 FEM Poisson Ratio in Hooke's law [0,0.5[
-</td>
+		</td>
 		<td>0.45</td>
 	</tr>
 	<tr>
 		<td>youngModulus</td>
 		<td>
 FEM Young's Modulus in Hooke's law
-</td>
+		</td>
 		<td>5000</td>
 	</tr>
 	<tr>
 		<td>tetrahedronInfo</td>
 		<td>
 Internal tetrahedron data
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>method</td>
 		<td>
 "small", "large" (by QR) or "polar" displacements
-</td>
+		</td>
 		<td>large</td>
 	</tr>
 	<tr>
 		<td>localStiffnessFactor</td>
 		<td>
 Allow specification of different stiffness per element. If there are N element and M values are specified, the youngModulus factor for element i would be localStiffnessFactor[i*M/N]
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>updateStiffnessMatrix</td>
 		<td>
 
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>computeGlobalMatrix</td>
 		<td>
 
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
@@ -135,57 +134,56 @@ Allow specification of different stiffness per element. If there are N element a
 		<td>drawing</td>
 		<td>
  draw the forcefield if true
-</td>
+		</td>
 		<td>1</td>
 	</tr>
 	<tr>
 		<td>drawColor1</td>
 		<td>
  draw color for faces 1
-</td>
+		</td>
 		<td>0 0 1 1</td>
 	</tr>
 	<tr>
 		<td>drawColor2</td>
 		<td>
  draw color for faces 2
-</td>
+		</td>
 		<td>0 0.5 1 1</td>
 	</tr>
 	<tr>
 		<td>drawColor3</td>
 		<td>
  draw color for faces 3
-</td>
+		</td>
 		<td>0 1 1 1</td>
 	</tr>
 	<tr>
 		<td>drawColor4</td>
 		<td>
  draw color for faces 4
-</td>
+		</td>
 		<td>0.5 1 1 1</td>
 	</tr>
 
 </tbody>
 </table>
 
-Links: 
-
-| Name | Description |
-| ---- | ----------- |
-|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|
-|slaves|Sub-objects used internally by this object|
-|master|nullptr for regular objects, or master object for which this object is one sub-objects|
-|mechanicalStates|List of mechanical states to which this component is associated|
-|mstate|MechanicalState used by this component|
-|topology|link to the topology container|
+### Links
 
 
+| Name | Description | Destination type name |
+| ---- | ----------- | --------------------- |
+|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
+|slaves|Sub-objects used internally by this object|BaseObject|
+|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
+|mechanicalStates|List of mechanical states to which this component is associated|BaseMechanicalState|
+|mstate|MechanicalState used by this component|MechanicalState&lt;Vec3d&gt;|
+|topology|link to the topology container|BaseMeshTopology|
 
-## Examples
+## Examples 
 
-Component/SolidMechanics/FEM/TetrahedralCorotationalFEMForceField.scn
+TetrahedralCorotationalFEMForceField.scn
 
 === "XML"
 
@@ -267,68 +265,73 @@ Component/SolidMechanics/FEM/TetrahedralCorotationalFEMForceField.scn
         
         
     </Node>
+
     ```
 
 === "Python"
 
     ```python
-    def createScene(rootNode):
+    def createScene(root_node):
 
-        root = rootNode.addChild('root', dt="0.05", showBoundingTree="0", gravity="0 -9 0")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Projective")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Engine.Select")
-        root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Iterative")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Mass")
-        root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
-        root.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.FEM.Elastic")
-        root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Dynamic")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Grid")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Mapping")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Visual")
-        root.addObject('VisualStyle', displayFlags="showBehaviorModels showForceFields")
-        root.addObject('DefaultAnimationLoop', parallelODESolving="true")
+       root = root_node.addChild('root', dt="0.05", showBoundingTree="0", gravity="0 -9 0")
 
-        BeamFEM_SMALL = root.addChild('BeamFEM_SMALL')
-        BeamFEM_SMALL.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
-        BeamFEM_SMALL.addObject('CGLinearSolver', iterations="25", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
-        BeamFEM_SMALL.addObject('RegularGridTopology', name="grid", min="-5 -5 0", max="5 5 40", n="5 5 20")
-        BeamFEM_SMALL.addObject('MechanicalObject', template="Vec3")
-        BeamFEM_SMALL.addObject('TetrahedronSetTopologyContainer', name="Tetra_topo")
-        BeamFEM_SMALL.addObject('TetrahedronSetTopologyModifier', name="Modifier")
-        BeamFEM_SMALL.addObject('TetrahedronSetGeometryAlgorithms', template="Vec3", name="GeomAlgo")
-        BeamFEM_SMALL.addObject('Hexa2TetraTopologicalMapping', input="@grid", output="@Tetra_topo")
-        BeamFEM_SMALL.addObject('DiagonalMass', massDensity="0.2")
-        BeamFEM_SMALL.addObject('TetrahedralCorotationalFEMForceField', name="CFEM", youngModulus="1000", poissonRatio="0.3", method="small")
-        BeamFEM_SMALL.addObject('BoxROI', template="Vec3", name="box_roi", box="-6 -6 -1 30 6 0.1", drawBoxes="1")
-        BeamFEM_SMALL.addObject('FixedProjectiveConstraint', template="Vec3", indices="@box_roi.indices")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Projective")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Engine.Select")
+       root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Iterative")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Mass")
+       root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.FEM.Elastic")
+       root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Dynamic")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Grid")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Mapping")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Visual")
+       root.addObject('VisualStyle', displayFlags="showBehaviorModels showForceFields")
+       root.addObject('DefaultAnimationLoop', parallelODESolving="true")
 
-        BeamFEM_LARGE = root.addChild('BeamFEM_LARGE')
-        BeamFEM_LARGE.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
-        BeamFEM_LARGE.addObject('CGLinearSolver', iterations="25", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
-        BeamFEM_LARGE.addObject('RegularGridTopology', name="grid", min="-5 -5 0", max="5 5 40", n="5 5 20")
-        BeamFEM_LARGE.addObject('MechanicalObject', template="Vec3", translation="11 0 0")
-        BeamFEM_LARGE.addObject('TetrahedronSetTopologyContainer', name="Tetra_topo")
-        BeamFEM_LARGE.addObject('TetrahedronSetTopologyModifier', name="Modifier")
-        BeamFEM_LARGE.addObject('TetrahedronSetGeometryAlgorithms', template="Vec3", name="GeomAlgo")
-        BeamFEM_LARGE.addObject('Hexa2TetraTopologicalMapping', input="@grid", output="@Tetra_topo")
-        BeamFEM_LARGE.addObject('DiagonalMass', massDensity="0.2")
-        BeamFEM_LARGE.addObject('TetrahedralCorotationalFEMForceField', name="CFEM", youngModulus="1000", poissonRatio="0.3", method="large")
-        BeamFEM_LARGE.addObject('BoxROI', template="Vec3", name="box_roi", box="-6 -6 -1 30 6 0.1", drawBoxes="1")
-        BeamFEM_LARGE.addObject('FixedProjectiveConstraint', template="Vec3", indices="@box_roi.indices")
+       beam_fem__small = root.addChild('BeamFEM_SMALL')
 
-        BeamFEM_POLAR = root.addChild('BeamFEM_POLAR')
-        BeamFEM_POLAR.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
-        BeamFEM_POLAR.addObject('CGLinearSolver', iterations="25", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
-        BeamFEM_POLAR.addObject('RegularGridTopology', name="grid", min="-5 -5 0", max="5 5 40", n="5 5 20")
-        BeamFEM_POLAR.addObject('MechanicalObject', template="Vec3", translation="22 0 0")
-        BeamFEM_POLAR.addObject('TetrahedronSetTopologyContainer', name="Tetra_topo")
-        BeamFEM_POLAR.addObject('TetrahedronSetTopologyModifier', name="Modifier")
-        BeamFEM_POLAR.addObject('TetrahedronSetGeometryAlgorithms', template="Vec3", name="GeomAlgo")
-        BeamFEM_POLAR.addObject('Hexa2TetraTopologicalMapping', input="@grid", output="@Tetra_topo")
-        BeamFEM_POLAR.addObject('DiagonalMass', massDensity="0.2")
-        BeamFEM_POLAR.addObject('TetrahedralCorotationalFEMForceField', name="CFEM", youngModulus="1000", poissonRatio="0.3", method="polar")
-        BeamFEM_POLAR.addObject('BoxROI', template="Vec3", name="box_roi", box="-6 -6 -1 30 6 0.1", drawBoxes="1")
-        BeamFEM_POLAR.addObject('FixedProjectiveConstraint', template="Vec3", indices="@box_roi.indices")
+       beam_fem__small.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
+       beam_fem__small.addObject('CGLinearSolver', iterations="25", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
+       beam_fem__small.addObject('RegularGridTopology', name="grid", min="-5 -5 0", max="5 5 40", n="5 5 20")
+       beam_fem__small.addObject('MechanicalObject', template="Vec3")
+       beam_fem__small.addObject('TetrahedronSetTopologyContainer', name="Tetra_topo")
+       beam_fem__small.addObject('TetrahedronSetTopologyModifier', name="Modifier")
+       beam_fem__small.addObject('TetrahedronSetGeometryAlgorithms', template="Vec3", name="GeomAlgo")
+       beam_fem__small.addObject('Hexa2TetraTopologicalMapping', input="@grid", output="@Tetra_topo")
+       beam_fem__small.addObject('DiagonalMass', massDensity="0.2")
+       beam_fem__small.addObject('TetrahedralCorotationalFEMForceField', name="CFEM", youngModulus="1000", poissonRatio="0.3", method="small")
+       beam_fem__small.addObject('BoxROI', template="Vec3", name="box_roi", box="-6 -6 -1 30 6 0.1", drawBoxes="1")
+       beam_fem__small.addObject('FixedProjectiveConstraint', template="Vec3", indices="@box_roi.indices")
+
+       beam_fem__large = root.addChild('BeamFEM_LARGE')
+
+       beam_fem__large.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
+       beam_fem__large.addObject('CGLinearSolver', iterations="25", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
+       beam_fem__large.addObject('RegularGridTopology', name="grid", min="-5 -5 0", max="5 5 40", n="5 5 20")
+       beam_fem__large.addObject('MechanicalObject', template="Vec3", translation="11 0 0")
+       beam_fem__large.addObject('TetrahedronSetTopologyContainer', name="Tetra_topo")
+       beam_fem__large.addObject('TetrahedronSetTopologyModifier', name="Modifier")
+       beam_fem__large.addObject('TetrahedronSetGeometryAlgorithms', template="Vec3", name="GeomAlgo")
+       beam_fem__large.addObject('Hexa2TetraTopologicalMapping', input="@grid", output="@Tetra_topo")
+       beam_fem__large.addObject('DiagonalMass', massDensity="0.2")
+       beam_fem__large.addObject('TetrahedralCorotationalFEMForceField', name="CFEM", youngModulus="1000", poissonRatio="0.3", method="large")
+       beam_fem__large.addObject('BoxROI', template="Vec3", name="box_roi", box="-6 -6 -1 30 6 0.1", drawBoxes="1")
+       beam_fem__large.addObject('FixedProjectiveConstraint', template="Vec3", indices="@box_roi.indices")
+
+       beam_fem__polar = root.addChild('BeamFEM_POLAR')
+
+       beam_fem__polar.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
+       beam_fem__polar.addObject('CGLinearSolver', iterations="25", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
+       beam_fem__polar.addObject('RegularGridTopology', name="grid", min="-5 -5 0", max="5 5 40", n="5 5 20")
+       beam_fem__polar.addObject('MechanicalObject', template="Vec3", translation="22 0 0")
+       beam_fem__polar.addObject('TetrahedronSetTopologyContainer', name="Tetra_topo")
+       beam_fem__polar.addObject('TetrahedronSetTopologyModifier', name="Modifier")
+       beam_fem__polar.addObject('TetrahedronSetGeometryAlgorithms', template="Vec3", name="GeomAlgo")
+       beam_fem__polar.addObject('Hexa2TetraTopologicalMapping', input="@grid", output="@Tetra_topo")
+       beam_fem__polar.addObject('DiagonalMass', massDensity="0.2")
+       beam_fem__polar.addObject('TetrahedralCorotationalFEMForceField', name="CFEM", youngModulus="1000", poissonRatio="0.3", method="polar")
+       beam_fem__polar.addObject('BoxROI', template="Vec3", name="box_roi", box="-6 -6 -1 30 6 0.1", drawBoxes="1")
+       beam_fem__polar.addObject('FixedProjectiveConstraint', template="Vec3", indices="@box_roi.indices")
     ```
 

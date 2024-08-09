@@ -29,131 +29,1129 @@ When using a CGLinearSolver, make sure you carefully chose the value of the free
 Remember that when using an iterative linear solver like the CGLinearSolver, no exact solution can be found. The accuracy of your solution will always depend on the conditioning of your system and your input data (iterations, tolerance and threshold).
 
 <!-- automatically generated doc START -->
-__Target__: `Sofa.Component.LinearSolver.Iterative`
+<!-- generate_doc -->
 
-__namespace__: `#!c++ sofa::component::linearsolver::iterative`
+Linear system solver using the conjugate gradient iterative algorithm
 
-__parents__: 
 
-- `#!c++ MatrixLinearSolver`
+## CompressedRowSparseMatrixMat2x2d
 
-__categories__: 
+Templates:
 
-- LinearSolver
+- CompressedRowSparseMatrixMat2x2d
 
-Data: 
+__Target__: Sofa.Component.LinearSolver.Iterative
+
+__namespace__: sofa::component::linearsolver::iterative
+
+__parents__:
+
+- MatrixLinearSolver
+
+### Data
 
 <table>
-<thead>
-    <tr>
-        <th>Name</th>
-        <th>Description</th>
-        <th>Default value</th>
-    </tr>
-</thead>
-<tbody>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Default value</th>
+        </tr>
+    </thead>
+    <tbody>
 	<tr>
 		<td>name</td>
 		<td>
 object name
-</td>
+		</td>
 		<td>unnamed</td>
 	</tr>
 	<tr>
 		<td>printLog</td>
 		<td>
 if true, emits extra messages at runtime.
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>tags</td>
 		<td>
 list of the subsets the objet belongs to
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>bbox</td>
 		<td>
 this object bounding box
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>componentState</td>
 		<td>
 The state of the component among (Dirty, Valid, Undefined, Loading, Invalid).
-</td>
+		</td>
 		<td>Undefined</td>
 	</tr>
 	<tr>
 		<td>listening</td>
 		<td>
 if true, handle the events, otherwise ignore the events
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>parallelInverseProduct</td>
 		<td>
 Parallelize the computation of the product J*M^{-1}*J^T where M is the matrix of the linear system and J is any matrix with compatible dimensions
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>iterations</td>
 		<td>
 Maximum number of iterations after which the iterative descent of the Conjugate Gradient must stop
-</td>
+		</td>
 		<td>25</td>
 	</tr>
 	<tr>
 		<td>tolerance</td>
 		<td>
 Desired accuracy of the Conjugate Gradient solution evaluating: |r|²/|b|² (ratio of current residual norm over initial residual norm)
-</td>
+		</td>
 		<td>1e-05</td>
 	</tr>
 	<tr>
 		<td>threshold</td>
 		<td>
 Minimum value of the denominator (pT A p)^ in the conjugate Gradient solution
-</td>
+		</td>
 		<td>1e-05</td>
 	</tr>
 	<tr>
 		<td>warmStart</td>
 		<td>
 Use previous solution as initial solution, which may improve the initial guess if your system is evolving smoothly
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>graph</td>
 		<td>
 Graph of residuals at each iteration
-</td>
+		</td>
 		<td></td>
 	</tr>
 
 </tbody>
 </table>
 
-Links: 
-
-| Name | Description |
-| ---- | ----------- |
-|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|
-|slaves|Sub-objects used internally by this object|
-|master|nullptr for regular objects, or master object for which this object is one sub-objects|
-|linearSystem|The linear system to solve|
+### Links
 
 
+| Name | Description | Destination type name |
+| ---- | ----------- | --------------------- |
+|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
+|slaves|Sub-objects used internally by this object|BaseObject|
+|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
+|linearSystem|The linear system to solve|TypedMatrixLinearSystem&lt;CompressedRowSparseMatrixMat2x2d&gt;|
 
-## Examples
+<!-- generate_doc -->
+## CompressedRowSparseMatrixMat3x3d
 
-Component/LinearSolver/Iterative/CGLinearSolver.scn
+Templates:
+
+- CompressedRowSparseMatrixMat3x3d
+
+__Target__: Sofa.Component.LinearSolver.Iterative
+
+__namespace__: sofa::component::linearsolver::iterative
+
+__parents__:
+
+- MatrixLinearSolver
+
+### Data
+
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Default value</th>
+        </tr>
+    </thead>
+    <tbody>
+	<tr>
+		<td>name</td>
+		<td>
+object name
+		</td>
+		<td>unnamed</td>
+	</tr>
+	<tr>
+		<td>printLog</td>
+		<td>
+if true, emits extra messages at runtime.
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>tags</td>
+		<td>
+list of the subsets the objet belongs to
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>bbox</td>
+		<td>
+this object bounding box
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>componentState</td>
+		<td>
+The state of the component among (Dirty, Valid, Undefined, Loading, Invalid).
+		</td>
+		<td>Undefined</td>
+	</tr>
+	<tr>
+		<td>listening</td>
+		<td>
+if true, handle the events, otherwise ignore the events
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>parallelInverseProduct</td>
+		<td>
+Parallelize the computation of the product J*M^{-1}*J^T where M is the matrix of the linear system and J is any matrix with compatible dimensions
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>iterations</td>
+		<td>
+Maximum number of iterations after which the iterative descent of the Conjugate Gradient must stop
+		</td>
+		<td>25</td>
+	</tr>
+	<tr>
+		<td>tolerance</td>
+		<td>
+Desired accuracy of the Conjugate Gradient solution evaluating: |r|²/|b|² (ratio of current residual norm over initial residual norm)
+		</td>
+		<td>1e-05</td>
+	</tr>
+	<tr>
+		<td>threshold</td>
+		<td>
+Minimum value of the denominator (pT A p)^ in the conjugate Gradient solution
+		</td>
+		<td>1e-05</td>
+	</tr>
+	<tr>
+		<td>warmStart</td>
+		<td>
+Use previous solution as initial solution, which may improve the initial guess if your system is evolving smoothly
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>graph</td>
+		<td>
+Graph of residuals at each iteration
+		</td>
+		<td></td>
+	</tr>
+
+</tbody>
+</table>
+
+### Links
+
+
+| Name | Description | Destination type name |
+| ---- | ----------- | --------------------- |
+|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
+|slaves|Sub-objects used internally by this object|BaseObject|
+|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
+|linearSystem|The linear system to solve|TypedMatrixLinearSystem&lt;CompressedRowSparseMatrixMat3x3d&gt;|
+
+<!-- generate_doc -->
+## CompressedRowSparseMatrixMat4x4d
+
+Templates:
+
+- CompressedRowSparseMatrixMat4x4d
+
+__Target__: Sofa.Component.LinearSolver.Iterative
+
+__namespace__: sofa::component::linearsolver::iterative
+
+__parents__:
+
+- MatrixLinearSolver
+
+### Data
+
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Default value</th>
+        </tr>
+    </thead>
+    <tbody>
+	<tr>
+		<td>name</td>
+		<td>
+object name
+		</td>
+		<td>unnamed</td>
+	</tr>
+	<tr>
+		<td>printLog</td>
+		<td>
+if true, emits extra messages at runtime.
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>tags</td>
+		<td>
+list of the subsets the objet belongs to
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>bbox</td>
+		<td>
+this object bounding box
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>componentState</td>
+		<td>
+The state of the component among (Dirty, Valid, Undefined, Loading, Invalid).
+		</td>
+		<td>Undefined</td>
+	</tr>
+	<tr>
+		<td>listening</td>
+		<td>
+if true, handle the events, otherwise ignore the events
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>parallelInverseProduct</td>
+		<td>
+Parallelize the computation of the product J*M^{-1}*J^T where M is the matrix of the linear system and J is any matrix with compatible dimensions
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>iterations</td>
+		<td>
+Maximum number of iterations after which the iterative descent of the Conjugate Gradient must stop
+		</td>
+		<td>25</td>
+	</tr>
+	<tr>
+		<td>tolerance</td>
+		<td>
+Desired accuracy of the Conjugate Gradient solution evaluating: |r|²/|b|² (ratio of current residual norm over initial residual norm)
+		</td>
+		<td>1e-05</td>
+	</tr>
+	<tr>
+		<td>threshold</td>
+		<td>
+Minimum value of the denominator (pT A p)^ in the conjugate Gradient solution
+		</td>
+		<td>1e-05</td>
+	</tr>
+	<tr>
+		<td>warmStart</td>
+		<td>
+Use previous solution as initial solution, which may improve the initial guess if your system is evolving smoothly
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>graph</td>
+		<td>
+Graph of residuals at each iteration
+		</td>
+		<td></td>
+	</tr>
+
+</tbody>
+</table>
+
+### Links
+
+
+| Name | Description | Destination type name |
+| ---- | ----------- | --------------------- |
+|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
+|slaves|Sub-objects used internally by this object|BaseObject|
+|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
+|linearSystem|The linear system to solve|TypedMatrixLinearSystem&lt;CompressedRowSparseMatrixMat4x4d&gt;|
+
+<!-- generate_doc -->
+## CompressedRowSparseMatrixMat6x6d
+
+Templates:
+
+- CompressedRowSparseMatrixMat6x6d
+
+__Target__: Sofa.Component.LinearSolver.Iterative
+
+__namespace__: sofa::component::linearsolver::iterative
+
+__parents__:
+
+- MatrixLinearSolver
+
+### Data
+
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Default value</th>
+        </tr>
+    </thead>
+    <tbody>
+	<tr>
+		<td>name</td>
+		<td>
+object name
+		</td>
+		<td>unnamed</td>
+	</tr>
+	<tr>
+		<td>printLog</td>
+		<td>
+if true, emits extra messages at runtime.
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>tags</td>
+		<td>
+list of the subsets the objet belongs to
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>bbox</td>
+		<td>
+this object bounding box
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>componentState</td>
+		<td>
+The state of the component among (Dirty, Valid, Undefined, Loading, Invalid).
+		</td>
+		<td>Undefined</td>
+	</tr>
+	<tr>
+		<td>listening</td>
+		<td>
+if true, handle the events, otherwise ignore the events
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>parallelInverseProduct</td>
+		<td>
+Parallelize the computation of the product J*M^{-1}*J^T where M is the matrix of the linear system and J is any matrix with compatible dimensions
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>iterations</td>
+		<td>
+Maximum number of iterations after which the iterative descent of the Conjugate Gradient must stop
+		</td>
+		<td>25</td>
+	</tr>
+	<tr>
+		<td>tolerance</td>
+		<td>
+Desired accuracy of the Conjugate Gradient solution evaluating: |r|²/|b|² (ratio of current residual norm over initial residual norm)
+		</td>
+		<td>1e-05</td>
+	</tr>
+	<tr>
+		<td>threshold</td>
+		<td>
+Minimum value of the denominator (pT A p)^ in the conjugate Gradient solution
+		</td>
+		<td>1e-05</td>
+	</tr>
+	<tr>
+		<td>warmStart</td>
+		<td>
+Use previous solution as initial solution, which may improve the initial guess if your system is evolving smoothly
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>graph</td>
+		<td>
+Graph of residuals at each iteration
+		</td>
+		<td></td>
+	</tr>
+
+</tbody>
+</table>
+
+### Links
+
+
+| Name | Description | Destination type name |
+| ---- | ----------- | --------------------- |
+|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
+|slaves|Sub-objects used internally by this object|BaseObject|
+|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
+|linearSystem|The linear system to solve|TypedMatrixLinearSystem&lt;CompressedRowSparseMatrixMat6x6d&gt;|
+
+<!-- generate_doc -->
+## CompressedRowSparseMatrixMat8x8d
+
+Templates:
+
+- CompressedRowSparseMatrixMat8x8d
+
+__Target__: Sofa.Component.LinearSolver.Iterative
+
+__namespace__: sofa::component::linearsolver::iterative
+
+__parents__:
+
+- MatrixLinearSolver
+
+### Data
+
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Default value</th>
+        </tr>
+    </thead>
+    <tbody>
+	<tr>
+		<td>name</td>
+		<td>
+object name
+		</td>
+		<td>unnamed</td>
+	</tr>
+	<tr>
+		<td>printLog</td>
+		<td>
+if true, emits extra messages at runtime.
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>tags</td>
+		<td>
+list of the subsets the objet belongs to
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>bbox</td>
+		<td>
+this object bounding box
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>componentState</td>
+		<td>
+The state of the component among (Dirty, Valid, Undefined, Loading, Invalid).
+		</td>
+		<td>Undefined</td>
+	</tr>
+	<tr>
+		<td>listening</td>
+		<td>
+if true, handle the events, otherwise ignore the events
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>parallelInverseProduct</td>
+		<td>
+Parallelize the computation of the product J*M^{-1}*J^T where M is the matrix of the linear system and J is any matrix with compatible dimensions
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>iterations</td>
+		<td>
+Maximum number of iterations after which the iterative descent of the Conjugate Gradient must stop
+		</td>
+		<td>25</td>
+	</tr>
+	<tr>
+		<td>tolerance</td>
+		<td>
+Desired accuracy of the Conjugate Gradient solution evaluating: |r|²/|b|² (ratio of current residual norm over initial residual norm)
+		</td>
+		<td>1e-05</td>
+	</tr>
+	<tr>
+		<td>threshold</td>
+		<td>
+Minimum value of the denominator (pT A p)^ in the conjugate Gradient solution
+		</td>
+		<td>1e-05</td>
+	</tr>
+	<tr>
+		<td>warmStart</td>
+		<td>
+Use previous solution as initial solution, which may improve the initial guess if your system is evolving smoothly
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>graph</td>
+		<td>
+Graph of residuals at each iteration
+		</td>
+		<td></td>
+	</tr>
+
+</tbody>
+</table>
+
+### Links
+
+
+| Name | Description | Destination type name |
+| ---- | ----------- | --------------------- |
+|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
+|slaves|Sub-objects used internally by this object|BaseObject|
+|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
+|linearSystem|The linear system to solve|TypedMatrixLinearSystem&lt;CompressedRowSparseMatrixMat8x8d&gt;|
+
+<!-- generate_doc -->
+## CompressedRowSparseMatrixd
+
+Templates:
+
+- CompressedRowSparseMatrixd
+
+__Target__: Sofa.Component.LinearSolver.Iterative
+
+__namespace__: sofa::component::linearsolver::iterative
+
+__parents__:
+
+- MatrixLinearSolver
+
+### Data
+
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Default value</th>
+        </tr>
+    </thead>
+    <tbody>
+	<tr>
+		<td>name</td>
+		<td>
+object name
+		</td>
+		<td>unnamed</td>
+	</tr>
+	<tr>
+		<td>printLog</td>
+		<td>
+if true, emits extra messages at runtime.
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>tags</td>
+		<td>
+list of the subsets the objet belongs to
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>bbox</td>
+		<td>
+this object bounding box
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>componentState</td>
+		<td>
+The state of the component among (Dirty, Valid, Undefined, Loading, Invalid).
+		</td>
+		<td>Undefined</td>
+	</tr>
+	<tr>
+		<td>listening</td>
+		<td>
+if true, handle the events, otherwise ignore the events
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>parallelInverseProduct</td>
+		<td>
+Parallelize the computation of the product J*M^{-1}*J^T where M is the matrix of the linear system and J is any matrix with compatible dimensions
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>iterations</td>
+		<td>
+Maximum number of iterations after which the iterative descent of the Conjugate Gradient must stop
+		</td>
+		<td>25</td>
+	</tr>
+	<tr>
+		<td>tolerance</td>
+		<td>
+Desired accuracy of the Conjugate Gradient solution evaluating: |r|²/|b|² (ratio of current residual norm over initial residual norm)
+		</td>
+		<td>1e-05</td>
+	</tr>
+	<tr>
+		<td>threshold</td>
+		<td>
+Minimum value of the denominator (pT A p)^ in the conjugate Gradient solution
+		</td>
+		<td>1e-05</td>
+	</tr>
+	<tr>
+		<td>warmStart</td>
+		<td>
+Use previous solution as initial solution, which may improve the initial guess if your system is evolving smoothly
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>graph</td>
+		<td>
+Graph of residuals at each iteration
+		</td>
+		<td></td>
+	</tr>
+
+</tbody>
+</table>
+
+### Links
+
+
+| Name | Description | Destination type name |
+| ---- | ----------- | --------------------- |
+|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
+|slaves|Sub-objects used internally by this object|BaseObject|
+|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
+|linearSystem|The linear system to solve|TypedMatrixLinearSystem&lt;CompressedRowSparseMatrixd&gt;|
+
+<!-- generate_doc -->
+## FullMatrix
+
+Templates:
+
+- FullMatrix
+
+__Target__: Sofa.Component.LinearSolver.Iterative
+
+__namespace__: sofa::component::linearsolver::iterative
+
+__parents__:
+
+- MatrixLinearSolver
+
+### Data
+
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Default value</th>
+        </tr>
+    </thead>
+    <tbody>
+	<tr>
+		<td>name</td>
+		<td>
+object name
+		</td>
+		<td>unnamed</td>
+	</tr>
+	<tr>
+		<td>printLog</td>
+		<td>
+if true, emits extra messages at runtime.
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>tags</td>
+		<td>
+list of the subsets the objet belongs to
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>bbox</td>
+		<td>
+this object bounding box
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>componentState</td>
+		<td>
+The state of the component among (Dirty, Valid, Undefined, Loading, Invalid).
+		</td>
+		<td>Undefined</td>
+	</tr>
+	<tr>
+		<td>listening</td>
+		<td>
+if true, handle the events, otherwise ignore the events
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>parallelInverseProduct</td>
+		<td>
+Parallelize the computation of the product J*M^{-1}*J^T where M is the matrix of the linear system and J is any matrix with compatible dimensions
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>iterations</td>
+		<td>
+Maximum number of iterations after which the iterative descent of the Conjugate Gradient must stop
+		</td>
+		<td>25</td>
+	</tr>
+	<tr>
+		<td>tolerance</td>
+		<td>
+Desired accuracy of the Conjugate Gradient solution evaluating: |r|²/|b|² (ratio of current residual norm over initial residual norm)
+		</td>
+		<td>1e-05</td>
+	</tr>
+	<tr>
+		<td>threshold</td>
+		<td>
+Minimum value of the denominator (pT A p)^ in the conjugate Gradient solution
+		</td>
+		<td>1e-05</td>
+	</tr>
+	<tr>
+		<td>warmStart</td>
+		<td>
+Use previous solution as initial solution, which may improve the initial guess if your system is evolving smoothly
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>graph</td>
+		<td>
+Graph of residuals at each iteration
+		</td>
+		<td></td>
+	</tr>
+
+</tbody>
+</table>
+
+### Links
+
+
+| Name | Description | Destination type name |
+| ---- | ----------- | --------------------- |
+|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
+|slaves|Sub-objects used internally by this object|BaseObject|
+|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
+|linearSystem|The linear system to solve|TypedMatrixLinearSystem&lt;FullMatrix&gt;|
+
+<!-- generate_doc -->
+## GraphScattered
+
+Templates:
+
+- GraphScattered
+
+__Target__: Sofa.Component.LinearSolver.Iterative
+
+__namespace__: sofa::component::linearsolver::iterative
+
+__parents__:
+
+- MatrixLinearSolver
+
+### Data
+
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Default value</th>
+        </tr>
+    </thead>
+    <tbody>
+	<tr>
+		<td>name</td>
+		<td>
+object name
+		</td>
+		<td>unnamed</td>
+	</tr>
+	<tr>
+		<td>printLog</td>
+		<td>
+if true, emits extra messages at runtime.
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>tags</td>
+		<td>
+list of the subsets the objet belongs to
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>bbox</td>
+		<td>
+this object bounding box
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>componentState</td>
+		<td>
+The state of the component among (Dirty, Valid, Undefined, Loading, Invalid).
+		</td>
+		<td>Undefined</td>
+	</tr>
+	<tr>
+		<td>listening</td>
+		<td>
+if true, handle the events, otherwise ignore the events
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>parallelInverseProduct</td>
+		<td>
+Parallelize the computation of the product J*M^{-1}*J^T where M is the matrix of the linear system and J is any matrix with compatible dimensions
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>iterations</td>
+		<td>
+Maximum number of iterations after which the iterative descent of the Conjugate Gradient must stop
+		</td>
+		<td>25</td>
+	</tr>
+	<tr>
+		<td>tolerance</td>
+		<td>
+Desired accuracy of the Conjugate Gradient solution evaluating: |r|²/|b|² (ratio of current residual norm over initial residual norm)
+		</td>
+		<td>1e-05</td>
+	</tr>
+	<tr>
+		<td>threshold</td>
+		<td>
+Minimum value of the denominator (pT A p)^ in the conjugate Gradient solution
+		</td>
+		<td>1e-05</td>
+	</tr>
+	<tr>
+		<td>warmStart</td>
+		<td>
+Use previous solution as initial solution, which may improve the initial guess if your system is evolving smoothly
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>graph</td>
+		<td>
+Graph of residuals at each iteration
+		</td>
+		<td></td>
+	</tr>
+
+</tbody>
+</table>
+
+### Links
+
+
+| Name | Description | Destination type name |
+| ---- | ----------- | --------------------- |
+|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
+|slaves|Sub-objects used internally by this object|BaseObject|
+|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
+|linearSystem|The linear system to solve|TypedMatrixLinearSystem&lt;GraphScattered&gt;|
+
+<!-- generate_doc -->
+## SparseMatrix
+
+Templates:
+
+- SparseMatrix
+
+__Target__: Sofa.Component.LinearSolver.Iterative
+
+__namespace__: sofa::component::linearsolver::iterative
+
+__parents__:
+
+- MatrixLinearSolver
+
+### Data
+
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Default value</th>
+        </tr>
+    </thead>
+    <tbody>
+	<tr>
+		<td>name</td>
+		<td>
+object name
+		</td>
+		<td>unnamed</td>
+	</tr>
+	<tr>
+		<td>printLog</td>
+		<td>
+if true, emits extra messages at runtime.
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>tags</td>
+		<td>
+list of the subsets the objet belongs to
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>bbox</td>
+		<td>
+this object bounding box
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>componentState</td>
+		<td>
+The state of the component among (Dirty, Valid, Undefined, Loading, Invalid).
+		</td>
+		<td>Undefined</td>
+	</tr>
+	<tr>
+		<td>listening</td>
+		<td>
+if true, handle the events, otherwise ignore the events
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>parallelInverseProduct</td>
+		<td>
+Parallelize the computation of the product J*M^{-1}*J^T where M is the matrix of the linear system and J is any matrix with compatible dimensions
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>iterations</td>
+		<td>
+Maximum number of iterations after which the iterative descent of the Conjugate Gradient must stop
+		</td>
+		<td>25</td>
+	</tr>
+	<tr>
+		<td>tolerance</td>
+		<td>
+Desired accuracy of the Conjugate Gradient solution evaluating: |r|²/|b|² (ratio of current residual norm over initial residual norm)
+		</td>
+		<td>1e-05</td>
+	</tr>
+	<tr>
+		<td>threshold</td>
+		<td>
+Minimum value of the denominator (pT A p)^ in the conjugate Gradient solution
+		</td>
+		<td>1e-05</td>
+	</tr>
+	<tr>
+		<td>warmStart</td>
+		<td>
+Use previous solution as initial solution, which may improve the initial guess if your system is evolving smoothly
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>graph</td>
+		<td>
+Graph of residuals at each iteration
+		</td>
+		<td></td>
+	</tr>
+
+</tbody>
+</table>
+
+### Links
+
+
+| Name | Description | Destination type name |
+| ---- | ----------- | --------------------- |
+|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
+|slaves|Sub-objects used internally by this object|BaseObject|
+|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
+|linearSystem|The linear system to solve|TypedMatrixLinearSystem&lt;SparseMatrix&gt;|
+
+## Examples 
+
+CGLinearSolver.scn
 
 === "XML"
 
@@ -181,33 +1179,36 @@ Component/LinearSolver/Iterative/CGLinearSolver.scn
             <HexahedronFEMForceField name="FEM" youngModulus="4000" poissonRatio="0.3" method="large" />
         </Node>
     </Node>
+
     ```
 
 === "Python"
 
     ```python
-    def createScene(rootNode):
+    def createScene(root_node):
 
-        root = rootNode.addChild('root', dt="0.02", gravity="0 -10 0")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Projective")
-        root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Iterative")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Mass")
-        root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
-        root.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.FEM.Elastic")
-        root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Grid")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Visual")
-        root.addObject('VisualStyle', displayFlags="showBehaviorModels showForceFields")
-        root.addObject('DefaultAnimationLoop')
+       root = root_node.addChild('root', dt="0.02", gravity="0 -10 0")
 
-        root = root.addChild('root')
-        root.addObject('EulerImplicitSolver', name="eulerimplicit_odesolver", printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
-        root.addObject('CGLinearSolver', iterations="100", tolerance="1e-20", threshold="1e-20", warmStart="1")
-        root.addObject('MechanicalObject')
-        root.addObject('UniformMass', vertexMass="1")
-        root.addObject('RegularGridTopology', nx="4", ny="4", nz="4", xmin="-9", xmax="-6", ymin="0", ymax="3", zmin="0", zmax="3")
-        root.addObject('FixedProjectiveConstraint', indices="0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15")
-        root.addObject('HexahedronFEMForceField', name="FEM", youngModulus="4000", poissonRatio="0.3", method="large")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Projective")
+       root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Iterative")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Mass")
+       root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.FEM.Elastic")
+       root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Grid")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Visual")
+       root.addObject('VisualStyle', displayFlags="showBehaviorModels showForceFields")
+       root.addObject('DefaultAnimationLoop', )
+
+       node = root.addChild('node')
+
+       node.addObject('EulerImplicitSolver', name="eulerimplicit_odesolver", printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
+       node.addObject('CGLinearSolver', iterations="100", tolerance="1e-20", threshold="1e-20", warmStart="1")
+       node.addObject('MechanicalObject', )
+       node.addObject('UniformMass', vertexMass="1")
+       node.addObject('RegularGridTopology', nx="4", ny="4", nz="4", xmin="-9", xmax="-6", ymin="0", ymax="3", zmin="0", zmax="3")
+       node.addObject('FixedProjectiveConstraint', indices="0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15")
+       node.addObject('HexahedronFEMForceField', name="FEM", youngModulus="4000", poissonRatio="0.3", method="large")
     ```
 
 

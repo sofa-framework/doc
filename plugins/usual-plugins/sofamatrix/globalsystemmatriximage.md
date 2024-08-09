@@ -1,71 +1,68 @@
+<!-- generate_doc -->
 # GlobalSystemMatrixImage
 
 View the global linear system matrix as a binary image.
 
 
-__Target__: `SofaMatrix`
+__Target__: SofaMatrix
 
-__namespace__: `#!c++ sofa::component::linearsolver`
+__namespace__: sofa::component::linearsolver
 
-__parents__: 
+__parents__:
 
-- `#!c++ BaseObject`
+- BaseObject
 
-__categories__: 
-
-- _Miscellaneous
-
-Data: 
+### Data
 
 <table>
-<thead>
-    <tr>
-        <th>Name</th>
-        <th>Description</th>
-        <th>Default value</th>
-    </tr>
-</thead>
-<tbody>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Default value</th>
+        </tr>
+    </thead>
+    <tbody>
 	<tr>
 		<td>name</td>
 		<td>
 object name
-</td>
+		</td>
 		<td>unnamed</td>
 	</tr>
 	<tr>
 		<td>printLog</td>
 		<td>
 if true, emits extra messages at runtime.
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>tags</td>
 		<td>
 list of the subsets the objet belongs to
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>bbox</td>
 		<td>
 this object bounding box
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>componentState</td>
 		<td>
 The state of the component among (Dirty, Valid, Undefined, Loading, Invalid).
-</td>
+		</td>
 		<td>Undefined</td>
 	</tr>
 	<tr>
 		<td>listening</td>
 		<td>
 if true, handle the events, otherwise ignore the events
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
@@ -75,27 +72,26 @@ if true, handle the events, otherwise ignore the events
 		<td>bitmap</td>
 		<td>
 Visualization of the representation of the matrix as a binary image. White pixels are zeros, black pixels are non-zeros.
-</td>
+		</td>
 		<td>invalid matrix</td>
 	</tr>
 
 </tbody>
 </table>
 
-Links: 
-
-| Name | Description |
-| ---- | ----------- |
-|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|
-|slaves|Sub-objects used internally by this object|
-|master|nullptr for regular objects, or master object for which this object is one sub-objects|
-|linearSystem|Link to the linear system containing a matrix|
+### Links
 
 
+| Name | Description | Destination type name |
+| ---- | ----------- | --------------------- |
+|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
+|slaves|Sub-objects used internally by this object|BaseObject|
+|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
+|linearSystem|Link to the linear system containing a matrix|BaseMatrixLinearSystem|
 
-## Examples
+## Examples 
 
-SofaMatrix/share/sofa/examples/SofaMatrix/GlobalSystemMatrixImage.scn
+GlobalSystemMatrixImage.scn
 
 === "XML"
 
@@ -136,43 +132,48 @@ SofaMatrix/share/sofa/examples/SofaMatrix/GlobalSystemMatrixImage.scn
             </Node>
         </Node>
     </Node>
+
     ```
 
 === "Python"
 
     ```python
-    def createScene(rootNode):
+    def createScene(root_node):
 
-        root = rootNode.addChild('root', dt="0.02", gravity="0 -10 0")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Projective")
-        root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Direct")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Mass")
-        root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
-        root.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.FEM.Elastic")
-        root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Grid")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Visual")
-        root.addObject('RequiredPlugin', name="SofaMatrix")
-        root.addObject('VisualStyle', displayFlags="showBehaviorModels showForceFields")
+       root = root_node.addChild('root', dt="0.02", gravity="0 -10 0")
 
-        M3 = root.addChild('M3')
-        M3.addObject('EulerImplicitSolver', name="odesolver", rayleighStiffness="0.1", rayleighMass="0.1")
-        M3.addObject('MatrixLinearSystem', template="CompressedRowSparseMatrixMat3x3d")
-        M3.addObject('SparseLDLSolver', printLog="false", template="CompressedRowSparseMatrixMat3x3d")
-        M3.addObject('GlobalSystemMatrixImage')
+       root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Projective")
+       root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Direct")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Mass")
+       root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.FEM.Elastic")
+       root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Grid")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Visual")
+       root.addObject('RequiredPlugin', name="SofaMatrix")
+       root.addObject('VisualStyle', displayFlags="showBehaviorModels showForceFields")
 
-        N1 = M3.addChild('N1')
-        N1.addObject('MechanicalObject')
-        N1.addObject('UniformMass', vertexMass="1")
-        N1.addObject('RegularGridTopology', nx="4", ny="4", nz="10", xmin="-3", xmax="0", ymin="0", ymax="3", zmin="0", zmax="9")
-        N1.addObject('FixedProjectiveConstraint', indices="0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15")
-        N1.addObject('HexahedronFEMForceField', name="FEM", youngModulus="4000", poissonRatio="0.3", method="large")
+       m3 = root.addChild('M3')
 
-        N2 = M3.addChild('N2')
-        N2.addObject('MechanicalObject')
-        N2.addObject('UniformMass', vertexMass="1")
-        N2.addObject('RegularGridTopology', nx="4", ny="4", nz="10", xmin="0", xmax="3", ymin="0", ymax="3", zmin="0", zmax="9")
-        N2.addObject('FixedProjectiveConstraint', indices="0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15")
-        N2.addObject('HexahedronFEMForceField', name="FEM", youngModulus="4000", poissonRatio="0.3", method="large")
+       m3.addObject('EulerImplicitSolver', name="odesolver", rayleighStiffness="0.1", rayleighMass="0.1")
+       m3.addObject('MatrixLinearSystem', template="CompressedRowSparseMatrixMat3x3d")
+       m3.addObject('SparseLDLSolver', printLog="false", template="CompressedRowSparseMatrixMat3x3d")
+       m3.addObject('GlobalSystemMatrixImage', )
+
+       n1 = M3.addChild('N1')
+
+       n1.addObject('MechanicalObject', )
+       n1.addObject('UniformMass', vertexMass="1")
+       n1.addObject('RegularGridTopology', nx="4", ny="4", nz="10", xmin="-3", xmax="0", ymin="0", ymax="3", zmin="0", zmax="9")
+       n1.addObject('FixedProjectiveConstraint', indices="0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15")
+       n1.addObject('HexahedronFEMForceField', name="FEM", youngModulus="4000", poissonRatio="0.3", method="large")
+
+       n2 = M3.addChild('N2')
+
+       n2.addObject('MechanicalObject', )
+       n2.addObject('UniformMass', vertexMass="1")
+       n2.addObject('RegularGridTopology', nx="4", ny="4", nz="10", xmin="0", xmax="3", ymin="0", ymax="3", zmin="0", zmax="9")
+       n2.addObject('FixedProjectiveConstraint', indices="0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15")
+       n2.addObject('HexahedronFEMForceField', name="FEM", youngModulus="4000", poissonRatio="0.3", method="large")
     ```
 

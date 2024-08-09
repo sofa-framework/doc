@@ -1,183 +1,180 @@
+<!-- generate_doc -->
 # TopologicalChangeProcessor
 
 Read topological Changes and process them.
 
 
-__Target__: `Sofa.Component.Topology.Utility`
+__Target__: Sofa.Component.Topology.Utility
 
-__namespace__: `#!c++ sofa::component::topology::utility`
+__namespace__: sofa::component::topology::utility
 
-__parents__: 
+__parents__:
 
-- `#!c++ BaseObject`
+- BaseObject
 
-__categories__: 
-
-- _Miscellaneous
-
-Data: 
+### Data
 
 <table>
-<thead>
-    <tr>
-        <th>Name</th>
-        <th>Description</th>
-        <th>Default value</th>
-    </tr>
-</thead>
-<tbody>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Default value</th>
+        </tr>
+    </thead>
+    <tbody>
 	<tr>
 		<td>name</td>
 		<td>
 object name
-</td>
+		</td>
 		<td>unnamed</td>
 	</tr>
 	<tr>
 		<td>printLog</td>
 		<td>
 if true, emits extra messages at runtime.
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>tags</td>
 		<td>
 list of the subsets the objet belongs to
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>bbox</td>
 		<td>
 this object bounding box
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>componentState</td>
 		<td>
 The state of the component among (Dirty, Valid, Undefined, Loading, Invalid).
-</td>
+		</td>
 		<td>Undefined</td>
 	</tr>
 	<tr>
 		<td>listening</td>
 		<td>
 if true, handle the events, otherwise ignore the events
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>filename</td>
 		<td>
 input file name for topological changes.
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>listChanges</td>
 		<td>
 0 for adding, 1 for removing, 2 for cutting and associated indices.
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>interval</td>
 		<td>
 time duration between 2 actions
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>shift</td>
 		<td>
 shift between times in the file and times when they will be read
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>loop</td>
 		<td>
 set to 'true' to re-read the file when reaching the end
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>useDataInputs</td>
 		<td>
 If true, will perform operation using Data input lists rather than text file.
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>timeToRemove</td>
 		<td>
 If using option useDataInputs, time at which will be done the operations. Possibility to use the interval Data also.
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>pointsToRemove</td>
 		<td>
 List of point IDs to be removed.
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>edgesToRemove</td>
 		<td>
 List of edge IDs to be removed.
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>trianglesToRemove</td>
 		<td>
 List of triangle IDs to be removed.
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>quadsToRemove</td>
 		<td>
 List of quad IDs to be removed.
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>tetrahedraToRemove</td>
 		<td>
 List of tetrahedron IDs to be removed.
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>hexahedraToRemove</td>
 		<td>
 List of hexahedron IDs to be removed.
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>saveIndicesAtInit</td>
 		<td>
 set to 'true' to save the incision to do in the init to incise even after a movement
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>epsilonSnapPath</td>
 		<td>
 epsilon snap path
-</td>
+		</td>
 		<td>0.1</td>
 	</tr>
 	<tr>
 		<td>epsilonSnapBorder</td>
 		<td>
 epsilon snap path
-</td>
+		</td>
 		<td>0.25</td>
 	</tr>
 	<tr>
@@ -187,27 +184,26 @@ epsilon snap path
 		<td>draw</td>
 		<td>
 draw information
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 
 </tbody>
 </table>
 
-Links: 
-
-| Name | Description |
-| ---- | ----------- |
-|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|
-|slaves|Sub-objects used internally by this object|
-|master|nullptr for regular objects, or master object for which this object is one sub-objects|
-|topology|link to the topology container|
+### Links
 
 
+| Name | Description | Destination type name |
+| ---- | ----------- | --------------------- |
+|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
+|slaves|Sub-objects used internally by this object|BaseObject|
+|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
+|topology|link to the topology container|BaseMeshTopology|
 
-## Examples
+## Examples 
 
-Component/Topology/Utility/TopologicalChangeProcessor_useDataInputs_option.scn
+TopologicalChangeProcessor_useDataInputs_option.scn
 
 === "XML"
 
@@ -260,56 +256,61 @@ Component/Topology/Utility/TopologicalChangeProcessor_useDataInputs_option.scn
             <TopologicalChangeProcessor listening="1" useDataInputs="1" trianglesToRemove="@trash.triangleIndices" timeToRemove="0.1" interval="0.05" />
         </Node>
     </Node>
+
     ```
 
 === "Python"
 
     ```python
-    def createScene(rootNode):
+    def createScene(root_node):
 
-        root = rootNode.addChild('root', gravity="0 -9 0", dt="0.01")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Algorithm")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Intersection")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Geometry")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Response.Contact")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Engine.Select")
-        root.addObject('RequiredPlugin', name="Sofa.Component.IO.Mesh")
-        root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Iterative")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Mapping.Linear")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Mass")
-        root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
-        root.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.FEM.Elastic")
-        root.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.Spring")
-        root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Dynamic")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Utility")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Visual")
-        root.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
-        root.addObject('DefaultAnimationLoop')
-        root.addObject('VisualStyle', displayFlags="showBehaviorModels showVisual")
-        root.addObject('CollisionPipeline', name="default0", verbose="0")
-        root.addObject('BruteForceBroadPhase')
-        root.addObject('BVHNarrowPhase')
-        root.addObject('CollisionResponse', name="default1", response="PenalityContactForceField")
-        root.addObject('MinProximityIntersection', name="Proximity", alarmDistance="0.8", contactDistance="0.5")
+       root = root_node.addChild('root', gravity="0 -9 0", dt="0.01")
 
-        SquareGravity = root.addChild('SquareGravity', gravity="0 -9.81 0")
-        SquareGravity.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
-        SquareGravity.addObject('CGLinearSolver', iterations="25", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
-        SquareGravity.addObject('MeshGmshLoader', name="loader", filename="mesh/square3.msh", createSubelements="true")
-        SquareGravity.addObject('MechanicalObject', name="mecaObj", src="@loader", template="Vec3", scale3d="10 10 10", restScale="1")
-        SquareGravity.addObject('TriangleSetTopologyContainer', src="@loader", name="Container")
-        SquareGravity.addObject('TriangleSetTopologyModifier', name="Modifier")
-        SquareGravity.addObject('TriangleSetGeometryAlgorithms', template="Vec3", name="GeomAlgo")
-        SquareGravity.addObject('DiagonalMass', name="default5", massDensity="0.15")
-        SquareGravity.addObject('TriangularFEMForceField', template="Vec3", name="FEM", method="large", poissonRatio="0.3", youngModulus="60")
-        SquareGravity.addObject('TriangularBendingSprings', template="Vec3", name="FEM-Bend", stiffness="300", damping="1")
-        SquareGravity.addObject('TriangleCollisionModel', name="default7")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Algorithm")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Intersection")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Geometry")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Response.Contact")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Engine.Select")
+       root.addObject('RequiredPlugin', name="Sofa.Component.IO.Mesh")
+       root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Iterative")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Mapping.Linear")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Mass")
+       root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.FEM.Elastic")
+       root.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.Spring")
+       root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Dynamic")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Utility")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Visual")
+       root.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
+       root.addObject('DefaultAnimationLoop', )
+       root.addObject('VisualStyle', displayFlags="showBehaviorModels showVisual")
+       root.addObject('CollisionPipeline', name="default0", verbose="0")
+       root.addObject('BruteForceBroadPhase', )
+       root.addObject('BVHNarrowPhase', )
+       root.addObject('CollisionResponse', name="default1", response="PenalityContactForceField")
+       root.addObject('MinProximityIntersection', name="Proximity", alarmDistance="0.8", contactDistance="0.5")
 
-        SquareGravity = SquareGravity.addChild('SquareGravity')
-        SquareGravity.addObject('OglModel', name="Visual", material="Default Diffuse 1 0 0 1 0.6 Ambient 1 0.2 0 0 1 Specular 0 1 0 0 1 Emissive 0 1 0 0 1 Shininess 0 45")
-        SquareGravity.addObject('IdentityMapping', name="default8", input="@..", output="@Visual")
-        SquareGravity.addObject('BoxROI', template="Vec3", box="2 0 -1 8 -3 1", drawBoxes="1", position="@mecaObj.position", drawTriangles="1", triangles="@Container.triangles", name="trash")
-        SquareGravity.addObject('TopologicalChangeProcessor', listening="1", useDataInputs="1", trianglesToRemove="@trash.triangleIndices", timeToRemove="0.1", interval="0.05")
+       square_gravity = root.addChild('SquareGravity', gravity="0 -9.81 0")
+
+       square_gravity.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
+       square_gravity.addObject('CGLinearSolver', iterations="25", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
+       square_gravity.addObject('MeshGmshLoader', name="loader", filename="mesh/square3.msh", createSubelements="true")
+       square_gravity.addObject('MechanicalObject', name="mecaObj", src="@loader", template="Vec3", scale3d="10 10 10", restScale="1")
+       square_gravity.addObject('TriangleSetTopologyContainer', src="@loader", name="Container")
+       square_gravity.addObject('TriangleSetTopologyModifier', name="Modifier")
+       square_gravity.addObject('TriangleSetGeometryAlgorithms', template="Vec3", name="GeomAlgo")
+       square_gravity.addObject('DiagonalMass', name="default5", massDensity="0.15")
+       square_gravity.addObject('TriangularFEMForceField', template="Vec3", name="FEM", method="large", poissonRatio="0.3", youngModulus="60")
+       square_gravity.addObject('TriangularBendingSprings', template="Vec3", name="FEM-Bend", stiffness="300", damping="1")
+       square_gravity.addObject('TriangleCollisionModel', name="default7")
+
+       node = SquareGravity.addChild('node')
+
+       node.addObject('OglModel', name="Visual", material="Default Diffuse 1 0 0 1 0.6 Ambient 1 0.2 0 0 1 Specular 0 1 0 0 1 Emissive 0 1 0 0 1 Shininess 0 45")
+       node.addObject('IdentityMapping', name="default8", input="@..", output="@Visual")
+
+       square_gravity.addObject('BoxROI', template="Vec3", box="2 0 -1 8 -3 1", drawBoxes="1", position="@mecaObj.position", drawTriangles="1", triangles="@Container.triangles", name="trash")
+       square_gravity.addObject('TopologicalChangeProcessor', listening="1", useDataInputs="1", trianglesToRemove="@trash.triangleIndices", timeToRemove="0.1", interval="0.05")
     ```
 

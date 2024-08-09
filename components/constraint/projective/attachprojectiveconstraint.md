@@ -27,76 +27,83 @@ Usage
 
 The AttachProjectiveConstraint **requires** two MechanicalObjects so that both degrees of freedom can be accessed and projected to the attached configuration. An integration scheme and a solver are also necessary to solve the linear system at each time step.
 <!-- automatically generated doc START -->
-__Target__: `Sofa.Component.Constraint.Projective`
+<!-- generate_doc -->
 
-__namespace__: `#!c++ sofa::component::constraint::projective`
+Attach given pair of particles, projecting the positions of the second particles to the first ones
 
-__parents__: 
 
-- `#!c++ PairInteractionProjectiveConstraintSet`
+## Rigid2d
 
-__categories__: 
+Templates:
 
-- ProjectiveConstraintSet
+- Rigid2d
 
-Data: 
+__Target__: Sofa.Component.Constraint.Projective
+
+__namespace__: sofa::component::constraint::projective
+
+__parents__:
+
+- PairInteractionProjectiveConstraintSet
+
+### Data
 
 <table>
-<thead>
-    <tr>
-        <th>Name</th>
-        <th>Description</th>
-        <th>Default value</th>
-    </tr>
-</thead>
-<tbody>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Default value</th>
+        </tr>
+    </thead>
+    <tbody>
 	<tr>
 		<td>name</td>
 		<td>
 object name
-</td>
+		</td>
 		<td>unnamed</td>
 	</tr>
 	<tr>
 		<td>printLog</td>
 		<td>
 if true, emits extra messages at runtime.
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>tags</td>
 		<td>
 list of the subsets the objet belongs to
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>bbox</td>
 		<td>
 this object bounding box
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>componentState</td>
 		<td>
 The state of the component among (Dirty, Valid, Undefined, Loading, Invalid).
-</td>
+		</td>
 		<td>Undefined</td>
 	</tr>
 	<tr>
 		<td>listening</td>
 		<td>
 if true, handle the events, otherwise ignore the events
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>group</td>
 		<td>
 ID of the group containing this constraint. This ID is used to specify which constraints are solved by which solver, by specifying in each solver which groups of constraints it should handle.
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
@@ -104,127 +111,914 @@ ID of the group containing this constraint. This ID is used to specify which con
 		<td>
 The constraint stops acting after the given value.
 Use a negative value for infinite constraints
-</td>
+		</td>
 		<td>-1</td>
 	</tr>
 	<tr>
 		<td>indices1</td>
 		<td>
 Indices of the source points on the first model
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>indices2</td>
 		<td>
 Indices of the fixed points on the second model
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>twoWay</td>
 		<td>
 if true, projects the constraint vertices of both object1 and object2 towards their average degrees of freedom and derivatives. If false, the position of the object1 are projected onto the object2. Therefore, object2 only follows object1 without affecting the motion of object1
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>freeRotations</td>
 		<td>
 true to keep rotations free (only used for Rigid DOFs)
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>lastFreeRotation</td>
 		<td>
 true to keep rotation of the last attached point free (only used for Rigid DOFs)
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>restRotations</td>
 		<td>
 true to use rest rotations local offsets (only used for Rigid DOFs)
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>lastPos</td>
 		<td>
 position at which the attach constraint should become inactive
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>lastDir</td>
 		<td>
 direction from lastPos at which the attach coustraint should become inactive
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>clamp</td>
 		<td>
 true to clamp particles at lastPos instead of freeing them.
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>minDistance</td>
 		<td>
 the constraint become inactive if the distance between the points attached is bigger than minDistance.
-</td>
+		</td>
 		<td>-1</td>
 	</tr>
 	<tr>
 		<td>positionFactor</td>
 		<td>
 IN: Factor applied to projection of position
-</td>
+		</td>
 		<td>1</td>
 	</tr>
 	<tr>
 		<td>velocityFactor</td>
 		<td>
 IN: Factor applied to projection of velocity
-</td>
+		</td>
 		<td>1</td>
 	</tr>
 	<tr>
 		<td>responseFactor</td>
 		<td>
 IN: Factor applied to projection of force/acceleration
-</td>
+		</td>
 		<td>1</td>
 	</tr>
 	<tr>
 		<td>constraintFactor</td>
 		<td>
-Vector of factors adapting the application of the constraint per pair of points (0 -&gt; the constraint is released. 1 -&gt; the constraint is fully constrained)
-</td>
+Vector of factors adapting the application of the constraint per pair of points (0 -> the constraint is released. 1 -> the constraint is fully constrained)
+		</td>
 		<td></td>
 	</tr>
 
 </tbody>
 </table>
 
-Links: 
-
-| Name | Description |
-| ---- | ----------- |
-|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|
-|slaves|Sub-objects used internally by this object|
-|master|nullptr for regular objects, or master object for which this object is one sub-objects|
-|mechanicalStates|List of mechanical states to which this component is associated|
-|object1|First object associated to this component|
-|object2|Second object associated to this component|
+### Links
 
 
+| Name | Description | Destination type name |
+| ---- | ----------- | --------------------- |
+|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
+|slaves|Sub-objects used internally by this object|BaseObject|
+|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
+|mechanicalStates|List of mechanical states to which this component is associated|BaseMechanicalState|
+|object1|First object associated to this component|MechanicalState&lt;Rigid2d&gt;|
+|object2|Second object associated to this component|MechanicalState&lt;Rigid2d&gt;|
 
-## Examples
+<!-- generate_doc -->
+## Rigid3d
 
-Component/Constraint/Projective/AttachProjectiveConstraint.scn
+Templates:
+
+- Rigid3d
+
+__Target__: Sofa.Component.Constraint.Projective
+
+__namespace__: sofa::component::constraint::projective
+
+__parents__:
+
+- PairInteractionProjectiveConstraintSet
+
+### Data
+
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Default value</th>
+        </tr>
+    </thead>
+    <tbody>
+	<tr>
+		<td>name</td>
+		<td>
+object name
+		</td>
+		<td>unnamed</td>
+	</tr>
+	<tr>
+		<td>printLog</td>
+		<td>
+if true, emits extra messages at runtime.
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>tags</td>
+		<td>
+list of the subsets the objet belongs to
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>bbox</td>
+		<td>
+this object bounding box
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>componentState</td>
+		<td>
+The state of the component among (Dirty, Valid, Undefined, Loading, Invalid).
+		</td>
+		<td>Undefined</td>
+	</tr>
+	<tr>
+		<td>listening</td>
+		<td>
+if true, handle the events, otherwise ignore the events
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>group</td>
+		<td>
+ID of the group containing this constraint. This ID is used to specify which constraints are solved by which solver, by specifying in each solver which groups of constraints it should handle.
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>endTime</td>
+		<td>
+The constraint stops acting after the given value.
+Use a negative value for infinite constraints
+		</td>
+		<td>-1</td>
+	</tr>
+	<tr>
+		<td>indices1</td>
+		<td>
+Indices of the source points on the first model
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>indices2</td>
+		<td>
+Indices of the fixed points on the second model
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>twoWay</td>
+		<td>
+if true, projects the constraint vertices of both object1 and object2 towards their average degrees of freedom and derivatives. If false, the position of the object1 are projected onto the object2. Therefore, object2 only follows object1 without affecting the motion of object1
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>freeRotations</td>
+		<td>
+true to keep rotations free (only used for Rigid DOFs)
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>lastFreeRotation</td>
+		<td>
+true to keep rotation of the last attached point free (only used for Rigid DOFs)
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>restRotations</td>
+		<td>
+true to use rest rotations local offsets (only used for Rigid DOFs)
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>lastPos</td>
+		<td>
+position at which the attach constraint should become inactive
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>lastDir</td>
+		<td>
+direction from lastPos at which the attach coustraint should become inactive
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>clamp</td>
+		<td>
+true to clamp particles at lastPos instead of freeing them.
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>minDistance</td>
+		<td>
+the constraint become inactive if the distance between the points attached is bigger than minDistance.
+		</td>
+		<td>-1</td>
+	</tr>
+	<tr>
+		<td>positionFactor</td>
+		<td>
+IN: Factor applied to projection of position
+		</td>
+		<td>1</td>
+	</tr>
+	<tr>
+		<td>velocityFactor</td>
+		<td>
+IN: Factor applied to projection of velocity
+		</td>
+		<td>1</td>
+	</tr>
+	<tr>
+		<td>responseFactor</td>
+		<td>
+IN: Factor applied to projection of force/acceleration
+		</td>
+		<td>1</td>
+	</tr>
+	<tr>
+		<td>constraintFactor</td>
+		<td>
+Vector of factors adapting the application of the constraint per pair of points (0 -> the constraint is released. 1 -> the constraint is fully constrained)
+		</td>
+		<td></td>
+	</tr>
+
+</tbody>
+</table>
+
+### Links
+
+
+| Name | Description | Destination type name |
+| ---- | ----------- | --------------------- |
+|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
+|slaves|Sub-objects used internally by this object|BaseObject|
+|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
+|mechanicalStates|List of mechanical states to which this component is associated|BaseMechanicalState|
+|object1|First object associated to this component|MechanicalState&lt;Rigid3d&gt;|
+|object2|Second object associated to this component|MechanicalState&lt;Rigid3d&gt;|
+
+<!-- generate_doc -->
+## Vec1d
+
+Templates:
+
+- Vec1d
+
+__Target__: Sofa.Component.Constraint.Projective
+
+__namespace__: sofa::component::constraint::projective
+
+__parents__:
+
+- PairInteractionProjectiveConstraintSet
+
+### Data
+
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Default value</th>
+        </tr>
+    </thead>
+    <tbody>
+	<tr>
+		<td>name</td>
+		<td>
+object name
+		</td>
+		<td>unnamed</td>
+	</tr>
+	<tr>
+		<td>printLog</td>
+		<td>
+if true, emits extra messages at runtime.
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>tags</td>
+		<td>
+list of the subsets the objet belongs to
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>bbox</td>
+		<td>
+this object bounding box
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>componentState</td>
+		<td>
+The state of the component among (Dirty, Valid, Undefined, Loading, Invalid).
+		</td>
+		<td>Undefined</td>
+	</tr>
+	<tr>
+		<td>listening</td>
+		<td>
+if true, handle the events, otherwise ignore the events
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>group</td>
+		<td>
+ID of the group containing this constraint. This ID is used to specify which constraints are solved by which solver, by specifying in each solver which groups of constraints it should handle.
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>endTime</td>
+		<td>
+The constraint stops acting after the given value.
+Use a negative value for infinite constraints
+		</td>
+		<td>-1</td>
+	</tr>
+	<tr>
+		<td>indices1</td>
+		<td>
+Indices of the source points on the first model
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>indices2</td>
+		<td>
+Indices of the fixed points on the second model
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>twoWay</td>
+		<td>
+if true, projects the constraint vertices of both object1 and object2 towards their average degrees of freedom and derivatives. If false, the position of the object1 are projected onto the object2. Therefore, object2 only follows object1 without affecting the motion of object1
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>freeRotations</td>
+		<td>
+true to keep rotations free (only used for Rigid DOFs)
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>lastFreeRotation</td>
+		<td>
+true to keep rotation of the last attached point free (only used for Rigid DOFs)
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>restRotations</td>
+		<td>
+true to use rest rotations local offsets (only used for Rigid DOFs)
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>lastPos</td>
+		<td>
+position at which the attach constraint should become inactive
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>lastDir</td>
+		<td>
+direction from lastPos at which the attach coustraint should become inactive
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>clamp</td>
+		<td>
+true to clamp particles at lastPos instead of freeing them.
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>minDistance</td>
+		<td>
+the constraint become inactive if the distance between the points attached is bigger than minDistance.
+		</td>
+		<td>-1</td>
+	</tr>
+	<tr>
+		<td>positionFactor</td>
+		<td>
+IN: Factor applied to projection of position
+		</td>
+		<td>1</td>
+	</tr>
+	<tr>
+		<td>velocityFactor</td>
+		<td>
+IN: Factor applied to projection of velocity
+		</td>
+		<td>1</td>
+	</tr>
+	<tr>
+		<td>responseFactor</td>
+		<td>
+IN: Factor applied to projection of force/acceleration
+		</td>
+		<td>1</td>
+	</tr>
+	<tr>
+		<td>constraintFactor</td>
+		<td>
+Vector of factors adapting the application of the constraint per pair of points (0 -> the constraint is released. 1 -> the constraint is fully constrained)
+		</td>
+		<td></td>
+	</tr>
+
+</tbody>
+</table>
+
+### Links
+
+
+| Name | Description | Destination type name |
+| ---- | ----------- | --------------------- |
+|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
+|slaves|Sub-objects used internally by this object|BaseObject|
+|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
+|mechanicalStates|List of mechanical states to which this component is associated|BaseMechanicalState|
+|object1|First object associated to this component|MechanicalState&lt;Vec1d&gt;|
+|object2|Second object associated to this component|MechanicalState&lt;Vec1d&gt;|
+
+<!-- generate_doc -->
+## Vec2d
+
+Templates:
+
+- Vec2d
+
+__Target__: Sofa.Component.Constraint.Projective
+
+__namespace__: sofa::component::constraint::projective
+
+__parents__:
+
+- PairInteractionProjectiveConstraintSet
+
+### Data
+
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Default value</th>
+        </tr>
+    </thead>
+    <tbody>
+	<tr>
+		<td>name</td>
+		<td>
+object name
+		</td>
+		<td>unnamed</td>
+	</tr>
+	<tr>
+		<td>printLog</td>
+		<td>
+if true, emits extra messages at runtime.
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>tags</td>
+		<td>
+list of the subsets the objet belongs to
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>bbox</td>
+		<td>
+this object bounding box
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>componentState</td>
+		<td>
+The state of the component among (Dirty, Valid, Undefined, Loading, Invalid).
+		</td>
+		<td>Undefined</td>
+	</tr>
+	<tr>
+		<td>listening</td>
+		<td>
+if true, handle the events, otherwise ignore the events
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>group</td>
+		<td>
+ID of the group containing this constraint. This ID is used to specify which constraints are solved by which solver, by specifying in each solver which groups of constraints it should handle.
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>endTime</td>
+		<td>
+The constraint stops acting after the given value.
+Use a negative value for infinite constraints
+		</td>
+		<td>-1</td>
+	</tr>
+	<tr>
+		<td>indices1</td>
+		<td>
+Indices of the source points on the first model
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>indices2</td>
+		<td>
+Indices of the fixed points on the second model
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>twoWay</td>
+		<td>
+if true, projects the constraint vertices of both object1 and object2 towards their average degrees of freedom and derivatives. If false, the position of the object1 are projected onto the object2. Therefore, object2 only follows object1 without affecting the motion of object1
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>freeRotations</td>
+		<td>
+true to keep rotations free (only used for Rigid DOFs)
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>lastFreeRotation</td>
+		<td>
+true to keep rotation of the last attached point free (only used for Rigid DOFs)
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>restRotations</td>
+		<td>
+true to use rest rotations local offsets (only used for Rigid DOFs)
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>lastPos</td>
+		<td>
+position at which the attach constraint should become inactive
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>lastDir</td>
+		<td>
+direction from lastPos at which the attach coustraint should become inactive
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>clamp</td>
+		<td>
+true to clamp particles at lastPos instead of freeing them.
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>minDistance</td>
+		<td>
+the constraint become inactive if the distance between the points attached is bigger than minDistance.
+		</td>
+		<td>-1</td>
+	</tr>
+	<tr>
+		<td>positionFactor</td>
+		<td>
+IN: Factor applied to projection of position
+		</td>
+		<td>1</td>
+	</tr>
+	<tr>
+		<td>velocityFactor</td>
+		<td>
+IN: Factor applied to projection of velocity
+		</td>
+		<td>1</td>
+	</tr>
+	<tr>
+		<td>responseFactor</td>
+		<td>
+IN: Factor applied to projection of force/acceleration
+		</td>
+		<td>1</td>
+	</tr>
+	<tr>
+		<td>constraintFactor</td>
+		<td>
+Vector of factors adapting the application of the constraint per pair of points (0 -> the constraint is released. 1 -> the constraint is fully constrained)
+		</td>
+		<td></td>
+	</tr>
+
+</tbody>
+</table>
+
+### Links
+
+
+| Name | Description | Destination type name |
+| ---- | ----------- | --------------------- |
+|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
+|slaves|Sub-objects used internally by this object|BaseObject|
+|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
+|mechanicalStates|List of mechanical states to which this component is associated|BaseMechanicalState|
+|object1|First object associated to this component|MechanicalState&lt;Vec2d&gt;|
+|object2|Second object associated to this component|MechanicalState&lt;Vec2d&gt;|
+
+<!-- generate_doc -->
+## Vec3d
+
+Templates:
+
+- Vec3d
+
+__Target__: Sofa.Component.Constraint.Projective
+
+__namespace__: sofa::component::constraint::projective
+
+__parents__:
+
+- PairInteractionProjectiveConstraintSet
+
+### Data
+
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Default value</th>
+        </tr>
+    </thead>
+    <tbody>
+	<tr>
+		<td>name</td>
+		<td>
+object name
+		</td>
+		<td>unnamed</td>
+	</tr>
+	<tr>
+		<td>printLog</td>
+		<td>
+if true, emits extra messages at runtime.
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>tags</td>
+		<td>
+list of the subsets the objet belongs to
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>bbox</td>
+		<td>
+this object bounding box
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>componentState</td>
+		<td>
+The state of the component among (Dirty, Valid, Undefined, Loading, Invalid).
+		</td>
+		<td>Undefined</td>
+	</tr>
+	<tr>
+		<td>listening</td>
+		<td>
+if true, handle the events, otherwise ignore the events
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>group</td>
+		<td>
+ID of the group containing this constraint. This ID is used to specify which constraints are solved by which solver, by specifying in each solver which groups of constraints it should handle.
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>endTime</td>
+		<td>
+The constraint stops acting after the given value.
+Use a negative value for infinite constraints
+		</td>
+		<td>-1</td>
+	</tr>
+	<tr>
+		<td>indices1</td>
+		<td>
+Indices of the source points on the first model
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>indices2</td>
+		<td>
+Indices of the fixed points on the second model
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>twoWay</td>
+		<td>
+if true, projects the constraint vertices of both object1 and object2 towards their average degrees of freedom and derivatives. If false, the position of the object1 are projected onto the object2. Therefore, object2 only follows object1 without affecting the motion of object1
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>freeRotations</td>
+		<td>
+true to keep rotations free (only used for Rigid DOFs)
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>lastFreeRotation</td>
+		<td>
+true to keep rotation of the last attached point free (only used for Rigid DOFs)
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>restRotations</td>
+		<td>
+true to use rest rotations local offsets (only used for Rigid DOFs)
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>lastPos</td>
+		<td>
+position at which the attach constraint should become inactive
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>lastDir</td>
+		<td>
+direction from lastPos at which the attach coustraint should become inactive
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>clamp</td>
+		<td>
+true to clamp particles at lastPos instead of freeing them.
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>minDistance</td>
+		<td>
+the constraint become inactive if the distance between the points attached is bigger than minDistance.
+		</td>
+		<td>-1</td>
+	</tr>
+	<tr>
+		<td>positionFactor</td>
+		<td>
+IN: Factor applied to projection of position
+		</td>
+		<td>1</td>
+	</tr>
+	<tr>
+		<td>velocityFactor</td>
+		<td>
+IN: Factor applied to projection of velocity
+		</td>
+		<td>1</td>
+	</tr>
+	<tr>
+		<td>responseFactor</td>
+		<td>
+IN: Factor applied to projection of force/acceleration
+		</td>
+		<td>1</td>
+	</tr>
+	<tr>
+		<td>constraintFactor</td>
+		<td>
+Vector of factors adapting the application of the constraint per pair of points (0 -> the constraint is released. 1 -> the constraint is fully constrained)
+		</td>
+		<td></td>
+	</tr>
+
+</tbody>
+</table>
+
+### Links
+
+
+| Name | Description | Destination type name |
+| ---- | ----------- | --------------------- |
+|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
+|slaves|Sub-objects used internally by this object|BaseObject|
+|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
+|mechanicalStates|List of mechanical states to which this component is associated|BaseMechanicalState|
+|object1|First object associated to this component|MechanicalState&lt;Vec3d&gt;|
+|object2|Second object associated to this component|MechanicalState&lt;Vec3d&gt;|
+
+## Examples 
+
+AttachProjectiveConstraint.scn
 
 === "XML"
 
@@ -315,97 +1109,111 @@ Component/Constraint/Projective/AttachProjectiveConstraint.scn
             <AttachProjectiveConstraint object1="@M2" object2="@M3" twoWay="true" indices1="144 145 146 147 148 149 150 151 152 153 154 155 156 157 158 159" indices2="0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15"/>
         </Node>
     </Node>
+
     ```
 
 === "Python"
 
     ```python
-    def createScene(rootNode):
+    def createScene(root_node):
 
-        root = rootNode.addChild('root', dt="0.02")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Projective")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Engine.Select")
-        root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Iterative")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Mass")
-        root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
-        root.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.FEM.Elastic")
-        root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Grid")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Visual")
-        root.addObject('VisualStyle', displayFlags="showBehaviorModels showForceFields")
-        root.addObject('DefaultAnimationLoop')
+       root = root_node.addChild('root', dt="0.02")
 
-        Single = root.addChild('Single')
-        Single.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
-        Single.addObject('CGLinearSolver', iterations="25", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Projective")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Engine.Select")
+       root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Iterative")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Mass")
+       root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.FEM.Elastic")
+       root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Grid")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Visual")
+       root.addObject('VisualStyle', displayFlags="showBehaviorModels showForceFields")
+       root.addObject('DefaultAnimationLoop', )
 
-        M1 = Single.addChild('M1')
-        M1.addObject('MechanicalObject', showObject="1")
-        M1.addObject('UniformMass', vertexMass="1")
-        M1.addObject('RegularGridTopology', nx="4", ny="4", nz="28", xmin="-9", xmax="-6", ymin="0", ymax="3", zmin="0", zmax="27")
-        M1.addObject('BoxConstraint', box="-9.1 -0.1 -0.1 -5.9 3.1 0.1")
-        M1.addObject('TetrahedronFEMForceField', name="FEM", youngModulus="4000", poissonRatio="0.3")
+       single = root.addChild('Single')
 
-        AttachOneWay = root.addChild('AttachOneWay')
-        AttachOneWay.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="false")
-        AttachOneWay.addObject('CGLinearSolver', iterations="25", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
+       single.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
+       single.addObject('CGLinearSolver', iterations="25", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
 
-        M1 = AttachOneWay.addChild('M1')
-        M1.addObject('MechanicalObject')
-        M1.addObject('UniformMass', vertexMass="1")
-        M1.addObject('RegularGridTopology', nx="4", ny="4", nz="10", xmin="-4", xmax="-1", ymin="0", ymax="3", zmin="0", zmax="9")
-        M1.addObject('BoxConstraint', box="-4.1 -0.1 -0.1 -0.9 3.1 0.1")
-        M1.addObject('TetrahedronFEMForceField', name="FEM", youngModulus="4000", poissonRatio="0.3")
+       m1 = Single.addChild('M1')
 
-        M2 = AttachOneWay.addChild('M2')
-        M2.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="false")
-        M2.addObject('CGLinearSolver', iterations="25", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
-        M2.addObject('MechanicalObject')
-        M2.addObject('UniformMass', vertexMass="1")
-        M2.addObject('RegularGridTopology', nx="4", ny="4", nz="10", xmin="-4", xmax="-1", ymin="0", ymax="3", zmin="9", zmax="18")
-        M2.addObject('TetrahedronFEMForceField', name="FEM", youngModulus="4000", poissonRatio="0.3")
+       m1.addObject('MechanicalObject', showObject="1")
+       m1.addObject('UniformMass', vertexMass="1")
+       m1.addObject('RegularGridTopology', nx="4", ny="4", nz="28", xmin="-9", xmax="-6", ymin="0", ymax="3", zmin="0", zmax="27")
+       m1.addObject('BoxConstraint', box="-9.1 -0.1 -0.1 -5.9 3.1 0.1")
+       m1.addObject('TetrahedronFEMForceField', name="FEM", youngModulus="4000", poissonRatio="0.3")
 
-        M3 = AttachOneWay.addChild('M3')
-        M3.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="false")
-        M3.addObject('CGLinearSolver', iterations="25", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
-        M3.addObject('MechanicalObject')
-        M3.addObject('UniformMass', vertexMass="1")
-        M3.addObject('RegularGridTopology', nx="4", ny="4", nz="10", xmin="-4", xmax="-1", ymin="0", ymax="3", zmin="18", zmax="27")
-        M3.addObject('TetrahedronFEMForceField', name="FEM", youngModulus="4000", poissonRatio="0.3")
-        AttachOneWay.addObject('AttachProjectiveConstraint', object1="@M1", object2="@M2", indices1="144 145 146 147 148 149 150 151 152 153 154 155 156 157 158 159", indices2="0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15", constraintFactor="1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1")
-        AttachOneWay.addObject('AttachProjectiveConstraint', object1="@M2", object2="@M3", indices1="144 145 146 147 148 149 150 151 152 153 154 155 156 157 158 159", indices2="0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15", constraintFactor="1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1")
+       attach_one_way = root.addChild('AttachOneWay')
 
-        AttachTwoWay = root.addChild('AttachTwoWay')
-        AttachTwoWay.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="false")
-        AttachTwoWay.addObject('CGLinearSolver', iterations="25", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
+       attach_one_way.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="false")
+       attach_one_way.addObject('CGLinearSolver', iterations="25", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
 
-        M1 = AttachTwoWay.addChild('M1')
-        M1.addObject('MechanicalObject')
-        M1.addObject('UniformMass', vertexMass="1")
-        M1.addObject('RegularGridTopology', nx="4", ny="4", nz="10", xmin="1", xmax="4", ymin="0", ymax="3", zmin="0", zmax="9")
-        M1.addObject('BoxConstraint', box="0.9 -0.1 -0.1 4.1 3.1 0.1")
-        M1.addObject('TetrahedronFEMForceField', name="FEM", youngModulus="4000", poissonRatio="0.3")
+       m1 = AttachOneWay.addChild('M1')
 
-        M2 = AttachTwoWay.addChild('M2')
-        M2.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="false")
-        M2.addObject('CGLinearSolver', iterations="25", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
-        M2.addObject('MechanicalObject')
-        M2.addObject('UniformMass', vertexMass="1")
-        M2.addObject('RegularGridTopology', nx="4", ny="4", nz="10", xmin="1", xmax="4", ymin="0", ymax="3", zmin="9", zmax="18")
-        M2.addObject('TetrahedronFEMForceField', name="FEM", youngModulus="4000", poissonRatio="0.3")
+       m1.addObject('MechanicalObject', )
+       m1.addObject('UniformMass', vertexMass="1")
+       m1.addObject('RegularGridTopology', nx="4", ny="4", nz="10", xmin="-4", xmax="-1", ymin="0", ymax="3", zmin="0", zmax="9")
+       m1.addObject('BoxConstraint', box="-4.1 -0.1 -0.1 -0.9 3.1 0.1")
+       m1.addObject('TetrahedronFEMForceField', name="FEM", youngModulus="4000", poissonRatio="0.3")
 
-        M3 = AttachTwoWay.addChild('M3')
-        M3.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="false")
-        M3.addObject('CGLinearSolver', iterations="25", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
-        M3.addObject('MechanicalObject')
-        M3.addObject('UniformMass', vertexMass="1")
-        M3.addObject('RegularGridTopology', nx="4", ny="4", nz="10", xmin="1", xmax="4", ymin="0", ymax="3", zmin="18", zmax="27")
-        M3.addObject('TetrahedronFEMForceField', name="FEM", youngModulus="4000", poissonRatio="0.3")
-        AttachTwoWay.addObject('AttachProjectiveConstraint', object1="@M1", object2="@M2", twoWay="true", indices1="144 145 146 147 148 149 150 151 152 153 154 155 156 157 158 159", indices2="0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15", constraintFactor="1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1")
-        AttachTwoWay.addObject('AttachProjectiveConstraint', object1="@M2", object2="@M3", twoWay="true", indices1="144 145 146 147 148 149 150 151 152 153 154 155 156 157 158 159", indices2="0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15")
+       m2 = AttachOneWay.addChild('M2')
+
+       m2.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="false")
+       m2.addObject('CGLinearSolver', iterations="25", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
+       m2.addObject('MechanicalObject', )
+       m2.addObject('UniformMass', vertexMass="1")
+       m2.addObject('RegularGridTopology', nx="4", ny="4", nz="10", xmin="-4", xmax="-1", ymin="0", ymax="3", zmin="9", zmax="18")
+       m2.addObject('TetrahedronFEMForceField', name="FEM", youngModulus="4000", poissonRatio="0.3")
+
+       m3 = AttachOneWay.addChild('M3')
+
+       m3.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="false")
+       m3.addObject('CGLinearSolver', iterations="25", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
+       m3.addObject('MechanicalObject', )
+       m3.addObject('UniformMass', vertexMass="1")
+       m3.addObject('RegularGridTopology', nx="4", ny="4", nz="10", xmin="-4", xmax="-1", ymin="0", ymax="3", zmin="18", zmax="27")
+       m3.addObject('TetrahedronFEMForceField', name="FEM", youngModulus="4000", poissonRatio="0.3")
+
+       attach_one_way.addObject('AttachProjectiveConstraint', object1="@M1", object2="@M2", indices1="144 145 146 147 148 149 150 151 152 153 154 155 156 157 158 159", indices2="0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15", constraintFactor="1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1")
+       attach_one_way.addObject('AttachProjectiveConstraint', object1="@M2", object2="@M3", indices1="144 145 146 147 148 149 150 151 152 153 154 155 156 157 158 159", indices2="0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15", constraintFactor="1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1")
+
+       attach_two_way = root.addChild('AttachTwoWay')
+
+       attach_two_way.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="false")
+       attach_two_way.addObject('CGLinearSolver', iterations="25", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
+
+       m1 = AttachTwoWay.addChild('M1')
+
+       m1.addObject('MechanicalObject', )
+       m1.addObject('UniformMass', vertexMass="1")
+       m1.addObject('RegularGridTopology', nx="4", ny="4", nz="10", xmin="1", xmax="4", ymin="0", ymax="3", zmin="0", zmax="9")
+       m1.addObject('BoxConstraint', box="0.9 -0.1 -0.1 4.1 3.1 0.1")
+       m1.addObject('TetrahedronFEMForceField', name="FEM", youngModulus="4000", poissonRatio="0.3")
+
+       m2 = AttachTwoWay.addChild('M2')
+
+       m2.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="false")
+       m2.addObject('CGLinearSolver', iterations="25", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
+       m2.addObject('MechanicalObject', )
+       m2.addObject('UniformMass', vertexMass="1")
+       m2.addObject('RegularGridTopology', nx="4", ny="4", nz="10", xmin="1", xmax="4", ymin="0", ymax="3", zmin="9", zmax="18")
+       m2.addObject('TetrahedronFEMForceField', name="FEM", youngModulus="4000", poissonRatio="0.3")
+
+       m3 = AttachTwoWay.addChild('M3')
+
+       m3.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="false")
+       m3.addObject('CGLinearSolver', iterations="25", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
+       m3.addObject('MechanicalObject', )
+       m3.addObject('UniformMass', vertexMass="1")
+       m3.addObject('RegularGridTopology', nx="4", ny="4", nz="10", xmin="1", xmax="4", ymin="0", ymax="3", zmin="18", zmax="27")
+       m3.addObject('TetrahedronFEMForceField', name="FEM", youngModulus="4000", poissonRatio="0.3")
+
+       attach_two_way.addObject('AttachProjectiveConstraint', object1="@M1", object2="@M2", twoWay="true", indices1="144 145 146 147 148 149 150 151 152 153 154 155 156 157 158 159", indices2="0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15", constraintFactor="1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1")
+       attach_two_way.addObject('AttachProjectiveConstraint', object1="@M2", object2="@M3", twoWay="true", indices1="144 145 146 147 148 149 150 151 152 153 154 155 156 157 158 159", indices2="0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15")
     ```
 
-Component/Constraint/Projective/AttachProjectiveConstraintMatrix.scn
+AttachProjectiveConstraintMatrix.scn
 
 === "XML"
 
@@ -483,62 +1291,72 @@ Component/Constraint/Projective/AttachProjectiveConstraintMatrix.scn
             <!--	<AttachProjectiveConstraint object1="@M2" object2="@M3" radius="0.1" indices1="144 145 146 147 148 149 150 151 152 153 154 155 156 157 158 159" indices2="0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15" constraintFactor="1"/>	-->
         </Node>
     </Node>
+
     ```
 
 === "Python"
 
     ```python
-    def createScene(rootNode):
+    def createScene(root_node):
 
-        root = rootNode.addChild('root', dt="0.02")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Projective")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Engine.Select")
-        root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Direct")
-        root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Iterative")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Mass")
-        root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
-        root.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.FEM.Elastic")
-        root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Grid")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Visual")
-        root.addObject('VisualStyle', displayFlags="showBehaviorModels showForceFields")
-        root.addObject('DefaultAnimationLoop')
+       root = root_node.addChild('root', dt="0.02")
 
-        AttachOneWay = root.addChild('AttachOneWay')
-        AttachOneWay.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
-        AttachOneWay.addObject('CGLinearSolver', iterations="25", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Projective")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Engine.Select")
+       root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Direct")
+       root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Iterative")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Mass")
+       root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.FEM.Elastic")
+       root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Grid")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Visual")
+       root.addObject('VisualStyle', displayFlags="showBehaviorModels showForceFields")
+       root.addObject('DefaultAnimationLoop', )
 
-        M1 = AttachOneWay.addChild('M1')
-        M1.addObject('MechanicalObject', showObject="1")
-        M1.addObject('UniformMass', vertexMass="1")
-        M1.addObject('RegularGridTopology', nx="4", ny="4", nz="10", xmin="1", xmax="4", ymin="0", ymax="3", zmin="0", zmax="9")
-        M1.addObject('BoxConstraint', box="0.9 -0.1 -0.1 4.1 3.1 0.1")
-        M1.addObject('TetrahedronFEMForceField', name="FEM", youngModulus="4000", poissonRatio="0.3")
+       attach_one_way = root.addChild('AttachOneWay')
 
-        M2 = AttachOneWay.addChild('M2')
-        M2.addObject('MechanicalObject')
-        M2.addObject('UniformMass', vertexMass="1")
-        M2.addObject('RegularGridTopology', nx="4", ny="4", nz="10", xmin="1", xmax="4", ymin="0", ymax="3", zmin="9", zmax="18")
-        M2.addObject('TetrahedronFEMForceField', name="FEM", youngModulus="4000", poissonRatio="0.3")
-        AttachOneWay.addObject('AttachProjectiveConstraint', object1="@M1", object2="@M2", indices1="144 145 146 147 148 149 150 151 152 153 154 155 156 157 158 159", indices2="0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15")
+       attach_one_way.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
+       attach_one_way.addObject('CGLinearSolver', iterations="25", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
 
-        AttachOneWay2 = root.addChild('AttachOneWay2')
-        AttachOneWay2.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="false")
-        AttachOneWay2.addObject('EigenSimplicialLDLT', template="CompressedRowSparseMatrixMat3x3")
+       m1 = AttachOneWay.addChild('M1')
 
-        M1 = AttachOneWay2.addChild('M1')
-        M1.addObject('MechanicalObject')
-        M1.addObject('UniformMass', vertexMass="1")
-        M1.addObject('RegularGridTopology', nx="4", ny="4", nz="10", xmin="-4", xmax="-1", ymin="0", ymax="3", zmin="0", zmax="9")
-        M1.addObject('BoxConstraint', box="-4.1 -0.9 -0.1 4.1 3.1 0.1")
-        M1.addObject('TetrahedronFEMForceField', name="FEM", youngModulus="4000", poissonRatio="0.3")
+       m1.addObject('MechanicalObject', showObject="1")
+       m1.addObject('UniformMass', vertexMass="1")
+       m1.addObject('RegularGridTopology', nx="4", ny="4", nz="10", xmin="1", xmax="4", ymin="0", ymax="3", zmin="0", zmax="9")
+       m1.addObject('BoxConstraint', box="0.9 -0.1 -0.1 4.1 3.1 0.1")
+       m1.addObject('TetrahedronFEMForceField', name="FEM", youngModulus="4000", poissonRatio="0.3")
 
-        M2 = AttachOneWay2.addChild('M2')
-        M2.addObject('MechanicalObject')
-        M2.addObject('UniformMass', vertexMass="1")
-        M2.addObject('RegularGridTopology', nx="4", ny="4", nz="10", xmin="-4", xmax="-1", ymin="0", ymax="3", zmin="9", zmax="18")
-        M2.addObject('TetrahedronFEMForceField', name="FEM", youngModulus="4000", poissonRatio="0.3")
-        AttachOneWay2.addObject('AttachProjectiveConstraint', object1="@M1", object2="@M2", indices1="144 145 146 147 148 149 150 151 152 153 154 155 156 157 158 159", indices2="0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15")
+       m2 = AttachOneWay.addChild('M2')
+
+       m2.addObject('MechanicalObject', )
+       m2.addObject('UniformMass', vertexMass="1")
+       m2.addObject('RegularGridTopology', nx="4", ny="4", nz="10", xmin="1", xmax="4", ymin="0", ymax="3", zmin="9", zmax="18")
+       m2.addObject('TetrahedronFEMForceField', name="FEM", youngModulus="4000", poissonRatio="0.3")
+
+       attach_one_way.addObject('AttachProjectiveConstraint', object1="@M1", object2="@M2", indices1="144 145 146 147 148 149 150 151 152 153 154 155 156 157 158 159", indices2="0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15")
+
+       attach_one_way2 = root.addChild('AttachOneWay2')
+
+       attach_one_way2.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="false")
+       attach_one_way2.addObject('EigenSimplicialLDLT', template="CompressedRowSparseMatrixMat3x3")
+
+       m1 = AttachOneWay2.addChild('M1')
+
+       m1.addObject('MechanicalObject', )
+       m1.addObject('UniformMass', vertexMass="1")
+       m1.addObject('RegularGridTopology', nx="4", ny="4", nz="10", xmin="-4", xmax="-1", ymin="0", ymax="3", zmin="0", zmax="9")
+       m1.addObject('BoxConstraint', box="-4.1 -0.9 -0.1 4.1 3.1 0.1")
+       m1.addObject('TetrahedronFEMForceField', name="FEM", youngModulus="4000", poissonRatio="0.3")
+
+       m2 = AttachOneWay2.addChild('M2')
+
+       m2.addObject('MechanicalObject', )
+       m2.addObject('UniformMass', vertexMass="1")
+       m2.addObject('RegularGridTopology', nx="4", ny="4", nz="10", xmin="-4", xmax="-1", ymin="0", ymax="3", zmin="9", zmax="18")
+       m2.addObject('TetrahedronFEMForceField', name="FEM", youngModulus="4000", poissonRatio="0.3")
+
+       attach_one_way2.addObject('AttachProjectiveConstraint', object1="@M1", object2="@M2", indices1="144 145 146 147 148 149 150 151 152 153 154 155 156 157 158 159", indices2="0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15")
     ```
 
 

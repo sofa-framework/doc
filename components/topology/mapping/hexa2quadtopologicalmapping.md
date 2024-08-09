@@ -1,99 +1,95 @@
+<!-- generate_doc -->
 # Hexa2QuadTopologicalMapping
 
 Special case of mapping where HexahedronSetTopology is converted to QuadSetTopology
 
 
-__Target__: `Sofa.Component.Topology.Mapping`
+__Target__: Sofa.Component.Topology.Mapping
 
-__namespace__: `#!c++ sofa::component::topology::mapping`
+__namespace__: sofa::component::topology::mapping
 
-__parents__: 
-
-- `#!c++ TopologicalMapping`
-
-__categories__: 
+__parents__:
 
 - TopologicalMapping
 
-Data: 
+### Data
 
 <table>
-<thead>
-    <tr>
-        <th>Name</th>
-        <th>Description</th>
-        <th>Default value</th>
-    </tr>
-</thead>
-<tbody>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Default value</th>
+        </tr>
+    </thead>
+    <tbody>
 	<tr>
 		<td>name</td>
 		<td>
 object name
-</td>
+		</td>
 		<td>unnamed</td>
 	</tr>
 	<tr>
 		<td>printLog</td>
 		<td>
 if true, emits extra messages at runtime.
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>tags</td>
 		<td>
 list of the subsets the objet belongs to
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>bbox</td>
 		<td>
 this object bounding box
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>componentState</td>
 		<td>
 The state of the component among (Dirty, Valid, Undefined, Loading, Invalid).
-</td>
+		</td>
 		<td>Undefined</td>
 	</tr>
 	<tr>
 		<td>listening</td>
 		<td>
 if true, handle the events, otherwise ignore the events
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>flipNormals</td>
 		<td>
 Flip Normal ? (Inverse point order when creating triangle)
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 
 </tbody>
 </table>
 
-Links: 
-
-| Name | Description |
-| ---- | ----------- |
-|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|
-|slaves|Sub-objects used internally by this object|
-|master|nullptr for regular objects, or master object for which this object is one sub-objects|
-|input|Input topology to map|
-|output|Output topology to map|
+### Links
 
 
+| Name | Description | Destination type name |
+| ---- | ----------- | --------------------- |
+|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
+|slaves|Sub-objects used internally by this object|BaseObject|
+|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
+|input|Input topology to map|BaseMeshTopology|
+|output|Output topology to map|BaseMeshTopology|
 
-## Examples
+## Examples 
 
-Component/Topology/Mapping/Hexa2QuadTopologicalMapping.scn
+Hexa2QuadTopologicalMapping.scn
 
 === "XML"
 
@@ -150,60 +146,65 @@ Component/Topology/Mapping/Hexa2QuadTopologicalMapping.scn
             </Node>
         </Node>
     </Node>
+
     ```
 
 === "Python"
 
     ```python
-    def createScene(rootNode):
+    def createScene(root_node):
 
-        root = rootNode.addChild('root', dt="0.05", showBoundingTree="0", gravity="0 -9.81 0")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Algorithm")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Intersection")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Geometry")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Response.Contact")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Projective")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Engine.Select")
-        root.addObject('RequiredPlugin', name="Sofa.Component.IO.Mesh")
-        root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Iterative")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Mapping.Linear")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Mass")
-        root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
-        root.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.FEM.Elastic")
-        root.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.Spring")
-        root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Dynamic")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Mapping")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Visual")
-        root.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
-        root.addObject('VisualStyle', displayFlags="showBehaviorModels showVisual")
-        root.addObject('CollisionPipeline', verbose="0")
-        root.addObject('BruteForceBroadPhase')
-        root.addObject('BVHNarrowPhase')
-        root.addObject('CollisionResponse', response="PenalityContactForceField")
-        root.addObject('MinProximityIntersection', name="Proximity", alarmDistance="0.8", contactDistance="0.5")
-        root.addObject('DefaultAnimationLoop')
+       root = root_node.addChild('root', dt="0.05", showBoundingTree="0", gravity="0 -9.81 0")
 
-        H = root.addChild('H')
-        H.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
-        H.addObject('CGLinearSolver', iterations="25", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
-        H.addObject('MeshGmshLoader', name="meshLoader", filename="mesh/nine_hexa.msh")
-        H.addObject('MechanicalObject', name="Hexa", src="@meshLoader")
-        H.addObject('include', href="Objects/HexahedronSetTopology.xml", src="@meshLoader", drawHexa="1")
-        H.addObject('HexahedralFEMForceField', name="FEM", youngModulus="100", poissonRatio="0.3", method="large")
-        H.addObject('DiagonalMass', massDensity="0.5")
-        H.addObject('BoxConstraint', box="0 3 0 0 3 1 3 3 0 3 3 1")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Algorithm")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Intersection")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Geometry")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Response.Contact")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Projective")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Engine.Select")
+       root.addObject('RequiredPlugin', name="Sofa.Component.IO.Mesh")
+       root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Iterative")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Mapping.Linear")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Mass")
+       root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.FEM.Elastic")
+       root.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.Spring")
+       root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Dynamic")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Mapping")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Visual")
+       root.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
+       root.addObject('VisualStyle', displayFlags="showBehaviorModels showVisual")
+       root.addObject('CollisionPipeline', verbose="0")
+       root.addObject('BruteForceBroadPhase', )
+       root.addObject('BVHNarrowPhase', )
+       root.addObject('CollisionResponse', response="PenalityContactForceField")
+       root.addObject('MinProximityIntersection', name="Proximity", alarmDistance="0.8", contactDistance="0.5")
+       root.addObject('DefaultAnimationLoop', )
 
-        Q = H.addChild('Q')
-        Q.addObject('QuadSetTopologyContainer', name="Container")
-        Q.addObject('QuadSetTopologyModifier', name="Modifier")
-        Q.addObject('QuadSetGeometryAlgorithms', name="GeomAlgo", template="Vec3")
-        Q.addObject('Hexa2QuadTopologicalMapping', input="@../Container", output="@Container")
-        Q.addObject('QuadularBendingSprings', name="FEM-Bend", stiffness="3000", damping="1.0")
-        Q.addObject('TriangleCollisionModel')
+       h = root.addChild('H')
 
-        Visu = Q.addChild('Visu')
-        Visu.addObject('OglModel', name="Visual", color="blue", quads="@../Container.quads")
-        Visu.addObject('IdentityMapping', input="@../../Hexa", output="@Visual")
+       h.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
+       h.addObject('CGLinearSolver', iterations="25", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
+       h.addObject('MeshGmshLoader', name="meshLoader", filename="mesh/nine_hexa.msh")
+       h.addObject('MechanicalObject', name="Hexa", src="@meshLoader")
+       h.addObject('include', href="Objects/HexahedronSetTopology.xml", src="@meshLoader", drawHexa="1")
+       h.addObject('HexahedralFEMForceField', name="FEM", youngModulus="100", poissonRatio="0.3", method="large")
+       h.addObject('DiagonalMass', massDensity="0.5")
+       h.addObject('BoxConstraint', box="0 3 0 0 3 1 3 3 0 3 3 1")
+
+       q = H.addChild('Q')
+
+       q.addObject('QuadSetTopologyContainer', name="Container")
+       q.addObject('QuadSetTopologyModifier', name="Modifier")
+       q.addObject('QuadSetGeometryAlgorithms', name="GeomAlgo", template="Vec3")
+       q.addObject('Hexa2QuadTopologicalMapping', input="@../Container", output="@Container")
+       q.addObject('QuadularBendingSprings', name="FEM-Bend", stiffness="3000", damping="1.0")
+       q.addObject('TriangleCollisionModel', )
+
+       visu = Q.addChild('Visu')
+
+       visu.addObject('OglModel', name="Visual", color="blue", quads="@../Container.quads")
+       visu.addObject('IdentityMapping', input="@../../Hexa", output="@Visual")
     ```
 

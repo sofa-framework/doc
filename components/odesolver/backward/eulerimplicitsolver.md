@@ -94,139 +94,139 @@ The EulerImplicitSolver **requires**:
 - and a MechanicalObject to store the state vectors.
 
 <!-- automatically generated doc START -->
-__Target__: `Sofa.Component.ODESolver.Backward`
+<!-- generate_doc -->
 
-__namespace__: `#!c++ sofa::component::odesolver::backward`
+Time integrator using implicit backward Euler scheme
 
-__parents__: 
 
-- `#!c++ OdeSolver`
-- `#!c++ LinearSolverAccessor`
+__Target__: Sofa.Component.ODESolver.Backward
 
-__categories__: 
+__namespace__: sofa::component::odesolver::backward
+
+__parents__:
 
 - OdeSolver
+- LinearSolverAccessor
 
-Data: 
+### Data
 
 <table>
-<thead>
-    <tr>
-        <th>Name</th>
-        <th>Description</th>
-        <th>Default value</th>
-    </tr>
-</thead>
-<tbody>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Default value</th>
+        </tr>
+    </thead>
+    <tbody>
 	<tr>
 		<td>name</td>
 		<td>
 object name
-</td>
+		</td>
 		<td>unnamed</td>
 	</tr>
 	<tr>
 		<td>printLog</td>
 		<td>
 if true, emits extra messages at runtime.
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>tags</td>
 		<td>
 list of the subsets the objet belongs to
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>bbox</td>
 		<td>
 this object bounding box
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>componentState</td>
 		<td>
 The state of the component among (Dirty, Valid, Undefined, Loading, Invalid).
-</td>
+		</td>
 		<td>Undefined</td>
 	</tr>
 	<tr>
 		<td>listening</td>
 		<td>
 if true, handle the events, otherwise ignore the events
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>rayleighStiffness</td>
 		<td>
-Rayleigh damping coefficient related to stiffness, &gt; 0
-</td>
+Rayleigh damping coefficient related to stiffness, > 0
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>rayleighMass</td>
 		<td>
-Rayleigh damping coefficient related to mass, &gt; 0
-</td>
+Rayleigh damping coefficient related to mass, > 0
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>vdamping</td>
 		<td>
 Velocity decay coefficient (no decay if null)
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>firstOrder</td>
 		<td>
 Use backward Euler scheme for first order ODE system, which means that only the first derivative of the DOFs (state) appears in the equation. Higher derivatives are absent
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>trapezoidalScheme</td>
 		<td>
 Boolean to use the trapezoidal scheme instead of the implicit Euler scheme and get second order accuracy in time (false by default)
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>solveConstraint</td>
 		<td>
 Apply ConstraintSolver (requires a ConstraintSolver in the same node as this solver, disabled by by default for now)
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>threadSafeVisitor</td>
 		<td>
 If true, do not use realloc and free visitors in fwdInteractionForceField.
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 
 </tbody>
 </table>
 
-Links: 
-
-| Name | Description |
-| ---- | ----------- |
-|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|
-|slaves|Sub-objects used internally by this object|
-|master|nullptr for regular objects, or master object for which this object is one sub-objects|
-|linearSolver|Linear solver used by this component|
+### Links
 
 
+| Name | Description | Destination type name |
+| ---- | ----------- | --------------------- |
+|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
+|slaves|Sub-objects used internally by this object|BaseObject|
+|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
+|linearSolver|Linear solver used by this component|LinearSolver|
 
-## Examples
+## Examples 
 
-Component/ODESolver/Backward/EulerImplicitSolver.scn
+EulerImplicitSolver.scn
 
 === "XML"
 
@@ -264,47 +264,51 @@ Component/ODESolver/Backward/EulerImplicitSolver.scn
             </Node>
         </Node>
     </Node>
+
     ```
 
 === "Python"
 
     ```python
-    def createScene(rootNode):
+    def createScene(root_node):
 
-        root = rootNode.addChild('root', gravity="-1.8 0 100", dt="0.0001")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Projective")
-        root.addObject('RequiredPlugin', name="Sofa.Component.IO.Mesh")
-        root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Iterative")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Mapping.Linear")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Mass")
-        root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
-        root.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.FEM.Elastic")
-        root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Dynamic")
-        root.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
-        root.addObject('DefaultAnimationLoop')
+       root = root_node.addChild('root', gravity="-1.8 0 100", dt="0.0001")
 
-        DeformableObject = root.addChild('DeformableObject')
-        DeformableObject.addObject('EulerImplicitSolver', name="odeImplicitSolver")
-        DeformableObject.addObject('CGLinearSolver', iterations="1000", tolerance="1e-9", threshold="1e-9")
-        DeformableObject.addObject('MeshGmshLoader', name="loader", filename="mesh/truthcylinder1.msh")
-        DeformableObject.addObject('TetrahedronSetTopologyContainer', src="@loader", name="topologyContainer")
-        DeformableObject.addObject('TetrahedronSetGeometryAlgorithms', name="geomAlgo")
-        DeformableObject.addObject('MechanicalObject', src="@loader", dx="60")
-        DeformableObject.addObject('MeshMatrixMass', totalMass="15", topology="@topologyContainer")
-        DeformableObject.addObject('FixedProjectiveConstraint', indices="0 1 2 3 4 5 6 7 8 9 10 
+       root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Projective")
+       root.addObject('RequiredPlugin', name="Sofa.Component.IO.Mesh")
+       root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Iterative")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Mapping.Linear")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Mass")
+       root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.FEM.Elastic")
+       root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Dynamic")
+       root.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
+       root.addObject('DefaultAnimationLoop', )
+
+       deformable_object = root.addChild('DeformableObject')
+
+       deformable_object.addObject('EulerImplicitSolver', name="odeImplicitSolver")
+       deformable_object.addObject('CGLinearSolver', iterations="1000", tolerance="1e-9", threshold="1e-9")
+       deformable_object.addObject('MeshGmshLoader', name="loader", filename="mesh/truthcylinder1.msh")
+       deformable_object.addObject('TetrahedronSetTopologyContainer', src="@loader", name="topologyContainer")
+       deformable_object.addObject('TetrahedronSetGeometryAlgorithms', name="geomAlgo")
+       deformable_object.addObject('MechanicalObject', src="@loader", dx="60")
+       deformable_object.addObject('MeshMatrixMass', totalMass="15", topology="@topologyContainer")
+       deformable_object.addObject('FixedProjectiveConstraint', indices="0 1 2 3 4 5 6 7 8 9 10 
 							11 12 13 14 15 16 17 18 19 20 
 							21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 
 							41 42 43 44 45 46 47 268 269 270 271 343 345")
-        DeformableObject.addObject('TetrahedronFEMForceField', name="FEM", youngModulus="1000", poissonRatio="0.49", method="small")
+       deformable_object.addObject('TetrahedronFEMForceField', name="FEM", youngModulus="1000", poissonRatio="0.49", method="small")
 
-        DeformableObject = DeformableObject.addChild('DeformableObject')
-        DeformableObject.addObject('MeshOBJLoader', name="meshLoader_0", filename="mesh/truthcylinder1.obj", handleSeams="1")
-        DeformableObject.addObject('OglModel', name="Visual", src="@meshLoader_0", color="red", dx="60")
-        DeformableObject.addObject('BarycentricMapping', input="@..", output="@Visual")
+       node = DeformableObject.addChild('node')
+
+       node.addObject('MeshOBJLoader', name="meshLoader_0", filename="mesh/truthcylinder1.obj", handleSeams="1")
+       node.addObject('OglModel', name="Visual", src="@meshLoader_0", color="red", dx="60")
+       node.addObject('BarycentricMapping', input="@..", output="@Visual")
     ```
 
-Component/ODESolver/Backward/EulerImplicitSolver-comparison.scn
+EulerImplicitSolver-comparison.scn
 
 === "XML"
 
@@ -389,90 +393,101 @@ Component/ODESolver/Backward/EulerImplicitSolver-comparison.scn
             </Node>
         </Node>
     </Node>
+
     ```
 
 === "Python"
 
     ```python
-    def createScene(rootNode):
+    def createScene(root_node):
 
-        root = rootNode.addChild('root', gravity="-1.8 0 100", dt="0.1")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Projective")
-        root.addObject('RequiredPlugin', name="Sofa.Component.IO.Mesh")
-        root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Iterative")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Mapping.Linear")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Mass")
-        root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
-        root.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.FEM.Elastic")
-        root.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.Spring")
-        root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Constant")
-        root.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
-        root.addObject('DefaultAnimationLoop')
+       root = root_node.addChild('root', gravity="-1.8 0 100", dt="0.1")
 
-        Reference = root.addChild('Reference')
-        Reference.addObject('MeshOBJLoader', name="meshLoader_3", filename="mesh/truthcylinder1-bent.obj", scale="0.95", handleSeams="1")
-        Reference.addObject('OglModel', src="@meshLoader_3", dx="0", dy="-1", dz="0", color="green")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Projective")
+       root.addObject('RequiredPlugin', name="Sofa.Component.IO.Mesh")
+       root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Iterative")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Mapping.Linear")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Mass")
+       root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.FEM.Elastic")
+       root.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.Spring")
+       root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Constant")
+       root.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
+       root.addObject('DefaultAnimationLoop', )
 
-        Springs = root.addChild('Springs')
-        Springs.addObject('EulerImplicitSolver', name="cg_odesolver", rayleighStiffness="0.1", rayleighMass="0.1")
-        Springs.addObject('CGLinearSolver', iterations="100", tolerance="1e-5", threshold="1e-5")
-        Springs.addObject('MeshGmshLoader', name="loader", filename="mesh/truthcylinder1.msh")
-        Springs.addObject('MeshTopology', src="@loader")
-        Springs.addObject('MechanicalObject', src="@loader", dx="15")
-        Springs.addObject('UniformMass', totalMass="15")
-        Springs.addObject('FixedProjectiveConstraint', indices="0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 268 269 270 271 343 345")
-        Springs.addObject('MeshSpringForceField', name="Spring", tetrasStiffness="1870", tetrasDamping="0")
+       reference = root.addChild('Reference')
 
-        Springs = Springs.addChild('Springs')
-        Springs.addObject('MeshOBJLoader', name="meshLoader_0", filename="mesh/truthcylinder1.obj", handleSeams="1")
-        Springs.addObject('OglModel', name="Visual", src="@meshLoader_0", color="yellow", dx="15")
-        Springs.addObject('BarycentricMapping', input="@..", output="@Visual")
+       reference.addObject('MeshOBJLoader', name="meshLoader_3", filename="mesh/truthcylinder1-bent.obj", scale="0.95", handleSeams="1")
+       reference.addObject('OglModel', src="@meshLoader_3", dx="0", dy="-1", dz="0", color="green")
 
-        CoFEM = root.addChild('CoFEM')
-        CoFEM.addObject('EulerImplicitSolver', name="cg_odesolver")
-        CoFEM.addObject('CGLinearSolver', iterations="100", tolerance="1e-5", threshold="1e-5")
-        CoFEM.addObject('MeshGmshLoader', name="loader", filename="mesh/truthcylinder1.msh")
-        CoFEM.addObject('MeshTopology', src="@loader")
-        CoFEM.addObject('MechanicalObject', src="@loader", dx="30")
-        CoFEM.addObject('UniformMass', totalMass="15")
-        CoFEM.addObject('FixedProjectiveConstraint', indices="0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 268 269 270 271 343 345")
-        CoFEM.addObject('TetrahedronFEMForceField', name="FEM", youngModulus="1116", poissonRatio="0.49", method="polar")
+       springs = root.addChild('Springs')
 
-        CoFEM = CoFEM.addChild('CoFEM')
-        CoFEM.addObject('MeshOBJLoader', name="meshLoader_4", filename="mesh/truthcylinder1.obj", handleSeams="1")
-        CoFEM.addObject('OglModel', name="Visual", src="@meshLoader_4", color="cyan", dx="30")
-        CoFEM.addObject('BarycentricMapping', input="@..", output="@Visual")
+       springs.addObject('EulerImplicitSolver', name="cg_odesolver", rayleighStiffness="0.1", rayleighMass="0.1")
+       springs.addObject('CGLinearSolver', iterations="100", tolerance="1e-5", threshold="1e-5")
+       springs.addObject('MeshGmshLoader', name="loader", filename="mesh/truthcylinder1.msh")
+       springs.addObject('MeshTopology', src="@loader")
+       springs.addObject('MechanicalObject', src="@loader", dx="15")
+       springs.addObject('UniformMass', totalMass="15")
+       springs.addObject('FixedProjectiveConstraint', indices="0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 268 269 270 271 343 345")
+       springs.addObject('MeshSpringForceField', name="Spring", tetrasStiffness="1870", tetrasDamping="0")
 
-        CoFEM_firstOrder = root.addChild('CoFEM_firstOrder')
-        CoFEM_firstOrder.addObject('EulerImplicitSolver', name="cg_odesolver", firstOrder="1")
-        CoFEM_firstOrder.addObject('CGLinearSolver', iterations="100", tolerance="1e-5", threshold="1e-5")
-        CoFEM_firstOrder.addObject('MeshGmshLoader', name="loader", filename="mesh/truthcylinder1.msh")
-        CoFEM_firstOrder.addObject('MeshTopology', src="@loader")
-        CoFEM_firstOrder.addObject('MechanicalObject', src="@loader", dx="45")
-        CoFEM_firstOrder.addObject('UniformMass', totalMass="15")
-        CoFEM_firstOrder.addObject('FixedProjectiveConstraint', indices="0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 268 269 270 271 343 345")
-        CoFEM_firstOrder.addObject('TetrahedronFEMForceField', name="FEM", youngModulus="1116", poissonRatio="0.49", method="polar")
+       node = Springs.addChild('node')
 
-        CoFEM_firstOrder = CoFEM_firstOrder.addChild('CoFEM_firstOrder')
-        CoFEM_firstOrder.addObject('MeshOBJLoader', name="meshLoader_1", filename="mesh/truthcylinder1.obj", handleSeams="1")
-        CoFEM_firstOrder.addObject('OglModel', name="Visual", src="@meshLoader_1", color="blue", dx="45")
-        CoFEM_firstOrder.addObject('BarycentricMapping', input="@..", output="@Visual")
+       node.addObject('MeshOBJLoader', name="meshLoader_0", filename="mesh/truthcylinder1.obj", handleSeams="1")
+       node.addObject('OglModel', name="Visual", src="@meshLoader_0", color="yellow", dx="15")
+       node.addObject('BarycentricMapping', input="@..", output="@Visual")
 
-        LinearFEM = root.addChild('LinearFEM')
-        LinearFEM.addObject('EulerImplicitSolver', name="cg_odesolver")
-        LinearFEM.addObject('CGLinearSolver', iterations="100", tolerance="1e-5", threshold="1e-5")
-        LinearFEM.addObject('MeshGmshLoader', name="loader", filename="mesh/truthcylinder1.msh")
-        LinearFEM.addObject('MeshTopology', src="@loader")
-        LinearFEM.addObject('MechanicalObject', src="@loader", dx="60")
-        LinearFEM.addObject('UniformMass', totalMass="15")
-        LinearFEM.addObject('FixedProjectiveConstraint', indices="0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 268 269 270 271 343 345")
-        LinearFEM.addObject('TetrahedronFEMForceField', name="FEM", youngModulus="1116", poissonRatio="0.49", method="small")
+       co_fem = root.addChild('CoFEM')
 
-        LinearFEM = LinearFEM.addChild('LinearFEM')
-        LinearFEM.addObject('MeshOBJLoader', name="meshLoader_2", filename="mesh/truthcylinder1.obj", handleSeams="1")
-        LinearFEM.addObject('OglModel', name="Visual", src="@meshLoader_2", color="red", dx="60")
-        LinearFEM.addObject('BarycentricMapping', input="@..", output="@Visual")
+       co_fem.addObject('EulerImplicitSolver', name="cg_odesolver")
+       co_fem.addObject('CGLinearSolver', iterations="100", tolerance="1e-5", threshold="1e-5")
+       co_fem.addObject('MeshGmshLoader', name="loader", filename="mesh/truthcylinder1.msh")
+       co_fem.addObject('MeshTopology', src="@loader")
+       co_fem.addObject('MechanicalObject', src="@loader", dx="30")
+       co_fem.addObject('UniformMass', totalMass="15")
+       co_fem.addObject('FixedProjectiveConstraint', indices="0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 268 269 270 271 343 345")
+       co_fem.addObject('TetrahedronFEMForceField', name="FEM", youngModulus="1116", poissonRatio="0.49", method="polar")
+
+       node = CoFEM.addChild('node')
+
+       node.addObject('MeshOBJLoader', name="meshLoader_4", filename="mesh/truthcylinder1.obj", handleSeams="1")
+       node.addObject('OglModel', name="Visual", src="@meshLoader_4", color="cyan", dx="30")
+       node.addObject('BarycentricMapping', input="@..", output="@Visual")
+
+       co_fem_first_order = root.addChild('CoFEM_firstOrder')
+
+       co_fem_first_order.addObject('EulerImplicitSolver', name="cg_odesolver", firstOrder="1")
+       co_fem_first_order.addObject('CGLinearSolver', iterations="100", tolerance="1e-5", threshold="1e-5")
+       co_fem_first_order.addObject('MeshGmshLoader', name="loader", filename="mesh/truthcylinder1.msh")
+       co_fem_first_order.addObject('MeshTopology', src="@loader")
+       co_fem_first_order.addObject('MechanicalObject', src="@loader", dx="45")
+       co_fem_first_order.addObject('UniformMass', totalMass="15")
+       co_fem_first_order.addObject('FixedProjectiveConstraint', indices="0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 268 269 270 271 343 345")
+       co_fem_first_order.addObject('TetrahedronFEMForceField', name="FEM", youngModulus="1116", poissonRatio="0.49", method="polar")
+
+       node = CoFEM_firstOrder.addChild('node')
+
+       node.addObject('MeshOBJLoader', name="meshLoader_1", filename="mesh/truthcylinder1.obj", handleSeams="1")
+       node.addObject('OglModel', name="Visual", src="@meshLoader_1", color="blue", dx="45")
+       node.addObject('BarycentricMapping', input="@..", output="@Visual")
+
+       linear_fem = root.addChild('LinearFEM')
+
+       linear_fem.addObject('EulerImplicitSolver', name="cg_odesolver")
+       linear_fem.addObject('CGLinearSolver', iterations="100", tolerance="1e-5", threshold="1e-5")
+       linear_fem.addObject('MeshGmshLoader', name="loader", filename="mesh/truthcylinder1.msh")
+       linear_fem.addObject('MeshTopology', src="@loader")
+       linear_fem.addObject('MechanicalObject', src="@loader", dx="60")
+       linear_fem.addObject('UniformMass', totalMass="15")
+       linear_fem.addObject('FixedProjectiveConstraint', indices="0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 268 269 270 271 343 345")
+       linear_fem.addObject('TetrahedronFEMForceField', name="FEM", youngModulus="1116", poissonRatio="0.49", method="small")
+
+       node = LinearFEM.addChild('node')
+
+       node.addObject('MeshOBJLoader', name="meshLoader_2", filename="mesh/truthcylinder1.obj", handleSeams="1")
+       node.addObject('OglModel', name="Visual", src="@meshLoader_2", color="red", dx="60")
+       node.addObject('BarycentricMapping', input="@..", output="@Visual")
     ```
 
 

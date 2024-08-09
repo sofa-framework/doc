@@ -1,104 +1,100 @@
+<!-- generate_doc -->
 # DampVelocitySolver
 
 Reduce the velocities
 
 
-__Target__: `Sofa.Component.ODESolver.Forward`
+__Target__: Sofa.Component.ODESolver.Forward
 
-__namespace__: `#!c++ sofa::component::odesolver::forward`
+__namespace__: sofa::component::odesolver::forward
 
-__parents__: 
-
-- `#!c++ OdeSolver`
-
-__categories__: 
+__parents__:
 
 - OdeSolver
 
-Data: 
+### Data
 
 <table>
-<thead>
-    <tr>
-        <th>Name</th>
-        <th>Description</th>
-        <th>Default value</th>
-    </tr>
-</thead>
-<tbody>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Default value</th>
+        </tr>
+    </thead>
+    <tbody>
 	<tr>
 		<td>name</td>
 		<td>
 object name
-</td>
+		</td>
 		<td>unnamed</td>
 	</tr>
 	<tr>
 		<td>printLog</td>
 		<td>
 if true, emits extra messages at runtime.
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>tags</td>
 		<td>
 list of the subsets the objet belongs to
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>bbox</td>
 		<td>
 this object bounding box
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>componentState</td>
 		<td>
 The state of the component among (Dirty, Valid, Undefined, Loading, Invalid).
-</td>
+		</td>
 		<td>Undefined</td>
 	</tr>
 	<tr>
 		<td>listening</td>
 		<td>
 if true, handle the events, otherwise ignore the events
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>rate</td>
 		<td>
 Factor used to reduce the velocities. Typically between 0 and 1.
-</td>
+		</td>
 		<td>0.99</td>
 	</tr>
 	<tr>
 		<td>threshold</td>
 		<td>
 Threshold under which the velocities are canceled.
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 
 </tbody>
 </table>
 
-Links: 
-
-| Name | Description |
-| ---- | ----------- |
-|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|
-|slaves|Sub-objects used internally by this object|
-|master|nullptr for regular objects, or master object for which this object is one sub-objects|
+### Links
 
 
+| Name | Description | Destination type name |
+| ---- | ----------- | --------------------- |
+|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
+|slaves|Sub-objects used internally by this object|BaseObject|
+|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
 
-## Examples
+## Examples 
 
-Component/ODESolver/Forward/DampVelocitySolver.scn
+DampVelocitySolver.scn
 
 === "XML"
 
@@ -131,38 +127,42 @@ Component/ODESolver/Forward/DampVelocitySolver.scn
             </Node>
         </Node>
     </Node>
+
     ```
 
 === "Python"
 
     ```python
-    def createScene(rootNode):
+    def createScene(root_node):
 
-        root = rootNode.addChild('root', gravity="0 0 0", dt="0.05")
-        root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Iterative")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Mapping.Linear")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Mass")
-        root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
-        root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Forward")
-        root.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.FEM.Elastic")
-        root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Constant")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Visual")
-        root.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
-        root.addObject('VisualStyle', displayFlags="showBehaviorModels showForceFields")
-        root.addObject('DefaultAnimationLoop')
+       root = root_node.addChild('root', gravity="0 0 0", dt="0.05")
 
-        M0 = root.addChild('M0')
-        M0.addObject('EulerImplicitSolver', rayleighStiffness="0.1", rayleighMass="0.1")
-        M0.addObject('CGLinearSolver', iterations="25", tolerance="1e-5", threshold="1e-10")
-        M0.addObject('DampVelocitySolver', rate="0.9", threshold="0.01", printLog="0", name="damp")
-        M0.addObject('MechanicalObject', position="0 0 0  1 0 0  1 1 0  0 1 0", velocity="1 0 0  1 0 0  1 0 0  1 0 0")
-        M0.addObject('UniformMass', vertexMass="0.1")
-        M0.addObject('MeshTopology', triangles="0 1 2  0 2 3")
-        M0.addObject('TriangleFEMForceField', name="FEM0", youngModulus="100", poissonRatio="0.3", method="large")
+       root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Iterative")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Mapping.Linear")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Mass")
+       root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Forward")
+       root.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.FEM.Elastic")
+       root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Constant")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Visual")
+       root.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
+       root.addObject('VisualStyle', displayFlags="showBehaviorModels showForceFields")
+       root.addObject('DefaultAnimationLoop', )
 
-        Visu = M0.addChild('Visu')
-        Visu.addObject('OglModel', name="Visual", color="red")
-        Visu.addObject('IdentityMapping', input="@..", output="@Visual")
+       m0 = root.addChild('M0')
+
+       m0.addObject('EulerImplicitSolver', rayleighStiffness="0.1", rayleighMass="0.1")
+       m0.addObject('CGLinearSolver', iterations="25", tolerance="1e-5", threshold="1e-10")
+       m0.addObject('DampVelocitySolver', rate="0.9", threshold="0.01", printLog="0", name="damp")
+       m0.addObject('MechanicalObject', position="0 0 0  1 0 0  1 1 0  0 1 0", velocity="1 0 0  1 0 0  1 0 0  1 0 0")
+       m0.addObject('UniformMass', vertexMass="0.1")
+       m0.addObject('MeshTopology', triangles="0 1 2  0 2 3")
+       m0.addObject('TriangleFEMForceField', name="FEM0", youngModulus="100", poissonRatio="0.3", method="large")
+
+       visu = M0.addChild('Visu')
+
+       visu.addObject('OglModel', name="Visual", color="red")
+       visu.addObject('IdentityMapping', input="@..", output="@Visual")
     ```
 

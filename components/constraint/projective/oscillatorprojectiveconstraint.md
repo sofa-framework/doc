@@ -1,83 +1,81 @@
+<!-- generate_doc -->
 # OscillatorProjectiveConstraint
 
 Apply a sinusoidal trajectory to given points
 
 
-__Templates__:
+## Rigid3d
 
-- `#!c++ Rigid3d`
-- `#!c++ Vec3d`
+Templates:
 
-__Target__: `Sofa.Component.Constraint.Projective`
+- Rigid3d
 
-__namespace__: `#!c++ sofa::component::constraint::projective`
+__Target__: Sofa.Component.Constraint.Projective
 
-__parents__: 
+__namespace__: sofa::component::constraint::projective
 
-- `#!c++ ProjectiveConstraintSet`
-
-__categories__: 
+__parents__:
 
 - ProjectiveConstraintSet
 
-Data: 
+### Data
 
 <table>
-<thead>
-    <tr>
-        <th>Name</th>
-        <th>Description</th>
-        <th>Default value</th>
-    </tr>
-</thead>
-<tbody>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Default value</th>
+        </tr>
+    </thead>
+    <tbody>
 	<tr>
 		<td>name</td>
 		<td>
 object name
-</td>
+		</td>
 		<td>unnamed</td>
 	</tr>
 	<tr>
 		<td>printLog</td>
 		<td>
 if true, emits extra messages at runtime.
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>tags</td>
 		<td>
 list of the subsets the objet belongs to
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>bbox</td>
 		<td>
 this object bounding box
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>componentState</td>
 		<td>
 The state of the component among (Dirty, Valid, Undefined, Loading, Invalid).
-</td>
+		</td>
 		<td>Undefined</td>
 	</tr>
 	<tr>
 		<td>listening</td>
 		<td>
 if true, handle the events, otherwise ignore the events
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>group</td>
 		<td>
 ID of the group containing this constraint. This ID is used to specify which constraints are solved by which solver, by specifying in each solver which groups of constraints it should handle.
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
@@ -85,7 +83,7 @@ ID of the group containing this constraint. This ID is used to specify which con
 		<td>
 The constraint stops acting after the given value.
 Use a negative value for infinite constraints
-</td>
+		</td>
 		<td>-1</td>
 	</tr>
 	<tr>
@@ -93,28 +91,133 @@ Use a negative value for infinite constraints
 		<td>
 Define a sequence of oscillating particules: 
 [index, Mean(x,y,z), amplitude(x,y,z), pulsation, phase]
-</td>
+		</td>
 		<td></td>
 	</tr>
 
 </tbody>
 </table>
 
-Links: 
-
-| Name | Description |
-| ---- | ----------- |
-|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|
-|slaves|Sub-objects used internally by this object|
-|master|nullptr for regular objects, or master object for which this object is one sub-objects|
-|mechanicalStates|List of mechanical states to which this component is associated|
-|mstate|MechanicalState used by this component|
+### Links
 
 
+| Name | Description | Destination type name |
+| ---- | ----------- | --------------------- |
+|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
+|slaves|Sub-objects used internally by this object|BaseObject|
+|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
+|mechanicalStates|List of mechanical states to which this component is associated|BaseMechanicalState|
+|mstate|MechanicalState used by this component|MechanicalState&lt;Rigid3d&gt;|
 
-## Examples
+<!-- generate_doc -->
+## Vec3d
 
-Component/Constraint/Projective/OscillatorProjectiveConstraint.scn
+Templates:
+
+- Vec3d
+
+__Target__: Sofa.Component.Constraint.Projective
+
+__namespace__: sofa::component::constraint::projective
+
+__parents__:
+
+- ProjectiveConstraintSet
+
+### Data
+
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Default value</th>
+        </tr>
+    </thead>
+    <tbody>
+	<tr>
+		<td>name</td>
+		<td>
+object name
+		</td>
+		<td>unnamed</td>
+	</tr>
+	<tr>
+		<td>printLog</td>
+		<td>
+if true, emits extra messages at runtime.
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>tags</td>
+		<td>
+list of the subsets the objet belongs to
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>bbox</td>
+		<td>
+this object bounding box
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>componentState</td>
+		<td>
+The state of the component among (Dirty, Valid, Undefined, Loading, Invalid).
+		</td>
+		<td>Undefined</td>
+	</tr>
+	<tr>
+		<td>listening</td>
+		<td>
+if true, handle the events, otherwise ignore the events
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>group</td>
+		<td>
+ID of the group containing this constraint. This ID is used to specify which constraints are solved by which solver, by specifying in each solver which groups of constraints it should handle.
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>endTime</td>
+		<td>
+The constraint stops acting after the given value.
+Use a negative value for infinite constraints
+		</td>
+		<td>-1</td>
+	</tr>
+	<tr>
+		<td>oscillators</td>
+		<td>
+Define a sequence of oscillating particules: 
+[index, Mean(x,y,z), amplitude(x,y,z), pulsation, phase]
+		</td>
+		<td></td>
+	</tr>
+
+</tbody>
+</table>
+
+### Links
+
+
+| Name | Description | Destination type name |
+| ---- | ----------- | --------------------- |
+|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
+|slaves|Sub-objects used internally by this object|BaseObject|
+|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
+|mechanicalStates|List of mechanical states to which this component is associated|BaseMechanicalState|
+|mstate|MechanicalState used by this component|MechanicalState&lt;Vec3d&gt;|
+
+## Examples 
+
+OscillatorProjectiveConstraint.scn
 
 === "XML"
 
@@ -170,60 +273,65 @@ Component/Constraint/Projective/OscillatorProjectiveConstraint.scn
             </Node>
         </Node>
     </Node>
+
     ```
 
 === "Python"
 
     ```python
-    def createScene(rootNode):
+    def createScene(root_node):
 
-        root = rootNode.addChild('root', dt="0.02")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Algorithm")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Intersection")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Geometry")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Response.Contact")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Projective")
-        root.addObject('RequiredPlugin', name="Sofa.Component.IO.Mesh")
-        root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Iterative")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Mapping.Linear")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Mass")
-        root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
-        root.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.FEM.Elastic")
-        root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Dynamic")
-        root.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
-        root.addObject('DefaultAnimationLoop')
-        root.addObject('CollisionPipeline', verbose="0", name="CollisionPipeline")
-        root.addObject('BruteForceBroadPhase')
-        root.addObject('BVHNarrowPhase')
-        root.addObject('CollisionResponse', response="PenalityContactForceField", name="collision response")
-        root.addObject('DiscreteIntersection')
+       root = root_node.addChild('root', dt="0.02")
 
-        Liver = root.addChild('Liver', depend="topo dofs")
-        Liver.addObject('MeshGmshLoader', name="meshLoader0", filename="mesh/liver.msh")
-        Liver.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
-        Liver.addObject('CGLinearSolver', iterations="25", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
-        Liver.addObject('MechanicalObject', name="dofs", src="@meshLoader0")
-        Liver.addObject('TetrahedronSetTopologyContainer', name="topo", src="@meshLoader0")
-        Liver.addObject('TetrahedronSetGeometryAlgorithms', name="GeomAlgo", template="Vec3")
-        Liver.addObject('DiagonalMass', massDensity="1", name="computed using mass density")
-        Liver.addObject('TetrahedralCorotationalFEMForceField', name="FEM", youngModulus="3000", poissonRatio="0.3", computeGlobalMatrix="false", method="large")
-        Liver.addObject('FixedProjectiveConstraint', name="FixedProjectiveConstraint", indices="3 39 64")
-        Liver.addObject('OscillatorProjectiveConstraint', name="OscillatingConstraint", oscillators="15 2 0 0 1 0 0 5 10")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Algorithm")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Intersection")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Geometry")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Response.Contact")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Projective")
+       root.addObject('RequiredPlugin', name="Sofa.Component.IO.Mesh")
+       root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Iterative")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Mapping.Linear")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Mass")
+       root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.FEM.Elastic")
+       root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Dynamic")
+       root.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
+       root.addObject('DefaultAnimationLoop', )
+       root.addObject('CollisionPipeline', verbose="0", name="CollisionPipeline")
+       root.addObject('BruteForceBroadPhase', )
+       root.addObject('BVHNarrowPhase', )
+       root.addObject('CollisionResponse', response="PenalityContactForceField", name="collision response")
+       root.addObject('DiscreteIntersection', )
 
-        Visu = Liver.addChild('Visu')
-        Visu.addObject('MeshOBJLoader', name="meshLoader_0", filename="mesh/liver-smooth.obj", handleSeams="1")
-        Visu.addObject('OglModel', name="VisualModel", src="@meshLoader_0", color="red")
-        Visu.addObject('BarycentricMapping', input="@..", output="@VisualModel", name="visual mapping")
+       liver = root.addChild('Liver', depend="topo dofs")
 
-        Surf = Liver.addChild('Surf')
-        Surf.addObject('SphereLoader', filename="mesh/liver.sph")
-        Surf.addObject('MechanicalObject', position="@[-1].position")
-        Surf.addObject('SphereCollisionModel', name="CollisionModel", listRadius="@[-2].listRadius")
-        Surf.addObject('BarycentricMapping', name="sphere mapping")
+       liver.addObject('MeshGmshLoader', name="meshLoader0", filename="mesh/liver.msh")
+       liver.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
+       liver.addObject('CGLinearSolver', iterations="25", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
+       liver.addObject('MechanicalObject', name="dofs", src="@meshLoader0")
+       liver.addObject('TetrahedronSetTopologyContainer', name="topo", src="@meshLoader0")
+       liver.addObject('TetrahedronSetGeometryAlgorithms', name="GeomAlgo", template="Vec3")
+       liver.addObject('DiagonalMass', massDensity="1", name="computed using mass density")
+       liver.addObject('TetrahedralCorotationalFEMForceField', name="FEM", youngModulus="3000", poissonRatio="0.3", computeGlobalMatrix="false", method="large")
+       liver.addObject('FixedProjectiveConstraint', name="FixedProjectiveConstraint", indices="3 39 64")
+       liver.addObject('OscillatorProjectiveConstraint', name="OscillatingConstraint", oscillators="15 2 0 0 1 0 0 5 10")
+
+       visu = Liver.addChild('Visu')
+
+       visu.addObject('MeshOBJLoader', name="meshLoader_0", filename="mesh/liver-smooth.obj", handleSeams="1")
+       visu.addObject('OglModel', name="VisualModel", src="@meshLoader_0", color="red")
+       visu.addObject('BarycentricMapping', input="@..", output="@VisualModel", name="visual mapping")
+
+       surf = Liver.addChild('Surf')
+
+       surf.addObject('SphereLoader', filename="mesh/liver.sph")
+       surf.addObject('MechanicalObject', position="@[-1].position")
+       surf.addObject('SphereCollisionModel', name="CollisionModel", listRadius="@[-2].listRadius")
+       surf.addObject('BarycentricMapping', name="sphere mapping")
     ```
 
-Component/Constraint/Projective/OscillatorProjectiveConstraint_rigid.scn
+OscillatorProjectiveConstraint_rigid.scn
 
 === "XML"
 
@@ -251,31 +359,35 @@ Component/Constraint/Projective/OscillatorProjectiveConstraint_rigid.scn
         </Node>
     
     </Node>
+
     ```
 
 === "Python"
 
     ```python
-    def createScene(rootNode):
+    def createScene(root_node):
 
-        Root = rootNode.addChild('Root', dt="0.04", bbox="-1 -1 -1 1 1 1")
-        Root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Projective")
-        Root.addObject('RequiredPlugin', name="Sofa.Component.Mass")
-        Root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Forward")
-        Root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
-        Root.addObject('RequiredPlugin', name="Sofa.Component.Visual")
-        Root.addObject('VisualStyle', displayFlags="showBehaviorModels")
-        Root.addObject('DefaultAnimationLoop')
-        Root.addObject('EulerExplicitSolver', name="solver")
+       root = root_node.addChild('Root', dt="0.04", bbox="-1 -1 -1 1 1 1")
 
-        Point Oscillator = Root.addChild('Point Oscillator')
-        Point Oscillator.addObject('MechanicalObject', template="Vec3", name="mech", position="0 0 0", velocity="1 0 0", force="1 0 0", externalForce="1 0 0", derivX="1 0 0", restScale="1")
-        Point Oscillator.addObject('UniformMass', name="m")
-        Point Oscillator.addObject('OscillatorProjectiveConstraint', template="Vec3", name="osc", oscillators="0  1 1 1  1 0 0  1 5")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Projective")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Mass")
+       root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Forward")
+       root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Visual")
+       root.addObject('VisualStyle', displayFlags="showBehaviorModels")
+       root.addObject('DefaultAnimationLoop', )
+       root.addObject('EulerExplicitSolver', name="solver")
 
-        Rigid Oscillator = Root.addChild('Rigid Oscillator')
-        Rigid Oscillator.addObject('MechanicalObject', template="Rigid3", name="mech2", position="0 0 0 0 0 0 1", velocity="0 0 0 0 0 0")
-        Rigid Oscillator.addObject('UniformMass', name="m2")
-        Rigid Oscillator.addObject('OscillatorProjectiveConstraint', template="Rigid3", name="osc2", oscillators="0  1 1 0 0 0 0 1   0 1 1 0 0.707 0.707  1 5")
+       point__oscillator = Root.addChild('Point Oscillator')
+
+       point__oscillator.addObject('MechanicalObject', template="Vec3", name="mech", position="0 0 0", velocity="1 0 0", force="1 0 0", externalForce="1 0 0", derivX="1 0 0", restScale="1")
+       point__oscillator.addObject('UniformMass', name="m")
+       point__oscillator.addObject('OscillatorProjectiveConstraint', template="Vec3", name="osc", oscillators="0  1 1 1  1 0 0  1 5")
+
+       rigid__oscillator = Root.addChild('Rigid Oscillator')
+
+       rigid__oscillator.addObject('MechanicalObject', template="Rigid3", name="mech2", position="0 0 0 0 0 0 1", velocity="0 0 0 0 0 0")
+       rigid__oscillator.addObject('UniformMass', name="m2")
+       rigid__oscillator.addObject('OscillatorProjectiveConstraint', template="Rigid3", name="osc2", oscillators="0  1 1 0 0 0 0 1   0 1 1 0 0.707 0.707  1 5")
     ```
 

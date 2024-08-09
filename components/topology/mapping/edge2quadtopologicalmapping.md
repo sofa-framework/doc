@@ -1,136 +1,132 @@
+<!-- generate_doc -->
 # Edge2QuadTopologicalMapping
 
 Special case of mapping where EdgeSetTopology is converted to QuadSetTopology.
 
 
-__Target__: `Sofa.Component.Topology.Mapping`
+__Target__: Sofa.Component.Topology.Mapping
 
-__namespace__: `#!c++ sofa::component::topology::mapping`
+__namespace__: sofa::component::topology::mapping
 
-__parents__: 
-
-- `#!c++ TopologicalMapping`
-
-__categories__: 
+__parents__:
 
 - TopologicalMapping
 
-Data: 
+### Data
 
 <table>
-<thead>
-    <tr>
-        <th>Name</th>
-        <th>Description</th>
-        <th>Default value</th>
-    </tr>
-</thead>
-<tbody>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Default value</th>
+        </tr>
+    </thead>
+    <tbody>
 	<tr>
 		<td>name</td>
 		<td>
 object name
-</td>
+		</td>
 		<td>unnamed</td>
 	</tr>
 	<tr>
 		<td>printLog</td>
 		<td>
 if true, emits extra messages at runtime.
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>tags</td>
 		<td>
 list of the subsets the objet belongs to
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>bbox</td>
 		<td>
 this object bounding box
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>componentState</td>
 		<td>
 The state of the component among (Dirty, Valid, Undefined, Loading, Invalid).
-</td>
+		</td>
 		<td>Undefined</td>
 	</tr>
 	<tr>
 		<td>listening</td>
 		<td>
 if true, handle the events, otherwise ignore the events
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>nbPointsOnEachCircle</td>
 		<td>
 Discretization of created circles
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>radius</td>
 		<td>
 Radius of created circles in yz plan
-</td>
+		</td>
 		<td>1</td>
 	</tr>
 	<tr>
 		<td>radiusFocal</td>
 		<td>
 If greater than 0., radius in focal axis of created ellipses
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>focalAxis</td>
 		<td>
 In case of ellipses
-</td>
+		</td>
 		<td>0 0 1</td>
 	</tr>
 	<tr>
 		<td>edgeList</td>
 		<td>
 list of input edges for the topological mapping: by default, all considered
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>flipNormals</td>
 		<td>
 Flip Normal ? (Inverse point order when creating quad)
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 
 </tbody>
 </table>
 
-Links: 
-
-| Name | Description |
-| ---- | ----------- |
-|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|
-|slaves|Sub-objects used internally by this object|
-|master|nullptr for regular objects, or master object for which this object is one sub-objects|
-|input|Input topology to map|
-|output|Output topology to map|
-|toQuadContainer|Output container storing Quads|
-|toQuadModifier|Output modifier handling Quads|
+### Links
 
 
+| Name | Description | Destination type name |
+| ---- | ----------- | --------------------- |
+|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
+|slaves|Sub-objects used internally by this object|BaseObject|
+|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
+|input|Input topology to map|BaseMeshTopology|
+|output|Output topology to map|BaseMeshTopology|
+|toQuadContainer|Output container storing Quads|QuadSetTopologyContainer|
+|toQuadModifier|Output modifier handling Quads|QuadSetTopologyModifier|
 
-## Examples
+## Examples 
 
-Component/Topology/Mapping/Edge2QuadTopologicalMapping.scn
+Edge2QuadTopologicalMapping.scn
 
 === "XML"
 
@@ -184,52 +180,57 @@ Component/Topology/Mapping/Edge2QuadTopologicalMapping.scn
     	</Node>  
     </Node>
     
+
     ```
 
 === "Python"
 
     ```python
-    def createScene(rootNode):
+    def createScene(root_node):
 
-        root = rootNode.addChild('root', dt="0.01", showBoundingTree="0", gravity="0 -9 0")
+       root = root_node.addChild('root', dt="0.01", showBoundingTree="0", gravity="0 -9 0")
 
-        RequiredPlugins = root.addChild('RequiredPlugins')
-        RequiredPlugins.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Algorithm")
-        RequiredPlugins.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Intersection")
-        RequiredPlugins.addObject('RequiredPlugin', name="Sofa.Component.Collision.Response.Contact")
-        RequiredPlugins.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Projective")
-        RequiredPlugins.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Iterative")
-        RequiredPlugins.addObject('RequiredPlugin', name="Sofa.Component.Mapping.Linear")
-        RequiredPlugins.addObject('RequiredPlugin', name="Sofa.Component.Mass")
-        RequiredPlugins.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
-        RequiredPlugins.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.FEM.Elastic")
-        RequiredPlugins.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
-        RequiredPlugins.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Dynamic")
-        RequiredPlugins.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Grid")
-        RequiredPlugins.addObject('RequiredPlugin', name="Sofa.Component.Topology.Mapping")
-        RequiredPlugins.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
-        root.addObject('DefaultAnimationLoop')
-        root.addObject('CollisionPipeline')
-        root.addObject('BruteForceBroadPhase')
-        root.addObject('BVHNarrowPhase')
-        root.addObject('CollisionResponse', response="PenalityContactForceField")
-        root.addObject('MinProximityIntersection', name="Proximity", alarmDistance="0.5", contactDistance="0.02")
+       required_plugins = root.addChild('RequiredPlugins')
 
-        Beam = root.addChild('Beam')
-        Beam.addObject('EulerImplicitSolver', rayleighStiffness="0.1", rayleighMass="0.1")
-        Beam.addObject('CGLinearSolver', iterations="125", tolerance="1e-16", threshold="1e-16")
-        Beam.addObject('RegularGridTopology', name="MeshLines", nx="100", ny="1", nz="1", xmax="100", xmin="0", ymin="0", ymax="0", zmax="0", zmin="0")
-        Beam.addObject('MechanicalObject', template="Rigid3", name="BeamDof")
-        Beam.addObject('FixedProjectiveConstraint', name="fix", indices="0")
-        Beam.addObject('UniformMass', totalMass="0.1")
-        Beam.addObject('BeamFEMForceField', name="BeamFEM", radius="1.0", youngModulus="1000", poissonRatio="0.45")
+       required_plugins.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Algorithm")
+       required_plugins.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Intersection")
+       required_plugins.addObject('RequiredPlugin', name="Sofa.Component.Collision.Response.Contact")
+       required_plugins.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Projective")
+       required_plugins.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Iterative")
+       required_plugins.addObject('RequiredPlugin', name="Sofa.Component.Mapping.Linear")
+       required_plugins.addObject('RequiredPlugin', name="Sofa.Component.Mass")
+       required_plugins.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
+       required_plugins.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.FEM.Elastic")
+       required_plugins.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
+       required_plugins.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Dynamic")
+       required_plugins.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Grid")
+       required_plugins.addObject('RequiredPlugin', name="Sofa.Component.Topology.Mapping")
+       required_plugins.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
 
-        VisuBeam = Beam.addChild('VisuBeam', activated="true")
-        VisuBeam.addObject('OglModel', template="Vec3", name="SurfDof", color="0.7 0.7 0.7")
-        VisuBeam.addObject('QuadSetTopologyContainer', name="Container")
-        VisuBeam.addObject('QuadSetTopologyModifier', name="Modifier")
-        VisuBeam.addObject('QuadSetGeometryAlgorithms', name="GeomAlgo", template="Vec3", drawQuads="1")
-        VisuBeam.addObject('Edge2QuadTopologicalMapping', nbPointsOnEachCircle="10", radius="2", input="@../MeshLines", output="@Container", flipNormals="true")
-        VisuBeam.addObject('TubularMapping', nbPointsOnEachCircle="10", radius="2", input="@../BeamDof", output="@SurfDof")
+       root.addObject('DefaultAnimationLoop', )
+       root.addObject('CollisionPipeline', )
+       root.addObject('BruteForceBroadPhase', )
+       root.addObject('BVHNarrowPhase', )
+       root.addObject('CollisionResponse', response="PenalityContactForceField")
+       root.addObject('MinProximityIntersection', name="Proximity", alarmDistance="0.5", contactDistance="0.02")
+
+       beam = root.addChild('Beam')
+
+       beam.addObject('EulerImplicitSolver', rayleighStiffness="0.1", rayleighMass="0.1")
+       beam.addObject('CGLinearSolver', iterations="125", tolerance="1e-16", threshold="1e-16")
+       beam.addObject('RegularGridTopology', name="MeshLines", nx="100", ny="1", nz="1", xmax="100", xmin="0", ymin="0", ymax="0", zmax="0", zmin="0")
+       beam.addObject('MechanicalObject', template="Rigid3", name="BeamDof")
+       beam.addObject('FixedProjectiveConstraint', name="fix", indices="0")
+       beam.addObject('UniformMass', totalMass="0.1")
+       beam.addObject('BeamFEMForceField', name="BeamFEM", radius="1.0", youngModulus="1000", poissonRatio="0.45")
+
+       visu_beam = Beam.addChild('VisuBeam', activated="true")
+
+       visu_beam.addObject('OglModel', template="Vec3", name="SurfDof", color="0.7 0.7 0.7")
+       visu_beam.addObject('QuadSetTopologyContainer', name="Container")
+       visu_beam.addObject('QuadSetTopologyModifier', name="Modifier")
+       visu_beam.addObject('QuadSetGeometryAlgorithms', name="GeomAlgo", template="Vec3", drawQuads="1")
+       visu_beam.addObject('Edge2QuadTopologicalMapping', nbPointsOnEachCircle="10", radius="2", input="@../MeshLines", output="@Container", flipNormals="true")
+       visu_beam.addObject('TubularMapping', nbPointsOnEachCircle="10", radius="2", input="@../BeamDof", output="@SurfDof")
     ```
 

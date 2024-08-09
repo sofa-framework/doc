@@ -1,125 +1,123 @@
+<!-- generate_doc -->
 # QuadularBendingSprings
 
 Springs added to a quad mesh to prevent bending
 
 
-__Templates__:
+## Vec3d
 
-- `#!c++ Vec3d`
+Templates:
 
-__Target__: `Sofa.Component.SolidMechanics.Spring`
+- Vec3d
 
-__namespace__: `#!c++ sofa::component::solidmechanics::spring`
+__Target__: Sofa.Component.SolidMechanics.Spring
 
-__parents__: 
+__namespace__: sofa::component::solidmechanics::spring
 
-- `#!c++ ForceField`
-
-__categories__: 
+__parents__:
 
 - ForceField
 
-Data: 
+### Data
 
 <table>
-<thead>
-    <tr>
-        <th>Name</th>
-        <th>Description</th>
-        <th>Default value</th>
-    </tr>
-</thead>
-<tbody>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Default value</th>
+        </tr>
+    </thead>
+    <tbody>
 	<tr>
 		<td>name</td>
 		<td>
 object name
-</td>
+		</td>
 		<td>unnamed</td>
 	</tr>
 	<tr>
 		<td>printLog</td>
 		<td>
 if true, emits extra messages at runtime.
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>tags</td>
 		<td>
 list of the subsets the objet belongs to
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>bbox</td>
 		<td>
 this object bounding box
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>componentState</td>
 		<td>
 The state of the component among (Dirty, Valid, Undefined, Loading, Invalid).
-</td>
+		</td>
 		<td>Undefined</td>
 	</tr>
 	<tr>
 		<td>listening</td>
 		<td>
 if true, handle the events, otherwise ignore the events
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>rayleighStiffness</td>
 		<td>
 Rayleigh damping - stiffness matrix coefficient
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>stiffness</td>
 		<td>
 uniform stiffness for the all springs
-</td>
+		</td>
 		<td>100000</td>
 	</tr>
 	<tr>
 		<td>damping</td>
 		<td>
 uniform damping for the all springs
-</td>
+		</td>
 		<td>1</td>
 	</tr>
 	<tr>
 		<td>edgeInfo</td>
 		<td>
 Internal edge data
-</td>
+		</td>
 		<td></td>
 	</tr>
 
 </tbody>
 </table>
 
-Links: 
-
-| Name | Description |
-| ---- | ----------- |
-|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|
-|slaves|Sub-objects used internally by this object|
-|master|nullptr for regular objects, or master object for which this object is one sub-objects|
-|mechanicalStates|List of mechanical states to which this component is associated|
-|mstate|MechanicalState used by this component|
-|topology|link to the topology container|
+### Links
 
 
+| Name | Description | Destination type name |
+| ---- | ----------- | --------------------- |
+|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
+|slaves|Sub-objects used internally by this object|BaseObject|
+|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
+|mechanicalStates|List of mechanical states to which this component is associated|BaseMechanicalState|
+|mstate|MechanicalState used by this component|MechanicalState&lt;Vec3d&gt;|
+|topology|link to the topology container|BaseMeshTopology|
 
-## Examples
+## Examples 
 
-Component/SolidMechanics/Spring/QuadularBendingSprings.scn
+QuadularBendingSprings.scn
 
 === "XML"
 
@@ -166,52 +164,58 @@ Component/SolidMechanics/Spring/QuadularBendingSprings.scn
             </Node>
         </Node>
     </Node>
+
     ```
 
 === "Python"
 
     ```python
-    def createScene(rootNode):
+    def createScene(root_node):
 
-        root = rootNode.addChild('root', dt="0.005", showBoundingTree="0", gravity="0 -9.81 0")
+       root = root_node.addChild('root', dt="0.005", showBoundingTree="0", gravity="0 -9.81 0")
 
-        plugins = root.addChild('plugins')
-        plugins.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Projective")
-        plugins.addObject('RequiredPlugin', name="Sofa.Component.Engine.Select")
-        plugins.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Direct")
-        plugins.addObject('RequiredPlugin', name="Sofa.Component.Mapping.Linear")
-        plugins.addObject('RequiredPlugin', name="Sofa.Component.Mass")
-        plugins.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
-        plugins.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.FEM.Elastic")
-        plugins.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.Spring")
-        plugins.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
-        plugins.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Dynamic")
-        plugins.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Grid")
-        plugins.addObject('RequiredPlugin', name="Sofa.Component.Topology.Mapping")
-        plugins.addObject('RequiredPlugin', name="Sofa.Component.Visual")
-        plugins.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
-        root.addObject('DefaultAnimationLoop')
-        root.addObject('VisualStyle', displayFlags="showBehaviorModels showWireframe")
+       plugins = root.addChild('plugins')
 
-        QuadularSprings = root.addChild('QuadularSprings')
-        QuadularSprings.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
-        QuadularSprings.addObject('EigenSimplicialLDLT', name="linearSolver", template="CompressedRowSparseMatrixMat3x3")
-        QuadularSprings.addObject('RegularGridTopology', min="0 0 0", max="1 0 1", nx="20", ny="1", nz="20", name="grid")
-        QuadularSprings.addObject('MechanicalObject', name="Quads")
-        QuadularSprings.addObject('QuadSetTopologyContainer', name="Container", quads="@grid.quads")
-        QuadularSprings.addObject('QuadularBendingSprings', name="FEM-Bend", stiffness="3000", damping="1.0", topology="@Container", draw="true")
-        QuadularSprings.addObject('DiagonalMass', massDensity="1.5")
-        QuadularSprings.addObject('BoxROI', box="-0.0001 -0.0001 -0.0001 0.0001 0.0001 0.0001  0.999 -0.0001 -0.0001 1.0001 0.0001 0.0001", name="box")
-        QuadularSprings.addObject('FixedProjectiveConstraint', indices="@box.indices")
+       plugins.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Projective")
+       plugins.addObject('RequiredPlugin', name="Sofa.Component.Engine.Select")
+       plugins.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Direct")
+       plugins.addObject('RequiredPlugin', name="Sofa.Component.Mapping.Linear")
+       plugins.addObject('RequiredPlugin', name="Sofa.Component.Mass")
+       plugins.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
+       plugins.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.FEM.Elastic")
+       plugins.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.Spring")
+       plugins.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
+       plugins.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Dynamic")
+       plugins.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Grid")
+       plugins.addObject('RequiredPlugin', name="Sofa.Component.Topology.Mapping")
+       plugins.addObject('RequiredPlugin', name="Sofa.Component.Visual")
+       plugins.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
 
-        Surf = QuadularSprings.addChild('Surf')
-        Surf.addObject('TriangleSetTopologyContainer', name="Container")
-        Surf.addObject('TriangleSetTopologyModifier', name="Modifier")
-        Surf.addObject('Quad2TriangleTopologicalMapping', input="@../Container", output="@Container")
-        Surf.addObject('TriangularFEMForceField', name="FEM", youngModulus="1000", poissonRatio="0.3", method="large")
+       root.addObject('DefaultAnimationLoop', )
+       root.addObject('VisualStyle', displayFlags="showBehaviorModels showWireframe")
 
-        Visu = QuadularSprings.addChild('Visu')
-        Visu.addObject('OglModel', name="Visual", color="yellow")
-        Visu.addObject('IdentityMapping', input="@../Quads", output="@Visual")
+       quadular_springs = root.addChild('QuadularSprings')
+
+       quadular_springs.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
+       quadular_springs.addObject('EigenSimplicialLDLT', name="linearSolver", template="CompressedRowSparseMatrixMat3x3")
+       quadular_springs.addObject('RegularGridTopology', min="0 0 0", max="1 0 1", nx="20", ny="1", nz="20", name="grid")
+       quadular_springs.addObject('MechanicalObject', name="Quads")
+       quadular_springs.addObject('QuadSetTopologyContainer', name="Container", quads="@grid.quads")
+       quadular_springs.addObject('QuadularBendingSprings', name="FEM-Bend", stiffness="3000", damping="1.0", topology="@Container", draw="true")
+       quadular_springs.addObject('DiagonalMass', massDensity="1.5")
+       quadular_springs.addObject('BoxROI', box="-0.0001 -0.0001 -0.0001 0.0001 0.0001 0.0001  0.999 -0.0001 -0.0001 1.0001 0.0001 0.0001", name="box")
+       quadular_springs.addObject('FixedProjectiveConstraint', indices="@box.indices")
+
+       surf = QuadularSprings.addChild('Surf')
+
+       surf.addObject('TriangleSetTopologyContainer', name="Container")
+       surf.addObject('TriangleSetTopologyModifier', name="Modifier")
+       surf.addObject('Quad2TriangleTopologicalMapping', input="@../Container", output="@Container")
+       surf.addObject('TriangularFEMForceField', name="FEM", youngModulus="1000", poissonRatio="0.3", method="large")
+
+       visu = QuadularSprings.addChild('Visu')
+
+       visu.addObject('OglModel', name="Visual", color="yellow")
+       visu.addObject('IdentityMapping', input="@../Quads", output="@Visual")
     ```
 

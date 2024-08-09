@@ -1,162 +1,449 @@
+<!-- generate_doc -->
 # SphereForceField
 
 Repulsion applied by a sphere toward the exterior
-Supports GPU-side computations using CUDA
 
 
-__Templates__:
+## Vec1d
 
-- `#!c++ Vec1d`
-- `#!c++ Vec2d`
-- `#!c++ Vec3d`
+Templates:
 
-__Target__: `Sofa.Component.MechanicalLoad`
+- Vec1d
 
-__namespace__: `#!c++ sofa::component::mechanicalload`
+__Target__: Sofa.Component.MechanicalLoad
 
-__parents__: 
+__namespace__: sofa::component::mechanicalload
 
-- `#!c++ ForceField`
-
-__categories__: 
+__parents__:
 
 - ForceField
 
-Data: 
+### Data
 
 <table>
-<thead>
-    <tr>
-        <th>Name</th>
-        <th>Description</th>
-        <th>Default value</th>
-    </tr>
-</thead>
-<tbody>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Default value</th>
+        </tr>
+    </thead>
+    <tbody>
 	<tr>
 		<td>name</td>
 		<td>
 object name
-</td>
+		</td>
 		<td>unnamed</td>
 	</tr>
 	<tr>
 		<td>printLog</td>
 		<td>
 if true, emits extra messages at runtime.
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>tags</td>
 		<td>
 list of the subsets the objet belongs to
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>bbox</td>
 		<td>
 this object bounding box
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>componentState</td>
 		<td>
 The state of the component among (Dirty, Valid, Undefined, Loading, Invalid).
-</td>
+		</td>
 		<td>Undefined</td>
 	</tr>
 	<tr>
 		<td>listening</td>
 		<td>
 if true, handle the events, otherwise ignore the events
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>rayleighStiffness</td>
 		<td>
 Rayleigh damping - stiffness matrix coefficient
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>contacts</td>
 		<td>
 Contacts
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>center</td>
 		<td>
 sphere center
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>radius</td>
 		<td>
 sphere radius
-</td>
+		</td>
 		<td>1</td>
 	</tr>
 	<tr>
 		<td>stiffness</td>
 		<td>
 force stiffness
-</td>
+		</td>
 		<td>500</td>
 	</tr>
 	<tr>
 		<td>damping</td>
 		<td>
 force damping
-</td>
+		</td>
 		<td>5</td>
 	</tr>
 	<tr>
 		<td>color</td>
 		<td>
 sphere color. (default=[0,0,1,1])
-</td>
+		</td>
 		<td>0 0 1 1</td>
 	</tr>
 	<tr>
 		<td>localRange</td>
 		<td>
 optional range of local DOF indices. Any computation involving only indices outside of this range are discarded (useful for parallelization using mesh partitionning)
-</td>
+		</td>
 		<td>-1 -1</td>
 	</tr>
 	<tr>
 		<td>bilateral</td>
 		<td>
 if true the sphere force field is applied on both sides
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 
 </tbody>
 </table>
 
-Links: 
-
-| Name | Description |
-| ---- | ----------- |
-|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|
-|slaves|Sub-objects used internally by this object|
-|master|nullptr for regular objects, or master object for which this object is one sub-objects|
-|mechanicalStates|List of mechanical states to which this component is associated|
-|mstate|MechanicalState used by this component|
+### Links
 
 
+| Name | Description | Destination type name |
+| ---- | ----------- | --------------------- |
+|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
+|slaves|Sub-objects used internally by this object|BaseObject|
+|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
+|mechanicalStates|List of mechanical states to which this component is associated|BaseMechanicalState|
+|mstate|MechanicalState used by this component|MechanicalState&lt;Vec1d&gt;|
 
-## Examples
+<!-- generate_doc -->
+## Vec2d
 
-Component/MechanicalLoad/SphereForceField.scn
+Templates:
+
+- Vec2d
+
+__Target__: Sofa.Component.MechanicalLoad
+
+__namespace__: sofa::component::mechanicalload
+
+__parents__:
+
+- ForceField
+
+### Data
+
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Default value</th>
+        </tr>
+    </thead>
+    <tbody>
+	<tr>
+		<td>name</td>
+		<td>
+object name
+		</td>
+		<td>unnamed</td>
+	</tr>
+	<tr>
+		<td>printLog</td>
+		<td>
+if true, emits extra messages at runtime.
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>tags</td>
+		<td>
+list of the subsets the objet belongs to
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>bbox</td>
+		<td>
+this object bounding box
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>componentState</td>
+		<td>
+The state of the component among (Dirty, Valid, Undefined, Loading, Invalid).
+		</td>
+		<td>Undefined</td>
+	</tr>
+	<tr>
+		<td>listening</td>
+		<td>
+if true, handle the events, otherwise ignore the events
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>rayleighStiffness</td>
+		<td>
+Rayleigh damping - stiffness matrix coefficient
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>contacts</td>
+		<td>
+Contacts
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>center</td>
+		<td>
+sphere center
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>radius</td>
+		<td>
+sphere radius
+		</td>
+		<td>1</td>
+	</tr>
+	<tr>
+		<td>stiffness</td>
+		<td>
+force stiffness
+		</td>
+		<td>500</td>
+	</tr>
+	<tr>
+		<td>damping</td>
+		<td>
+force damping
+		</td>
+		<td>5</td>
+	</tr>
+	<tr>
+		<td>color</td>
+		<td>
+sphere color. (default=[0,0,1,1])
+		</td>
+		<td>0 0 1 1</td>
+	</tr>
+	<tr>
+		<td>localRange</td>
+		<td>
+optional range of local DOF indices. Any computation involving only indices outside of this range are discarded (useful for parallelization using mesh partitionning)
+		</td>
+		<td>-1 -1</td>
+	</tr>
+	<tr>
+		<td>bilateral</td>
+		<td>
+if true the sphere force field is applied on both sides
+		</td>
+		<td>0</td>
+	</tr>
+
+</tbody>
+</table>
+
+### Links
+
+
+| Name | Description | Destination type name |
+| ---- | ----------- | --------------------- |
+|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
+|slaves|Sub-objects used internally by this object|BaseObject|
+|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
+|mechanicalStates|List of mechanical states to which this component is associated|BaseMechanicalState|
+|mstate|MechanicalState used by this component|MechanicalState&lt;Vec2d&gt;|
+
+<!-- generate_doc -->
+## Vec3d
+
+Templates:
+
+- Vec3d
+
+__Target__: Sofa.Component.MechanicalLoad
+
+__namespace__: sofa::component::mechanicalload
+
+__parents__:
+
+- ForceField
+
+### Data
+
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Default value</th>
+        </tr>
+    </thead>
+    <tbody>
+	<tr>
+		<td>name</td>
+		<td>
+object name
+		</td>
+		<td>unnamed</td>
+	</tr>
+	<tr>
+		<td>printLog</td>
+		<td>
+if true, emits extra messages at runtime.
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>tags</td>
+		<td>
+list of the subsets the objet belongs to
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>bbox</td>
+		<td>
+this object bounding box
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>componentState</td>
+		<td>
+The state of the component among (Dirty, Valid, Undefined, Loading, Invalid).
+		</td>
+		<td>Undefined</td>
+	</tr>
+	<tr>
+		<td>listening</td>
+		<td>
+if true, handle the events, otherwise ignore the events
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>rayleighStiffness</td>
+		<td>
+Rayleigh damping - stiffness matrix coefficient
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>contacts</td>
+		<td>
+Contacts
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>center</td>
+		<td>
+sphere center
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>radius</td>
+		<td>
+sphere radius
+		</td>
+		<td>1</td>
+	</tr>
+	<tr>
+		<td>stiffness</td>
+		<td>
+force stiffness
+		</td>
+		<td>500</td>
+	</tr>
+	<tr>
+		<td>damping</td>
+		<td>
+force damping
+		</td>
+		<td>5</td>
+	</tr>
+	<tr>
+		<td>color</td>
+		<td>
+sphere color. (default=[0,0,1,1])
+		</td>
+		<td>0 0 1 1</td>
+	</tr>
+	<tr>
+		<td>localRange</td>
+		<td>
+optional range of local DOF indices. Any computation involving only indices outside of this range are discarded (useful for parallelization using mesh partitionning)
+		</td>
+		<td>-1 -1</td>
+	</tr>
+	<tr>
+		<td>bilateral</td>
+		<td>
+if true the sphere force field is applied on both sides
+		</td>
+		<td>0</td>
+	</tr>
+
+</tbody>
+</table>
+
+### Links
+
+
+| Name | Description | Destination type name |
+| ---- | ----------- | --------------------- |
+|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
+|slaves|Sub-objects used internally by this object|BaseObject|
+|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
+|mechanicalStates|List of mechanical states to which this component is associated|BaseMechanicalState|
+|mstate|MechanicalState used by this component|MechanicalState&lt;Vec3d&gt;|
+
+## Examples 
+
+SphereForceField.scn
 
 === "XML"
 
@@ -215,56 +502,63 @@ Component/MechanicalLoad/SphereForceField.scn
             <OglModel name="Visual" src="@meshLoader_0" dx="0" dy="1" dz="3" color="blue" />
         </Node>
     </Node>
+
     ```
 
 === "Python"
 
     ```python
-    def createScene(rootNode):
+    def createScene(root_node):
 
-        root = rootNode.addChild('root', gravity="0.0 -2.0 0.0", dt="0.04")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Projective")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Engine.Select")
-        root.addObject('RequiredPlugin', name="Sofa.Component.IO.Mesh")
-        root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Iterative")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Mapping.Linear")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Mass")
-        root.addObject('RequiredPlugin', name="Sofa.Component.MechanicalLoad")
-        root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
-        root.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.Spring")
-        root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Grid")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Visual")
-        root.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
-        root.addObject('DefaultAnimationLoop')
-        root.addObject('VisualStyle', displayFlags="hideBehaviorModels showForceFields hideCollisionModels hideVisualModels")
+       root = root_node.addChild('root', gravity="0.0 -2.0 0.0", dt="0.04")
 
-        Floor = root.addChild('Floor')
-        Floor.addObject('RegularGridTopology', nx="2", ny="1", nz="2", xmin="20", xmax="-20", ymin="-3.05", ymax="-3.05", zmin="-20", zmax="20")
-        Floor.addObject('MechanicalObject')
+       root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Projective")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Engine.Select")
+       root.addObject('RequiredPlugin', name="Sofa.Component.IO.Mesh")
+       root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Iterative")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Mapping.Linear")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Mass")
+       root.addObject('RequiredPlugin', name="Sofa.Component.MechanicalLoad")
+       root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.Spring")
+       root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Grid")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Visual")
+       root.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
+       root.addObject('DefaultAnimationLoop', )
+       root.addObject('VisualStyle', displayFlags="hideBehaviorModels showForceFields hideCollisionModels hideVisualModels")
 
-        Visu = Floor.addChild('Visu')
-        Visu.addObject('OglModel', name="Visual", color="red")
-        Visu.addObject('IdentityMapping', input="@..", output="@Visual")
+       floor = root.addChild('Floor')
 
-        SquareCloth1 = root.addChild('SquareCloth1')
-        SquareCloth1.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
-        SquareCloth1.addObject('CGLinearSolver', iterations="25", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
-        SquareCloth1.addObject('RegularGridTopology', nx="20", ny="1", nz="20", xmin="12", xmax="-12", ymin="7", ymax="7", zmin="-12", zmax="12")
-        SquareCloth1.addObject('MechanicalObject')
-        SquareCloth1.addObject('UniformMass', totalMass="100")
-        SquareCloth1.addObject('BoxConstraint', box="-12 7 12 -10 7 12    10 7 12 12 7 12")
-        SquareCloth1.addObject('MeshSpringForceField', name="Springs", stiffness="1000", damping="0")
-        SquareCloth1.addObject('QuadBendingSprings', name="Bend", stiffness="2000", damping="1")
-        SquareCloth1.addObject('SphereForceField', stiffness="1000", damping="1", center="0 1 3", radius="4")
-        SquareCloth1.addObject('PlaneForceField', stiffness="1000", damping="20", normal="0 1 0", d="-3")
+       floor.addObject('RegularGridTopology', nx="2", ny="1", nz="2", xmin="20", xmax="-20", ymin="-3.05", ymax="-3.05", zmin="-20", zmax="20")
+       floor.addObject('MechanicalObject', )
 
-        Visu = SquareCloth1.addChild('Visu')
-        Visu.addObject('OglModel', name="Visual", color="green")
-        Visu.addObject('IdentityMapping', input="@..", output="@Visual")
+       visu = Floor.addChild('Visu')
 
-        Sphere = root.addChild('Sphere')
-        Sphere.addObject('MeshOBJLoader', name="meshLoader_0", filename="mesh/sphere.obj", scale="3.95", handleSeams="1")
-        Sphere.addObject('OglModel', name="Visual", src="@meshLoader_0", dx="0", dy="1", dz="3", color="blue")
+       visu.addObject('OglModel', name="Visual", color="red")
+       visu.addObject('IdentityMapping', input="@..", output="@Visual")
+
+       square_cloth1 = root.addChild('SquareCloth1')
+
+       square_cloth1.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
+       square_cloth1.addObject('CGLinearSolver', iterations="25", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
+       square_cloth1.addObject('RegularGridTopology', nx="20", ny="1", nz="20", xmin="12", xmax="-12", ymin="7", ymax="7", zmin="-12", zmax="12")
+       square_cloth1.addObject('MechanicalObject', )
+       square_cloth1.addObject('UniformMass', totalMass="100")
+       square_cloth1.addObject('BoxConstraint', box="-12 7 12 -10 7 12    10 7 12 12 7 12")
+       square_cloth1.addObject('MeshSpringForceField', name="Springs", stiffness="1000", damping="0")
+       square_cloth1.addObject('QuadBendingSprings', name="Bend", stiffness="2000", damping="1")
+       square_cloth1.addObject('SphereForceField', stiffness="1000", damping="1", center="0 1 3", radius="4")
+       square_cloth1.addObject('PlaneForceField', stiffness="1000", damping="20", normal="0 1 0", d="-3")
+
+       visu = SquareCloth1.addChild('Visu')
+
+       visu.addObject('OglModel', name="Visual", color="green")
+       visu.addObject('IdentityMapping', input="@..", output="@Visual")
+
+       sphere = root.addChild('Sphere')
+
+       sphere.addObject('MeshOBJLoader', name="meshLoader_0", filename="mesh/sphere.obj", scale="3.95", handleSeams="1")
+       sphere.addObject('OglModel', name="Visual", src="@meshLoader_0", dx="0", dy="1", dz="3", color="blue")
     ```
 

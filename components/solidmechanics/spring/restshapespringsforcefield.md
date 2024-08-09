@@ -1,139 +1,137 @@
+<!-- generate_doc -->
 # RestShapeSpringsForceField
 
 Elastic springs generating forces on degrees of freedom between their current and rest shape position
-Supports GPU-side computations using CUDA
 
 
-__Templates__:
+## Rigid3d
 
-- `#!c++ Rigid3d`
+Templates:
 
-__Target__: `Sofa.Component.SolidMechanics.Spring`
+- Rigid3d
 
-__namespace__: `#!c++ sofa::component::solidmechanics::spring`
+__Target__: Sofa.Component.SolidMechanics.Spring
 
-__parents__: 
+__namespace__: sofa::component::solidmechanics::spring
 
-- `#!c++ ForceField`
-
-__categories__: 
+__parents__:
 
 - ForceField
 
-Data: 
+### Data
 
 <table>
-<thead>
-    <tr>
-        <th>Name</th>
-        <th>Description</th>
-        <th>Default value</th>
-    </tr>
-</thead>
-<tbody>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Default value</th>
+        </tr>
+    </thead>
+    <tbody>
 	<tr>
 		<td>name</td>
 		<td>
 object name
-</td>
+		</td>
 		<td>unnamed</td>
 	</tr>
 	<tr>
 		<td>printLog</td>
 		<td>
 if true, emits extra messages at runtime.
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>tags</td>
 		<td>
 list of the subsets the objet belongs to
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>bbox</td>
 		<td>
 this object bounding box
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>componentState</td>
 		<td>
 The state of the component among (Dirty, Valid, Undefined, Loading, Invalid).
-</td>
+		</td>
 		<td>Undefined</td>
 	</tr>
 	<tr>
 		<td>listening</td>
 		<td>
 if true, handle the events, otherwise ignore the events
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>rayleighStiffness</td>
 		<td>
 Rayleigh damping - stiffness matrix coefficient
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>points</td>
 		<td>
 points controlled by the rest shape springs
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>stiffness</td>
 		<td>
 stiffness values between the actual position and the rest shape position
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>angularStiffness</td>
 		<td>
 angularStiffness assigned when controlling the rotation of the points
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>pivot_points</td>
 		<td>
 global pivot points used when translations instead of the rigid mass centers
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>external_points</td>
 		<td>
 points from the external Mechancial State that define the rest shape springs
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>recompute_indices</td>
 		<td>
 Recompute indices (should be false for BBOX)
-</td>
+		</td>
 		<td>1</td>
 	</tr>
 	<tr>
 		<td>springColor</td>
 		<td>
 spring color. (default=[0.0,1.0,0.0,1.0])
-</td>
+		</td>
 		<td>0 1 0 1</td>
 	</tr>
 	<tr>
 		<td>activeDirections</td>
 		<td>
 Directions in which the spring is active (default=[1,1,1,1,1,1,1])
-</td>
+		</td>
 		<td>1 1 1 1 1 1 1</td>
 	</tr>
 	<tr>
@@ -143,157 +141,313 @@ Directions in which the spring is active (default=[1,1,1,1,1,1,1])
 		<td>drawSpring</td>
 		<td>
 draw Spring
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 
 </tbody>
 </table>
 
-Links: 
-
-| Name | Description |
-| ---- | ----------- |
-|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|
-|slaves|Sub-objects used internally by this object|
-|master|nullptr for regular objects, or master object for which this object is one sub-objects|
-|mechanicalStates|List of mechanical states to which this component is associated|
-|mstate|MechanicalState used by this component|
-|external_rest_shape|rest_shape can be defined by the position of an external Mechanical State|
-|topology|Link to be set to the topology container in the component graph|
+### Links
 
 
+| Name | Description | Destination type name |
+| ---- | ----------- | --------------------- |
+|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
+|slaves|Sub-objects used internally by this object|BaseObject|
+|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
+|mechanicalStates|List of mechanical states to which this component is associated|BaseMechanicalState|
+|mstate|MechanicalState used by this component|MechanicalState&lt;Rigid3d&gt;|
+|external_rest_shape|rest_shape can be defined by the position of an external Mechanical State|MechanicalState&lt;Rigid3d&gt;|
+|topology|Link to be set to the topology container in the component graph|BaseMeshTopology|
 
-__Templates__:
+<!-- generate_doc -->
+## Vec1d
 
-- `#!c++ Vec3d`
+Templates:
 
-__Target__: `Sofa.Component.SolidMechanics.Spring`
+- Vec1d
 
-__namespace__: `#!c++ sofa::component::solidmechanics::spring`
+__Target__: Sofa.Component.SolidMechanics.Spring
 
-__parents__: 
+__namespace__: sofa::component::solidmechanics::spring
 
-- `#!c++ ForceField`
-
-__categories__: 
+__parents__:
 
 - ForceField
 
-Data: 
+### Data
 
 <table>
-<thead>
-    <tr>
-        <th>Name</th>
-        <th>Description</th>
-        <th>Default value</th>
-    </tr>
-</thead>
-<tbody>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Default value</th>
+        </tr>
+    </thead>
+    <tbody>
 	<tr>
 		<td>name</td>
 		<td>
 object name
-</td>
+		</td>
 		<td>unnamed</td>
 	</tr>
 	<tr>
 		<td>printLog</td>
 		<td>
 if true, emits extra messages at runtime.
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>tags</td>
 		<td>
 list of the subsets the objet belongs to
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>bbox</td>
 		<td>
 this object bounding box
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>componentState</td>
 		<td>
 The state of the component among (Dirty, Valid, Undefined, Loading, Invalid).
-</td>
+		</td>
 		<td>Undefined</td>
 	</tr>
 	<tr>
 		<td>listening</td>
 		<td>
 if true, handle the events, otherwise ignore the events
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>rayleighStiffness</td>
 		<td>
 Rayleigh damping - stiffness matrix coefficient
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>points</td>
 		<td>
 points controlled by the rest shape springs
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>stiffness</td>
 		<td>
 stiffness values between the actual position and the rest shape position
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>angularStiffness</td>
 		<td>
 angularStiffness assigned when controlling the rotation of the points
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>pivot_points</td>
 		<td>
 global pivot points used when translations instead of the rigid mass centers
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>external_points</td>
 		<td>
 points from the external Mechancial State that define the rest shape springs
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>recompute_indices</td>
 		<td>
 Recompute indices (should be false for BBOX)
-</td>
+		</td>
 		<td>1</td>
 	</tr>
 	<tr>
 		<td>springColor</td>
 		<td>
 spring color. (default=[0.0,1.0,0.0,1.0])
-</td>
+		</td>
+		<td>0 1 0 1</td>
+	</tr>
+	<tr>
+		<td>activeDirections</td>
+		<td>
+Directions in which the spring is active (default=[1])
+		</td>
+		<td>1</td>
+	</tr>
+	<tr>
+		<td colspan="3">Visualization</td>
+	</tr>
+	<tr>
+		<td>drawSpring</td>
+		<td>
+draw Spring
+		</td>
+		<td>0</td>
+	</tr>
+
+</tbody>
+</table>
+
+### Links
+
+
+| Name | Description | Destination type name |
+| ---- | ----------- | --------------------- |
+|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
+|slaves|Sub-objects used internally by this object|BaseObject|
+|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
+|mechanicalStates|List of mechanical states to which this component is associated|BaseMechanicalState|
+|mstate|MechanicalState used by this component|MechanicalState&lt;Vec1d&gt;|
+|external_rest_shape|rest_shape can be defined by the position of an external Mechanical State|MechanicalState&lt;Vec1d&gt;|
+|topology|Link to be set to the topology container in the component graph|BaseMeshTopology|
+
+<!-- generate_doc -->
+## Vec3d
+
+Templates:
+
+- Vec3d
+
+__Target__: Sofa.Component.SolidMechanics.Spring
+
+__namespace__: sofa::component::solidmechanics::spring
+
+__parents__:
+
+- ForceField
+
+### Data
+
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Default value</th>
+        </tr>
+    </thead>
+    <tbody>
+	<tr>
+		<td>name</td>
+		<td>
+object name
+		</td>
+		<td>unnamed</td>
+	</tr>
+	<tr>
+		<td>printLog</td>
+		<td>
+if true, emits extra messages at runtime.
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>tags</td>
+		<td>
+list of the subsets the objet belongs to
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>bbox</td>
+		<td>
+this object bounding box
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>componentState</td>
+		<td>
+The state of the component among (Dirty, Valid, Undefined, Loading, Invalid).
+		</td>
+		<td>Undefined</td>
+	</tr>
+	<tr>
+		<td>listening</td>
+		<td>
+if true, handle the events, otherwise ignore the events
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>rayleighStiffness</td>
+		<td>
+Rayleigh damping - stiffness matrix coefficient
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>points</td>
+		<td>
+points controlled by the rest shape springs
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>stiffness</td>
+		<td>
+stiffness values between the actual position and the rest shape position
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>angularStiffness</td>
+		<td>
+angularStiffness assigned when controlling the rotation of the points
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>pivot_points</td>
+		<td>
+global pivot points used when translations instead of the rigid mass centers
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>external_points</td>
+		<td>
+points from the external Mechancial State that define the rest shape springs
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>recompute_indices</td>
+		<td>
+Recompute indices (should be false for BBOX)
+		</td>
+		<td>1</td>
+	</tr>
+	<tr>
+		<td>springColor</td>
+		<td>
+spring color. (default=[0.0,1.0,0.0,1.0])
+		</td>
 		<td>0 1 0 1</td>
 	</tr>
 	<tr>
 		<td>activeDirections</td>
 		<td>
 Directions in which the spring is active (default=[1,1,1])
-</td>
+		</td>
 		<td>1 1 1</td>
 	</tr>
 	<tr>
@@ -303,190 +457,29 @@ Directions in which the spring is active (default=[1,1,1])
 		<td>drawSpring</td>
 		<td>
 draw Spring
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 
 </tbody>
 </table>
 
-Links: 
-
-| Name | Description |
-| ---- | ----------- |
-|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|
-|slaves|Sub-objects used internally by this object|
-|master|nullptr for regular objects, or master object for which this object is one sub-objects|
-|mechanicalStates|List of mechanical states to which this component is associated|
-|mstate|MechanicalState used by this component|
-|external_rest_shape|rest_shape can be defined by the position of an external Mechanical State|
-|topology|Link to be set to the topology container in the component graph|
+### Links
 
 
+| Name | Description | Destination type name |
+| ---- | ----------- | --------------------- |
+|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
+|slaves|Sub-objects used internally by this object|BaseObject|
+|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
+|mechanicalStates|List of mechanical states to which this component is associated|BaseMechanicalState|
+|mstate|MechanicalState used by this component|MechanicalState&lt;Vec3d&gt;|
+|external_rest_shape|rest_shape can be defined by the position of an external Mechanical State|MechanicalState&lt;Vec3d&gt;|
+|topology|Link to be set to the topology container in the component graph|BaseMeshTopology|
 
-__Templates__:
+## Examples 
 
-- `#!c++ Vec1d`
-
-__Target__: `Sofa.Component.SolidMechanics.Spring`
-
-__namespace__: `#!c++ sofa::component::solidmechanics::spring`
-
-__parents__: 
-
-- `#!c++ ForceField`
-
-__categories__: 
-
-- ForceField
-
-Data: 
-
-<table>
-<thead>
-    <tr>
-        <th>Name</th>
-        <th>Description</th>
-        <th>Default value</th>
-    </tr>
-</thead>
-<tbody>
-	<tr>
-		<td>name</td>
-		<td>
-object name
-</td>
-		<td>unnamed</td>
-	</tr>
-	<tr>
-		<td>printLog</td>
-		<td>
-if true, emits extra messages at runtime.
-</td>
-		<td>0</td>
-	</tr>
-	<tr>
-		<td>tags</td>
-		<td>
-list of the subsets the objet belongs to
-</td>
-		<td></td>
-	</tr>
-	<tr>
-		<td>bbox</td>
-		<td>
-this object bounding box
-</td>
-		<td></td>
-	</tr>
-	<tr>
-		<td>componentState</td>
-		<td>
-The state of the component among (Dirty, Valid, Undefined, Loading, Invalid).
-</td>
-		<td>Undefined</td>
-	</tr>
-	<tr>
-		<td>listening</td>
-		<td>
-if true, handle the events, otherwise ignore the events
-</td>
-		<td>0</td>
-	</tr>
-	<tr>
-		<td>rayleighStiffness</td>
-		<td>
-Rayleigh damping - stiffness matrix coefficient
-</td>
-		<td>0</td>
-	</tr>
-	<tr>
-		<td>points</td>
-		<td>
-points controlled by the rest shape springs
-</td>
-		<td></td>
-	</tr>
-	<tr>
-		<td>stiffness</td>
-		<td>
-stiffness values between the actual position and the rest shape position
-</td>
-		<td></td>
-	</tr>
-	<tr>
-		<td>angularStiffness</td>
-		<td>
-angularStiffness assigned when controlling the rotation of the points
-</td>
-		<td></td>
-	</tr>
-	<tr>
-		<td>pivot_points</td>
-		<td>
-global pivot points used when translations instead of the rigid mass centers
-</td>
-		<td></td>
-	</tr>
-	<tr>
-		<td>external_points</td>
-		<td>
-points from the external Mechancial State that define the rest shape springs
-</td>
-		<td></td>
-	</tr>
-	<tr>
-		<td>recompute_indices</td>
-		<td>
-Recompute indices (should be false for BBOX)
-</td>
-		<td>1</td>
-	</tr>
-	<tr>
-		<td>springColor</td>
-		<td>
-spring color. (default=[0.0,1.0,0.0,1.0])
-</td>
-		<td>0 1 0 1</td>
-	</tr>
-	<tr>
-		<td>activeDirections</td>
-		<td>
-Directions in which the spring is active (default=[1])
-</td>
-		<td>1</td>
-	</tr>
-	<tr>
-		<td colspan="3">Visualization</td>
-	</tr>
-	<tr>
-		<td>drawSpring</td>
-		<td>
-draw Spring
-</td>
-		<td>0</td>
-	</tr>
-
-</tbody>
-</table>
-
-Links: 
-
-| Name | Description |
-| ---- | ----------- |
-|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|
-|slaves|Sub-objects used internally by this object|
-|master|nullptr for regular objects, or master object for which this object is one sub-objects|
-|mechanicalStates|List of mechanical states to which this component is associated|
-|mstate|MechanicalState used by this component|
-|external_rest_shape|rest_shape can be defined by the position of an external Mechanical State|
-|topology|Link to be set to the topology container in the component graph|
-
-
-
-## Examples
-
-Component/SolidMechanics/FEM/RestShapeSpringsForceField3.scn
+RestShapeSpringsForceField3.scn
 
 === "XML"
 
@@ -520,35 +513,39 @@ Component/SolidMechanics/FEM/RestShapeSpringsForceField3.scn
             <UniformMass totalMass="0.01" />
         </Node>
     </Node>
+
     ```
 
 === "Python"
 
     ```python
-    def createScene(rootNode):
+    def createScene(root_node):
 
-        root = rootNode.addChild('root', dt="2.0e-3", gravity="0 0 0")
-        root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Direct")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Mass")
-        root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
-        root.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.Spring")
-        root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Visual")
-        root.addObject('VisualStyle', displayFlags=" showCollisionModels showForceFields")
-        root.addObject('DefaultAnimationLoop')
+       root = root_node.addChild('root', dt="2.0e-3", gravity="0 0 0")
 
-        Object1 = root.addChild('Object1')
-        Object1.addObject('MechanicalObject', name="object1MO", template="Rigid3d", position="0 0 0 0 0 0 1", showObject="true")
+       root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Direct")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Mass")
+       root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.Spring")
+       root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Visual")
+       root.addObject('VisualStyle', displayFlags=" showCollisionModels showForceFields")
+       root.addObject('DefaultAnimationLoop', )
 
-        Object2 = root.addChild('Object2')
-        Object2.addObject('EulerImplicitSolver', rayleighMass="0", rayleighStiffness="0")
-        Object2.addObject('EigenSparseLU', name="LULinearSolver", template="CompressedRowSparseMatrixMat3x3d")
-        Object2.addObject('MechanicalObject', name="object2MO", template="Rigid3d", position="0.5 0.5 0 0.2705980500730985 0.2705980500730985 0 0.9238795325112867", showObject="true")
-        Object2.addObject('RestShapeSpringsForceField', stiffness="11", angularStiffness="12", external_rest_shape="@../Object1/object1MO", points="0", external_points="0", drawSpring="true", springColor="1 1 1 1", activeDirections="1 0 1 1 0 1")
-        Object2.addObject('UniformMass', totalMass="0.01")
+       object1 = root.addChild('Object1')
+
+       object1.addObject('MechanicalObject', name="object1MO", template="Rigid3d", position="0 0 0 0 0 0 1", showObject="true")
+
+       object2 = root.addChild('Object2')
+
+       object2.addObject('EulerImplicitSolver', rayleighMass="0", rayleighStiffness="0")
+       object2.addObject('EigenSparseLU', name="LULinearSolver", template="CompressedRowSparseMatrixMat3x3d")
+       object2.addObject('MechanicalObject', name="object2MO", template="Rigid3d", position="0.5 0.5 0 0.2705980500730985 0.2705980500730985 0 0.9238795325112867", showObject="true")
+       object2.addObject('RestShapeSpringsForceField', stiffness="11", angularStiffness="12", external_rest_shape="@../Object1/object1MO", points="0", external_points="0", drawSpring="true", springColor="1 1 1 1", activeDirections="1 0 1 1 0 1")
+       object2.addObject('UniformMass', totalMass="0.01")
     ```
 
-Component/SolidMechanics/Spring/RestShapeSpringsForceField2.scn
+RestShapeSpringsForceField2.scn
 
 === "XML"
 
@@ -588,44 +585,48 @@ Component/SolidMechanics/Spring/RestShapeSpringsForceField2.scn
             <LinearSolverConstraintCorrection linearSolver="@LULinearSolver"/>
         </Node>
     </Node>
+
     ```
 
 === "Python"
 
     ```python
-    def createScene(rootNode):
+    def createScene(root_node):
 
-        root = rootNode.addChild('root', dt="0.01", gravity="0 0 0")
-        root.addObject('RequiredPlugin', name="Sofa.Component.AnimationLoop")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Geometry")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Lagrangian.Correction")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Lagrangian.Solver")
-        root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Direct")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Mass")
-        root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
-        root.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.Spring")
-        root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Visual")
-        root.addObject('VisualStyle', displayFlags=" showCollisionModels showForceFields")
-        root.addObject('FreeMotionAnimationLoop')
-        root.addObject('GenericConstraintSolver', maxIt="1000", tolerance="1e-10", printLog="false")
+       root = root_node.addChild('root', dt="0.01", gravity="0 0 0")
 
-        Object1 = root.addChild('Object1')
-        Object1.addObject('MechanicalObject', name="ms", template="Rigid3", position="0 0 0 0 0 0 0 1", showObject="false")
-        Object1.addObject('SphereCollisionModel', radius="0.01", color="0 1 0 1")
+       root.addObject('RequiredPlugin', name="Sofa.Component.AnimationLoop")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Geometry")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Lagrangian.Correction")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Lagrangian.Solver")
+       root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Direct")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Mass")
+       root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.Spring")
+       root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Visual")
+       root.addObject('VisualStyle', displayFlags=" showCollisionModels showForceFields")
+       root.addObject('FreeMotionAnimationLoop', )
+       root.addObject('GenericConstraintSolver', maxIt="1000", tolerance="1e-10", printLog="false")
 
-        Object2 = root.addChild('Object2')
-        Object2.addObject('EulerImplicitSolver', rayleighMass="0", rayleighStiffness="0")
-        Object2.addObject('EigenSparseLU', template="CompressedRowSparseMatrix", name="LULinearSolver")
-        Object2.addObject('MechanicalObject', name="mstate", template="Rigid3", position="0.1 0 0  0  0 0 0 1")
-        Object2.addObject('SphereCollisionModel', color="1 0 0 1", radius="0.01")
-        Object2.addObject('RestShapeSpringsForceField', stiffness="11", angularStiffness="11", external_rest_shape="@../Object1/ms", points="0", external_points="0", drawSpring="true", springColor="1 1 1 1")
-        Object2.addObject('UniformMass', totalMass="0.01")
-        Object2.addObject('SphereCollisionModel', radius="0.0005", color="1 0 0  1")
-        Object2.addObject('LinearSolverConstraintCorrection', linearSolver="@LULinearSolver")
+       object1 = root.addChild('Object1')
+
+       object1.addObject('MechanicalObject', name="ms", template="Rigid3", position="0 0 0 0 0 0 0 1", showObject="false")
+       object1.addObject('SphereCollisionModel', radius="0.01", color="0 1 0 1")
+
+       object2 = root.addChild('Object2')
+
+       object2.addObject('EulerImplicitSolver', rayleighMass="0", rayleighStiffness="0")
+       object2.addObject('EigenSparseLU', template="CompressedRowSparseMatrix", name="LULinearSolver")
+       object2.addObject('MechanicalObject', name="mstate", template="Rigid3", position="0.1 0 0  0  0 0 0 1")
+       object2.addObject('SphereCollisionModel', color="1 0 0 1", radius="0.01")
+       object2.addObject('RestShapeSpringsForceField', stiffness="11", angularStiffness="11", external_rest_shape="@../Object1/ms", points="0", external_points="0", drawSpring="true", springColor="1 1 1 1")
+       object2.addObject('UniformMass', totalMass="0.01")
+       object2.addObject('SphereCollisionModel', radius="0.0005", color="1 0 0  1")
+       object2.addObject('LinearSolverConstraintCorrection', linearSolver="@LULinearSolver")
     ```
 
-Component/SolidMechanics/Spring/RestShapeSpringsForceField.scn
+RestShapeSpringsForceField.scn
 
 === "XML"
 
@@ -736,112 +737,126 @@ Component/SolidMechanics/Spring/RestShapeSpringsForceField.scn
     		</Node>
     	</Node>
     </Node>
+
     ```
 
 === "Python"
 
     ```python
-    def createScene(rootNode):
+    def createScene(root_node):
 
-        root = rootNode.addChild('root', dt="0.01")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Geometry")
-        root.addObject('RequiredPlugin', name="Sofa.Component.IO.Mesh")
-        root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Iterative")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Mapping.Linear")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Mapping.NonLinear")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Mass")
-        root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
-        root.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.Spring")
-        root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Constant")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Grid")
-        root.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
-        root.addObject('DefaultAnimationLoop')
+       root = root_node.addChild('root', dt="0.01")
 
-        Dragon = root.addChild('Dragon')
-        Dragon.addObject('EulerImplicitSolver', rayleighStiffness="0.1", rayleighMass="0.1")
-        Dragon.addObject('CGLinearSolver', iterations="30", tolerance="1e-5", threshold="1e-5")
-        Dragon.addObject('SparseGridTopology', n="10 5 10", fileTopology="mesh/dragon.obj")
-        Dragon.addObject('MechanicalObject', dx="-12.0")
-        Dragon.addObject('UniformMass', vertexMass="1.0")
-        Dragon.addObject('RestShapeSpringsForceField', name="Springs", stiffness="50")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Geometry")
+       root.addObject('RequiredPlugin', name="Sofa.Component.IO.Mesh")
+       root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Iterative")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Mapping.Linear")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Mapping.NonLinear")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Mass")
+       root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.Spring")
+       root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Constant")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Grid")
+       root.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
+       root.addObject('DefaultAnimationLoop', )
 
-        Visu = Dragon.addChild('Visu')
-        Visu.addObject('MeshOBJLoader', name="meshLoader_2", filename="mesh/dragon.obj", handleSeams="1")
-        Visu.addObject('OglModel', name="Visual", src="@meshLoader_2", color="0.5 1.0 0.5 1.0")
-        Visu.addObject('BarycentricMapping', input="@..", output="@Visual")
+       dragon = root.addChild('Dragon')
 
-        TriangleSurf = Dragon.addChild('TriangleSurf')
-        TriangleSurf.addObject('MeshOBJLoader', name="loader", filename="mesh/dragon.obj")
-        TriangleSurf.addObject('MeshTopology', src="@loader")
-        TriangleSurf.addObject('MechanicalObject', src="@loader")
-        TriangleSurf.addObject('TriangleCollisionModel', group="1")
-        TriangleSurf.addObject('LineCollisionModel', group="1")
-        TriangleSurf.addObject('PointCollisionModel', group="1")
-        TriangleSurf.addObject('BarycentricMapping', input="@..", output="@.")
+       dragon.addObject('EulerImplicitSolver', rayleighStiffness="0.1", rayleighMass="0.1")
+       dragon.addObject('CGLinearSolver', iterations="30", tolerance="1e-5", threshold="1e-5")
+       dragon.addObject('SparseGridTopology', n="10 5 10", fileTopology="mesh/dragon.obj")
+       dragon.addObject('MechanicalObject', dx="-12.0")
+       dragon.addObject('UniformMass', vertexMass="1.0")
+       dragon.addObject('RestShapeSpringsForceField', name="Springs", stiffness="50")
 
-        Dragon with Damping = root.addChild('Dragon with Damping')
-        Dragon with Damping.addObject('EulerImplicitSolver')
-        Dragon with Damping.addObject('CGLinearSolver', iterations="30", tolerance="1e-5", threshold="1e-5")
-        Dragon with Damping.addObject('SparseGridTopology', n="10 5 10", fileTopology="mesh/dragon.obj")
-        Dragon with Damping.addObject('MechanicalObject', dx="12.0")
-        Dragon with Damping.addObject('UniformMass', vertexMass="1.0")
-        Dragon with Damping.addObject('RestShapeSpringsForceField', name="Springs", stiffness="50")
+       visu = Dragon.addChild('Visu')
 
-        Visu = Dragon with Damping.addChild('Visu')
-        Visu.addObject('MeshOBJLoader', name="meshLoader_1", filename="mesh/dragon.obj", handleSeams="1")
-        Visu.addObject('OglModel', name="Visual", src="@meshLoader_1", color="1.0 0.5 0.5 1.0")
-        Visu.addObject('BarycentricMapping', input="@..", output="@Visual")
+       visu.addObject('MeshOBJLoader', name="meshLoader_2", filename="mesh/dragon.obj", handleSeams="1")
+       visu.addObject('OglModel', name="Visual", src="@meshLoader_2", color="0.5 1.0 0.5 1.0")
+       visu.addObject('BarycentricMapping', input="@..", output="@Visual")
 
-        TriangleSurf = Dragon with Damping.addChild('TriangleSurf')
-        TriangleSurf.addObject('MeshOBJLoader', name="loader", filename="mesh/dragon.obj")
-        TriangleSurf.addObject('MeshTopology', src="@loader")
-        TriangleSurf.addObject('MechanicalObject', src="@loader")
-        TriangleSurf.addObject('TriangleCollisionModel', group="1")
-        TriangleSurf.addObject('LineCollisionModel', group="1")
-        TriangleSurf.addObject('PointCollisionModel', group="1")
-        TriangleSurf.addObject('BarycentricMapping', input="@..", output="@.")
+       triangle_surf = Dragon.addChild('TriangleSurf')
 
-        CUBE = root.addChild('CUBE')
-        CUBE.addObject('EulerImplicitSolver')
-        CUBE.addObject('CGLinearSolver', iterations="30", tolerance="1e-5", threshold="1e-5")
-        CUBE.addObject('MechanicalObject', template="Rigid3", dx="-12.0", dy="-20", rx="10")
-        CUBE.addObject('UniformMass', totalMass="1.0")
-        CUBE.addObject('RestShapeSpringsForceField', name="Springs", stiffness="50", angularStiffness="50")
+       triangle_surf.addObject('MeshOBJLoader', name="loader", filename="mesh/dragon.obj")
+       triangle_surf.addObject('MeshTopology', src="@loader")
+       triangle_surf.addObject('MechanicalObject', src="@loader")
+       triangle_surf.addObject('TriangleCollisionModel', group="1")
+       triangle_surf.addObject('LineCollisionModel', group="1")
+       triangle_surf.addObject('PointCollisionModel', group="1")
+       triangle_surf.addObject('BarycentricMapping', input="@..", output="@.")
 
-        Visu = CUBE.addChild('Visu')
-        Visu.addObject('MeshOBJLoader', name="meshLoader_3", filename="mesh/smCube27.obj", handleSeams="1")
-        Visu.addObject('OglModel', name="Visual", src="@meshLoader_3", color="0.5 1.0 0.5 1.0")
-        Visu.addObject('RigidMapping', input="@..", output="@Visual")
+       dragon_with__damping = root.addChild('Dragon with Damping')
 
-        Surf2 = CUBE.addChild('Surf2')
-        Surf2.addObject('MeshOBJLoader', name="loader", filename="mesh/smCube27.obj", triangulate="true")
-        Surf2.addObject('MeshTopology', src="@loader")
-        Surf2.addObject('MechanicalObject', src="@loader")
-        Surf2.addObject('TriangleCollisionModel', group="1")
-        Surf2.addObject('LineCollisionModel', group="1")
-        Surf2.addObject('PointCollisionModel', group="1")
-        Surf2.addObject('RigidMapping', input="@..", output="@.")
+       dragon_with__damping.addObject('EulerImplicitSolver', )
+       dragon_with__damping.addObject('CGLinearSolver', iterations="30", tolerance="1e-5", threshold="1e-5")
+       dragon_with__damping.addObject('SparseGridTopology', n="10 5 10", fileTopology="mesh/dragon.obj")
+       dragon_with__damping.addObject('MechanicalObject', dx="12.0")
+       dragon_with__damping.addObject('UniformMass', vertexMass="1.0")
+       dragon_with__damping.addObject('RestShapeSpringsForceField', name="Springs", stiffness="50")
 
-        CUBE with Damping = root.addChild('CUBE with Damping')
-        CUBE with Damping.addObject('EulerImplicitSolver')
-        CUBE with Damping.addObject('CGLinearSolver', iterations="30", tolerance="1e-5", threshold="1e-5")
-        CUBE with Damping.addObject('MechanicalObject', template="Rigid3", dx="12.0", dy="-20", rx="10")
-        CUBE with Damping.addObject('UniformMass', totalMass="1.0")
-        CUBE with Damping.addObject('RestShapeSpringsForceField', name="Springs", stiffness="50", angularStiffness="50")
+       visu = Dragon with Damping.addChild('Visu')
 
-        Visu = CUBE with Damping.addChild('Visu')
-        Visu.addObject('MeshOBJLoader', name="meshLoader_0", filename="mesh/smCube27.obj", handleSeams="1")
-        Visu.addObject('OglModel', name="Visual", src="@meshLoader_0", color="1.0 0.5 0.5 1.0")
-        Visu.addObject('RigidMapping', input="@..", output="@Visual")
+       visu.addObject('MeshOBJLoader', name="meshLoader_1", filename="mesh/dragon.obj", handleSeams="1")
+       visu.addObject('OglModel', name="Visual", src="@meshLoader_1", color="1.0 0.5 0.5 1.0")
+       visu.addObject('BarycentricMapping', input="@..", output="@Visual")
 
-        Surf2 = CUBE with Damping.addChild('Surf2')
-        Surf2.addObject('MeshOBJLoader', name="loader", filename="mesh/smCube27.obj", triangulate="true")
-        Surf2.addObject('MeshTopology', src="@loader")
-        Surf2.addObject('MechanicalObject', src="@loader")
-        Surf2.addObject('TriangleCollisionModel', group="1")
-        Surf2.addObject('LineCollisionModel', group="1")
-        Surf2.addObject('PointCollisionModel', group="1")
-        Surf2.addObject('RigidMapping', input="@..", output="@.")
+       triangle_surf = Dragon with Damping.addChild('TriangleSurf')
+
+       triangle_surf.addObject('MeshOBJLoader', name="loader", filename="mesh/dragon.obj")
+       triangle_surf.addObject('MeshTopology', src="@loader")
+       triangle_surf.addObject('MechanicalObject', src="@loader")
+       triangle_surf.addObject('TriangleCollisionModel', group="1")
+       triangle_surf.addObject('LineCollisionModel', group="1")
+       triangle_surf.addObject('PointCollisionModel', group="1")
+       triangle_surf.addObject('BarycentricMapping', input="@..", output="@.")
+
+       cube = root.addChild('CUBE')
+
+       cube.addObject('EulerImplicitSolver', )
+       cube.addObject('CGLinearSolver', iterations="30", tolerance="1e-5", threshold="1e-5")
+       cube.addObject('MechanicalObject', template="Rigid3", dx="-12.0", dy="-20", rx="10")
+       cube.addObject('UniformMass', totalMass="1.0")
+       cube.addObject('RestShapeSpringsForceField', name="Springs", stiffness="50", angularStiffness="50")
+
+       visu = CUBE.addChild('Visu')
+
+       visu.addObject('MeshOBJLoader', name="meshLoader_3", filename="mesh/smCube27.obj", handleSeams="1")
+       visu.addObject('OglModel', name="Visual", src="@meshLoader_3", color="0.5 1.0 0.5 1.0")
+       visu.addObject('RigidMapping', input="@..", output="@Visual")
+
+       surf2 = CUBE.addChild('Surf2')
+
+       surf2.addObject('MeshOBJLoader', name="loader", filename="mesh/smCube27.obj", triangulate="true")
+       surf2.addObject('MeshTopology', src="@loader")
+       surf2.addObject('MechanicalObject', src="@loader")
+       surf2.addObject('TriangleCollisionModel', group="1")
+       surf2.addObject('LineCollisionModel', group="1")
+       surf2.addObject('PointCollisionModel', group="1")
+       surf2.addObject('RigidMapping', input="@..", output="@.")
+
+       cube_with__damping = root.addChild('CUBE with Damping')
+
+       cube_with__damping.addObject('EulerImplicitSolver', )
+       cube_with__damping.addObject('CGLinearSolver', iterations="30", tolerance="1e-5", threshold="1e-5")
+       cube_with__damping.addObject('MechanicalObject', template="Rigid3", dx="12.0", dy="-20", rx="10")
+       cube_with__damping.addObject('UniformMass', totalMass="1.0")
+       cube_with__damping.addObject('RestShapeSpringsForceField', name="Springs", stiffness="50", angularStiffness="50")
+
+       visu = CUBE with Damping.addChild('Visu')
+
+       visu.addObject('MeshOBJLoader', name="meshLoader_0", filename="mesh/smCube27.obj", handleSeams="1")
+       visu.addObject('OglModel', name="Visual", src="@meshLoader_0", color="1.0 0.5 0.5 1.0")
+       visu.addObject('RigidMapping', input="@..", output="@Visual")
+
+       surf2 = CUBE with Damping.addChild('Surf2')
+
+       surf2.addObject('MeshOBJLoader', name="loader", filename="mesh/smCube27.obj", triangulate="true")
+       surf2.addObject('MeshTopology', src="@loader")
+       surf2.addObject('MechanicalObject', src="@loader")
+       surf2.addObject('TriangleCollisionModel', group="1")
+       surf2.addObject('LineCollisionModel', group="1")
+       surf2.addObject('PointCollisionModel', group="1")
+       surf2.addObject('RigidMapping', input="@..", output="@.")
     ```
 

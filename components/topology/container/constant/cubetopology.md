@@ -1,176 +1,173 @@
+<!-- generate_doc -->
 # CubeTopology
 
 Surface of a cube in 3D
 
 
-__Target__: `Sofa.Component.Topology.Container.Constant`
+__Target__: Sofa.Component.Topology.Container.Constant
 
-__namespace__: `#!c++ sofa::component::topology::container::constant`
+__namespace__: sofa::component::topology::container::constant
 
-__parents__: 
+__parents__:
 
-- `#!c++ MeshTopology`
+- MeshTopology
 
-__categories__: 
-
-- Topology
-
-Data: 
+### Data
 
 <table>
-<thead>
-    <tr>
-        <th>Name</th>
-        <th>Description</th>
-        <th>Default value</th>
-    </tr>
-</thead>
-<tbody>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Default value</th>
+        </tr>
+    </thead>
+    <tbody>
 	<tr>
 		<td>name</td>
 		<td>
 object name
-</td>
+		</td>
 		<td>unnamed</td>
 	</tr>
 	<tr>
 		<td>printLog</td>
 		<td>
 if true, emits extra messages at runtime.
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>tags</td>
 		<td>
 list of the subsets the objet belongs to
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>bbox</td>
 		<td>
 this object bounding box
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>componentState</td>
 		<td>
 The state of the component among (Dirty, Valid, Undefined, Loading, Invalid).
-</td>
+		</td>
 		<td>Undefined</td>
 	</tr>
 	<tr>
 		<td>listening</td>
 		<td>
 if true, handle the events, otherwise ignore the events
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>filename</td>
 		<td>
 Filename of the mesh
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>position</td>
 		<td>
 List of point positions
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>edges</td>
 		<td>
 List of edge indices
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>triangles</td>
 		<td>
 List of triangle indices
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>quads</td>
 		<td>
 List of quad indices
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>tetrahedra</td>
 		<td>
 List of tetrahedron indices
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>hexahedra</td>
 		<td>
 List of hexahedron indices
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>uv</td>
 		<td>
 List of uv coordinates
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>nx</td>
 		<td>
 x grid resolution
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>ny</td>
 		<td>
 y grid resolution
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>nz</td>
 		<td>
 z grid resolution
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>internalPoints</td>
 		<td>
 include internal points (allow a one-to-one mapping between points from RegularGridTopology and CubeTopology)
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>splitNormals</td>
 		<td>
 split corner points to have planar normals
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>min</td>
 		<td>
 Min
-</td>
+		</td>
 		<td>0 0 0</td>
 	</tr>
 	<tr>
 		<td>max</td>
 		<td>
 Max
-</td>
+		</td>
 		<td>1 1 1</td>
 	</tr>
 	<tr>
@@ -180,54 +177,53 @@ Max
 		<td>drawEdges</td>
 		<td>
 if true, draw the topology Edges
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>drawTriangles</td>
 		<td>
 if true, draw the topology Triangles
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>drawQuads</td>
 		<td>
 if true, draw the topology Quads
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>drawTetrahedra</td>
 		<td>
 if true, draw the topology Tetrahedra
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>drawHexahedra</td>
 		<td>
 if true, draw the topology hexahedra
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 
 </tbody>
 </table>
 
-Links: 
-
-| Name | Description |
-| ---- | ----------- |
-|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|
-|slaves|Sub-objects used internally by this object|
-|master|nullptr for regular objects, or master object for which this object is one sub-objects|
+### Links
 
 
+| Name | Description | Destination type name |
+| ---- | ----------- | --------------------- |
+|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
+|slaves|Sub-objects used internally by this object|BaseObject|
+|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
 
-## Examples
+## Examples 
 
-Component/Topology/Container/Constant/CubeTopology.scn
+CubeTopology.scn
 
 === "XML"
 
@@ -277,54 +273,59 @@ Component/Topology/Container/Constant/CubeTopology.scn
             </Node>
         </Node>
     </Node>
+
     ```
 
 === "Python"
 
     ```python
-    def createScene(rootNode):
+    def createScene(root_node):
 
-        root = rootNode.addChild('root', dt="0.02")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Algorithm")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Intersection")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Response.Contact")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Projective")
-        root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Iterative")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Mapping.Linear")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Mass")
-        root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
-        root.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.FEM.Elastic")
-        root.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.Spring")
-        root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Constant")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Dynamic")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Mapping")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Visual")
-        root.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
-        root.addObject('CollisionPipeline', verbose="0", name="CollisionPipeline")
-        root.addObject('BruteForceBroadPhase')
-        root.addObject('BVHNarrowPhase')
-        root.addObject('CollisionResponse', response="PenalityContactForceField", name="collision response")
-        root.addObject('DiscreteIntersection')
-        root.addObject('DefaultAnimationLoop')
+       root = root_node.addChild('root', dt="0.02")
 
-        Cubes = root.addChild('Cubes')
-        Cubes.addObject('VisualStyle', displayFlags="showForceFields")
-        Cubes.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
-        Cubes.addObject('CGLinearSolver', iterations="25", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
-        Cubes.addObject('CubeTopology', internalPoints="0", splitNormals="1", name="cubeTopo", nx="3", ny="3", nz="5", min="-0.015 -0.015 -0.075", max="0.015 0.015 0.075")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Algorithm")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Intersection")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Response.Contact")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Projective")
+       root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Iterative")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Mapping.Linear")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Mass")
+       root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.FEM.Elastic")
+       root.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.Spring")
+       root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Constant")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Dynamic")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Mapping")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Visual")
+       root.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
+       root.addObject('CollisionPipeline', verbose="0", name="CollisionPipeline")
+       root.addObject('BruteForceBroadPhase', )
+       root.addObject('BVHNarrowPhase', )
+       root.addObject('CollisionResponse', response="PenalityContactForceField", name="collision response")
+       root.addObject('DiscreteIntersection', )
+       root.addObject('DefaultAnimationLoop', )
 
-        topoTriangle = Cubes.addChild('topoTriangle')
-        topoTriangle.addObject('include', href="Objects/TriangleSetTopology.xml", src="@../cubeTopo")
-        topoTriangle.addObject('Quad2TriangleTopologicalMapping', input="@../cubeTopo", output="@Container")
-        topoTriangle.addObject('MechanicalObject', name="dofs", printLog="1", position="@../cubeTopo.position")
-        topoTriangle.addObject('FixedProjectiveConstraint', name="FixedProjectiveConstraint", indices="3 39 64")
-        topoTriangle.addObject('TriangleFEMForceField', name="FEM1", youngModulus="500", poissonRatio="0.3", method="large")
-        topoTriangle.addObject('TriangularBendingSprings', name="FEM-Bend", stiffness="3000", damping="1.0")
-        topoTriangle.addObject('UniformMass', vertexMass="0.1")
+       cubes = root.addChild('Cubes')
 
-        Visu = topoTriangle.addChild('Visu')
-        Visu.addObject('OglModel', name="Visual", color="red")
-        Visu.addObject('IdentityMapping', input="@../dofs", output="@Visual")
+       cubes.addObject('VisualStyle', displayFlags="showForceFields")
+       cubes.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
+       cubes.addObject('CGLinearSolver', iterations="25", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
+       cubes.addObject('CubeTopology', internalPoints="0", splitNormals="1", name="cubeTopo", nx="3", ny="3", nz="5", min="-0.015 -0.015 -0.075", max="0.015 0.015 0.075")
+
+       topo_triangle = Cubes.addChild('topoTriangle')
+
+       topo_triangle.addObject('include', href="Objects/TriangleSetTopology.xml", src="@../cubeTopo")
+       topo_triangle.addObject('Quad2TriangleTopologicalMapping', input="@../cubeTopo", output="@Container")
+       topo_triangle.addObject('MechanicalObject', name="dofs", printLog="1", position="@../cubeTopo.position")
+       topo_triangle.addObject('FixedProjectiveConstraint', name="FixedProjectiveConstraint", indices="3 39 64")
+       topo_triangle.addObject('TriangleFEMForceField', name="FEM1", youngModulus="500", poissonRatio="0.3", method="large")
+       topo_triangle.addObject('TriangularBendingSprings', name="FEM-Bend", stiffness="3000", damping="1.0")
+       topo_triangle.addObject('UniformMass', vertexMass="0.1")
+
+       visu = topoTriangle.addChild('Visu')
+
+       visu.addObject('OglModel', name="Visual", color="red")
+       visu.addObject('IdentityMapping', input="@../dofs", output="@Visual")
     ```
 

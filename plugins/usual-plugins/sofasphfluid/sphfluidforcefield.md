@@ -1,181 +1,178 @@
+<!-- generate_doc -->
 # SPHFluidForceField
 
 Smooth Particle Hydrodynamics
-Supports GPU-side computations using CUDA
 
 
-__Templates__:
+## Vec3d
 
-- `#!c++ Vec3d`
+Templates:
 
-__Target__: `SofaSphFluid`
+- Vec3d
 
-__namespace__: `#!c++ sofa::component::forcefield`
+__Target__: SofaSphFluid
 
-__parents__: 
+__namespace__: sofa::component::forcefield
 
-- `#!c++ ForceField`
-
-__categories__: 
+__parents__:
 
 - ForceField
 
-Data: 
+### Data
 
 <table>
-<thead>
-    <tr>
-        <th>Name</th>
-        <th>Description</th>
-        <th>Default value</th>
-    </tr>
-</thead>
-<tbody>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Default value</th>
+        </tr>
+    </thead>
+    <tbody>
 	<tr>
 		<td>name</td>
 		<td>
 object name
-</td>
+		</td>
 		<td>unnamed</td>
 	</tr>
 	<tr>
 		<td>printLog</td>
 		<td>
 if true, emits extra messages at runtime.
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>tags</td>
 		<td>
 list of the subsets the objet belongs to
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>bbox</td>
 		<td>
 this object bounding box
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>componentState</td>
 		<td>
 The state of the component among (Dirty, Valid, Undefined, Loading, Invalid).
-</td>
+		</td>
 		<td>Undefined</td>
 	</tr>
 	<tr>
 		<td>listening</td>
 		<td>
 if true, handle the events, otherwise ignore the events
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>rayleighStiffness</td>
 		<td>
 Rayleigh damping - stiffness matrix coefficient
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>radius</td>
 		<td>
 Radius of a Particle
-</td>
+		</td>
 		<td>1</td>
 	</tr>
 	<tr>
 		<td>mass</td>
 		<td>
 Mass of a Particle
-</td>
+		</td>
 		<td>1</td>
 	</tr>
 	<tr>
 		<td>pressure</td>
 		<td>
 Pressure
-</td>
+		</td>
 		<td>100</td>
 	</tr>
 	<tr>
 		<td>density</td>
 		<td>
 Density
-</td>
+		</td>
 		<td>1</td>
 	</tr>
 	<tr>
 		<td>viscosity</td>
 		<td>
 Viscosity
-</td>
+		</td>
 		<td>0.001</td>
 	</tr>
 	<tr>
 		<td>surfaceTension</td>
 		<td>
 Surface Tension
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>kernelType</td>
 		<td>
 0 = default kernels, 1 = cubic spline
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>pressureType</td>
 		<td>
 0 = none, 1 = default pressure
-</td>
+		</td>
 		<td>1</td>
 	</tr>
 	<tr>
 		<td>viscosityType</td>
 		<td>
 0 = none, 1 = default d_viscosity using kernel Laplacian, 2 = artificial d_viscosity
-</td>
+		</td>
 		<td>1</td>
 	</tr>
 	<tr>
 		<td>surfaceTensionType</td>
 		<td>
 0 = none, 1 = default surface tension using kernel Laplacian, 2 = cohesion forces surface tension from Becker et al. 2007
-</td>
+		</td>
 		<td>1</td>
 	</tr>
 	<tr>
 		<td>debugGrid</td>
 		<td>
 If true will store additionnal information on the grid to check neighbors and draw them
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 
 </tbody>
 </table>
 
-Links: 
-
-| Name | Description |
-| ---- | ----------- |
-|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|
-|slaves|Sub-objects used internally by this object|
-|master|nullptr for regular objects, or master object for which this object is one sub-objects|
-|mechanicalStates|List of mechanical states to which this component is associated|
-|mstate|MechanicalState used by this component|
+### Links
 
 
+| Name | Description | Destination type name |
+| ---- | ----------- | --------------------- |
+|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
+|slaves|Sub-objects used internally by this object|BaseObject|
+|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
+|mechanicalStates|List of mechanical states to which this component is associated|BaseMechanicalState|
+|mstate|MechanicalState used by this component|MechanicalState&lt;Vec3d&gt;|
 
-## Examples
+## Examples 
 
-SofaSphFluid/share/sofa/examples/SofaSphFluid/SPHFluidForceField.scn
+SPHFluidForceField.scn
 
 === "XML"
 
@@ -209,39 +206,42 @@ SofaSphFluid/share/sofa/examples/SofaSphFluid/SPHFluidForceField.scn
             <PlaneForceField normal="0 0 -1" d="-4" showPlane="1"/>
         </Node>
     </Node>
+
     ```
 
 === "Python"
 
     ```python
-    def createScene(rootNode):
+    def createScene(root_node):
 
-        rootNode = rootNode.addChild('rootNode', dt="0.01", gravity="0 -10 0")
-        rootNode.addObject('RequiredPlugin', name="Sofa.Component.Mass")
-        rootNode.addObject('RequiredPlugin', name="Sofa.Component.MechanicalLoad")
-        rootNode.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Forward")
-        rootNode.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
-        rootNode.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Grid")
-        rootNode.addObject('RequiredPlugin', name="Sofa.Component.Visual")
-        rootNode.addObject('RequiredPlugin', name="SofaSphFluid")
-        rootNode.addObject('VisualStyle', displayFlags="showBehaviorModels showForceFields showCollisionModels")
-        rootNode.addObject('DefaultAnimationLoop')
+       node = root_node.addChild('node', dt="0.01", gravity="0 -10 0")
 
-        rootNode = rootNode.addChild('rootNode')
-        rootNode.addObject('EulerExplicitSolver', symplectic="1")
-        rootNode.addObject('MechanicalObject', name="MModel")
-        rootNode.addObject('RegularGridTopology', nx="5", ny="40", nz="5", xmin="-1.5", xmax="0", ymin="-3", ymax="12", zmin="-1.5", zmax="0")
-        rootNode.addObject('UniformMass', name="M1", vertexMass="1")
-        rootNode.addObject('SpatialGridContainer', cellWidth="0.75")
-        rootNode.addObject('SPHFluidForceField', radius="0.745", density="15", kernelType="1", viscosityType="2", viscosity="10", pressure="1000", surfaceTension="-1000", printLog="0")
-        rootNode.addObject('PlaneForceField', normal="1 0 0", d="-4", showPlane="1")
-        rootNode.addObject('PlaneForceField', normal="-1 0 0", d="-4", showPlane="1")
-        rootNode.addObject('PlaneForceField', normal="0.5 1 0.1", d="-4", showPlane="1")
-        rootNode.addObject('PlaneForceField', normal="0 0 1", d="-4", showPlane="1")
-        rootNode.addObject('PlaneForceField', normal="0 0 -1", d="-4", showPlane="1")
+       node.addObject('RequiredPlugin', name="Sofa.Component.Mass")
+       node.addObject('RequiredPlugin', name="Sofa.Component.MechanicalLoad")
+       node.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Forward")
+       node.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
+       node.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Grid")
+       node.addObject('RequiredPlugin', name="Sofa.Component.Visual")
+       node.addObject('RequiredPlugin', name="SofaSphFluid")
+       node.addObject('VisualStyle', displayFlags="showBehaviorModels showForceFields showCollisionModels")
+       node.addObject('DefaultAnimationLoop', )
+
+       node = node.addChild('node')
+
+       node.addObject('EulerExplicitSolver', symplectic="1")
+       node.addObject('MechanicalObject', name="MModel")
+       node.addObject('RegularGridTopology', nx="5", ny="40", nz="5", xmin="-1.5", xmax="0", ymin="-3", ymax="12", zmin="-1.5", zmax="0")
+       node.addObject('UniformMass', name="M1", vertexMass="1")
+       node.addObject('SpatialGridContainer', cellWidth="0.75")
+       node.addObject('SPHFluidForceField', radius="0.745", density="15", kernelType="1", viscosityType="2", viscosity="10", pressure="1000", surfaceTension="-1000", printLog="0")
+       node.addObject('PlaneForceField', normal="1 0 0", d="-4", showPlane="1")
+       node.addObject('PlaneForceField', normal="-1 0 0", d="-4", showPlane="1")
+       node.addObject('PlaneForceField', normal="0.5 1 0.1", d="-4", showPlane="1")
+       node.addObject('PlaneForceField', normal="0 0 1", d="-4", showPlane="1")
+       node.addObject('PlaneForceField', normal="0 0 -1", d="-4", showPlane="1")
     ```
 
-SofaSphFluid/share/sofa/examples/SofaSphFluid/SPHFluidForceField_benchmarks.scn
+SPHFluidForceField_benchmarks.scn
 
 === "XML"
 
@@ -313,69 +313,74 @@ SofaSphFluid/share/sofa/examples/SofaSphFluid/SPHFluidForceField_benchmarks.scn
         </Node>
         
     </Node>
+
     ```
 
 === "Python"
 
     ```python
-    def createScene(rootNode):
+    def createScene(root_node):
 
-        rootNode = rootNode.addChild('rootNode', dt="0.01", gravity="0 -10 0")
-        rootNode.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Iterative")
-        rootNode.addObject('RequiredPlugin', name="Sofa.Component.Mass")
-        rootNode.addObject('RequiredPlugin', name="Sofa.Component.MechanicalLoad")
-        rootNode.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
-        rootNode.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
-        rootNode.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Grid")
-        rootNode.addObject('RequiredPlugin', name="Sofa.Component.Visual")
-        rootNode.addObject('RequiredPlugin', name="SofaSphFluid")
-        rootNode.addObject('VisualStyle', displayFlags="showBehaviorModels showForceFields showCollisionModels")
-        rootNode.addObject('DefaultAnimationLoop')
+       node = root_node.addChild('node', dt="0.01", gravity="0 -10 0")
 
-        Less_pressure = rootNode.addChild('Less_pressure')
-        Less_pressure.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
-        Less_pressure.addObject('CGLinearSolver', iterations="25", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
-        Less_pressure.addObject('MechanicalObject', name="Model")
-        Less_pressure.addObject('RegularGridTopology', nx="5", ny="40", nz="5", xmin="-1.5", xmax="0", ymin="0", ymax="15", zmin="10", zmax="11.5")
-        Less_pressure.addObject('UniformMass', name="M1", vertexMass="1")
-        Less_pressure.addObject('SpatialGridContainer', cellWidth="0.75")
-        Less_pressure.addObject('SPHFluidForceField', radius="0.745", density="15", kernelType="1", viscosityType="2", viscosity="10", pressure="10", surfaceTension="-1000", printLog="0")
-        Less_pressure.addObject('PlaneForceField', normal="1 0 0", d="-4", showPlane="0")
-        Less_pressure.addObject('PlaneForceField', normal="-1 0 0", d="-14", showPlane="0")
-        Less_pressure.addObject('PlaneForceField', normal="0.3 1 0", d="-4", showPlane="1")
-        Less_pressure.addObject('PlaneForceField', normal="0 0 1", d="6", showPlane="1")
-        Less_pressure.addObject('PlaneForceField', normal="0 0 -1", d="-14", showPlane="1")
+       node.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Iterative")
+       node.addObject('RequiredPlugin', name="Sofa.Component.Mass")
+       node.addObject('RequiredPlugin', name="Sofa.Component.MechanicalLoad")
+       node.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
+       node.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
+       node.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Grid")
+       node.addObject('RequiredPlugin', name="Sofa.Component.Visual")
+       node.addObject('RequiredPlugin', name="SofaSphFluid")
+       node.addObject('VisualStyle', displayFlags="showBehaviorModels showForceFields showCollisionModels")
+       node.addObject('DefaultAnimationLoop', )
 
-        Normal = rootNode.addChild('Normal')
-        Normal.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
-        Normal.addObject('CGLinearSolver', iterations="25", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
-        Normal.addObject('MechanicalObject', name="MModel")
-        Normal.addObject('RegularGridTopology', nx="5", ny="40", nz="5", xmin="-1.5", xmax="0", ymin="0", ymax="15", zmin="-1.5", zmax="0")
-        Normal.addObject('UniformMass', name="M1", vertexMass="1")
-        Normal.addObject('SpatialGridContainer', cellWidth="0.75")
-        Normal.addObject('SPHFluidForceField', radius="0.745", density="15", kernelType="1", viscosityType="2", viscosity="10", pressure="1000", surfaceTension="-1000", printLog="0")
-        Normal.addObject('PlaneForceField', normal="1 0 0", d="-4", showPlane="0")
-        Normal.addObject('PlaneForceField', normal="-1 0 0", d="-14", showPlane="0")
-        Normal.addObject('PlaneForceField', normal="0.3 1 0", d="-4", showPlane="1")
-        Normal.addObject('PlaneForceField', normal="0 0 1", d="-4", showPlane="1")
-        Normal.addObject('PlaneForceField', normal="0 0 -1", d="-4", showPlane="1")
+       less_pressure = node.addChild('Less_pressure')
 
-        Double = rootNode.addChild('Double')
-        Double.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
-        Double.addObject('CGLinearSolver', iterations="25", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
-        Double.addObject('MechanicalObject', name="MModel")
-        Double.addObject('RegularGridTopology', nx="5", ny="80", nz="5", xmin="-1.5", xmax="0", ymin="0", ymax="15", zmin="-11.5", zmax="-10")
-        Double.addObject('UniformMass', name="M1", vertexMass="1")
-        Double.addObject('SpatialGridContainer', cellWidth="0.75")
-        Double.addObject('SPHFluidForceField', radius="0.745", density="30", kernelType="1", viscosityType="2", viscosity="10", pressure="1000", surfaceTension="-1000", printLog="0")
-        Double.addObject('PlaneForceField', normal="1 0 0", d="-4", showPlane="0")
-        Double.addObject('PlaneForceField', normal="-1 0 0", d="-14", showPlane="0")
-        Double.addObject('PlaneForceField', normal="0.3 1 0", d="-4", showPlane="1")
-        Double.addObject('PlaneForceField', normal="0 0 1", d="-14", showPlane="1")
-        Double.addObject('PlaneForceField', normal="0 0 -1", d="6", showPlane="1")
+       less_pressure.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
+       less_pressure.addObject('CGLinearSolver', iterations="25", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
+       less_pressure.addObject('MechanicalObject', name="Model")
+       less_pressure.addObject('RegularGridTopology', nx="5", ny="40", nz="5", xmin="-1.5", xmax="0", ymin="0", ymax="15", zmin="10", zmax="11.5")
+       less_pressure.addObject('UniformMass', name="M1", vertexMass="1")
+       less_pressure.addObject('SpatialGridContainer', cellWidth="0.75")
+       less_pressure.addObject('SPHFluidForceField', radius="0.745", density="15", kernelType="1", viscosityType="2", viscosity="10", pressure="10", surfaceTension="-1000", printLog="0")
+       less_pressure.addObject('PlaneForceField', normal="1 0 0", d="-4", showPlane="0")
+       less_pressure.addObject('PlaneForceField', normal="-1 0 0", d="-14", showPlane="0")
+       less_pressure.addObject('PlaneForceField', normal="0.3 1 0", d="-4", showPlane="1")
+       less_pressure.addObject('PlaneForceField', normal="0 0 1", d="6", showPlane="1")
+       less_pressure.addObject('PlaneForceField', normal="0 0 -1", d="-14", showPlane="1")
+
+       normal = node.addChild('Normal')
+
+       normal.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
+       normal.addObject('CGLinearSolver', iterations="25", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
+       normal.addObject('MechanicalObject', name="MModel")
+       normal.addObject('RegularGridTopology', nx="5", ny="40", nz="5", xmin="-1.5", xmax="0", ymin="0", ymax="15", zmin="-1.5", zmax="0")
+       normal.addObject('UniformMass', name="M1", vertexMass="1")
+       normal.addObject('SpatialGridContainer', cellWidth="0.75")
+       normal.addObject('SPHFluidForceField', radius="0.745", density="15", kernelType="1", viscosityType="2", viscosity="10", pressure="1000", surfaceTension="-1000", printLog="0")
+       normal.addObject('PlaneForceField', normal="1 0 0", d="-4", showPlane="0")
+       normal.addObject('PlaneForceField', normal="-1 0 0", d="-14", showPlane="0")
+       normal.addObject('PlaneForceField', normal="0.3 1 0", d="-4", showPlane="1")
+       normal.addObject('PlaneForceField', normal="0 0 1", d="-4", showPlane="1")
+       normal.addObject('PlaneForceField', normal="0 0 -1", d="-4", showPlane="1")
+
+       double = node.addChild('Double')
+
+       double.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
+       double.addObject('CGLinearSolver', iterations="25", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
+       double.addObject('MechanicalObject', name="MModel")
+       double.addObject('RegularGridTopology', nx="5", ny="80", nz="5", xmin="-1.5", xmax="0", ymin="0", ymax="15", zmin="-11.5", zmax="-10")
+       double.addObject('UniformMass', name="M1", vertexMass="1")
+       double.addObject('SpatialGridContainer', cellWidth="0.75")
+       double.addObject('SPHFluidForceField', radius="0.745", density="30", kernelType="1", viscosityType="2", viscosity="10", pressure="1000", surfaceTension="-1000", printLog="0")
+       double.addObject('PlaneForceField', normal="1 0 0", d="-4", showPlane="0")
+       double.addObject('PlaneForceField', normal="-1 0 0", d="-14", showPlane="0")
+       double.addObject('PlaneForceField', normal="0.3 1 0", d="-4", showPlane="1")
+       double.addObject('PlaneForceField', normal="0 0 1", d="-14", showPlane="1")
+       double.addObject('PlaneForceField', normal="0 0 -1", d="6", showPlane="1")
     ```
 
-SofaCUDA/share/sofa/examples/SofaCUDA/SPHFluidForceFieldCUDA.scn
+SPHFluidForceFieldCUDA.scn
 
 === "XML"
 
@@ -413,28 +418,31 @@ SofaCUDA/share/sofa/examples/SofaCUDA/SPHFluidForceFieldCUDA.scn
     -->
     	</Node>
     </Node>
+
     ```
 
 === "Python"
 
     ```python
-    def createScene(rootNode):
+    def createScene(root_node):
 
-        rootNode = rootNode.addChild('rootNode', dt="0.005", showBehaviorModels="1", showCollisionModels="1", showMappings="0", showForceFields="1", gravity="0 -10 0")
-        rootNode.addObject('RequiredPlugin', name="SofaOpenglVisual")
-        rootNode.addObject('RequiredPlugin', name="CUDA computing", pluginName="SofaCUDA")
+       node = root_node.addChild('node', dt="0.005", showBehaviorModels="1", showCollisionModels="1", showMappings="0", showForceFields="1", gravity="0 -10 0")
 
-        rootNode = rootNode.addChild('rootNode')
-        rootNode.addObject('RungeKutta4Solver')
-        rootNode.addObject('MechanicalObject', name="MModel", template="CudaVec3f")
-        rootNode.addObject('RegularGridTopology', nx="5", ny="40", nz="5", xmin="-1.5", xmax="0", ymin="-3", ymax="12", zmin="-1.5", zmax="0")
-        rootNode.addObject('UniformMass', name="M1", mass="1")
-        rootNode.addObject('SpatialGridContainer', cellWidth="1.5")
-        rootNode.addObject('SPHFluidForceField', radius="0.75", density="15", viscosity="10", pressure="1000", surfaceTension="-1000")
-        rootNode.addObject('PlaneForceField', normal="1 0 0", d="-4")
-        rootNode.addObject('PlaneForceField', normal="-1 0 0", d="-4")
-        rootNode.addObject('PlaneForceField', normal="0.5 1 0.1", d="-4")
-        rootNode.addObject('PlaneForceField', normal="0 0 1", d="-4")
-        rootNode.addObject('PlaneForceField', normal="0 0 -1", d="-4")
+       node.addObject('RequiredPlugin', name="SofaOpenglVisual")
+       node.addObject('RequiredPlugin', name="CUDA computing", pluginName="SofaCUDA")
+
+       node = node.addChild('node')
+
+       node.addObject('RungeKutta4Solver', )
+       node.addObject('MechanicalObject', name="MModel", template="CudaVec3f")
+       node.addObject('RegularGridTopology', nx="5", ny="40", nz="5", xmin="-1.5", xmax="0", ymin="-3", ymax="12", zmin="-1.5", zmax="0")
+       node.addObject('UniformMass', name="M1", mass="1")
+       node.addObject('SpatialGridContainer', cellWidth="1.5")
+       node.addObject('SPHFluidForceField', radius="0.75", density="15", viscosity="10", pressure="1000", surfaceTension="-1000")
+       node.addObject('PlaneForceField', normal="1 0 0", d="-4")
+       node.addObject('PlaneForceField', normal="-1 0 0", d="-4")
+       node.addObject('PlaneForceField', normal="0.5 1 0.1", d="-4")
+       node.addObject('PlaneForceField', normal="0 0 1", d="-4")
+       node.addObject('PlaneForceField', normal="0 0 -1", d="-4")
     ```
 

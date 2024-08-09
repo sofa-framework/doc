@@ -1,165 +1,161 @@
+<!-- generate_doc -->
 # MatrixLinearSystem
 
 Linear system
 Linear system
 
 
-__Templates__:
+Templates:
 
-- `#!c++ CompressedRowSparseMatrixMat2x2d`
-- `#!c++ CompressedRowSparseMatrixMat3x3d`
-- `#!c++ CompressedRowSparseMatrixMat4x4d`
-- `#!c++ CompressedRowSparseMatrixMat6x6d`
-- `#!c++ CompressedRowSparseMatrixMat8x8d`
-- `#!c++ CompressedRowSparseMatrixd`
-- `#!c++ FullMatrix`
-- `#!c++ SparseMatrix`
+- CompressedRowSparseMatrixMat2x2d
+- CompressedRowSparseMatrixMat3x3d
+- CompressedRowSparseMatrixMat4x4d
+- CompressedRowSparseMatrixMat6x6d
+- CompressedRowSparseMatrixMat8x8d
+- CompressedRowSparseMatrixd
+- FullMatrix
+- SparseMatrix
 
-__Target__: `Sofa.Component.LinearSystem`
+__Target__: Sofa.Component.LinearSystem
 
-__namespace__: `#!c++ sofa::component::linearsystem`
+__namespace__: sofa::component::linearsystem
 
-__parents__: 
+__parents__:
 
-- `#!c++ TypedMatrixLinearSystem`
+- TypedMatrixLinearSystem
 
-__categories__: 
-
-- LinearSystem
-
-Data: 
+### Data
 
 <table>
-<thead>
-    <tr>
-        <th>Name</th>
-        <th>Description</th>
-        <th>Default value</th>
-    </tr>
-</thead>
-<tbody>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Default value</th>
+        </tr>
+    </thead>
+    <tbody>
 	<tr>
 		<td>name</td>
 		<td>
 object name
-</td>
+		</td>
 		<td>unnamed</td>
 	</tr>
 	<tr>
 		<td>printLog</td>
 		<td>
 if true, emits extra messages at runtime.
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>tags</td>
 		<td>
 list of the subsets the objet belongs to
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>bbox</td>
 		<td>
 this object bounding box
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>componentState</td>
 		<td>
 The state of the component among (Dirty, Valid, Undefined, Loading, Invalid).
-</td>
+		</td>
 		<td>Undefined</td>
 	</tr>
 	<tr>
 		<td>listening</td>
 		<td>
 if true, handle the events, otherwise ignore the events
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>matrixSize</td>
 		<td>
 Size of the global matrix
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>assembleStiffness</td>
 		<td>
 If true, the stiffness is added to the global matrix
-</td>
+		</td>
 		<td>1</td>
 	</tr>
 	<tr>
 		<td>assembleMass</td>
 		<td>
 If true, the mass is added to the global matrix
-</td>
+		</td>
 		<td>1</td>
 	</tr>
 	<tr>
 		<td>assembleDamping</td>
 		<td>
 If true, the damping is added to the global matrix
-</td>
+		</td>
 		<td>1</td>
 	</tr>
 	<tr>
 		<td>assembleGeometricStiffness</td>
 		<td>
 If true, the geometric stiffness of mappings is added to the global matrix
-</td>
+		</td>
 		<td>1</td>
 	</tr>
 	<tr>
 		<td>applyProjectiveConstraints</td>
 		<td>
 If true, projective constraints are applied on the global matrix
-</td>
+		</td>
 		<td>1</td>
 	</tr>
 	<tr>
 		<td>applyMappedComponents</td>
 		<td>
 If true, mapped components contribute to the global matrix
-</td>
+		</td>
 		<td>1</td>
 	</tr>
 	<tr>
 		<td>checkIndices</td>
 		<td>
 If true, indices are verified before being added in to the global matrix, favoring security over speed
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>parallelAssemblyIndependentMatrices</td>
 		<td>
 If true, independent matrices (global matrix vs mapped matrices) are assembled in parallel
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 
 </tbody>
 </table>
 
-Links: 
-
-| Name | Description |
-| ---- | ----------- |
-|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|
-|slaves|Sub-objects used internally by this object|
-|master|nullptr for regular objects, or master object for which this object is one sub-objects|
+### Links
 
 
+| Name | Description | Destination type name |
+| ---- | ----------- | --------------------- |
+|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
+|slaves|Sub-objects used internally by this object|BaseObject|
+|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
 
-## Examples
+## Examples 
 
-Component/LinearSystem/MatrixLinearSystem.scn
+MatrixLinearSystem.scn
 
 === "XML"
 
@@ -305,128 +301,149 @@ Component/LinearSystem/MatrixLinearSystem.scn
         </Node>
     
     </Node>
+
     ```
 
 === "Python"
 
     ```python
-    def createScene(rootNode):
+    def createScene(root_node):
 
-        root = rootNode.addChild('root', dt="0.02", gravity="0 -10 0")
+       root = root_node.addChild('root', dt="0.02", gravity="0 -10 0")
 
-        plugins = root.addChild('plugins')
-        plugins.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Projective")
-        plugins.addObject('RequiredPlugin', name="Sofa.Component.Engine.Select")
-        plugins.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Direct")
-        plugins.addObject('RequiredPlugin', name="Sofa.Component.LinearSystem")
-        plugins.addObject('RequiredPlugin', name="Sofa.Component.Mapping.Linear")
-        plugins.addObject('RequiredPlugin', name="Sofa.Component.Mapping.NonLinear")
-        plugins.addObject('RequiredPlugin', name="Sofa.Component.Mass")
-        plugins.addObject('RequiredPlugin', name="Sofa.Component.MechanicalLoad")
-        plugins.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
-        plugins.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.FEM.Elastic")
-        plugins.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.Spring")
-        plugins.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
-        plugins.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Dynamic")
-        plugins.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Grid")
-        plugins.addObject('RequiredPlugin', name="Sofa.Component.Visual")
-        plugins.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
-        plugins.addObject('RequiredPlugin', name="SofaMatrix")
-        root.addObject('VisualStyle', displayFlags="showBehaviorModels showWireframe")
-        root.addObject('DefaultAnimationLoop')
-        root.addObject('DefaultVisualManagerLoop')
+       plugins = root.addChild('plugins')
 
-        rigidSections = root.addChild('rigidSections')
-        rigidSections.addObject('EulerImplicitSolver', name="odesolver", rayleighStiffness="0.1", rayleighMass="0.1")
+       plugins.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Projective")
+       plugins.addObject('RequiredPlugin', name="Sofa.Component.Engine.Select")
+       plugins.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Direct")
+       plugins.addObject('RequiredPlugin', name="Sofa.Component.LinearSystem")
+       plugins.addObject('RequiredPlugin', name="Sofa.Component.Mapping.Linear")
+       plugins.addObject('RequiredPlugin', name="Sofa.Component.Mapping.NonLinear")
+       plugins.addObject('RequiredPlugin', name="Sofa.Component.Mass")
+       plugins.addObject('RequiredPlugin', name="Sofa.Component.MechanicalLoad")
+       plugins.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
+       plugins.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.FEM.Elastic")
+       plugins.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.Spring")
+       plugins.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
+       plugins.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Dynamic")
+       plugins.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Grid")
+       plugins.addObject('RequiredPlugin', name="Sofa.Component.Visual")
+       plugins.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
+       plugins.addObject('RequiredPlugin', name="SofaMatrix")
 
-        matrices = rigidSections.addChild('matrices')
-        matrices.addObject('MatrixLinearSystem', template="CompressedRowSparseMatrixd", name="system", checkIndices="true", printLog="true")
-        matrices.addObject('MatrixLinearSystem', template="CompressedRowSparseMatrixd", name="GS", assembleStiffness="false", assembleMass="false", assembleDamping="false", assembleGeometricStiffness="true", applyProjectiveConstraints="false")
-        matrices.addObject('GlobalSystemMatrixImage', name="imageA", linearSystem="@system")
-        matrices.addObject('GlobalSystemMatrixImage', name="imageGS", linearSystem="@GS")
-        rigidSections.addObject('CompositeLinearSystem', template="CompressedRowSparseMatrixd", name="solverSystem", linearSystems="@matrices/system @matrices/GS", solverLinearSystem="@matrices/system")
-        rigidSections.addObject('EigenSimplicialLDLT', template="CompressedRowSparseMatrixd", linearSystem="@solverSystem")
+       root.addObject('VisualStyle', displayFlags="showBehaviorModels showWireframe")
+       root.addObject('DefaultAnimationLoop', )
+       root.addObject('DefaultVisualManagerLoop', )
 
-        red = rigidSections.addChild('red')
-        red.addObject('RegularGridTopology', name="grid", nx="1", ny="1", nz="20", xmin="0", xmax="0", ymin="-1.5", ymax="1.5", zmin="0", zmax="19")
-        red.addObject('MechanicalObject', template="Rigid3d", name="DOFs", showObject="true", showObjectScale="1", position="@grid.position")
-        red.addObject('FixedProjectiveConstraint', indices="0")
+       rigid_sections = root.addChild('rigidSections')
 
-        FEM = red.addChild('FEM')
-        FEM.addObject('RegularGridTopology', name="FEM_grid", nx="4", ny="4", nz="20", xmin="-1.5", xmax="1.5", ymin="-1.5", ymax="1.5", zmin="0", zmax="19")
-        FEM.addObject('MechanicalObject', template="Vec3d", name="DOFs", position="@FEM_grid.position", printLog="false")
-        FEM.addObject('HexahedronSetGeometryAlgorithms')
-        FEM.addObject('MeshMatrixMass', totalMass="320")
-        FEM.addObject('HexahedronFEMForceField', name="FEM_a", youngModulus="10000", poissonRatio="0.45", method="large", printLog="false")
-        FEM.addObject('RigidMapping', geometricStiffness="2", globalToLocalCoords="true", rigidIndexPerPoint="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 11 11 11 11 11 11 11 11 11 11 11 11 11 11 11 11 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 13 13 13 13 13 13 13 13 13 13 13 13 13 13 13 13 14 14 14 14 14 14 14 14 14 14 14 14 14 14 14 14 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 16 16 16 16 16 16 16 16 16 16 16 16 16 16 16 16 17 17 17 17 17 17 17 17 17 17 17 17 17 17 17 17 18 18 18 18 18 18 18 18 18 18 18 18 18 18 18 18 19 19 19 19 19 19 19 19 19 19 19 19 19 19 19 19")
+       rigid_sections.addObject('EulerImplicitSolver', name="odesolver", rayleighStiffness="0.1", rayleighMass="0.1")
 
-        Visual = FEM.addChild('Visual')
-        Visual.addObject('RegularGridTopology', name="grid", nx="2", ny="2", nz="20", xmin="-1.5", xmax="1.5", ymin="-1.5", ymax="1.5", zmin="0", zmax="19", computeTriangleList="false")
-        Visual.addObject('OglModel', name="visu", lineWidth="5", material="Default Diffuse 0 1 1 1 1 Ambient 1 1 0 0 1 Specular 0 1 0 0 1 Emissive 0 1 0 0 1 Shininess 0 45")
-        Visual.addObject('BarycentricMapping', input="@../DOFs", output="@visu")
+       matrices = rigidSections.addChild('matrices')
 
-        green = rigidSections.addChild('green')
-        green.addObject('VisualStyle', displayFlags="showInteractionForceFields")
-        green.addObject('MechanicalObject', template="Vec3d", name="DOFs", printLog="false")
-        green.addObject('RegularGridTopology', name="grid", nx="4", ny="4", nz="20", xmin="-1.5", xmax="1.5", ymin="-9", ymax="-6", zmin="0", zmax="19")
-        green.addObject('HexahedronSetGeometryAlgorithms')
-        green.addObject('MeshMatrixMass', totalMass="320")
-        green.addObject('BoxROI', template="Vec3d", name="box", box="-1.6 -9.1 -0.1 1.6 -5.1 0.0001")
-        green.addObject('FixedProjectiveConstraint', indices="@box.indices")
-        green.addObject('HexahedronFEMForceField', name="FEM_b", youngModulus="10000", poissonRatio="0.45", method="large", printLog="false")
+       matrices.addObject('MatrixLinearSystem', template="CompressedRowSparseMatrixd", name="system", checkIndices="true", printLog="true")
+       matrices.addObject('MatrixLinearSystem', template="CompressedRowSparseMatrixd", name="GS", assembleStiffness="false", assembleMass="false", assembleDamping="false", assembleGeometricStiffness="true", applyProjectiveConstraints="false")
+       matrices.addObject('GlobalSystemMatrixImage', name="imageA", linearSystem="@system")
+       matrices.addObject('GlobalSystemMatrixImage', name="imageGS", linearSystem="@GS")
 
-        a = green.addChild('a')
-        a.addObject('BoxROI', name="box", position="@../DOFs.position", box="1.4 -6.1 18.9 1.6 -5.9 19.1", drawBoxes="true", doUpdate="false")
-        a.addObject('MechanicalObject', template="Vec3d", name="DOFs")
-        a.addObject('SubsetMapping', input="@../DOFs", output="@DOFs", indices="@box.indices")
+       rigid_sections.addObject('CompositeLinearSystem', template="CompressedRowSparseMatrixd", name="solverSystem", linearSystems="@matrices/system @matrices/GS", solverLinearSystem="@matrices/system")
+       rigid_sections.addObject('EigenSimplicialLDLT', template="CompressedRowSparseMatrixd", linearSystem="@solverSystem")
 
-        b = green.addChild('b')
-        b.addObject('BoxROI', name="box", position="@../DOFs.position", box="1.4 -6.1 1.9 1.6 -5.9 2.1", drawBoxes="true", doUpdate="false")
-        b.addObject('MechanicalObject', template="Vec3d", name="DOFs")
-        b.addObject('SubsetMapping', input="@../DOFs", output="@DOFs", indices="@box.indices")
-        green.addObject('MatrixProjectionMethod', areJacobiansConstant="true", mechanicalStates="@/rigidSections/green/a/DOFs @/rigidSections/green/a/DOFs")
-        green.addObject('MatrixProjectionMethod', areJacobiansConstant="true", mechanicalStates="@/rigidSections/green/a/DOFs @/rigidSections/green/b/DOFs")
-        green.addObject('MatrixProjectionMethod', areJacobiansConstant="true", mechanicalStates="@/rigidSections/green/b/DOFs @/rigidSections/green/a/DOFs")
-        green.addObject('MatrixProjectionMethod', areJacobiansConstant="true", mechanicalStates="@/rigidSections/green/b/DOFs @/rigidSections/green/b/DOFs")
-        green.addObject('StiffSpringForceField', object1="@a/DOFs", object2="@b/DOFs", spring="0 0 100 1 1", showArrowSize="0.05", drawMode="2")
+       red = rigidSections.addChild('red')
 
-        Visual = green.addChild('Visual')
-        Visual.addObject('RegularGridTopology', name="grid", n="@../grid.n", xmin="-1.5", xmax="1.5", ymin="-9", ymax="-6", zmin="0", zmax="19", computeTriangleList="false")
-        Visual.addObject('OglModel', name="visu", lineWidth="2", material="Default Diffuse 0 1 1 1 1 Ambient 1 0 1 0 1 Specular 0 1 0 0 1 Emissive 0 1 0 0 1 Shininess 0 45")
-        Visual.addObject('BarycentricMapping', input="@../DOFs", output="@visu")
+       red.addObject('RegularGridTopology', name="grid", nx="1", ny="1", nz="20", xmin="0", xmax="0", ymin="-1.5", ymax="1.5", zmin="0", zmax="19")
+       red.addObject('MechanicalObject', template="Rigid3d", name="DOFs", showObject="true", showObjectScale="1", position="@grid.position")
+       red.addObject('FixedProjectiveConstraint', indices="0")
 
-        blue = rigidSections.addChild('blue')
-        blue.addObject('RegularGridTopology', name="grid", nx="1", ny="1", nz="20", xmin="5", xmax="5", ymin="-1.5", ymax="1.5", zmin="0", zmax="19")
-        blue.addObject('MechanicalObject', template="Rigid3d", name="DOFs", showObject="true", showObjectScale="1", position="@grid.position")
-        blue.addObject('FixedProjectiveConstraint', indices="0")
+       fem = red.addChild('FEM')
 
-        intermediateMapping = blue.addChild('intermediateMapping')
-        intermediateMapping.addObject('MechanicalObject', template="Rigid3d", name="DOFs", showObject="false")
-        intermediateMapping.addObject('ConstantForceField', forces="0 0 0.0005 0 0 0")
-        intermediateMapping.addObject('IdentityMapping', input="@../DOFs", output="@DOFs")
+       fem.addObject('RegularGridTopology', name="FEM_grid", nx="4", ny="4", nz="20", xmin="-1.5", xmax="1.5", ymin="-1.5", ymax="1.5", zmin="0", zmax="19")
+       fem.addObject('MechanicalObject', template="Vec3d", name="DOFs", position="@FEM_grid.position", printLog="false")
+       fem.addObject('HexahedronSetGeometryAlgorithms', )
+       fem.addObject('MeshMatrixMass', totalMass="320")
+       fem.addObject('HexahedronFEMForceField', name="FEM_a", youngModulus="10000", poissonRatio="0.45", method="large", printLog="false")
+       fem.addObject('RigidMapping', geometricStiffness="2", globalToLocalCoords="true", rigidIndexPerPoint="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 11 11 11 11 11 11 11 11 11 11 11 11 11 11 11 11 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 13 13 13 13 13 13 13 13 13 13 13 13 13 13 13 13 14 14 14 14 14 14 14 14 14 14 14 14 14 14 14 14 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 16 16 16 16 16 16 16 16 16 16 16 16 16 16 16 16 17 17 17 17 17 17 17 17 17 17 17 17 17 17 17 17 18 18 18 18 18 18 18 18 18 18 18 18 18 18 18 18 19 19 19 19 19 19 19 19 19 19 19 19 19 19 19 19")
 
-        FEM = intermediateMapping.addChild('FEM')
-        FEM.addObject('RegularGridTopology', name="FEM_grid", nx="4", ny="4", nz="20", xmin="3.5", xmax="6.5", ymin="-1.5", ymax="1.5", zmin="0", zmax="19")
-        FEM.addObject('MechanicalObject', template="Vec3d", name="DOFs", position="@FEM_grid.position", printLog="false")
-        FEM.addObject('HexahedronSetGeometryAlgorithms')
-        FEM.addObject('MeshMatrixMass', totalMass="320")
-        FEM.addObject('HexahedronFEMForceField', name="FEM_c", youngModulus="10000", poissonRatio="0.45", method="large", printLog="false")
-        FEM.addObject('RigidMapping', geometricStiffness="2", globalToLocalCoords="true", rigidIndexPerPoint="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 11 11 11 11 11 11 11 11 11 11 11 11 11 11 11 11 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 13 13 13 13 13 13 13 13 13 13 13 13 13 13 13 13 14 14 14 14 14 14 14 14 14 14 14 14 14 14 14 14 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 16 16 16 16 16 16 16 16 16 16 16 16 16 16 16 16 17 17 17 17 17 17 17 17 17 17 17 17 17 17 17 17 18 18 18 18 18 18 18 18 18 18 18 18 18 18 18 18 19 19 19 19 19 19 19 19 19 19 19 19 19 19 19 19")
+       visual = FEM.addChild('Visual')
 
-        Visual = FEM.addChild('Visual')
-        Visual.addObject('RegularGridTopology', name="grid", nx="2", ny="2", nz="20", xmin="3.5", xmax="6.5", ymin="-1.5", ymax="1.5", zmin="0", zmax="19", computeTriangleList="false")
-        Visual.addObject('OglModel', name="visu", lineWidth="5", material="Default Diffuse 0 1 1 1 1 Ambient 1 0 0 1 1 Specular 0 1 0 0 1 Emissive 0 1 0 0 1 Shininess 0 45")
-        Visual.addObject('BarycentricMapping', input="@../DOFs", output="@visu")
+       visual.addObject('RegularGridTopology', name="grid", nx="2", ny="2", nz="20", xmin="-1.5", xmax="1.5", ymin="-1.5", ymax="1.5", zmin="0", zmax="19", computeTriangleList="false")
+       visual.addObject('OglModel', name="visu", lineWidth="5", material="Default Diffuse 0 1 1 1 1 Ambient 1 1 0 0 1 Specular 0 1 0 0 1 Emissive 0 1 0 0 1 Shininess 0 45")
+       visual.addObject('BarycentricMapping', input="@../DOFs", output="@visu")
 
-        spring = rigidSections.addChild('spring')
-        spring.addObject('VisualStyle', displayFlags="showInteractionForceFields")
+       green = rigidSections.addChild('green')
 
-        nonMappedDOFsSpring = spring.addChild('nonMappedDOFsSpring')
-        nonMappedDOFsSpring.addObject('StiffSpringForceField', object1="@red/DOFs", object2="@blue/DOFs", spring="19 19 50 1 1", showArrowSize="0.05", drawMode="2")
+       green.addObject('VisualStyle', displayFlags="showInteractionForceFields")
+       green.addObject('MechanicalObject', template="Vec3d", name="DOFs", printLog="false")
+       green.addObject('RegularGridTopology', name="grid", nx="4", ny="4", nz="20", xmin="-1.5", xmax="1.5", ymin="-9", ymax="-6", zmin="0", zmax="19")
+       green.addObject('HexahedronSetGeometryAlgorithms', )
+       green.addObject('MeshMatrixMass', totalMass="320")
+       green.addObject('BoxROI', template="Vec3d", name="box", box="-1.6 -9.1 -0.1 1.6 -5.1 0.0001")
+       green.addObject('FixedProjectiveConstraint', indices="@box.indices")
+       green.addObject('HexahedronFEMForceField', name="FEM_b", youngModulus="10000", poissonRatio="0.45", method="large", printLog="false")
 
-        springBetweenMappedAndNonMapped = spring.addChild('springBetweenMappedAndNonMapped')
-        springBetweenMappedAndNonMapped.addObject('BoxROI', position="@red/FEM/DOFs.position", box="-1.6 -1.6 18.9 -1.4 -1.4 19.1", drawBoxes="true")
-        springBetweenMappedAndNonMapped.addObject('BoxROI', position="@green/DOFs.position", box="-1.6 -6.1 18.9 -1.4 -5.9 19.1", drawBoxes="true")
-        springBetweenMappedAndNonMapped.addObject('StiffSpringForceField', object1="@red/FEM/DOFs", object2="@green/DOFs", spring="304 316 100 1 1", showArrowSize="0.05", drawMode="2")
+       a = green.addChild('a')
+
+       a.addObject('BoxROI', name="box", position="@../DOFs.position", box="1.4 -6.1 18.9 1.6 -5.9 19.1", drawBoxes="true", doUpdate="false")
+       a.addObject('MechanicalObject', template="Vec3d", name="DOFs")
+       a.addObject('SubsetMapping', input="@../DOFs", output="@DOFs", indices="@box.indices")
+
+       b = green.addChild('b')
+
+       b.addObject('BoxROI', name="box", position="@../DOFs.position", box="1.4 -6.1 1.9 1.6 -5.9 2.1", drawBoxes="true", doUpdate="false")
+       b.addObject('MechanicalObject', template="Vec3d", name="DOFs")
+       b.addObject('SubsetMapping', input="@../DOFs", output="@DOFs", indices="@box.indices")
+
+       green.addObject('MatrixProjectionMethod', areJacobiansConstant="true", mechanicalStates="@/rigidSections/green/a/DOFs @/rigidSections/green/a/DOFs")
+       green.addObject('MatrixProjectionMethod', areJacobiansConstant="true", mechanicalStates="@/rigidSections/green/a/DOFs @/rigidSections/green/b/DOFs")
+       green.addObject('MatrixProjectionMethod', areJacobiansConstant="true", mechanicalStates="@/rigidSections/green/b/DOFs @/rigidSections/green/a/DOFs")
+       green.addObject('MatrixProjectionMethod', areJacobiansConstant="true", mechanicalStates="@/rigidSections/green/b/DOFs @/rigidSections/green/b/DOFs")
+       green.addObject('StiffSpringForceField', object1="@a/DOFs", object2="@b/DOFs", spring="0 0 100 1 1", showArrowSize="0.05", drawMode="2")
+
+       visual = green.addChild('Visual')
+
+       visual.addObject('RegularGridTopology', name="grid", n="@../grid.n", xmin="-1.5", xmax="1.5", ymin="-9", ymax="-6", zmin="0", zmax="19", computeTriangleList="false")
+       visual.addObject('OglModel', name="visu", lineWidth="2", material="Default Diffuse 0 1 1 1 1 Ambient 1 0 1 0 1 Specular 0 1 0 0 1 Emissive 0 1 0 0 1 Shininess 0 45")
+       visual.addObject('BarycentricMapping', input="@../DOFs", output="@visu")
+
+       blue = rigidSections.addChild('blue')
+
+       blue.addObject('RegularGridTopology', name="grid", nx="1", ny="1", nz="20", xmin="5", xmax="5", ymin="-1.5", ymax="1.5", zmin="0", zmax="19")
+       blue.addObject('MechanicalObject', template="Rigid3d", name="DOFs", showObject="true", showObjectScale="1", position="@grid.position")
+       blue.addObject('FixedProjectiveConstraint', indices="0")
+
+       intermediate_mapping = blue.addChild('intermediateMapping')
+
+       intermediate_mapping.addObject('MechanicalObject', template="Rigid3d", name="DOFs", showObject="false")
+       intermediate_mapping.addObject('ConstantForceField', forces="0 0 0.0005 0 0 0")
+       intermediate_mapping.addObject('IdentityMapping', input="@../DOFs", output="@DOFs")
+
+       fem = intermediateMapping.addChild('FEM')
+
+       fem.addObject('RegularGridTopology', name="FEM_grid", nx="4", ny="4", nz="20", xmin="3.5", xmax="6.5", ymin="-1.5", ymax="1.5", zmin="0", zmax="19")
+       fem.addObject('MechanicalObject', template="Vec3d", name="DOFs", position="@FEM_grid.position", printLog="false")
+       fem.addObject('HexahedronSetGeometryAlgorithms', )
+       fem.addObject('MeshMatrixMass', totalMass="320")
+       fem.addObject('HexahedronFEMForceField', name="FEM_c", youngModulus="10000", poissonRatio="0.45", method="large", printLog="false")
+       fem.addObject('RigidMapping', geometricStiffness="2", globalToLocalCoords="true", rigidIndexPerPoint="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 11 11 11 11 11 11 11 11 11 11 11 11 11 11 11 11 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 13 13 13 13 13 13 13 13 13 13 13 13 13 13 13 13 14 14 14 14 14 14 14 14 14 14 14 14 14 14 14 14 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 16 16 16 16 16 16 16 16 16 16 16 16 16 16 16 16 17 17 17 17 17 17 17 17 17 17 17 17 17 17 17 17 18 18 18 18 18 18 18 18 18 18 18 18 18 18 18 18 19 19 19 19 19 19 19 19 19 19 19 19 19 19 19 19")
+
+       visual = FEM.addChild('Visual')
+
+       visual.addObject('RegularGridTopology', name="grid", nx="2", ny="2", nz="20", xmin="3.5", xmax="6.5", ymin="-1.5", ymax="1.5", zmin="0", zmax="19", computeTriangleList="false")
+       visual.addObject('OglModel', name="visu", lineWidth="5", material="Default Diffuse 0 1 1 1 1 Ambient 1 0 0 1 1 Specular 0 1 0 0 1 Emissive 0 1 0 0 1 Shininess 0 45")
+       visual.addObject('BarycentricMapping', input="@../DOFs", output="@visu")
+
+       spring = rigidSections.addChild('spring')
+
+       spring.addObject('VisualStyle', displayFlags="showInteractionForceFields")
+
+       non_mapped_do_fs_spring = spring.addChild('nonMappedDOFsSpring')
+
+       non_mapped_do_fs_spring.addObject('StiffSpringForceField', object1="@red/DOFs", object2="@blue/DOFs", spring="19 19 50 1 1", showArrowSize="0.05", drawMode="2")
+
+       spring_between_mapped_and_non_mapped = spring.addChild('springBetweenMappedAndNonMapped')
+
+       spring_between_mapped_and_non_mapped.addObject('BoxROI', position="@red/FEM/DOFs.position", box="-1.6 -1.6 18.9 -1.4 -1.4 19.1", drawBoxes="true")
+       spring_between_mapped_and_non_mapped.addObject('BoxROI', position="@green/DOFs.position", box="-1.6 -6.1 18.9 -1.4 -5.9 19.1", drawBoxes="true")
+       spring_between_mapped_and_non_mapped.addObject('StiffSpringForceField', object1="@red/FEM/DOFs", object2="@green/DOFs", spring="304 316 100 1 1", showArrowSize="0.05", drawMode="2")
     ```
 

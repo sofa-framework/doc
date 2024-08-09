@@ -1,87 +1,81 @@
+<!-- generate_doc -->
 # LinearMovementProjectiveConstraint
 
 translate given particles
-Supports GPU-side computations using CUDA
 
 
-__Templates__:
+## Rigid3d
 
-- `#!c++ Rigid3d`
-- `#!c++ Vec1d`
-- `#!c++ Vec2d`
-- `#!c++ Vec3d`
-- `#!c++ Vec6d`
+Templates:
 
-__Target__: `Sofa.Component.Constraint.Projective`
+- Rigid3d
 
-__namespace__: `#!c++ sofa::component::constraint::projective`
+__Target__: Sofa.Component.Constraint.Projective
 
-__parents__: 
+__namespace__: sofa::component::constraint::projective
 
-- `#!c++ ProjectiveConstraintSet`
-
-__categories__: 
+__parents__:
 
 - ProjectiveConstraintSet
 
-Data: 
+### Data
 
 <table>
-<thead>
-    <tr>
-        <th>Name</th>
-        <th>Description</th>
-        <th>Default value</th>
-    </tr>
-</thead>
-<tbody>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Default value</th>
+        </tr>
+    </thead>
+    <tbody>
 	<tr>
 		<td>name</td>
 		<td>
 object name
-</td>
+		</td>
 		<td>unnamed</td>
 	</tr>
 	<tr>
 		<td>printLog</td>
 		<td>
 if true, emits extra messages at runtime.
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>tags</td>
 		<td>
 list of the subsets the objet belongs to
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>bbox</td>
 		<td>
 this object bounding box
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>componentState</td>
 		<td>
 The state of the component among (Dirty, Valid, Undefined, Loading, Invalid).
-</td>
+		</td>
 		<td>Undefined</td>
 	</tr>
 	<tr>
 		<td>listening</td>
 		<td>
 if true, handle the events, otherwise ignore the events
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>group</td>
 		<td>
 ID of the group containing this constraint. This ID is used to specify which constraints are solved by which solver, by specifying in each solver which groups of constraints it should handle.
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
@@ -89,35 +83,35 @@ ID of the group containing this constraint. This ID is used to specify which con
 		<td>
 The constraint stops acting after the given value.
 Use a negative value for infinite constraints
-</td>
+		</td>
 		<td>-1</td>
 	</tr>
 	<tr>
 		<td>indices</td>
 		<td>
 Indices of the constrained points
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>keyTimes</td>
 		<td>
 key times for the movements
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>movements</td>
 		<td>
 movements corresponding to the key times
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>relativeMovements</td>
 		<td>
 If true, movements are relative to first position, absolute otherwise
-</td>
+		</td>
 		<td>1</td>
 	</tr>
 	<tr>
@@ -127,29 +121,576 @@ If true, movements are relative to first position, absolute otherwise
 		<td>showMovement</td>
 		<td>
 Visualization of the movement to be applied to constrained dofs.
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 
 </tbody>
 </table>
 
-Links: 
-
-| Name | Description |
-| ---- | ----------- |
-|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|
-|slaves|Sub-objects used internally by this object|
-|master|nullptr for regular objects, or master object for which this object is one sub-objects|
-|mechanicalStates|List of mechanical states to which this component is associated|
-|mstate|MechanicalState used by this component|
-|topology|link to the topology container|
+### Links
 
 
+| Name | Description | Destination type name |
+| ---- | ----------- | --------------------- |
+|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
+|slaves|Sub-objects used internally by this object|BaseObject|
+|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
+|mechanicalStates|List of mechanical states to which this component is associated|BaseMechanicalState|
+|mstate|MechanicalState used by this component|MechanicalState&lt;Rigid3d&gt;|
+|topology|link to the topology container|BaseMeshTopology|
 
-## Examples
+<!-- generate_doc -->
+## Vec1d
 
-Component/Constraint/Projective/LinearMovementProjectiveConstraint.scn
+Templates:
+
+- Vec1d
+
+__Target__: Sofa.Component.Constraint.Projective
+
+__namespace__: sofa::component::constraint::projective
+
+__parents__:
+
+- ProjectiveConstraintSet
+
+### Data
+
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Default value</th>
+        </tr>
+    </thead>
+    <tbody>
+	<tr>
+		<td>name</td>
+		<td>
+object name
+		</td>
+		<td>unnamed</td>
+	</tr>
+	<tr>
+		<td>printLog</td>
+		<td>
+if true, emits extra messages at runtime.
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>tags</td>
+		<td>
+list of the subsets the objet belongs to
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>bbox</td>
+		<td>
+this object bounding box
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>componentState</td>
+		<td>
+The state of the component among (Dirty, Valid, Undefined, Loading, Invalid).
+		</td>
+		<td>Undefined</td>
+	</tr>
+	<tr>
+		<td>listening</td>
+		<td>
+if true, handle the events, otherwise ignore the events
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>group</td>
+		<td>
+ID of the group containing this constraint. This ID is used to specify which constraints are solved by which solver, by specifying in each solver which groups of constraints it should handle.
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>endTime</td>
+		<td>
+The constraint stops acting after the given value.
+Use a negative value for infinite constraints
+		</td>
+		<td>-1</td>
+	</tr>
+	<tr>
+		<td>indices</td>
+		<td>
+Indices of the constrained points
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>keyTimes</td>
+		<td>
+key times for the movements
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>movements</td>
+		<td>
+movements corresponding to the key times
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>relativeMovements</td>
+		<td>
+If true, movements are relative to first position, absolute otherwise
+		</td>
+		<td>1</td>
+	</tr>
+	<tr>
+		<td colspan="3">Visualization</td>
+	</tr>
+	<tr>
+		<td>showMovement</td>
+		<td>
+Visualization of the movement to be applied to constrained dofs.
+		</td>
+		<td>0</td>
+	</tr>
+
+</tbody>
+</table>
+
+### Links
+
+
+| Name | Description | Destination type name |
+| ---- | ----------- | --------------------- |
+|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
+|slaves|Sub-objects used internally by this object|BaseObject|
+|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
+|mechanicalStates|List of mechanical states to which this component is associated|BaseMechanicalState|
+|mstate|MechanicalState used by this component|MechanicalState&lt;Vec1d&gt;|
+|topology|link to the topology container|BaseMeshTopology|
+
+<!-- generate_doc -->
+## Vec2d
+
+Templates:
+
+- Vec2d
+
+__Target__: Sofa.Component.Constraint.Projective
+
+__namespace__: sofa::component::constraint::projective
+
+__parents__:
+
+- ProjectiveConstraintSet
+
+### Data
+
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Default value</th>
+        </tr>
+    </thead>
+    <tbody>
+	<tr>
+		<td>name</td>
+		<td>
+object name
+		</td>
+		<td>unnamed</td>
+	</tr>
+	<tr>
+		<td>printLog</td>
+		<td>
+if true, emits extra messages at runtime.
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>tags</td>
+		<td>
+list of the subsets the objet belongs to
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>bbox</td>
+		<td>
+this object bounding box
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>componentState</td>
+		<td>
+The state of the component among (Dirty, Valid, Undefined, Loading, Invalid).
+		</td>
+		<td>Undefined</td>
+	</tr>
+	<tr>
+		<td>listening</td>
+		<td>
+if true, handle the events, otherwise ignore the events
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>group</td>
+		<td>
+ID of the group containing this constraint. This ID is used to specify which constraints are solved by which solver, by specifying in each solver which groups of constraints it should handle.
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>endTime</td>
+		<td>
+The constraint stops acting after the given value.
+Use a negative value for infinite constraints
+		</td>
+		<td>-1</td>
+	</tr>
+	<tr>
+		<td>indices</td>
+		<td>
+Indices of the constrained points
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>keyTimes</td>
+		<td>
+key times for the movements
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>movements</td>
+		<td>
+movements corresponding to the key times
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>relativeMovements</td>
+		<td>
+If true, movements are relative to first position, absolute otherwise
+		</td>
+		<td>1</td>
+	</tr>
+	<tr>
+		<td colspan="3">Visualization</td>
+	</tr>
+	<tr>
+		<td>showMovement</td>
+		<td>
+Visualization of the movement to be applied to constrained dofs.
+		</td>
+		<td>0</td>
+	</tr>
+
+</tbody>
+</table>
+
+### Links
+
+
+| Name | Description | Destination type name |
+| ---- | ----------- | --------------------- |
+|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
+|slaves|Sub-objects used internally by this object|BaseObject|
+|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
+|mechanicalStates|List of mechanical states to which this component is associated|BaseMechanicalState|
+|mstate|MechanicalState used by this component|MechanicalState&lt;Vec2d&gt;|
+|topology|link to the topology container|BaseMeshTopology|
+
+<!-- generate_doc -->
+## Vec3d
+
+Templates:
+
+- Vec3d
+
+__Target__: Sofa.Component.Constraint.Projective
+
+__namespace__: sofa::component::constraint::projective
+
+__parents__:
+
+- ProjectiveConstraintSet
+
+### Data
+
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Default value</th>
+        </tr>
+    </thead>
+    <tbody>
+	<tr>
+		<td>name</td>
+		<td>
+object name
+		</td>
+		<td>unnamed</td>
+	</tr>
+	<tr>
+		<td>printLog</td>
+		<td>
+if true, emits extra messages at runtime.
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>tags</td>
+		<td>
+list of the subsets the objet belongs to
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>bbox</td>
+		<td>
+this object bounding box
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>componentState</td>
+		<td>
+The state of the component among (Dirty, Valid, Undefined, Loading, Invalid).
+		</td>
+		<td>Undefined</td>
+	</tr>
+	<tr>
+		<td>listening</td>
+		<td>
+if true, handle the events, otherwise ignore the events
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>group</td>
+		<td>
+ID of the group containing this constraint. This ID is used to specify which constraints are solved by which solver, by specifying in each solver which groups of constraints it should handle.
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>endTime</td>
+		<td>
+The constraint stops acting after the given value.
+Use a negative value for infinite constraints
+		</td>
+		<td>-1</td>
+	</tr>
+	<tr>
+		<td>indices</td>
+		<td>
+Indices of the constrained points
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>keyTimes</td>
+		<td>
+key times for the movements
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>movements</td>
+		<td>
+movements corresponding to the key times
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>relativeMovements</td>
+		<td>
+If true, movements are relative to first position, absolute otherwise
+		</td>
+		<td>1</td>
+	</tr>
+	<tr>
+		<td colspan="3">Visualization</td>
+	</tr>
+	<tr>
+		<td>showMovement</td>
+		<td>
+Visualization of the movement to be applied to constrained dofs.
+		</td>
+		<td>0</td>
+	</tr>
+
+</tbody>
+</table>
+
+### Links
+
+
+| Name | Description | Destination type name |
+| ---- | ----------- | --------------------- |
+|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
+|slaves|Sub-objects used internally by this object|BaseObject|
+|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
+|mechanicalStates|List of mechanical states to which this component is associated|BaseMechanicalState|
+|mstate|MechanicalState used by this component|MechanicalState&lt;Vec3d&gt;|
+|topology|link to the topology container|BaseMeshTopology|
+
+<!-- generate_doc -->
+## Vec6d
+
+Templates:
+
+- Vec6d
+
+__Target__: Sofa.Component.Constraint.Projective
+
+__namespace__: sofa::component::constraint::projective
+
+__parents__:
+
+- ProjectiveConstraintSet
+
+### Data
+
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Default value</th>
+        </tr>
+    </thead>
+    <tbody>
+	<tr>
+		<td>name</td>
+		<td>
+object name
+		</td>
+		<td>unnamed</td>
+	</tr>
+	<tr>
+		<td>printLog</td>
+		<td>
+if true, emits extra messages at runtime.
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>tags</td>
+		<td>
+list of the subsets the objet belongs to
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>bbox</td>
+		<td>
+this object bounding box
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>componentState</td>
+		<td>
+The state of the component among (Dirty, Valid, Undefined, Loading, Invalid).
+		</td>
+		<td>Undefined</td>
+	</tr>
+	<tr>
+		<td>listening</td>
+		<td>
+if true, handle the events, otherwise ignore the events
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>group</td>
+		<td>
+ID of the group containing this constraint. This ID is used to specify which constraints are solved by which solver, by specifying in each solver which groups of constraints it should handle.
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>endTime</td>
+		<td>
+The constraint stops acting after the given value.
+Use a negative value for infinite constraints
+		</td>
+		<td>-1</td>
+	</tr>
+	<tr>
+		<td>indices</td>
+		<td>
+Indices of the constrained points
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>keyTimes</td>
+		<td>
+key times for the movements
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>movements</td>
+		<td>
+movements corresponding to the key times
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>relativeMovements</td>
+		<td>
+If true, movements are relative to first position, absolute otherwise
+		</td>
+		<td>1</td>
+	</tr>
+	<tr>
+		<td colspan="3">Visualization</td>
+	</tr>
+	<tr>
+		<td>showMovement</td>
+		<td>
+Visualization of the movement to be applied to constrained dofs.
+		</td>
+		<td>0</td>
+	</tr>
+
+</tbody>
+</table>
+
+### Links
+
+
+| Name | Description | Destination type name |
+| ---- | ----------- | --------------------- |
+|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
+|slaves|Sub-objects used internally by this object|BaseObject|
+|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
+|mechanicalStates|List of mechanical states to which this component is associated|BaseMechanicalState|
+|mstate|MechanicalState used by this component|MechanicalState&lt;Vec6d&gt;|
+|topology|link to the topology container|BaseMeshTopology|
+
+## Examples 
+
+LinearMovementProjectiveConstraint.scn
 
 === "XML"
 
@@ -234,89 +775,88 @@ Component/Constraint/Projective/LinearMovementProjectiveConstraint.scn
             </Node>
         </Node>
     </Node>
+
     ```
 
 === "Python"
 
     ```python
-    def createScene(rootNode):
+    def createScene(root_node):
 
-        Root = rootNode.addChild('Root', dt="0.1")
-        Root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Geometry")
-        Root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Projective")
-        Root.addObject('RequiredPlugin', name="Sofa.Component.IO.Mesh")
-        Root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Iterative")
-        Root.addObject('RequiredPlugin', name="Sofa.Component.Mapping.NonLinear")
-        Root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
-        Root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
-        Root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Constant")
-        Root.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
-        Root.addObject('DefaultAnimationLoop')
+       root = root_node.addChild('Root', dt="0.1")
 
-        Spoon1 = Root.addChild('Spoon1')
-        Spoon1.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
-        Spoon1.addObject('CGLinearSolver', iterations="25", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
-        Spoon1.addObject('MechanicalObject', template="Rigid3", dx="0", dy="0", dz="0", name="default118", position="0 1.41421 0 0 0 0.382683 0.92388", rest_position="0 1.41421 0 0 0 0.382683 0.92388")
-        Spoon1.addObject('LinearMovementProjectiveConstraint', template="Rigid3", keyTimes="0 2 10 40 50", movements="0 0 0   0 0 0
-										      0 0 0   0 0 0
-										      0 0 -1  0 0 0
-										      0 0 -1  0 0 6.3
-										      0 0 -1   0 0 6.3")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Geometry")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Projective")
+       root.addObject('RequiredPlugin', name="Sofa.Component.IO.Mesh")
+       root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Iterative")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Mapping.NonLinear")
+       root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Constant")
+       root.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
+       root.addObject('DefaultAnimationLoop', )
 
-        coli = Spoon1.addChild('coli')
-        coli.addObject('MeshOBJLoader', name="loader", filename="mesh/liver.obj")
-        coli.addObject('MeshTopology', src="@loader")
-        coli.addObject('MechanicalObject', src="@loader", template="Vec3", name="dofs")
-        coli.addObject('TriangleCollisionModel', moving="1", simulated="1", contactStiffness="100000000")
-        coli.addObject('RigidMapping', template="Rigid3,Vec3")
+       spoon1 = Root.addChild('Spoon1')
 
-        Visu = Spoon1.addChild('Visu')
-        Visu.addObject('MeshOBJLoader', name="meshLoader_1", filename="mesh/liver.obj", handleSeams="1")
-        Visu.addObject('OglModel', name="Visual", src="@meshLoader_1", color="red")
-        Visu.addObject('RigidMapping', template="Rigid3,Vec3", name="default161", input="@..", output="@Visual")
+       spoon1.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
+       spoon1.addObject('CGLinearSolver', iterations="25", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
+       spoon1.addObject('MechanicalObject', template="Rigid3", dx="0", dy="0", dz="0", name="default118", position="0 1.41421 0 0 0 0.382683 0.92388", rest_position="0 1.41421 0 0 0 0.382683 0.92388")
+       spoon1.addObject('LinearMovementProjectiveConstraint', template="Rigid3", keyTimes="0 2 10 40 50", movements="0 0 0   0 0 0                 0 0 0   0 0 0                 0 0 -1  0 0 0                 0 0 -1  0 0 6.3                 0 0 -1   0 0 6.3")
 
-        Spoon2 = Root.addChild('Spoon2')
-        Spoon2.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="false")
-        Spoon2.addObject('CGLinearSolver', iterations="25", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
-        Spoon2.addObject('MechanicalObject', template="Rigid3", dx="10", dy="0", dz="0", name="default118", position="0 1.41421 0 0 0 0.382683 0.92388", rest_position="0 1.41421 0 0 0 0.382683 0.92388")
-        Spoon2.addObject('LinearMovementProjectiveConstraint', template="Rigid3", keyTimes="0 2 10 40 50", movements="0 0 0   0 0 0
-										      0 0 0   0 0 0
-										      0 0 -1  0 0 0
-										      0 0 -1  0 0 6.3
-										      0 0 0   0 0 6.3")
+       coli = Spoon1.addChild('coli')
 
-        coli = Spoon2.addChild('coli')
-        coli.addObject('MeshOBJLoader', name="loader", filename="mesh/liver.obj")
-        coli.addObject('MeshTopology', src="@loader")
-        coli.addObject('MechanicalObject', src="@loader", template="Vec3", name="dofs")
-        coli.addObject('TriangleCollisionModel', moving="1", simulated="1", contactStiffness="100000000")
-        coli.addObject('RigidMapping', template="Rigid3,Vec3")
+       coli.addObject('MeshOBJLoader', name="loader", filename="mesh/liver.obj")
+       coli.addObject('MeshTopology', src="@loader")
+       coli.addObject('MechanicalObject', src="@loader", template="Vec3", name="dofs")
+       coli.addObject('TriangleCollisionModel', moving="1", simulated="1", contactStiffness="100000000")
+       coli.addObject('RigidMapping', template="Rigid3,Vec3")
 
-        Visu = Spoon2.addChild('Visu')
-        Visu.addObject('MeshOBJLoader', name="meshLoader_0", filename="mesh/liver.obj", handleSeams="1")
-        Visu.addObject('OglModel', name="Visual", src="@meshLoader_0", color="green")
-        Visu.addObject('RigidMapping', template="Rigid3,Vec3", name="default161", input="@..", output="@Visual")
+       visu = Spoon1.addChild('Visu')
 
-        Spoon3 = Root.addChild('Spoon3')
-        Spoon3.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="false")
-        Spoon3.addObject('CGLinearSolver', iterations="25", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
-        Spoon3.addObject('MechanicalObject', template="Rigid3", dx="20", dy="0", dz="0", name="default118", position="0 1.41421 0 0 0 0.382683 0.92388", rest_position="0 1.41421 0 0 0 0.382683 0.92388")
-        Spoon3.addObject('LinearMovementProjectiveConstraint', template="Rigid3", keyTimes="0 2 10 40 50", movements="0 0 0   0 0 0
-										      0 0 0   0 0 0
-										      0 0 -1  0 0 0
-										      0 0 -1  0 0 6.3
-										      0 0 -1   0 0 0")
+       visu.addObject('MeshOBJLoader', name="meshLoader_1", filename="mesh/liver.obj", handleSeams="1")
+       visu.addObject('OglModel', name="Visual", src="@meshLoader_1", color="red")
+       visu.addObject('RigidMapping', template="Rigid3,Vec3", name="default161", input="@..", output="@Visual")
 
-        coli = Spoon3.addChild('coli')
-        coli.addObject('MeshOBJLoader', name="loader", filename="mesh/liver.obj")
-        coli.addObject('MeshTopology', src="@loader")
-        coli.addObject('MechanicalObject', src="@loader", template="Vec3", name="dofs")
-        coli.addObject('TriangleCollisionModel', moving="1", simulated="1", contactStiffness="100000000")
-        coli.addObject('RigidMapping', template="Rigid3,Vec3")
+       spoon2 = Root.addChild('Spoon2')
 
-        Visu = Spoon3.addChild('Visu')
-        Visu.addObject('MeshOBJLoader', name="meshLoader_2", filename="mesh/liver.obj", handleSeams="1")
-        Visu.addObject('OglModel', name="Visual", src="@meshLoader_2", color="blue")
-        Visu.addObject('RigidMapping', template="Rigid3,Vec3", name="default161", input="@..", output="@Visual")
+       spoon2.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="false")
+       spoon2.addObject('CGLinearSolver', iterations="25", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
+       spoon2.addObject('MechanicalObject', template="Rigid3", dx="10", dy="0", dz="0", name="default118", position="0 1.41421 0 0 0 0.382683 0.92388", rest_position="0 1.41421 0 0 0 0.382683 0.92388")
+       spoon2.addObject('LinearMovementProjectiveConstraint', template="Rigid3", keyTimes="0 2 10 40 50", movements="0 0 0   0 0 0                 0 0 0   0 0 0                 0 0 -1  0 0 0                 0 0 -1  0 0 6.3                 0 0 0   0 0 6.3")
+
+       coli = Spoon2.addChild('coli')
+
+       coli.addObject('MeshOBJLoader', name="loader", filename="mesh/liver.obj")
+       coli.addObject('MeshTopology', src="@loader")
+       coli.addObject('MechanicalObject', src="@loader", template="Vec3", name="dofs")
+       coli.addObject('TriangleCollisionModel', moving="1", simulated="1", contactStiffness="100000000")
+       coli.addObject('RigidMapping', template="Rigid3,Vec3")
+
+       visu = Spoon2.addChild('Visu')
+
+       visu.addObject('MeshOBJLoader', name="meshLoader_0", filename="mesh/liver.obj", handleSeams="1")
+       visu.addObject('OglModel', name="Visual", src="@meshLoader_0", color="green")
+       visu.addObject('RigidMapping', template="Rigid3,Vec3", name="default161", input="@..", output="@Visual")
+
+       spoon3 = Root.addChild('Spoon3')
+
+       spoon3.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="false")
+       spoon3.addObject('CGLinearSolver', iterations="25", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
+       spoon3.addObject('MechanicalObject', template="Rigid3", dx="20", dy="0", dz="0", name="default118", position="0 1.41421 0 0 0 0.382683 0.92388", rest_position="0 1.41421 0 0 0 0.382683 0.92388")
+       spoon3.addObject('LinearMovementProjectiveConstraint', template="Rigid3", keyTimes="0 2 10 40 50", movements="0 0 0   0 0 0                 0 0 0   0 0 0                 0 0 -1  0 0 0                 0 0 -1  0 0 6.3                 0 0 -1   0 0 0")
+
+       coli = Spoon3.addChild('coli')
+
+       coli.addObject('MeshOBJLoader', name="loader", filename="mesh/liver.obj")
+       coli.addObject('MeshTopology', src="@loader")
+       coli.addObject('MechanicalObject', src="@loader", template="Vec3", name="dofs")
+       coli.addObject('TriangleCollisionModel', moving="1", simulated="1", contactStiffness="100000000")
+       coli.addObject('RigidMapping', template="Rigid3,Vec3")
+
+       visu = Spoon3.addChild('Visu')
+
+       visu.addObject('MeshOBJLoader', name="meshLoader_2", filename="mesh/liver.obj", handleSeams="1")
+       visu.addObject('OglModel', name="Visual", src="@meshLoader_2", color="blue")
+       visu.addObject('RigidMapping', template="Rigid3,Vec3", name="default161", input="@..", output="@Visual")
     ```
 

@@ -130,90 +130,97 @@ The MeshMatrixMass **requires** a MechanicalObject to store the degrees of freed
 
 Several topologies are handled by the MeshMatrixMass, namely: triangles, quads, tetrahedra or hexahedra. Only the beam model (edge topology) is not handled by this component.
 <!-- automatically generated doc START -->
-__Target__: `Sofa.Component.Mass`
+<!-- generate_doc -->
 
-__namespace__: `#!c++ sofa::component::mass`
+Define a specific mass for each particle
 
-__parents__: 
 
-- `#!c++ Mass`
+## Vec1d,Vec1d
 
-__categories__: 
+Templates:
+
+- Vec1d,Vec1d
+
+__Target__: Sofa.Component.Mass
+
+__namespace__: sofa::component::mass
+
+__parents__:
 
 - Mass
 
-Data: 
+### Data
 
 <table>
-<thead>
-    <tr>
-        <th>Name</th>
-        <th>Description</th>
-        <th>Default value</th>
-    </tr>
-</thead>
-<tbody>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Default value</th>
+        </tr>
+    </thead>
+    <tbody>
 	<tr>
 		<td>name</td>
 		<td>
 object name
-</td>
+		</td>
 		<td>unnamed</td>
 	</tr>
 	<tr>
 		<td>printLog</td>
 		<td>
 if true, emits extra messages at runtime.
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>tags</td>
 		<td>
 list of the subsets the objet belongs to
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>bbox</td>
 		<td>
 this object bounding box
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>componentState</td>
 		<td>
 The state of the component among (Dirty, Valid, Undefined, Loading, Invalid).
-</td>
+		</td>
 		<td>Undefined</td>
 	</tr>
 	<tr>
 		<td>listening</td>
 		<td>
 if true, handle the events, otherwise ignore the events
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>rayleighStiffness</td>
 		<td>
 Rayleigh damping - stiffness matrix coefficient
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>separateGravity</td>
 		<td>
 add separately gravity to velocity computation
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>rayleighMass</td>
 		<td>
 Rayleigh damping - mass matrix coefficient
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
@@ -221,7 +228,7 @@ Rayleigh damping - mass matrix coefficient
 		<td>
 Specify real and strictly positive value(s) for the mass density. 
 If unspecified or wrongly set, the totalMass information is used.
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
@@ -229,49 +236,49 @@ If unspecified or wrongly set, the totalMass information is used.
 		<td>
 Specify the total mass resulting from all particles. 
 If unspecified or wrongly set, the default value is used: totalMass = 1.0
-</td>
+		</td>
 		<td>1</td>
 	</tr>
 	<tr>
 		<td>vertexMass</td>
 		<td>
 internal values of the particles masses on vertices, supporting topological changes
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>edgeMass</td>
 		<td>
 internal values of the particles masses on edges, supporting topological changes
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>computeMassOnRest</td>
 		<td>
 If true, the mass of every element is computed based on the rest position rather than the position
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>lumping</td>
 		<td>
 If true, the mass matrix is lumped, meaning the mass matrix becomes diagonal (summing all mass values of a line on the diagonal)
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>printMass</td>
 		<td>
 boolean if you want to check the mass conservation
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>graph</td>
 		<td>
 Graph of the controlled potential
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
@@ -281,37 +288,941 @@ Graph of the controlled potential
 		<td>showGravityCenter</td>
 		<td>
 display the center of gravity of the system
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>showAxisSizeFactor</td>
 		<td>
 factor length of the axis displayed (only used for rigids)
-</td>
+		</td>
 		<td>1</td>
 	</tr>
 
 </tbody>
 </table>
 
-Links: 
-
-| Name | Description |
-| ---- | ----------- |
-|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|
-|slaves|Sub-objects used internally by this object|
-|master|nullptr for regular objects, or master object for which this object is one sub-objects|
-|mechanicalStates|List of mechanical states to which this component is associated|
-|mstate|MechanicalState used by this component|
-|topology|link to the topology container|
-|geometryState|link to the MechanicalObject associated with the geometry|
+### Links
 
 
+| Name | Description | Destination type name |
+| ---- | ----------- | --------------------- |
+|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
+|slaves|Sub-objects used internally by this object|BaseObject|
+|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
+|mechanicalStates|List of mechanical states to which this component is associated|BaseMechanicalState|
+|mstate|MechanicalState used by this component|MechanicalState&lt;Vec1d&gt;|
+|topology|link to the topology container|BaseMeshTopology|
+|geometryState|link to the MechanicalObject associated with the geometry|MechanicalState&lt;Vec1d&gt;|
 
-## Examples
+<!-- generate_doc -->
+## Vec1d,Vec2d
 
-Component/Mass/MeshMatrixMass.scn
+Templates:
+
+- Vec1d,Vec2d
+
+__Target__: Sofa.Component.Mass
+
+__namespace__: sofa::component::mass
+
+__parents__:
+
+- Mass
+
+### Data
+
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Default value</th>
+        </tr>
+    </thead>
+    <tbody>
+	<tr>
+		<td>name</td>
+		<td>
+object name
+		</td>
+		<td>unnamed</td>
+	</tr>
+	<tr>
+		<td>printLog</td>
+		<td>
+if true, emits extra messages at runtime.
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>tags</td>
+		<td>
+list of the subsets the objet belongs to
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>bbox</td>
+		<td>
+this object bounding box
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>componentState</td>
+		<td>
+The state of the component among (Dirty, Valid, Undefined, Loading, Invalid).
+		</td>
+		<td>Undefined</td>
+	</tr>
+	<tr>
+		<td>listening</td>
+		<td>
+if true, handle the events, otherwise ignore the events
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>rayleighStiffness</td>
+		<td>
+Rayleigh damping - stiffness matrix coefficient
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>separateGravity</td>
+		<td>
+add separately gravity to velocity computation
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>rayleighMass</td>
+		<td>
+Rayleigh damping - mass matrix coefficient
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>massDensity</td>
+		<td>
+Specify real and strictly positive value(s) for the mass density. 
+If unspecified or wrongly set, the totalMass information is used.
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>totalMass</td>
+		<td>
+Specify the total mass resulting from all particles. 
+If unspecified or wrongly set, the default value is used: totalMass = 1.0
+		</td>
+		<td>1</td>
+	</tr>
+	<tr>
+		<td>vertexMass</td>
+		<td>
+internal values of the particles masses on vertices, supporting topological changes
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>edgeMass</td>
+		<td>
+internal values of the particles masses on edges, supporting topological changes
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>computeMassOnRest</td>
+		<td>
+If true, the mass of every element is computed based on the rest position rather than the position
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>lumping</td>
+		<td>
+If true, the mass matrix is lumped, meaning the mass matrix becomes diagonal (summing all mass values of a line on the diagonal)
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>printMass</td>
+		<td>
+boolean if you want to check the mass conservation
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>graph</td>
+		<td>
+Graph of the controlled potential
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td colspan="3">Visualization</td>
+	</tr>
+	<tr>
+		<td>showGravityCenter</td>
+		<td>
+display the center of gravity of the system
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>showAxisSizeFactor</td>
+		<td>
+factor length of the axis displayed (only used for rigids)
+		</td>
+		<td>1</td>
+	</tr>
+
+</tbody>
+</table>
+
+### Links
+
+
+| Name | Description | Destination type name |
+| ---- | ----------- | --------------------- |
+|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
+|slaves|Sub-objects used internally by this object|BaseObject|
+|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
+|mechanicalStates|List of mechanical states to which this component is associated|BaseMechanicalState|
+|mstate|MechanicalState used by this component|MechanicalState&lt;Vec1d&gt;|
+|topology|link to the topology container|BaseMeshTopology|
+|geometryState|link to the MechanicalObject associated with the geometry|MechanicalState&lt;Vec2d&gt;|
+
+<!-- generate_doc -->
+## Vec1d,Vec3d
+
+Templates:
+
+- Vec1d,Vec3d
+
+__Target__: Sofa.Component.Mass
+
+__namespace__: sofa::component::mass
+
+__parents__:
+
+- Mass
+
+### Data
+
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Default value</th>
+        </tr>
+    </thead>
+    <tbody>
+	<tr>
+		<td>name</td>
+		<td>
+object name
+		</td>
+		<td>unnamed</td>
+	</tr>
+	<tr>
+		<td>printLog</td>
+		<td>
+if true, emits extra messages at runtime.
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>tags</td>
+		<td>
+list of the subsets the objet belongs to
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>bbox</td>
+		<td>
+this object bounding box
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>componentState</td>
+		<td>
+The state of the component among (Dirty, Valid, Undefined, Loading, Invalid).
+		</td>
+		<td>Undefined</td>
+	</tr>
+	<tr>
+		<td>listening</td>
+		<td>
+if true, handle the events, otherwise ignore the events
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>rayleighStiffness</td>
+		<td>
+Rayleigh damping - stiffness matrix coefficient
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>separateGravity</td>
+		<td>
+add separately gravity to velocity computation
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>rayleighMass</td>
+		<td>
+Rayleigh damping - mass matrix coefficient
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>massDensity</td>
+		<td>
+Specify real and strictly positive value(s) for the mass density. 
+If unspecified or wrongly set, the totalMass information is used.
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>totalMass</td>
+		<td>
+Specify the total mass resulting from all particles. 
+If unspecified or wrongly set, the default value is used: totalMass = 1.0
+		</td>
+		<td>1</td>
+	</tr>
+	<tr>
+		<td>vertexMass</td>
+		<td>
+internal values of the particles masses on vertices, supporting topological changes
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>edgeMass</td>
+		<td>
+internal values of the particles masses on edges, supporting topological changes
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>computeMassOnRest</td>
+		<td>
+If true, the mass of every element is computed based on the rest position rather than the position
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>lumping</td>
+		<td>
+If true, the mass matrix is lumped, meaning the mass matrix becomes diagonal (summing all mass values of a line on the diagonal)
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>printMass</td>
+		<td>
+boolean if you want to check the mass conservation
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>graph</td>
+		<td>
+Graph of the controlled potential
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td colspan="3">Visualization</td>
+	</tr>
+	<tr>
+		<td>showGravityCenter</td>
+		<td>
+display the center of gravity of the system
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>showAxisSizeFactor</td>
+		<td>
+factor length of the axis displayed (only used for rigids)
+		</td>
+		<td>1</td>
+	</tr>
+
+</tbody>
+</table>
+
+### Links
+
+
+| Name | Description | Destination type name |
+| ---- | ----------- | --------------------- |
+|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
+|slaves|Sub-objects used internally by this object|BaseObject|
+|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
+|mechanicalStates|List of mechanical states to which this component is associated|BaseMechanicalState|
+|mstate|MechanicalState used by this component|MechanicalState&lt;Vec1d&gt;|
+|topology|link to the topology container|BaseMeshTopology|
+|geometryState|link to the MechanicalObject associated with the geometry|MechanicalState&lt;Vec3d&gt;|
+
+<!-- generate_doc -->
+## Vec2d,Vec2d
+
+Templates:
+
+- Vec2d,Vec2d
+
+__Target__: Sofa.Component.Mass
+
+__namespace__: sofa::component::mass
+
+__parents__:
+
+- Mass
+
+### Data
+
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Default value</th>
+        </tr>
+    </thead>
+    <tbody>
+	<tr>
+		<td>name</td>
+		<td>
+object name
+		</td>
+		<td>unnamed</td>
+	</tr>
+	<tr>
+		<td>printLog</td>
+		<td>
+if true, emits extra messages at runtime.
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>tags</td>
+		<td>
+list of the subsets the objet belongs to
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>bbox</td>
+		<td>
+this object bounding box
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>componentState</td>
+		<td>
+The state of the component among (Dirty, Valid, Undefined, Loading, Invalid).
+		</td>
+		<td>Undefined</td>
+	</tr>
+	<tr>
+		<td>listening</td>
+		<td>
+if true, handle the events, otherwise ignore the events
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>rayleighStiffness</td>
+		<td>
+Rayleigh damping - stiffness matrix coefficient
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>separateGravity</td>
+		<td>
+add separately gravity to velocity computation
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>rayleighMass</td>
+		<td>
+Rayleigh damping - mass matrix coefficient
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>massDensity</td>
+		<td>
+Specify real and strictly positive value(s) for the mass density. 
+If unspecified or wrongly set, the totalMass information is used.
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>totalMass</td>
+		<td>
+Specify the total mass resulting from all particles. 
+If unspecified or wrongly set, the default value is used: totalMass = 1.0
+		</td>
+		<td>1</td>
+	</tr>
+	<tr>
+		<td>vertexMass</td>
+		<td>
+internal values of the particles masses on vertices, supporting topological changes
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>edgeMass</td>
+		<td>
+internal values of the particles masses on edges, supporting topological changes
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>computeMassOnRest</td>
+		<td>
+If true, the mass of every element is computed based on the rest position rather than the position
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>lumping</td>
+		<td>
+If true, the mass matrix is lumped, meaning the mass matrix becomes diagonal (summing all mass values of a line on the diagonal)
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>printMass</td>
+		<td>
+boolean if you want to check the mass conservation
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>graph</td>
+		<td>
+Graph of the controlled potential
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td colspan="3">Visualization</td>
+	</tr>
+	<tr>
+		<td>showGravityCenter</td>
+		<td>
+display the center of gravity of the system
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>showAxisSizeFactor</td>
+		<td>
+factor length of the axis displayed (only used for rigids)
+		</td>
+		<td>1</td>
+	</tr>
+
+</tbody>
+</table>
+
+### Links
+
+
+| Name | Description | Destination type name |
+| ---- | ----------- | --------------------- |
+|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
+|slaves|Sub-objects used internally by this object|BaseObject|
+|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
+|mechanicalStates|List of mechanical states to which this component is associated|BaseMechanicalState|
+|mstate|MechanicalState used by this component|MechanicalState&lt;Vec2d&gt;|
+|topology|link to the topology container|BaseMeshTopology|
+|geometryState|link to the MechanicalObject associated with the geometry|MechanicalState&lt;Vec2d&gt;|
+
+<!-- generate_doc -->
+## Vec2d,Vec3d
+
+Templates:
+
+- Vec2d,Vec3d
+
+__Target__: Sofa.Component.Mass
+
+__namespace__: sofa::component::mass
+
+__parents__:
+
+- Mass
+
+### Data
+
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Default value</th>
+        </tr>
+    </thead>
+    <tbody>
+	<tr>
+		<td>name</td>
+		<td>
+object name
+		</td>
+		<td>unnamed</td>
+	</tr>
+	<tr>
+		<td>printLog</td>
+		<td>
+if true, emits extra messages at runtime.
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>tags</td>
+		<td>
+list of the subsets the objet belongs to
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>bbox</td>
+		<td>
+this object bounding box
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>componentState</td>
+		<td>
+The state of the component among (Dirty, Valid, Undefined, Loading, Invalid).
+		</td>
+		<td>Undefined</td>
+	</tr>
+	<tr>
+		<td>listening</td>
+		<td>
+if true, handle the events, otherwise ignore the events
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>rayleighStiffness</td>
+		<td>
+Rayleigh damping - stiffness matrix coefficient
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>separateGravity</td>
+		<td>
+add separately gravity to velocity computation
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>rayleighMass</td>
+		<td>
+Rayleigh damping - mass matrix coefficient
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>massDensity</td>
+		<td>
+Specify real and strictly positive value(s) for the mass density. 
+If unspecified or wrongly set, the totalMass information is used.
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>totalMass</td>
+		<td>
+Specify the total mass resulting from all particles. 
+If unspecified or wrongly set, the default value is used: totalMass = 1.0
+		</td>
+		<td>1</td>
+	</tr>
+	<tr>
+		<td>vertexMass</td>
+		<td>
+internal values of the particles masses on vertices, supporting topological changes
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>edgeMass</td>
+		<td>
+internal values of the particles masses on edges, supporting topological changes
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>computeMassOnRest</td>
+		<td>
+If true, the mass of every element is computed based on the rest position rather than the position
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>lumping</td>
+		<td>
+If true, the mass matrix is lumped, meaning the mass matrix becomes diagonal (summing all mass values of a line on the diagonal)
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>printMass</td>
+		<td>
+boolean if you want to check the mass conservation
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>graph</td>
+		<td>
+Graph of the controlled potential
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td colspan="3">Visualization</td>
+	</tr>
+	<tr>
+		<td>showGravityCenter</td>
+		<td>
+display the center of gravity of the system
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>showAxisSizeFactor</td>
+		<td>
+factor length of the axis displayed (only used for rigids)
+		</td>
+		<td>1</td>
+	</tr>
+
+</tbody>
+</table>
+
+### Links
+
+
+| Name | Description | Destination type name |
+| ---- | ----------- | --------------------- |
+|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
+|slaves|Sub-objects used internally by this object|BaseObject|
+|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
+|mechanicalStates|List of mechanical states to which this component is associated|BaseMechanicalState|
+|mstate|MechanicalState used by this component|MechanicalState&lt;Vec2d&gt;|
+|topology|link to the topology container|BaseMeshTopology|
+|geometryState|link to the MechanicalObject associated with the geometry|MechanicalState&lt;Vec3d&gt;|
+
+<!-- generate_doc -->
+## Vec3d,Vec3d
+
+Templates:
+
+- Vec3d,Vec3d
+
+__Target__: Sofa.Component.Mass
+
+__namespace__: sofa::component::mass
+
+__parents__:
+
+- Mass
+
+### Data
+
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Default value</th>
+        </tr>
+    </thead>
+    <tbody>
+	<tr>
+		<td>name</td>
+		<td>
+object name
+		</td>
+		<td>unnamed</td>
+	</tr>
+	<tr>
+		<td>printLog</td>
+		<td>
+if true, emits extra messages at runtime.
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>tags</td>
+		<td>
+list of the subsets the objet belongs to
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>bbox</td>
+		<td>
+this object bounding box
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>componentState</td>
+		<td>
+The state of the component among (Dirty, Valid, Undefined, Loading, Invalid).
+		</td>
+		<td>Undefined</td>
+	</tr>
+	<tr>
+		<td>listening</td>
+		<td>
+if true, handle the events, otherwise ignore the events
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>rayleighStiffness</td>
+		<td>
+Rayleigh damping - stiffness matrix coefficient
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>separateGravity</td>
+		<td>
+add separately gravity to velocity computation
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>rayleighMass</td>
+		<td>
+Rayleigh damping - mass matrix coefficient
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>massDensity</td>
+		<td>
+Specify real and strictly positive value(s) for the mass density. 
+If unspecified or wrongly set, the totalMass information is used.
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>totalMass</td>
+		<td>
+Specify the total mass resulting from all particles. 
+If unspecified or wrongly set, the default value is used: totalMass = 1.0
+		</td>
+		<td>1</td>
+	</tr>
+	<tr>
+		<td>vertexMass</td>
+		<td>
+internal values of the particles masses on vertices, supporting topological changes
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>edgeMass</td>
+		<td>
+internal values of the particles masses on edges, supporting topological changes
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>computeMassOnRest</td>
+		<td>
+If true, the mass of every element is computed based on the rest position rather than the position
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>lumping</td>
+		<td>
+If true, the mass matrix is lumped, meaning the mass matrix becomes diagonal (summing all mass values of a line on the diagonal)
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>printMass</td>
+		<td>
+boolean if you want to check the mass conservation
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>graph</td>
+		<td>
+Graph of the controlled potential
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td colspan="3">Visualization</td>
+	</tr>
+	<tr>
+		<td>showGravityCenter</td>
+		<td>
+display the center of gravity of the system
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>showAxisSizeFactor</td>
+		<td>
+factor length of the axis displayed (only used for rigids)
+		</td>
+		<td>1</td>
+	</tr>
+
+</tbody>
+</table>
+
+### Links
+
+
+| Name | Description | Destination type name |
+| ---- | ----------- | --------------------- |
+|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
+|slaves|Sub-objects used internally by this object|BaseObject|
+|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
+|mechanicalStates|List of mechanical states to which this component is associated|BaseMechanicalState|
+|mstate|MechanicalState used by this component|MechanicalState&lt;Vec3d&gt;|
+|topology|link to the topology container|BaseMeshTopology|
+|geometryState|link to the MechanicalObject associated with the geometry|MechanicalState&lt;Vec3d&gt;|
+
+## Examples 
+
+MeshMatrixMass.scn
 
 === "XML"
 
@@ -369,58 +1280,63 @@ Component/Mass/MeshMatrixMass.scn
     
         </Node>
     </Node>
+
     ```
 
 === "Python"
 
     ```python
-    def createScene(rootNode):
+    def createScene(root_node):
 
-        root = rootNode.addChild('root', dt="0.005")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Algorithm")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Intersection")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Geometry")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Response.Contact")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Projective")
-        root.addObject('RequiredPlugin', name="Sofa.Component.IO.Mesh")
-        root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Iterative")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Mapping.Linear")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Mass")
-        root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
-        root.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.FEM.Elastic")
-        root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Dynamic")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Visual")
-        root.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
-        root.addObject('VisualStyle', displayFlags="showBehaviorModels showForceFields")
-        root.addObject('DefaultAnimationLoop')
-        root.addObject('CollisionPipeline', verbose="0", name="CollisionPipeline")
-        root.addObject('BruteForceBroadPhase')
-        root.addObject('BVHNarrowPhase')
-        root.addObject('CollisionResponse', response="PenalityContactForceField", name="collision response")
-        root.addObject('DiscreteIntersection')
-        root.addObject('MeshGmshLoader', name="MeshLoader", filename="mesh/liver.msh")
-        root.addObject('MeshOBJLoader', name="LiverSurface", filename="mesh/liver-smooth.obj")
+       root = root_node.addChild('root', dt="0.005")
 
-        Liver = root.addChild('Liver')
-        Liver.addObject('EulerImplicitSolver', name="integration scheme")
-        Liver.addObject('CGLinearSolver', name="linear solver", iterations="1000", tolerance="1e-9", threshold="1e-9")
-        Liver.addObject('MechanicalObject', name="dofs", src="@../MeshLoader")
-        Liver.addObject('TetrahedronSetTopologyContainer', name="TetraTopo", src="@../MeshLoader")
-        Liver.addObject('TetrahedronSetGeometryAlgorithms', name="GeomAlgo")
-        Liver.addObject('MeshMatrixMass', totalMass="60", name="SparseMass", topology="@TetraTopo")
-        Liver.addObject('TetrahedralCorotationalFEMForceField', template="Vec3", name="FEM", method="large", poissonRatio="0.45", youngModulus="5000")
-        Liver.addObject('FixedProjectiveConstraint', name="FixedProjectiveConstraint", indices="3 39 64")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Algorithm")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Intersection")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Geometry")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Response.Contact")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Projective")
+       root.addObject('RequiredPlugin', name="Sofa.Component.IO.Mesh")
+       root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Iterative")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Mapping.Linear")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Mass")
+       root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.FEM.Elastic")
+       root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Dynamic")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Visual")
+       root.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
+       root.addObject('VisualStyle', displayFlags="showBehaviorModels showForceFields")
+       root.addObject('DefaultAnimationLoop', )
+       root.addObject('CollisionPipeline', verbose="0", name="CollisionPipeline")
+       root.addObject('BruteForceBroadPhase', )
+       root.addObject('BVHNarrowPhase', )
+       root.addObject('CollisionResponse', response="PenalityContactForceField", name="collision response")
+       root.addObject('DiscreteIntersection', )
+       root.addObject('MeshGmshLoader', name="MeshLoader", filename="mesh/liver.msh")
+       root.addObject('MeshOBJLoader', name="LiverSurface", filename="mesh/liver-smooth.obj")
 
-        Visu = Liver.addChild('Visu')
-        Visu.addObject('OglModel', name="VisualModel", src="@../../LiverSurface", color="cyan")
-        Visu.addObject('BarycentricMapping', name="VisualMapping", input="@../dofs", output="@VisualModel")
+       liver = root.addChild('Liver')
 
-        Surf = Liver.addChild('Surf')
-        Surf.addObject('SphereLoader', filename="mesh/liver.sph")
-        Surf.addObject('MechanicalObject', name="spheres", position="@[-1].position")
-        Surf.addObject('SphereCollisionModel', name="CollisionModel", listRadius="@[-2].listRadius")
-        Surf.addObject('BarycentricMapping', name="CollisionMapping", input="@../dofs", output="@spheres")
+       liver.addObject('EulerImplicitSolver', name="integration scheme")
+       liver.addObject('CGLinearSolver', name="linear solver", iterations="1000", tolerance="1e-9", threshold="1e-9")
+       liver.addObject('MechanicalObject', name="dofs", src="@../MeshLoader")
+       liver.addObject('TetrahedronSetTopologyContainer', name="TetraTopo", src="@../MeshLoader")
+       liver.addObject('TetrahedronSetGeometryAlgorithms', name="GeomAlgo")
+       liver.addObject('MeshMatrixMass', totalMass="60", name="SparseMass", topology="@TetraTopo")
+       liver.addObject('TetrahedralCorotationalFEMForceField', template="Vec3", name="FEM", method="large", poissonRatio="0.45", youngModulus="5000")
+       liver.addObject('FixedProjectiveConstraint', name="FixedProjectiveConstraint", indices="3 39 64")
+
+       visu = Liver.addChild('Visu')
+
+       visu.addObject('OglModel', name="VisualModel", src="@../../LiverSurface", color="cyan")
+       visu.addObject('BarycentricMapping', name="VisualMapping", input="@../dofs", output="@VisualModel")
+
+       surf = Liver.addChild('Surf')
+
+       surf.addObject('SphereLoader', filename="mesh/liver.sph")
+       surf.addObject('MechanicalObject', name="spheres", position="@[-1].position")
+       surf.addObject('SphereCollisionModel', name="CollisionModel", listRadius="@[-2].listRadius")
+       surf.addObject('BarycentricMapping', name="CollisionMapping", input="@../dofs", output="@spheres")
     ```
 
 

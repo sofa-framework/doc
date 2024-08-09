@@ -1,3 +1,4 @@
+<!-- generate_doc -->
 # UnilateralPlaneConstraint
 
 This component is a simple point plane collision model. 
@@ -8,87 +9,85 @@ All the four points, the triangle and the normal can be
 seen by allowing the 'Collision Model' in the 'View' tab.
 
 
-__Templates__:
+## Vec3d
 
-- `#!c++ Vec3d`
+Templates:
 
-__Target__: `SoftRobots`
+- Vec3d
 
-__namespace__: `#!c++ softrobots::constraint`
+__Target__: SoftRobots
 
-__parents__: 
+__namespace__: softrobots::constraint
 
-- `#!c++ SoftRobotsConstraint`
+__parents__:
 
-__categories__: 
+- SoftRobotsConstraint
 
-- ConstraintSet
-
-Data: 
+### Data
 
 <table>
-<thead>
-    <tr>
-        <th>Name</th>
-        <th>Description</th>
-        <th>Default value</th>
-    </tr>
-</thead>
-<tbody>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Default value</th>
+        </tr>
+    </thead>
+    <tbody>
 	<tr>
 		<td>name</td>
 		<td>
 object name
-</td>
+		</td>
 		<td>unnamed</td>
 	</tr>
 	<tr>
 		<td>printLog</td>
 		<td>
 if true, emits extra messages at runtime.
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>tags</td>
 		<td>
 list of the subsets the objet belongs to
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>bbox</td>
 		<td>
 this object bounding box
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>componentState</td>
 		<td>
 The state of the component among (Dirty, Valid, Undefined, Loading, Invalid).
-</td>
+		</td>
 		<td>Undefined</td>
 	</tr>
 	<tr>
 		<td>listening</td>
 		<td>
 if true, handle the events, otherwise ignore the events
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>group</td>
 		<td>
 ID of the group containing this constraint. This ID is used to specify which constraints are solved by which solver, by specifying in each solver which groups of constraints it should handle.
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>constraintIndex</td>
 		<td>
 Constraint index (first index in the right hand term resolution vector)
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
@@ -96,7 +95,7 @@ Constraint index (first index in the right hand term resolution vector)
 		<td>
 The SoftRobotsConstraint stops acting after the given value.
 Use a negative value for infinite SoftRobotsConstraints
-</td>
+		</td>
 		<td>-1</td>
 	</tr>
 	<tr>
@@ -105,27 +104,26 @@ Use a negative value for infinite SoftRobotsConstraints
 Four indices: 
 -First one for the constrained point 
 -The others to describe the plane
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>flipNormal</td>
 		<td>
 The normal must be to the direction of the point
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 
 </tbody>
 </table>
 
-Links: 
-
-| Name | Description |
-| ---- | ----------- |
-|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|
-|slaves|Sub-objects used internally by this object|
-|master|nullptr for regular objects, or master object for which this object is one sub-objects|
+### Links
 
 
+| Name | Description | Destination type name |
+| ---- | ----------- | --------------------- |
+|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
+|slaves|Sub-objects used internally by this object|BaseObject|
+|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
 

@@ -1,83 +1,81 @@
+<!-- generate_doc -->
 # ParticleSource
 
 Parametrable particle generator
-Supports GPU-side computations using CUDA
 
 
-__Templates__:
+## Vec2d
 
-- `#!c++ Vec3d`
+Templates:
 
-__Target__: `SofaSphFluid`
+- Vec2d
 
-__namespace__: `#!c++ sofa::component::misc`
+__Target__: SofaSphFluid
 
-__parents__: 
+__namespace__: sofa::component::misc
 
-- `#!c++ ProjectiveConstraintSet`
-
-__categories__: 
+__parents__:
 
 - ProjectiveConstraintSet
 
-Data: 
+### Data
 
 <table>
-<thead>
-    <tr>
-        <th>Name</th>
-        <th>Description</th>
-        <th>Default value</th>
-    </tr>
-</thead>
-<tbody>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Default value</th>
+        </tr>
+    </thead>
+    <tbody>
 	<tr>
 		<td>name</td>
 		<td>
 object name
-</td>
+		</td>
 		<td>unnamed</td>
 	</tr>
 	<tr>
 		<td>printLog</td>
 		<td>
 if true, emits extra messages at runtime.
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>tags</td>
 		<td>
 list of the subsets the objet belongs to
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>bbox</td>
 		<td>
 this object bounding box
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>componentState</td>
 		<td>
 The state of the component among (Dirty, Valid, Undefined, Loading, Invalid).
-</td>
+		</td>
 		<td>Undefined</td>
 	</tr>
 	<tr>
 		<td>listening</td>
 		<td>
 if true, handle the events, otherwise ignore the events
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>group</td>
 		<td>
 ID of the group containing this constraint. This ID is used to specify which constraints are solved by which solver, by specifying in each solver which groups of constraints it should handle.
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
@@ -85,169 +83,167 @@ ID of the group containing this constraint. This ID is used to specify which con
 		<td>
 The constraint stops acting after the given value.
 Use a negative value for infinite constraints
-</td>
+		</td>
 		<td>-1</td>
 	</tr>
 	<tr>
 		<td>translation</td>
 		<td>
 translation applied to center(s)
-</td>
-		<td>0 0 0</td>
+		</td>
+		<td>0 0</td>
 	</tr>
 	<tr>
 		<td>scale</td>
 		<td>
 scale applied to center(s)
-</td>
+		</td>
 		<td>1</td>
 	</tr>
 	<tr>
 		<td>center</td>
 		<td>
 Source center(s)
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>radius</td>
 		<td>
 Source radius
-</td>
-		<td>0 0 0</td>
+		</td>
+		<td>0 0</td>
 	</tr>
 	<tr>
 		<td>velocity</td>
 		<td>
 Particle initial velocity
-</td>
-		<td>0 0 0</td>
+		</td>
+		<td>0 0</td>
 	</tr>
 	<tr>
 		<td>delay</td>
 		<td>
 Delay between particles creation
-</td>
+		</td>
 		<td>0.01</td>
 	</tr>
 	<tr>
 		<td>start</td>
 		<td>
 Source starting time
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>stop</td>
 		<td>
 Source stopping time
-</td>
+		</td>
 		<td>1e+10</td>
 	</tr>
 	<tr>
 		<td>addNoise</td>
 		<td>
 Will add random value to the radius of new created particles
-</td>
+		</td>
 		<td>1</td>
 	</tr>
 	<tr>
 		<td>lastparticles</td>
 		<td>
 lastparticles indices
-</td>
+		</td>
 		<td></td>
 	</tr>
 
 </tbody>
 </table>
 
-Links: 
-
-| Name | Description |
-| ---- | ----------- |
-|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|
-|slaves|Sub-objects used internally by this object|
-|master|nullptr for regular objects, or master object for which this object is one sub-objects|
-|mechanicalStates|List of mechanical states to which this component is associated|
-|mstate|MechanicalState used by this component|
+### Links
 
 
+| Name | Description | Destination type name |
+| ---- | ----------- | --------------------- |
+|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
+|slaves|Sub-objects used internally by this object|BaseObject|
+|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
+|mechanicalStates|List of mechanical states to which this component is associated|BaseMechanicalState|
+|mstate|MechanicalState used by this component|MechanicalState&lt;Vec2d&gt;|
 
-__Templates__:
+<!-- generate_doc -->
+## Vec3d
 
-- `#!c++ Vec2d`
+Templates:
 
-__Target__: `SofaSphFluid`
+- Vec3d
 
-__namespace__: `#!c++ sofa::component::misc`
+__Target__: SofaSphFluid
 
-__parents__: 
+__namespace__: sofa::component::misc
 
-- `#!c++ ProjectiveConstraintSet`
-
-__categories__: 
+__parents__:
 
 - ProjectiveConstraintSet
 
-Data: 
+### Data
 
 <table>
-<thead>
-    <tr>
-        <th>Name</th>
-        <th>Description</th>
-        <th>Default value</th>
-    </tr>
-</thead>
-<tbody>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Default value</th>
+        </tr>
+    </thead>
+    <tbody>
 	<tr>
 		<td>name</td>
 		<td>
 object name
-</td>
+		</td>
 		<td>unnamed</td>
 	</tr>
 	<tr>
 		<td>printLog</td>
 		<td>
 if true, emits extra messages at runtime.
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>tags</td>
 		<td>
 list of the subsets the objet belongs to
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>bbox</td>
 		<td>
 this object bounding box
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>componentState</td>
 		<td>
 The state of the component among (Dirty, Valid, Undefined, Loading, Invalid).
-</td>
+		</td>
 		<td>Undefined</td>
 	</tr>
 	<tr>
 		<td>listening</td>
 		<td>
 if true, handle the events, otherwise ignore the events
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>group</td>
 		<td>
 ID of the group containing this constraint. This ID is used to specify which constraints are solved by which solver, by specifying in each solver which groups of constraints it should handle.
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
@@ -255,98 +251,97 @@ ID of the group containing this constraint. This ID is used to specify which con
 		<td>
 The constraint stops acting after the given value.
 Use a negative value for infinite constraints
-</td>
+		</td>
 		<td>-1</td>
 	</tr>
 	<tr>
 		<td>translation</td>
 		<td>
 translation applied to center(s)
-</td>
-		<td>0 0</td>
+		</td>
+		<td>0 0 0</td>
 	</tr>
 	<tr>
 		<td>scale</td>
 		<td>
 scale applied to center(s)
-</td>
+		</td>
 		<td>1</td>
 	</tr>
 	<tr>
 		<td>center</td>
 		<td>
 Source center(s)
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>radius</td>
 		<td>
 Source radius
-</td>
-		<td>0 0</td>
+		</td>
+		<td>0 0 0</td>
 	</tr>
 	<tr>
 		<td>velocity</td>
 		<td>
 Particle initial velocity
-</td>
-		<td>0 0</td>
+		</td>
+		<td>0 0 0</td>
 	</tr>
 	<tr>
 		<td>delay</td>
 		<td>
 Delay between particles creation
-</td>
+		</td>
 		<td>0.01</td>
 	</tr>
 	<tr>
 		<td>start</td>
 		<td>
 Source starting time
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>stop</td>
 		<td>
 Source stopping time
-</td>
+		</td>
 		<td>1e+10</td>
 	</tr>
 	<tr>
 		<td>addNoise</td>
 		<td>
 Will add random value to the radius of new created particles
-</td>
+		</td>
 		<td>1</td>
 	</tr>
 	<tr>
 		<td>lastparticles</td>
 		<td>
 lastparticles indices
-</td>
+		</td>
 		<td></td>
 	</tr>
 
 </tbody>
 </table>
 
-Links: 
-
-| Name | Description |
-| ---- | ----------- |
-|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|
-|slaves|Sub-objects used internally by this object|
-|master|nullptr for regular objects, or master object for which this object is one sub-objects|
-|mechanicalStates|List of mechanical states to which this component is associated|
-|mstate|MechanicalState used by this component|
+### Links
 
 
+| Name | Description | Destination type name |
+| ---- | ----------- | --------------------- |
+|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
+|slaves|Sub-objects used internally by this object|BaseObject|
+|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
+|mechanicalStates|List of mechanical states to which this component is associated|BaseMechanicalState|
+|mstate|MechanicalState used by this component|MechanicalState&lt;Vec3d&gt;|
 
-## Examples
+## Examples 
 
-SofaSphFluid/share/sofa/examples/SofaSphFluid/ParticleSource.scn
+ParticleSource.scn
 
 === "XML"
 
@@ -389,46 +384,29 @@ SofaSphFluid/share/sofa/examples/SofaSphFluid/ParticleSource.scn
             <UniformMass name="M1" vertexMass="1.0" />
         </Node>
     </Node>
+
     ```
 
 === "Python"
 
     ```python
-    def createScene(rootNode):
+    def createScene(root_node):
 
-        rootNode = rootNode.addChild('rootNode', dt="0.005", gravity="0 -10 0", bbox="-4 -4 -4 4 4 4")
-        rootNode.addObject('RequiredPlugin', name="Sofa.Component.Mass")
-        rootNode.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Forward")
-        rootNode.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
-        rootNode.addObject('RequiredPlugin', name="Sofa.Component.Visual")
-        rootNode.addObject('RequiredPlugin', name="SofaSphFluid")
-        rootNode.addObject('VisualStyle', displayFlags="showBehaviorModels showForceFields showWireframe")
-        rootNode.addObject('DefaultAnimationLoop')
+       node = root_node.addChild('node', dt="0.005", gravity="0 -10 0", bbox="-4 -4 -4 4 4 4")
 
-        Particles = rootNode.addChild('Particles')
-        Particles.addObject('EulerExplicitSolver', symplectic="1")
-        Particles.addObject('MechanicalObject', name="MModel", showObject="1")
-        Particles.addObject('ParticleSource', name="Source", translation="0 4 0", radius="0.01 0.1 0.01", velocity="0 -1 0", delay="0.1", start="-0.1", stop="10", printLog="0", center="-0.375 0 -0.75 
-            0.0 0.0 -0.75 
-            0.375 0.0 -0.75 
-            -0.75  0.0 -0.375 
-            -0.375 0.0 -0.375 
-            0.0 0.0 -0.375 
-            0.375 0.0 -0.375 
-            0.75 0.0 -0.375 
-            -0.75 0.0 0.0 
-            -0.375 0.0 0.0 
-            0.0 0.0 0.0 
-            0.375 0.0 0.0 
-            0.75 0.0 0.0 
-            -0.75 0.0 0.375 
-            -0.375 0.0 0.375 
-            0.0 0.0 0.375 
-            0.375 0.0 0.375 
-            0.75 0.0 0.375 
-            -0.375 0.0 0.75 
-            0.0 0.0 0.75 
-            0.375 0.0 0.75")
-        Particles.addObject('UniformMass', name="M1", vertexMass="1.0")
+       node.addObject('RequiredPlugin', name="Sofa.Component.Mass")
+       node.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Forward")
+       node.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
+       node.addObject('RequiredPlugin', name="Sofa.Component.Visual")
+       node.addObject('RequiredPlugin', name="SofaSphFluid")
+       node.addObject('VisualStyle', displayFlags="showBehaviorModels showForceFields showWireframe")
+       node.addObject('DefaultAnimationLoop', )
+
+       particles = node.addChild('Particles')
+
+       particles.addObject('EulerExplicitSolver', symplectic="1")
+       particles.addObject('MechanicalObject', name="MModel", showObject="1")
+       particles.addObject('ParticleSource', name="Source", translation="0 4 0", radius="0.01 0.1 0.01", velocity="0 -1 0", delay="0.1", start="-0.1", stop="10", printLog="0", center="-0.375 0 -0.75              0.0 0.0 -0.75              0.375 0.0 -0.75              -0.75  0.0 -0.375              -0.375 0.0 -0.375              0.0 0.0 -0.375              0.375 0.0 -0.375              0.75 0.0 -0.375              -0.75 0.0 0.0              -0.375 0.0 0.0              0.0 0.0 0.0              0.375 0.0 0.0              0.75 0.0 0.0              -0.75 0.0 0.375              -0.375 0.0 0.375              0.0 0.0 0.375              0.375 0.0 0.375              0.75 0.0 0.375              -0.375 0.0 0.75              0.0 0.0 0.75              0.375 0.0 0.75")
+       particles.addObject('UniformMass', name="M1", vertexMass="1.0")
     ```
 

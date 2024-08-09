@@ -1,139 +1,137 @@
+<!-- generate_doc -->
 # TriangularFEMForceFieldOptim
 
 Corotational Triangular finite elements
-Supports GPU-side computations using CUDA
 
 
-__Templates__:
+## Vec3d
 
-- `#!c++ Vec3d`
+Templates:
 
-__Target__: `Sofa.Component.SolidMechanics.FEM.Elastic`
+- Vec3d
 
-__namespace__: `#!c++ sofa::component::solidmechanics::fem::elastic`
+__Target__: Sofa.Component.SolidMechanics.FEM.Elastic
 
-__parents__: 
+__namespace__: sofa::component::solidmechanics::fem::elastic
 
-- `#!c++ ForceField`
-
-__categories__: 
+__parents__:
 
 - ForceField
 
-Data: 
+### Data
 
 <table>
-<thead>
-    <tr>
-        <th>Name</th>
-        <th>Description</th>
-        <th>Default value</th>
-    </tr>
-</thead>
-<tbody>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Default value</th>
+        </tr>
+    </thead>
+    <tbody>
 	<tr>
 		<td>name</td>
 		<td>
 object name
-</td>
+		</td>
 		<td>unnamed</td>
 	</tr>
 	<tr>
 		<td>printLog</td>
 		<td>
 if true, emits extra messages at runtime.
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>tags</td>
 		<td>
 list of the subsets the objet belongs to
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>bbox</td>
 		<td>
 this object bounding box
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>componentState</td>
 		<td>
 The state of the component among (Dirty, Valid, Undefined, Loading, Invalid).
-</td>
+		</td>
 		<td>Undefined</td>
 	</tr>
 	<tr>
 		<td>listening</td>
 		<td>
 if true, handle the events, otherwise ignore the events
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>rayleighStiffness</td>
 		<td>
 Rayleigh damping - stiffness matrix coefficient
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>triangleInfo</td>
 		<td>
 Internal triangle data (persistent)
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>triangleState</td>
 		<td>
 Internal triangle data (time-dependent)
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>poissonRatio</td>
 		<td>
 Poisson ratio in Hooke's law
-</td>
+		</td>
 		<td>0.3</td>
 	</tr>
 	<tr>
 		<td>youngModulus</td>
 		<td>
 Young modulus in Hooke's law
-</td>
+		</td>
 		<td>1000</td>
 	</tr>
 	<tr>
 		<td>damping</td>
 		<td>
 Ratio damping/stiffness
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>restScale</td>
 		<td>
 Scale factor applied to rest positions (to simulate pre-stretched materials)
-</td>
+		</td>
 		<td>1</td>
 	</tr>
 	<tr>
 		<td>computePrincipalStress</td>
 		<td>
 Compute principal stress for each triangle
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>stressMaxValue</td>
 		<td>
 Max stress value computed over the triangulation
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
@@ -143,36 +141,35 @@ Max stress value computed over the triangulation
 		<td>showStressVector</td>
 		<td>
 Flag activating rendering of stress directions within each triangle
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>showStressThreshold</td>
 		<td>
 Threshold value to render only stress vectors higher to this threshold
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 
 </tbody>
 </table>
 
-Links: 
-
-| Name | Description |
-| ---- | ----------- |
-|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|
-|slaves|Sub-objects used internally by this object|
-|master|nullptr for regular objects, or master object for which this object is one sub-objects|
-|mechanicalStates|List of mechanical states to which this component is associated|
-|mstate|MechanicalState used by this component|
-|topology|link to the topology container|
+### Links
 
 
+| Name | Description | Destination type name |
+| ---- | ----------- | --------------------- |
+|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
+|slaves|Sub-objects used internally by this object|BaseObject|
+|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
+|mechanicalStates|List of mechanical states to which this component is associated|BaseMechanicalState|
+|mstate|MechanicalState used by this component|MechanicalState&lt;Vec3d&gt;|
+|topology|link to the topology container|BaseMeshTopology|
 
-## Examples
+## Examples 
 
-Component/SolidMechanics/FEM/TriangularFEMForceFieldOptim.scn
+TriangularFEMForceFieldOptim.scn
 
 === "XML"
 
@@ -230,46 +227,50 @@ Component/SolidMechanics/FEM/TriangularFEMForceFieldOptim.scn
         </Node>-->
     
     </Node>
+
     ```
 
 === "Python"
 
     ```python
-    def createScene(rootNode):
+    def createScene(root_node):
 
-        root = rootNode.addChild('root', dt="0.05", gravity="0 10 10", showBoundingTree="0")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Projective")
-        root.addObject('RequiredPlugin', name="Sofa.Component.IO.Mesh")
-        root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Iterative")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Mapping.Linear")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Mass")
-        root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
-        root.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.FEM.Elastic")
-        root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Dynamic")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Visual")
-        root.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
-        root.addObject('VisualStyle', displayFlags="showVisual showBehaviorModels showForceFields showWireframe")
-        root.addObject('DefaultAnimationLoop')
-        root.addObject('MeshGmshLoader', filename="mesh/square3.msh", name="loaderSquare")
+       root = root_node.addChild('root', dt="0.05", gravity="0 10 10", showBoundingTree="0")
 
-        SquareGravity1 = root.addChild('SquareGravity1')
-        SquareGravity1.addObject('EulerImplicitSolver', name="odesolver1", printLog="0", rayleighStiffness="0.1", rayleighMass="0.1")
-        SquareGravity1.addObject('CGLinearSolver', verbose="0", printLog="0", iterations="25", name="linearsolver1", tolerance="1.0e-9", threshold="1.0e-9")
-        SquareGravity1.addObject('TriangleSetTopologyContainer', name="Container", src="@../loaderSquare")
-        SquareGravity1.addObject('MechanicalObject', name="DOFs", src="@../loaderSquare", scale="100")
-        SquareGravity1.addObject('TriangleSetTopologyModifier', name="Modifier")
-        SquareGravity1.addObject('TriangleSetGeometryAlgorithms', name="GeomAlgo", template="Vec3")
-        SquareGravity1.addObject('DiagonalMass', massDensity="0.005")
-        SquareGravity1.addObject('FixedProjectiveConstraint', indices="0 1 2")
-        SquareGravity1.addObject('TriangularFEMForceFieldOptim', name="FEM", youngModulus="600", poissonRatio="0.3", method="large", printLog="1")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Projective")
+       root.addObject('RequiredPlugin', name="Sofa.Component.IO.Mesh")
+       root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Iterative")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Mapping.Linear")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Mass")
+       root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.FEM.Elastic")
+       root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Dynamic")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Visual")
+       root.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
+       root.addObject('VisualStyle', displayFlags="showVisual showBehaviorModels showForceFields showWireframe")
+       root.addObject('DefaultAnimationLoop', )
+       root.addObject('MeshGmshLoader', filename="mesh/square3.msh", name="loaderSquare")
 
-        VisuA = SquareGravity1.addChild('VisuA')
-        VisuA.addObject('OglModel', name="Visual", color="yellow")
-        VisuA.addObject('IdentityMapping', name="visualMapping", input="@../DOFs", output="@Visual")
+       square_gravity1 = root.addChild('SquareGravity1')
+
+       square_gravity1.addObject('EulerImplicitSolver', name="odesolver1", printLog="0", rayleighStiffness="0.1", rayleighMass="0.1")
+       square_gravity1.addObject('CGLinearSolver', verbose="0", printLog="0", iterations="25", name="linearsolver1", tolerance="1.0e-9", threshold="1.0e-9")
+       square_gravity1.addObject('TriangleSetTopologyContainer', name="Container", src="@../loaderSquare")
+       square_gravity1.addObject('MechanicalObject', name="DOFs", src="@../loaderSquare", scale="100")
+       square_gravity1.addObject('TriangleSetTopologyModifier', name="Modifier")
+       square_gravity1.addObject('TriangleSetGeometryAlgorithms', name="GeomAlgo", template="Vec3")
+       square_gravity1.addObject('DiagonalMass', massDensity="0.005")
+       square_gravity1.addObject('FixedProjectiveConstraint', indices="0 1 2")
+       square_gravity1.addObject('TriangularFEMForceFieldOptim', name="FEM", youngModulus="600", poissonRatio="0.3", method="large", printLog="1")
+
+       visu_a = SquareGravity1.addChild('VisuA')
+
+       visu_a.addObject('OglModel', name="Visual", color="yellow")
+       visu_a.addObject('IdentityMapping', name="visualMapping", input="@../DOFs", output="@Visual")
     ```
 
-SofaCUDA/share/sofa/examples/SofaCUDA/benchmarks/TriangularFEMForceFieldOptim_tissue100x100_cpu.scn
+TriangularFEMForceFieldOptim_tissue100x100_cpu.scn
 
 === "XML"
 
@@ -322,55 +323,59 @@ SofaCUDA/share/sofa/examples/SofaCUDA/benchmarks/TriangularFEMForceFieldOptim_ti
             </Node>
         </Node>
     </Node>
+
     ```
 
 === "Python"
 
     ```python
-    def createScene(rootNode):
+    def createScene(root_node):
 
-        root = rootNode.addChild('root', gravity="0 -9 -1", dt="0.01")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Algorithm")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Intersection")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Response.Contact")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Projective")
-        root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Iterative")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Mapping.Linear")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Mass")
-        root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
-        root.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.FEM.Elastic")
-        root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Dynamic")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Grid")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Visual")
-        root.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
-        root.addObject('VisualStyle', displayFlags="showBehaviorModels showVisual")
-        root.addObject('DefaultAnimationLoop')
-        root.addObject('DefaultVisualManagerLoop')
-        root.addObject('CollisionPipeline', verbose="0")
-        root.addObject('BruteForceBroadPhase')
-        root.addObject('BVHNarrowPhase')
-        root.addObject('CollisionResponse', response="PenalityContactForceField")
-        root.addObject('DiscreteIntersection')
-        root.addObject('RegularGridTopology', name="tissue", n="100 100 1", min="0 0 0", max="10 10 0")
+       root = root_node.addChild('root', gravity="0 -9 -1", dt="0.01")
 
-        TriangularFEMForceFieldOptim-CPU-red = root.addChild('TriangularFEMForceFieldOptim-CPU-red')
-        TriangularFEMForceFieldOptim-CPU-red.addObject('EulerImplicitSolver', name="cg_odesolver", rayleighStiffness="0.1", rayleighMass="0.1")
-        TriangularFEMForceFieldOptim-CPU-red.addObject('CGLinearSolver', iterations="20", name="linear solver", tolerance="1.0e-6", threshold="1.0e-6")
-        TriangularFEMForceFieldOptim-CPU-red.addObject('MechanicalObject', position="@../tissue.position", name="dofs", template="Vec3")
-        TriangularFEMForceFieldOptim-CPU-red.addObject('TriangleSetTopologyContainer', name="Container", src="@../tissue")
-        TriangularFEMForceFieldOptim-CPU-red.addObject('TriangleSetTopologyModifier', name="Modifier")
-        TriangularFEMForceFieldOptim-CPU-red.addObject('TriangleSetGeometryAlgorithms', name="GeomAlgo", template="Vec3")
-        TriangularFEMForceFieldOptim-CPU-red.addObject('DiagonalMass', massDensity="0.15", template="Vec3,Vec3")
-        TriangularFEMForceFieldOptim-CPU-red.addObject('FixedProjectiveConstraint', indices="9900 9901 9902 9903 9996 9997 9998 9999")
-        TriangularFEMForceFieldOptim-CPU-red.addObject('TriangularFEMForceFieldOptim', name="FEM", youngModulus="600", poissonRatio="0.3", method="large", template="Vec3")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Algorithm")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Intersection")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Response.Contact")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Projective")
+       root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Iterative")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Mapping.Linear")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Mass")
+       root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.FEM.Elastic")
+       root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Dynamic")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Grid")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Visual")
+       root.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
+       root.addObject('VisualStyle', displayFlags="showBehaviorModels showVisual")
+       root.addObject('DefaultAnimationLoop', )
+       root.addObject('DefaultVisualManagerLoop', )
+       root.addObject('CollisionPipeline', verbose="0")
+       root.addObject('BruteForceBroadPhase', )
+       root.addObject('BVHNarrowPhase', )
+       root.addObject('CollisionResponse', response="PenalityContactForceField")
+       root.addObject('DiscreteIntersection', )
+       root.addObject('RegularGridTopology', name="tissue", n="100 100 1", min="0 0 0", max="10 10 0")
 
-        Visu = TriangularFEMForceFieldOptim-CPU-red.addChild('Visu')
-        Visu.addObject('OglModel', name="Visual", color="red")
-        Visu.addObject('IdentityMapping', input="@../dofs", output="@Visual")
+       triangular_fem_force_field_optim__cpu_red = root.addChild('TriangularFEMForceFieldOptim-CPU-red')
+
+       triangular_fem_force_field_optim__cpu_red.addObject('EulerImplicitSolver', name="cg_odesolver", rayleighStiffness="0.1", rayleighMass="0.1")
+       triangular_fem_force_field_optim__cpu_red.addObject('CGLinearSolver', iterations="20", name="linear solver", tolerance="1.0e-6", threshold="1.0e-6")
+       triangular_fem_force_field_optim__cpu_red.addObject('MechanicalObject', position="@../tissue.position", name="dofs", template="Vec3")
+       triangular_fem_force_field_optim__cpu_red.addObject('TriangleSetTopologyContainer', name="Container", src="@../tissue")
+       triangular_fem_force_field_optim__cpu_red.addObject('TriangleSetTopologyModifier', name="Modifier")
+       triangular_fem_force_field_optim__cpu_red.addObject('TriangleSetGeometryAlgorithms', name="GeomAlgo", template="Vec3")
+       triangular_fem_force_field_optim__cpu_red.addObject('DiagonalMass', massDensity="0.15", template="Vec3,Vec3")
+       triangular_fem_force_field_optim__cpu_red.addObject('FixedProjectiveConstraint', indices="9900 9901 9902 9903 9996 9997 9998 9999")
+       triangular_fem_force_field_optim__cpu_red.addObject('TriangularFEMForceFieldOptim', name="FEM", youngModulus="600", poissonRatio="0.3", method="large", template="Vec3")
+
+       visu = TriangularFEMForceFieldOptim-CPU-red.addChild('Visu')
+
+       visu.addObject('OglModel', name="Visual", color="red")
+       visu.addObject('IdentityMapping', input="@../dofs", output="@Visual")
     ```
 
-SofaCUDA/share/sofa/examples/SofaCUDA/benchmarks/TriangularFEMForceFieldOptim_tissue100x100_gpu.scn
+TriangularFEMForceFieldOptim_tissue100x100_gpu.scn
 
 === "XML"
 
@@ -420,47 +425,51 @@ SofaCUDA/share/sofa/examples/SofaCUDA/benchmarks/TriangularFEMForceFieldOptim_ti
             </Node>
         </Node>
     </Node>
+
     ```
 
 === "Python"
 
     ```python
-    def createScene(rootNode):
+    def createScene(root_node):
 
-        root = rootNode.addChild('root', gravity="0 -9 -1", dt="0.01")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Algorithm")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Intersection")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Response.Contact")
-        root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Iterative")
-        root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Dynamic")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Grid")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Visual")
-        root.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
-        root.addObject('RequiredPlugin', name="SofaCUDA")
-        root.addObject('VisualStyle', displayFlags="showBehaviorModels showVisual")
-        root.addObject('DefaultAnimationLoop')
-        root.addObject('DefaultVisualManagerLoop')
-        root.addObject('CollisionPipeline', verbose="0")
-        root.addObject('BruteForceBroadPhase')
-        root.addObject('BVHNarrowPhase')
-        root.addObject('CollisionResponse', response="PenalityContactForceField")
-        root.addObject('DiscreteIntersection')
-        root.addObject('RegularGridTopology', name="tissue", n="100 100 1", min="0 0 0", max="10 10 0")
+       root = root_node.addChild('root', gravity="0 -9 -1", dt="0.01")
 
-        TriangularFEMForceFieldOptim-GPU-Green = root.addChild('TriangularFEMForceFieldOptim-GPU-Green')
-        TriangularFEMForceFieldOptim-GPU-Green.addObject('EulerImplicitSolver', name="cg_odesolver", rayleighStiffness="0.1", rayleighMass="0.1")
-        TriangularFEMForceFieldOptim-GPU-Green.addObject('CGLinearSolver', iterations="20", name="linear solver", tolerance="1.0e-6", threshold="1.0e-6")
-        TriangularFEMForceFieldOptim-GPU-Green.addObject('MechanicalObject', position="@../tissue.position", name="dofs", template="CudaVec3f")
-        TriangularFEMForceFieldOptim-GPU-Green.addObject('TriangleSetTopologyContainer', name="Container", src="@../tissue")
-        TriangularFEMForceFieldOptim-GPU-Green.addObject('TriangleSetTopologyModifier', name="Modifier")
-        TriangularFEMForceFieldOptim-GPU-Green.addObject('TriangleSetGeometryAlgorithms', name="GeomAlgo", template="CudaVec3f")
-        TriangularFEMForceFieldOptim-GPU-Green.addObject('DiagonalMass', massDensity="0.15", template="CudaVec3f,CudaVec3f")
-        TriangularFEMForceFieldOptim-GPU-Green.addObject('FixedProjectiveConstraint', indices="9900 9901 9902 9903 9996 9997 9998 9999")
-        TriangularFEMForceFieldOptim-GPU-Green.addObject('TriangularFEMForceFieldOptim', name="FEM", youngModulus="600", poissonRatio="0.3", method="large", template="CudaVec3f")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Algorithm")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Intersection")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Response.Contact")
+       root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Iterative")
+       root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Dynamic")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Grid")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Visual")
+       root.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
+       root.addObject('RequiredPlugin', name="SofaCUDA")
+       root.addObject('VisualStyle', displayFlags="showBehaviorModels showVisual")
+       root.addObject('DefaultAnimationLoop', )
+       root.addObject('DefaultVisualManagerLoop', )
+       root.addObject('CollisionPipeline', verbose="0")
+       root.addObject('BruteForceBroadPhase', )
+       root.addObject('BVHNarrowPhase', )
+       root.addObject('CollisionResponse', response="PenalityContactForceField")
+       root.addObject('DiscreteIntersection', )
+       root.addObject('RegularGridTopology', name="tissue", n="100 100 1", min="0 0 0", max="10 10 0")
 
-        Visu = TriangularFEMForceFieldOptim-GPU-Green.addChild('Visu')
-        Visu.addObject('OglModel', name="Visual", color="green")
-        Visu.addObject('IdentityMapping', input="@../dofs", output="@Visual")
+       triangular_fem_force_field_optim__gpu__green = root.addChild('TriangularFEMForceFieldOptim-GPU-Green')
+
+       triangular_fem_force_field_optim__gpu__green.addObject('EulerImplicitSolver', name="cg_odesolver", rayleighStiffness="0.1", rayleighMass="0.1")
+       triangular_fem_force_field_optim__gpu__green.addObject('CGLinearSolver', iterations="20", name="linear solver", tolerance="1.0e-6", threshold="1.0e-6")
+       triangular_fem_force_field_optim__gpu__green.addObject('MechanicalObject', position="@../tissue.position", name="dofs", template="CudaVec3f")
+       triangular_fem_force_field_optim__gpu__green.addObject('TriangleSetTopologyContainer', name="Container", src="@../tissue")
+       triangular_fem_force_field_optim__gpu__green.addObject('TriangleSetTopologyModifier', name="Modifier")
+       triangular_fem_force_field_optim__gpu__green.addObject('TriangleSetGeometryAlgorithms', name="GeomAlgo", template="CudaVec3f")
+       triangular_fem_force_field_optim__gpu__green.addObject('DiagonalMass', massDensity="0.15", template="CudaVec3f,CudaVec3f")
+       triangular_fem_force_field_optim__gpu__green.addObject('FixedProjectiveConstraint', indices="9900 9901 9902 9903 9996 9997 9998 9999")
+       triangular_fem_force_field_optim__gpu__green.addObject('TriangularFEMForceFieldOptim', name="FEM", youngModulus="600", poissonRatio="0.3", method="large", template="CudaVec3f")
+
+       visu = TriangularFEMForceFieldOptim-GPU-Green.addChild('Visu')
+
+       visu.addObject('OglModel', name="Visual", color="green")
+       visu.addObject('IdentityMapping', input="@../dofs", output="@Visual")
     ```
 

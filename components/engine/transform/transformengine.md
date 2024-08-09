@@ -7,69 +7,78 @@ title: TransformEngine
 
 This component belongs to the category of [Engines](../../../simulation-principles/engine/). The TransformEngine transforms the positions of one DataFields into new positions after applying a transformation. This transformation can be either: translation, rotation or scale.
 <!-- automatically generated doc START -->
-__Target__: `Sofa.Component.Engine.Transform`
+<!-- generate_doc -->
 
-__namespace__: `#!c++ sofa::component::engine::transform`
+Transform position of 3d points
 
-__parents__: 
 
-- `#!c++ DataEngine`
+Templates:
 
-__categories__: 
+- Rigid2d
+- Rigid3d
+- Vec1d
+- Vec2d
+- Vec3d
 
-- Engine
+__Target__: Sofa.Component.Engine.Transform
 
-Data: 
+__namespace__: sofa::component::engine::transform
+
+__parents__:
+
+- DataEngine
+
+### Data
 
 <table>
-<thead>
-    <tr>
-        <th>Name</th>
-        <th>Description</th>
-        <th>Default value</th>
-    </tr>
-</thead>
-<tbody>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Default value</th>
+        </tr>
+    </thead>
+    <tbody>
 	<tr>
 		<td>name</td>
 		<td>
 object name
-</td>
+		</td>
 		<td>unnamed</td>
 	</tr>
 	<tr>
 		<td>printLog</td>
 		<td>
 if true, emits extra messages at runtime.
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>tags</td>
 		<td>
 list of the subsets the objet belongs to
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>bbox</td>
 		<td>
 this object bounding box
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>componentState</td>
 		<td>
 The state of the component among (Dirty, Valid, Undefined, Loading, Invalid).
-</td>
+		</td>
 		<td>Undefined</td>
 	</tr>
 	<tr>
 		<td>listening</td>
 		<td>
 if true, handle the events, otherwise ignore the events
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
@@ -79,42 +88,42 @@ if true, handle the events, otherwise ignore the events
 		<td>input_position</td>
 		<td>
 input array of 3d points
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>translation</td>
 		<td>
 translation vector (x,y,z)
-</td>
+		</td>
 		<td>0 0 0</td>
 	</tr>
 	<tr>
 		<td>rotation</td>
 		<td>
 rotation vector (x,y,z)
-</td>
+		</td>
 		<td>0 0 0</td>
 	</tr>
 	<tr>
 		<td>quaternion</td>
 		<td>
 rotation quaternion (qx,qy,qz,qw)
-</td>
+		</td>
 		<td>0 0 0 1</td>
 	</tr>
 	<tr>
 		<td>scale</td>
 		<td>
 scale factor
-</td>
+		</td>
 		<td>1 1 1</td>
 	</tr>
 	<tr>
 		<td>inverse</td>
 		<td>
 true to apply inverse transformation
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
@@ -124,26 +133,25 @@ true to apply inverse transformation
 		<td>output_position</td>
 		<td>
 output array of 3d points
-</td>
+		</td>
 		<td></td>
 	</tr>
 
 </tbody>
 </table>
 
-Links: 
-
-| Name | Description |
-| ---- | ----------- |
-|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|
-|slaves|Sub-objects used internally by this object|
-|master|nullptr for regular objects, or master object for which this object is one sub-objects|
+### Links
 
 
+| Name | Description | Destination type name |
+| ---- | ----------- | --------------------- |
+|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
+|slaves|Sub-objects used internally by this object|BaseObject|
+|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
 
-## Examples
+## Examples 
 
-Component/Engine/Transform/TransformEngine.scn
+TransformEngine.scn
 
 === "XML"
 
@@ -203,65 +211,71 @@ Component/Engine/Transform/TransformEngine.scn
             <OglModel name="VisualModel" src="@./ObjLoader" position="@[-1].output_position" texturename="textures/floor.bmp" />
         </Node>
     </Node>
+
     ```
 
 === "Python"
 
     ```python
-    def createScene(rootNode):
+    def createScene(root_node):
 
-        Root = rootNode.addChild('Root', gravity="0 0 0", dt="0.02")
-        Root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Algorithm")
-        Root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Intersection")
-        Root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Geometry")
-        Root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Response.Contact")
-        Root.addObject('RequiredPlugin', name="Sofa.Component.Engine.Transform")
-        Root.addObject('RequiredPlugin', name="Sofa.Component.IO.Mesh")
-        Root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Iterative")
-        Root.addObject('RequiredPlugin', name="Sofa.Component.Mapping.Linear")
-        Root.addObject('RequiredPlugin', name="Sofa.Component.Mass")
-        Root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
-        Root.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.FEM.Elastic")
-        Root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
-        Root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Constant")
-        Root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Grid")
-        Root.addObject('RequiredPlugin', name="Sofa.Component.Visual")
-        Root.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
-        Root.addObject('DefaultAnimationLoop')
-        Root.addObject('VisualStyle', displayFlags="showVisual")
-        Root.addObject('CollisionPipeline', name="DefaultCollisionPipeline", verbose="0", draw="0", depth="6")
-        Root.addObject('BruteForceBroadPhase')
-        Root.addObject('BVHNarrowPhase')
-        Root.addObject('MinProximityIntersection', name="Proximity", alarmDistance="0.3", contactDistance="0.2")
-        Root.addObject('CollisionResponse', name="Response", response="PenalityContactForceField")
+       root = root_node.addChild('Root', gravity="0 0 0", dt="0.02")
 
-        TransformedState = Root.addChild('TransformedState', gravity="0 -9.81 0")
-        TransformedState.addObject('EulerImplicitSolver', name="default12", rayleighStiffness="0.01", rayleighMass="0.1")
-        TransformedState.addObject('CGLinearSolver', template="GraphScattered", name="default13", iterations="25", threshold="1e-08", tolerance="1e-05")
-        TransformedState.addObject('SparseGridTopology', name="default14", fileTopology="mesh/doubleBall.obj", n="6 6 6")
-        TransformedState.addObject('TransformEngine', name="transform", template="Vec3", translation="10 0 0", rotation="0 0 90", scale="0.5 1 2", input_position="@[-1].position")
-        TransformedState.addObject('MechanicalObject', template="Vec3", name="dofTransformed", position="@[-1].output_position", restScale="1")
-        TransformedState.addObject('UniformMass', name="default16", totalMass="5")
-        TransformedState.addObject('HexahedronFEMForceField', template="Vec3", name="FEM", method="polar", poissonRatio="0.3", youngModulus="5000")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Algorithm")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Intersection")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Geometry")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Response.Contact")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Engine.Transform")
+       root.addObject('RequiredPlugin', name="Sofa.Component.IO.Mesh")
+       root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Iterative")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Mapping.Linear")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Mass")
+       root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.FEM.Elastic")
+       root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Constant")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Grid")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Visual")
+       root.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
+       root.addObject('DefaultAnimationLoop', )
+       root.addObject('VisualStyle', displayFlags="showVisual")
+       root.addObject('CollisionPipeline', name="DefaultCollisionPipeline", verbose="0", draw="0", depth="6")
+       root.addObject('BruteForceBroadPhase', )
+       root.addObject('BVHNarrowPhase', )
+       root.addObject('MinProximityIntersection', name="Proximity", alarmDistance="0.3", contactDistance="0.2")
+       root.addObject('CollisionResponse', name="Response", response="PenalityContactForceField")
 
-        VisualNode = TransformedState.addChild('VisualNode', gravity="0 -9.81 0")
-        VisualNode.addObject('MeshOBJLoader', name="meshLoader_0", filename="mesh/doubleBall.obj", handleSeams="1")
-        VisualNode.addObject('OglModel', template="Vec3", name="Visual", src="@meshLoader_0", texturename="textures/board.png", material="Default Diffuse 1 1 0 0 1 Ambient 1 0.2 0 0 1 Specular 0 1 0 0 1 Emissive 0 1 0 0 1 Shininess 0 45")
-        VisualNode.addObject('BarycentricMapping', template="Vec3,Vec3", name="default17", input="@..", output="@Visual")
+       transformed_state = Root.addChild('TransformedState', gravity="0 -9.81 0")
 
-        CollisionNode = TransformedState.addChild('CollisionNode', gravity="0 -9.81 0")
-        CollisionNode.addObject('MeshOBJLoader', name="loader", filename="mesh/doubleBall.obj")
-        CollisionNode.addObject('MeshTopology', src="@loader", name="default18")
-        CollisionNode.addObject('MechanicalObject', src="@loader", template="Vec3", name="default19", restScale="1")
-        CollisionNode.addObject('TriangleCollisionModel', name="default20")
-        CollisionNode.addObject('LineCollisionModel', name="default21")
-        CollisionNode.addObject('PointCollisionModel', name="default22")
-        CollisionNode.addObject('BarycentricMapping', template="Vec3,Vec3", name="default23")
+       transformed_state.addObject('EulerImplicitSolver', name="default12", rayleighStiffness="0.01", rayleighMass="0.1")
+       transformed_state.addObject('CGLinearSolver', template="GraphScattered", name="default13", iterations="25", threshold="1e-08", tolerance="1e-05")
+       transformed_state.addObject('SparseGridTopology', name="default14", fileTopology="mesh/doubleBall.obj", n="6 6 6")
+       transformed_state.addObject('TransformEngine', name="transform", template="Vec3", translation="10 0 0", rotation="0 0 90", scale="0.5 1 2", input_position="@[-1].position")
+       transformed_state.addObject('MechanicalObject', template="Vec3", name="dofTransformed", position="@[-1].output_position", restScale="1")
+       transformed_state.addObject('UniformMass', name="default16", totalMass="5")
+       transformed_state.addObject('HexahedronFEMForceField', template="Vec3", name="FEM", method="polar", poissonRatio="0.3", youngModulus="5000")
 
-        VisualModel = Root.addChild('VisualModel')
-        VisualModel.addObject('MeshOBJLoader', name="ObjLoader", filename="mesh/floor3.obj")
-        VisualModel.addObject('TransformEngine', name="transform", template="Vec3", translation="5 0 0", rotation="0 0 -90", scale="0.1 0.3 0.1", input_position="@[-1].position")
-        VisualModel.addObject('OglModel', name="VisualModel", src="@./ObjLoader", position="@[-1].output_position", texturename="textures/floor.bmp")
+       visual_node = TransformedState.addChild('VisualNode', gravity="0 -9.81 0")
+
+       visual_node.addObject('MeshOBJLoader', name="meshLoader_0", filename="mesh/doubleBall.obj", handleSeams="1")
+       visual_node.addObject('OglModel', template="Vec3", name="Visual", src="@meshLoader_0", texturename="textures/board.png", material="Default Diffuse 1 1 0 0 1 Ambient 1 0.2 0 0 1 Specular 0 1 0 0 1 Emissive 0 1 0 0 1 Shininess 0 45")
+       visual_node.addObject('BarycentricMapping', template="Vec3,Vec3", name="default17", input="@..", output="@Visual")
+
+       collision_node = TransformedState.addChild('CollisionNode', gravity="0 -9.81 0")
+
+       collision_node.addObject('MeshOBJLoader', name="loader", filename="mesh/doubleBall.obj")
+       collision_node.addObject('MeshTopology', src="@loader", name="default18")
+       collision_node.addObject('MechanicalObject', src="@loader", template="Vec3", name="default19", restScale="1")
+       collision_node.addObject('TriangleCollisionModel', name="default20")
+       collision_node.addObject('LineCollisionModel', name="default21")
+       collision_node.addObject('PointCollisionModel', name="default22")
+       collision_node.addObject('BarycentricMapping', template="Vec3,Vec3", name="default23")
+
+       visual_model = Root.addChild('VisualModel')
+
+       visual_model.addObject('MeshOBJLoader', name="ObjLoader", filename="mesh/floor3.obj")
+       visual_model.addObject('TransformEngine', name="transform", template="Vec3", translation="5 0 0", rotation="0 0 -90", scale="0.1 0.3 0.1", input_position="@[-1].position")
+       visual_model.addObject('OglModel', name="VisualModel", src="@./ObjLoader", position="@[-1].output_position", texturename="textures/floor.bmp")
     ```
 
 

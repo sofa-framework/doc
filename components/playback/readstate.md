@@ -1,99 +1,96 @@
+<!-- generate_doc -->
 # ReadState
 
 Read State vectors from file at each timestep
 
 
-__Target__: `Sofa.Component.Playback`
+__Target__: Sofa.Component.Playback
 
-__namespace__: `#!c++ sofa::component::playback`
+__namespace__: sofa::component::playback
 
-__parents__: 
+__parents__:
 
-- `#!c++ BaseObject`
+- BaseObject
 
-__categories__: 
-
-- _Miscellaneous
-
-Data: 
+### Data
 
 <table>
-<thead>
-    <tr>
-        <th>Name</th>
-        <th>Description</th>
-        <th>Default value</th>
-    </tr>
-</thead>
-<tbody>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Default value</th>
+        </tr>
+    </thead>
+    <tbody>
 	<tr>
 		<td>name</td>
 		<td>
 object name
-</td>
+		</td>
 		<td>unnamed</td>
 	</tr>
 	<tr>
 		<td>printLog</td>
 		<td>
 if true, emits extra messages at runtime.
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>tags</td>
 		<td>
 list of the subsets the objet belongs to
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>bbox</td>
 		<td>
 this object bounding box
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>componentState</td>
 		<td>
 The state of the component among (Dirty, Valid, Undefined, Loading, Invalid).
-</td>
+		</td>
 		<td>Undefined</td>
 	</tr>
 	<tr>
 		<td>listening</td>
 		<td>
 if true, handle the events, otherwise ignore the events
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>filename</td>
 		<td>
 output file name
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>interval</td>
 		<td>
 time duration between inputs
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>shift</td>
 		<td>
 shift between times in the file and times when they will be read
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>loop</td>
 		<td>
 set to 'true' to re-read the file when reaching the end
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
@@ -103,40 +100,39 @@ set to 'true' to re-read the file when reaching the end
 		<td>scalePos</td>
 		<td>
 scale the input mechanical object
-</td>
+		</td>
 		<td>1</td>
 	</tr>
 	<tr>
 		<td>rotation</td>
 		<td>
 rotate the input mechanical object
-</td>
+		</td>
 		<td>0 0 0</td>
 	</tr>
 	<tr>
 		<td>translation</td>
 		<td>
 translate the input mechanical object
-</td>
+		</td>
 		<td>0 0 0</td>
 	</tr>
 
 </tbody>
 </table>
 
-Links: 
-
-| Name | Description |
-| ---- | ----------- |
-|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|
-|slaves|Sub-objects used internally by this object|
-|master|nullptr for regular objects, or master object for which this object is one sub-objects|
+### Links
 
 
+| Name | Description | Destination type name |
+| ---- | ----------- | --------------------- |
+|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
+|slaves|Sub-objects used internally by this object|BaseObject|
+|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
 
-## Examples
+## Examples 
 
-Component/Playback/ReadState.scn
+ReadState.scn
 
 === "XML"
 
@@ -173,27 +169,31 @@ Component/Playback/ReadState.scn
 === "Python"
 
     ```python
-    def createScene(rootNode):
+    def createScene(root_node):
 
-        root = rootNode.addChild('root', dt="0.01", gravity="0 0 -9.81")
+       root = root_node.addChild('root', dt="0.01", gravity="0 0 -9.81")
 
-        plugins = root.addChild('plugins')
-        plugins.addObject('RequiredPlugin', name="Sofa.Component.Playback")
-        plugins.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
-        plugins.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Dynamic")
-        plugins.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Grid")
-        plugins.addObject('RequiredPlugin', name="Sofa.Component.Visual")
-        root.addObject('VisualStyle', displayFlags="showForceFields showBehaviorModels showVisual showInteractionForceFields")
-        root.addObject('DefaultAnimationLoop')
+       plugins = root.addChild('plugins')
 
-        Beam = root.addChild('Beam')
-        Beam.addObject('MechanicalObject', name="beamMO", showObject="1")
-        Beam.addObject('RegularGridTopology', name="grid", nx="3", ny="3", nz="7", xmin="0", xmax="3", ymin="0", ymax="3", zmin="0", zmax="7")
-        Beam.addObject('ReadState', name="StateReader", filename="beamGravity.txt.gz")
+       plugins.addObject('RequiredPlugin', name="Sofa.Component.Playback")
+       plugins.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
+       plugins.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Dynamic")
+       plugins.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Grid")
+       plugins.addObject('RequiredPlugin', name="Sofa.Component.Visual")
 
-        visu = Beam.addChild('visu')
-        visu.addObject('EdgeSetTopologyContainer', edges="@../grid.edges")
-        visu.addObject('EdgeSetTopologyModifier')
-        visu.addObject('EdgeSetGeometryAlgorithms', template="Vec3", drawEdges="1")
+       root.addObject('VisualStyle', displayFlags="showForceFields showBehaviorModels showVisual showInteractionForceFields")
+       root.addObject('DefaultAnimationLoop', )
+
+       beam = root.addChild('Beam')
+
+       beam.addObject('MechanicalObject', name="beamMO", showObject="1")
+       beam.addObject('RegularGridTopology', name="grid", nx="3", ny="3", nz="7", xmin="0", xmax="3", ymin="0", ymax="3", zmin="0", zmax="7")
+       beam.addObject('ReadState', name="StateReader", filename="beamGravity.txt.gz")
+
+       visu = Beam.addChild('visu')
+
+       visu.addObject('EdgeSetTopologyContainer', edges="@../grid.edges")
+       visu.addObject('EdgeSetTopologyModifier', )
+       visu.addObject('EdgeSetGeometryAlgorithms', template="Vec3", drawEdges="1")
     ```
 

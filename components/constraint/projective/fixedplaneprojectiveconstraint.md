@@ -1,84 +1,81 @@
+<!-- generate_doc -->
 # FixedPlaneProjectiveConstraint
 
 Project particles on a given plane
 
 
-__Templates__:
+## Rigid3d
 
-- `#!c++ Rigid3d`
-- `#!c++ Vec3d`
-- `#!c++ Vec6d`
+Templates:
 
-__Target__: `Sofa.Component.Constraint.Projective`
+- Rigid3d
 
-__namespace__: `#!c++ sofa::component::constraint::projective`
+__Target__: Sofa.Component.Constraint.Projective
 
-__parents__: 
+__namespace__: sofa::component::constraint::projective
 
-- `#!c++ ProjectiveConstraintSet`
-
-__categories__: 
+__parents__:
 
 - ProjectiveConstraintSet
 
-Data: 
+### Data
 
 <table>
-<thead>
-    <tr>
-        <th>Name</th>
-        <th>Description</th>
-        <th>Default value</th>
-    </tr>
-</thead>
-<tbody>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Default value</th>
+        </tr>
+    </thead>
+    <tbody>
 	<tr>
 		<td>name</td>
 		<td>
 object name
-</td>
+		</td>
 		<td>unnamed</td>
 	</tr>
 	<tr>
 		<td>printLog</td>
 		<td>
 if true, emits extra messages at runtime.
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>tags</td>
 		<td>
 list of the subsets the objet belongs to
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>bbox</td>
 		<td>
 this object bounding box
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>componentState</td>
 		<td>
 The state of the component among (Dirty, Valid, Undefined, Loading, Invalid).
-</td>
+		</td>
 		<td>Undefined</td>
 	</tr>
 	<tr>
 		<td>listening</td>
 		<td>
 if true, handle the events, otherwise ignore the events
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>group</td>
 		<td>
 ID of the group containing this constraint. This ID is used to specify which constraints are solved by which solver, by specifying in each solver which groups of constraints it should handle.
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
@@ -86,57 +83,310 @@ ID of the group containing this constraint. This ID is used to specify which con
 		<td>
 The constraint stops acting after the given value.
 Use a negative value for infinite constraints
-</td>
+		</td>
 		<td>-1</td>
 	</tr>
 	<tr>
 		<td>direction</td>
 		<td>
 normal direction of the plane
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>dmin</td>
 		<td>
 Minimum plane distance from the origin
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>dmax</td>
 		<td>
 Maximum plane distance from the origin
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>indices</td>
 		<td>
 Indices of the fixed points
-</td>
+		</td>
 		<td></td>
 	</tr>
 
 </tbody>
 </table>
 
-Links: 
-
-| Name | Description |
-| ---- | ----------- |
-|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|
-|slaves|Sub-objects used internally by this object|
-|master|nullptr for regular objects, or master object for which this object is one sub-objects|
-|mechanicalStates|List of mechanical states to which this component is associated|
-|mstate|MechanicalState used by this component|
-|topology|link to the topology container|
+### Links
 
 
+| Name | Description | Destination type name |
+| ---- | ----------- | --------------------- |
+|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
+|slaves|Sub-objects used internally by this object|BaseObject|
+|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
+|mechanicalStates|List of mechanical states to which this component is associated|BaseMechanicalState|
+|mstate|MechanicalState used by this component|MechanicalState&lt;Rigid3d&gt;|
+|topology|link to the topology container|BaseMeshTopology|
 
-## Examples
+<!-- generate_doc -->
+## Vec3d
 
-Component/Constraint/Projective/FixedPlaneProjectiveConstraint.scn
+Templates:
+
+- Vec3d
+
+__Target__: Sofa.Component.Constraint.Projective
+
+__namespace__: sofa::component::constraint::projective
+
+__parents__:
+
+- ProjectiveConstraintSet
+
+### Data
+
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Default value</th>
+        </tr>
+    </thead>
+    <tbody>
+	<tr>
+		<td>name</td>
+		<td>
+object name
+		</td>
+		<td>unnamed</td>
+	</tr>
+	<tr>
+		<td>printLog</td>
+		<td>
+if true, emits extra messages at runtime.
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>tags</td>
+		<td>
+list of the subsets the objet belongs to
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>bbox</td>
+		<td>
+this object bounding box
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>componentState</td>
+		<td>
+The state of the component among (Dirty, Valid, Undefined, Loading, Invalid).
+		</td>
+		<td>Undefined</td>
+	</tr>
+	<tr>
+		<td>listening</td>
+		<td>
+if true, handle the events, otherwise ignore the events
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>group</td>
+		<td>
+ID of the group containing this constraint. This ID is used to specify which constraints are solved by which solver, by specifying in each solver which groups of constraints it should handle.
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>endTime</td>
+		<td>
+The constraint stops acting after the given value.
+Use a negative value for infinite constraints
+		</td>
+		<td>-1</td>
+	</tr>
+	<tr>
+		<td>direction</td>
+		<td>
+normal direction of the plane
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>dmin</td>
+		<td>
+Minimum plane distance from the origin
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>dmax</td>
+		<td>
+Maximum plane distance from the origin
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>indices</td>
+		<td>
+Indices of the fixed points
+		</td>
+		<td></td>
+	</tr>
+
+</tbody>
+</table>
+
+### Links
+
+
+| Name | Description | Destination type name |
+| ---- | ----------- | --------------------- |
+|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
+|slaves|Sub-objects used internally by this object|BaseObject|
+|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
+|mechanicalStates|List of mechanical states to which this component is associated|BaseMechanicalState|
+|mstate|MechanicalState used by this component|MechanicalState&lt;Vec3d&gt;|
+|topology|link to the topology container|BaseMeshTopology|
+
+<!-- generate_doc -->
+## Vec6d
+
+Templates:
+
+- Vec6d
+
+__Target__: Sofa.Component.Constraint.Projective
+
+__namespace__: sofa::component::constraint::projective
+
+__parents__:
+
+- ProjectiveConstraintSet
+
+### Data
+
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Default value</th>
+        </tr>
+    </thead>
+    <tbody>
+	<tr>
+		<td>name</td>
+		<td>
+object name
+		</td>
+		<td>unnamed</td>
+	</tr>
+	<tr>
+		<td>printLog</td>
+		<td>
+if true, emits extra messages at runtime.
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>tags</td>
+		<td>
+list of the subsets the objet belongs to
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>bbox</td>
+		<td>
+this object bounding box
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>componentState</td>
+		<td>
+The state of the component among (Dirty, Valid, Undefined, Loading, Invalid).
+		</td>
+		<td>Undefined</td>
+	</tr>
+	<tr>
+		<td>listening</td>
+		<td>
+if true, handle the events, otherwise ignore the events
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>group</td>
+		<td>
+ID of the group containing this constraint. This ID is used to specify which constraints are solved by which solver, by specifying in each solver which groups of constraints it should handle.
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>endTime</td>
+		<td>
+The constraint stops acting after the given value.
+Use a negative value for infinite constraints
+		</td>
+		<td>-1</td>
+	</tr>
+	<tr>
+		<td>direction</td>
+		<td>
+normal direction of the plane
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>dmin</td>
+		<td>
+Minimum plane distance from the origin
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>dmax</td>
+		<td>
+Maximum plane distance from the origin
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>indices</td>
+		<td>
+Indices of the fixed points
+		</td>
+		<td></td>
+	</tr>
+
+</tbody>
+</table>
+
+### Links
+
+
+| Name | Description | Destination type name |
+| ---- | ----------- | --------------------- |
+|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
+|slaves|Sub-objects used internally by this object|BaseObject|
+|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
+|mechanicalStates|List of mechanical states to which this component is associated|BaseMechanicalState|
+|mstate|MechanicalState used by this component|MechanicalState&lt;Vec6d&gt;|
+|topology|link to the topology container|BaseMeshTopology|
+
+## Examples 
+
+FixedPlaneProjectiveConstraint.scn
 
 === "XML"
 
@@ -189,58 +439,63 @@ Component/Constraint/Projective/FixedPlaneProjectiveConstraint.scn
             </Node>
         </Node>
     </Node>
+
     ```
 
 === "Python"
 
     ```python
-    def createScene(rootNode):
+    def createScene(root_node):
 
-        root = rootNode.addChild('root', dt="0.02")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Algorithm")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Intersection")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Geometry")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Response.Contact")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Projective")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Engine.Select")
-        root.addObject('RequiredPlugin', name="Sofa.Component.IO.Mesh")
-        root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Iterative")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Mapping.Linear")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Mass")
-        root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
-        root.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.FEM.Elastic")
-        root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Constant")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Visual")
-        root.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
-        root.addObject('DefaultAnimationLoop')
-        root.addObject('VisualStyle', displayFlags="showVisual showBehaviorModels")
-        root.addObject('CollisionPipeline', verbose="0", name="CollisionPipeline")
-        root.addObject('BruteForceBroadPhase')
-        root.addObject('BVHNarrowPhase')
-        root.addObject('CollisionResponse', response="PenalityContactForceField", name="collision response")
-        root.addObject('DiscreteIntersection')
+       root = root_node.addChild('root', dt="0.02")
 
-        Liver = root.addChild('Liver')
-        Liver.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
-        Liver.addObject('CGLinearSolver', iterations="25", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
-        Liver.addObject('MeshGmshLoader', name="loader", filename="mesh/liver.msh")
-        Liver.addObject('MeshTopology', src="@loader")
-        Liver.addObject('MechanicalObject', src="@loader", template="Vec3", name="dofs")
-        Liver.addObject('UniformMass', name="mass", vertexMass="0.05")
-        Liver.addObject('TetrahedronFEMForceField', name="FEM", youngModulus="500", poissonRatio="0.3", computeGlobalMatrix="false", method="large")
-        Liver.addObject('FixedPlaneProjectiveConstraint', direction="0 0 1", dmin="-3", dmax="1")
-        Liver.addObject('BoxConstraint', box="-5 4.8 -.2 5 6 1")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Algorithm")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Intersection")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Geometry")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Response.Contact")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Projective")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Engine.Select")
+       root.addObject('RequiredPlugin', name="Sofa.Component.IO.Mesh")
+       root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Iterative")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Mapping.Linear")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Mass")
+       root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.FEM.Elastic")
+       root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Constant")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Visual")
+       root.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
+       root.addObject('DefaultAnimationLoop', )
+       root.addObject('VisualStyle', displayFlags="showVisual showBehaviorModels")
+       root.addObject('CollisionPipeline', verbose="0", name="CollisionPipeline")
+       root.addObject('BruteForceBroadPhase', )
+       root.addObject('BVHNarrowPhase', )
+       root.addObject('CollisionResponse', response="PenalityContactForceField", name="collision response")
+       root.addObject('DiscreteIntersection', )
 
-        Visu = Liver.addChild('Visu')
-        Visu.addObject('MeshOBJLoader', name="meshLoader_0", filename="mesh/liver-smooth.obj", handleSeams="1")
-        Visu.addObject('OglModel', name="VisualModel", src="@meshLoader_0", color="red")
-        Visu.addObject('BarycentricMapping', input="@..", output="@VisualModel", name="visual mapping")
+       liver = root.addChild('Liver')
 
-        Surf = Liver.addChild('Surf')
-        Surf.addObject('SphereLoader', filename="mesh/liver.sph")
-        Surf.addObject('MechanicalObject', position="@[-1].position")
-        Surf.addObject('SphereCollisionModel', name="CollisionModel", listRadius="@[-2].listRadius")
-        Surf.addObject('BarycentricMapping', name="sphere mapping")
+       liver.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
+       liver.addObject('CGLinearSolver', iterations="25", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
+       liver.addObject('MeshGmshLoader', name="loader", filename="mesh/liver.msh")
+       liver.addObject('MeshTopology', src="@loader")
+       liver.addObject('MechanicalObject', src="@loader", template="Vec3", name="dofs")
+       liver.addObject('UniformMass', name="mass", vertexMass="0.05")
+       liver.addObject('TetrahedronFEMForceField', name="FEM", youngModulus="500", poissonRatio="0.3", computeGlobalMatrix="false", method="large")
+       liver.addObject('FixedPlaneProjectiveConstraint', direction="0 0 1", dmin="-3", dmax="1")
+       liver.addObject('BoxConstraint', box="-5 4.8 -.2 5 6 1")
+
+       visu = Liver.addChild('Visu')
+
+       visu.addObject('MeshOBJLoader', name="meshLoader_0", filename="mesh/liver-smooth.obj", handleSeams="1")
+       visu.addObject('OglModel', name="VisualModel", src="@meshLoader_0", color="red")
+       visu.addObject('BarycentricMapping', input="@..", output="@VisualModel", name="visual mapping")
+
+       surf = Liver.addChild('Surf')
+
+       surf.addObject('SphereLoader', filename="mesh/liver.sph")
+       surf.addObject('MechanicalObject', position="@[-1].position")
+       surf.addObject('SphereCollisionModel', name="CollisionModel", listRadius="@[-2].listRadius")
+       surf.addObject('BarycentricMapping', name="sphere mapping")
     ```
 

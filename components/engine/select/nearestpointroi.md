@@ -1,110 +1,103 @@
+<!-- generate_doc -->
 # NearestPointROI
 
 Attach given pair of particles, projecting the positions of the second particles to the first ones
-Supports GPU-side computations using CUDA
 
 
-__Templates__:
+## Rigid2d
 
-- `#!c++ Rigid2d`
-- `#!c++ Rigid3d`
-- `#!c++ Vec1d`
-- `#!c++ Vec2d`
-- `#!c++ Vec3d`
-- `#!c++ Vec6d`
+Templates:
 
-__Target__: `Sofa.Component.Engine.Select`
+- Rigid2d
 
-__namespace__: `#!c++ sofa::component::engine::select`
+__Target__: Sofa.Component.Engine.Select
 
-__parents__: 
+__namespace__: sofa::component::engine::select
 
-- `#!c++ DataEngine`
-- `#!c++ PairStateAccessor`
+__parents__:
 
-__categories__: 
+- DataEngine
+- PairStateAccessor
 
-- Engine
-
-Data: 
+### Data
 
 <table>
-<thead>
-    <tr>
-        <th>Name</th>
-        <th>Description</th>
-        <th>Default value</th>
-    </tr>
-</thead>
-<tbody>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Default value</th>
+        </tr>
+    </thead>
+    <tbody>
 	<tr>
 		<td>name</td>
 		<td>
 object name
-</td>
+		</td>
 		<td>unnamed</td>
 	</tr>
 	<tr>
 		<td>printLog</td>
 		<td>
 if true, emits extra messages at runtime.
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>tags</td>
 		<td>
 list of the subsets the objet belongs to
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>bbox</td>
 		<td>
 this object bounding box
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>componentState</td>
 		<td>
 The state of the component among (Dirty, Valid, Undefined, Loading, Invalid).
-</td>
+		</td>
 		<td>Undefined</td>
 	</tr>
 	<tr>
 		<td>listening</td>
 		<td>
 if true, handle the events, otherwise ignore the events
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>inputIndices1</td>
 		<td>
 Indices of the points to consider on the first model
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>inputIndices2</td>
 		<td>
 Indices of the points to consider on the first model
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>radius</td>
 		<td>
 Radius to search corresponding fixed point
-</td>
+		</td>
 		<td>1</td>
 	</tr>
 	<tr>
 		<td>useRestPosition</td>
 		<td>
 If true will use restPosition only at init
-</td>
+		</td>
 		<td>1</td>
 	</tr>
 	<tr>
@@ -114,57 +107,811 @@ If true will use restPosition only at init
 		<td>indices1</td>
 		<td>
 Indices from the first model associated to a dof from the second model
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>indices2</td>
 		<td>
 Indices from the second model associated to a dof from the first model
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>edges</td>
 		<td>
 List of edge indices
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>indexPairs</td>
 		<td>
 list of couples (parent index + index in the parent)
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>distances</td>
 		<td>
 List of distances between pairs of points
-</td>
+		</td>
 		<td></td>
 	</tr>
 
 </tbody>
 </table>
 
-Links: 
-
-| Name | Description |
-| ---- | ----------- |
-|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|
-|slaves|Sub-objects used internally by this object|
-|master|nullptr for regular objects, or master object for which this object is one sub-objects|
-|mechanicalStates|List of mechanical states to which this component is associated|
-|object1|First object associated to this component|
-|object2|Second object associated to this component|
+### Links
 
 
+| Name | Description | Destination type name |
+| ---- | ----------- | --------------------- |
+|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
+|slaves|Sub-objects used internally by this object|BaseObject|
+|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
+|mechanicalStates|List of mechanical states to which this component is associated|BaseMechanicalState|
+|object1|First object associated to this component|MechanicalState&lt;Rigid2d&gt;|
+|object2|Second object associated to this component|MechanicalState&lt;Rigid2d&gt;|
 
-## Examples
+<!-- generate_doc -->
+## Rigid3d
 
-Component/Engine/Select/NearestPointROI.scn
+Templates:
+
+- Rigid3d
+
+__Target__: Sofa.Component.Engine.Select
+
+__namespace__: sofa::component::engine::select
+
+__parents__:
+
+- DataEngine
+- PairStateAccessor
+
+### Data
+
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Default value</th>
+        </tr>
+    </thead>
+    <tbody>
+	<tr>
+		<td>name</td>
+		<td>
+object name
+		</td>
+		<td>unnamed</td>
+	</tr>
+	<tr>
+		<td>printLog</td>
+		<td>
+if true, emits extra messages at runtime.
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>tags</td>
+		<td>
+list of the subsets the objet belongs to
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>bbox</td>
+		<td>
+this object bounding box
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>componentState</td>
+		<td>
+The state of the component among (Dirty, Valid, Undefined, Loading, Invalid).
+		</td>
+		<td>Undefined</td>
+	</tr>
+	<tr>
+		<td>listening</td>
+		<td>
+if true, handle the events, otherwise ignore the events
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>inputIndices1</td>
+		<td>
+Indices of the points to consider on the first model
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>inputIndices2</td>
+		<td>
+Indices of the points to consider on the first model
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>radius</td>
+		<td>
+Radius to search corresponding fixed point
+		</td>
+		<td>1</td>
+	</tr>
+	<tr>
+		<td>useRestPosition</td>
+		<td>
+If true will use restPosition only at init
+		</td>
+		<td>1</td>
+	</tr>
+	<tr>
+		<td colspan="3">Outputs</td>
+	</tr>
+	<tr>
+		<td>indices1</td>
+		<td>
+Indices from the first model associated to a dof from the second model
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>indices2</td>
+		<td>
+Indices from the second model associated to a dof from the first model
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>edges</td>
+		<td>
+List of edge indices
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>indexPairs</td>
+		<td>
+list of couples (parent index + index in the parent)
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>distances</td>
+		<td>
+List of distances between pairs of points
+		</td>
+		<td></td>
+	</tr>
+
+</tbody>
+</table>
+
+### Links
+
+
+| Name | Description | Destination type name |
+| ---- | ----------- | --------------------- |
+|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
+|slaves|Sub-objects used internally by this object|BaseObject|
+|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
+|mechanicalStates|List of mechanical states to which this component is associated|BaseMechanicalState|
+|object1|First object associated to this component|MechanicalState&lt;Rigid3d&gt;|
+|object2|Second object associated to this component|MechanicalState&lt;Rigid3d&gt;|
+
+<!-- generate_doc -->
+## Vec1d
+
+Templates:
+
+- Vec1d
+
+__Target__: Sofa.Component.Engine.Select
+
+__namespace__: sofa::component::engine::select
+
+__parents__:
+
+- DataEngine
+- PairStateAccessor
+
+### Data
+
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Default value</th>
+        </tr>
+    </thead>
+    <tbody>
+	<tr>
+		<td>name</td>
+		<td>
+object name
+		</td>
+		<td>unnamed</td>
+	</tr>
+	<tr>
+		<td>printLog</td>
+		<td>
+if true, emits extra messages at runtime.
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>tags</td>
+		<td>
+list of the subsets the objet belongs to
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>bbox</td>
+		<td>
+this object bounding box
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>componentState</td>
+		<td>
+The state of the component among (Dirty, Valid, Undefined, Loading, Invalid).
+		</td>
+		<td>Undefined</td>
+	</tr>
+	<tr>
+		<td>listening</td>
+		<td>
+if true, handle the events, otherwise ignore the events
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>inputIndices1</td>
+		<td>
+Indices of the points to consider on the first model
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>inputIndices2</td>
+		<td>
+Indices of the points to consider on the first model
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>radius</td>
+		<td>
+Radius to search corresponding fixed point
+		</td>
+		<td>1</td>
+	</tr>
+	<tr>
+		<td>useRestPosition</td>
+		<td>
+If true will use restPosition only at init
+		</td>
+		<td>1</td>
+	</tr>
+	<tr>
+		<td colspan="3">Outputs</td>
+	</tr>
+	<tr>
+		<td>indices1</td>
+		<td>
+Indices from the first model associated to a dof from the second model
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>indices2</td>
+		<td>
+Indices from the second model associated to a dof from the first model
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>edges</td>
+		<td>
+List of edge indices
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>indexPairs</td>
+		<td>
+list of couples (parent index + index in the parent)
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>distances</td>
+		<td>
+List of distances between pairs of points
+		</td>
+		<td></td>
+	</tr>
+
+</tbody>
+</table>
+
+### Links
+
+
+| Name | Description | Destination type name |
+| ---- | ----------- | --------------------- |
+|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
+|slaves|Sub-objects used internally by this object|BaseObject|
+|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
+|mechanicalStates|List of mechanical states to which this component is associated|BaseMechanicalState|
+|object1|First object associated to this component|MechanicalState&lt;Vec1d&gt;|
+|object2|Second object associated to this component|MechanicalState&lt;Vec1d&gt;|
+
+<!-- generate_doc -->
+## Vec2d
+
+Templates:
+
+- Vec2d
+
+__Target__: Sofa.Component.Engine.Select
+
+__namespace__: sofa::component::engine::select
+
+__parents__:
+
+- DataEngine
+- PairStateAccessor
+
+### Data
+
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Default value</th>
+        </tr>
+    </thead>
+    <tbody>
+	<tr>
+		<td>name</td>
+		<td>
+object name
+		</td>
+		<td>unnamed</td>
+	</tr>
+	<tr>
+		<td>printLog</td>
+		<td>
+if true, emits extra messages at runtime.
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>tags</td>
+		<td>
+list of the subsets the objet belongs to
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>bbox</td>
+		<td>
+this object bounding box
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>componentState</td>
+		<td>
+The state of the component among (Dirty, Valid, Undefined, Loading, Invalid).
+		</td>
+		<td>Undefined</td>
+	</tr>
+	<tr>
+		<td>listening</td>
+		<td>
+if true, handle the events, otherwise ignore the events
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>inputIndices1</td>
+		<td>
+Indices of the points to consider on the first model
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>inputIndices2</td>
+		<td>
+Indices of the points to consider on the first model
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>radius</td>
+		<td>
+Radius to search corresponding fixed point
+		</td>
+		<td>1</td>
+	</tr>
+	<tr>
+		<td>useRestPosition</td>
+		<td>
+If true will use restPosition only at init
+		</td>
+		<td>1</td>
+	</tr>
+	<tr>
+		<td colspan="3">Outputs</td>
+	</tr>
+	<tr>
+		<td>indices1</td>
+		<td>
+Indices from the first model associated to a dof from the second model
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>indices2</td>
+		<td>
+Indices from the second model associated to a dof from the first model
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>edges</td>
+		<td>
+List of edge indices
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>indexPairs</td>
+		<td>
+list of couples (parent index + index in the parent)
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>distances</td>
+		<td>
+List of distances between pairs of points
+		</td>
+		<td></td>
+	</tr>
+
+</tbody>
+</table>
+
+### Links
+
+
+| Name | Description | Destination type name |
+| ---- | ----------- | --------------------- |
+|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
+|slaves|Sub-objects used internally by this object|BaseObject|
+|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
+|mechanicalStates|List of mechanical states to which this component is associated|BaseMechanicalState|
+|object1|First object associated to this component|MechanicalState&lt;Vec2d&gt;|
+|object2|Second object associated to this component|MechanicalState&lt;Vec2d&gt;|
+
+<!-- generate_doc -->
+## Vec3d
+
+Templates:
+
+- Vec3d
+
+__Target__: Sofa.Component.Engine.Select
+
+__namespace__: sofa::component::engine::select
+
+__parents__:
+
+- DataEngine
+- PairStateAccessor
+
+### Data
+
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Default value</th>
+        </tr>
+    </thead>
+    <tbody>
+	<tr>
+		<td>name</td>
+		<td>
+object name
+		</td>
+		<td>unnamed</td>
+	</tr>
+	<tr>
+		<td>printLog</td>
+		<td>
+if true, emits extra messages at runtime.
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>tags</td>
+		<td>
+list of the subsets the objet belongs to
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>bbox</td>
+		<td>
+this object bounding box
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>componentState</td>
+		<td>
+The state of the component among (Dirty, Valid, Undefined, Loading, Invalid).
+		</td>
+		<td>Undefined</td>
+	</tr>
+	<tr>
+		<td>listening</td>
+		<td>
+if true, handle the events, otherwise ignore the events
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>inputIndices1</td>
+		<td>
+Indices of the points to consider on the first model
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>inputIndices2</td>
+		<td>
+Indices of the points to consider on the first model
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>radius</td>
+		<td>
+Radius to search corresponding fixed point
+		</td>
+		<td>1</td>
+	</tr>
+	<tr>
+		<td>useRestPosition</td>
+		<td>
+If true will use restPosition only at init
+		</td>
+		<td>1</td>
+	</tr>
+	<tr>
+		<td colspan="3">Outputs</td>
+	</tr>
+	<tr>
+		<td>indices1</td>
+		<td>
+Indices from the first model associated to a dof from the second model
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>indices2</td>
+		<td>
+Indices from the second model associated to a dof from the first model
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>edges</td>
+		<td>
+List of edge indices
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>indexPairs</td>
+		<td>
+list of couples (parent index + index in the parent)
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>distances</td>
+		<td>
+List of distances between pairs of points
+		</td>
+		<td></td>
+	</tr>
+
+</tbody>
+</table>
+
+### Links
+
+
+| Name | Description | Destination type name |
+| ---- | ----------- | --------------------- |
+|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
+|slaves|Sub-objects used internally by this object|BaseObject|
+|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
+|mechanicalStates|List of mechanical states to which this component is associated|BaseMechanicalState|
+|object1|First object associated to this component|MechanicalState&lt;Vec3d&gt;|
+|object2|Second object associated to this component|MechanicalState&lt;Vec3d&gt;|
+
+<!-- generate_doc -->
+## Vec6d
+
+Templates:
+
+- Vec6d
+
+__Target__: Sofa.Component.Engine.Select
+
+__namespace__: sofa::component::engine::select
+
+__parents__:
+
+- DataEngine
+- PairStateAccessor
+
+### Data
+
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Default value</th>
+        </tr>
+    </thead>
+    <tbody>
+	<tr>
+		<td>name</td>
+		<td>
+object name
+		</td>
+		<td>unnamed</td>
+	</tr>
+	<tr>
+		<td>printLog</td>
+		<td>
+if true, emits extra messages at runtime.
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>tags</td>
+		<td>
+list of the subsets the objet belongs to
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>bbox</td>
+		<td>
+this object bounding box
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>componentState</td>
+		<td>
+The state of the component among (Dirty, Valid, Undefined, Loading, Invalid).
+		</td>
+		<td>Undefined</td>
+	</tr>
+	<tr>
+		<td>listening</td>
+		<td>
+if true, handle the events, otherwise ignore the events
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>inputIndices1</td>
+		<td>
+Indices of the points to consider on the first model
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>inputIndices2</td>
+		<td>
+Indices of the points to consider on the first model
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>radius</td>
+		<td>
+Radius to search corresponding fixed point
+		</td>
+		<td>1</td>
+	</tr>
+	<tr>
+		<td>useRestPosition</td>
+		<td>
+If true will use restPosition only at init
+		</td>
+		<td>1</td>
+	</tr>
+	<tr>
+		<td colspan="3">Outputs</td>
+	</tr>
+	<tr>
+		<td>indices1</td>
+		<td>
+Indices from the first model associated to a dof from the second model
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>indices2</td>
+		<td>
+Indices from the second model associated to a dof from the first model
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>edges</td>
+		<td>
+List of edge indices
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>indexPairs</td>
+		<td>
+list of couples (parent index + index in the parent)
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>distances</td>
+		<td>
+List of distances between pairs of points
+		</td>
+		<td></td>
+	</tr>
+
+</tbody>
+</table>
+
+### Links
+
+
+| Name | Description | Destination type name |
+| ---- | ----------- | --------------------- |
+|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
+|slaves|Sub-objects used internally by this object|BaseObject|
+|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
+|mechanicalStates|List of mechanical states to which this component is associated|BaseMechanicalState|
+|object1|First object associated to this component|MechanicalState&lt;Vec6d&gt;|
+|object2|Second object associated to this component|MechanicalState&lt;Vec6d&gt;|
+
+## Examples 
+
+NearestPointROI.scn
 
 === "XML"
 
@@ -293,114 +1040,128 @@ Component/Engine/Select/NearestPointROI.scn
     
         </Node>
     </Node>
+
     ```
 
 === "Python"
 
     ```python
-    def createScene(rootNode):
+    def createScene(root_node):
 
-        root = rootNode.addChild('root', dt="0.02")
+       root = root_node.addChild('root', dt="0.02")
 
-        requiredPlugins = root.addChild('requiredPlugins')
-        requiredPlugins.addObject('RequiredPlugin', name="Sofa.Component.AnimationLoop")
-        requiredPlugins.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Lagrangian.Correction")
-        requiredPlugins.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Lagrangian.Model")
-        requiredPlugins.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Lagrangian.Solver")
-        requiredPlugins.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Projective")
-        requiredPlugins.addObject('RequiredPlugin', name="Sofa.Component.Engine.Select")
-        requiredPlugins.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Iterative")
-        requiredPlugins.addObject('RequiredPlugin', name="Sofa.Component.Mapping.Linear")
-        requiredPlugins.addObject('RequiredPlugin', name="Sofa.Component.Mass")
-        requiredPlugins.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
-        requiredPlugins.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.FEM.Elastic")
-        requiredPlugins.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.Spring")
-        requiredPlugins.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
-        requiredPlugins.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Dynamic")
-        requiredPlugins.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Grid")
-        requiredPlugins.addObject('RequiredPlugin', name="Sofa.Component.Visual")
-        root.addObject('VisualStyle', displayFlags="showBehaviorModels showForceFields showInteractionForceFields")
-        root.addObject('FreeMotionAnimationLoop', parallelODESolving="true")
-        root.addObject('GenericConstraintSolver', tolerance="0.001", maxIterations="1000", resolutionMethod="UnbuildGaussSeidel", multithreading="true")
+       required_plugins = root.addChild('requiredPlugins')
 
-        ObjectsAttachedWithConstraints = root.addChild('ObjectsAttachedWithConstraints')
-        ObjectsAttachedWithConstraints.addObject('EulerImplicitSolver', name="cg_odesolver", rayleighStiffness="0.1", rayleighMass="0.1")
-        ObjectsAttachedWithConstraints.addObject('CGLinearSolver', iterations="25", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
+       required_plugins.addObject('RequiredPlugin', name="Sofa.Component.AnimationLoop")
+       required_plugins.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Lagrangian.Correction")
+       required_plugins.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Lagrangian.Model")
+       required_plugins.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Lagrangian.Solver")
+       required_plugins.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Projective")
+       required_plugins.addObject('RequiredPlugin', name="Sofa.Component.Engine.Select")
+       required_plugins.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Iterative")
+       required_plugins.addObject('RequiredPlugin', name="Sofa.Component.Mapping.Linear")
+       required_plugins.addObject('RequiredPlugin', name="Sofa.Component.Mass")
+       required_plugins.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
+       required_plugins.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.FEM.Elastic")
+       required_plugins.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.Spring")
+       required_plugins.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
+       required_plugins.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Dynamic")
+       required_plugins.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Grid")
+       required_plugins.addObject('RequiredPlugin', name="Sofa.Component.Visual")
 
-        M1 = ObjectsAttachedWithConstraints.addChild('M1')
-        M1.addObject('MechanicalObject', name="mo")
-        M1.addObject('UniformMass', totalMass="160")
-        M1.addObject('RegularGridTopology', nx="4", ny="4", nz="10", xmin="0", xmax="3", ymin="0", ymax="3", zmin="0", zmax="9")
-        M1.addObject('BoxROI', box="-0.1 -0.1 -0.1 3.1 3.1 0.1", name="box")
-        M1.addObject('FixedProjectiveConstraint', indices="@box.indices")
-        M1.addObject('TetrahedronFEMForceField', name="FEM", youngModulus="4000", poissonRatio="0.3", computeVonMisesStress="1", showVonMisesStressPerElement="true")
-        M1.addObject('UncoupledConstraintCorrection', useOdeSolverIntegrationFactors="0")
+       root.addObject('VisualStyle', displayFlags="showBehaviorModels showForceFields showInteractionForceFields")
+       root.addObject('FreeMotionAnimationLoop', parallelODESolving="true")
+       root.addObject('GenericConstraintSolver', tolerance="0.001", maxIterations="1000", resolutionMethod="UnbuildGaussSeidel", multithreading="true")
 
-        M2 = ObjectsAttachedWithConstraints.addChild('M2')
-        M2.addObject('MechanicalObject', name="mo")
-        M2.addObject('UniformMass', totalMass="160")
-        M2.addObject('RegularGridTopology', nx="4", ny="4", nz="10", xmin="0", xmax="3", ymin="0", ymax="3", zmin="9", zmax="18")
-        M2.addObject('TetrahedronFEMForceField', name="FEM", youngModulus="20000", poissonRatio="0.3", computeVonMisesStress="1", showVonMisesStressPerElement="true")
-        M2.addObject('UncoupledConstraintCorrection', useOdeSolverIntegrationFactors="0")
+       objects_attached_with_constraints = root.addChild('ObjectsAttachedWithConstraints')
 
-        M3 = ObjectsAttachedWithConstraints.addChild('M3')
-        M3.addObject('MechanicalObject', name="mo")
-        M3.addObject('UniformMass', totalMass="160")
-        M3.addObject('RegularGridTopology', nx="4", ny="4", nz="10", xmin="0", xmax="3", ymin="0", ymax="3", zmin="18", zmax="27")
-        M3.addObject('BoxROI', box="-0.1 -0.1 26.99 3.1 3.1 27.1", name="box")
-        M3.addObject('FixedProjectiveConstraint', indices="@box.indices")
-        M3.addObject('TetrahedronFEMForceField', name="FEM", youngModulus="4000", poissonRatio="0.3", computeVonMisesStress="1", showVonMisesStressPerElement="true")
-        M3.addObject('UncoupledConstraintCorrection', useOdeSolverIntegrationFactors="0")
-        ObjectsAttachedWithConstraints.addObject('NearestPointROI', template="Vec3", name="np1", object1="@./M1/mo", object2="@./M2/mo", radius="0.1")
-        ObjectsAttachedWithConstraints.addObject('NearestPointROI', template="Vec3", name="np2", object1="@./M2/mo", object2="@./M3/mo", radius="0.1")
-        ObjectsAttachedWithConstraints.addObject('BilateralLagrangianConstraint', template="Vec3", object1="@M1", object2="@M2", first_point="@np1.indices1", second_point="@np1.indices2")
-        ObjectsAttachedWithConstraints.addObject('BilateralLagrangianConstraint', template="Vec3", object1="@M2", object2="@M3", first_point="@np2.indices1", second_point="@np2.indices2")
+       objects_attached_with_constraints.addObject('EulerImplicitSolver', name="cg_odesolver", rayleighStiffness="0.1", rayleighMass="0.1")
+       objects_attached_with_constraints.addObject('CGLinearSolver', iterations="25", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
 
-        Springs = root.addChild('Springs')
-        Springs.addObject('EulerImplicitSolver', name="cg_odesolver", rayleighStiffness="0.1", rayleighMass="0.1")
-        Springs.addObject('CGLinearSolver', iterations="25", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
+       m1 = ObjectsAttachedWithConstraints.addChild('M1')
 
-        M1 = Springs.addChild('M1')
-        M1.addObject('MechanicalObject', name="mo")
-        M1.addObject('UniformMass', totalMass="160")
-        M1.addObject('RegularGridTopology', nx="4", ny="4", nz="10", xmin="4", xmax="7", ymin="0", ymax="3", zmin="0", zmax="9")
-        M1.addObject('BoxROI', box="3.9 -0.1 -0.1 7.1 3.1 0.1", name="box")
-        M1.addObject('FixedProjectiveConstraint', indices="@box.indices")
-        M1.addObject('TetrahedronFEMForceField', name="FEM", youngModulus="4000", poissonRatio="0.3", computeVonMisesStress="1", showVonMisesStressPerElement="true")
-        M1.addObject('UncoupledConstraintCorrection', useOdeSolverIntegrationFactors="0")
+       m1.addObject('MechanicalObject', name="mo")
+       m1.addObject('UniformMass', totalMass="160")
+       m1.addObject('RegularGridTopology', nx="4", ny="4", nz="10", xmin="0", xmax="3", ymin="0", ymax="3", zmin="0", zmax="9")
+       m1.addObject('BoxROI', box="-0.1 -0.1 -0.1 3.1 3.1 0.1", name="box")
+       m1.addObject('FixedProjectiveConstraint', indices="@box.indices")
+       m1.addObject('TetrahedronFEMForceField', name="FEM", youngModulus="4000", poissonRatio="0.3", computeVonMisesStress="1", showVonMisesStressPerElement="true")
+       m1.addObject('UncoupledConstraintCorrection', useOdeSolverIntegrationFactors="0")
 
-        M2 = Springs.addChild('M2')
-        M2.addObject('MechanicalObject', name="mo")
-        M2.addObject('UniformMass', totalMass="160")
-        M2.addObject('RegularGridTopology', nx="8", ny="8", nz="20", xmin="4", xmax="7", ymin="0", ymax="3", zmin="9", zmax="18")
-        M2.addObject('TetrahedronFEMForceField', name="FEM", youngModulus="20000", poissonRatio="0.3", computeVonMisesStress="1", showVonMisesStressPerElement="true")
-        M2.addObject('UncoupledConstraintCorrection', useOdeSolverIntegrationFactors="0")
+       m2 = ObjectsAttachedWithConstraints.addChild('M2')
 
-        M3 = Springs.addChild('M3')
-        M3.addObject('MechanicalObject', name="mo")
-        M3.addObject('UniformMass', totalMass="160")
-        M3.addObject('RegularGridTopology', nx="4", ny="4", nz="10", xmin="4", xmax="7", ymin="0", ymax="3", zmin="18", zmax="27")
-        M3.addObject('BoxROI', box="3.9 -0.1 26.99 7.1 3.1 27.1", name="box")
-        M3.addObject('FixedProjectiveConstraint', indices="@box.indices")
-        M3.addObject('TetrahedronFEMForceField', name="FEM", youngModulus="4000", poissonRatio="0.3", computeVonMisesStress="1", showVonMisesStressPerElement="true")
-        M3.addObject('UncoupledConstraintCorrection', useOdeSolverIntegrationFactors="0")
+       m2.addObject('MechanicalObject', name="mo")
+       m2.addObject('UniformMass', totalMass="160")
+       m2.addObject('RegularGridTopology', nx="4", ny="4", nz="10", xmin="0", xmax="3", ymin="0", ymax="3", zmin="9", zmax="18")
+       m2.addObject('TetrahedronFEMForceField', name="FEM", youngModulus="20000", poissonRatio="0.3", computeVonMisesStress="1", showVonMisesStressPerElement="true")
+       m2.addObject('UncoupledConstraintCorrection', useOdeSolverIntegrationFactors="0")
 
-        merge1 = Springs.addChild('merge1')
-        merge1.addObject('BoxROI', name="box1", position="@../M1/mo.position", box="3.9 -0.1 8.9 7.1 3.1 9.1")
-        merge1.addObject('BoxROI', name="box2", position="@../M2/mo.position", box="3.9 -0.1 8.9 7.1 3.1 9.1")
-        merge1.addObject('NearestPointROI', template="Vec3", name="np", object1="@../M1/mo", object2="@../M2/mo", radius="1e5", inputIndices1="@box1.indices", inputIndices2="@box2.indices")
-        merge1.addObject('MechanicalObject', name="dofs")
-        merge1.addObject('SubsetMultiMapping', input="@../M1/mo @../M2/mo", output="@dofs", indexPairs="@np.indexPairs")
-        merge1.addObject('EdgeSetTopologyContainer', edges="@np.edges")
-        merge1.addObject('MeshSpringForceField', stiffness="10000", damping="1", linesStiffness="10000", linesDamping="1", drawMode="1", drawSpringSize="1")
+       m3 = ObjectsAttachedWithConstraints.addChild('M3')
 
-        merge2 = Springs.addChild('merge2')
-        merge2.addObject('BoxROI', name="box1", position="@../M2/mo.position", box="3.9 -0.1 17.9 7.1 3.1 18.1")
-        merge2.addObject('BoxROI', name="box2", position="@../M3/mo.position", box="3.9 -0.1 17.9 7.1 3.1 18.1")
-        merge2.addObject('NearestPointROI', template="Vec3", name="np", object1="@../M2/mo", object2="@../M3/mo", radius="1e5", inputIndices1="@box1.indices", inputIndices2="@box2.indices")
-        merge2.addObject('MechanicalObject', name="dofs")
-        merge2.addObject('SubsetMultiMapping', input="@../M2/mo @../M3/mo", output="@dofs", indexPairs="@np.indexPairs")
-        merge2.addObject('EdgeSetTopologyContainer', edges="@np.edges")
-        merge2.addObject('MeshSpringForceField', stiffness="10000", damping="1", linesStiffness="10000", linesDamping="1", drawMode="1", drawSpringSize="1")
+       m3.addObject('MechanicalObject', name="mo")
+       m3.addObject('UniformMass', totalMass="160")
+       m3.addObject('RegularGridTopology', nx="4", ny="4", nz="10", xmin="0", xmax="3", ymin="0", ymax="3", zmin="18", zmax="27")
+       m3.addObject('BoxROI', box="-0.1 -0.1 26.99 3.1 3.1 27.1", name="box")
+       m3.addObject('FixedProjectiveConstraint', indices="@box.indices")
+       m3.addObject('TetrahedronFEMForceField', name="FEM", youngModulus="4000", poissonRatio="0.3", computeVonMisesStress="1", showVonMisesStressPerElement="true")
+       m3.addObject('UncoupledConstraintCorrection', useOdeSolverIntegrationFactors="0")
+
+       objects_attached_with_constraints.addObject('NearestPointROI', template="Vec3", name="np1", object1="@./M1/mo", object2="@./M2/mo", radius="0.1")
+       objects_attached_with_constraints.addObject('NearestPointROI', template="Vec3", name="np2", object1="@./M2/mo", object2="@./M3/mo", radius="0.1")
+       objects_attached_with_constraints.addObject('BilateralLagrangianConstraint', template="Vec3", object1="@M1", object2="@M2", first_point="@np1.indices1", second_point="@np1.indices2")
+       objects_attached_with_constraints.addObject('BilateralLagrangianConstraint', template="Vec3", object1="@M2", object2="@M3", first_point="@np2.indices1", second_point="@np2.indices2")
+
+       springs = root.addChild('Springs')
+
+       springs.addObject('EulerImplicitSolver', name="cg_odesolver", rayleighStiffness="0.1", rayleighMass="0.1")
+       springs.addObject('CGLinearSolver', iterations="25", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
+
+       m1 = Springs.addChild('M1')
+
+       m1.addObject('MechanicalObject', name="mo")
+       m1.addObject('UniformMass', totalMass="160")
+       m1.addObject('RegularGridTopology', nx="4", ny="4", nz="10", xmin="4", xmax="7", ymin="0", ymax="3", zmin="0", zmax="9")
+       m1.addObject('BoxROI', box="3.9 -0.1 -0.1 7.1 3.1 0.1", name="box")
+       m1.addObject('FixedProjectiveConstraint', indices="@box.indices")
+       m1.addObject('TetrahedronFEMForceField', name="FEM", youngModulus="4000", poissonRatio="0.3", computeVonMisesStress="1", showVonMisesStressPerElement="true")
+       m1.addObject('UncoupledConstraintCorrection', useOdeSolverIntegrationFactors="0")
+
+       m2 = Springs.addChild('M2')
+
+       m2.addObject('MechanicalObject', name="mo")
+       m2.addObject('UniformMass', totalMass="160")
+       m2.addObject('RegularGridTopology', nx="8", ny="8", nz="20", xmin="4", xmax="7", ymin="0", ymax="3", zmin="9", zmax="18")
+       m2.addObject('TetrahedronFEMForceField', name="FEM", youngModulus="20000", poissonRatio="0.3", computeVonMisesStress="1", showVonMisesStressPerElement="true")
+       m2.addObject('UncoupledConstraintCorrection', useOdeSolverIntegrationFactors="0")
+
+       m3 = Springs.addChild('M3')
+
+       m3.addObject('MechanicalObject', name="mo")
+       m3.addObject('UniformMass', totalMass="160")
+       m3.addObject('RegularGridTopology', nx="4", ny="4", nz="10", xmin="4", xmax="7", ymin="0", ymax="3", zmin="18", zmax="27")
+       m3.addObject('BoxROI', box="3.9 -0.1 26.99 7.1 3.1 27.1", name="box")
+       m3.addObject('FixedProjectiveConstraint', indices="@box.indices")
+       m3.addObject('TetrahedronFEMForceField', name="FEM", youngModulus="4000", poissonRatio="0.3", computeVonMisesStress="1", showVonMisesStressPerElement="true")
+       m3.addObject('UncoupledConstraintCorrection', useOdeSolverIntegrationFactors="0")
+
+       merge1 = Springs.addChild('merge1')
+
+       merge1.addObject('BoxROI', name="box1", position="@../M1/mo.position", box="3.9 -0.1 8.9 7.1 3.1 9.1")
+       merge1.addObject('BoxROI', name="box2", position="@../M2/mo.position", box="3.9 -0.1 8.9 7.1 3.1 9.1")
+       merge1.addObject('NearestPointROI', template="Vec3", name="np", object1="@../M1/mo", object2="@../M2/mo", radius="1e5", inputIndices1="@box1.indices", inputIndices2="@box2.indices")
+       merge1.addObject('MechanicalObject', name="dofs")
+       merge1.addObject('SubsetMultiMapping', input="@../M1/mo @../M2/mo", output="@dofs", indexPairs="@np.indexPairs")
+       merge1.addObject('EdgeSetTopologyContainer', edges="@np.edges")
+       merge1.addObject('MeshSpringForceField', stiffness="10000", damping="1", linesStiffness="10000", linesDamping="1", drawMode="1", drawSpringSize="1")
+
+       merge2 = Springs.addChild('merge2')
+
+       merge2.addObject('BoxROI', name="box1", position="@../M2/mo.position", box="3.9 -0.1 17.9 7.1 3.1 18.1")
+       merge2.addObject('BoxROI', name="box2", position="@../M3/mo.position", box="3.9 -0.1 17.9 7.1 3.1 18.1")
+       merge2.addObject('NearestPointROI', template="Vec3", name="np", object1="@../M2/mo", object2="@../M3/mo", radius="1e5", inputIndices1="@box1.indices", inputIndices2="@box2.indices")
+       merge2.addObject('MechanicalObject', name="dofs")
+       merge2.addObject('SubsetMultiMapping', input="@../M2/mo @../M3/mo", output="@dofs", indexPairs="@np.indexPairs")
+       merge2.addObject('EdgeSetTopologyContainer', edges="@np.edges")
+       merge2.addObject('MeshSpringForceField', stiffness="10000", damping="1", linesStiffness="10000", linesDamping="1", drawMode="1", drawSpringSize="1")
     ```
 

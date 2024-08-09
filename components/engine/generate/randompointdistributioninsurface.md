@@ -1,144 +1,116 @@
+<!-- generate_doc -->
 # RandomPointDistributionInSurface
 
 This class truns on spiral any topological model
 
 
-__Templates__:
+## Vec3d
 
-- `#!c++ Vec3d`
+Templates:
 
-__Target__: `Sofa.Component.Engine.Generate`
+- Vec3d
 
-__namespace__: `#!c++ sofa::component::engine::generate`
+__Target__: Sofa.Component.Engine.Generate
 
-__parents__: 
+__namespace__: sofa::component::engine::generate
 
-- `#!c++ DataEngine`
+__parents__:
 
-__categories__: 
+- DataEngine
 
-- Engine
-
-Data: 
+### Data
 
 <table>
-<thead>
-    <tr>
-        <th>Name</th>
-        <th>Description</th>
-        <th>Default value</th>
-    </tr>
-</thead>
-<tbody>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Default value</th>
+        </tr>
+    </thead>
+    <tbody>
 	<tr>
 		<td>name</td>
 		<td>
 object name
-</td>
+		</td>
 		<td>unnamed</td>
 	</tr>
 	<tr>
 		<td>printLog</td>
 		<td>
 if true, emits extra messages at runtime.
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>tags</td>
 		<td>
 list of the subsets the objet belongs to
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>bbox</td>
 		<td>
 this object bounding box
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>componentState</td>
 		<td>
 The state of the component among (Dirty, Valid, Undefined, Loading, Invalid).
-</td>
+		</td>
 		<td>Undefined</td>
 	</tr>
 	<tr>
 		<td>listening</td>
 		<td>
 if true, handle the events, otherwise ignore the events
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>randomSeed</td>
 		<td>
 Set a specified seed for random generation (0 for "true pseudo-randomness" 
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>isVisible</td>
 		<td>
 is Visible ?
-</td>
+		</td>
 		<td>1</td>
 	</tr>
 	<tr>
 		<td>minDistanceBetweenPoints</td>
 		<td>
 Min Distance between 2 points (-1 for true randomness)
-</td>
+		</td>
 		<td>0.1</td>
 	</tr>
 	<tr>
 		<td>numberOfInPoints</td>
 		<td>
 Number of points inside
-</td>
+		</td>
 		<td>10</td>
 	</tr>
 	<tr>
 		<td>numberOfTests</td>
 		<td>
 Number of tests to find if the point is inside or not (odd number)
-</td>
+		</td>
 		<td>5</td>
 	</tr>
 	<tr>
 		<td>outPoints</td>
 		<td>
 Points outside the surface
-</td>
-		<td></td>
-	</tr>
-	<tr>
-		<td colspan="3">Inputs</td>
-	</tr>
-	<tr>
-		<td>vertices</td>
-		<td>
-Vertices
-</td>
-		<td></td>
-	</tr>
-	<tr>
-		<td>triangles</td>
-		<td>
-Triangles indices
-</td>
-		<td></td>
-	</tr>
-	<tr>
-		<td colspan="3">Outputs</td>
-	</tr>
-	<tr>
-		<td>inPoints</td>
-		<td>
-Points inside the surface
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
@@ -148,26 +120,52 @@ Points inside the surface
 		<td>drawOutputPoints</td>
 		<td>
 Output points visible ?
-</td>
+		</td>
 		<td>0</td>
+	</tr>
+	<tr>
+		<td colspan="3">Inputs</td>
+	</tr>
+	<tr>
+		<td>vertices</td>
+		<td>
+Vertices
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>triangles</td>
+		<td>
+Triangles indices
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td colspan="3">Outputs</td>
+	</tr>
+	<tr>
+		<td>inPoints</td>
+		<td>
+Points inside the surface
+		</td>
+		<td></td>
 	</tr>
 
 </tbody>
 </table>
 
-Links: 
-
-| Name | Description |
-| ---- | ----------- |
-|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|
-|slaves|Sub-objects used internally by this object|
-|master|nullptr for regular objects, or master object for which this object is one sub-objects|
+### Links
 
 
+| Name | Description | Destination type name |
+| ---- | ----------- | --------------------- |
+|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
+|slaves|Sub-objects used internally by this object|BaseObject|
+|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
 
-## Examples
+## Examples 
 
-Component/Engine/Generate/RandomPointDistributionInSurface.scn
+RandomPointDistributionInSurface.scn
 
 === "XML"
 
@@ -195,30 +193,34 @@ Component/Engine/Generate/RandomPointDistributionInSurface.scn
             <OglModel src='@myLoader'/>
         </Node>
     </Node>
+
     ```
 
 === "Python"
 
     ```python
-    def createScene(rootNode):
+    def createScene(root_node):
 
-        root = rootNode.addChild('root', dt="0.02")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Engine.Generate")
-        root.addObject('RequiredPlugin', name="Sofa.Component.IO.Mesh")
-        root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Visual")
-        root.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
-        root.addObject('VisualStyle', displayFlags="showBehaviorModels")
-        root.addObject('DefaultAnimationLoop')
+       root = root_node.addChild('root', dt="0.02")
 
-        Random = root.addChild('Random')
-        Random.addObject('MeshOBJLoader', name="meshLoader", filename="mesh/liver.obj")
-        Random.addObject('MechanicalObject', src="@meshLoader")
-        Random.addObject('RandomPointDistributionInSurface', template="Vec3", drawOutputPoints="true", vertices="@meshLoader.position", triangles="@meshLoader.triangles", numberOfInPoints="100", numberOfTests="3", minDistanceBetweenPoints="0.1")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Engine.Generate")
+       root.addObject('RequiredPlugin', name="Sofa.Component.IO.Mesh")
+       root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Visual")
+       root.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
+       root.addObject('VisualStyle', displayFlags="showBehaviorModels")
+       root.addObject('DefaultAnimationLoop', )
 
-        Visu = root.addChild('Visu')
-        Visu.addObject('VisualStyle', displayFlags="showWireframe")
-        Visu.addObject('MeshOBJLoader', name="myLoader", filename="mesh/liver.obj")
-        Visu.addObject('OglModel', src="@myLoader")
+       random = root.addChild('Random')
+
+       random.addObject('MeshOBJLoader', name="meshLoader", filename="mesh/liver.obj")
+       random.addObject('MechanicalObject', src="@meshLoader")
+       random.addObject('RandomPointDistributionInSurface', template="Vec3", drawOutputPoints="true", vertices="@meshLoader.position", triangles="@meshLoader.triangles", numberOfInPoints="100", numberOfTests="3", minDistanceBetweenPoints="0.1")
+
+       visu = root.addChild('Visu')
+
+       visu.addObject('VisualStyle', displayFlags="showWireframe")
+       visu.addObject('MeshOBJLoader', name="myLoader", filename="mesh/liver.obj")
+       visu.addObject('OglModel', src="@myLoader")
     ```
 

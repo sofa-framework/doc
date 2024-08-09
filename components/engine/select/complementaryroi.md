@@ -1,75 +1,74 @@
+<!-- generate_doc -->
 # ComplementaryROI
 
 Find the points that are NOT in the input sets
 
 
-__Templates__:
+## Vec3d
 
-- `#!c++ Vec3d`
+Templates:
 
-__Target__: `Sofa.Component.Engine.Select`
+- Vec3d
 
-__namespace__: `#!c++ sofa::component::engine::select`
+__Target__: Sofa.Component.Engine.Select
 
-__parents__: 
+__namespace__: sofa::component::engine::select
 
-- `#!c++ DataEngine`
+__parents__:
 
-__categories__: 
+- DataEngine
 
-- Engine
-
-Data: 
+### Data
 
 <table>
-<thead>
-    <tr>
-        <th>Name</th>
-        <th>Description</th>
-        <th>Default value</th>
-    </tr>
-</thead>
-<tbody>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Default value</th>
+        </tr>
+    </thead>
+    <tbody>
 	<tr>
 		<td>name</td>
 		<td>
 object name
-</td>
+		</td>
 		<td>unnamed</td>
 	</tr>
 	<tr>
 		<td>printLog</td>
 		<td>
 if true, emits extra messages at runtime.
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>tags</td>
 		<td>
 list of the subsets the objet belongs to
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>bbox</td>
 		<td>
 this object bounding box
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>componentState</td>
 		<td>
 The state of the component among (Dirty, Valid, Undefined, Loading, Invalid).
-</td>
+		</td>
 		<td>Undefined</td>
 	</tr>
 	<tr>
 		<td>listening</td>
 		<td>
 if true, handle the events, otherwise ignore the events
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
@@ -79,14 +78,14 @@ if true, handle the events, otherwise ignore the events
 		<td>position</td>
 		<td>
 input positions
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>nbSet</td>
 		<td>
 number of sets to complement
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
@@ -96,27 +95,26 @@ number of sets to complement
 		<td>indices</td>
 		<td>
 indices of the point in the ROI
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>pointsInROI</td>
 		<td>
 points in the ROI
-</td>
+		</td>
 		<td></td>
 	</tr>
 
 </tbody>
 </table>
 
-Links: 
-
-| Name | Description |
-| ---- | ----------- |
-|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|
-|slaves|Sub-objects used internally by this object|
-|master|nullptr for regular objects, or master object for which this object is one sub-objects|
+### Links
 
 
+| Name | Description | Destination type name |
+| ---- | ----------- | --------------------- |
+|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
+|slaves|Sub-objects used internally by this object|BaseObject|
+|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
 

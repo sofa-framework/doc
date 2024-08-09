@@ -1,189 +1,187 @@
+<!-- generate_doc -->
 # SPHFluidSurfaceMapping
 
 SPHFluidSurfaceMappingClass
 
 
-__Templates__:
+## Vec3d,Vec3d
 
-- `#!c++ Vec3d,Vec3d`
+Templates:
 
-__Target__: `SofaSphFluid`
+- Vec3d,Vec3d
 
-__namespace__: `#!c++ sofa::component::mapping`
+__Target__: SofaSphFluid
 
-__parents__: 
+__namespace__: sofa::component::mapping
 
-- `#!c++ Mapping`
-- `#!c++ MeshTopology`
-
-__categories__: 
+__parents__:
 
 - Mapping
-- Topology
+- MeshTopology
 
-Data: 
+### Data
 
 <table>
-<thead>
-    <tr>
-        <th>Name</th>
-        <th>Description</th>
-        <th>Default value</th>
-    </tr>
-</thead>
-<tbody>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Default value</th>
+        </tr>
+    </thead>
+    <tbody>
 	<tr>
 		<td>name</td>
 		<td>
 object name
-</td>
+		</td>
 		<td>unnamed</td>
 	</tr>
 	<tr>
 		<td>printLog</td>
 		<td>
 if true, emits extra messages at runtime.
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>tags</td>
 		<td>
 list of the subsets the objet belongs to
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>bbox</td>
 		<td>
 this object bounding box
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>componentState</td>
 		<td>
 The state of the component among (Dirty, Valid, Undefined, Loading, Invalid).
-</td>
+		</td>
 		<td>Undefined</td>
 	</tr>
 	<tr>
 		<td>listening</td>
 		<td>
 if true, handle the events, otherwise ignore the events
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>mapForces</td>
 		<td>
 Are forces mapped ?
-</td>
+		</td>
 		<td>1</td>
 	</tr>
 	<tr>
 		<td>mapConstraints</td>
 		<td>
 Are constraints mapped ?
-</td>
+		</td>
 		<td>1</td>
 	</tr>
 	<tr>
 		<td>mapMasses</td>
 		<td>
 Are masses mapped ?
-</td>
+		</td>
 		<td>1</td>
 	</tr>
 	<tr>
 		<td>mapMatrices</td>
 		<td>
 Are matrix explicit mapped?
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>applyRestPosition</td>
 		<td>
 set to true to apply this mapping to restPosition at init
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>filename</td>
 		<td>
 Filename of the mesh
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>position</td>
 		<td>
 List of point positions
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>edges</td>
 		<td>
 List of edge indices
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>triangles</td>
 		<td>
 List of triangle indices
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>quads</td>
 		<td>
 List of quad indices
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>tetrahedra</td>
 		<td>
 List of tetrahedron indices
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>hexahedra</td>
 		<td>
 List of hexahedron indices
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>uv</td>
 		<td>
 List of uv coordinates
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>step</td>
 		<td>
 Step
-</td>
+		</td>
 		<td>0.5</td>
 	</tr>
 	<tr>
 		<td>radius</td>
 		<td>
 Radius
-</td>
+		</td>
 		<td>2</td>
 	</tr>
 	<tr>
 		<td>isoValue</td>
 		<td>
 Iso Value
-</td>
+		</td>
 		<td>0.5</td>
 	</tr>
 	<tr>
@@ -193,56 +191,55 @@ Iso Value
 		<td>drawEdges</td>
 		<td>
 if true, draw the topology Edges
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>drawTriangles</td>
 		<td>
 if true, draw the topology Triangles
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>drawQuads</td>
 		<td>
 if true, draw the topology Quads
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>drawTetrahedra</td>
 		<td>
 if true, draw the topology Tetrahedra
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>drawHexahedra</td>
 		<td>
 if true, draw the topology hexahedra
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 
 </tbody>
 </table>
 
-Links: 
-
-| Name | Description |
-| ---- | ----------- |
-|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|
-|slaves|Sub-objects used internally by this object|
-|master|nullptr for regular objects, or master object for which this object is one sub-objects|
-|input|Input object to map|
-|output|Output object to map|
+### Links
 
 
+| Name | Description | Destination type name |
+| ---- | ----------- | --------------------- |
+|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
+|slaves|Sub-objects used internally by this object|BaseObject|
+|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
+|input|Input object to map|State&lt;Vec3d&gt;|
+|output|Output object to map|State&lt;Vec3d&gt;|
 
-## Examples
+## Examples 
 
-SofaSphFluid/share/sofa/examples/SofaSphFluid/SPHFluidSurfaceMapping.scn
+SPHFluidSurfaceMapping.scn
 
 === "XML"
 
@@ -284,42 +281,46 @@ SofaSphFluid/share/sofa/examples/SofaSphFluid/SPHFluidSurfaceMapping.scn
         </Node>
         
     </Node>
+
     ```
 
 === "Python"
 
     ```python
-    def createScene(rootNode):
+    def createScene(root_node):
 
-        rootNode = rootNode.addChild('rootNode', dt="0.01", gravity="0 -10 0")
-        rootNode.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Iterative")
-        rootNode.addObject('RequiredPlugin', name="Sofa.Component.Mass")
-        rootNode.addObject('RequiredPlugin', name="Sofa.Component.MechanicalLoad")
-        rootNode.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
-        rootNode.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
-        rootNode.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Grid")
-        rootNode.addObject('RequiredPlugin', name="Sofa.Component.Visual")
-        rootNode.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
-        rootNode.addObject('RequiredPlugin', name="SofaSphFluid")
-        rootNode.addObject('VisualStyle', displayFlags="hideBehaviorModels showForceFields hideCollisionModels")
-        rootNode.addObject('DefaultAnimationLoop')
+       node = root_node.addChild('node', dt="0.01", gravity="0 -10 0")
 
-        SPHSurfaceMapping = rootNode.addChild('SPHSurfaceMapping')
-        SPHSurfaceMapping.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
-        SPHSurfaceMapping.addObject('CGLinearSolver', iterations="25", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
-        SPHSurfaceMapping.addObject('RegularGridTopology', nx="5", ny="40", nz="5", xmin="-1.5", xmax="0", ymin="-3", ymax="12", zmin="-1.5", zmax="0", drawEdges="0")
-        SPHSurfaceMapping.addObject('MechanicalObject', name="MModel")
-        SPHSurfaceMapping.addObject('UniformMass', name="M1", vertexMass="1")
-        SPHSurfaceMapping.addObject('SpatialGridContainer', cellWidth="0.75")
-        SPHSurfaceMapping.addObject('SPHFluidForceField', radius="0.745", density="15", kernelType="1", viscosityType="2", viscosity="10", pressure="1500", surfaceTension="-1000", printLog="0")
-        SPHSurfaceMapping.addObject('PlaneForceField', normal="1 0 0", d="-4", showPlane="1")
-        SPHSurfaceMapping.addObject('PlaneForceField', normal="-1 0 0", d="-14", showPlane="1")
-        SPHSurfaceMapping.addObject('PlaneForceField', normal="0.3 1 0", d="-4", showPlane="1")
-        SPHSurfaceMapping.addObject('PlaneForceField', normal="0 0 1", d="-4", showPlane="1")
-        SPHSurfaceMapping.addObject('PlaneForceField', normal="0 0 -1", d="-4", showPlane="1")
+       node.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Iterative")
+       node.addObject('RequiredPlugin', name="Sofa.Component.Mass")
+       node.addObject('RequiredPlugin', name="Sofa.Component.MechanicalLoad")
+       node.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
+       node.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
+       node.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Grid")
+       node.addObject('RequiredPlugin', name="Sofa.Component.Visual")
+       node.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
+       node.addObject('RequiredPlugin', name="SofaSphFluid")
+       node.addObject('VisualStyle', displayFlags="hideBehaviorModels showForceFields hideCollisionModels")
+       node.addObject('DefaultAnimationLoop', )
 
-        SPHSurfaceMapping = SPHSurfaceMapping.addChild('SPHSurfaceMapping', id="Visual")
-        SPHSurfaceMapping.addObject('OglModel', name="VModel", color="blue")
-        SPHSurfaceMapping.addObject('SPHFluidSurfaceMapping', name="MarchingCube", input="@../MModel", output="@VModel", isoValue="0.5", radius="0.75", step="0.25")
+       sph_surface_mapping = node.addChild('SPHSurfaceMapping')
+
+       sph_surface_mapping.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
+       sph_surface_mapping.addObject('CGLinearSolver', iterations="25", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
+       sph_surface_mapping.addObject('RegularGridTopology', nx="5", ny="40", nz="5", xmin="-1.5", xmax="0", ymin="-3", ymax="12", zmin="-1.5", zmax="0", drawEdges="0")
+       sph_surface_mapping.addObject('MechanicalObject', name="MModel")
+       sph_surface_mapping.addObject('UniformMass', name="M1", vertexMass="1")
+       sph_surface_mapping.addObject('SpatialGridContainer', cellWidth="0.75")
+       sph_surface_mapping.addObject('SPHFluidForceField', radius="0.745", density="15", kernelType="1", viscosityType="2", viscosity="10", pressure="1500", surfaceTension="-1000", printLog="0")
+       sph_surface_mapping.addObject('PlaneForceField', normal="1 0 0", d="-4", showPlane="1")
+       sph_surface_mapping.addObject('PlaneForceField', normal="-1 0 0", d="-14", showPlane="1")
+       sph_surface_mapping.addObject('PlaneForceField', normal="0.3 1 0", d="-4", showPlane="1")
+       sph_surface_mapping.addObject('PlaneForceField', normal="0 0 1", d="-4", showPlane="1")
+       sph_surface_mapping.addObject('PlaneForceField', normal="0 0 -1", d="-4", showPlane="1")
+
+       node = SPHSurfaceMapping.addChild('node', id="Visual")
+
+       node.addObject('OglModel', name="VModel", color="blue")
+       node.addObject('SPHFluidSurfaceMapping', name="MarchingCube", input="@../MModel", output="@VModel", isoValue="0.5", radius="0.75", step="0.25")
     ```
 

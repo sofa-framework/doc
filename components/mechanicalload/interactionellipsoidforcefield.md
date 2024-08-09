@@ -1,146 +1,144 @@
+<!-- generate_doc -->
 # InteractionEllipsoidForceField
 
 Repulsion applied by an ellipsoid toward the exterior or the interior
 
 
-__Templates__:
+## Vec3d,Rigid3d
 
-- `#!c++ Vec3d,Rigid3d`
+Templates:
 
-__Target__: `Sofa.Component.MechanicalLoad`
+- Vec3d,Rigid3d
 
-__namespace__: `#!c++ sofa::component::mechanicalload`
+__Target__: Sofa.Component.MechanicalLoad
 
-__parents__: 
+__namespace__: sofa::component::mechanicalload
 
-- `#!c++ MixedInteractionForceField`
+__parents__:
 
-__categories__: 
+- MixedInteractionForceField
 
-- ForceField
-- InteractionForceField
-
-Data: 
+### Data
 
 <table>
-<thead>
-    <tr>
-        <th>Name</th>
-        <th>Description</th>
-        <th>Default value</th>
-    </tr>
-</thead>
-<tbody>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Default value</th>
+        </tr>
+    </thead>
+    <tbody>
 	<tr>
 		<td>name</td>
 		<td>
 object name
-</td>
+		</td>
 		<td>unnamed</td>
 	</tr>
 	<tr>
 		<td>printLog</td>
 		<td>
 if true, emits extra messages at runtime.
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>tags</td>
 		<td>
 list of the subsets the objet belongs to
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>bbox</td>
 		<td>
 this object bounding box
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>componentState</td>
 		<td>
 The state of the component among (Dirty, Valid, Undefined, Loading, Invalid).
-</td>
+		</td>
 		<td>Undefined</td>
 	</tr>
 	<tr>
 		<td>listening</td>
 		<td>
 if true, handle the events, otherwise ignore the events
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>rayleighStiffness</td>
 		<td>
 Rayleigh damping - stiffness matrix coefficient
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>contacts</td>
 		<td>
 Contacts
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>center</td>
 		<td>
 ellipsoid center
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>vradius</td>
 		<td>
 ellipsoid radius
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>stiffness</td>
 		<td>
 force stiffness (positive to repulse outward, negative inward)
-</td>
+		</td>
 		<td>500</td>
 	</tr>
 	<tr>
 		<td>damping</td>
 		<td>
 force damping
-</td>
+		</td>
 		<td>5</td>
 	</tr>
 	<tr>
 		<td>color</td>
 		<td>
 ellipsoid color. (default=[0.0,0.5,1.0,1.0])
-</td>
+		</td>
 		<td>0 0.5 1 1</td>
 	</tr>
 	<tr>
 		<td>object2_dof_index</td>
 		<td>
 Dof index of object 2 where the forcefield is attached
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>object2_forces</td>
 		<td>
 enable/disable propagation of forces to object 2
-</td>
+		</td>
 		<td>1</td>
 	</tr>
 	<tr>
 		<td>object2_invert</td>
 		<td>
 inverse transform from object 2 (use when object 1 is in local coordinates within a frame defined by object 2)
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
@@ -150,29 +148,28 @@ inverse transform from object 2 (use when object 1 is in local coordinates withi
 		<td>draw</td>
 		<td>
 enable/disable drawing of the ellipsoid
-</td>
+		</td>
 		<td>1</td>
 	</tr>
 
 </tbody>
 </table>
 
-Links: 
-
-| Name | Description |
-| ---- | ----------- |
-|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|
-|slaves|Sub-objects used internally by this object|
-|master|nullptr for regular objects, or master object for which this object is one sub-objects|
-|mechanicalStates|List of mechanical states to which this component is associated|
-|object1|First object associated to this component|
-|object2|Second object associated to this component|
+### Links
 
 
+| Name | Description | Destination type name |
+| ---- | ----------- | --------------------- |
+|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
+|slaves|Sub-objects used internally by this object|BaseObject|
+|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
+|mechanicalStates|List of mechanical states to which this component is associated|BaseMechanicalState|
+|object1|First object associated to this component|MechanicalState&lt;Vec3d&gt;|
+|object2|Second object associated to this component|MechanicalState&lt;Rigid3d&gt;|
 
-## Examples
+## Examples 
 
-Component/MechanicalLoad/InteractionEllipsoidForceField.scn
+InteractionEllipsoidForceField.scn
 
 === "XML"
 
@@ -229,60 +226,65 @@ Component/MechanicalLoad/InteractionEllipsoidForceField.scn
             </Node>
         </Node>
     </Node>
+
     ```
 
 === "Python"
 
     ```python
-    def createScene(rootNode):
+    def createScene(root_node):
 
-        root = rootNode.addChild('root', gravity="0.0 -2.0 0.0", dt="0.04")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Algorithm")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Intersection")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Response.Contact")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Projective")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Engine.Select")
-        root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Iterative")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Mapping.Linear")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Mass")
-        root.addObject('RequiredPlugin', name="Sofa.Component.MechanicalLoad")
-        root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
-        root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Forward")
-        root.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.Spring")
-        root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Grid")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Visual")
-        root.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
-        root.addObject('DefaultAnimationLoop')
-        root.addObject('VisualStyle', displayFlags="showBehaviorModels showForceFields showInteractionForceFields showVisual")
-        root.addObject('CollisionPipeline', verbose="0")
-        root.addObject('BruteForceBroadPhase')
-        root.addObject('BVHNarrowPhase')
-        root.addObject('CollisionResponse', name="Response")
-        root.addObject('NewProximityIntersection', alarmDistance="0.002", contactDistance="0.001")
+       root = root_node.addChild('root', gravity="0.0 -2.0 0.0", dt="0.04")
 
-        RotatingObstacle = root.addChild('RotatingObstacle')
-        RotatingObstacle.addObject('EulerExplicitSolver', name="odesolver", printLog="false")
-        RotatingObstacle.addObject('MechanicalObject', name="MS2", template="Rigid3", position="0 5 3 0 0 0 1", velocity="0 0 0 -0.1 0 0")
-        RotatingObstacle.addObject('UniformMass', totalMass="1")
-        RotatingObstacle.addObject('PartialFixedProjectiveConstraint', indices="0", fixedDirections="1 1 1 0 0 0")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Algorithm")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Intersection")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Response.Contact")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Projective")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Engine.Select")
+       root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Iterative")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Mapping.Linear")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Mass")
+       root.addObject('RequiredPlugin', name="Sofa.Component.MechanicalLoad")
+       root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Forward")
+       root.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.Spring")
+       root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Grid")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Visual")
+       root.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
+       root.addObject('DefaultAnimationLoop', )
+       root.addObject('VisualStyle', displayFlags="showBehaviorModels showForceFields showInteractionForceFields showVisual")
+       root.addObject('CollisionPipeline', verbose="0")
+       root.addObject('BruteForceBroadPhase', )
+       root.addObject('BVHNarrowPhase', )
+       root.addObject('CollisionResponse', name="Response")
+       root.addObject('NewProximityIntersection', alarmDistance="0.002", contactDistance="0.001")
 
-        SquareCloth1 = root.addChild('SquareCloth1')
-        SquareCloth1.addObject('EulerImplicitSolver', name="odesolver", printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
-        SquareCloth1.addObject('CGLinearSolver', iterations="25", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
-        SquareCloth1.addObject('MechanicalObject', name="MS1")
-        SquareCloth1.addObject('UniformMass', totalMass="100")
-        SquareCloth1.addObject('RegularGridTopology', nx="20", ny="1", nz="20", xmin="12", xmax="-12", ymin="7", ymax="7", zmin="-12", zmax="12")
-        SquareCloth1.addObject('BoxROI', name="box1", box="-12 7 12 -10 7 12")
-        SquareCloth1.addObject('FixedProjectiveConstraint', indices="@box1.indices")
-        SquareCloth1.addObject('BoxROI', name="box2", box="-12 7 12 -10 7 12")
-        SquareCloth1.addObject('FixedProjectiveConstraint', indices="@box2.indices")
-        SquareCloth1.addObject('MeshSpringForceField', name="Springs", stiffness="2000", damping="0")
-        SquareCloth1.addObject('QuadBendingSprings', name="Bend", stiffness="20", damping="0")
-        SquareCloth1.addObject('InteractionEllipsoidForceField', template="Vec3,Rigid3", object1="@MS1", object2="@../RotatingObstacle/MS2", stiffness="1000", damping="1", center="0 0 0 0 -5 0", vradius="6 2 4   2 4 2", object2_forces="false", object2_invert="false")
+       rotating_obstacle = root.addChild('RotatingObstacle')
 
-        Visu = SquareCloth1.addChild('Visu')
-        Visu.addObject('OglModel', name="Visual", color="green")
-        Visu.addObject('IdentityMapping', input="@..", output="@Visual")
+       rotating_obstacle.addObject('EulerExplicitSolver', name="odesolver", printLog="false")
+       rotating_obstacle.addObject('MechanicalObject', name="MS2", template="Rigid3", position="0 5 3 0 0 0 1", velocity="0 0 0 -0.1 0 0")
+       rotating_obstacle.addObject('UniformMass', totalMass="1")
+       rotating_obstacle.addObject('PartialFixedProjectiveConstraint', indices="0", fixedDirections="1 1 1 0 0 0")
+
+       square_cloth1 = root.addChild('SquareCloth1')
+
+       square_cloth1.addObject('EulerImplicitSolver', name="odesolver", printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
+       square_cloth1.addObject('CGLinearSolver', iterations="25", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
+       square_cloth1.addObject('MechanicalObject', name="MS1")
+       square_cloth1.addObject('UniformMass', totalMass="100")
+       square_cloth1.addObject('RegularGridTopology', nx="20", ny="1", nz="20", xmin="12", xmax="-12", ymin="7", ymax="7", zmin="-12", zmax="12")
+       square_cloth1.addObject('BoxROI', name="box1", box="-12 7 12 -10 7 12")
+       square_cloth1.addObject('FixedProjectiveConstraint', indices="@box1.indices")
+       square_cloth1.addObject('BoxROI', name="box2", box="-12 7 12 -10 7 12")
+       square_cloth1.addObject('FixedProjectiveConstraint', indices="@box2.indices")
+       square_cloth1.addObject('MeshSpringForceField', name="Springs", stiffness="2000", damping="0")
+       square_cloth1.addObject('QuadBendingSprings', name="Bend", stiffness="20", damping="0")
+       square_cloth1.addObject('InteractionEllipsoidForceField', template="Vec3,Rigid3", object1="@MS1", object2="@../RotatingObstacle/MS2", stiffness="1000", damping="1", center="0 0 0 0 -5 0", vradius="6 2 4   2 4 2", object2_forces="false", object2_invert="false")
+
+       visu = SquareCloth1.addChild('Visu')
+
+       visu.addObject('OglModel', name="Visual", color="green")
+       visu.addObject('IdentityMapping', input="@..", output="@Visual")
     ```
 

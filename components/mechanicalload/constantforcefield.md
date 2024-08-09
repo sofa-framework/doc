@@ -17,90 +17,97 @@ Usage
 
 As a Forcefield, the ConstantForceField requires a **MechanicalObject** and the associated **solvers** (integration scheme and linear solver), as well as a **PointSetTopologyContainer**.
 <!-- automatically generated doc START -->
-__Target__: `Sofa.Component.MechanicalLoad`
+<!-- generate_doc -->
 
-__namespace__: `#!c++ sofa::component::mechanicalload`
+Constant forces applied to given degrees of freedom
 
-__parents__: 
 
-- `#!c++ ForceField`
+## Rigid2d
 
-__categories__: 
+Templates:
+
+- Rigid2d
+
+__Target__: Sofa.Component.MechanicalLoad
+
+__namespace__: sofa::component::mechanicalload
+
+__parents__:
 
 - ForceField
 
-Data: 
+### Data
 
 <table>
-<thead>
-    <tr>
-        <th>Name</th>
-        <th>Description</th>
-        <th>Default value</th>
-    </tr>
-</thead>
-<tbody>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Default value</th>
+        </tr>
+    </thead>
+    <tbody>
 	<tr>
 		<td>name</td>
 		<td>
 object name
-</td>
+		</td>
 		<td>unnamed</td>
 	</tr>
 	<tr>
 		<td>printLog</td>
 		<td>
 if true, emits extra messages at runtime.
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>tags</td>
 		<td>
 list of the subsets the objet belongs to
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>bbox</td>
 		<td>
 this object bounding box
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>componentState</td>
 		<td>
 The state of the component among (Dirty, Valid, Undefined, Loading, Invalid).
-</td>
+		</td>
 		<td>Undefined</td>
 	</tr>
 	<tr>
 		<td>listening</td>
 		<td>
 if true, handle the events, otherwise ignore the events
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>rayleighStiffness</td>
 		<td>
 Rayleigh damping - stiffness matrix coefficient
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>indices</td>
 		<td>
 indices where the forces are applied
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>indexFromEnd</td>
 		<td>
 Concerned DOFs indices are numbered from the end of the MState DOFs vector. (default=false)
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
@@ -110,14 +117,14 @@ Concerned DOFs indices are numbered from the end of the MState DOFs vector. (def
 		<td>forces</td>
 		<td>
 vector containing the force amplitude applied at each node
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>totalForce</td>
 		<td>
 total force for all points, will be distributed uniformly over points
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
@@ -126,37 +133,731 @@ total force for all points, will be distributed uniformly over points
 	<tr>
 		<td>showArrowSize</td>
 		<td>
-Size of the drawn arrows (0-&gt;no arrows, sign-&gt;direction of drawing. (default=0)
-</td>
+Size of the drawn arrows (0->no arrows, sign->direction of drawing. (default=0)
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>showColor</td>
 		<td>
 Color for object display (default: [0.2,0.9,0.3,1.0])
-</td>
+		</td>
 		<td>0.2 0.9 0.3 1</td>
 	</tr>
 
 </tbody>
 </table>
 
-Links: 
-
-| Name | Description |
-| ---- | ----------- |
-|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|
-|slaves|Sub-objects used internally by this object|
-|master|nullptr for regular objects, or master object for which this object is one sub-objects|
-|mechanicalStates|List of mechanical states to which this component is associated|
-|mstate|MechanicalState used by this component|
-|topology|link to the topology container|
+### Links
 
 
+| Name | Description | Destination type name |
+| ---- | ----------- | --------------------- |
+|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
+|slaves|Sub-objects used internally by this object|BaseObject|
+|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
+|mechanicalStates|List of mechanical states to which this component is associated|BaseMechanicalState|
+|mstate|MechanicalState used by this component|MechanicalState&lt;Rigid2d&gt;|
+|topology|link to the topology container|BaseMeshTopology|
 
-## Examples
+<!-- generate_doc -->
+## Rigid3d
 
-Component/MechanicalLoad/ConstantForceField.scn
+Templates:
+
+- Rigid3d
+
+__Target__: Sofa.Component.MechanicalLoad
+
+__namespace__: sofa::component::mechanicalload
+
+__parents__:
+
+- ForceField
+
+### Data
+
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Default value</th>
+        </tr>
+    </thead>
+    <tbody>
+	<tr>
+		<td>name</td>
+		<td>
+object name
+		</td>
+		<td>unnamed</td>
+	</tr>
+	<tr>
+		<td>printLog</td>
+		<td>
+if true, emits extra messages at runtime.
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>tags</td>
+		<td>
+list of the subsets the objet belongs to
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>bbox</td>
+		<td>
+this object bounding box
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>componentState</td>
+		<td>
+The state of the component among (Dirty, Valid, Undefined, Loading, Invalid).
+		</td>
+		<td>Undefined</td>
+	</tr>
+	<tr>
+		<td>listening</td>
+		<td>
+if true, handle the events, otherwise ignore the events
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>rayleighStiffness</td>
+		<td>
+Rayleigh damping - stiffness matrix coefficient
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>indices</td>
+		<td>
+indices where the forces are applied
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>indexFromEnd</td>
+		<td>
+Concerned DOFs indices are numbered from the end of the MState DOFs vector. (default=false)
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td colspan="3">Force info</td>
+	</tr>
+	<tr>
+		<td>forces</td>
+		<td>
+vector containing the force amplitude applied at each node
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>totalForce</td>
+		<td>
+total force for all points, will be distributed uniformly over points
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td colspan="3">Visualization</td>
+	</tr>
+	<tr>
+		<td>showArrowSize</td>
+		<td>
+Size of the drawn arrows (0->no arrows, sign->direction of drawing. (default=0)
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>showColor</td>
+		<td>
+Color for object display (default: [0.2,0.9,0.3,1.0])
+		</td>
+		<td>0.2 0.9 0.3 1</td>
+	</tr>
+
+</tbody>
+</table>
+
+### Links
+
+
+| Name | Description | Destination type name |
+| ---- | ----------- | --------------------- |
+|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
+|slaves|Sub-objects used internally by this object|BaseObject|
+|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
+|mechanicalStates|List of mechanical states to which this component is associated|BaseMechanicalState|
+|mstate|MechanicalState used by this component|MechanicalState&lt;Rigid3d&gt;|
+|topology|link to the topology container|BaseMeshTopology|
+
+<!-- generate_doc -->
+## Vec1d
+
+Templates:
+
+- Vec1d
+
+__Target__: Sofa.Component.MechanicalLoad
+
+__namespace__: sofa::component::mechanicalload
+
+__parents__:
+
+- ForceField
+
+### Data
+
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Default value</th>
+        </tr>
+    </thead>
+    <tbody>
+	<tr>
+		<td>name</td>
+		<td>
+object name
+		</td>
+		<td>unnamed</td>
+	</tr>
+	<tr>
+		<td>printLog</td>
+		<td>
+if true, emits extra messages at runtime.
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>tags</td>
+		<td>
+list of the subsets the objet belongs to
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>bbox</td>
+		<td>
+this object bounding box
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>componentState</td>
+		<td>
+The state of the component among (Dirty, Valid, Undefined, Loading, Invalid).
+		</td>
+		<td>Undefined</td>
+	</tr>
+	<tr>
+		<td>listening</td>
+		<td>
+if true, handle the events, otherwise ignore the events
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>rayleighStiffness</td>
+		<td>
+Rayleigh damping - stiffness matrix coefficient
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>indices</td>
+		<td>
+indices where the forces are applied
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>indexFromEnd</td>
+		<td>
+Concerned DOFs indices are numbered from the end of the MState DOFs vector. (default=false)
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td colspan="3">Force info</td>
+	</tr>
+	<tr>
+		<td>forces</td>
+		<td>
+vector containing the force amplitude applied at each node
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>totalForce</td>
+		<td>
+total force for all points, will be distributed uniformly over points
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td colspan="3">Visualization</td>
+	</tr>
+	<tr>
+		<td>showArrowSize</td>
+		<td>
+Size of the drawn arrows (0->no arrows, sign->direction of drawing. (default=0)
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>showColor</td>
+		<td>
+Color for object display (default: [0.2,0.9,0.3,1.0])
+		</td>
+		<td>0.2 0.9 0.3 1</td>
+	</tr>
+
+</tbody>
+</table>
+
+### Links
+
+
+| Name | Description | Destination type name |
+| ---- | ----------- | --------------------- |
+|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
+|slaves|Sub-objects used internally by this object|BaseObject|
+|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
+|mechanicalStates|List of mechanical states to which this component is associated|BaseMechanicalState|
+|mstate|MechanicalState used by this component|MechanicalState&lt;Vec1d&gt;|
+|topology|link to the topology container|BaseMeshTopology|
+
+<!-- generate_doc -->
+## Vec2d
+
+Templates:
+
+- Vec2d
+
+__Target__: Sofa.Component.MechanicalLoad
+
+__namespace__: sofa::component::mechanicalload
+
+__parents__:
+
+- ForceField
+
+### Data
+
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Default value</th>
+        </tr>
+    </thead>
+    <tbody>
+	<tr>
+		<td>name</td>
+		<td>
+object name
+		</td>
+		<td>unnamed</td>
+	</tr>
+	<tr>
+		<td>printLog</td>
+		<td>
+if true, emits extra messages at runtime.
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>tags</td>
+		<td>
+list of the subsets the objet belongs to
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>bbox</td>
+		<td>
+this object bounding box
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>componentState</td>
+		<td>
+The state of the component among (Dirty, Valid, Undefined, Loading, Invalid).
+		</td>
+		<td>Undefined</td>
+	</tr>
+	<tr>
+		<td>listening</td>
+		<td>
+if true, handle the events, otherwise ignore the events
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>rayleighStiffness</td>
+		<td>
+Rayleigh damping - stiffness matrix coefficient
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>indices</td>
+		<td>
+indices where the forces are applied
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>indexFromEnd</td>
+		<td>
+Concerned DOFs indices are numbered from the end of the MState DOFs vector. (default=false)
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td colspan="3">Force info</td>
+	</tr>
+	<tr>
+		<td>forces</td>
+		<td>
+vector containing the force amplitude applied at each node
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>totalForce</td>
+		<td>
+total force for all points, will be distributed uniformly over points
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td colspan="3">Visualization</td>
+	</tr>
+	<tr>
+		<td>showArrowSize</td>
+		<td>
+Size of the drawn arrows (0->no arrows, sign->direction of drawing. (default=0)
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>showColor</td>
+		<td>
+Color for object display (default: [0.2,0.9,0.3,1.0])
+		</td>
+		<td>0.2 0.9 0.3 1</td>
+	</tr>
+
+</tbody>
+</table>
+
+### Links
+
+
+| Name | Description | Destination type name |
+| ---- | ----------- | --------------------- |
+|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
+|slaves|Sub-objects used internally by this object|BaseObject|
+|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
+|mechanicalStates|List of mechanical states to which this component is associated|BaseMechanicalState|
+|mstate|MechanicalState used by this component|MechanicalState&lt;Vec2d&gt;|
+|topology|link to the topology container|BaseMeshTopology|
+
+<!-- generate_doc -->
+## Vec3d
+
+Templates:
+
+- Vec3d
+
+__Target__: Sofa.Component.MechanicalLoad
+
+__namespace__: sofa::component::mechanicalload
+
+__parents__:
+
+- ForceField
+
+### Data
+
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Default value</th>
+        </tr>
+    </thead>
+    <tbody>
+	<tr>
+		<td>name</td>
+		<td>
+object name
+		</td>
+		<td>unnamed</td>
+	</tr>
+	<tr>
+		<td>printLog</td>
+		<td>
+if true, emits extra messages at runtime.
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>tags</td>
+		<td>
+list of the subsets the objet belongs to
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>bbox</td>
+		<td>
+this object bounding box
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>componentState</td>
+		<td>
+The state of the component among (Dirty, Valid, Undefined, Loading, Invalid).
+		</td>
+		<td>Undefined</td>
+	</tr>
+	<tr>
+		<td>listening</td>
+		<td>
+if true, handle the events, otherwise ignore the events
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>rayleighStiffness</td>
+		<td>
+Rayleigh damping - stiffness matrix coefficient
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>indices</td>
+		<td>
+indices where the forces are applied
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>indexFromEnd</td>
+		<td>
+Concerned DOFs indices are numbered from the end of the MState DOFs vector. (default=false)
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td colspan="3">Force info</td>
+	</tr>
+	<tr>
+		<td>forces</td>
+		<td>
+vector containing the force amplitude applied at each node
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>totalForce</td>
+		<td>
+total force for all points, will be distributed uniformly over points
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td colspan="3">Visualization</td>
+	</tr>
+	<tr>
+		<td>showArrowSize</td>
+		<td>
+Size of the drawn arrows (0->no arrows, sign->direction of drawing. (default=0)
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>showColor</td>
+		<td>
+Color for object display (default: [0.2,0.9,0.3,1.0])
+		</td>
+		<td>0.2 0.9 0.3 1</td>
+	</tr>
+
+</tbody>
+</table>
+
+### Links
+
+
+| Name | Description | Destination type name |
+| ---- | ----------- | --------------------- |
+|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
+|slaves|Sub-objects used internally by this object|BaseObject|
+|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
+|mechanicalStates|List of mechanical states to which this component is associated|BaseMechanicalState|
+|mstate|MechanicalState used by this component|MechanicalState&lt;Vec3d&gt;|
+|topology|link to the topology container|BaseMeshTopology|
+
+<!-- generate_doc -->
+## Vec6d
+
+Templates:
+
+- Vec6d
+
+__Target__: Sofa.Component.MechanicalLoad
+
+__namespace__: sofa::component::mechanicalload
+
+__parents__:
+
+- ForceField
+
+### Data
+
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Default value</th>
+        </tr>
+    </thead>
+    <tbody>
+	<tr>
+		<td>name</td>
+		<td>
+object name
+		</td>
+		<td>unnamed</td>
+	</tr>
+	<tr>
+		<td>printLog</td>
+		<td>
+if true, emits extra messages at runtime.
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>tags</td>
+		<td>
+list of the subsets the objet belongs to
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>bbox</td>
+		<td>
+this object bounding box
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>componentState</td>
+		<td>
+The state of the component among (Dirty, Valid, Undefined, Loading, Invalid).
+		</td>
+		<td>Undefined</td>
+	</tr>
+	<tr>
+		<td>listening</td>
+		<td>
+if true, handle the events, otherwise ignore the events
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>rayleighStiffness</td>
+		<td>
+Rayleigh damping - stiffness matrix coefficient
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>indices</td>
+		<td>
+indices where the forces are applied
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>indexFromEnd</td>
+		<td>
+Concerned DOFs indices are numbered from the end of the MState DOFs vector. (default=false)
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td colspan="3">Force info</td>
+	</tr>
+	<tr>
+		<td>forces</td>
+		<td>
+vector containing the force amplitude applied at each node
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>totalForce</td>
+		<td>
+total force for all points, will be distributed uniformly over points
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td colspan="3">Visualization</td>
+	</tr>
+	<tr>
+		<td>showArrowSize</td>
+		<td>
+Size of the drawn arrows (0->no arrows, sign->direction of drawing. (default=0)
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>showColor</td>
+		<td>
+Color for object display (default: [0.2,0.9,0.3,1.0])
+		</td>
+		<td>0.2 0.9 0.3 1</td>
+	</tr>
+
+</tbody>
+</table>
+
+### Links
+
+
+| Name | Description | Destination type name |
+| ---- | ----------- | --------------------- |
+|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
+|slaves|Sub-objects used internally by this object|BaseObject|
+|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
+|mechanicalStates|List of mechanical states to which this component is associated|BaseMechanicalState|
+|mstate|MechanicalState used by this component|MechanicalState&lt;Vec6d&gt;|
+|topology|link to the topology container|BaseMeshTopology|
+
+## Examples 
+
+ConstantForceField.scn
 
 === "XML"
 
@@ -207,54 +908,60 @@ Component/MechanicalLoad/ConstantForceField.scn
             </Node>
         </Node>
     </Node>
+
     ```
 
 === "Python"
 
     ```python
-    def createScene(rootNode):
+    def createScene(root_node):
 
-        root = rootNode.addChild('root', dt="0.05", gravity="0 0 0")
-        root.addObject('RequiredPlugin', name="Sofa.Component.IO.Mesh")
-        root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Iterative")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Mapping.Linear")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Mapping.NonLinear")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Mass")
-        root.addObject('RequiredPlugin', name="Sofa.Component.MechanicalLoad")
-        root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
-        root.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.FEM.Elastic")
-        root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Constant")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Visual")
-        root.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
-        root.addObject('VisualStyle', displayFlags="showBehaviorModels showForceFields")
-        root.addObject('DefaultAnimationLoop', computeBoundingBox="false")
-        root.addObject('InteractiveCamera', position="1.27 0.48 4.5", orientation="0 0 0 1", distance="3.86", fieldOfView="45")
+       root = root_node.addChild('root', dt="0.05", gravity="0 0 0")
 
-        BasicDeformableObject = root.addChild('BasicDeformableObject')
-        BasicDeformableObject.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="false", rayleighMass="0.1")
-        BasicDeformableObject.addObject('CGLinearSolver', iterations="25", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
-        BasicDeformableObject.addObject('MechanicalObject', position="0 0 0  1 0 0  1 1 0  0 1 0", velocity="0 0 0  0 0 0  0 0 0  0 0 0")
-        BasicDeformableObject.addObject('UniformMass', vertexMass="0.1")
-        BasicDeformableObject.addObject('MeshTopology', triangles="0 1 2  0 2 3")
-        BasicDeformableObject.addObject('TriangleFEMForceField', name="FEM0", youngModulus="100", poissonRatio="0.3", method="large")
-        BasicDeformableObject.addObject('ConstantForceField', indices="0 1 2 3", forces="-1 -1 0  1 -1 0  1 1 0  -1 1 0", showArrowSize="0.5", printLog="1")
+       root.addObject('RequiredPlugin', name="Sofa.Component.IO.Mesh")
+       root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Iterative")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Mapping.Linear")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Mapping.NonLinear")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Mass")
+       root.addObject('RequiredPlugin', name="Sofa.Component.MechanicalLoad")
+       root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.FEM.Elastic")
+       root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Constant")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Visual")
+       root.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
+       root.addObject('VisualStyle', displayFlags="showBehaviorModels showForceFields")
+       root.addObject('DefaultAnimationLoop', computeBoundingBox="false")
+       root.addObject('InteractiveCamera', position="1.27 0.48 4.5", orientation="0 0 0 1", distance="3.86", fieldOfView="45")
 
-        Visu = BasicDeformableObject.addChild('Visu')
-        Visu.addObject('OglModel', name="Visual", color="red")
-        Visu.addObject('IdentityMapping', input="@..", output="@Visual")
+       basic_deformable_object = root.addChild('BasicDeformableObject')
 
-        TorusRigid = root.addChild('TorusRigid')
-        TorusRigid.addObject('EulerImplicitSolver', rayleighStiffness="0.01")
-        TorusRigid.addObject('CGLinearSolver', iterations="25", threshold="0.00000001", tolerance="1e-5")
-        TorusRigid.addObject('MechanicalObject', template="Rigid3", dx="2", dy="0", dz="0", rx="0", ry="0", rz="0", scale="1.0")
-        TorusRigid.addObject('UniformMass')
-        TorusRigid.addObject('ConstantForceField', indices="0", forces="0 0.10 0     0 1 0")
+       basic_deformable_object.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="false", rayleighMass="0.1")
+       basic_deformable_object.addObject('CGLinearSolver', iterations="25", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
+       basic_deformable_object.addObject('MechanicalObject', position="0 0 0  1 0 0  1 1 0  0 1 0", velocity="0 0 0  0 0 0  0 0 0  0 0 0")
+       basic_deformable_object.addObject('UniformMass', vertexMass="0.1")
+       basic_deformable_object.addObject('MeshTopology', triangles="0 1 2  0 2 3")
+       basic_deformable_object.addObject('TriangleFEMForceField', name="FEM0", youngModulus="100", poissonRatio="0.3", method="large")
+       basic_deformable_object.addObject('ConstantForceField', indices="0 1 2 3", forces="-1 -1 0  1 -1 0  1 1 0  -1 1 0", showArrowSize="0.5", printLog="1")
 
-        Visu = TorusRigid.addChild('Visu')
-        Visu.addObject('MeshOBJLoader', name="meshLoader_0", filename="mesh/torus.obj", scale="0.3", handleSeams="1")
-        Visu.addObject('OglModel', name="Visual", src="@meshLoader_0", color="gray")
-        Visu.addObject('RigidMapping', input="@..", output="@Visual")
+       visu = BasicDeformableObject.addChild('Visu')
+
+       visu.addObject('OglModel', name="Visual", color="red")
+       visu.addObject('IdentityMapping', input="@..", output="@Visual")
+
+       torus_rigid = root.addChild('TorusRigid')
+
+       torus_rigid.addObject('EulerImplicitSolver', rayleighStiffness="0.01")
+       torus_rigid.addObject('CGLinearSolver', iterations="25", threshold="0.00000001", tolerance="1e-5")
+       torus_rigid.addObject('MechanicalObject', template="Rigid3", dx="2", dy="0", dz="0", rx="0", ry="0", rz="0", scale="1.0")
+       torus_rigid.addObject('UniformMass', )
+       torus_rigid.addObject('ConstantForceField', indices="0", forces="0 0.10 0     0 1 0")
+
+       visu = TorusRigid.addChild('Visu')
+
+       visu.addObject('MeshOBJLoader', name="meshLoader_0", filename="mesh/torus.obj", scale="0.3", handleSeams="1")
+       visu.addObject('OglModel', name="Visual", src="@meshLoader_0", color="gray")
+       visu.addObject('RigidMapping', input="@..", output="@Visual")
     ```
 
 

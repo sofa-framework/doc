@@ -1,71 +1,68 @@
+<!-- generate_doc -->
 # ComplianceMatrixImage
 
 View the compliance matrix as an binary image.
 
 
-__Target__: `SofaMatrix`
+__Target__: SofaMatrix
 
-__namespace__: `#!c++ sofa::component::constraintset`
+__namespace__: sofa::component::constraintset
 
-__parents__: 
+__parents__:
 
-- `#!c++ BaseObject`
+- BaseObject
 
-__categories__: 
-
-- _Miscellaneous
-
-Data: 
+### Data
 
 <table>
-<thead>
-    <tr>
-        <th>Name</th>
-        <th>Description</th>
-        <th>Default value</th>
-    </tr>
-</thead>
-<tbody>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Default value</th>
+        </tr>
+    </thead>
+    <tbody>
 	<tr>
 		<td>name</td>
 		<td>
 object name
-</td>
+		</td>
 		<td>unnamed</td>
 	</tr>
 	<tr>
 		<td>printLog</td>
 		<td>
 if true, emits extra messages at runtime.
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>tags</td>
 		<td>
 list of the subsets the objet belongs to
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>bbox</td>
 		<td>
 this object bounding box
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>componentState</td>
 		<td>
 The state of the component among (Dirty, Valid, Undefined, Loading, Invalid).
-</td>
+		</td>
 		<td>Undefined</td>
 	</tr>
 	<tr>
 		<td>listening</td>
 		<td>
 if true, handle the events, otherwise ignore the events
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
@@ -75,27 +72,26 @@ if true, handle the events, otherwise ignore the events
 		<td>bitmap</td>
 		<td>
 Visualization of the representation of the matrix as a binary image. White pixels are zeros, black pixels are non-zeros.
-</td>
+		</td>
 		<td>invalid matrix</td>
 	</tr>
 
 </tbody>
 </table>
 
-Links: 
-
-| Name | Description |
-| ---- | ----------- |
-|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|
-|slaves|Sub-objects used internally by this object|
-|master|nullptr for regular objects, or master object for which this object is one sub-objects|
-|constraintSolver|Link to the constraint solver containing a compliance matrix|
+### Links
 
 
+| Name | Description | Destination type name |
+| ---- | ----------- | --------------------- |
+|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
+|slaves|Sub-objects used internally by this object|BaseObject|
+|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
+|constraintSolver|Link to the constraint solver containing a compliance matrix|ConstraintSolverImpl|
 
-## Examples
+## Examples 
 
-SofaMatrix/share/sofa/examples/SofaMatrix/ComplianceMatrixImage.scn
+ComplianceMatrixImage.scn
 
 === "XML"
 
@@ -141,47 +137,50 @@ SofaMatrix/share/sofa/examples/SofaMatrix/ComplianceMatrixImage.scn
         </Node>
     
     </Node>
+
     ```
 
 === "Python"
 
     ```python
-    def createScene(rootNode):
+    def createScene(root_node):
 
-        Root = rootNode.addChild('Root', gravity="0 -10 0", time="0", animate="0", dt="0.01")
-        Root.addObject('RequiredPlugin', name="Sofa.Component.AnimationLoop")
-        Root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Lagrangian.Correction")
-        Root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Lagrangian.Model")
-        Root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Lagrangian.Solver")
-        Root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Projective")
-        Root.addObject('RequiredPlugin', name="Sofa.Component.Engine.Transform")
-        Root.addObject('RequiredPlugin', name="Sofa.Component.IO.Mesh")
-        Root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Direct")
-        Root.addObject('RequiredPlugin', name="Sofa.Component.Mapping.NonLinear")
-        Root.addObject('RequiredPlugin', name="Sofa.Component.Mass")
-        Root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
-        Root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
-        Root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Dynamic")
-        Root.addObject('RequiredPlugin', name="Sofa.Component.Visual")
-        Root.addObject('RequiredPlugin', name="SofaMatrix")
-        Root.addObject('VisualStyle', displayFlags="hideVisualModels showBehaviorModels showMappings showForceFields")
-        Root.addObject('FreeMotionAnimationLoop', solveVelocityConstraintFirst="true")
-        Root.addObject('GenericConstraintSolver', tolerance="1e-9", maxIterations="1000")
-        Root.addObject('ComplianceMatrixImage')
-        Root.addObject('StringMeshCreator', name="loader", resolution="20", scale3d="1 1 1")
-        Root.addObject('TransformEngine', name="translate", input_position="@loader.position", translation="0 0 0")
-        Root.addObject('EulerImplicitSolver')
-        Root.addObject('EigenSimplicialLLT')
-        Root.addObject('GenericConstraintCorrection')
-        Root.addObject('EdgeSetTopologyContainer', position="@translate.output_position", edges="@loader.edges")
-        Root.addObject('MechanicalObject', name="defoDOF", template="Vec3d", showObject="1")
-        Root.addObject('EdgeSetGeometryAlgorithms', drawEdges="true")
-        Root.addObject('FixedProjectiveConstraint', indices="0")
-        Root.addObject('DiagonalMass', name="mass", totalMass="1e-3")
+       root = root_node.addChild('Root', gravity="0 -10 0", time="0", animate="0", dt="0.01")
 
-        extensionsNode = Root.addChild('extensionsNode')
-        extensionsNode.addObject('MechanicalObject', template="Vec1d", name="extensionsDOF")
-        extensionsNode.addObject('DistanceMapping', name="distanceMapping")
-        extensionsNode.addObject('UniformLagrangianConstraint', template="Vec1d", iterative="false")
+       root.addObject('RequiredPlugin', name="Sofa.Component.AnimationLoop")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Lagrangian.Correction")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Lagrangian.Model")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Lagrangian.Solver")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Projective")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Engine.Transform")
+       root.addObject('RequiredPlugin', name="Sofa.Component.IO.Mesh")
+       root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Direct")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Mapping.NonLinear")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Mass")
+       root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Dynamic")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Visual")
+       root.addObject('RequiredPlugin', name="SofaMatrix")
+       root.addObject('VisualStyle', displayFlags="hideVisualModels showBehaviorModels showMappings showForceFields")
+       root.addObject('FreeMotionAnimationLoop', solveVelocityConstraintFirst="true")
+       root.addObject('GenericConstraintSolver', tolerance="1e-9", maxIterations="1000")
+       root.addObject('ComplianceMatrixImage', )
+       root.addObject('StringMeshCreator', name="loader", resolution="20", scale3d="1 1 1")
+       root.addObject('TransformEngine', name="translate", input_position="@loader.position", translation="0 0 0")
+       root.addObject('EulerImplicitSolver', )
+       root.addObject('EigenSimplicialLLT', )
+       root.addObject('GenericConstraintCorrection', )
+       root.addObject('EdgeSetTopologyContainer', position="@translate.output_position", edges="@loader.edges")
+       root.addObject('MechanicalObject', name="defoDOF", template="Vec3d", showObject="1")
+       root.addObject('EdgeSetGeometryAlgorithms', drawEdges="true")
+       root.addObject('FixedProjectiveConstraint', indices="0")
+       root.addObject('DiagonalMass', name="mass", totalMass="1e-3")
+
+       extensions_node = Root.addChild('extensionsNode')
+
+       extensions_node.addObject('MechanicalObject', template="Vec1d", name="extensionsDOF")
+       extensions_node.addObject('DistanceMapping', name="distanceMapping")
+       extensions_node.addObject('UniformLagrangianConstraint', template="Vec1d", iterative="false")
     ```
 

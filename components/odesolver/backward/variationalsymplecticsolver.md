@@ -1,169 +1,165 @@
+<!-- generate_doc -->
 # VariationalSymplecticSolver
 
 Implicit time integrator which conserves linear momentum and mechanical energy
 
 
-__Target__: `Sofa.Component.ODESolver.Backward`
+__Target__: Sofa.Component.ODESolver.Backward
 
-__namespace__: `#!c++ sofa::component::odesolver::backward`
+__namespace__: sofa::component::odesolver::backward
 
-__parents__: 
-
-- `#!c++ OdeSolver`
-- `#!c++ LinearSolverAccessor`
-
-__categories__: 
+__parents__:
 
 - OdeSolver
+- LinearSolverAccessor
 
-Data: 
+### Data
 
 <table>
-<thead>
-    <tr>
-        <th>Name</th>
-        <th>Description</th>
-        <th>Default value</th>
-    </tr>
-</thead>
-<tbody>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Default value</th>
+        </tr>
+    </thead>
+    <tbody>
 	<tr>
 		<td>name</td>
 		<td>
 object name
-</td>
+		</td>
 		<td>unnamed</td>
 	</tr>
 	<tr>
 		<td>printLog</td>
 		<td>
 if true, emits extra messages at runtime.
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>tags</td>
 		<td>
 list of the subsets the objet belongs to
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>bbox</td>
 		<td>
 this object bounding box
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>componentState</td>
 		<td>
 The state of the component among (Dirty, Valid, Undefined, Loading, Invalid).
-</td>
+		</td>
 		<td>Undefined</td>
 	</tr>
 	<tr>
 		<td>listening</td>
 		<td>
 if true, handle the events, otherwise ignore the events
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>newtonError</td>
 		<td>
 Error tolerance for Newton iterations
-</td>
+		</td>
 		<td>0.01</td>
 	</tr>
 	<tr>
 		<td>steps</td>
 		<td>
 Maximum number of Newton steps
-</td>
+		</td>
 		<td>5</td>
 	</tr>
 	<tr>
 		<td>rayleighStiffness</td>
 		<td>
-Rayleigh damping coefficient related to stiffness, &gt; 0
-</td>
+Rayleigh damping coefficient related to stiffness, > 0
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>rayleighMass</td>
 		<td>
-Rayleigh damping coefficient related to mass, &gt; 0
-</td>
+Rayleigh damping coefficient related to mass, > 0
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>saveEnergyInFile</td>
 		<td>
 If kinetic and potential energies should be dumped in a CSV file at each iteration
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>explicitIntegration</td>
 		<td>
 Use explicit integration scheme
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>file</td>
 		<td>
 File name where kinetic and potential energies are saved in a CSV file
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>computeHamiltonian</td>
 		<td>
 Compute hamiltonian
-</td>
+		</td>
 		<td>1</td>
 	</tr>
 	<tr>
 		<td>hamiltonianEnergy</td>
 		<td>
 hamiltonian energy
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>useIncrementalPotentialEnergy</td>
 		<td>
 use real potential energy, if false use approximate potential energy
-</td>
+		</td>
 		<td>1</td>
 	</tr>
 	<tr>
 		<td>threadSafeVisitor</td>
 		<td>
 If true, do not use realloc and free visitors in fwdInteractionForceField.
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 
 </tbody>
 </table>
 
-Links: 
-
-| Name | Description |
-| ---- | ----------- |
-|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|
-|slaves|Sub-objects used internally by this object|
-|master|nullptr for regular objects, or master object for which this object is one sub-objects|
-|linearSolver|Linear solver used by this component|
+### Links
 
 
+| Name | Description | Destination type name |
+| ---- | ----------- | --------------------- |
+|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
+|slaves|Sub-objects used internally by this object|BaseObject|
+|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
+|linearSolver|Linear solver used by this component|LinearSolver|
 
-## Examples
+## Examples 
 
-Component/ODESolver/Backward/VariationalSymplecticSolver.scn
+VariationalSymplecticSolver.scn
 
 === "XML"
 
@@ -194,35 +190,39 @@ Component/ODESolver/Backward/VariationalSymplecticSolver.scn
             </Node>
         </Node>
     </Node>
+
     ```
 
 === "Python"
 
     ```python
-    def createScene(rootNode):
+    def createScene(root_node):
 
-        root = rootNode.addChild('root', dt="0.02")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Projective")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Engine.Select")
-        root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Iterative")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Mass")
-        root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
-        root.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.FEM.Elastic")
-        root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Grid")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Visual")
-        root.addObject('DefaultAnimationLoop')
-        root.addObject('VisualStyle', displayFlags="showBehaviorModels showForceFields")
+       root = root_node.addChild('root', dt="0.02")
 
-        Single = root.addChild('Single')
-        Single.addObject('VariationalSymplecticSolver', name="default0", tags="meca", rayleighStiffness="0", rayleighMass="0", newtonError="1e-12", steps="4", file="energy.txt", saveEnergyInFile="true")
-        Single.addObject('CGLinearSolver', template="GraphScattered", name="cGLinearSolver1", iterations="300", tolerance="1e-09", threshold="1e-9")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Projective")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Engine.Select")
+       root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Iterative")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Mass")
+       root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.FEM.Elastic")
+       root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Grid")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Visual")
+       root.addObject('DefaultAnimationLoop', )
+       root.addObject('VisualStyle', displayFlags="showBehaviorModels showForceFields")
 
-        M1 = Single.addChild('M1')
-        M1.addObject('MechanicalObject')
-        M1.addObject('UniformMass', vertexMass="1")
-        M1.addObject('RegularGridTopology', nx="4", ny="4", nz="28", xmin="-9", xmax="-6", ymin="0", ymax="3", zmin="0", zmax="27")
-        M1.addObject('BoxConstraint', box="-9.1 -0.1 -0.1 -5.9 3.1 0.1")
-        M1.addObject('TetrahedronFEMForceField', name="FEM", youngModulus="100000", poissonRatio="0.3")
+       single = root.addChild('Single')
+
+       single.addObject('VariationalSymplecticSolver', name="default0", tags="meca", rayleighStiffness="0", rayleighMass="0", newtonError="1e-12", steps="4", file="energy.txt", saveEnergyInFile="true")
+       single.addObject('CGLinearSolver', template="GraphScattered", name="cGLinearSolver1", iterations="300", tolerance="1e-09", threshold="1e-9")
+
+       m1 = Single.addChild('M1')
+
+       m1.addObject('MechanicalObject', )
+       m1.addObject('UniformMass', vertexMass="1")
+       m1.addObject('RegularGridTopology', nx="4", ny="4", nz="28", xmin="-9", xmax="-6", ymin="0", ymax="3", zmin="0", zmax="27")
+       m1.addObject('BoxConstraint', box="-9.1 -0.1 -0.1 -5.9 3.1 0.1")
+       m1.addObject('TetrahedronFEMForceField', name="FEM", youngModulus="100000", poissonRatio="0.3")
     ```
 

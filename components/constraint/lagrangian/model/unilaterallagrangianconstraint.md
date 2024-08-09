@@ -36,83 +36,90 @@ The UnilateralLagrangianConstraint can only be used in the context of [Lagrange 
 Moreover, each constrained object must define in its node a ConstraintCorrection so that the corrective motion can be applied. Unlike other constraints, the UnilateralLagrangianConstraint is mostly used in SOFA for contact modeling. UnilateralLagrangianConstraint are therefore dynamically and automatically created within the scene graph when two objects are colliding: when the CollisionPipeline defines new DetectionOutput with ContactResponse using Lagrange multipliers, each DetectionOutput generates a new UnilateralLagrangianConstraint.
 
 <!-- automatically generated doc START -->
-__Target__: `Sofa.Component.Constraint.Lagrangian.Model`
+<!-- generate_doc -->
 
-__namespace__: `#!c++ sofa::component::constraint::lagrangian::model`
+TODO-UnilateralLagrangianConstraint
 
-__parents__: 
 
-- `#!c++ PairInteractionConstraint`
+## Vec3d
 
-__categories__: 
+Templates:
 
-- ConstraintSet
+- Vec3d
 
-Data: 
+__Target__: Sofa.Component.Constraint.Lagrangian.Model
+
+__namespace__: sofa::component::constraint::lagrangian::model
+
+__parents__:
+
+- PairInteractionConstraint
+
+### Data
 
 <table>
-<thead>
-    <tr>
-        <th>Name</th>
-        <th>Description</th>
-        <th>Default value</th>
-    </tr>
-</thead>
-<tbody>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Default value</th>
+        </tr>
+    </thead>
+    <tbody>
 	<tr>
 		<td>name</td>
 		<td>
 object name
-</td>
+		</td>
 		<td>unnamed</td>
 	</tr>
 	<tr>
 		<td>printLog</td>
 		<td>
 if true, emits extra messages at runtime.
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>tags</td>
 		<td>
 list of the subsets the objet belongs to
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>bbox</td>
 		<td>
 this object bounding box
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>componentState</td>
 		<td>
 The state of the component among (Dirty, Valid, Undefined, Loading, Invalid).
-</td>
+		</td>
 		<td>Undefined</td>
 	</tr>
 	<tr>
 		<td>listening</td>
 		<td>
 if true, handle the events, otherwise ignore the events
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>group</td>
 		<td>
 ID of the group containing this constraint. This ID is used to specify which constraints are solved by which solver, by specifying in each solver which groups of constraints it should handle.
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>constraintIndex</td>
 		<td>
 Constraint index (first index in the right hand term resolution vector)
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
@@ -120,25 +127,24 @@ Constraint index (first index in the right hand term resolution vector)
 		<td>
 The constraint stops acting after the given value.
 Use a negative value for infinite constraints
-</td>
+		</td>
 		<td>-1</td>
 	</tr>
 
 </tbody>
 </table>
 
-Links: 
-
-| Name | Description |
-| ---- | ----------- |
-|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|
-|slaves|Sub-objects used internally by this object|
-|master|nullptr for regular objects, or master object for which this object is one sub-objects|
-|mechanicalStates|List of mechanical states to which this component is associated|
-|object1|First object associated to this component|
-|object2|Second object associated to this component|
+### Links
 
 
+| Name | Description | Destination type name |
+| ---- | ----------- | --------------------- |
+|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
+|slaves|Sub-objects used internally by this object|BaseObject|
+|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
+|mechanicalStates|List of mechanical states to which this component is associated|BaseMechanicalState|
+|object1|First object associated to this component|MechanicalState&lt;Vec3d&gt;|
+|object2|Second object associated to this component|MechanicalState&lt;Vec3d&gt;|
 
 
 <!-- automatically generated doc END -->

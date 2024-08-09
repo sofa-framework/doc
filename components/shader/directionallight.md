@@ -1,169 +1,166 @@
+<!-- generate_doc -->
 # DirectionalLight
 
 A directional light illuminating the scene with parallel rays of light (can cast shadows).
 
 
-__Target__: `Sofa.GL.Component.Shader`
+__Target__: Sofa.GL.Component.Shader
 
-__namespace__: `#!c++ sofa::gl::component::shader`
+__namespace__: sofa::gl::component::shader
 
-__parents__: 
+__parents__:
 
-- `#!c++ Light`
+- Light
 
-__categories__: 
-
-- VisualModel
-
-Data: 
+### Data
 
 <table>
-<thead>
-    <tr>
-        <th>Name</th>
-        <th>Description</th>
-        <th>Default value</th>
-    </tr>
-</thead>
-<tbody>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Default value</th>
+        </tr>
+    </thead>
+    <tbody>
 	<tr>
 		<td>name</td>
 		<td>
 object name
-</td>
+		</td>
 		<td>unnamed</td>
 	</tr>
 	<tr>
 		<td>printLog</td>
 		<td>
 if true, emits extra messages at runtime.
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>tags</td>
 		<td>
 list of the subsets the objet belongs to
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>bbox</td>
 		<td>
 this object bounding box
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>componentState</td>
 		<td>
 The state of the component among (Dirty, Valid, Undefined, Loading, Invalid).
-</td>
+		</td>
 		<td>Undefined</td>
 	</tr>
 	<tr>
 		<td>listening</td>
 		<td>
 if true, handle the events, otherwise ignore the events
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>enable</td>
 		<td>
 Display the object or not
-</td>
+		</td>
 		<td>1</td>
 	</tr>
 	<tr>
 		<td>color</td>
 		<td>
 Set the color of the light. (default=[1.0,1.0,1.0,1.0])
-</td>
+		</td>
 		<td>1 1 1 1</td>
 	</tr>
 	<tr>
 		<td>shadowTextureSize</td>
 		<td>
 [Shadowing] Set size for shadow texture 
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>zNear</td>
 		<td>
 [Shadowing] Light's ZNear
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>zFar</td>
 		<td>
 [Shadowing] Light's ZFar
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>shadowsEnabled</td>
 		<td>
 [Shadowing] Enable Shadow from this light
-</td>
+		</td>
 		<td>1</td>
 	</tr>
 	<tr>
 		<td>softShadows</td>
 		<td>
 [Shadowing] Turn on Soft Shadow from this light
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>shadowFactor</td>
 		<td>
 [Shadowing] Shadow Factor (decrease/increase darkness)
-</td>
+		</td>
 		<td>1</td>
 	</tr>
 	<tr>
 		<td>VSMLightBleeding</td>
 		<td>
 [Shadowing] (VSM only) Light bleeding paramter
-</td>
+		</td>
 		<td>0.05</td>
 	</tr>
 	<tr>
 		<td>VSMMinVariance</td>
 		<td>
 [Shadowing] (VSM only) Minimum variance parameter
-</td>
+		</td>
 		<td>0.001</td>
 	</tr>
 	<tr>
 		<td>textureUnit</td>
 		<td>
 [Shadowing] Texture unit for the genereated shadow texture
-</td>
+		</td>
 		<td>1</td>
 	</tr>
 	<tr>
 		<td>modelViewMatrix</td>
 		<td>
 [Shadowing] ModelView Matrix
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>projectionMatrix</td>
 		<td>
 [Shadowing] Projection Matrix
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>direction</td>
 		<td>
 Set the direction of the light
-</td>
+		</td>
 		<td>0 0 -1</td>
 	</tr>
 	<tr>
@@ -173,26 +170,25 @@ Set the direction of the light
 		<td>drawSource</td>
 		<td>
 Draw Light Source
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 
 </tbody>
 </table>
 
-Links: 
-
-| Name | Description |
-| ---- | ----------- |
-|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|
-|slaves|Sub-objects used internally by this object|
-|master|nullptr for regular objects, or master object for which this object is one sub-objects|
+### Links
 
 
+| Name | Description | Destination type name |
+| ---- | ----------- | --------------------- |
+|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
+|slaves|Sub-objects used internally by this object|BaseObject|
+|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
 
-## Examples
+## Examples 
 
-Component/Visual/DirectionalLight.scn
+DirectionalLight.scn
 
 === "XML"
 
@@ -224,37 +220,39 @@ Component/Visual/DirectionalLight.scn
         <include href="Objects/SaladBowl.xml" />
         <include href="Objects/TorusRigid.xml" scale="0.05" rx="30" ry="15" dz="1" />
     </Node>
+
     ```
 
 === "Python"
 
     ```python
-    def createScene(rootNode):
+    def createScene(root_node):
 
-        root = rootNode.addChild('root', dt="0.01", gravity="0 0 -10", showBoundingTree="0")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Algorithm")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Intersection")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Geometry")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Response.Contact")
-        root.addObject('RequiredPlugin', name="Sofa.Component.IO.Mesh")
-        root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Iterative")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Mapping.NonLinear")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Mass")
-        root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
-        root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Constant")
-        root.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
-        root.addObject('RequiredPlugin', name="Sofa.GL.Component.Shader")
-        root.addObject('DefaultAnimationLoop')
-        root.addObject('CollisionPipeline', verbose="0")
-        root.addObject('BruteForceBroadPhase')
-        root.addObject('BVHNarrowPhase')
-        root.addObject('CollisionResponse', response="PenalityContactForceField")
-        root.addObject('MinProximityIntersection', name="Proximity", alarmDistance="0.02", contactDistance="0.02")
-        root.addObject('LightManager')
-        root.addObject('DirectionalLight', name="light1", color="1 0 0", direction="0 -1 -1")
-        root.addObject('DirectionalLight', name="light2", color="0 1 0", direction="1 1 0")
-        root.addObject('include', href="Objects/SaladBowl.xml")
-        root.addObject('include', href="Objects/TorusRigid.xml", scale="0.05", rx="30", ry="15", dz="1")
+       root = root_node.addChild('root', dt="0.01", gravity="0 0 -10", showBoundingTree="0")
+
+       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Algorithm")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Intersection")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Geometry")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Response.Contact")
+       root.addObject('RequiredPlugin', name="Sofa.Component.IO.Mesh")
+       root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Iterative")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Mapping.NonLinear")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Mass")
+       root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Constant")
+       root.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
+       root.addObject('RequiredPlugin', name="Sofa.GL.Component.Shader")
+       root.addObject('DefaultAnimationLoop', )
+       root.addObject('CollisionPipeline', verbose="0")
+       root.addObject('BruteForceBroadPhase', )
+       root.addObject('BVHNarrowPhase', )
+       root.addObject('CollisionResponse', response="PenalityContactForceField")
+       root.addObject('MinProximityIntersection', name="Proximity", alarmDistance="0.02", contactDistance="0.02")
+       root.addObject('LightManager', )
+       root.addObject('DirectionalLight', name="light1", color="1 0 0", direction="0 -1 -1")
+       root.addObject('DirectionalLight', name="light2", color="0 1 0", direction="1 1 0")
+       root.addObject('include', href="Objects/SaladBowl.xml")
+       root.addObject('include', href="Objects/TorusRigid.xml", scale="0.05", rx="30", ry="15", dz="1")
     ```
 

@@ -1,89 +1,88 @@
+<!-- generate_doc -->
 # JointConstraint
 
 Lagrange multiplier approach to apply a force/displacement on a Joint (Vec1)
 
 
-__Templates__:
+## Vec1d
 
-- `#!c++ Vec1d`
+Templates:
 
-__Target__: `SoftRobots`
+- Vec1d
 
-__namespace__: `#!c++ softrobots::constraint`
+__Target__: SoftRobots
 
-__parents__: 
+__namespace__: softrobots::constraint
 
-- `#!c++ SoftRobotsConstraint`
+__parents__:
 
-__categories__: 
+- SoftRobotsConstraint
 
-- ConstraintSet
-
-Data: 
+### Data
 
 <table>
-<thead>
-    <tr>
-        <th>Name</th>
-        <th>Description</th>
-        <th>Default value</th>
-    </tr>
-</thead>
-<tbody>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Default value</th>
+        </tr>
+    </thead>
+    <tbody>
 	<tr>
 		<td>name</td>
 		<td>
 object name
-</td>
+		</td>
 		<td>unnamed</td>
 	</tr>
 	<tr>
 		<td>printLog</td>
 		<td>
 if true, emits extra messages at runtime.
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>tags</td>
 		<td>
 list of the subsets the objet belongs to
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>bbox</td>
 		<td>
 this object bounding box
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>componentState</td>
 		<td>
 The state of the component among (Dirty, Valid, Undefined, Loading, Invalid).
-</td>
+		</td>
 		<td>Undefined</td>
 	</tr>
 	<tr>
 		<td>listening</td>
 		<td>
 if true, handle the events, otherwise ignore the events
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>group</td>
 		<td>
 ID of the group containing this constraint. This ID is used to specify which constraints are solved by which solver, by specifying in each solver which groups of constraints it should handle.
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>constraintIndex</td>
 		<td>
 Constraint index (first index in the right hand term resolution vector)
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
@@ -91,7 +90,7 @@ Constraint index (first index in the right hand term resolution vector)
 		<td>
 The SoftRobotsConstraint stops acting after the given value.
 Use a negative value for infinite SoftRobotsConstraints
-</td>
+		</td>
 		<td>-1</td>
 	</tr>
 	<tr>
@@ -99,21 +98,21 @@ Use a negative value for infinite SoftRobotsConstraints
 		<td>
 Index of the node subjected to the force. 
 If no index given, first node of mechanical context considered.
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>force</td>
 		<td>
 Output force. Warning: to get the actual force you should divide this value by dt.
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>displacement</td>
 		<td>
 Output displacement compared to the initial position.
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
@@ -121,7 +120,7 @@ Output displacement compared to the initial position.
 		<td>
 Maximum force allowed. 
 If unspecified no maximum value will be considered.
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
@@ -129,7 +128,7 @@ If unspecified no maximum value will be considered.
 		<td>
 Minimum force allowed. 
 If unspecified no minimum value will be considered.
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
@@ -137,7 +136,7 @@ If unspecified no minimum value will be considered.
 		<td>
 Maximum displacement. 
 If unspecified no maximum value will be considered.
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
@@ -145,7 +144,7 @@ If unspecified no maximum value will be considered.
 		<td>
 Minimum displacement. 
 If unspecified no minimum value will be considered.
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
@@ -153,7 +152,7 @@ If unspecified no minimum value will be considered.
 		<td>
 Displacement or force to impose.
 
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
@@ -162,20 +161,19 @@ Displacement or force to impose.
 displacement = the constraint will impose the displacement provided in data value[valueIndex] 
 force = the constraint will impose the force provided in data value[valueIndex] 
 If unspecified, the default value is displacement
-</td>
+		</td>
 		<td>displacement</td>
 	</tr>
 
 </tbody>
 </table>
 
-Links: 
-
-| Name | Description |
-| ---- | ----------- |
-|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|
-|slaves|Sub-objects used internally by this object|
-|master|nullptr for regular objects, or master object for which this object is one sub-objects|
+### Links
 
 
+| Name | Description | Destination type name |
+| ---- | ----------- | --------------------- |
+|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
+|slaves|Sub-objects used internally by this object|BaseObject|
+|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
 

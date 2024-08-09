@@ -72,102 +72,120 @@ node and return a WriteAccessor on the display flags:
 addVisualStyle(root)->setShowVisual().setShowBehavior().setShowMapping(false);
 ```
 <!-- automatically generated doc START -->
-__Target__: `Sofa.Component.Visual`
+<!-- generate_doc -->
 
-__namespace__: `#!c++ sofa::component::visual`
+Edit the visual style.
+ Allowed values for displayFlags data are a combination of the following:
+showAll, hideAll,
+    showVisual, hideVisual,
+        showVisualModels, hideVisualModels,
+    showBehavior, hideBehavior,
+        showBehaviorModels, hideBehaviorModels,
+        showForceFields, hideForceFields,
+        showInteractionForceFields, hideInteractionForceFields
+    showMapping, hideMapping
+        showMappings, hideMappings
+        showMechanicalMappings, hideMechanicalMappings
+    showCollision, hideCollision
+        showCollisionModels, hideCollisionModels
+        showBoundingCollisionModels, hideBoundingCollisionModels
+    showOptions hideOptions
+        showRendering hideRendering
+        showNormals hideNormals
+        showWireframe hideWireframe
 
-__parents__: 
 
-- `#!c++ VisualModel`
+__Target__: Sofa.Component.Visual
 
-__categories__: 
+__namespace__: sofa::component::visual
+
+__parents__:
 
 - VisualModel
 
-Data: 
+### Data
 
 <table>
-<thead>
-    <tr>
-        <th>Name</th>
-        <th>Description</th>
-        <th>Default value</th>
-    </tr>
-</thead>
-<tbody>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Default value</th>
+        </tr>
+    </thead>
+    <tbody>
 	<tr>
 		<td>name</td>
 		<td>
 object name
-</td>
+		</td>
 		<td>unnamed</td>
 	</tr>
 	<tr>
 		<td>printLog</td>
 		<td>
 if true, emits extra messages at runtime.
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>tags</td>
 		<td>
 list of the subsets the objet belongs to
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>bbox</td>
 		<td>
 this object bounding box
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>componentState</td>
 		<td>
 The state of the component among (Dirty, Valid, Undefined, Loading, Invalid).
-</td>
+		</td>
 		<td>Undefined</td>
 	</tr>
 	<tr>
 		<td>listening</td>
 		<td>
 if true, handle the events, otherwise ignore the events
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>enable</td>
 		<td>
 Display the object or not
-</td>
+		</td>
 		<td>1</td>
 	</tr>
 	<tr>
 		<td>displayFlags</td>
 		<td>
 Display Flags
-</td>
+		</td>
 		<td></td>
 	</tr>
 
 </tbody>
 </table>
 
-Links: 
-
-| Name | Description |
-| ---- | ----------- |
-|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|
-|slaves|Sub-objects used internally by this object|
-|master|nullptr for regular objects, or master object for which this object is one sub-objects|
+### Links
 
 
+| Name | Description | Destination type name |
+| ---- | ----------- | --------------------- |
+|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
+|slaves|Sub-objects used internally by this object|BaseObject|
+|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
 
-## Examples
+## Examples 
 
-Component/Visual/VisualStyle.scn
+VisualStyle.scn
 
 === "XML"
 
@@ -222,52 +240,58 @@ Component/Visual/VisualStyle.scn
             
         </Node>
     </Node>
+
     ```
 
 === "Python"
 
     ```python
-    def createScene(rootNode):
+    def createScene(root_node):
 
-        root = rootNode.addChild('root', gravity="0 -9.81 0", dt="0.02")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Geometry")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Projective")
-        root.addObject('RequiredPlugin', name="Sofa.Component.IO.Mesh")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Mapping.Linear")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Mass")
-        root.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.FEM.Elastic")
-        root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Dynamic")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Visual")
-        root.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
-        root.addObject('VisualStyle', displayFlags="showVisual showCollisionModels")
-        root.addObject('DefaultAnimationLoop')
+       root = root_node.addChild('root', gravity="0 -9.81 0", dt="0.02")
 
-        Liver = root.addChild('Liver')
-        Liver.addObject('MeshGmshLoader', name="meshLoader", filename="mesh/liver.msh")
-        Liver.addObject('TetrahedronSetTopologyContainer', name="topo", src="@meshLoader")
-        Liver.addObject('MechanicalObject', name="dofs", src="@meshLoader")
-        Liver.addObject('TetrahedronSetGeometryAlgorithms', name="GeomAlgo")
-        Liver.addObject('DiagonalMass', name="computed using mass density", massDensity="1")
-        Liver.addObject('TetrahedralCorotationalFEMForceField', template="Vec3", name="FEM", method="large", poissonRatio="0.3", youngModulus="3000", computeGlobalMatrix="0")
-        Liver.addObject('FixedProjectiveConstraint', name="FixedProjectiveConstraint", indices="3 39 64")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Geometry")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Projective")
+       root.addObject('RequiredPlugin', name="Sofa.Component.IO.Mesh")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Mapping.Linear")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Mass")
+       root.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.FEM.Elastic")
+       root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Dynamic")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Visual")
+       root.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
+       root.addObject('VisualStyle', displayFlags="showVisual showCollisionModels")
+       root.addObject('DefaultAnimationLoop', )
 
-        WireframeVisu = Liver.addChild('WireframeVisu')
-        WireframeVisu.addObject('VisualStyle', displayFlags="showVisual showWireframe")
-        WireframeVisu.addObject('MeshOBJLoader', name="meshLoader_1", filename="mesh/liver-smooth.obj", handleSeams="1")
-        WireframeVisu.addObject('OglModel', name="VisualModel", src="@meshLoader_1")
-        WireframeVisu.addObject('BarycentricMapping', name="visual mapping", input="@../dofs", output="@VisualModel")
+       liver = root.addChild('Liver')
 
-        Sphere = Liver.addChild('Sphere')
-        Sphere.addObject('VisualStyle', displayFlags="hideBehavior showCollision showWireframe")
-        Sphere.addObject('SphereLoader', filename="mesh/liver.sph")
-        Sphere.addObject('MechanicalObject', name="spheres", position="@[-1].position")
-        Sphere.addObject('SphereCollisionModel', name="CollisionModel", listRadius="@[-2].listRadius")
-        Sphere.addObject('BarycentricMapping', name="sphere mapping", input="@../dofs", output="@spheres")
+       liver.addObject('MeshGmshLoader', name="meshLoader", filename="mesh/liver.msh")
+       liver.addObject('TetrahedronSetTopologyContainer', name="topo", src="@meshLoader")
+       liver.addObject('MechanicalObject', name="dofs", src="@meshLoader")
+       liver.addObject('TetrahedronSetGeometryAlgorithms', name="GeomAlgo")
+       liver.addObject('DiagonalMass', name="computed using mass density", massDensity="1")
+       liver.addObject('TetrahedralCorotationalFEMForceField', template="Vec3", name="FEM", method="large", poissonRatio="0.3", youngModulus="3000", computeGlobalMatrix="0")
+       liver.addObject('FixedProjectiveConstraint', name="FixedProjectiveConstraint", indices="3 39 64")
 
-        TranslatedSurface = Liver.addChild('TranslatedSurface', gravity="0 -9.81 0")
-        TranslatedSurface.addObject('MeshOBJLoader', name="meshLoader_0", filename="mesh/liver.obj", translation="5 0 0", handleSeams="1")
-        TranslatedSurface.addObject('OglModel', src="@meshLoader_0")
+       wireframe_visu = Liver.addChild('WireframeVisu')
+
+       wireframe_visu.addObject('VisualStyle', displayFlags="showVisual showWireframe")
+       wireframe_visu.addObject('MeshOBJLoader', name="meshLoader_1", filename="mesh/liver-smooth.obj", handleSeams="1")
+       wireframe_visu.addObject('OglModel', name="VisualModel", src="@meshLoader_1")
+       wireframe_visu.addObject('BarycentricMapping', name="visual mapping", input="@../dofs", output="@VisualModel")
+
+       sphere = Liver.addChild('Sphere')
+
+       sphere.addObject('VisualStyle', displayFlags="hideBehavior showCollision showWireframe")
+       sphere.addObject('SphereLoader', filename="mesh/liver.sph")
+       sphere.addObject('MechanicalObject', name="spheres", position="@[-1].position")
+       sphere.addObject('SphereCollisionModel', name="CollisionModel", listRadius="@[-2].listRadius")
+       sphere.addObject('BarycentricMapping', name="sphere mapping", input="@../dofs", output="@spheres")
+
+       translated_surface = Liver.addChild('TranslatedSurface', gravity="0 -9.81 0")
+
+       translated_surface.addObject('MeshOBJLoader', name="meshLoader_0", filename="mesh/liver.obj", translation="5 0 0", handleSeams="1")
+       translated_surface.addObject('OglModel', src="@meshLoader_0")
     ```
 
 

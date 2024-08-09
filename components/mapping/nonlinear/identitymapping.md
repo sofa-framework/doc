@@ -1,140 +1,1073 @@
+<!-- generate_doc -->
 # IdentityMapping
 
 Special case of mapping where the child points are the same as the parent points
-Supports GPU-side computations using CUDA
 
 
-__Templates__:
+## Rigid2d,Rigid2d
 
-- `#!c++ Rigid2d,Rigid2d`
-- `#!c++ Rigid2d,Vec2d`
-- `#!c++ Rigid3d,Rigid3d`
-- `#!c++ Rigid3d,Vec3d`
-- `#!c++ Vec1d,Vec1d`
-- `#!c++ Vec2d,Vec2d`
-- `#!c++ Vec3d,Vec3d`
-- `#!c++ Vec6d,Vec3d`
-- `#!c++ Vec6d,Vec6d`
+Templates:
 
-__Target__: `Sofa.Component.Mapping.Linear`
+- Rigid2d,Rigid2d
 
-__namespace__: `#!c++ sofa::component::mapping::linear`
+__Target__: Sofa.Component.Mapping.Linear
 
-__parents__: 
+__namespace__: sofa::component::mapping::linear
 
-- `#!c++ CRTPLinearMapping`
+__parents__:
 
-__categories__: 
+- CRTPLinearMapping
 
-- Mapping
-
-Data: 
+### Data
 
 <table>
-<thead>
-    <tr>
-        <th>Name</th>
-        <th>Description</th>
-        <th>Default value</th>
-    </tr>
-</thead>
-<tbody>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Default value</th>
+        </tr>
+    </thead>
+    <tbody>
 	<tr>
 		<td>name</td>
 		<td>
 object name
-</td>
+		</td>
 		<td>unnamed</td>
 	</tr>
 	<tr>
 		<td>printLog</td>
 		<td>
 if true, emits extra messages at runtime.
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>tags</td>
 		<td>
 list of the subsets the objet belongs to
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>bbox</td>
 		<td>
 this object bounding box
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>componentState</td>
 		<td>
 The state of the component among (Dirty, Valid, Undefined, Loading, Invalid).
-</td>
+		</td>
 		<td>Undefined</td>
 	</tr>
 	<tr>
 		<td>listening</td>
 		<td>
 if true, handle the events, otherwise ignore the events
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>mapForces</td>
 		<td>
 Are forces mapped ?
-</td>
+		</td>
 		<td>1</td>
 	</tr>
 	<tr>
 		<td>mapConstraints</td>
 		<td>
 Are constraints mapped ?
-</td>
+		</td>
 		<td>1</td>
 	</tr>
 	<tr>
 		<td>mapMasses</td>
 		<td>
 Are masses mapped ?
-</td>
+		</td>
 		<td>1</td>
 	</tr>
 	<tr>
 		<td>mapMatrices</td>
 		<td>
 Are matrix explicit mapped?
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>applyRestPosition</td>
 		<td>
 set to true to apply this mapping to restPosition at init
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 
 </tbody>
 </table>
 
-Links: 
-
-| Name | Description |
-| ---- | ----------- |
-|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|
-|slaves|Sub-objects used internally by this object|
-|master|nullptr for regular objects, or master object for which this object is one sub-objects|
-|input|Input object to map|
-|output|Output object to map|
+### Links
 
 
+| Name | Description | Destination type name |
+| ---- | ----------- | --------------------- |
+|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
+|slaves|Sub-objects used internally by this object|BaseObject|
+|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
+|input|Input object to map|State&lt;Rigid2d&gt;|
+|output|Output object to map|State&lt;Rigid2d&gt;|
 
-## Examples
+<!-- generate_doc -->
+## Rigid2d,Vec2d
 
-Component/Mapping/Linear/IdentityMapping.scn
+Templates:
+
+- Rigid2d,Vec2d
+
+__Target__: Sofa.Component.Mapping.Linear
+
+__namespace__: sofa::component::mapping::linear
+
+__parents__:
+
+- CRTPLinearMapping
+
+### Data
+
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Default value</th>
+        </tr>
+    </thead>
+    <tbody>
+	<tr>
+		<td>name</td>
+		<td>
+object name
+		</td>
+		<td>unnamed</td>
+	</tr>
+	<tr>
+		<td>printLog</td>
+		<td>
+if true, emits extra messages at runtime.
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>tags</td>
+		<td>
+list of the subsets the objet belongs to
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>bbox</td>
+		<td>
+this object bounding box
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>componentState</td>
+		<td>
+The state of the component among (Dirty, Valid, Undefined, Loading, Invalid).
+		</td>
+		<td>Undefined</td>
+	</tr>
+	<tr>
+		<td>listening</td>
+		<td>
+if true, handle the events, otherwise ignore the events
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>mapForces</td>
+		<td>
+Are forces mapped ?
+		</td>
+		<td>1</td>
+	</tr>
+	<tr>
+		<td>mapConstraints</td>
+		<td>
+Are constraints mapped ?
+		</td>
+		<td>1</td>
+	</tr>
+	<tr>
+		<td>mapMasses</td>
+		<td>
+Are masses mapped ?
+		</td>
+		<td>1</td>
+	</tr>
+	<tr>
+		<td>mapMatrices</td>
+		<td>
+Are matrix explicit mapped?
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>applyRestPosition</td>
+		<td>
+set to true to apply this mapping to restPosition at init
+		</td>
+		<td>0</td>
+	</tr>
+
+</tbody>
+</table>
+
+### Links
+
+
+| Name | Description | Destination type name |
+| ---- | ----------- | --------------------- |
+|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
+|slaves|Sub-objects used internally by this object|BaseObject|
+|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
+|input|Input object to map|State&lt;Rigid2d&gt;|
+|output|Output object to map|State&lt;Vec2d&gt;|
+
+<!-- generate_doc -->
+## Rigid3d,Rigid3d
+
+Templates:
+
+- Rigid3d,Rigid3d
+
+__Target__: Sofa.Component.Mapping.Linear
+
+__namespace__: sofa::component::mapping::linear
+
+__parents__:
+
+- CRTPLinearMapping
+
+### Data
+
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Default value</th>
+        </tr>
+    </thead>
+    <tbody>
+	<tr>
+		<td>name</td>
+		<td>
+object name
+		</td>
+		<td>unnamed</td>
+	</tr>
+	<tr>
+		<td>printLog</td>
+		<td>
+if true, emits extra messages at runtime.
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>tags</td>
+		<td>
+list of the subsets the objet belongs to
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>bbox</td>
+		<td>
+this object bounding box
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>componentState</td>
+		<td>
+The state of the component among (Dirty, Valid, Undefined, Loading, Invalid).
+		</td>
+		<td>Undefined</td>
+	</tr>
+	<tr>
+		<td>listening</td>
+		<td>
+if true, handle the events, otherwise ignore the events
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>mapForces</td>
+		<td>
+Are forces mapped ?
+		</td>
+		<td>1</td>
+	</tr>
+	<tr>
+		<td>mapConstraints</td>
+		<td>
+Are constraints mapped ?
+		</td>
+		<td>1</td>
+	</tr>
+	<tr>
+		<td>mapMasses</td>
+		<td>
+Are masses mapped ?
+		</td>
+		<td>1</td>
+	</tr>
+	<tr>
+		<td>mapMatrices</td>
+		<td>
+Are matrix explicit mapped?
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>applyRestPosition</td>
+		<td>
+set to true to apply this mapping to restPosition at init
+		</td>
+		<td>0</td>
+	</tr>
+
+</tbody>
+</table>
+
+### Links
+
+
+| Name | Description | Destination type name |
+| ---- | ----------- | --------------------- |
+|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
+|slaves|Sub-objects used internally by this object|BaseObject|
+|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
+|input|Input object to map|State&lt;Rigid3d&gt;|
+|output|Output object to map|State&lt;Rigid3d&gt;|
+
+<!-- generate_doc -->
+## Rigid3d,Vec3d
+
+Templates:
+
+- Rigid3d,Vec3d
+
+__Target__: Sofa.Component.Mapping.Linear
+
+__namespace__: sofa::component::mapping::linear
+
+__parents__:
+
+- CRTPLinearMapping
+
+### Data
+
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Default value</th>
+        </tr>
+    </thead>
+    <tbody>
+	<tr>
+		<td>name</td>
+		<td>
+object name
+		</td>
+		<td>unnamed</td>
+	</tr>
+	<tr>
+		<td>printLog</td>
+		<td>
+if true, emits extra messages at runtime.
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>tags</td>
+		<td>
+list of the subsets the objet belongs to
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>bbox</td>
+		<td>
+this object bounding box
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>componentState</td>
+		<td>
+The state of the component among (Dirty, Valid, Undefined, Loading, Invalid).
+		</td>
+		<td>Undefined</td>
+	</tr>
+	<tr>
+		<td>listening</td>
+		<td>
+if true, handle the events, otherwise ignore the events
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>mapForces</td>
+		<td>
+Are forces mapped ?
+		</td>
+		<td>1</td>
+	</tr>
+	<tr>
+		<td>mapConstraints</td>
+		<td>
+Are constraints mapped ?
+		</td>
+		<td>1</td>
+	</tr>
+	<tr>
+		<td>mapMasses</td>
+		<td>
+Are masses mapped ?
+		</td>
+		<td>1</td>
+	</tr>
+	<tr>
+		<td>mapMatrices</td>
+		<td>
+Are matrix explicit mapped?
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>applyRestPosition</td>
+		<td>
+set to true to apply this mapping to restPosition at init
+		</td>
+		<td>0</td>
+	</tr>
+
+</tbody>
+</table>
+
+### Links
+
+
+| Name | Description | Destination type name |
+| ---- | ----------- | --------------------- |
+|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
+|slaves|Sub-objects used internally by this object|BaseObject|
+|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
+|input|Input object to map|State&lt;Rigid3d&gt;|
+|output|Output object to map|State&lt;Vec3d&gt;|
+
+<!-- generate_doc -->
+## Vec1d,Vec1d
+
+Templates:
+
+- Vec1d,Vec1d
+
+__Target__: Sofa.Component.Mapping.Linear
+
+__namespace__: sofa::component::mapping::linear
+
+__parents__:
+
+- CRTPLinearMapping
+
+### Data
+
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Default value</th>
+        </tr>
+    </thead>
+    <tbody>
+	<tr>
+		<td>name</td>
+		<td>
+object name
+		</td>
+		<td>unnamed</td>
+	</tr>
+	<tr>
+		<td>printLog</td>
+		<td>
+if true, emits extra messages at runtime.
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>tags</td>
+		<td>
+list of the subsets the objet belongs to
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>bbox</td>
+		<td>
+this object bounding box
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>componentState</td>
+		<td>
+The state of the component among (Dirty, Valid, Undefined, Loading, Invalid).
+		</td>
+		<td>Undefined</td>
+	</tr>
+	<tr>
+		<td>listening</td>
+		<td>
+if true, handle the events, otherwise ignore the events
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>mapForces</td>
+		<td>
+Are forces mapped ?
+		</td>
+		<td>1</td>
+	</tr>
+	<tr>
+		<td>mapConstraints</td>
+		<td>
+Are constraints mapped ?
+		</td>
+		<td>1</td>
+	</tr>
+	<tr>
+		<td>mapMasses</td>
+		<td>
+Are masses mapped ?
+		</td>
+		<td>1</td>
+	</tr>
+	<tr>
+		<td>mapMatrices</td>
+		<td>
+Are matrix explicit mapped?
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>applyRestPosition</td>
+		<td>
+set to true to apply this mapping to restPosition at init
+		</td>
+		<td>0</td>
+	</tr>
+
+</tbody>
+</table>
+
+### Links
+
+
+| Name | Description | Destination type name |
+| ---- | ----------- | --------------------- |
+|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
+|slaves|Sub-objects used internally by this object|BaseObject|
+|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
+|input|Input object to map|State&lt;Vec1d&gt;|
+|output|Output object to map|State&lt;Vec1d&gt;|
+
+<!-- generate_doc -->
+## Vec2d,Vec2d
+
+Templates:
+
+- Vec2d,Vec2d
+
+__Target__: Sofa.Component.Mapping.Linear
+
+__namespace__: sofa::component::mapping::linear
+
+__parents__:
+
+- CRTPLinearMapping
+
+### Data
+
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Default value</th>
+        </tr>
+    </thead>
+    <tbody>
+	<tr>
+		<td>name</td>
+		<td>
+object name
+		</td>
+		<td>unnamed</td>
+	</tr>
+	<tr>
+		<td>printLog</td>
+		<td>
+if true, emits extra messages at runtime.
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>tags</td>
+		<td>
+list of the subsets the objet belongs to
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>bbox</td>
+		<td>
+this object bounding box
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>componentState</td>
+		<td>
+The state of the component among (Dirty, Valid, Undefined, Loading, Invalid).
+		</td>
+		<td>Undefined</td>
+	</tr>
+	<tr>
+		<td>listening</td>
+		<td>
+if true, handle the events, otherwise ignore the events
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>mapForces</td>
+		<td>
+Are forces mapped ?
+		</td>
+		<td>1</td>
+	</tr>
+	<tr>
+		<td>mapConstraints</td>
+		<td>
+Are constraints mapped ?
+		</td>
+		<td>1</td>
+	</tr>
+	<tr>
+		<td>mapMasses</td>
+		<td>
+Are masses mapped ?
+		</td>
+		<td>1</td>
+	</tr>
+	<tr>
+		<td>mapMatrices</td>
+		<td>
+Are matrix explicit mapped?
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>applyRestPosition</td>
+		<td>
+set to true to apply this mapping to restPosition at init
+		</td>
+		<td>0</td>
+	</tr>
+
+</tbody>
+</table>
+
+### Links
+
+
+| Name | Description | Destination type name |
+| ---- | ----------- | --------------------- |
+|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
+|slaves|Sub-objects used internally by this object|BaseObject|
+|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
+|input|Input object to map|State&lt;Vec2d&gt;|
+|output|Output object to map|State&lt;Vec2d&gt;|
+
+<!-- generate_doc -->
+## Vec3d,Vec3d
+
+Templates:
+
+- Vec3d,Vec3d
+
+__Target__: Sofa.Component.Mapping.Linear
+
+__namespace__: sofa::component::mapping::linear
+
+__parents__:
+
+- CRTPLinearMapping
+
+### Data
+
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Default value</th>
+        </tr>
+    </thead>
+    <tbody>
+	<tr>
+		<td>name</td>
+		<td>
+object name
+		</td>
+		<td>unnamed</td>
+	</tr>
+	<tr>
+		<td>printLog</td>
+		<td>
+if true, emits extra messages at runtime.
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>tags</td>
+		<td>
+list of the subsets the objet belongs to
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>bbox</td>
+		<td>
+this object bounding box
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>componentState</td>
+		<td>
+The state of the component among (Dirty, Valid, Undefined, Loading, Invalid).
+		</td>
+		<td>Undefined</td>
+	</tr>
+	<tr>
+		<td>listening</td>
+		<td>
+if true, handle the events, otherwise ignore the events
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>mapForces</td>
+		<td>
+Are forces mapped ?
+		</td>
+		<td>1</td>
+	</tr>
+	<tr>
+		<td>mapConstraints</td>
+		<td>
+Are constraints mapped ?
+		</td>
+		<td>1</td>
+	</tr>
+	<tr>
+		<td>mapMasses</td>
+		<td>
+Are masses mapped ?
+		</td>
+		<td>1</td>
+	</tr>
+	<tr>
+		<td>mapMatrices</td>
+		<td>
+Are matrix explicit mapped?
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>applyRestPosition</td>
+		<td>
+set to true to apply this mapping to restPosition at init
+		</td>
+		<td>0</td>
+	</tr>
+
+</tbody>
+</table>
+
+### Links
+
+
+| Name | Description | Destination type name |
+| ---- | ----------- | --------------------- |
+|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
+|slaves|Sub-objects used internally by this object|BaseObject|
+|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
+|input|Input object to map|State&lt;Vec3d&gt;|
+|output|Output object to map|State&lt;Vec3d&gt;|
+
+<!-- generate_doc -->
+## Vec6d,Vec3d
+
+Templates:
+
+- Vec6d,Vec3d
+
+__Target__: Sofa.Component.Mapping.Linear
+
+__namespace__: sofa::component::mapping::linear
+
+__parents__:
+
+- CRTPLinearMapping
+
+### Data
+
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Default value</th>
+        </tr>
+    </thead>
+    <tbody>
+	<tr>
+		<td>name</td>
+		<td>
+object name
+		</td>
+		<td>unnamed</td>
+	</tr>
+	<tr>
+		<td>printLog</td>
+		<td>
+if true, emits extra messages at runtime.
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>tags</td>
+		<td>
+list of the subsets the objet belongs to
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>bbox</td>
+		<td>
+this object bounding box
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>componentState</td>
+		<td>
+The state of the component among (Dirty, Valid, Undefined, Loading, Invalid).
+		</td>
+		<td>Undefined</td>
+	</tr>
+	<tr>
+		<td>listening</td>
+		<td>
+if true, handle the events, otherwise ignore the events
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>mapForces</td>
+		<td>
+Are forces mapped ?
+		</td>
+		<td>1</td>
+	</tr>
+	<tr>
+		<td>mapConstraints</td>
+		<td>
+Are constraints mapped ?
+		</td>
+		<td>1</td>
+	</tr>
+	<tr>
+		<td>mapMasses</td>
+		<td>
+Are masses mapped ?
+		</td>
+		<td>1</td>
+	</tr>
+	<tr>
+		<td>mapMatrices</td>
+		<td>
+Are matrix explicit mapped?
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>applyRestPosition</td>
+		<td>
+set to true to apply this mapping to restPosition at init
+		</td>
+		<td>0</td>
+	</tr>
+
+</tbody>
+</table>
+
+### Links
+
+
+| Name | Description | Destination type name |
+| ---- | ----------- | --------------------- |
+|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
+|slaves|Sub-objects used internally by this object|BaseObject|
+|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
+|input|Input object to map|State&lt;Vec6d&gt;|
+|output|Output object to map|State&lt;Vec3d&gt;|
+
+<!-- generate_doc -->
+## Vec6d,Vec6d
+
+Templates:
+
+- Vec6d,Vec6d
+
+__Target__: Sofa.Component.Mapping.Linear
+
+__namespace__: sofa::component::mapping::linear
+
+__parents__:
+
+- CRTPLinearMapping
+
+### Data
+
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Default value</th>
+        </tr>
+    </thead>
+    <tbody>
+	<tr>
+		<td>name</td>
+		<td>
+object name
+		</td>
+		<td>unnamed</td>
+	</tr>
+	<tr>
+		<td>printLog</td>
+		<td>
+if true, emits extra messages at runtime.
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>tags</td>
+		<td>
+list of the subsets the objet belongs to
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>bbox</td>
+		<td>
+this object bounding box
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>componentState</td>
+		<td>
+The state of the component among (Dirty, Valid, Undefined, Loading, Invalid).
+		</td>
+		<td>Undefined</td>
+	</tr>
+	<tr>
+		<td>listening</td>
+		<td>
+if true, handle the events, otherwise ignore the events
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>mapForces</td>
+		<td>
+Are forces mapped ?
+		</td>
+		<td>1</td>
+	</tr>
+	<tr>
+		<td>mapConstraints</td>
+		<td>
+Are constraints mapped ?
+		</td>
+		<td>1</td>
+	</tr>
+	<tr>
+		<td>mapMasses</td>
+		<td>
+Are masses mapped ?
+		</td>
+		<td>1</td>
+	</tr>
+	<tr>
+		<td>mapMatrices</td>
+		<td>
+Are matrix explicit mapped?
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>applyRestPosition</td>
+		<td>
+set to true to apply this mapping to restPosition at init
+		</td>
+		<td>0</td>
+	</tr>
+
+</tbody>
+</table>
+
+### Links
+
+
+| Name | Description | Destination type name |
+| ---- | ----------- | --------------------- |
+|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
+|slaves|Sub-objects used internally by this object|BaseObject|
+|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
+|input|Input object to map|State&lt;Vec6d&gt;|
+|output|Output object to map|State&lt;Vec6d&gt;|
+
+## Examples 
+
+IdentityMapping.scn
 
 === "XML"
 
@@ -182,52 +1115,56 @@ Component/Mapping/Linear/IdentityMapping.scn
             </Node>
         </Node>
     </Node>
+
     ```
 
 === "Python"
 
     ```python
-    def createScene(rootNode):
+    def createScene(root_node):
 
-        root = rootNode.addChild('root', dt="0.02")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Algorithm")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Intersection")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Geometry")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Response.Contact")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Projective")
-        root.addObject('RequiredPlugin', name="Sofa.Component.IO.Mesh")
-        root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Iterative")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Mapping.Linear")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Mass")
-        root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
-        root.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.FEM.Elastic")
-        root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Constant")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Dynamic")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Visual")
-        root.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
-        root.addObject('DefaultAnimationLoop')
-        root.addObject('VisualStyle', displayFlags="showBehaviorModels showMappings")
-        root.addObject('CollisionPipeline', verbose="0")
-        root.addObject('BruteForceBroadPhase')
-        root.addObject('BVHNarrowPhase')
-        root.addObject('CollisionResponse', response="PenalityContactForceField")
-        root.addObject('MinProximityIntersection', name="Proximity", alarmDistance="0.8", contactDistance="0.5")
+       root = root_node.addChild('root', dt="0.02")
 
-        tshirt = root.addChild('tshirt')
-        tshirt.addObject('EulerImplicitSolver', rayleighStiffness="0.1", rayleighMass="0.1")
-        tshirt.addObject('CGLinearSolver', iterations="25", tolerance="1e-5", threshold="1e-5")
-        tshirt.addObject('MeshGmshLoader', name="loader", filename="mesh/tshirt_0.msh")
-        tshirt.addObject('MeshTopology', src="@loader")
-        tshirt.addObject('MechanicalObject', src="@loader", scale="10")
-        tshirt.addObject('include', href="Objects/TriangleSetTopology.xml", src="@loader")
-        tshirt.addObject('UniformMass', vertexMass="1")
-        tshirt.addObject('FixedProjectiveConstraint', indices="38 39 40 41 42 43 123 124 137")
-        tshirt.addObject('TriangleFEMForceField', name="FEM", youngModulus="50000", poissonRatio="0.3", method="large")
-        tshirt.addObject('TriangleCollisionModel')
+       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Algorithm")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Intersection")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Geometry")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Response.Contact")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Projective")
+       root.addObject('RequiredPlugin', name="Sofa.Component.IO.Mesh")
+       root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Iterative")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Mapping.Linear")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Mass")
+       root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.FEM.Elastic")
+       root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Constant")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Dynamic")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Visual")
+       root.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
+       root.addObject('DefaultAnimationLoop', )
+       root.addObject('VisualStyle', displayFlags="showBehaviorModels showMappings")
+       root.addObject('CollisionPipeline', verbose="0")
+       root.addObject('BruteForceBroadPhase', )
+       root.addObject('BVHNarrowPhase', )
+       root.addObject('CollisionResponse', response="PenalityContactForceField")
+       root.addObject('MinProximityIntersection', name="Proximity", alarmDistance="0.8", contactDistance="0.5")
 
-        Visu = tshirt.addChild('Visu')
-        Visu.addObject('OglModel', name="Visual", color="red")
-        Visu.addObject('IdentityMapping', input="@..", output="@Visual")
+       tshirt = root.addChild('tshirt')
+
+       tshirt.addObject('EulerImplicitSolver', rayleighStiffness="0.1", rayleighMass="0.1")
+       tshirt.addObject('CGLinearSolver', iterations="25", tolerance="1e-5", threshold="1e-5")
+       tshirt.addObject('MeshGmshLoader', name="loader", filename="mesh/tshirt_0.msh")
+       tshirt.addObject('MeshTopology', src="@loader")
+       tshirt.addObject('MechanicalObject', src="@loader", scale="10")
+       tshirt.addObject('include', href="Objects/TriangleSetTopology.xml", src="@loader")
+       tshirt.addObject('UniformMass', vertexMass="1")
+       tshirt.addObject('FixedProjectiveConstraint', indices="38 39 40 41 42 43 123 124 137")
+       tshirt.addObject('TriangleFEMForceField', name="FEM", youngModulus="50000", poissonRatio="0.3", method="large")
+       tshirt.addObject('TriangleCollisionModel', )
+
+       visu = tshirt.addChild('Visu')
+
+       visu.addObject('OglModel', name="Visual", color="red")
+       visu.addObject('IdentityMapping', input="@..", output="@Visual")
     ```
 

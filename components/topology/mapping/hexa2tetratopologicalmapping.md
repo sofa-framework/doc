@@ -1,71 +1,68 @@
+<!-- generate_doc -->
 # Hexa2TetraTopologicalMapping
 
 Special case of mapping where HexahedronSetTopology is converted to TetrahedronSetTopology
 
 
-__Target__: `Sofa.Component.Topology.Mapping`
+__Target__: Sofa.Component.Topology.Mapping
 
-__namespace__: `#!c++ sofa::component::topology::mapping`
+__namespace__: sofa::component::topology::mapping
 
-__parents__: 
-
-- `#!c++ TopologicalMapping`
-
-__categories__: 
+__parents__:
 
 - TopologicalMapping
 
-Data: 
+### Data
 
 <table>
-<thead>
-    <tr>
-        <th>Name</th>
-        <th>Description</th>
-        <th>Default value</th>
-    </tr>
-</thead>
-<tbody>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Default value</th>
+        </tr>
+    </thead>
+    <tbody>
 	<tr>
 		<td>name</td>
 		<td>
 object name
-</td>
+		</td>
 		<td>unnamed</td>
 	</tr>
 	<tr>
 		<td>printLog</td>
 		<td>
 if true, emits extra messages at runtime.
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>tags</td>
 		<td>
 list of the subsets the objet belongs to
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>bbox</td>
 		<td>
 this object bounding box
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>componentState</td>
 		<td>
 The state of the component among (Dirty, Valid, Undefined, Loading, Invalid).
-</td>
+		</td>
 		<td>Undefined</td>
 	</tr>
 	<tr>
 		<td>listening</td>
 		<td>
 if true, handle the events, otherwise ignore the events
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
@@ -73,28 +70,27 @@ if true, handle the events, otherwise ignore the events
 		<td>
 Boolean enabling to swapp hexa-edges
  in order to avoid bias effect
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 
 </tbody>
 </table>
 
-Links: 
-
-| Name | Description |
-| ---- | ----------- |
-|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|
-|slaves|Sub-objects used internally by this object|
-|master|nullptr for regular objects, or master object for which this object is one sub-objects|
-|input|Input topology to map|
-|output|Output topology to map|
+### Links
 
 
+| Name | Description | Destination type name |
+| ---- | ----------- | --------------------- |
+|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
+|slaves|Sub-objects used internally by this object|BaseObject|
+|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
+|input|Input topology to map|BaseMeshTopology|
+|output|Output topology to map|BaseMeshTopology|
 
-## Examples
+## Examples 
 
-Component/Topology/Mapping/Hexa2TetraTopologicalMapping_export.scn
+Hexa2TetraTopologicalMapping_export.scn
 
 === "XML"
 
@@ -158,73 +154,79 @@ Component/Topology/Mapping/Hexa2TetraTopologicalMapping_export.scn
             </Node>
         </Node>
     </Node>
+
     ```
 
 === "Python"
 
     ```python
-    def createScene(rootNode):
+    def createScene(root_node):
 
-        root = rootNode.addChild('root', gravity="0 -9.81 0", dt="0.01")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Algorithm")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Intersection")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Geometry")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Response.Contact")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Projective")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Engine.Select")
-        root.addObject('RequiredPlugin', name="Sofa.Component.IO.Mesh")
-        root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Iterative")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Mapping.Linear")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Mass")
-        root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
-        root.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.FEM.Elastic")
-        root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Dynamic")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Grid")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Mapping")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Visual")
-        root.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
-        root.addObject('VisualStyle', displayFlags="showBehaviorModels showVisual")
-        root.addObject('CollisionPipeline', name="default21", verbose="0")
-        root.addObject('BruteForceBroadPhase')
-        root.addObject('BVHNarrowPhase')
-        root.addObject('CollisionResponse', name="default22", response="PenalityContactForceField")
-        root.addObject('MinProximityIntersection', name="Proximity", alarmDistance="0.8", contactDistance="0.5")
-        root.addObject('DefaultAnimationLoop')
+       root = root_node.addChild('root', gravity="0 -9.81 0", dt="0.01")
 
-        Cube = root.addChild('Cube', gravity="0 -9.81 0")
-        Cube.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="0", rayleighStiffness="0.1", rayleighMass="0.1")
-        Cube.addObject('CGLinearSolver', template="GraphScattered", name="linear solver", iterations="25", tolerance="1e-09", threshold="1e-09")
-        Cube.addObject('MechanicalObject', template="Vec3", name="dofs")
-        Cube.addObject('UniformMass', template="Vec3", name="default25", vertexMass="0.25")
-        Cube.addObject('RegularGridTopology', name="grid", n="6 6 6", min="-10 0 -10", max="10 20 10")
-        Cube.addObject('TetrahedronFEMForceField', template="Vec3", name="FEM", method="large", poissonRatio="0.4", youngModulus="1000", assembling="0")
-        Cube.addObject('BoxROI', template="Vec3", name="box_roi", box="-11 -11 -11 11 -9 11", indices="0", drawSize="0")
-        Cube.addObject('FixedProjectiveConstraint', template="Vec3", name="default27", indices="@box_roi.indices", drawSize="0")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Algorithm")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Intersection")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Geometry")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Response.Contact")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Projective")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Engine.Select")
+       root.addObject('RequiredPlugin', name="Sofa.Component.IO.Mesh")
+       root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Iterative")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Mapping.Linear")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Mass")
+       root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.FEM.Elastic")
+       root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Dynamic")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Grid")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Mapping")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Visual")
+       root.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
+       root.addObject('VisualStyle', displayFlags="showBehaviorModels showVisual")
+       root.addObject('CollisionPipeline', name="default21", verbose="0")
+       root.addObject('BruteForceBroadPhase', )
+       root.addObject('BVHNarrowPhase', )
+       root.addObject('CollisionResponse', name="default22", response="PenalityContactForceField")
+       root.addObject('MinProximityIntersection', name="Proximity", alarmDistance="0.8", contactDistance="0.5")
+       root.addObject('DefaultAnimationLoop', )
 
-        Tetra = Cube.addChild('Tetra', gravity="0 -9.81 0")
-        Tetra.addObject('TetrahedronSetTopologyContainer', name="Container")
-        Tetra.addObject('TetrahedronSetTopologyModifier', name="Modifier")
-        Tetra.addObject('TetrahedronSetGeometryAlgorithms', template="Vec3", name="GeomAlgo")
-        Tetra.addObject('Hexa2TetraTopologicalMapping', name="default28", input="@../grid", output="@Container")
-        Tetra.addObject('MeshExporter', filename="cube5x5x5", format="vtk", position="@../dofs.rest_position", edges="0", triangles="0", tetras="1", listening="true", exportAtBegin="true")
+       cube = root.addChild('Cube', gravity="0 -9.81 0")
 
-        Triangles = Tetra.addChild('Triangles', gravity="0 -9.81 0")
-        Triangles.addObject('TriangleSetTopologyContainer', name="Container")
-        Triangles.addObject('TriangleSetTopologyModifier', name="Modifier")
-        Triangles.addObject('TriangleSetGeometryAlgorithms', template="Vec3", name="GeomAlgo")
-        Triangles.addObject('Tetra2TriangleTopologicalMapping', name="default29", input="@../Container", output="@Container")
-        Triangles.addObject('TriangleCollisionModel', name="default30")
-        Triangles.addObject('LineCollisionModel', name="default31")
-        Triangles.addObject('PointCollisionModel', name="default32")
+       cube.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="0", rayleighStiffness="0.1", rayleighMass="0.1")
+       cube.addObject('CGLinearSolver', template="GraphScattered", name="linear solver", iterations="25", tolerance="1e-09", threshold="1e-09")
+       cube.addObject('MechanicalObject', template="Vec3", name="dofs")
+       cube.addObject('UniformMass', template="Vec3", name="default25", vertexMass="0.25")
+       cube.addObject('RegularGridTopology', name="grid", n="6 6 6", min="-10 0 -10", max="10 20 10")
+       cube.addObject('TetrahedronFEMForceField', template="Vec3", name="FEM", method="large", poissonRatio="0.4", youngModulus="1000", assembling="0")
+       cube.addObject('BoxROI', template="Vec3", name="box_roi", box="-11 -11 -11 11 -9 11", indices="0", drawSize="0")
+       cube.addObject('FixedProjectiveConstraint', template="Vec3", name="default27", indices="@box_roi.indices", drawSize="0")
 
-        Visu = Triangles.addChild('Visu', gravity="0 -9.81 0")
-        Visu.addObject('OglModel', template="Vec3", name="Visual", material="Default Diffuse 1 1 0 0 1 Ambient 1 0.2 0 0 1 Specular 0 1 0 0 1 Emissive 0 1 0 0 1 Shininess 0 45")
-        Visu.addObject('IdentityMapping', template="Vec3,Vec3", name="default33", input="@..", output="@Visual")
-        Visu.addObject('VisualModelOBJExporter', filename="cube5x5x5-surface", exportAtBegin="true")
+       tetra = Cube.addChild('Tetra', gravity="0 -9.81 0")
+
+       tetra.addObject('TetrahedronSetTopologyContainer', name="Container")
+       tetra.addObject('TetrahedronSetTopologyModifier', name="Modifier")
+       tetra.addObject('TetrahedronSetGeometryAlgorithms', template="Vec3", name="GeomAlgo")
+       tetra.addObject('Hexa2TetraTopologicalMapping', name="default28", input="@../grid", output="@Container")
+       tetra.addObject('MeshExporter', filename="cube5x5x5", format="vtk", position="@../dofs.rest_position", edges="0", triangles="0", tetras="1", listening="true", exportAtBegin="true")
+
+       triangles = Tetra.addChild('Triangles', gravity="0 -9.81 0")
+
+       triangles.addObject('TriangleSetTopologyContainer', name="Container")
+       triangles.addObject('TriangleSetTopologyModifier', name="Modifier")
+       triangles.addObject('TriangleSetGeometryAlgorithms', template="Vec3", name="GeomAlgo")
+       triangles.addObject('Tetra2TriangleTopologicalMapping', name="default29", input="@../Container", output="@Container")
+       triangles.addObject('TriangleCollisionModel', name="default30")
+       triangles.addObject('LineCollisionModel', name="default31")
+       triangles.addObject('PointCollisionModel', name="default32")
+
+       visu = Triangles.addChild('Visu', gravity="0 -9.81 0")
+
+       visu.addObject('OglModel', template="Vec3", name="Visual", material="Default Diffuse 1 1 0 0 1 Ambient 1 0.2 0 0 1 Specular 0 1 0 0 1 Emissive 0 1 0 0 1 Shininess 0 45")
+       visu.addObject('IdentityMapping', template="Vec3,Vec3", name="default33", input="@..", output="@Visual")
+       visu.addObject('VisualModelOBJExporter', filename="cube5x5x5-surface", exportAtBegin="true")
     ```
 
-Component/Topology/Mapping/Hexa2TetraTopologicalMapping.scn
+Hexa2TetraTopologicalMapping.scn
 
 === "XML"
 
@@ -285,66 +287,72 @@ Component/Topology/Mapping/Hexa2TetraTopologicalMapping.scn
             </Node>
         </Node>
     </Node>
+
     ```
 
 === "Python"
 
     ```python
-    def createScene(rootNode):
+    def createScene(root_node):
 
-        root = rootNode.addChild('root', gravity="0 -9.81 0", dt="0.01")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Algorithm")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Intersection")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Geometry")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Response.Contact")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Projective")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Engine.Select")
-        root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Iterative")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Mapping.Linear")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Mass")
-        root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
-        root.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.FEM.Elastic")
-        root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Dynamic")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Grid")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Mapping")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Visual")
-        root.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
-        root.addObject('VisualStyle', displayFlags="showBehaviorModels showVisual")
-        root.addObject('CollisionPipeline', name="default21", verbose="0")
-        root.addObject('BruteForceBroadPhase')
-        root.addObject('BVHNarrowPhase')
-        root.addObject('CollisionResponse', name="default22", response="PenalityContactForceField")
-        root.addObject('DefaultAnimationLoop')
-        root.addObject('MinProximityIntersection', name="Proximity", alarmDistance="0.8", contactDistance="0.5")
+       root = root_node.addChild('root', gravity="0 -9.81 0", dt="0.01")
 
-        Cube = root.addChild('Cube', gravity="0 -9.81 0")
-        Cube.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="0", rayleighStiffness="0.1", rayleighMass="0.1")
-        Cube.addObject('CGLinearSolver', template="GraphScattered", name="linear solver", iterations="25", tolerance="1e-09", threshold="1e-09")
-        Cube.addObject('RegularGridTopology', name="grid", n="6 6 6", min="-10 -10 -10", max="10 10 10", p0="-10 -10 -10")
-        Cube.addObject('MechanicalObject', template="Vec3", name="default24")
-        Cube.addObject('UniformMass', template="Vec3", name="default25", vertexMass="0.25")
-        Cube.addObject('TetrahedronFEMForceField', template="Vec3", name="FEM", method="large", poissonRatio="0.4", youngModulus="1000", assembling="0")
-        Cube.addObject('BoxROI', template="Vec3", name="box_roi", box="-11 -11 -11 11 -9 11", indices="0", drawSize="0")
-        Cube.addObject('FixedProjectiveConstraint', template="Vec3", name="default27", indices="@box_roi.indices", drawSize="0")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Algorithm")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Intersection")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Geometry")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Response.Contact")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Projective")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Engine.Select")
+       root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Iterative")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Mapping.Linear")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Mass")
+       root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.FEM.Elastic")
+       root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Dynamic")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Grid")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Mapping")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Visual")
+       root.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
+       root.addObject('VisualStyle', displayFlags="showBehaviorModels showVisual")
+       root.addObject('CollisionPipeline', name="default21", verbose="0")
+       root.addObject('BruteForceBroadPhase', )
+       root.addObject('BVHNarrowPhase', )
+       root.addObject('CollisionResponse', name="default22", response="PenalityContactForceField")
+       root.addObject('DefaultAnimationLoop', )
+       root.addObject('MinProximityIntersection', name="Proximity", alarmDistance="0.8", contactDistance="0.5")
 
-        Tetra = Cube.addChild('Tetra', gravity="0 -9.81 0")
-        Tetra.addObject('TetrahedronSetTopologyContainer', name="Container")
-        Tetra.addObject('TetrahedronSetTopologyModifier', name="Modifier")
-        Tetra.addObject('TetrahedronSetGeometryAlgorithms', template="Vec3", name="GeomAlgo")
-        Tetra.addObject('Hexa2TetraTopologicalMapping', name="default28", input="@../grid", output="@Container")
+       cube = root.addChild('Cube', gravity="0 -9.81 0")
 
-        Triangles = Tetra.addChild('Triangles', gravity="0 -9.81 0")
-        Triangles.addObject('TriangleSetTopologyContainer', name="Container")
-        Triangles.addObject('TriangleSetTopologyModifier', name="Modifier")
-        Triangles.addObject('TriangleSetGeometryAlgorithms', template="Vec3", name="GeomAlgo")
-        Triangles.addObject('Tetra2TriangleTopologicalMapping', name="default29", input="@../Container", output="@Container")
-        Triangles.addObject('TriangleCollisionModel', name="default30")
-        Triangles.addObject('LineCollisionModel', name="default31")
-        Triangles.addObject('PointCollisionModel', name="default32")
+       cube.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="0", rayleighStiffness="0.1", rayleighMass="0.1")
+       cube.addObject('CGLinearSolver', template="GraphScattered", name="linear solver", iterations="25", tolerance="1e-09", threshold="1e-09")
+       cube.addObject('RegularGridTopology', name="grid", n="6 6 6", min="-10 -10 -10", max="10 10 10", p0="-10 -10 -10")
+       cube.addObject('MechanicalObject', template="Vec3", name="default24")
+       cube.addObject('UniformMass', template="Vec3", name="default25", vertexMass="0.25")
+       cube.addObject('TetrahedronFEMForceField', template="Vec3", name="FEM", method="large", poissonRatio="0.4", youngModulus="1000", assembling="0")
+       cube.addObject('BoxROI', template="Vec3", name="box_roi", box="-11 -11 -11 11 -9 11", indices="0", drawSize="0")
+       cube.addObject('FixedProjectiveConstraint', template="Vec3", name="default27", indices="@box_roi.indices", drawSize="0")
 
-        Visu = Triangles.addChild('Visu', gravity="0 -9.81 0")
-        Visu.addObject('OglModel', template="Vec3", name="Visual", material="Default Diffuse 1 1 0 0 1 Ambient 1 0.2 0 0 1 Specular 0 1 0 0 1 Emissive 0 1 0 0 1 Shininess 0 45")
-        Visu.addObject('IdentityMapping', template="Vec3,Vec3", name="default33", input="@..", output="@Visual")
+       tetra = Cube.addChild('Tetra', gravity="0 -9.81 0")
+
+       tetra.addObject('TetrahedronSetTopologyContainer', name="Container")
+       tetra.addObject('TetrahedronSetTopologyModifier', name="Modifier")
+       tetra.addObject('TetrahedronSetGeometryAlgorithms', template="Vec3", name="GeomAlgo")
+       tetra.addObject('Hexa2TetraTopologicalMapping', name="default28", input="@../grid", output="@Container")
+
+       triangles = Tetra.addChild('Triangles', gravity="0 -9.81 0")
+
+       triangles.addObject('TriangleSetTopologyContainer', name="Container")
+       triangles.addObject('TriangleSetTopologyModifier', name="Modifier")
+       triangles.addObject('TriangleSetGeometryAlgorithms', template="Vec3", name="GeomAlgo")
+       triangles.addObject('Tetra2TriangleTopologicalMapping', name="default29", input="@../Container", output="@Container")
+       triangles.addObject('TriangleCollisionModel', name="default30")
+       triangles.addObject('LineCollisionModel', name="default31")
+       triangles.addObject('PointCollisionModel', name="default32")
+
+       visu = Triangles.addChild('Visu', gravity="0 -9.81 0")
+
+       visu.addObject('OglModel', template="Vec3", name="Visual", material="Default Diffuse 1 1 0 0 1 Ambient 1 0.2 0 0 1 Specular 0 1 0 0 1 Emissive 0 1 0 0 1 Shininess 0 45")
+       visu.addObject('IdentityMapping', template="Vec3,Vec3", name="default33", input="@..", output="@Visual")
     ```
 

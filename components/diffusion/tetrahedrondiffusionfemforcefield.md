@@ -1,120 +1,117 @@
+<!-- generate_doc -->
 # TetrahedronDiffusionFEMForceField
 
 Isotropic or anisotropic diffusion on Tetrahedral Meshes
 
 
-__Templates__:
+## Vec1d
 
-- `#!c++ Vec1d`
-- `#!c++ Vec2d`
-- `#!c++ Vec3d`
+Templates:
 
-__Target__: `Sofa.Component.Diffusion`
+- Vec1d
 
-__namespace__: `#!c++ sofa::component::diffusion`
+__Target__: Sofa.Component.Diffusion
 
-__parents__: 
+__namespace__: sofa::component::diffusion
 
-- `#!c++ ForceField`
-
-__categories__: 
+__parents__:
 
 - ForceField
 
-Data: 
+### Data
 
 <table>
-<thead>
-    <tr>
-        <th>Name</th>
-        <th>Description</th>
-        <th>Default value</th>
-    </tr>
-</thead>
-<tbody>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Default value</th>
+        </tr>
+    </thead>
+    <tbody>
 	<tr>
 		<td>name</td>
 		<td>
 object name
-</td>
+		</td>
 		<td>unnamed</td>
 	</tr>
 	<tr>
 		<td>printLog</td>
 		<td>
 if true, emits extra messages at runtime.
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>tags</td>
 		<td>
 list of the subsets the objet belongs to
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>bbox</td>
 		<td>
 this object bounding box
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>componentState</td>
 		<td>
 The state of the component among (Dirty, Valid, Undefined, Loading, Invalid).
-</td>
+		</td>
 		<td>Undefined</td>
 	</tr>
 	<tr>
 		<td>listening</td>
 		<td>
 if true, handle the events, otherwise ignore the events
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>rayleighStiffness</td>
 		<td>
 Rayleigh damping - stiffness matrix coefficient
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>constantDiffusionCoefficient</td>
 		<td>
 Constant diffusion coefficient
-</td>
+		</td>
 		<td>1</td>
 	</tr>
 	<tr>
 		<td>tetraDiffusionCoefficient</td>
 		<td>
 Diffusion coefficient for each tetrahedron, by default equal to constantDiffusionCoefficient.
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>anisotropyRatio</td>
 		<td>
-Anisotropy ratio (r²&gt;1).
+Anisotropy ratio (r²>1).
  Default is 1.0 = isotropy.
-</td>
+		</td>
 		<td>1</td>
 	</tr>
 	<tr>
 		<td>transverseAnisotropyArray</td>
 		<td>
 Data to handle topology on tetrahedra
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>tagMechanics</td>
 		<td>
 Tag of the Mechanical Object.
-</td>
+		</td>
 		<td>meca</td>
 	</tr>
 	<tr>
@@ -124,29 +121,302 @@ Tag of the Mechanical Object.
 		<td>drawConduc</td>
 		<td>
 To display conductivity map.
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 
 </tbody>
 </table>
 
-Links: 
-
-| Name | Description |
-| ---- | ----------- |
-|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|
-|slaves|Sub-objects used internally by this object|
-|master|nullptr for regular objects, or master object for which this object is one sub-objects|
-|mechanicalStates|List of mechanical states to which this component is associated|
-|mstate|MechanicalState used by this component|
-|topology|link to the topology container|
+### Links
 
 
+| Name | Description | Destination type name |
+| ---- | ----------- | --------------------- |
+|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
+|slaves|Sub-objects used internally by this object|BaseObject|
+|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
+|mechanicalStates|List of mechanical states to which this component is associated|BaseMechanicalState|
+|mstate|MechanicalState used by this component|MechanicalState&lt;Vec1d&gt;|
+|topology|link to the topology container|BaseMeshTopology|
 
-## Examples
+<!-- generate_doc -->
+## Vec2d
 
-Component/Diffusion/TetrahedronDiffusionFEMForceField.scn
+Templates:
+
+- Vec2d
+
+__Target__: Sofa.Component.Diffusion
+
+__namespace__: sofa::component::diffusion
+
+__parents__:
+
+- ForceField
+
+### Data
+
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Default value</th>
+        </tr>
+    </thead>
+    <tbody>
+	<tr>
+		<td>name</td>
+		<td>
+object name
+		</td>
+		<td>unnamed</td>
+	</tr>
+	<tr>
+		<td>printLog</td>
+		<td>
+if true, emits extra messages at runtime.
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>tags</td>
+		<td>
+list of the subsets the objet belongs to
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>bbox</td>
+		<td>
+this object bounding box
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>componentState</td>
+		<td>
+The state of the component among (Dirty, Valid, Undefined, Loading, Invalid).
+		</td>
+		<td>Undefined</td>
+	</tr>
+	<tr>
+		<td>listening</td>
+		<td>
+if true, handle the events, otherwise ignore the events
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>rayleighStiffness</td>
+		<td>
+Rayleigh damping - stiffness matrix coefficient
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>constantDiffusionCoefficient</td>
+		<td>
+Constant diffusion coefficient
+		</td>
+		<td>1</td>
+	</tr>
+	<tr>
+		<td>tetraDiffusionCoefficient</td>
+		<td>
+Diffusion coefficient for each tetrahedron, by default equal to constantDiffusionCoefficient.
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>anisotropyRatio</td>
+		<td>
+Anisotropy ratio (r²>1).
+ Default is 1.0 = isotropy.
+		</td>
+		<td>1</td>
+	</tr>
+	<tr>
+		<td>transverseAnisotropyArray</td>
+		<td>
+Data to handle topology on tetrahedra
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>tagMechanics</td>
+		<td>
+Tag of the Mechanical Object.
+		</td>
+		<td>meca</td>
+	</tr>
+	<tr>
+		<td colspan="3">Visualization</td>
+	</tr>
+	<tr>
+		<td>drawConduc</td>
+		<td>
+To display conductivity map.
+		</td>
+		<td>0</td>
+	</tr>
+
+</tbody>
+</table>
+
+### Links
+
+
+| Name | Description | Destination type name |
+| ---- | ----------- | --------------------- |
+|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
+|slaves|Sub-objects used internally by this object|BaseObject|
+|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
+|mechanicalStates|List of mechanical states to which this component is associated|BaseMechanicalState|
+|mstate|MechanicalState used by this component|MechanicalState&lt;Vec2d&gt;|
+|topology|link to the topology container|BaseMeshTopology|
+
+<!-- generate_doc -->
+## Vec3d
+
+Templates:
+
+- Vec3d
+
+__Target__: Sofa.Component.Diffusion
+
+__namespace__: sofa::component::diffusion
+
+__parents__:
+
+- ForceField
+
+### Data
+
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Default value</th>
+        </tr>
+    </thead>
+    <tbody>
+	<tr>
+		<td>name</td>
+		<td>
+object name
+		</td>
+		<td>unnamed</td>
+	</tr>
+	<tr>
+		<td>printLog</td>
+		<td>
+if true, emits extra messages at runtime.
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>tags</td>
+		<td>
+list of the subsets the objet belongs to
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>bbox</td>
+		<td>
+this object bounding box
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>componentState</td>
+		<td>
+The state of the component among (Dirty, Valid, Undefined, Loading, Invalid).
+		</td>
+		<td>Undefined</td>
+	</tr>
+	<tr>
+		<td>listening</td>
+		<td>
+if true, handle the events, otherwise ignore the events
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>rayleighStiffness</td>
+		<td>
+Rayleigh damping - stiffness matrix coefficient
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>constantDiffusionCoefficient</td>
+		<td>
+Constant diffusion coefficient
+		</td>
+		<td>1</td>
+	</tr>
+	<tr>
+		<td>tetraDiffusionCoefficient</td>
+		<td>
+Diffusion coefficient for each tetrahedron, by default equal to constantDiffusionCoefficient.
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>anisotropyRatio</td>
+		<td>
+Anisotropy ratio (r²>1).
+ Default is 1.0 = isotropy.
+		</td>
+		<td>1</td>
+	</tr>
+	<tr>
+		<td>transverseAnisotropyArray</td>
+		<td>
+Data to handle topology on tetrahedra
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>tagMechanics</td>
+		<td>
+Tag of the Mechanical Object.
+		</td>
+		<td>meca</td>
+	</tr>
+	<tr>
+		<td colspan="3">Visualization</td>
+	</tr>
+	<tr>
+		<td>drawConduc</td>
+		<td>
+To display conductivity map.
+		</td>
+		<td>0</td>
+	</tr>
+
+</tbody>
+</table>
+
+### Links
+
+
+| Name | Description | Destination type name |
+| ---- | ----------- | --------------------- |
+|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
+|slaves|Sub-objects used internally by this object|BaseObject|
+|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
+|mechanicalStates|List of mechanical states to which this component is associated|BaseMechanicalState|
+|mstate|MechanicalState used by this component|MechanicalState&lt;Vec3d&gt;|
+|topology|link to the topology container|BaseMeshTopology|
+
+## Examples 
+
+TetrahedronDiffusionFEMForceField.scn
 
 === "XML"
 
@@ -198,50 +468,54 @@ Component/Diffusion/TetrahedronDiffusionFEMForceField.scn
             </Node>
         </Node>
     </Node>
+
     ```
 
 === "Python"
 
     ```python
-    def createScene(rootNode):
+    def createScene(root_node):
 
-        root = rootNode.addChild('root', dt="0.00001", gravity="0 0 0")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Projective")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Diffusion")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Engine.Select")
-        root.addObject('RequiredPlugin', name="Sofa.Component.IO.Mesh")
-        root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Iterative")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Mapping.Linear")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Mass")
-        root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
-        root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Dynamic")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Visual")
-        root.addObject('RequiredPlugin', name="Sofa.GL.Component.Engine")
-        root.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
-        root.addObject('VisualStyle', displayFlags="showBehaviorModels")
-        root.addObject('MeshVTKLoader', name="meshLoader", filename="mesh/raptorTetra_8418.vtu")
-        root.addObject('MeshOBJLoader', name="potentialLoader", filename="mesh/raptorTemperature.obj")
-        root.addObject('TetrahedronSetTopologyContainer', name="topo", src="@meshLoader", tags="mechanics")
-        root.addObject('MechanicalObject', template="Vec3", name="raptorDOFs", src="@meshLoader", tags="mechanics")
-        root.addObject('TetrahedronSetTopologyModifier', name="Modifier", tags="mechanics")
-        root.addObject('TetrahedronSetGeometryAlgorithms', template="Vec3", name="GeomAlgo", tags="mechanics")
-        root.addObject('BoxROI', name="box-hot", box="-3 4 4 3 8 8", drawBoxes="1", position="@raptorDOFs.position")
-        root.addObject('BoxROI', name="box-cold", box="-3 4 -4 3 8 -10", drawBoxes="1", position="@raptorDOFs.position")
-        root.addObject('DefaultAnimationLoop')
+       root = root_node.addChild('root', dt="0.00001", gravity="0 0 0")
 
-        Temperature = root.addChild('Temperature', gravity="0 0 0")
-        Temperature.addObject('EulerImplicitSolver', name="EulerExplicitSolver", firstOrder="1", tags="heat", rayleighStiffness="0.1", rayleighMass="0.1")
-        Temperature.addObject('CGLinearSolver', name="CG", iterations="1000", tolerance="1.0e-10", threshold="1.0e-30", tags="heat")
-        Temperature.addObject('MechanicalObject', template="Vec1", position="@../potentialLoader.position", name="gridTemperature", bbox="0 0 0 0 0 0", tags="heat")
-        Temperature.addObject('TetrahedronDiffusionFEMForceField', template="Vec1", name="DiffusionForceField", topology="@../topo", constantDiffusionCoefficient="1500", printLog="0", drawConduc="0", tagMechanics="mechanics", tags="heat")
-        Temperature.addObject('MeshMatrixMass', name="Mass", template="Vec1,Vec3", lumping="0", massDensity="1.0", printLog="0", tags="heat", topology="@../topo", geometryState="@../raptorDOFs")
-        Temperature.addObject('LinearMovementProjectiveConstraint', template="Vec1", keyTimes="0 0.005 0.006", movements="0 0 1", indices="@../box-cold.indices")
-        Temperature.addObject('LinearMovementProjectiveConstraint', template="Vec1", keyTimes="0.001 0.002 0.004 0.005 0.006", movements="0 1 0.5 1 0", indices="@../box-hot.indices")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Projective")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Diffusion")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Engine.Select")
+       root.addObject('RequiredPlugin', name="Sofa.Component.IO.Mesh")
+       root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Iterative")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Mapping.Linear")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Mass")
+       root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Dynamic")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Visual")
+       root.addObject('RequiredPlugin', name="Sofa.GL.Component.Engine")
+       root.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
+       root.addObject('VisualStyle', displayFlags="showBehaviorModels")
+       root.addObject('MeshVTKLoader', name="meshLoader", filename="mesh/raptorTetra_8418.vtu")
+       root.addObject('MeshOBJLoader', name="potentialLoader", filename="mesh/raptorTemperature.obj")
+       root.addObject('TetrahedronSetTopologyContainer', name="topo", src="@meshLoader", tags="mechanics")
+       root.addObject('MechanicalObject', template="Vec3", name="raptorDOFs", src="@meshLoader", tags="mechanics")
+       root.addObject('TetrahedronSetTopologyModifier', name="Modifier", tags="mechanics")
+       root.addObject('TetrahedronSetGeometryAlgorithms', template="Vec3", name="GeomAlgo", tags="mechanics")
+       root.addObject('BoxROI', name="box-hot", box="-3 4 4 3 8 8", drawBoxes="1", position="@raptorDOFs.position")
+       root.addObject('BoxROI', name="box-cold", box="-3 4 -4 3 8 -10", drawBoxes="1", position="@raptorDOFs.position")
+       root.addObject('DefaultAnimationLoop', )
 
-        Visu = Temperature.addChild('Visu')
-        Visu.addObject('TextureInterpolation', template="Vec1", name="EngineInterpolation", input_states="@../gridTemperature.position", input_coordinates="@../../raptorDOFs.position", min_value="0.0", max_value="1.0", manual_scale="1", drawPotentiels="0", showIndicesScale="5e-05")
-        Visu.addObject('OglModel', template="Vec3", name="oglPotentiel", texcoords="@EngineInterpolation.output_coordinates", handleDynamicTopology="0", texturename="textures/heatColor.bmp", scale3d="1 1 1", material="Default Diffuse 1 1 1 1 0.5 Ambient 1 1 1 1 0.3 Specular 0 0.5 0.5 0.5 1 Emissive 0 0.5 0.5 0.5 1 Shininess 0 45 No texture linked to the material No bump texture linked to the material ")
-        Visu.addObject('IdentityMapping', input="@../../raptorDOFs", output="@oglPotentiel")
+       temperature = root.addChild('Temperature', gravity="0 0 0")
+
+       temperature.addObject('EulerImplicitSolver', name="EulerExplicitSolver", firstOrder="1", tags="heat", rayleighStiffness="0.1", rayleighMass="0.1")
+       temperature.addObject('CGLinearSolver', name="CG", iterations="1000", tolerance="1.0e-10", threshold="1.0e-30", tags="heat")
+       temperature.addObject('MechanicalObject', template="Vec1", position="@../potentialLoader.position", name="gridTemperature", bbox="0 0 0 0 0 0", tags="heat")
+       temperature.addObject('TetrahedronDiffusionFEMForceField', template="Vec1", name="DiffusionForceField", topology="@../topo", constantDiffusionCoefficient="1500", printLog="0", drawConduc="0", tagMechanics="mechanics", tags="heat")
+       temperature.addObject('MeshMatrixMass', name="Mass", template="Vec1,Vec3", lumping="0", massDensity="1.0", printLog="0", tags="heat", topology="@../topo", geometryState="@../raptorDOFs")
+       temperature.addObject('LinearMovementProjectiveConstraint', template="Vec1", keyTimes="0 0.005 0.006", movements="0 0 1", indices="@../box-cold.indices")
+       temperature.addObject('LinearMovementProjectiveConstraint', template="Vec1", keyTimes="0.001 0.002 0.004 0.005 0.006", movements="0 1 0.5 1 0", indices="@../box-hot.indices")
+
+       visu = Temperature.addChild('Visu')
+
+       visu.addObject('TextureInterpolation', template="Vec1", name="EngineInterpolation", input_states="@../gridTemperature.position", input_coordinates="@../../raptorDOFs.position", min_value="0.0", max_value="1.0", manual_scale="1", drawPotentiels="0", showIndicesScale="5e-05")
+       visu.addObject('OglModel', template="Vec3", name="oglPotentiel", texcoords="@EngineInterpolation.output_coordinates", handleDynamicTopology="0", texturename="textures/heatColor.bmp", scale3d="1 1 1", material="Default Diffuse 1 1 1 1 0.5 Ambient 1 1 1 1 0.3 Specular 0 0.5 0.5 0.5 1 Emissive 0 0.5 0.5 0.5 1 Shininess 0 45 No texture linked to the material No bump texture linked to the material ")
+       visu.addObject('IdentityMapping', input="@../../raptorDOFs", output="@oglPotentiel")
     ```
 

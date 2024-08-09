@@ -1,82 +1,81 @@
+<!-- generate_doc -->
 # PlaneProjectiveConstraint
 
 Attach given particles to their initial positions
 
 
-__Templates__:
+## Vec2d
 
-- `#!c++ Vec3d`
+Templates:
 
-__Target__: `Sofa.Component.Constraint.Projective`
+- Vec2d
 
-__namespace__: `#!c++ sofa::component::constraint::projective`
+__Target__: Sofa.Component.Constraint.Projective
 
-__parents__: 
+__namespace__: sofa::component::constraint::projective
 
-- `#!c++ ProjectiveConstraintSet`
-
-__categories__: 
+__parents__:
 
 - ProjectiveConstraintSet
 
-Data: 
+### Data
 
 <table>
-<thead>
-    <tr>
-        <th>Name</th>
-        <th>Description</th>
-        <th>Default value</th>
-    </tr>
-</thead>
-<tbody>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Default value</th>
+        </tr>
+    </thead>
+    <tbody>
 	<tr>
 		<td>name</td>
 		<td>
 object name
-</td>
+		</td>
 		<td>unnamed</td>
 	</tr>
 	<tr>
 		<td>printLog</td>
 		<td>
 if true, emits extra messages at runtime.
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>tags</td>
 		<td>
 list of the subsets the objet belongs to
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>bbox</td>
 		<td>
 this object bounding box
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>componentState</td>
 		<td>
 The state of the component among (Dirty, Valid, Undefined, Loading, Invalid).
-</td>
+		</td>
 		<td>Undefined</td>
 	</tr>
 	<tr>
 		<td>listening</td>
 		<td>
 if true, handle the events, otherwise ignore the events
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>group</td>
 		<td>
 ID of the group containing this constraint. This ID is used to specify which constraints are solved by which solver, by specifying in each solver which groups of constraints it should handle.
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
@@ -84,160 +83,28 @@ ID of the group containing this constraint. This ID is used to specify which con
 		<td>
 The constraint stops acting after the given value.
 Use a negative value for infinite constraints
-</td>
+		</td>
 		<td>-1</td>
 	</tr>
 	<tr>
 		<td>indices</td>
 		<td>
 Indices of the fixed points
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>origin</td>
 		<td>
 A point in the plane
-</td>
-		<td>0 0 0</td>
-	</tr>
-	<tr>
-		<td>normal</td>
-		<td>
-Normal vector to the plane
-</td>
-		<td>0 0 0</td>
-	</tr>
-	<tr>
-		<td colspan="3">Visualization</td>
-	</tr>
-	<tr>
-		<td>drawSize</td>
-		<td>
-Size of the rendered particles (0 -&gt; point based rendering, &gt;0 -&gt; radius of spheres)
-</td>
-		<td>0</td>
-	</tr>
-
-</tbody>
-</table>
-
-Links: 
-
-| Name | Description |
-| ---- | ----------- |
-|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|
-|slaves|Sub-objects used internally by this object|
-|master|nullptr for regular objects, or master object for which this object is one sub-objects|
-|mechanicalStates|List of mechanical states to which this component is associated|
-|mstate|MechanicalState used by this component|
-|topology|link to the topology container|
-
-
-
-__Templates__:
-
-- `#!c++ Vec2d`
-
-__Target__: `Sofa.Component.Constraint.Projective`
-
-__namespace__: `#!c++ sofa::component::constraint::projective`
-
-__parents__: 
-
-- `#!c++ ProjectiveConstraintSet`
-
-__categories__: 
-
-- ProjectiveConstraintSet
-
-Data: 
-
-<table>
-<thead>
-    <tr>
-        <th>Name</th>
-        <th>Description</th>
-        <th>Default value</th>
-    </tr>
-</thead>
-<tbody>
-	<tr>
-		<td>name</td>
-		<td>
-object name
-</td>
-		<td>unnamed</td>
-	</tr>
-	<tr>
-		<td>printLog</td>
-		<td>
-if true, emits extra messages at runtime.
-</td>
-		<td>0</td>
-	</tr>
-	<tr>
-		<td>tags</td>
-		<td>
-list of the subsets the objet belongs to
-</td>
-		<td></td>
-	</tr>
-	<tr>
-		<td>bbox</td>
-		<td>
-this object bounding box
-</td>
-		<td></td>
-	</tr>
-	<tr>
-		<td>componentState</td>
-		<td>
-The state of the component among (Dirty, Valid, Undefined, Loading, Invalid).
-</td>
-		<td>Undefined</td>
-	</tr>
-	<tr>
-		<td>listening</td>
-		<td>
-if true, handle the events, otherwise ignore the events
-</td>
-		<td>0</td>
-	</tr>
-	<tr>
-		<td>group</td>
-		<td>
-ID of the group containing this constraint. This ID is used to specify which constraints are solved by which solver, by specifying in each solver which groups of constraints it should handle.
-</td>
-		<td>0</td>
-	</tr>
-	<tr>
-		<td>endTime</td>
-		<td>
-The constraint stops acting after the given value.
-Use a negative value for infinite constraints
-</td>
-		<td>-1</td>
-	</tr>
-	<tr>
-		<td>indices</td>
-		<td>
-Indices of the fixed points
-</td>
-		<td></td>
-	</tr>
-	<tr>
-		<td>origin</td>
-		<td>
-A point in the plane
-</td>
+		</td>
 		<td>0 0</td>
 	</tr>
 	<tr>
 		<td>normal</td>
 		<td>
 Normal vector to the plane
-</td>
+		</td>
 		<td>0 0</td>
 	</tr>
 	<tr>
@@ -246,30 +113,159 @@ Normal vector to the plane
 	<tr>
 		<td>drawSize</td>
 		<td>
-Size of the rendered particles (0 -&gt; point based rendering, &gt;0 -&gt; radius of spheres)
-</td>
+Size of the rendered particles (0 -> point based rendering, >0 -> radius of spheres)
+		</td>
 		<td>0</td>
 	</tr>
 
 </tbody>
 </table>
 
-Links: 
-
-| Name | Description |
-| ---- | ----------- |
-|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|
-|slaves|Sub-objects used internally by this object|
-|master|nullptr for regular objects, or master object for which this object is one sub-objects|
-|mechanicalStates|List of mechanical states to which this component is associated|
-|mstate|MechanicalState used by this component|
-|topology|link to the topology container|
+### Links
 
 
+| Name | Description | Destination type name |
+| ---- | ----------- | --------------------- |
+|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
+|slaves|Sub-objects used internally by this object|BaseObject|
+|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
+|mechanicalStates|List of mechanical states to which this component is associated|BaseMechanicalState|
+|mstate|MechanicalState used by this component|MechanicalState&lt;Vec2d&gt;|
+|topology|link to the topology container|BaseMeshTopology|
 
-## Examples
+<!-- generate_doc -->
+## Vec3d
 
-Component/Constraint/Projective/PlaneProjectiveConstraint.scn
+Templates:
+
+- Vec3d
+
+__Target__: Sofa.Component.Constraint.Projective
+
+__namespace__: sofa::component::constraint::projective
+
+__parents__:
+
+- ProjectiveConstraintSet
+
+### Data
+
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Default value</th>
+        </tr>
+    </thead>
+    <tbody>
+	<tr>
+		<td>name</td>
+		<td>
+object name
+		</td>
+		<td>unnamed</td>
+	</tr>
+	<tr>
+		<td>printLog</td>
+		<td>
+if true, emits extra messages at runtime.
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>tags</td>
+		<td>
+list of the subsets the objet belongs to
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>bbox</td>
+		<td>
+this object bounding box
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>componentState</td>
+		<td>
+The state of the component among (Dirty, Valid, Undefined, Loading, Invalid).
+		</td>
+		<td>Undefined</td>
+	</tr>
+	<tr>
+		<td>listening</td>
+		<td>
+if true, handle the events, otherwise ignore the events
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>group</td>
+		<td>
+ID of the group containing this constraint. This ID is used to specify which constraints are solved by which solver, by specifying in each solver which groups of constraints it should handle.
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>endTime</td>
+		<td>
+The constraint stops acting after the given value.
+Use a negative value for infinite constraints
+		</td>
+		<td>-1</td>
+	</tr>
+	<tr>
+		<td>indices</td>
+		<td>
+Indices of the fixed points
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>origin</td>
+		<td>
+A point in the plane
+		</td>
+		<td>0 0 0</td>
+	</tr>
+	<tr>
+		<td>normal</td>
+		<td>
+Normal vector to the plane
+		</td>
+		<td>0 0 0</td>
+	</tr>
+	<tr>
+		<td colspan="3">Visualization</td>
+	</tr>
+	<tr>
+		<td>drawSize</td>
+		<td>
+Size of the rendered particles (0 -> point based rendering, >0 -> radius of spheres)
+		</td>
+		<td>0</td>
+	</tr>
+
+</tbody>
+</table>
+
+### Links
+
+
+| Name | Description | Destination type name |
+| ---- | ----------- | --------------------- |
+|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
+|slaves|Sub-objects used internally by this object|BaseObject|
+|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
+|mechanicalStates|List of mechanical states to which this component is associated|BaseMechanicalState|
+|mstate|MechanicalState used by this component|MechanicalState&lt;Vec3d&gt;|
+|topology|link to the topology container|BaseMeshTopology|
+
+## Examples 
+
+PlaneProjectiveConstraint.scn
 
 === "XML"
 
@@ -321,50 +317,54 @@ Component/Constraint/Projective/PlaneProjectiveConstraint.scn
             </Node>
         </Node>
     </Node>
+
     ```
 
 === "Python"
 
     ```python
-    def createScene(rootNode):
+    def createScene(root_node):
 
-        root = rootNode.addChild('root', gravity="0 0 0", dt="0.05")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Projective")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Engine.Select")
-        root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Iterative")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Mass")
-        root.addObject('RequiredPlugin', name="Sofa.Component.MechanicalLoad")
-        root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
-        root.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.FEM.Elastic")
-        root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Dynamic")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Grid")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Mapping")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Visual")
-        root.addObject('VisualStyle', displayFlags="hideVisualModels showBehavior")
-        root.addObject('DefaultAnimationLoop')
-        root.addObject('RegularGridTopology', name="grid", nx="3", ny="3", nz="3", xmin="0", xmax="1", ymin="0", ymax="1", zmin="0", zmax="1")
+       root = root_node.addChild('root', gravity="0 0 0", dt="0.05")
 
-        Square = root.addChild('Square')
-        Square.addObject('EulerImplicitSolver', name="Euler Implicit", rayleighStiffness="0.5", rayleighMass="0.5")
-        Square.addObject('CGLinearSolver', template="GraphScattered", name="CG Solver", iterations="40", tolerance="1e-06", threshold="1e-10")
-        Square.addObject('MechanicalObject', template="Vec3", name="mObject1", position="@../grid.position")
-        Square.addObject('TetrahedronSetTopologyContainer', name="Container")
-        Square.addObject('TetrahedronSetTopologyModifier', name="Modifier")
-        Square.addObject('TetrahedronSetGeometryAlgorithms', template="Vec3", name="GeomAlgo")
-        Square.addObject('Hexa2TetraTopologicalMapping', name="Mapping", input="@../grid", output="@Container")
-        Square.addObject('TetrahedronFEMForceField', template="Vec3", name="FEM", method="large", poissonRatio="0.3", youngModulus="500")
-        Square.addObject('UniformMass', totalMass="1")
-        Square.addObject('BoxConstraint', box="-0.05 -0.05 -0.05    0.05 0.05 0.05", drawBoxes="0")
-        Square.addObject('BoxROI', box="-0.05 -0.05 -0.05    0.05 1.05 1.05", drawBoxes="1", name="ProjectToPlane")
-        Square.addObject('PlaneProjectiveConstraint', normal="1 0 0", indices="@[-1].indices", drawSize="0.03")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Projective")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Engine.Select")
+       root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Iterative")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Mass")
+       root.addObject('RequiredPlugin', name="Sofa.Component.MechanicalLoad")
+       root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.FEM.Elastic")
+       root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Dynamic")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Grid")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Mapping")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Visual")
+       root.addObject('VisualStyle', displayFlags="hideVisualModels showBehavior")
+       root.addObject('DefaultAnimationLoop', )
+       root.addObject('RegularGridTopology', name="grid", nx="3", ny="3", nz="3", xmin="0", xmax="1", ymin="0", ymax="1", zmin="0", zmax="1")
 
-        Boundary Edges = Square.addChild('Boundary Edges')
-        Boundary Edges.addObject('TriangleSetTopologyContainer', name="Container")
-        Boundary Edges.addObject('TriangleSetTopologyModifier', name="Modifier")
-        Boundary Edges.addObject('TriangleSetGeometryAlgorithms', template="Vec3", name="GeomAlgo", drawTriangles="1")
-        Boundary Edges.addObject('Tetra2TriangleTopologicalMapping', name="Mapping", input="@../Container", output="@Container")
-        Boundary Edges.addObject('BoxROI', box="0.95 -0.05 -0.05    1.05 1.05 1.05", drawBoxes="1", position="@../mObject1.rest_position", drawTriangles="0", triangles="@Container.triangles", name="pressureBox")
-        Boundary Edges.addObject('TrianglePressureForceField', template="Vec3", showForces="1", pressure="10 10 0", triangleList="@pressureBox.triangleIndices")
+       square = root.addChild('Square')
+
+       square.addObject('EulerImplicitSolver', name="Euler Implicit", rayleighStiffness="0.5", rayleighMass="0.5")
+       square.addObject('CGLinearSolver', template="GraphScattered", name="CG Solver", iterations="40", tolerance="1e-06", threshold="1e-10")
+       square.addObject('MechanicalObject', template="Vec3", name="mObject1", position="@../grid.position")
+       square.addObject('TetrahedronSetTopologyContainer', name="Container")
+       square.addObject('TetrahedronSetTopologyModifier', name="Modifier")
+       square.addObject('TetrahedronSetGeometryAlgorithms', template="Vec3", name="GeomAlgo")
+       square.addObject('Hexa2TetraTopologicalMapping', name="Mapping", input="@../grid", output="@Container")
+       square.addObject('TetrahedronFEMForceField', template="Vec3", name="FEM", method="large", poissonRatio="0.3", youngModulus="500")
+       square.addObject('UniformMass', totalMass="1")
+       square.addObject('BoxConstraint', box="-0.05 -0.05 -0.05    0.05 0.05 0.05", drawBoxes="0")
+       square.addObject('BoxROI', box="-0.05 -0.05 -0.05    0.05 1.05 1.05", drawBoxes="1", name="ProjectToPlane")
+       square.addObject('PlaneProjectiveConstraint', normal="1 0 0", indices="@[-1].indices", drawSize="0.03")
+
+       boundary__edges = Square.addChild('Boundary Edges')
+
+       boundary__edges.addObject('TriangleSetTopologyContainer', name="Container")
+       boundary__edges.addObject('TriangleSetTopologyModifier', name="Modifier")
+       boundary__edges.addObject('TriangleSetGeometryAlgorithms', template="Vec3", name="GeomAlgo", drawTriangles="1")
+       boundary__edges.addObject('Tetra2TriangleTopologicalMapping', name="Mapping", input="@../Container", output="@Container")
+       boundary__edges.addObject('BoxROI', box="0.95 -0.05 -0.05    1.05 1.05 1.05", drawBoxes="1", position="@../mObject1.rest_position", drawTriangles="0", triangles="@Container.triangles", name="pressureBox")
+       boundary__edges.addObject('TrianglePressureForceField', template="Vec3", showForces="1", pressure="10 10 0", triangleList="@pressureBox.triangleIndices")
     ```
 

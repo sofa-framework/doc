@@ -1,111 +1,109 @@
+<!-- generate_doc -->
 # ShapeMatchingForceField
 
 Meshless deformations based on shape matching
 
 
-__Templates__:
+## Vec3d
 
-- `#!c++ Vec3d`
+Templates:
 
-__Target__: `ShapeMatchingPlugin`
+- Vec3d
 
-__namespace__: `#!c++ sofa::component::forcefield`
+__Target__: ShapeMatchingPlugin
 
-__parents__: 
+__namespace__: sofa::component::forcefield
 
-- `#!c++ ForceField`
-
-__categories__: 
+__parents__:
 
 - ForceField
 
-Data: 
+### Data
 
 <table>
-<thead>
-    <tr>
-        <th>Name</th>
-        <th>Description</th>
-        <th>Default value</th>
-    </tr>
-</thead>
-<tbody>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Default value</th>
+        </tr>
+    </thead>
+    <tbody>
 	<tr>
 		<td>name</td>
 		<td>
 object name
-</td>
+		</td>
 		<td>unnamed</td>
 	</tr>
 	<tr>
 		<td>printLog</td>
 		<td>
 if true, emits extra messages at runtime.
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>tags</td>
 		<td>
 list of the subsets the objet belongs to
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>bbox</td>
 		<td>
 this object bounding box
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>componentState</td>
 		<td>
 The state of the component among (Dirty, Valid, Undefined, Loading, Invalid).
-</td>
+		</td>
 		<td>Undefined</td>
 	</tr>
 	<tr>
 		<td>listening</td>
 		<td>
 if true, handle the events, otherwise ignore the events
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>rayleighStiffness</td>
 		<td>
 Rayleigh damping - stiffness matrix coefficient
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>stiffness</td>
 		<td>
 force stiffness
-</td>
+		</td>
 		<td>500</td>
 	</tr>
 
 </tbody>
 </table>
 
-Links: 
-
-| Name | Description |
-| ---- | ----------- |
-|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|
-|slaves|Sub-objects used internally by this object|
-|master|nullptr for regular objects, or master object for which this object is one sub-objects|
-|mechanicalStates|List of mechanical states to which this component is associated|
-|mstate|MechanicalState used by this component|
-|rotationFinder|link to the rotation finder|
+### Links
 
 
+| Name | Description | Destination type name |
+| ---- | ----------- | --------------------- |
+|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
+|slaves|Sub-objects used internally by this object|BaseObject|
+|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
+|mechanicalStates|List of mechanical states to which this component is associated|BaseMechanicalState|
+|mstate|MechanicalState used by this component|MechanicalState&lt;Vec3d&gt;|
+|rotationFinder|link to the rotation finder|ShapeMatchingRotationFinder&lt;Vec3d&gt;|
 
-## Examples
+## Examples 
 
-ShapeMatchingPlugin/share/sofa/examples/ShapeMatchingPlugin/ShapeMatchingForceField.scn
+ShapeMatchingForceField.scn
 
 === "XML"
 
@@ -165,65 +163,71 @@ ShapeMatchingPlugin/share/sofa/examples/ShapeMatchingPlugin/ShapeMatchingForceFi
             <OglModel name="FloorV" src="@loader" texturename="textures/brushed_metal.bmp" dy="-10" scale="1.75" />
         </Node>
     </Node>
+
     ```
 
 === "Python"
 
     ```python
-    def createScene(rootNode):
+    def createScene(root_node):
 
-        root = rootNode.addChild('root', dt="0.02")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Algorithm")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Intersection")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Geometry")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Response.Contact")
-        root.addObject('RequiredPlugin', name="Sofa.Component.IO.Mesh")
-        root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Iterative")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Mapping.Linear")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Mass")
-        root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
-        root.addObject('RequiredPlugin', name="Sofa.Component.SceneUtility")
-        root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Constant")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Visual")
-        root.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
-        root.addObject('RequiredPlugin', name="ShapeMatchingPlugin")
-        root.addObject('DefaultAnimationLoop')
-        root.addObject('VisualStyle', displayFlags="showBehaviorModels showForceFields")
-        root.addObject('CollisionPipeline', verbose="0", draw="0")
-        root.addObject('BruteForceBroadPhase')
-        root.addObject('BVHNarrowPhase')
-        root.addObject('MinProximityIntersection', name="Proximity", alarmDistance="0.8", contactDistance="0.5")
-        root.addObject('CollisionResponse', name="Response", response="PenalityContactForceField")
+       root = root_node.addChild('root', dt="0.02")
 
-        cubeFEM = root.addChild('cubeFEM')
-        cubeFEM.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="false")
-        cubeFEM.addObject('CGLinearSolver', iterations="25", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
-        cubeFEM.addObject('MeshOBJLoader', name="loader", filename="mesh/dragon.obj")
-        cubeFEM.addObject('MeshTopology', src="@loader")
-        cubeFEM.addObject('MechanicalObject', src="@loader", scale="1", dz="10")
-        cubeFEM.addObject('UniformMass', totalMass="3")
-        cubeFEM.addObject('RotationFinder', neighborhoodLevel="1", radius="0.1")
-        cubeFEM.addObject('ShapeMatchingForceField', name="ShapeMatching", stiffness="100")
-        cubeFEM.addObject('MeshOBJLoader', name="loader", filename="mesh/dragon.obj")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Algorithm")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Intersection")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Geometry")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Response.Contact")
+       root.addObject('RequiredPlugin', name="Sofa.Component.IO.Mesh")
+       root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Iterative")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Mapping.Linear")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Mass")
+       root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', name="Sofa.Component.SceneUtility")
+       root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Constant")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Visual")
+       root.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
+       root.addObject('RequiredPlugin', name="ShapeMatchingPlugin")
+       root.addObject('DefaultAnimationLoop', )
+       root.addObject('VisualStyle', displayFlags="showBehaviorModels showForceFields")
+       root.addObject('CollisionPipeline', verbose="0", draw="0")
+       root.addObject('BruteForceBroadPhase', )
+       root.addObject('BVHNarrowPhase', )
+       root.addObject('MinProximityIntersection', name="Proximity", alarmDistance="0.8", contactDistance="0.5")
+       root.addObject('CollisionResponse', name="Response", response="PenalityContactForceField")
 
-        Visu = cubeFEM.addChild('Visu')
-        Visu.addObject('OglModel', name="Visual", src="@../loader", color="red", dz="10")
-        Visu.addObject('IdentityMapping', input="@..", output="@Visual")
+       cube_fem = root.addChild('cubeFEM')
 
-        Surf = cubeFEM.addChild('Surf')
-        Surf.addObject('MeshTopology', src="@../loader")
-        Surf.addObject('MechanicalObject', src="@../loader", dz="10")
-        Surf.addObject('SphereCollisionModel', contactStiffness="10", radius="0.1")
-        Surf.addObject('IdentityMapping')
+       cube_fem.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="false")
+       cube_fem.addObject('CGLinearSolver', iterations="25", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
+       cube_fem.addObject('MeshOBJLoader', name="loader", filename="mesh/dragon.obj")
+       cube_fem.addObject('MeshTopology', src="@loader")
+       cube_fem.addObject('MechanicalObject', src="@loader", scale="1", dz="10")
+       cube_fem.addObject('UniformMass', totalMass="3")
+       cube_fem.addObject('RotationFinder', neighborhoodLevel="1", radius="0.1")
+       cube_fem.addObject('ShapeMatchingForceField', name="ShapeMatching", stiffness="100")
+       cube_fem.addObject('MeshOBJLoader', name="loader", filename="mesh/dragon.obj")
 
-        Floor = root.addChild('Floor')
-        Floor.addObject('MeshOBJLoader', name="loader", filename="mesh/floor3.obj")
-        Floor.addObject('MeshTopology', src="@loader")
-        Floor.addObject('MechanicalObject', src="@loader", dy="-10", scale="1.75")
-        Floor.addObject('TriangleCollisionModel', name="FloorTriangle", simulated="0", moving="0")
-        Floor.addObject('LineCollisionModel', name="FloorLine", simulated="0", moving="0")
-        Floor.addObject('PointCollisionModel', name="FloorPoint", simulated="0", moving="0")
-        Floor.addObject('OglModel', name="FloorV", src="@loader", texturename="textures/brushed_metal.bmp", dy="-10", scale="1.75")
+       visu = cubeFEM.addChild('Visu')
+
+       visu.addObject('OglModel', name="Visual", src="@../loader", color="red", dz="10")
+       visu.addObject('IdentityMapping', input="@..", output="@Visual")
+
+       surf = cubeFEM.addChild('Surf')
+
+       surf.addObject('MeshTopology', src="@../loader")
+       surf.addObject('MechanicalObject', src="@../loader", dz="10")
+       surf.addObject('SphereCollisionModel', contactStiffness="10", radius="0.1")
+       surf.addObject('IdentityMapping', )
+
+       floor = root.addChild('Floor')
+
+       floor.addObject('MeshOBJLoader', name="loader", filename="mesh/floor3.obj")
+       floor.addObject('MeshTopology', src="@loader")
+       floor.addObject('MechanicalObject', src="@loader", dy="-10", scale="1.75")
+       floor.addObject('TriangleCollisionModel', name="FloorTriangle", simulated="0", moving="0")
+       floor.addObject('LineCollisionModel', name="FloorLine", simulated="0", moving="0")
+       floor.addObject('PointCollisionModel', name="FloorPoint", simulated="0", moving="0")
+       floor.addObject('OglModel', name="FloorV", src="@loader", texturename="textures/brushed_metal.bmp", dy="-10", scale="1.75")
     ```
 

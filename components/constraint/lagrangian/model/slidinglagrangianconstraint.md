@@ -1,89 +1,88 @@
+<!-- generate_doc -->
 # SlidingLagrangianConstraint
 
 TODO-SlidingLagrangianConstraint
 
 
-__Templates__:
+## Vec3d
 
-- `#!c++ Vec3d`
+Templates:
 
-__Target__: `Sofa.Component.Constraint.Lagrangian.Model`
+- Vec3d
 
-__namespace__: `#!c++ sofa::component::constraint::lagrangian::model`
+__Target__: Sofa.Component.Constraint.Lagrangian.Model
 
-__parents__: 
+__namespace__: sofa::component::constraint::lagrangian::model
 
-- `#!c++ PairInteractionConstraint`
+__parents__:
 
-__categories__: 
+- PairInteractionConstraint
 
-- ConstraintSet
-
-Data: 
+### Data
 
 <table>
-<thead>
-    <tr>
-        <th>Name</th>
-        <th>Description</th>
-        <th>Default value</th>
-    </tr>
-</thead>
-<tbody>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Default value</th>
+        </tr>
+    </thead>
+    <tbody>
 	<tr>
 		<td>name</td>
 		<td>
 object name
-</td>
+		</td>
 		<td>unnamed</td>
 	</tr>
 	<tr>
 		<td>printLog</td>
 		<td>
 if true, emits extra messages at runtime.
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>tags</td>
 		<td>
 list of the subsets the objet belongs to
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>bbox</td>
 		<td>
 this object bounding box
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>componentState</td>
 		<td>
 The state of the component among (Dirty, Valid, Undefined, Loading, Invalid).
-</td>
+		</td>
 		<td>Undefined</td>
 	</tr>
 	<tr>
 		<td>listening</td>
 		<td>
 if true, handle the events, otherwise ignore the events
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>group</td>
 		<td>
 ID of the group containing this constraint. This ID is used to specify which constraints are solved by which solver, by specifying in each solver which groups of constraints it should handle.
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>constraintIndex</td>
 		<td>
 Constraint index (first index in the right hand term resolution vector)
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
@@ -91,57 +90,56 @@ Constraint index (first index in the right hand term resolution vector)
 		<td>
 The constraint stops acting after the given value.
 Use a negative value for infinite constraints
-</td>
+		</td>
 		<td>-1</td>
 	</tr>
 	<tr>
 		<td>sliding_point</td>
 		<td>
 index of the spliding point on the first model
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>axis_1</td>
 		<td>
 index of one end of the sliding axis
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>axis_2</td>
 		<td>
 index of the other end of the sliding axis
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>force</td>
 		<td>
 force (impulse) used to solve the constraint
-</td>
+		</td>
 		<td></td>
 	</tr>
 
 </tbody>
 </table>
 
-Links: 
-
-| Name | Description |
-| ---- | ----------- |
-|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|
-|slaves|Sub-objects used internally by this object|
-|master|nullptr for regular objects, or master object for which this object is one sub-objects|
-|mechanicalStates|List of mechanical states to which this component is associated|
-|object1|First object associated to this component|
-|object2|Second object associated to this component|
+### Links
 
 
+| Name | Description | Destination type name |
+| ---- | ----------- | --------------------- |
+|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
+|slaves|Sub-objects used internally by this object|BaseObject|
+|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
+|mechanicalStates|List of mechanical states to which this component is associated|BaseMechanicalState|
+|object1|First object associated to this component|MechanicalState&lt;Vec3d&gt;|
+|object2|Second object associated to this component|MechanicalState&lt;Vec3d&gt;|
 
-## Examples
+## Examples 
 
-Component/Constraint/Lagrangian/SlidingLagrangianConstraint.scn
+SlidingLagrangianConstraint.scn
 
 === "XML"
 
@@ -231,94 +229,108 @@ Component/Constraint/Lagrangian/SlidingLagrangianConstraint.scn
         </Node>
         <SlidingLagrangianConstraint name="constraint2" object1="@CUBE_2/Constraints/points" object2="@Line/points" sliding_point="0" axis_1="0" axis_2="1" />
     </Node>
+
     ```
 
 === "Python"
 
     ```python
-    def createScene(rootNode):
+    def createScene(root_node):
 
-        root = rootNode.addChild('root', dt="0.001", gravity="0 -9.81 0")
-        root.addObject('RequiredPlugin', name="Sofa.Component.AnimationLoop")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Algorithm")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Intersection")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Geometry")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Response.Contact")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Lagrangian.Correction")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Lagrangian.Model")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Lagrangian.Solver")
-        root.addObject('RequiredPlugin', name="Sofa.Component.IO.Mesh")
-        root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Iterative")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Mapping.NonLinear")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Mass")
-        root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
-        root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Constant")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Visual")
-        root.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
-        root.addObject('VisualStyle', displayFlags="showForceFields showVisual showBehavior")
-        root.addObject('FreeMotionAnimationLoop')
-        root.addObject('GenericConstraintSolver', maxIterations="1000", tolerance="0.001")
-        root.addObject('CollisionPipeline', depth="6", verbose="0", draw="0")
-        root.addObject('BruteForceBroadPhase')
-        root.addObject('BVHNarrowPhase')
-        root.addObject('LocalMinDistance', name="Proximity", alarmDistance="0.2", contactDistance="0.09", angleCone="0.0")
-        root.addObject('CollisionResponse', name="Response", response="FrictionContactConstraint")
+       root = root_node.addChild('root', dt="0.001", gravity="0 -9.81 0")
 
-        SlidingPoint = root.addChild('SlidingPoint')
-        SlidingPoint.addObject('MechanicalObject', name="points", template="Vec3", position="1 1.25 -0.2 	1 1.25 0.2", free_position="1 1.25 -0.2 	1 1.25 0.2")
+       root.addObject('RequiredPlugin', name="Sofa.Component.AnimationLoop")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Algorithm")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Intersection")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Geometry")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Response.Contact")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Lagrangian.Correction")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Lagrangian.Model")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Lagrangian.Solver")
+       root.addObject('RequiredPlugin', name="Sofa.Component.IO.Mesh")
+       root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Iterative")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Mapping.NonLinear")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Mass")
+       root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Constant")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Visual")
+       root.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
+       root.addObject('VisualStyle', displayFlags="showForceFields showVisual showBehavior")
+       root.addObject('FreeMotionAnimationLoop', )
+       root.addObject('GenericConstraintSolver', maxIterations="1000", tolerance="0.001")
+       root.addObject('CollisionPipeline', depth="6", verbose="0", draw="0")
+       root.addObject('BruteForceBroadPhase', )
+       root.addObject('BVHNarrowPhase', )
+       root.addObject('LocalMinDistance', name="Proximity", alarmDistance="0.2", contactDistance="0.09", angleCone="0.0")
+       root.addObject('CollisionResponse', name="Response", response="FrictionContactConstraint")
 
-        CUBE_1 = root.addChild('CUBE_1')
-        CUBE_1.addObject('EulerImplicitSolver', printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
-        CUBE_1.addObject('CGLinearSolver', iterations="25", tolerance="1.0e-9", threshold="1.0e-9")
-        CUBE_1.addObject('MechanicalObject', template="Rigid3", scale="1.0", dx="0.0", dy="0", dz="0.0")
-        CUBE_1.addObject('UniformMass', totalMass="10.0")
-        CUBE_1.addObject('UncoupledConstraintCorrection')
+       sliding_point = root.addChild('SlidingPoint')
 
-        Visu = CUBE_1.addChild('Visu')
-        Visu.addObject('MeshOBJLoader', name="myLoader1", filename="mesh/cube.obj")
-        Visu.addObject('OglModel', name="Visual1", src="@myLoader1", color="1 1 0 1.0")
-        Visu.addObject('RigidMapping', input="@..", output="@Visual1")
+       sliding_point.addObject('MechanicalObject', name="points", template="Vec3", position="1 1.25 -0.2 	1 1.25 0.2", free_position="1 1.25 -0.2 	1 1.25 0.2")
 
-        ColliCube = CUBE_1.addChild('ColliCube')
-        ColliCube.addObject('MeshTopology', filename="mesh/cube.obj")
-        ColliCube.addObject('MechanicalObject', scale="1.0")
-        ColliCube.addObject('TriangleCollisionModel', contactStiffness="0.1")
-        ColliCube.addObject('LineCollisionModel', contactStiffness="0.1")
-        ColliCube.addObject('PointCollisionModel', contactStiffness="0.1")
-        ColliCube.addObject('RigidMapping')
+       cube_1 = root.addChild('CUBE_1')
 
-        Constraints = CUBE_1.addChild('Constraints')
-        Constraints.addObject('MechanicalObject', name="points", template="Vec3", position="1 1.25 1	1 1.25 -1	0 0 0")
-        Constraints.addObject('RigidMapping')
-        root.addObject('SlidingLagrangianConstraint', name="constraint1", object1="@SlidingPoint/points", object2="@CUBE_1/Constraints/points", sliding_point="0", axis_1="0", axis_2="1")
+       cube_1.addObject('EulerImplicitSolver', printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
+       cube_1.addObject('CGLinearSolver', iterations="25", tolerance="1.0e-9", threshold="1.0e-9")
+       cube_1.addObject('MechanicalObject', template="Rigid3", scale="1.0", dx="0.0", dy="0", dz="0.0")
+       cube_1.addObject('UniformMass', totalMass="10.0")
+       cube_1.addObject('UncoupledConstraintCorrection', )
 
-        Line = root.addChild('Line')
-        Line.addObject('MechanicalObject', name="points", template="Vec3", position="6 1.25 1	6 1.25 -1", free_position="6 1.25 1	6 1.25 -1")
+       visu = CUBE_1.addChild('Visu')
 
-        CUBE_2 = root.addChild('CUBE_2')
-        CUBE_2.addObject('EulerImplicitSolver', printLog="false")
-        CUBE_2.addObject('CGLinearSolver', iterations="25", tolerance="1.0e-9", threshold="1.0e-9")
-        CUBE_2.addObject('MechanicalObject', template="Rigid3", scale="1.0", dx="5.0", dy="0", dz="0.0")
-        CUBE_2.addObject('UniformMass', totalMass="10.0")
-        CUBE_2.addObject('UncoupledConstraintCorrection')
+       visu.addObject('MeshOBJLoader', name="myLoader1", filename="mesh/cube.obj")
+       visu.addObject('OglModel', name="Visual1", src="@myLoader1", color="1 1 0 1.0")
+       visu.addObject('RigidMapping', input="@..", output="@Visual1")
 
-        Visu = CUBE_2.addChild('Visu')
-        Visu.addObject('MeshOBJLoader', name="myLoader2", filename="mesh/cube.obj")
-        Visu.addObject('OglModel', name="Visual2", src="@myLoader2", color="1 1 0 1.0")
-        Visu.addObject('RigidMapping', input="@..", output="@Visual2")
+       colli_cube = CUBE_1.addChild('ColliCube')
 
-        ColliCube = CUBE_2.addChild('ColliCube')
-        ColliCube.addObject('MeshTopology', filename="mesh/cube.obj")
-        ColliCube.addObject('MechanicalObject', scale="1.0")
-        ColliCube.addObject('TriangleCollisionModel', contactStiffness="0.1")
-        ColliCube.addObject('LineCollisionModel', contactStiffness="0.1")
-        ColliCube.addObject('PointCollisionModel', contactStiffness="0.1")
-        ColliCube.addObject('RigidMapping')
+       colli_cube.addObject('MeshTopology', filename="mesh/cube.obj")
+       colli_cube.addObject('MechanicalObject', scale="1.0")
+       colli_cube.addObject('TriangleCollisionModel', contactStiffness="0.1")
+       colli_cube.addObject('LineCollisionModel', contactStiffness="0.1")
+       colli_cube.addObject('PointCollisionModel', contactStiffness="0.1")
+       colli_cube.addObject('RigidMapping', )
 
-        Constraints = CUBE_2.addChild('Constraints')
-        Constraints.addObject('MechanicalObject', name="points", template="Vec3", position="1 1.25 1")
-        Constraints.addObject('RigidMapping')
-        root.addObject('SlidingLagrangianConstraint', name="constraint2", object1="@CUBE_2/Constraints/points", object2="@Line/points", sliding_point="0", axis_1="0", axis_2="1")
+       constraints = CUBE_1.addChild('Constraints')
+
+       constraints.addObject('MechanicalObject', name="points", template="Vec3", position="1 1.25 1	1 1.25 -1	0 0 0")
+       constraints.addObject('RigidMapping', )
+
+       root.addObject('SlidingLagrangianConstraint', name="constraint1", object1="@SlidingPoint/points", object2="@CUBE_1/Constraints/points", sliding_point="0", axis_1="0", axis_2="1")
+
+       line = root.addChild('Line')
+
+       line.addObject('MechanicalObject', name="points", template="Vec3", position="6 1.25 1	6 1.25 -1", free_position="6 1.25 1	6 1.25 -1")
+
+       cube_2 = root.addChild('CUBE_2')
+
+       cube_2.addObject('EulerImplicitSolver', printLog="false")
+       cube_2.addObject('CGLinearSolver', iterations="25", tolerance="1.0e-9", threshold="1.0e-9")
+       cube_2.addObject('MechanicalObject', template="Rigid3", scale="1.0", dx="5.0", dy="0", dz="0.0")
+       cube_2.addObject('UniformMass', totalMass="10.0")
+       cube_2.addObject('UncoupledConstraintCorrection', )
+
+       visu = CUBE_2.addChild('Visu')
+
+       visu.addObject('MeshOBJLoader', name="myLoader2", filename="mesh/cube.obj")
+       visu.addObject('OglModel', name="Visual2", src="@myLoader2", color="1 1 0 1.0")
+       visu.addObject('RigidMapping', input="@..", output="@Visual2")
+
+       colli_cube = CUBE_2.addChild('ColliCube')
+
+       colli_cube.addObject('MeshTopology', filename="mesh/cube.obj")
+       colli_cube.addObject('MechanicalObject', scale="1.0")
+       colli_cube.addObject('TriangleCollisionModel', contactStiffness="0.1")
+       colli_cube.addObject('LineCollisionModel', contactStiffness="0.1")
+       colli_cube.addObject('PointCollisionModel', contactStiffness="0.1")
+       colli_cube.addObject('RigidMapping', )
+
+       constraints = CUBE_2.addChild('Constraints')
+
+       constraints.addObject('MechanicalObject', name="points", template="Vec3", position="1 1.25 1")
+       constraints.addObject('RigidMapping', )
+
+       root.addObject('SlidingLagrangianConstraint', name="constraint2", object1="@CUBE_2/Constraints/points", object2="@Line/points", sliding_point="0", axis_1="0", axis_2="1")
     ```
 

@@ -1,142 +1,96 @@
+<!-- generate_doc -->
 # GenerateCylinder
 
 Generate a Cylindrical Tetrahedral Mesh
 
 
-__Templates__:
+## Vec3d
 
-- `#!c++ Vec3d`
+Templates:
 
-__Target__: `Sofa.Component.Engine.Generate`
+- Vec3d
 
-__namespace__: `#!c++ sofa::component::engine::generate`
+__Target__: Sofa.Component.Engine.Generate
 
-__parents__: 
+__namespace__: sofa::component::engine::generate
 
-- `#!c++ DataEngine`
+__parents__:
 
-__categories__: 
+- DataEngine
 
-- Engine
-
-Data: 
+### Data
 
 <table>
-<thead>
-    <tr>
-        <th>Name</th>
-        <th>Description</th>
-        <th>Default value</th>
-    </tr>
-</thead>
-<tbody>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Default value</th>
+        </tr>
+    </thead>
+    <tbody>
 	<tr>
 		<td>name</td>
 		<td>
 object name
-</td>
+		</td>
 		<td>unnamed</td>
 	</tr>
 	<tr>
 		<td>printLog</td>
 		<td>
 if true, emits extra messages at runtime.
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>tags</td>
 		<td>
 list of the subsets the objet belongs to
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>bbox</td>
 		<td>
 this object bounding box
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>componentState</td>
 		<td>
 The state of the component among (Dirty, Valid, Undefined, Loading, Invalid).
-</td>
+		</td>
 		<td>Undefined</td>
 	</tr>
 	<tr>
 		<td>listening</td>
 		<td>
 if true, handle the events, otherwise ignore the events
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>BezierTriangleDegree</td>
 		<td>
 order of Bezier triangles
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>BezierTetrahedronDegree</td>
 		<td>
 order of Bezier tetrahedra
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>openSurface</td>
 		<td>
 if the cylinder is open at its 2 ends
-</td>
+		</td>
 		<td>1</td>
-	</tr>
-	<tr>
-		<td colspan="3">Inputs</td>
-	</tr>
-	<tr>
-		<td>radius</td>
-		<td>
-input cylinder radius
-</td>
-		<td>0.2</td>
-	</tr>
-	<tr>
-		<td>height</td>
-		<td>
-input cylinder height
-</td>
-		<td>1</td>
-	</tr>
-	<tr>
-		<td>origin</td>
-		<td>
-cylinder origin point
-</td>
-		<td>0 0 0</td>
-	</tr>
-	<tr>
-		<td>resCircumferential</td>
-		<td>
-Resolution in the circumferential direction
-</td>
-		<td>6</td>
-	</tr>
-	<tr>
-		<td>resRadial</td>
-		<td>
-Resolution in the radial direction
-</td>
-		<td>3</td>
-	</tr>
-	<tr>
-		<td>resHeight</td>
-		<td>
-Resolution in the height direction
-</td>
-		<td>5</td>
 	</tr>
 	<tr>
 		<td colspan="3">Outputs</td>
@@ -145,75 +99,119 @@ Resolution in the height direction
 		<td>output_TetrahedraPosition</td>
 		<td>
 output array of 3d points of tetrahedra mesh
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>output_TrianglesPosition</td>
 		<td>
 output array of 3d points of triangle mesh
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>tetrahedra</td>
 		<td>
 output mesh tetrahedra
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>triangles</td>
 		<td>
 output triangular mesh
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>BezierTriangleWeights</td>
 		<td>
 weights of rational Bezier triangles
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>isBezierTriangleRational</td>
 		<td>
 booleans indicating if each Bezier triangle is rational or integral
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>BezierTetrahedronWeights</td>
 		<td>
 weights of rational Bezier tetrahedra
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>isBezierTetrahedronRational</td>
 		<td>
 booleans indicating if each Bezier tetrahedron is rational or integral
-</td>
+		</td>
 		<td></td>
+	</tr>
+	<tr>
+		<td colspan="3">Inputs</td>
+	</tr>
+	<tr>
+		<td>radius</td>
+		<td>
+input cylinder radius
+		</td>
+		<td>0.2</td>
+	</tr>
+	<tr>
+		<td>height</td>
+		<td>
+input cylinder height
+		</td>
+		<td>1</td>
+	</tr>
+	<tr>
+		<td>origin</td>
+		<td>
+cylinder origin point
+		</td>
+		<td>0 0 0</td>
+	</tr>
+	<tr>
+		<td>resCircumferential</td>
+		<td>
+Resolution in the circumferential direction
+		</td>
+		<td>6</td>
+	</tr>
+	<tr>
+		<td>resRadial</td>
+		<td>
+Resolution in the radial direction
+		</td>
+		<td>3</td>
+	</tr>
+	<tr>
+		<td>resHeight</td>
+		<td>
+Resolution in the height direction
+		</td>
+		<td>5</td>
 	</tr>
 
 </tbody>
 </table>
 
-Links: 
-
-| Name | Description |
-| ---- | ----------- |
-|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|
-|slaves|Sub-objects used internally by this object|
-|master|nullptr for regular objects, or master object for which this object is one sub-objects|
+### Links
 
 
+| Name | Description | Destination type name |
+| ---- | ----------- | --------------------- |
+|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
+|slaves|Sub-objects used internally by this object|BaseObject|
+|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
 
-## Examples
+## Examples 
 
-Component/Engine/Generate/GenerateCylinder.scn
+GenerateCylinder.scn
 
 === "XML"
 
@@ -254,35 +252,37 @@ Component/Engine/Generate/GenerateCylinder.scn
 === "Python"
 
     ```python
-    def createScene(rootNode):
+    def createScene(root_node):
 
-        root = rootNode.addChild('root', dt="1", showBoundingTree="0", gravity="0 0 0")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Projective")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Engine.Generate")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Engine.Select")
-        root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Iterative")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Mass")
-        root.addObject('RequiredPlugin', name="Sofa.Component.MechanicalLoad")
-        root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
-        root.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.FEM.Elastic")
-        root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Dynamic")
-        root.addObject('DefaultAnimationLoop')
-        root.addObject('GenerateCylinder', template="Vec3", name="Cylinder", radius="0.2", height="1", resHeight="7", resCircumferential="7", resRadial="3")
+       root = root_node.addChild('root', dt="1", showBoundingTree="0", gravity="0 0 0")
 
-        Tetra = root.addChild('Tetra')
-        Tetra.addObject('CGLinearSolver', iterations="3000", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
-        Tetra.addObject('EulerImplicitSolver', name="default12", rayleighStiffness="0.01", rayleighMass="0.1")
-        Tetra.addObject('TetrahedronSetTopologyContainer', name="Container", tetrahedra="@../Cylinder.tetrahedra", position="@../Cylinder.output_position", createTriangleArray="1")
-        Tetra.addObject('TetrahedronSetGeometryAlgorithms', drawEdges="1")
-        Tetra.addObject('MechanicalObject', name="dofs", showObject="1")
-        Tetra.addObject('MeshMatrixMass', name="mass", lumping="1", printMass="0", massDensity="1")
-        Tetra.addObject('BoxROI', box="-0.01 -0.01 -0.01 0.01 0.01 0.01", drawBoxes="1", name="fixedPoint")
-        Tetra.addObject('FixedProjectiveConstraint', indices="@fixedPoint.indices")
-        Tetra.addObject('FixedPlaneProjectiveConstraint', direction="0 0 1", dmin="-0.01", dmax="0.01")
-        Tetra.addObject('BoxROI', box="-0.2 -0.2 0.99 0.2 0.2 1.01", drawBoxes="1", name="pressurePlane")
-        Tetra.addObject('LineProjectiveConstraint', direction="1 0 0", origin="0 0 0", indices="15")
-        Tetra.addObject('TrianglePressureForceField', showForces="1", triangleList="@pressurePlane.triangleIndices", pressure="0.01 0 -0.04")
-        Tetra.addObject('FastTetrahedralCorotationalForceField', poissonRatio="0.45", youngModulus="1", method="polar")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Projective")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Engine.Generate")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Engine.Select")
+       root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Iterative")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Mass")
+       root.addObject('RequiredPlugin', name="Sofa.Component.MechanicalLoad")
+       root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.FEM.Elastic")
+       root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Dynamic")
+       root.addObject('DefaultAnimationLoop', )
+       root.addObject('GenerateCylinder', template="Vec3", name="Cylinder", radius="0.2", height="1", resHeight="7", resCircumferential="7", resRadial="3")
+
+       tetra = root.addChild('Tetra')
+
+       tetra.addObject('CGLinearSolver', iterations="3000", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
+       tetra.addObject('EulerImplicitSolver', name="default12", rayleighStiffness="0.01", rayleighMass="0.1")
+       tetra.addObject('TetrahedronSetTopologyContainer', name="Container", tetrahedra="@../Cylinder.tetrahedra", position="@../Cylinder.output_position", createTriangleArray="1")
+       tetra.addObject('TetrahedronSetGeometryAlgorithms', drawEdges="1")
+       tetra.addObject('MechanicalObject', name="dofs", showObject="1")
+       tetra.addObject('MeshMatrixMass', name="mass", lumping="1", printMass="0", massDensity="1")
+       tetra.addObject('BoxROI', box="-0.01 -0.01 -0.01 0.01 0.01 0.01", drawBoxes="1", name="fixedPoint")
+       tetra.addObject('FixedProjectiveConstraint', indices="@fixedPoint.indices")
+       tetra.addObject('FixedPlaneProjectiveConstraint', direction="0 0 1", dmin="-0.01", dmax="0.01")
+       tetra.addObject('BoxROI', box="-0.2 -0.2 0.99 0.2 0.2 1.01", drawBoxes="1", name="pressurePlane")
+       tetra.addObject('LineProjectiveConstraint', direction="1 0 0", origin="0 0 0", indices="15")
+       tetra.addObject('TrianglePressureForceField', showForces="1", triangleList="@pressurePlane.triangleIndices", pressure="0.01 0 -0.04")
+       tetra.addObject('FastTetrahedralCorotationalForceField', poissonRatio="0.45", youngModulus="1", method="polar")
     ```
 

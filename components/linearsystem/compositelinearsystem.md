@@ -1,113 +1,1001 @@
+<!-- generate_doc -->
 # CompositeLinearSystem
 
 Component acting like a linear system, but delegates the linear system functionalities to a list of real linear systems
 
 
-__Templates__:
+## BlockDiagonalMatrixMat3x3d
 
-- `#!c++ BlockDiagonalMatrixMat3x3d`
-- `#!c++ CompressedRowSparseMatrixMat2x2d`
-- `#!c++ CompressedRowSparseMatrixMat3x3d`
-- `#!c++ CompressedRowSparseMatrixMat4x4d`
-- `#!c++ CompressedRowSparseMatrixMat6x6d`
-- `#!c++ CompressedRowSparseMatrixMat8x8d`
-- `#!c++ CompressedRowSparseMatrixd`
-- `#!c++ DiagonalMatrix`
-- `#!c++ FullMatrix`
-- `#!c++ RotationMatrixd`
-- `#!c++ SparseMatrix`
+Templates:
 
-__Target__: `Sofa.Component.LinearSystem`
+- BlockDiagonalMatrixMat3x3d
 
-__namespace__: `#!c++ sofa::component::linearsystem`
+__Target__: Sofa.Component.LinearSystem
 
-__parents__: 
+__namespace__: sofa::component::linearsystem
 
-- `#!c++ TypedMatrixLinearSystem`
+__parents__:
 
-__categories__: 
+- TypedMatrixLinearSystem
 
-- LinearSystem
-
-Data: 
+### Data
 
 <table>
-<thead>
-    <tr>
-        <th>Name</th>
-        <th>Description</th>
-        <th>Default value</th>
-    </tr>
-</thead>
-<tbody>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Default value</th>
+        </tr>
+    </thead>
+    <tbody>
 	<tr>
 		<td>name</td>
 		<td>
 object name
-</td>
+		</td>
 		<td>unnamed</td>
 	</tr>
 	<tr>
 		<td>printLog</td>
 		<td>
 if true, emits extra messages at runtime.
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>tags</td>
 		<td>
 list of the subsets the objet belongs to
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>bbox</td>
 		<td>
 this object bounding box
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>componentState</td>
 		<td>
 The state of the component among (Dirty, Valid, Undefined, Loading, Invalid).
-</td>
+		</td>
 		<td>Undefined</td>
 	</tr>
 	<tr>
 		<td>listening</td>
 		<td>
 if true, handle the events, otherwise ignore the events
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>matrixSize</td>
 		<td>
 Size of the global matrix
-</td>
+		</td>
 		<td></td>
 	</tr>
 
 </tbody>
 </table>
 
-Links: 
-
-| Name | Description |
-| ---- | ----------- |
-|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|
-|slaves|Sub-objects used internally by this object|
-|master|nullptr for regular objects, or master object for which this object is one sub-objects|
-|linearSystems|List of linear systems to assemble|
-|solverLinearSystem|Among the list of linear systems, which one is to be used by the linear solver|
+### Links
 
 
+| Name | Description | Destination type name |
+| ---- | ----------- | --------------------- |
+|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
+|slaves|Sub-objects used internally by this object|BaseObject|
+|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
+|linearSystems|List of linear systems to assemble|TypedMatrixLinearSystem&lt;BlockDiagonalMatrixMat3x3d&gt;|
+|solverLinearSystem|Among the list of linear systems, which one is to be used by the linear solver|TypedMatrixLinearSystem&lt;BlockDiagonalMatrixMat3x3d&gt;|
 
-## Examples
+<!-- generate_doc -->
+## CompressedRowSparseMatrixMat2x2d
 
-Component/LinearSystem/CompositeLinearSystem.scn
+Templates:
+
+- CompressedRowSparseMatrixMat2x2d
+
+__Target__: Sofa.Component.LinearSystem
+
+__namespace__: sofa::component::linearsystem
+
+__parents__:
+
+- TypedMatrixLinearSystem
+
+### Data
+
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Default value</th>
+        </tr>
+    </thead>
+    <tbody>
+	<tr>
+		<td>name</td>
+		<td>
+object name
+		</td>
+		<td>unnamed</td>
+	</tr>
+	<tr>
+		<td>printLog</td>
+		<td>
+if true, emits extra messages at runtime.
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>tags</td>
+		<td>
+list of the subsets the objet belongs to
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>bbox</td>
+		<td>
+this object bounding box
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>componentState</td>
+		<td>
+The state of the component among (Dirty, Valid, Undefined, Loading, Invalid).
+		</td>
+		<td>Undefined</td>
+	</tr>
+	<tr>
+		<td>listening</td>
+		<td>
+if true, handle the events, otherwise ignore the events
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>matrixSize</td>
+		<td>
+Size of the global matrix
+		</td>
+		<td></td>
+	</tr>
+
+</tbody>
+</table>
+
+### Links
+
+
+| Name | Description | Destination type name |
+| ---- | ----------- | --------------------- |
+|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
+|slaves|Sub-objects used internally by this object|BaseObject|
+|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
+|linearSystems|List of linear systems to assemble|TypedMatrixLinearSystem&lt;CompressedRowSparseMatrixMat2x2d&gt;|
+|solverLinearSystem|Among the list of linear systems, which one is to be used by the linear solver|TypedMatrixLinearSystem&lt;CompressedRowSparseMatrixMat2x2d&gt;|
+
+<!-- generate_doc -->
+## CompressedRowSparseMatrixMat3x3d
+
+Templates:
+
+- CompressedRowSparseMatrixMat3x3d
+
+__Target__: Sofa.Component.LinearSystem
+
+__namespace__: sofa::component::linearsystem
+
+__parents__:
+
+- TypedMatrixLinearSystem
+
+### Data
+
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Default value</th>
+        </tr>
+    </thead>
+    <tbody>
+	<tr>
+		<td>name</td>
+		<td>
+object name
+		</td>
+		<td>unnamed</td>
+	</tr>
+	<tr>
+		<td>printLog</td>
+		<td>
+if true, emits extra messages at runtime.
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>tags</td>
+		<td>
+list of the subsets the objet belongs to
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>bbox</td>
+		<td>
+this object bounding box
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>componentState</td>
+		<td>
+The state of the component among (Dirty, Valid, Undefined, Loading, Invalid).
+		</td>
+		<td>Undefined</td>
+	</tr>
+	<tr>
+		<td>listening</td>
+		<td>
+if true, handle the events, otherwise ignore the events
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>matrixSize</td>
+		<td>
+Size of the global matrix
+		</td>
+		<td></td>
+	</tr>
+
+</tbody>
+</table>
+
+### Links
+
+
+| Name | Description | Destination type name |
+| ---- | ----------- | --------------------- |
+|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
+|slaves|Sub-objects used internally by this object|BaseObject|
+|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
+|linearSystems|List of linear systems to assemble|TypedMatrixLinearSystem&lt;CompressedRowSparseMatrixMat3x3d&gt;|
+|solverLinearSystem|Among the list of linear systems, which one is to be used by the linear solver|TypedMatrixLinearSystem&lt;CompressedRowSparseMatrixMat3x3d&gt;|
+
+<!-- generate_doc -->
+## CompressedRowSparseMatrixMat4x4d
+
+Templates:
+
+- CompressedRowSparseMatrixMat4x4d
+
+__Target__: Sofa.Component.LinearSystem
+
+__namespace__: sofa::component::linearsystem
+
+__parents__:
+
+- TypedMatrixLinearSystem
+
+### Data
+
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Default value</th>
+        </tr>
+    </thead>
+    <tbody>
+	<tr>
+		<td>name</td>
+		<td>
+object name
+		</td>
+		<td>unnamed</td>
+	</tr>
+	<tr>
+		<td>printLog</td>
+		<td>
+if true, emits extra messages at runtime.
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>tags</td>
+		<td>
+list of the subsets the objet belongs to
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>bbox</td>
+		<td>
+this object bounding box
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>componentState</td>
+		<td>
+The state of the component among (Dirty, Valid, Undefined, Loading, Invalid).
+		</td>
+		<td>Undefined</td>
+	</tr>
+	<tr>
+		<td>listening</td>
+		<td>
+if true, handle the events, otherwise ignore the events
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>matrixSize</td>
+		<td>
+Size of the global matrix
+		</td>
+		<td></td>
+	</tr>
+
+</tbody>
+</table>
+
+### Links
+
+
+| Name | Description | Destination type name |
+| ---- | ----------- | --------------------- |
+|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
+|slaves|Sub-objects used internally by this object|BaseObject|
+|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
+|linearSystems|List of linear systems to assemble|TypedMatrixLinearSystem&lt;CompressedRowSparseMatrixMat4x4d&gt;|
+|solverLinearSystem|Among the list of linear systems, which one is to be used by the linear solver|TypedMatrixLinearSystem&lt;CompressedRowSparseMatrixMat4x4d&gt;|
+
+<!-- generate_doc -->
+## CompressedRowSparseMatrixMat6x6d
+
+Templates:
+
+- CompressedRowSparseMatrixMat6x6d
+
+__Target__: Sofa.Component.LinearSystem
+
+__namespace__: sofa::component::linearsystem
+
+__parents__:
+
+- TypedMatrixLinearSystem
+
+### Data
+
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Default value</th>
+        </tr>
+    </thead>
+    <tbody>
+	<tr>
+		<td>name</td>
+		<td>
+object name
+		</td>
+		<td>unnamed</td>
+	</tr>
+	<tr>
+		<td>printLog</td>
+		<td>
+if true, emits extra messages at runtime.
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>tags</td>
+		<td>
+list of the subsets the objet belongs to
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>bbox</td>
+		<td>
+this object bounding box
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>componentState</td>
+		<td>
+The state of the component among (Dirty, Valid, Undefined, Loading, Invalid).
+		</td>
+		<td>Undefined</td>
+	</tr>
+	<tr>
+		<td>listening</td>
+		<td>
+if true, handle the events, otherwise ignore the events
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>matrixSize</td>
+		<td>
+Size of the global matrix
+		</td>
+		<td></td>
+	</tr>
+
+</tbody>
+</table>
+
+### Links
+
+
+| Name | Description | Destination type name |
+| ---- | ----------- | --------------------- |
+|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
+|slaves|Sub-objects used internally by this object|BaseObject|
+|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
+|linearSystems|List of linear systems to assemble|TypedMatrixLinearSystem&lt;CompressedRowSparseMatrixMat6x6d&gt;|
+|solverLinearSystem|Among the list of linear systems, which one is to be used by the linear solver|TypedMatrixLinearSystem&lt;CompressedRowSparseMatrixMat6x6d&gt;|
+
+<!-- generate_doc -->
+## CompressedRowSparseMatrixMat8x8d
+
+Templates:
+
+- CompressedRowSparseMatrixMat8x8d
+
+__Target__: Sofa.Component.LinearSystem
+
+__namespace__: sofa::component::linearsystem
+
+__parents__:
+
+- TypedMatrixLinearSystem
+
+### Data
+
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Default value</th>
+        </tr>
+    </thead>
+    <tbody>
+	<tr>
+		<td>name</td>
+		<td>
+object name
+		</td>
+		<td>unnamed</td>
+	</tr>
+	<tr>
+		<td>printLog</td>
+		<td>
+if true, emits extra messages at runtime.
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>tags</td>
+		<td>
+list of the subsets the objet belongs to
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>bbox</td>
+		<td>
+this object bounding box
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>componentState</td>
+		<td>
+The state of the component among (Dirty, Valid, Undefined, Loading, Invalid).
+		</td>
+		<td>Undefined</td>
+	</tr>
+	<tr>
+		<td>listening</td>
+		<td>
+if true, handle the events, otherwise ignore the events
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>matrixSize</td>
+		<td>
+Size of the global matrix
+		</td>
+		<td></td>
+	</tr>
+
+</tbody>
+</table>
+
+### Links
+
+
+| Name | Description | Destination type name |
+| ---- | ----------- | --------------------- |
+|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
+|slaves|Sub-objects used internally by this object|BaseObject|
+|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
+|linearSystems|List of linear systems to assemble|TypedMatrixLinearSystem&lt;CompressedRowSparseMatrixMat8x8d&gt;|
+|solverLinearSystem|Among the list of linear systems, which one is to be used by the linear solver|TypedMatrixLinearSystem&lt;CompressedRowSparseMatrixMat8x8d&gt;|
+
+<!-- generate_doc -->
+## CompressedRowSparseMatrixd
+
+Templates:
+
+- CompressedRowSparseMatrixd
+
+__Target__: Sofa.Component.LinearSystem
+
+__namespace__: sofa::component::linearsystem
+
+__parents__:
+
+- TypedMatrixLinearSystem
+
+### Data
+
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Default value</th>
+        </tr>
+    </thead>
+    <tbody>
+	<tr>
+		<td>name</td>
+		<td>
+object name
+		</td>
+		<td>unnamed</td>
+	</tr>
+	<tr>
+		<td>printLog</td>
+		<td>
+if true, emits extra messages at runtime.
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>tags</td>
+		<td>
+list of the subsets the objet belongs to
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>bbox</td>
+		<td>
+this object bounding box
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>componentState</td>
+		<td>
+The state of the component among (Dirty, Valid, Undefined, Loading, Invalid).
+		</td>
+		<td>Undefined</td>
+	</tr>
+	<tr>
+		<td>listening</td>
+		<td>
+if true, handle the events, otherwise ignore the events
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>matrixSize</td>
+		<td>
+Size of the global matrix
+		</td>
+		<td></td>
+	</tr>
+
+</tbody>
+</table>
+
+### Links
+
+
+| Name | Description | Destination type name |
+| ---- | ----------- | --------------------- |
+|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
+|slaves|Sub-objects used internally by this object|BaseObject|
+|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
+|linearSystems|List of linear systems to assemble|TypedMatrixLinearSystem&lt;CompressedRowSparseMatrixd&gt;|
+|solverLinearSystem|Among the list of linear systems, which one is to be used by the linear solver|TypedMatrixLinearSystem&lt;CompressedRowSparseMatrixd&gt;|
+
+<!-- generate_doc -->
+## DiagonalMatrix
+
+Templates:
+
+- DiagonalMatrix
+
+__Target__: Sofa.Component.LinearSystem
+
+__namespace__: sofa::component::linearsystem
+
+__parents__:
+
+- TypedMatrixLinearSystem
+
+### Data
+
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Default value</th>
+        </tr>
+    </thead>
+    <tbody>
+	<tr>
+		<td>name</td>
+		<td>
+object name
+		</td>
+		<td>unnamed</td>
+	</tr>
+	<tr>
+		<td>printLog</td>
+		<td>
+if true, emits extra messages at runtime.
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>tags</td>
+		<td>
+list of the subsets the objet belongs to
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>bbox</td>
+		<td>
+this object bounding box
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>componentState</td>
+		<td>
+The state of the component among (Dirty, Valid, Undefined, Loading, Invalid).
+		</td>
+		<td>Undefined</td>
+	</tr>
+	<tr>
+		<td>listening</td>
+		<td>
+if true, handle the events, otherwise ignore the events
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>matrixSize</td>
+		<td>
+Size of the global matrix
+		</td>
+		<td></td>
+	</tr>
+
+</tbody>
+</table>
+
+### Links
+
+
+| Name | Description | Destination type name |
+| ---- | ----------- | --------------------- |
+|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
+|slaves|Sub-objects used internally by this object|BaseObject|
+|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
+|linearSystems|List of linear systems to assemble|TypedMatrixLinearSystem&lt;DiagonalMatrix&gt;|
+|solverLinearSystem|Among the list of linear systems, which one is to be used by the linear solver|TypedMatrixLinearSystem&lt;DiagonalMatrix&gt;|
+
+<!-- generate_doc -->
+## FullMatrix
+
+Templates:
+
+- FullMatrix
+
+__Target__: Sofa.Component.LinearSystem
+
+__namespace__: sofa::component::linearsystem
+
+__parents__:
+
+- TypedMatrixLinearSystem
+
+### Data
+
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Default value</th>
+        </tr>
+    </thead>
+    <tbody>
+	<tr>
+		<td>name</td>
+		<td>
+object name
+		</td>
+		<td>unnamed</td>
+	</tr>
+	<tr>
+		<td>printLog</td>
+		<td>
+if true, emits extra messages at runtime.
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>tags</td>
+		<td>
+list of the subsets the objet belongs to
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>bbox</td>
+		<td>
+this object bounding box
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>componentState</td>
+		<td>
+The state of the component among (Dirty, Valid, Undefined, Loading, Invalid).
+		</td>
+		<td>Undefined</td>
+	</tr>
+	<tr>
+		<td>listening</td>
+		<td>
+if true, handle the events, otherwise ignore the events
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>matrixSize</td>
+		<td>
+Size of the global matrix
+		</td>
+		<td></td>
+	</tr>
+
+</tbody>
+</table>
+
+### Links
+
+
+| Name | Description | Destination type name |
+| ---- | ----------- | --------------------- |
+|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
+|slaves|Sub-objects used internally by this object|BaseObject|
+|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
+|linearSystems|List of linear systems to assemble|TypedMatrixLinearSystem&lt;FullMatrix&gt;|
+|solverLinearSystem|Among the list of linear systems, which one is to be used by the linear solver|TypedMatrixLinearSystem&lt;FullMatrix&gt;|
+
+<!-- generate_doc -->
+## RotationMatrixd
+
+Templates:
+
+- RotationMatrixd
+
+__Target__: Sofa.Component.LinearSystem
+
+__namespace__: sofa::component::linearsystem
+
+__parents__:
+
+- TypedMatrixLinearSystem
+
+### Data
+
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Default value</th>
+        </tr>
+    </thead>
+    <tbody>
+	<tr>
+		<td>name</td>
+		<td>
+object name
+		</td>
+		<td>unnamed</td>
+	</tr>
+	<tr>
+		<td>printLog</td>
+		<td>
+if true, emits extra messages at runtime.
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>tags</td>
+		<td>
+list of the subsets the objet belongs to
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>bbox</td>
+		<td>
+this object bounding box
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>componentState</td>
+		<td>
+The state of the component among (Dirty, Valid, Undefined, Loading, Invalid).
+		</td>
+		<td>Undefined</td>
+	</tr>
+	<tr>
+		<td>listening</td>
+		<td>
+if true, handle the events, otherwise ignore the events
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>matrixSize</td>
+		<td>
+Size of the global matrix
+		</td>
+		<td></td>
+	</tr>
+
+</tbody>
+</table>
+
+### Links
+
+
+| Name | Description | Destination type name |
+| ---- | ----------- | --------------------- |
+|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
+|slaves|Sub-objects used internally by this object|BaseObject|
+|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
+|linearSystems|List of linear systems to assemble|TypedMatrixLinearSystem&lt;RotationMatrixd&gt;|
+|solverLinearSystem|Among the list of linear systems, which one is to be used by the linear solver|TypedMatrixLinearSystem&lt;RotationMatrixd&gt;|
+
+<!-- generate_doc -->
+## SparseMatrix
+
+Templates:
+
+- SparseMatrix
+
+__Target__: Sofa.Component.LinearSystem
+
+__namespace__: sofa::component::linearsystem
+
+__parents__:
+
+- TypedMatrixLinearSystem
+
+### Data
+
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Default value</th>
+        </tr>
+    </thead>
+    <tbody>
+	<tr>
+		<td>name</td>
+		<td>
+object name
+		</td>
+		<td>unnamed</td>
+	</tr>
+	<tr>
+		<td>printLog</td>
+		<td>
+if true, emits extra messages at runtime.
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>tags</td>
+		<td>
+list of the subsets the objet belongs to
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>bbox</td>
+		<td>
+this object bounding box
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>componentState</td>
+		<td>
+The state of the component among (Dirty, Valid, Undefined, Loading, Invalid).
+		</td>
+		<td>Undefined</td>
+	</tr>
+	<tr>
+		<td>listening</td>
+		<td>
+if true, handle the events, otherwise ignore the events
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>matrixSize</td>
+		<td>
+Size of the global matrix
+		</td>
+		<td></td>
+	</tr>
+
+</tbody>
+</table>
+
+### Links
+
+
+| Name | Description | Destination type name |
+| ---- | ----------- | --------------------- |
+|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
+|slaves|Sub-objects used internally by this object|BaseObject|
+|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
+|linearSystems|List of linear systems to assemble|TypedMatrixLinearSystem&lt;SparseMatrix&gt;|
+|solverLinearSystem|Among the list of linear systems, which one is to be used by the linear solver|TypedMatrixLinearSystem&lt;SparseMatrix&gt;|
+
+## Examples 
+
+CompositeLinearSystem.scn
 
 === "XML"
 
@@ -213,95 +1101,108 @@ Component/LinearSystem/CompositeLinearSystem.scn
         </Node>
     
     </Node>
+
     ```
 
 === "Python"
 
     ```python
-    def createScene(rootNode):
+    def createScene(root_node):
 
-        root = rootNode.addChild('root', dt="0.02", gravity="0 -10 0")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Projective")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Engine.Select")
-        root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Direct")
-        root.addObject('RequiredPlugin', name="Sofa.Component.LinearSystem")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Mapping.Linear")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Mapping.NonLinear")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Mass")
-        root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
-        root.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.FEM.Elastic")
-        root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Dynamic")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Grid")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Visual")
-        root.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
-        root.addObject('RequiredPlugin', name="SofaMatrix")
-        root.addObject('VisualStyle', displayFlags="showBehaviorModels showWireframe")
-        root.addObject('DefaultAnimationLoop')
-        root.addObject('DefaultVisualManagerLoop')
-        root.addObject('DefaultVisualManagerLoop')
+       root = root_node.addChild('root', dt="0.02", gravity="0 -10 0")
 
-        node = root.addChild('node')
-        node.addObject('EulerImplicitSolver', name="odesolver", rayleighStiffness="0.1", rayleighMass="0.1")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Projective")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Engine.Select")
+       root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Direct")
+       root.addObject('RequiredPlugin', name="Sofa.Component.LinearSystem")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Mapping.Linear")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Mapping.NonLinear")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Mass")
+       root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.FEM.Elastic")
+       root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Dynamic")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Grid")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Visual")
+       root.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
+       root.addObject('RequiredPlugin', name="SofaMatrix")
+       root.addObject('VisualStyle', displayFlags="showBehaviorModels showWireframe")
+       root.addObject('DefaultAnimationLoop', )
+       root.addObject('DefaultVisualManagerLoop', )
+       root.addObject('DefaultVisualManagerLoop', )
 
-        matrices = node.addChild('matrices')
-        matrices.addObject('MatrixLinearSystem', template="CompressedRowSparseMatrixd", name="system")
-        matrices.addObject('MatrixLinearSystem', template="CompressedRowSparseMatrixd", name="K", assembleMass="false", assembleDamping="false", assembleGeometricStiffness="false", applyProjectiveConstraints="false")
-        matrices.addObject('MatrixLinearSystem', template="CompressedRowSparseMatrixd", name="M", assembleStiffness="false", assembleDamping="false", assembleGeometricStiffness="false", applyProjectiveConstraints="false")
-        matrices.addObject('GlobalSystemMatrixImage', name="imageA", linearSystem="@system")
-        matrices.addObject('GlobalSystemMatrixImage', name="imageK", linearSystem="@K")
-        matrices.addObject('GlobalSystemMatrixImage', name="imageM", linearSystem="@M")
-        node.addObject('CompositeLinearSystem', template="CompressedRowSparseMatrixd", name="solverSystem", linearSystems="@matrices/system @matrices/K @matrices/M", solverLinearSystem="@matrices/system")
-        node.addObject('SparseLDLSolver', template="CompressedRowSparseMatrixd", linearSystem="@solverSystem")
+       node = root.addChild('node')
 
-        object_a = node.addChild('object_a')
-        object_a.addObject('RegularGridTopology', name="grid", nx="1", ny="1", nz="20", xmin="0", xmax="0", ymin="-1.5", ymax="1.5", zmin="0", zmax="19")
-        object_a.addObject('MechanicalObject', template="Rigid3d", name="DOFs", showObject="true", showObjectScale="1", position="@grid.position")
-        object_a.addObject('FixedProjectiveConstraint', indices="0")
+       node.addObject('EulerImplicitSolver', name="odesolver", rayleighStiffness="0.1", rayleighMass="0.1")
 
-        FEM = object_a.addChild('FEM')
-        FEM.addObject('RegularGridTopology', name="FEM_grid", nx="4", ny="4", nz="20", xmin="-1.5", xmax="1.5", ymin="-1.5", ymax="1.5", zmin="0", zmax="19")
-        FEM.addObject('MechanicalObject', template="Vec3d", name="FEM_DOFs_a", position="@FEM_grid.position", printLog="false")
-        FEM.addObject('HexahedronSetGeometryAlgorithms')
-        FEM.addObject('UniformMass', vertexMass="1")
-        FEM.addObject('HexahedronFEMForceField', name="FEM_a", youngModulus="10000", poissonRatio="0.45", method="large", printLog="false")
-        FEM.addObject('RigidMapping', globalToLocalCoords="true", rigidIndexPerPoint="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 11 11 11 11 11 11 11 11 11 11 11 11 11 11 11 11 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 13 13 13 13 13 13 13 13 13 13 13 13 13 13 13 13 14 14 14 14 14 14 14 14 14 14 14 14 14 14 14 14 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 16 16 16 16 16 16 16 16 16 16 16 16 16 16 16 16 17 17 17 17 17 17 17 17 17 17 17 17 17 17 17 17 18 18 18 18 18 18 18 18 18 18 18 18 18 18 18 18 19 19 19 19 19 19 19 19 19 19 19 19 19 19 19 19")
+       matrices = node.addChild('matrices')
 
-        Visual = FEM.addChild('Visual')
-        Visual.addObject('RegularGridTopology', name="grid", nx="2", ny="2", nz="20", xmin="-1.5", xmax="1.5", ymin="-1.5", ymax="1.5", zmin="0", zmax="19", computeTriangleList="false")
-        Visual.addObject('OglModel', name="visu", lineWidth="5", material="Default Diffuse 0 1 1 1 1 Ambient 1 1 0 0 1 Specular 0 1 0 0 1 Emissive 0 1 0 0 1 Shininess 0 45")
-        Visual.addObject('BarycentricMapping', input="@../FEM_DOFs_a", output="@visu")
+       matrices.addObject('MatrixLinearSystem', template="CompressedRowSparseMatrixd", name="system")
+       matrices.addObject('MatrixLinearSystem', template="CompressedRowSparseMatrixd", name="K", assembleMass="false", assembleDamping="false", assembleGeometricStiffness="false", applyProjectiveConstraints="false")
+       matrices.addObject('MatrixLinearSystem', template="CompressedRowSparseMatrixd", name="M", assembleStiffness="false", assembleDamping="false", assembleGeometricStiffness="false", applyProjectiveConstraints="false")
+       matrices.addObject('GlobalSystemMatrixImage', name="imageA", linearSystem="@system")
+       matrices.addObject('GlobalSystemMatrixImage', name="imageK", linearSystem="@K")
+       matrices.addObject('GlobalSystemMatrixImage', name="imageM", linearSystem="@M")
 
-        object_b = node.addChild('object_b')
-        object_b.addObject('MechanicalObject', template="Vec3d", name="FEM_DOFs_b", printLog="false")
-        object_b.addObject('RegularGridTopology', name="grid", nx="4", ny="4", nz="20", xmin="-1.5", xmax="1.5", ymin="-9", ymax="-6", zmin="0", zmax="19")
-        object_b.addObject('HexahedronSetGeometryAlgorithms')
-        object_b.addObject('UniformMass', totalMass="320")
-        object_b.addObject('BoxROI', template="Vec3d", name="box", box="-1.6 -9.1 -0.1 1.6 -5.1 0.0001")
-        object_b.addObject('FixedProjectiveConstraint', indices="@box.indices")
-        object_b.addObject('HexahedronFEMForceField', name="FEM_b", youngModulus="10000", poissonRatio="0.45", method="large", printLog="false")
+       node.addObject('CompositeLinearSystem', template="CompressedRowSparseMatrixd", name="solverSystem", linearSystems="@matrices/system @matrices/K @matrices/M", solverLinearSystem="@matrices/system")
+       node.addObject('SparseLDLSolver', template="CompressedRowSparseMatrixd", linearSystem="@solverSystem")
 
-        Visual = object_b.addChild('Visual')
-        Visual.addObject('RegularGridTopology', name="grid", n="@../grid.n", xmin="-1.5", xmax="1.5", ymin="-9", ymax="-6", zmin="0", zmax="19", computeTriangleList="false")
-        Visual.addObject('OglModel', name="visu", lineWidth="2", material="Default Diffuse 0 1 1 1 1 Ambient 1 0 1 0 1 Specular 0 1 0 0 1 Emissive 0 1 0 0 1 Shininess 0 45")
-        Visual.addObject('BarycentricMapping', input="@../FEM_DOFs_b", output="@visu")
+       object_a = node.addChild('object_a')
 
-        object_c = node.addChild('object_c')
-        object_c.addObject('RegularGridTopology', name="grid", nx="1", ny="1", nz="20", xmin="5", xmax="5", ymin="-1.5", ymax="1.5", zmin="0", zmax="19")
-        object_c.addObject('MechanicalObject', template="Rigid3d", name="DOFs", showObject="true", showObjectScale="1", position="@grid.position")
-        object_c.addObject('FixedProjectiveConstraint', indices="0")
+       object_a.addObject('RegularGridTopology', name="grid", nx="1", ny="1", nz="20", xmin="0", xmax="0", ymin="-1.5", ymax="1.5", zmin="0", zmax="19")
+       object_a.addObject('MechanicalObject', template="Rigid3d", name="DOFs", showObject="true", showObjectScale="1", position="@grid.position")
+       object_a.addObject('FixedProjectiveConstraint', indices="0")
 
-        FEM = object_c.addChild('FEM')
-        FEM.addObject('RegularGridTopology', name="FEM_grid", nx="4", ny="4", nz="20", xmin="3.5", xmax="6.5", ymin="-1.5", ymax="1.5", zmin="0", zmax="19")
-        FEM.addObject('MechanicalObject', template="Vec3d", name="FEM_DOFs_c", position="@FEM_grid.position", printLog="false")
-        FEM.addObject('HexahedronSetGeometryAlgorithms')
-        FEM.addObject('UniformMass', vertexMass="1")
-        FEM.addObject('HexahedronFEMForceField', name="FEM_c", youngModulus="10000", poissonRatio="0.45", method="large", printLog="false")
-        FEM.addObject('RigidMapping', globalToLocalCoords="true", rigidIndexPerPoint="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 11 11 11 11 11 11 11 11 11 11 11 11 11 11 11 11 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 13 13 13 13 13 13 13 13 13 13 13 13 13 13 13 13 14 14 14 14 14 14 14 14 14 14 14 14 14 14 14 14 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 16 16 16 16 16 16 16 16 16 16 16 16 16 16 16 16 17 17 17 17 17 17 17 17 17 17 17 17 17 17 17 17 18 18 18 18 18 18 18 18 18 18 18 18 18 18 18 18 19 19 19 19 19 19 19 19 19 19 19 19 19 19 19 19")
+       fem = object_a.addChild('FEM')
 
-        Visual = FEM.addChild('Visual')
-        Visual.addObject('RegularGridTopology', name="grid", nx="2", ny="2", nz="20", xmin="3.5", xmax="6.5", ymin="-1.5", ymax="1.5", zmin="0", zmax="19", computeTriangleList="false")
-        Visual.addObject('OglModel', name="visu", lineWidth="5", material="Default Diffuse 0 1 1 1 1 Ambient 1 0 0 1 1 Specular 0 1 0 0 1 Emissive 0 1 0 0 1 Shininess 0 45")
-        Visual.addObject('BarycentricMapping', input="@../FEM_DOFs_c", output="@visu")
+       fem.addObject('RegularGridTopology', name="FEM_grid", nx="4", ny="4", nz="20", xmin="-1.5", xmax="1.5", ymin="-1.5", ymax="1.5", zmin="0", zmax="19")
+       fem.addObject('MechanicalObject', template="Vec3d", name="FEM_DOFs_a", position="@FEM_grid.position", printLog="false")
+       fem.addObject('HexahedronSetGeometryAlgorithms', )
+       fem.addObject('UniformMass', vertexMass="1")
+       fem.addObject('HexahedronFEMForceField', name="FEM_a", youngModulus="10000", poissonRatio="0.45", method="large", printLog="false")
+       fem.addObject('RigidMapping', globalToLocalCoords="true", rigidIndexPerPoint="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 11 11 11 11 11 11 11 11 11 11 11 11 11 11 11 11 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 13 13 13 13 13 13 13 13 13 13 13 13 13 13 13 13 14 14 14 14 14 14 14 14 14 14 14 14 14 14 14 14 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 16 16 16 16 16 16 16 16 16 16 16 16 16 16 16 16 17 17 17 17 17 17 17 17 17 17 17 17 17 17 17 17 18 18 18 18 18 18 18 18 18 18 18 18 18 18 18 18 19 19 19 19 19 19 19 19 19 19 19 19 19 19 19 19")
+
+       visual = FEM.addChild('Visual')
+
+       visual.addObject('RegularGridTopology', name="grid", nx="2", ny="2", nz="20", xmin="-1.5", xmax="1.5", ymin="-1.5", ymax="1.5", zmin="0", zmax="19", computeTriangleList="false")
+       visual.addObject('OglModel', name="visu", lineWidth="5", material="Default Diffuse 0 1 1 1 1 Ambient 1 1 0 0 1 Specular 0 1 0 0 1 Emissive 0 1 0 0 1 Shininess 0 45")
+       visual.addObject('BarycentricMapping', input="@../FEM_DOFs_a", output="@visu")
+
+       object_b = node.addChild('object_b')
+
+       object_b.addObject('MechanicalObject', template="Vec3d", name="FEM_DOFs_b", printLog="false")
+       object_b.addObject('RegularGridTopology', name="grid", nx="4", ny="4", nz="20", xmin="-1.5", xmax="1.5", ymin="-9", ymax="-6", zmin="0", zmax="19")
+       object_b.addObject('HexahedronSetGeometryAlgorithms', )
+       object_b.addObject('UniformMass', totalMass="320")
+       object_b.addObject('BoxROI', template="Vec3d", name="box", box="-1.6 -9.1 -0.1 1.6 -5.1 0.0001")
+       object_b.addObject('FixedProjectiveConstraint', indices="@box.indices")
+       object_b.addObject('HexahedronFEMForceField', name="FEM_b", youngModulus="10000", poissonRatio="0.45", method="large", printLog="false")
+
+       visual = object_b.addChild('Visual')
+
+       visual.addObject('RegularGridTopology', name="grid", n="@../grid.n", xmin="-1.5", xmax="1.5", ymin="-9", ymax="-6", zmin="0", zmax="19", computeTriangleList="false")
+       visual.addObject('OglModel', name="visu", lineWidth="2", material="Default Diffuse 0 1 1 1 1 Ambient 1 0 1 0 1 Specular 0 1 0 0 1 Emissive 0 1 0 0 1 Shininess 0 45")
+       visual.addObject('BarycentricMapping', input="@../FEM_DOFs_b", output="@visu")
+
+       object_c = node.addChild('object_c')
+
+       object_c.addObject('RegularGridTopology', name="grid", nx="1", ny="1", nz="20", xmin="5", xmax="5", ymin="-1.5", ymax="1.5", zmin="0", zmax="19")
+       object_c.addObject('MechanicalObject', template="Rigid3d", name="DOFs", showObject="true", showObjectScale="1", position="@grid.position")
+       object_c.addObject('FixedProjectiveConstraint', indices="0")
+
+       fem = object_c.addChild('FEM')
+
+       fem.addObject('RegularGridTopology', name="FEM_grid", nx="4", ny="4", nz="20", xmin="3.5", xmax="6.5", ymin="-1.5", ymax="1.5", zmin="0", zmax="19")
+       fem.addObject('MechanicalObject', template="Vec3d", name="FEM_DOFs_c", position="@FEM_grid.position", printLog="false")
+       fem.addObject('HexahedronSetGeometryAlgorithms', )
+       fem.addObject('UniformMass', vertexMass="1")
+       fem.addObject('HexahedronFEMForceField', name="FEM_c", youngModulus="10000", poissonRatio="0.45", method="large", printLog="false")
+       fem.addObject('RigidMapping', globalToLocalCoords="true", rigidIndexPerPoint="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 7 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 8 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 10 11 11 11 11 11 11 11 11 11 11 11 11 11 11 11 11 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 12 13 13 13 13 13 13 13 13 13 13 13 13 13 13 13 13 14 14 14 14 14 14 14 14 14 14 14 14 14 14 14 14 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 15 16 16 16 16 16 16 16 16 16 16 16 16 16 16 16 16 17 17 17 17 17 17 17 17 17 17 17 17 17 17 17 17 18 18 18 18 18 18 18 18 18 18 18 18 18 18 18 18 19 19 19 19 19 19 19 19 19 19 19 19 19 19 19 19")
+
+       visual = FEM.addChild('Visual')
+
+       visual.addObject('RegularGridTopology', name="grid", nx="2", ny="2", nz="20", xmin="3.5", xmax="6.5", ymin="-1.5", ymax="1.5", zmin="0", zmax="19", computeTriangleList="false")
+       visual.addObject('OglModel', name="visu", lineWidth="5", material="Default Diffuse 0 1 1 1 1 Ambient 1 0 0 1 1 Specular 0 1 0 0 1 Emissive 0 1 0 0 1 Shininess 0 45")
+       visual.addObject('BarycentricMapping', input="@../FEM_DOFs_c", output="@visu")
     ```
 

@@ -1,111 +1,109 @@
+<!-- generate_doc -->
 # GearSpringForceField
 
 Gear springs for Rigids
 
 
-__Templates__:
+## Rigid3d
 
-- `#!c++ Rigid3d`
+Templates:
 
-__Target__: `Sofa.Component.SolidMechanics.Spring`
+- Rigid3d
 
-__namespace__: `#!c++ sofa::component::solidmechanics::spring`
+__Target__: Sofa.Component.SolidMechanics.Spring
 
-__parents__: 
+__namespace__: sofa::component::solidmechanics::spring
 
-- `#!c++ PairInteractionForceField`
+__parents__:
 
-__categories__: 
+- PairInteractionForceField
 
-- ForceField
-- InteractionForceField
-
-Data: 
+### Data
 
 <table>
-<thead>
-    <tr>
-        <th>Name</th>
-        <th>Description</th>
-        <th>Default value</th>
-    </tr>
-</thead>
-<tbody>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Default value</th>
+        </tr>
+    </thead>
+    <tbody>
 	<tr>
 		<td>name</td>
 		<td>
 object name
-</td>
+		</td>
 		<td>unnamed</td>
 	</tr>
 	<tr>
 		<td>printLog</td>
 		<td>
 if true, emits extra messages at runtime.
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>tags</td>
 		<td>
 list of the subsets the objet belongs to
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>bbox</td>
 		<td>
 this object bounding box
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>componentState</td>
 		<td>
 The state of the component among (Dirty, Valid, Undefined, Loading, Invalid).
-</td>
+		</td>
 		<td>Undefined</td>
 	</tr>
 	<tr>
 		<td>listening</td>
 		<td>
 if true, handle the events, otherwise ignore the events
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>rayleighStiffness</td>
 		<td>
 Rayleigh damping - stiffness matrix coefficient
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>spring</td>
 		<td>
 pairs of indices, stiffness, damping
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>filename</td>
 		<td>
 output file name
-</td>
+		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>period</td>
 		<td>
 period between outputs
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>reinit</td>
 		<td>
 flag enabling reinitialization of the output file at each timestep
-</td>
+		</td>
 		<td>0</td>
 	</tr>
 	<tr>
@@ -115,29 +113,28 @@ flag enabling reinitialization of the output file at each timestep
 		<td>showFactorSize</td>
 		<td>
 modify the size of the debug information of a given factor
-</td>
+		</td>
 		<td>1</td>
 	</tr>
 
 </tbody>
 </table>
 
-Links: 
-
-| Name | Description |
-| ---- | ----------- |
-|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|
-|slaves|Sub-objects used internally by this object|
-|master|nullptr for regular objects, or master object for which this object is one sub-objects|
-|mechanicalStates|List of mechanical states to which this component is associated|
-|object1|First object associated to this component|
-|object2|Second object associated to this component|
+### Links
 
 
+| Name | Description | Destination type name |
+| ---- | ----------- | --------------------- |
+|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
+|slaves|Sub-objects used internally by this object|BaseObject|
+|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
+|mechanicalStates|List of mechanical states to which this component is associated|BaseMechanicalState|
+|object1|First object associated to this component|MechanicalState&lt;Rigid3d&gt;|
+|object2|Second object associated to this component|MechanicalState&lt;Rigid3d&gt;|
 
-## Examples
+## Examples 
 
-Component/SolidMechanics/Spring/GearSpringForceField.scn
+GearSpringForceField.scn
 
 === "XML"
 
@@ -237,104 +234,117 @@ Component/SolidMechanics/Spring/GearSpringForceField.scn
             </Node>
         </Node>
     </Node>
+
     ```
 
 === "Python"
 
     ```python
-    def createScene(rootNode):
+    def createScene(root_node):
 
-        root = rootNode.addChild('root', gravity="0 0 0", dt="0.01", time="0")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Geometry")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Projective")
-        root.addObject('RequiredPlugin', name="Sofa.Component.IO.Mesh")
-        root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Iterative")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Mapping.Linear")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Mapping.NonLinear")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Mass")
-        root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
-        root.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.Spring")
-        root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Constant")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Visual")
-        root.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
-        root.addObject('DefaultAnimationLoop')
-        root.addObject('VisualStyle', displayFlags="showVisual")
-        root.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="0", rayleighStiffness="0.1", rayleighMass="0.1")
-        root.addObject('CGLinearSolver', name="linear solver", iterations="50", tolerance="1e-009", threshold="1e-009")
-        root.addObject('MechanicalObject', template="Rigid3", name="DOFs", rest_position="0 0 0 0 0 0 1 0 0 0 0 0 0 1 0 0 0 0 0 0 1 0 0 0 0 0 0 1 0 0 0 0 0 0 1", position="-1.161 0 1.706 0 0.194787 0 0.980846 
+       root = root_node.addChild('root', gravity="0 0 0", dt="0.01", time="0")
+
+       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Geometry")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Projective")
+       root.addObject('RequiredPlugin', name="Sofa.Component.IO.Mesh")
+       root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Iterative")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Mapping.Linear")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Mapping.NonLinear")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Mass")
+       root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.Spring")
+       root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Constant")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Visual")
+       root.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
+       root.addObject('DefaultAnimationLoop', )
+       root.addObject('VisualStyle', displayFlags="showVisual")
+       root.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="0", rayleighStiffness="0.1", rayleighMass="0.1")
+       root.addObject('CGLinearSolver', name="linear solver", iterations="50", tolerance="1e-009", threshold="1e-009")
+       root.addObject('MechanicalObject', template="Rigid3", name="DOFs", rest_position="0 0 0 0 0 0 1 0 0 0 0 0 0 1 0 0 0 0 0 0 1 0 0 0 0 0 0 1 0 0 0 0 0 0 1", position="-1.161 0 1.706 0 0.194787 0 0.980846 
 																																			-6.7 4 1.706 0 0 0.707107 0.707107 
 																																			1.790 0 -5.503 0 0.229019 0 0.973422	
 																																			-6.7 5.2 -3.5 0 0 0.707107 0.707107
 																																			0 0 0 0 0 0 1", restScale="1")
-        root.addObject('UniformMass', name="mass", vertexMass="50 50 [1 0 0,0 1 0,0 0 1]", showAxisSizeFactor="2")
-        root.addObject('FixedProjectiveConstraint', template="Rigid3", name="fixOrigin", indices="4")
+       root.addObject('UniformMass', name="mass", vertexMass="50 50 [1 0 0,0 1 0,0 0 1]", showAxisSizeFactor="2")
+       root.addObject('FixedProjectiveConstraint', template="Rigid3", name="fixOrigin", indices="4")
 
-        Gear = root.addChild('Gear')
-        Gear.addObject('MechanicalObject', template="Rigid3", name="attaches", rest_position="0 0 0 0 0 0 1 0 0 0 0 0 0 1 0 0 0 0 0 0 1 0 0 0 0 0 0 1 -1.161 0 1.706 0 0.194787 0 0.980846 -6.7 4 1.706 0 0 0.707107 0.707107 1.790 0 -5.503 0 0.229019 0 0.973422 -6.7 5.2 -3.5 0 0 0.707107 0.707107", restScale="1")
-        Gear.addObject('RigidMapping', template="Rigid3,Rigid3", input="@..", output="@.", rigidIndexPerPoint="1 1 1 1 4")
-        Gear.addObject('GearSpringForceField', template="Rigid3", name="springs", showFactorSize="5", spring="BEGIN_SPRING  4 0 6 2 AXIS 1 1 KS_T 2000000  KS_R 2000000 2000000 KD 1 RATIO 2 END_SPRING
+       gear = root.addChild('Gear')
+
+       gear.addObject('MechanicalObject', template="Rigid3", name="attaches", rest_position="0 0 0 0 0 0 1 0 0 0 0 0 0 1 0 0 0 0 0 0 1 0 0 0 0 0 0 1 -1.161 0 1.706 0 0.194787 0 0.980846 -6.7 4 1.706 0 0 0.707107 0.707107 1.790 0 -5.503 0 0.229019 0 0.973422 -6.7 5.2 -3.5 0 0 0.707107 0.707107", restScale="1")
+       gear.addObject('RigidMapping', template="Rigid3,Rigid3", input="@..", output="@.", rigidIndexPerPoint="1 1 1 1 4")
+       gear.addObject('GearSpringForceField', template="Rigid3", name="springs", showFactorSize="5", spring="BEGIN_SPRING  4 0 6 2 AXIS 1 1 KS_T 2000000  KS_R 2000000 2000000 KD 1 RATIO 2 END_SPRING
 																							  BEGIN_SPRING  4 0 5 1 AXIS 1 1 KS_T 2000000  KS_R 2000000 2000000 KD 1 RATIO -1.5385 END_SPRING
 																							  BEGIN_SPRING  5 1 7 3 AXIS 1 1 KS_T 2000000  KS_R 2000000 2000000 KD 1 RATIO 2.166667 END_SPRING")
 
-        0 = root.addChild('0')
-        0.addObject('MeshOBJLoader', name="MeshLoader", filename="mesh/gear0.obj")
-        0.addObject('MeshTopology', src="@MeshLoader")
-        0.addObject('MechanicalObject', name="PointSet")
-        0.addObject('TriangleCollisionModel')
-        0.addObject('RigidMapping', template="Rigid3,Vec3", index="0")
+       0 = root.addChild('0')
 
-        Visu = 0.addChild('Visu')
-        Visu.addObject('MeshOBJLoader', name="meshLoader_1", filename="mesh/gear0.obj", handleSeams="1")
-        Visu.addObject('OglModel', template="Vec3", name="Visual", src="@meshLoader_1")
-        Visu.addObject('IdentityMapping', template="Vec3,Vec3", input="@..", output="@Visual")
+       0.addObject('MeshOBJLoader', name="MeshLoader", filename="mesh/gear0.obj")
+       0.addObject('MeshTopology', src="@MeshLoader")
+       0.addObject('MechanicalObject', name="PointSet")
+       0.addObject('TriangleCollisionModel', )
+       0.addObject('RigidMapping', template="Rigid3,Vec3", index="0")
 
-        1 = root.addChild('1')
-        1.addObject('MeshOBJLoader', name="MeshLoader", filename="mesh/gear1.obj")
-        1.addObject('MeshTopology', src="@MeshLoader")
-        1.addObject('MechanicalObject', name="PointSet")
-        1.addObject('TriangleCollisionModel')
-        1.addObject('RigidMapping', template="Rigid3,Vec3", index="1")
+       visu = 0.addChild('Visu')
 
-        Visu = 1.addChild('Visu')
-        Visu.addObject('MeshOBJLoader', name="meshLoader_3", filename="mesh/gear1.obj", handleSeams="1")
-        Visu.addObject('OglModel', template="Vec3", name="Visual", src="@meshLoader_3")
-        Visu.addObject('IdentityMapping', template="Vec3,Vec3", input="@..", output="@Visual")
+       visu.addObject('MeshOBJLoader', name="meshLoader_1", filename="mesh/gear0.obj", handleSeams="1")
+       visu.addObject('OglModel', template="Vec3", name="Visual", src="@meshLoader_1")
+       visu.addObject('IdentityMapping', template="Vec3,Vec3", input="@..", output="@Visual")
 
-        2 = root.addChild('2')
-        2.addObject('MeshOBJLoader', name="MeshLoader", filename="mesh/gear2.obj")
-        2.addObject('MeshTopology', src="@MeshLoader")
-        2.addObject('MechanicalObject', name="PointSet")
-        2.addObject('TriangleCollisionModel')
-        2.addObject('RigidMapping', template="Rigid3,Vec3", index="2")
+       1 = root.addChild('1')
 
-        Visu = 2.addChild('Visu')
-        Visu.addObject('MeshOBJLoader', name="meshLoader_0", filename="mesh/gear2.obj", handleSeams="1")
-        Visu.addObject('OglModel', template="Vec3", name="Visual", src="@meshLoader_0")
-        Visu.addObject('IdentityMapping', template="Vec3,Vec3", input="@..", output="@Visual")
+       1.addObject('MeshOBJLoader', name="MeshLoader", filename="mesh/gear1.obj")
+       1.addObject('MeshTopology', src="@MeshLoader")
+       1.addObject('MechanicalObject', name="PointSet")
+       1.addObject('TriangleCollisionModel', )
+       1.addObject('RigidMapping', template="Rigid3,Vec3", index="1")
 
-        3 = root.addChild('3')
-        3.addObject('MeshOBJLoader', name="MeshLoader", filename="mesh/gear3.obj")
-        3.addObject('MeshTopology', src="@MeshLoader")
-        3.addObject('MechanicalObject', name="PointSet")
-        3.addObject('TriangleCollisionModel')
-        3.addObject('RigidMapping', template="Rigid3,Vec3", index="3")
+       visu = 1.addChild('Visu')
 
-        Visu = 3.addChild('Visu')
-        Visu.addObject('MeshOBJLoader', name="meshLoader_2", filename="mesh/gear3.obj", handleSeams="1")
-        Visu.addObject('OglModel', template="Vec3", name="Visual", src="@meshLoader_2")
-        Visu.addObject('IdentityMapping', template="Vec3,Vec3", input="@..", output="@Visual")
+       visu.addObject('MeshOBJLoader', name="meshLoader_3", filename="mesh/gear1.obj", handleSeams="1")
+       visu.addObject('OglModel', template="Vec3", name="Visual", src="@meshLoader_3")
+       visu.addObject('IdentityMapping', template="Vec3,Vec3", input="@..", output="@Visual")
 
-        support = root.addChild('support')
-        support.addObject('MeshOBJLoader', name="MeshLoader", filename="mesh/gearsupport.obj")
-        support.addObject('MeshTopology', src="@MeshLoader")
-        support.addObject('MechanicalObject', name="PointSet")
-        support.addObject('TriangleCollisionModel')
-        support.addObject('RigidMapping', template="Rigid3,Vec3", index="4")
+       2 = root.addChild('2')
 
-        Visu = support.addChild('Visu')
-        Visu.addObject('MeshOBJLoader', name="meshLoader_4", filename="mesh/gearsupport.obj", handleSeams="1")
-        Visu.addObject('OglModel', template="Vec3", name="Visual", src="@meshLoader_4", material="Default Diffuse 1 1 1 0.8 1 Ambient 1 0.2 0.2 0.2 1 Specular 0 1 0 0 1 Emissive 0 1 0 0 1 Shininess 0 45")
-        Visu.addObject('IdentityMapping', template="Vec3,Vec3", input="@..", output="@Visual")
+       2.addObject('MeshOBJLoader', name="MeshLoader", filename="mesh/gear2.obj")
+       2.addObject('MeshTopology', src="@MeshLoader")
+       2.addObject('MechanicalObject', name="PointSet")
+       2.addObject('TriangleCollisionModel', )
+       2.addObject('RigidMapping', template="Rigid3,Vec3", index="2")
+
+       visu = 2.addChild('Visu')
+
+       visu.addObject('MeshOBJLoader', name="meshLoader_0", filename="mesh/gear2.obj", handleSeams="1")
+       visu.addObject('OglModel', template="Vec3", name="Visual", src="@meshLoader_0")
+       visu.addObject('IdentityMapping', template="Vec3,Vec3", input="@..", output="@Visual")
+
+       3 = root.addChild('3')
+
+       3.addObject('MeshOBJLoader', name="MeshLoader", filename="mesh/gear3.obj")
+       3.addObject('MeshTopology', src="@MeshLoader")
+       3.addObject('MechanicalObject', name="PointSet")
+       3.addObject('TriangleCollisionModel', )
+       3.addObject('RigidMapping', template="Rigid3,Vec3", index="3")
+
+       visu = 3.addChild('Visu')
+
+       visu.addObject('MeshOBJLoader', name="meshLoader_2", filename="mesh/gear3.obj", handleSeams="1")
+       visu.addObject('OglModel', template="Vec3", name="Visual", src="@meshLoader_2")
+       visu.addObject('IdentityMapping', template="Vec3,Vec3", input="@..", output="@Visual")
+
+       support = root.addChild('support')
+
+       support.addObject('MeshOBJLoader', name="MeshLoader", filename="mesh/gearsupport.obj")
+       support.addObject('MeshTopology', src="@MeshLoader")
+       support.addObject('MechanicalObject', name="PointSet")
+       support.addObject('TriangleCollisionModel', )
+       support.addObject('RigidMapping', template="Rigid3,Vec3", index="4")
+
+       visu = support.addChild('Visu')
+
+       visu.addObject('MeshOBJLoader', name="meshLoader_4", filename="mesh/gearsupport.obj", handleSeams="1")
+       visu.addObject('OglModel', template="Vec3", name="Visual", src="@meshLoader_4", material="Default Diffuse 1 1 1 0.8 1 Ambient 1 0.2 0.2 0.2 1 Specular 0 1 0 0 1 Emissive 0 1 0 0 1 Shininess 0 45")
+       visu.addObject('IdentityMapping', template="Vec3,Vec3", input="@..", output="@Visual")
     ```
 
