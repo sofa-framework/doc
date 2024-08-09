@@ -65,12 +65,3 @@ Examples of Components
 The following components are all collision pipelines, and can be placed in a simulation scene:
 
 - [_DefaultPipeline_](./../defaultpipeline)
-
-Inheritance Diagram
-===================
-
-<a href="https://www.sofa-framework.org/api/master/sofa/html/classsofa_1_1component_1_1collision_1_1_default_pipeline.html">
-<img src="https://www.sofa-framework.org/api/master/sofa/html/classsofa_1_1component_1_1collision_1_1_default_pipeline__inherit__graph.png" title="Steps of the collision in SOFA"/>
-</a>
-
-Read more on [SOFA API documentation](https://www.sofa-framework.org/api/master/sofa/html/classsofa_1_1component_1_1collision_1_1_default_pipeline.html)
