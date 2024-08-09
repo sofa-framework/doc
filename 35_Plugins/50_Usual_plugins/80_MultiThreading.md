@@ -47,7 +47,7 @@ Examples of ParallelBruteForceBroadPhase can be found in:
 
 ### ParallelTetrahedronFEMForceField
 
-ParallelTetrahedronFEMForceField is the multi-threaded equivalent of [TetrahedronFEMForceField](../../../components/solidmechanics/fem/elastic/TetrahedronFEMForceField).
+ParallelTetrahedronFEMForceField is the multi-threaded equivalent of [TetrahedronFEMForceField](../../../components/solidmechanics/fem/elastic/tetrahedronfemforcefield).
 
 This implementation is the most efficient when the number of tetrahedron is large (> 1000).
 
@@ -63,7 +63,7 @@ Examples of ParallelTetrahedronFEMForceField can be found in:
 
 ### ParallelHexahedronFEMForceField
 
-ParallelHexahedronFEMForceField is the multi-threaded equivalent of [HexahedronFEMForceField](../../../components/solidmechanics/fem/elastic/HexahedronFEMForceField).
+ParallelHexahedronFEMForceField is the multi-threaded equivalent of [HexahedronFEMForceField](../../../components/solidmechanics/fem/elastic/hexahedronfemforcefield).
 
 This implementation is the most efficient when:
 

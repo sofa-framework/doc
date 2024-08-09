@@ -21,9 +21,9 @@ A *Message* object encapsulates everything about an output message:
 Messages text description can also contain markdown syntax to improve their rendering when used in a graphical application. Supported syntax
 include emphasizing with `''`, `url's []()`, `double space` for new line.  
 
-### MessageHandler (abstract class)
+### MessageHandler
 
-A *MessageHandler* object is in charge of processing and actually 'doing something' of the emitted messages. This can be displaying the message in the console, logging them into file, logging them into a GUI, ...., whatever you can imagine. For example: some unit tests use a specific *MessageHandler* to catch error messages.
+A *MessageHandler* (abstract class) object is in charge of processing and actually 'doing something' of the emitted messages. This can be displaying the message in the console, logging them into file, logging them into a GUI, ...., whatever you can imagine. For example: some unit tests use a specific *MessageHandler* to catch error messages.
 
 Available [MessageHandler](#MessageHandler) classes:
 
@@ -37,9 +37,9 @@ Available [MessageHandler](#MessageHandler) classes:
 * PerComponentLoggingMessageHandler logs the messages in the component that emits them. 
 * RoutingMessageHandler routes the messages to different handlers according to a user-provided function.
 
-### MessageFormatter (abstract class)
+### MessageFormatter
 
-A *MessageFormatter* object has only one purpose, which is to translate a *Message* object to a *std::ostream*.
+A *MessageFormatter* (abstract class) object has only one purpose, which is to translate a *Message* object to a *std::ostream*.
 
 Available *MessageFormatter* classes:
 
@@ -47,9 +47,9 @@ Available *MessageFormatter* classes:
 * ClangStyleMessageFormatter
 * RichConsoleStyleMessageFormatter that convert messages into a good looking rendering for the console.
 
-### MessageDispatcher (static class)
+### MessageDispatcher
 
-The *MessageDispatcher* is in charge of sending messages to every [MessageHandler](#MessageHandler) registered.
+The *MessageDispatcher* (static class) is in charge of sending messages to every [MessageHandler](#MessageHandler) registered.
 
 By default, only a *ConsoleMessageHandler* is registered.
 
