@@ -1,15 +1,15 @@
 Mass
 ====
 
-In simulation, the mass usually results from the volume integration of a density (see the [Physics Integration](./../physics-integration/) section). It can be a mass density, but it can be an electrical or electrical conductivity among others. In all these equations, the density appears on the left hand side part of the equation. The mass matrix therefore contributes to $$\mathbf{A}$$, in the linear System $$\mathbf{A}x=b$$.
+In simulation, the mass usually results from the volume integration of a density (see the [Physics Integration](./../physics-integration/) section). It can be a mass density, but it can be an electrical or electrical conductivity among others. In all these equations, the density appears on the left hand side part of the equation. The mass matrix therefore contributes to $\mathbf{A}$, in the linear System $\mathbf{A}x=b$.
 
 Mass API
 --------------
 
-The choice of the temporal scheme will influence the way the linear system $$\mathbf{A}x=b$$ is built. As a consequence, it also impacts the API:
+The choice of the temporal scheme will influence the way the linear system $\mathbf{A}x=b$ is built. As a consequence, it also impacts the API:
 
-- for iterative solvers, the result of the multiplication between the mass matrix $$\mathbf{M}$$ and an approximated solution is computed by the function: `addMDx()`
-- for direct solvers, the mass matrix $$\mathbf{M}$$ is built by the function: `addMToMatrix()` and will be used later when the system matrix will be inversed
+- for iterative solvers, the result of the multiplication between the mass matrix $\mathbf{M}$ and an approximated solution is computed by the function: `addMDx()`
+- for direct solvers, the mass matrix $\mathbf{M}$ is built by the function: `addMToMatrix()` and will be used later when the system matrix will be inversed
 
 
 

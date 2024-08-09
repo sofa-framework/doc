@@ -31,8 +31,8 @@ Collision detection aims at determining if two (or several) objects collide.
 In SOFA, the collision detection takes as input the collision models (geometric data) and returns pairs of geometric primitives as output, along with the associated contact points.
 This contact information is passed to the contact manager, which creates contact interactions of various types based on customizable rules.
 
-Given $$n$$ moving objects in a virtual environment, testing all objects pairs tend to perform $$n^2$$ pairwise checks.
-When $$ \mathcal{O }(n^2)$$ complexity, the collision detection is usually divided into two successive steps:
+Given $n$ moving objects in a virtual environment, testing all objects pairs tend to perform $n^2$ pairwise checks.
+When $ \mathcal{O }(n^2)$ complexity, the collision detection is usually divided into two successive steps:
 
 - a [broad phase](../../../components/components/collision/detection/algorithm/broadphase/)
 - a [narrow phase](../../../components/components/collision/detection/algorithm/narrowphase)
