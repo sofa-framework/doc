@@ -22,7 +22,7 @@ The Broad Phase
 ===============
 
 In SOFA, the role of the broad phase is usually to prune a maximum number of pairs of collision models which are not in intersection.
-Considering $$n$$ collision models (usually there are more than one collision model per object), there are between $$n*(n-1)/2$$(no self collision) and $$n^2/2$$(if all collision models can self collide) pairs of collision models.
+Considering $n$ collision models (usually there are more than one collision model per object), there are between $n*(n-1)/2$(no self collision) and $n^2/2$(if all collision models can self collide) pairs of collision models.
 
 The output of the broad phase is a collection of pairs of collision models which are potentially in intersection.
 At this stage, it is not known if those pairs are actually in intersection or not.

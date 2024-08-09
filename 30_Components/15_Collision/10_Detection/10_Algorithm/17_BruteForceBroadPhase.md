@@ -4,7 +4,7 @@ Broad Phase: Brute Force Broad Phase
 BruteForceBroadPhase is a [broad phase component](./../broadphase), which is used in a [Collision Detection](../../collisionpipeline/#collision-detection) pipeline.
 
 The method is based on the comparison of the overall [bounding volumes](https://en.wikipedia.org/wiki/Bounding_volume) of objects to determine if they are in collision or not.
-This test is very exhaustive because of its $$n^2/2$$ pairwise checks.
+This test is very exhaustive because of its $n^2/2$ pairwise checks.
 In SOFA, the proposed bounding volumes are commonly Axis-Aligned-Bounding-Box (AABB).
 
 Since, the bounding volumes are very simple (AABB), the tests are very fast for a few collision models.

@@ -4,13 +4,15 @@ FixedProjectiveConstraint
 This component belongs to the category of [Projective Constraint](../../../../simulation-principles/constraint/projective-constraint/).
 The FixedProjectiveConstraint projects a constant velocity.  If the fixed points have a zero velocity at the simulation start, they will keep a zero velocity i.e. be fixed.
 
-As introduced in the page about the Projective Constraint, the FixedProjectiveConstraint corresponds to a projection matrix noted $$\mathbf{P}$$ which will multiply the system matrix $$\mathbf{A}$$ so that: $$\mathbf{P}^T\mathbf{A}\mathbf{P}\Deltav=\mathbf{P}^Tb$$. This projection matrix $$\mathbf{P}$$ is the identity matrix in which the diagonal value corresponding to the indices of the fixed points equals zero. These lines and columns equals 0. As a consequence, when the integration scheme (ODESolver) will call the ```projectResponse()``` or ```projectVelocity()``` the constraint will be applied, ensuring that the desired degrees of freedom remain fixed.
+As introduced in the page about the Projective Constraint, the FixedProjectiveConstraint corresponds to a projection matrix noted $\mathbf{P}$ which will multiply the system matrix $\mathbf{A}$ so that: $\mathbf{P}^T\mathbf{A}\mathbf{P}\Deltav=\mathbf{P}^Tb$. This projection matrix $\mathbf{P}$ is the identity matrix in which the diagonal value corresponding to the indices of the fixed points equals zero. These lines and columns equals 0. As a consequence, when the integration scheme (ODESolver) will call the ```projectResponse()``` or ```projectVelocity()``` the constraint will be applied, ensuring that the desired degrees of freedom remain fixed.
 
 Example of a system of size 6, with a fixed constraint at the index 5:
 
-$$\mathbf{P}=\begin{bmatrix}1&0&0&0&0&0\\0&1&0&0&0&0\\0&0&1&0&0&0\\0&0&0&1&0&0\\0&0&0&0&\mathbf{0}&0\\0&0&0&0&0&1\end{bmatrix}$$
+$$
+\mathbf{P}=\begin{bmatrix}1&0&0&0&0&0\\0&1&0&0&0&0\\0&0&1&0&0&0\\0&0&0&1&0&0\\0&0&0&0&\mathbf{0}&0\\0&0&0&0&0&1\end{bmatrix}
+$$
 
-By projecting this $$\mathbf{P}$$ matrix on the right hand side vector we have $$\mathbf{P}^Tb$$. This ensures to have the projection $$b[5]=0$$, thus preventing any time evolution of the fifth degree of freedom. In such case, we function _projectResponse()_:
+By projecting this $\mathbf{P}$ matrix on the right hand side vector we have $\mathbf{P}^Tb$. This ensures to have the projection $b[5]=0$, thus preventing any time evolution of the fifth degree of freedom. In such case, we function _projectResponse()_:
 
 ```cpp
 template <class DataTypes>
