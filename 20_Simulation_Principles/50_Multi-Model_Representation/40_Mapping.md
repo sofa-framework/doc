@@ -19,8 +19,8 @@ Typical mappings compute the correspondence between different geometrical models
 
 One can define two representations of an object, both using a different topology:
 
-  - one mechanical model with its degrees of freedom $$q$$
-  - one collision model with its degrees of freedom $$p$$
+  - one mechanical model with its degrees of freedom $q$
+  - one collision model with its degrees of freedom $p$
 
 ![Application of mappings](https://www.sofa-framework.org/wp-content/uploads/2018/10/Mapping-illustration.png)
 
@@ -64,13 +64,20 @@ applyDJT(const MechanicalParams*, MultiVecDerivId parentForce, ConstMultiVecDeri
 applyJT(const ConstraintParams*, MultiMatrixDerivId inConst, ConstMultiMatrixDerivId outConst );
 ```
 
+Common mappings
+---------------
+- [IdentityMapping](../../../components/mapping/linear/identitymapping/) when both models have the same degrees of freedom
+- [BarycentricMapping](../../../components/mapping/linear/barycentricmapping/) interpolating degrees of freedom using barycentric coordinates
+- [RigidMapping](../../../components/mapping/nonlinear/rigidmapping/) used with RigidObject
+
+
 Topological mapping
 -------------------
 
 Topological mappings are an additional type of mappings making the correspondence between hierarchical topologies. You can thus find :
 
-  - a _Hexa2TetraTopologicalMapping_: computing the correspondence between a hexahedral and a tetrahedral topology, by dividing each hexahedron into 6 tetrahedra
-  - a _Hexa2QuadTopologicalMapping_: computing the correspondence between a hexahedral topology and its surface quadrangular topology
-  - a _Tetra2TriangleTopologicalMapping_: computing the correspondence between a tetrahedral topology and its surface triangular topology
-  - a _Quad2TriangleTopologicalMapping_: computing the correspondence between a quadrangular and a triangular topology, by dividing each quad into 2 triangles
-  - a _Triangle2EdgeTopologicalMapping_: computing the correspondence between a triangular and an edge topology
+  - a [Hexa2TetraTopologicalMapping](../../../components/topology/mapping/hexa2tetratopologicalmapping/): computing the correspondence between a hexahedral and a tetrahedral topology, by dividing each hexahedron into 6 tetrahedra
+  - a [Hexa2QuadTopologicalMapping](../../../components/topology/mapping/hexa2quadtopologicalmapping/): computing the correspondence between a hexahedral topology and its surface quadrangular topology
+  - a [Tetra2TriangleTopologicalMapping](../../../components/topology/mapping/tetra2triangletopologicalmapping/): computing the correspondence between a tetrahedral topology and its surface triangular topology
+  - a [Quad2TriangleTopologicalMapping](../../../components/topology/mapping/quad2triangletopologicalmapping/): computing the correspondence between a quadrangular and a triangular topology, by dividing each quad into 2 triangles
+  - a [Triangle2EdgeTopologicalMapping](../../../components/topology/mapping/triangle2edgetopologicalmapping/): computing the correspondence between a triangular and an edge topology
