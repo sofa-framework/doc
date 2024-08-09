@@ -31,7 +31,7 @@ All MeshLoaders share a common API, especially several available data:
 * _**createSubelements**_: to divide all n-D elements into their (n-1)-D boundary elements (e.g. tetrahedra to triangles)
 * _**onlyAttachedPoints**_: to keep only points attached to elements of the mesh
 
-Additional data (*translation*, *rotation* and *scale3d*) are available but it rather advised to use a [TransformEngine](../../components/engines/transform/transformengine/) to apply a transformation to your geometry.
+Additional data (*translation*, *rotation* and *scale3d*) are available but it rather advised to use a [TransformEngine](../../components/engine/transform/transformengine/) to apply a transformation to your geometry.
 
 All MeshLoaders propose several data as output (for the most used):
 * _**position**_: vector of vertices of the mesh loaded

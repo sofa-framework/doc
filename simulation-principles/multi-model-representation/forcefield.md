@@ -109,7 +109,7 @@ ForceField implementations
 See examples of ForceField implementation:
 
 - [ConstantForceField](../../../components/mechanicalload/constantforcefield/)
-- [TetrahedronFEMForceField](../../../components/solidmechanics/fem/elasticity/tetrahedronfemforcefield/)
+- [TetrahedronFEMForceField](../../../components/solidmechanics/fem/elastic/tetrahedronfemforcefield/)
 
 
 
