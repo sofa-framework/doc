@@ -98,7 +98,7 @@ The shape functions $\phi$ can be expressed with regard to local coordinates $(\
 
 
 
-Therefore, it always exists a transformation $T^$ which can be defined as:
+Therefore, it always exists a transformation $T^K$ which can be defined as:
 
 $$
 T^K:\hat{K} \longrightarrow K
