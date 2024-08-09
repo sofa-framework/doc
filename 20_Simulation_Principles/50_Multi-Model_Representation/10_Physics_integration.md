@@ -6,14 +6,19 @@ Conservation of linear momentum
 The Newton's second law gives:
 
 $$\frac{d\boldsymbol{p}}{dt}=f$$
+
 $$\frac{d\boldsymbol{p}}{dt}=f_{\text{vol}}+f_{\text{surf}}$$
 
 the force $$f_{\text{surf}}$$ corresponds to the integration of traction forces and the force $$f_{\text{vol}}$$ corresponds to the body forces. With the Cauchy's law and Gauss's theorem, the conservation of linear momentum in the strong (or generalized) form is written:
 
 $$\frac{d\boldsymbol{p}}{dt}=f_{\text{vol}}+f_{\text{surf}}$$
+
 $$\frac{D}{Dt}\int_{\Omega}\rho \boldsymbol{v}d\Omega =\int_{\Omega} \rho \boldsymbol{b}d\Omega +\int_{\Gamma}\boldsymbol{t}d\Gamma$$
+
 $$\int_{\Omega} \rho \frac{D\boldsymbol{v}}{Dt}d\Omega =\int_{\Omega} \rho \boldsymbol{b}d\Omega +\int_{\Gamma}n\cdot \boldsymbol{\sigma}d\Gamma$$
+
 $$\int_{\Omega}\rho \frac{D\boldsymbol{v}}{Dt}d\Omega =\int_{\Omega}\rho \boldsymbol{b}d\Omega +\int_{\Omega}\frac{\partial \sigma_{ij}}{\partial x{i}}d\Omega$$
+
 $$\rho \dot{v}=\rho \boldsymbol{b}+\nabla \cdot \boldsymbol{\sigma}$$
 
 
@@ -29,6 +34,7 @@ $$\int_{\Omega} \psi_j \rho \dot{v}d\Omega =\int_{\Omega} \psi_j \rho \boldsymbo
 The divergence term can be split as follows:
 
 $$\int_{\Omega} \psi_j \nabla \cdot \boldsymbol{\sigma}d\Omega =\int_\Gamma \psi_j \cdot ( \boldsymbol{\sigma} \cdot n)d\Gamma -\int_\Omega \nabla (\psi_j):\boldsymbol{\sigma}d\Omega$$
+
 $$\int_{\Omega} \psi_j \nabla \cdot \boldsymbol{\sigma}d\Omega =\int_\Gamma \psi_j \cdot \boldsymbol{t}d\Gamma -\int_\Omega \nabla (\psi_j): \boldsymbol{\sigma}d\Omega$$
 
 
@@ -67,6 +73,7 @@ The shape functions $$\phi$$ can be expressed with regard to local coordinates $
 Therefore, it always exists a transformation $$T^$$ which can be defined as:
 
 $$T^K:\hat{K} \longrightarrow K$$
+
 $$\boldsymbol{\xi}=(\xi ,\eta ,\zeta )\longrightarrow \textbf{x}=T^K(\boldsymbol{\xi})=\sum_{i=0}^{N}x_i \phi_i(\boldsymbol{\xi})$$
 
 This transformation $$T^K$$ is bijective if the determinant of the Jacobian of the transformation is non-null $$det(J)\neq0$$. Moreover, the transformation $$T^K$$ will allow for the integration of the weak form by change of variables: instead of integrating over $$d\Omega=dxdydz$$, the integration will be reported on the reference element $$d\xi d\eta d\zeta$$. 
@@ -78,7 +85,9 @@ Let's consider an example. A density of force $$\boldsymbol{b}$$ that depends li
 
 
 $$\int_{\Omega} \phi_j \rho \boldsymbol{b}d\Omega =\sum_{e=0}^E \rho \int_{V_e} \phi_j \alpha \textbf{x}dV_e$$
+
 $$\int_{\Omega} \phi_j \rho \boldsymbol{b}d\Omega =\sum_{e=0}^E \rho \alpha \int_{V_e} \phi_j \sum_{i=0}^{N} \phi_i x_i dV_e$$
+
 $$\int_{\Omega} \phi_j \rho \boldsymbol{b}d\Omega =\sum_{e=0}^E \rho \alpha \int_{V_e} |det(J)| \sum_{i=0}^{N}\phi_j(\boldsymbol{\xi}) \phi_i(\boldsymbol{\xi}) x_i d \boldsymbol{\xi}$$
 
 

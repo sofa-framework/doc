@@ -24,11 +24,13 @@ $$\Psi(x_1,x_2 ...)~\geq~0$$
 where $$\Phi$$ represents the bilateral interaction laws (attachments, sliding joints, etc.) whereas $$\Psi$$ represents unilateral interaction laws (contact, needle puncture, friction, etc.). These functions can be nonlinear. In the constrained system presented above, the constraint matrix $$\mathbf{H}$$ appeared. The definition of the constraint laws $$\Phi$$ and $$\Psi$$ allows to define:
 
 $$\mathbf{H}_1(x)=\left[\frac{\partial \Phi}{\partial x1};\frac{\partial \Psi}{\partial x_1}\right]$$
+
 $$\mathbf{H}_2(x)=\left[\frac{\partial \Phi}{\partial x2};\frac{\partial \Psi}{\partial x_2}\right]$$
 
 Note that $$\mathbf{H}$$ the matrix containing the constraint directions can be considered as the Jacobian of the mapping between the physics space and the constraint space. The constraint will always be linearized in SOFA. For two interacting objects (object 1 and object 2), the complete constrained system therefore corresponds to:
 
 - $$\mathbf{A}_1\Delta v_1=b_1+dt\mathbf{H}^T_1\lambda$$
+
 - $$\mathbf{A}_2\Delta v_2=b_2+dt\mathbf{H}^T_2\lambda$$
 
 However, this system will not be solved directly. It will be decomposed into two steps:
@@ -37,12 +39,14 @@ However, this system will not be solved directly. It will be decomposed into two
 **Step 1**: Each interacting object is solved independently, i.e. as no constraint law is defined, while setting $$\lambda=0$$. This so-called free motion aims at finding the change in velocity $$\Delta v_1^{free}$$ and $$\Delta v_2^{free}$$ for each object from the resolution of:
 
 - $$\mathbf{A}_1\Delta v_1^{free}=b_1$$
+
 - $$\mathbf{A}_2\Delta v_2^{free}=b_2$$
 
 
 **Step 2**: now, the constraints are taken into account while considering $$b_1=b_2=0$$. We are looking for a corrective change in velocity  $$\Delta v_1^{corr}$$ and $$\Delta v_2^{corr}$$ for each object from the resolution of:
 
 - $$\mathbf{A}_1\Delta v_1^{corr}=dt\mathbf{H}^T_1\lambda$$
+
 - $$\mathbf{A}_2\Delta v_2^{corr}=dt\mathbf{H}^T_2\lambda$$
 
 Defining $$\lambda$$ the Lagrange multipliers, as the forces to be applied in the constraint space to satisfy all constraint laws, the constrained system can therefore be presented as:
@@ -54,6 +58,7 @@ where $$\mathbf{W}=dt\left[\mathbf{H}_1\mathbf{A}_1^{-1}\mathbf{H}_1^T+\mathbf{H
 Finally, the resolution of the constraint problem is done using the [Gauss-Seidel algorithm](https://en.wikipedia.org/wiki/Gauss%E2%80%93Seidel_method). After resolution of this new linear system, the motion can be corrected as follows:
 
 - $$x_1=x_1^{free}+dt\cdot \Delta v_1^{cor}$$
+
 - $$x_1=x_2^{free}+dt\cdot \Delta v_2^{cor}$$ 
   with $$\Delta v_1^{cor}=dt\mathbf{A}_1^{-1}\mathbf{H}_1\lambda$$ and $$\Delta v_2^{cor}=dt\mathbf{A}_2^{-1}\mathbf{H}_2\lambda$$
 
