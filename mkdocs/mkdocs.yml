@@ -11,24 +11,20 @@ theme:
   logo: assets/logo-white.png
   favicon: assets/favicon.png
   palette:
-    - media: "(prefers-color-scheme)"
-      toggle:
-        icon: material/link
-        name: Switch to light mode
     - media: "(prefers-color-scheme: light)"
       scheme: default
       primary: deep orange
       accent: deep orange
       toggle:
-        icon: material/toggle-switch
+        icon: material/white-balance-sunny
         name: Switch to dark mode
     - media: "(prefers-color-scheme: dark)"
       scheme: slate
       primary: black
       accent: deep orange
       toggle:
-        icon: material/toggle-switch-off
-        name: Switch to system preference
+        icon: material/moon-waxing-crescent
+        name: Switch to light mode
   font:
     text: Roboto
     code: Roboto Mono
