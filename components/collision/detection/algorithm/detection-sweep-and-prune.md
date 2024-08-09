@@ -5,7 +5,7 @@ title: Detection Sweep and Prune
 Collisions Detection: DirectSAP
 ===============================
 
-The DirectSAP component belongs to the category of [Collision Detection](../../../../simulation-principles/multi-model-representation/collision/#collision-detection).
+The DirectSAP component belongs to the category of [Collision Detection](../../../../../simulation-principles/multi-model-representation/collision/#collision-detection).
 In this section, we describe the two collision detection methods based on the "[Sweep and Prune](https://en.wikipedia.org/wiki/Sweep_and_prune)" algorithm, noted SAP. The SAP method belongs to the topological methods for broad phase, based on the positions of objects in relation to others.
 
 
@@ -36,12 +36,12 @@ It is one of the most used methods in the broad-phase algorithms because it prov
 - the second part is in charge of the detection of overlapping between objects. To do that a projection of higher and upper bounds on the three axis of coordinates (x, y and z) of each
 AABBs is made.
 
-Only the pairs of objects whose projected bounding volumes overlap on all axes will be saved in the set of active boxes to be considered for the narrow phase. We can notice two related but different concepts on the way the SAP operates internally: the **DirectSAP** starts from scratch each time even though internal structures could be updated as performed in the [IncrSAP](./incrsap/).
+Only the pairs of objects whose projected bounding volumes overlap on all axes will be saved in the set of active boxes to be considered for the narrow phase. We can notice two related but different concepts on the way the SAP operates internally: the **DirectSAP** starts from scratch each time even though internal structures could be updated as performed in the [IncrSAP](./../incrsap/).
 
 
 ### Narrow phase
 
-The narrow phase browses all boxes considered as active by the broad phase. From this information, it is possible to recover the finest CollisionModel (which is not a CubeModel) corresponding to each box. An intersection check will then be done between these pairs. This check also depends on the [intersection method](../../../../simulation-principles/multi-model-representation/collision/#intersection-methods) used. This last phase returns the DetectionOutput vector containing elements of CollisionModels in collision and the contact points on the surface of each model.
+The narrow phase browses all boxes considered as active by the broad phase. From this information, it is possible to recover the finest CollisionModel (which is not a CubeModel) corresponding to each box. An intersection check will then be done between these pairs. This check also depends on the [intersection method](../../../../../simulation-principles/multi-model-representation/collision/#intersection-methods) used. This last phase returns the DetectionOutput vector containing elements of CollisionModels in collision and the contact points on the surface of each model.
 
 
 

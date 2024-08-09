@@ -5,7 +5,7 @@ title: DefaultAnimationLoop
 DefaultAnimationLoop
 ====================
 
-This component belongs to the category of [AnimationLoop](../../simulation-principles/animation-loop/).
+This component belongs to the category of [AnimationLoop](../../../simulation-principles/animation-loop/).
 
 The DefaultAnimationLoop is the component that rules the steps of the simulation in the default order. It consists in computing the collision (if any), the projective constraints, the physics, solving the resulting linear system and finally updating all data before another step begins.
 
@@ -26,7 +26,7 @@ Usage
 
 The DefaultAnimationLoop has **no pre-requisite**. If no AnimationLoop is specified in the scene, this animation loop is included by default at the root node of the graph.
 
-Note that this AnimationLoop does not support constraints solved using [Lagrange multipliers](../../simulation-principles/constraint/lagrange-constraint/).
+Note that this AnimationLoop does not support constraints solved using [Lagrange multipliers](../../../simulation-principles/constraint/lagrange-constraint/).
 
 
 Example

@@ -7,7 +7,7 @@ Collision Pipelines
 
 Collision between objects is split in several phases, each implemented in a different component.
 Each phase is scheduled by a collision pipeline.
-The collision pipelines are executed in an [animation loop](../../../../simulation-principles/animation-loop/).
+The collision pipelines are executed in an [animation loop](../../../../../simulation-principles/animation-loop/).
 
 The Steps
 =========
@@ -21,7 +21,7 @@ The collision pipeline follows three steps:
 Implementation
 ==============
 
-A collision pipeline is called from an [animation loop](../../../../simulation-principles/animation-loop/) through a CollisionVisitor executing the 3 steps of the pipeline in `CollisionVisitor::processCollisionPipeline`.
+A collision pipeline is called from an [animation loop](../../../../../simulation-principles/animation-loop/) through a CollisionVisitor executing the 3 steps of the pipeline in `CollisionVisitor::processCollisionPipeline`.
 
 The visitor executes the following functions, each corresponding to a step of the pipeline:
 ```cpp
@@ -56,7 +56,7 @@ void doCollisionResponse() override;
 ```
 
 The 3 delegate functions describe the 3 different steps, and are usually overriden in derived classes.
-See an example in [_DefaultPipeline_](./defaultpipeline).
+See an example in [_DefaultPipeline_](./../defaultpipeline).
 
 Notes:
 In some cases, the 3 steps are called manually by the animation loop through 3 dedicated visitors ([CollisionResetVisitor](https://www.sofa-framework.org/api/master/sofa/html/classsofa_1_1simulation_1_1_collision_reset_visitor.html), [CollisionDetectionVisitor](https://www.sofa-framework.org/api/master/sofa/html/classsofa_1_1simulation_1_1_collision_detection_visitor.html) and [CollisionResponseVisitor](https://www.sofa-framework.org/api/master/sofa/html/classsofa_1_1simulation_1_1_collision_response_visitor.html)).
@@ -68,7 +68,7 @@ Examples of Components
 
 The following components are all collision pipelines, and can be placed in a simulation scene:
 
-- [_DefaultPipeline_](./defaultpipeline)
+- [_DefaultPipeline_](./../defaultpipeline)
 
 Inheritance Diagram
 ===================

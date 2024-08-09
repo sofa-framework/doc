@@ -5,7 +5,7 @@ title: NewmarkImplicitSolver
 NewmarkImplicitSolver  
 =====================
 
-This component belongs to the category of [integration schemes or ODE Solver](../../../simulation-principles/system-resolution/integration-scheme/).  
+This component belongs to the category of [integration schemes or ODE Solver](../../../../simulation-principles/system-resolution/integration-scheme/).  
 
 This scheme is an implicit time integrator for dynamic system using the Newmark scheme. To compute the new position or new velocity, the NewmarkImplicitSolver is based on the following equations:
 
@@ -40,7 +40,7 @@ Usage
 
 At each simulation step and each Newton Raphson iteration, the NewmarkImplicitSolver **requires**:
 
-- a [LinearSolver](../../../simulation-principles/system-resolution/linear-solver/) to solve the linear system
+- a [LinearSolver](../../../../simulation-principles/system-resolution/linear-solver/) to solve the linear system
 - and a MechanicalObject to store the state vectors.
 <!-- automatically generated doc START -->
 <!-- generate_doc -->

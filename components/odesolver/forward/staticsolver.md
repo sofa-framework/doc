@@ -5,7 +5,7 @@ title: StaticSolver
 StaticSolver  
 ============  
 
-This component belongs to the category of [integration schemes or ODE Solver](../../../simulation-principles/system-resolution/integration-scheme/).  
+This component belongs to the category of [integration schemes or ODE Solver](../../../../simulation-principles/system-resolution/integration-scheme/).  
 
 In the field of mechanics, statics consists in finding the equilibrium taking into account the loads (internal forces, external forces and torques) acting on the physical system, that do not experience an acceleration ( $$a=0$$ ). Finding a static equilibrium means finding a solution to: $$\textstyle \sum F=0$$ where $$F$$ is the sum of all loads, one of which might be unknown.  
 
@@ -35,7 +35,7 @@ Usage
 
 At each simulation step and each Newton Raphson iteration, the StaticSolver **requires**:
 
-- a [LinearSolver](../../../simulation-principles/system-resolution/linear-solver/) to solve the linear system
+- a [LinearSolver](../../../../simulation-principles/system-resolution/linear-solver/) to solve the linear system
 - and a MechanicalObject to store the state vectors.
 
 A StaticSolver must be used in simulations where the dynamics has no or a negligible effect on the system. A StaticSolver would also be relevant for systems with low mass. In such case, we fall into the quasi-static analysis.

@@ -13,16 +13,16 @@ SOFA has some multithreading capabilities in its core, but more features are ava
 
 ## Parallel Collision Detection
 
-Most SOFA scenes use a component defining the [collision pipeline](../../components/collision/detection/algorithm/collisionpipeline/).
-This pipeline requires two components for the [broad phase](../../components/components/collision/detection/algorithm/broadphase/) and the [narrow phase](../../components/components/collision/detection/algorithm/narrowphase) of the collision detection.
-A usual choice is [BruteForceBroadPhase](../../components/collision/detection/algorithm/bruteforcebroadphase/) for the broad phase, and [BVHNarrowPhase](../../components/collision/detection/algorithm/bvhnarrowphase/) for the narrow phase.
+Most SOFA scenes use a component defining the [collision pipeline](../../../components/collision/detection/algorithm/collisionpipeline/).
+This pipeline requires two components for the [broad phase](../../../components/components/collision/detection/algorithm/broadphase/) and the [narrow phase](../../../components/components/collision/detection/algorithm/narrowphase) of the collision detection.
+A usual choice is [BruteForceBroadPhase](../../../components/collision/detection/algorithm/bruteforcebroadphase/) for the broad phase, and [BVHNarrowPhase](../../../components/collision/detection/algorithm/bvhnarrowphase/) for the narrow phase.
 Both of these components can be replaced with a parallel version from the MultiThreading plugin.
 
 ### ParallelBruteForceBroadPhase
 
-This component is a parallel implementation of [BruteForceBroadPhase](../../components/collision/detection/algorithm/bruteforcebroadphase/) using a global thread pool.
-It means the result of a simulation with [BruteForceBroadPhase](../../components/collision/detection/algorithm/bruteforcebroadphase/) or with ParallelBruteForceBroadPhase is expected to be equal.
-ParallelBruteForceBroadPhase is the most efficient compared to [BruteForceBroadPhase](../../components/collision/detection/algorithm/bruteforcebroadphase/) when there is a lot of objects in the scene.
+This component is a parallel implementation of [BruteForceBroadPhase](../../../components/collision/detection/algorithm/bruteforcebroadphase/) using a global thread pool.
+It means the result of a simulation with [BruteForceBroadPhase](../../../components/collision/detection/algorithm/bruteforcebroadphase/) or with ParallelBruteForceBroadPhase is expected to be equal.
+ParallelBruteForceBroadPhase is the most efficient compared to [BruteForceBroadPhase](../../../components/collision/detection/algorithm/bruteforcebroadphase/) when there is a lot of objects in the scene.
 
 #### Examples
 
@@ -34,8 +34,8 @@ Examples of ParallelBruteForceBroadPhase can be found in:
 
 ### ParallelBVHNarrowPhase
 
-This component is a parallel implementation of [BVHNarrowPhase](../../components/collision/detection/algorithm/bvhnarrowphase/) using a global thread pool.
-It means the result of a simulation with [BVHNarrowPhase](../../components/collision/detection/algorithm/bvhnarrowphase/) or with ParallelBVHNarrowPhase is expected to be equal.
+This component is a parallel implementation of [BVHNarrowPhase](../../../components/collision/detection/algorithm/bvhnarrowphase/) using a global thread pool.
+It means the result of a simulation with [BVHNarrowPhase](../../../components/collision/detection/algorithm/bvhnarrowphase/) or with ParallelBVHNarrowPhase is expected to be equal.
 
 #### Examples
 
@@ -51,7 +51,7 @@ Examples of ParallelBruteForceBroadPhase can be found in:
 
 ### ParallelTetrahedronFEMForceField
 
-ParallelTetrahedronFEMForceField is the multi-threaded equivalent of [TetrahedronFEMForceField](../../components/solidmechanics/fem/elastic/TetrahedronFEMForceField).
+ParallelTetrahedronFEMForceField is the multi-threaded equivalent of [TetrahedronFEMForceField](../../../components/solidmechanics/fem/elastic/TetrahedronFEMForceField).
 
 This implementation is the most efficient when the number of tetrahedron is large (> 1000).
 
@@ -67,12 +67,12 @@ Examples of ParallelTetrahedronFEMForceField can be found in:
 
 ### ParallelHexahedronFEMForceField
 
-ParallelHexahedronFEMForceField is the multi-threaded equivalent of [HexahedronFEMForceField](../../components/solidmechanics/fem/elastic/HexahedronFEMForceField).
+ParallelHexahedronFEMForceField is the multi-threaded equivalent of [HexahedronFEMForceField](../../../components/solidmechanics/fem/elastic/HexahedronFEMForceField).
 
 This implementation is the most efficient when:
 
 1) the number of hexahedron is large (> 1000)
-2) the global system matrix is not assembled. It is usually the case with a [CGLinearSolver](../../components/linearsolver/iterative/cglinearsolver/) templated with GraphScattered types.
+2) the global system matrix is not assembled. It is usually the case with a [CGLinearSolver](../../../components/linearsolver/iterative/cglinearsolver/) templated with GraphScattered types.
 3) the method is 'large'. If the method is 'polar' or 'small', `addForce` is executed sequentially, but `addDForce` in parallel.
 
 The following methods are executed in parallel:
@@ -81,7 +81,7 @@ The following methods are executed in parallel:
 - `addDForce`
 
 The method `addKToMatrix` is not executed in parallel.
-This method is called with an assembled system, usually with a direct solver or a [CGLinearSolver](../../components/linearsolver/iterative/cglinearsolver/) templated with types different from GraphScattered.
+This method is called with an assembled system, usually with a direct solver or a [CGLinearSolver](../../../components/linearsolver/iterative/cglinearsolver/) templated with types different from GraphScattered.
 In this case, the most time-consuming step is to invert the matrix. This is where efforts should be put to accelerate the simulation.
 
 #### Examples
@@ -123,7 +123,7 @@ Examples of ParallelMeshSpringForceField can be found in:
 ## Independent SOFA Scenes
 
 The AnimationLoopParallelScheduler component was implemented to run the physics simulation of independent scenes in parallel.
-The component looks for [BaseAnimationLoop components](../../simulation-principles/animation-loop/) in all its child nodes and executes the `step()` function of each AnimationLoop in parallel.
+The component looks for [BaseAnimationLoop components](../../../simulation-principles/animation-loop/) in all its child nodes and executes the `step()` function of each AnimationLoop in parallel.
 
 The DataExchange component can manage the sharing of data between all the concurrent scenes without being bound by synchronization locks.
 To avoid the use of synchronization locks, each component in different scenes must have its own copy of the same data to share, and the data synchronization is executed serially.

@@ -5,7 +5,7 @@ title: BilateralLagrangianConstraint
 BilateralLagrangianConstraint
 ==============================
 
-This component belongs to the category of [Constraint Laws](../../../../simulation-principles/constraint/lagrange-constraint/#constraint-laws) used for the Lagrange constraint resolution and inherits from the PairInteractionConstraint. The BilateralLagrangianConstraint defines an [holonomic constraint](https://en.wikipedia.org/wiki/Holonomic_constraints) law between a pair of simulated body, i.e. the constraint defined between the pair of objects must have an equality form:
+This component belongs to the category of [Constraint Laws](../../../../../simulation-principles/constraint/lagrange-constraint/#constraint-laws) used for the Lagrange constraint resolution and inherits from the PairInteractionConstraint. The BilateralLagrangianConstraint defines an [holonomic constraint](https://en.wikipedia.org/wiki/Holonomic_constraints) law between a pair of simulated body, i.e. the constraint defined between the pair of objects must have an equality form:
 
 $$\Phi(x_1,x_2...)~=~0$$
 
@@ -27,7 +27,7 @@ As all constraint laws, the BilateralLagrangianConstraint will be called in the 
 Usage
 -----
 
-The BilateralLagrangianConstraint can only be used in the context of [Lagrange constraint](../../../../simulation-principles/constraint/lagrange-constraint/) resolution. The scene must therefore contain:
+The BilateralLagrangianConstraint can only be used in the context of [Lagrange constraint](../../../../../simulation-principles/constraint/lagrange-constraint/) resolution. The scene must therefore contain:
 
 - a FreeMotionAnimationLoop
 - a ConstraintSolver

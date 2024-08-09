@@ -5,7 +5,7 @@ title: RayTraceNarrowPhase
 Narrow Phase: Ray Trace Narrow Phase
 ====================================
 
-The RayTraceNarrowPhase component is a [narrow phase component](./narrowphase), which is used in the detection phase of a [CollisionPipeline](../collisionpipeline/#collision-detection).
+The RayTraceNarrowPhase component is a [narrow phase component](./../narrowphase), which is used in the detection phase of a [CollisionPipeline](../../collisionpipeline/#collision-detection).
 This method traces a ray for each point in one object following the opposite of the point's normal up to find a triangle in the other object.
 Both triangles are tested to evaluate if they are in a colliding state.
 

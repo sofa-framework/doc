@@ -35,7 +35,7 @@ Examples: Sofa.Component.Collision, Sofa.Component.Engine.Analyze, Sofa.Componen
 Plugins are optional Modules adding more SOFA features.
 
 Plugins contain Components.
-Plugins are externalizable. Some external plugins can be [auto-fetched into SOFA sources](../plugins/fetch-plugin-code-source/).
+Plugins are externalizable. Some external plugins can be [auto-fetched into SOFA sources](../../plugins/fetch-plugin-code-source/).
 Plugins can be disabled via a CMake option. Most Plugins are OFF by default.
 
 A Plugin can "contain" other Modules and Libraries. Technically, it will have link dependencies on those Modules.
@@ -75,7 +75,7 @@ Simulation corresponds to the process computing the change of state of the physi
 
 ## Scene
 Scene denotes the graph structure (direct acyclic graph) describing the physical systems, their physical behavior, their properties and the numerical tools used for the computation. The Scene description starts with a root Node which then contains child Nodes (sub-Nodes). Each child Node of the root Node usually corresponds to one object (one physical system).
-Read more about the [Scene graph](../simulation-principles/scene-graph/) 
+Read more about the [Scene graph](../../simulation-principles/scene-graph/) 
 
 ## Example
 Example refers to set of Scene files provided with SOFA. These Scene files illustrate most of the SOFA components in a dedicated Simulation. They can be found within the _examples/_ folder in the SOFA sources or within the _share/sofa/examples/_ folder in the SOFA binaries.
@@ -102,7 +102,7 @@ Component corresponds to C++ classes implementing specific physical models or al
 
 ## Data
 Data is a public attribute of a Component (C++ class) visible to the user in the SOFA user interface. For a physical model or an algorithm, a Data is a parameter available for the user (e.g. the total mass `totalMass` in a mass component). Data may be defined by the user (some are compulsory - a.k.a. required - else a warning will be sent), accessed and modified.
-Read more about [Data](../simulation-principles/scene-graph/#data).
+Read more about [Data](../../simulation-principles/scene-graph/#data).
 
 ## Datafield
 DataField refers to a Data

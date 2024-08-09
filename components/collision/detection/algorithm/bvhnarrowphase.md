@@ -5,7 +5,7 @@ title: BVHNarrowPhase
 Narrow Phase: BVH Narrow Phase
 ==============================
 
-BVHNarrowPhase is [narrow phase component](./narrowphase), which is used in the detection phase of a [CollisionPipeline](../collisionpipeline/#collision-detection).
+BVHNarrowPhase is [narrow phase component](./../narrowphase), which is used in the detection phase of a [CollisionPipeline](../../collisionpipeline/#collision-detection).
 The algorithm is based on a Bounding Volume Hierarchy (BVH).
 
 

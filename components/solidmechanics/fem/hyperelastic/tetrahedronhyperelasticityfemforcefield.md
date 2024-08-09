@@ -5,7 +5,7 @@ title: TetrahedronHyperelasticityFEMForceField
 TetrahedronHyperelasticityFEMForceField
 =======================================
 
-This component belongs to the category of [ForceField](../../../../simulation-principles/multi-model-representation/forcefield/). The TetrahedronHyperelasticityFEMForceField implements - for tetrahedral topology only - several non-linear mechanical constitutive laws, also named as hyperelastic constitutive laws. The available models are:
+This component belongs to the category of [ForceField](../../../../../simulation-principles/multi-model-representation/forcefield/). The TetrahedronHyperelasticityFEMForceField implements - for tetrahedral topology only - several non-linear mechanical constitutive laws, also named as hyperelastic constitutive laws. The available models are:
 
 - [Arruda-Boyce model](https://en.wikipedia.org/wiki/Arruda%E2%80%93Boyce_model)
 - [Costa model](https://www.jstor.org/stable/pdf/3066567.pdf)

@@ -43,8 +43,8 @@ The figure 3 shows a simulation involving two different objects. One node can co
 
 To build a simulation in SOFA, the scene graph can be written both using:
 
-*   XML files. Read the [associated page](../using-sofa/write-a-scene-in-xml/) about how to write a scene in XML.
-*   Python scripts. Read the [associated page](../using-sofa/features/python-scripting/) about how to write in Python.
+*   XML files. Read the [associated page](../../using-sofa/write-a-scene-in-xml/) about how to write a scene in XML.
+*   Python scripts. Read the [associated page](../../using-sofa/features/python-scripting/) about how to write in Python.
 
 
 Data
@@ -57,7 +57,7 @@ Two Data instances can be connected one with another to keep their value synchro
 <Component dataname="@path_to/component.data" />
 ```
 
-Read more about data on the [Components and Data](../programming-with-sofa/start-coding/components-api/components-and-datas/) documentation page.
+Read more about data on the [Components and Data](../../programming-with-sofa/start-coding/components-api/components-and-datas/) documentation page.
 
 
 Tags

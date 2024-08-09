@@ -5,7 +5,7 @@ title: SparseCholeskySolver
 SparseCholeskySolver  
 ====================
 
-This component belongs to the category of [LinearSolver](../../../simulation-principles/system-resolution/linear-solver/). The role of the SparseLUSolver is to solve the linear system $$\mathbf{A}x=b$$ assuming that the matrix $$\mathbf{A}$$ is symmetric and sparse.
+This component belongs to the category of [LinearSolver](../../../../simulation-principles/system-resolution/linear-solver/). The role of the SparseLUSolver is to solve the linear system $$\mathbf{A}x=b$$ assuming that the matrix $$\mathbf{A}$$ is symmetric and sparse.
 
 The Cholesky decomposition (https://en.wikipedia.org/wiki/Cholesky_decomposition) is a numerical method that solves a linear system $$mathbf{A}x=b$$ by factorizing the matrix of the system as $$\mathbf{LL^T}$$. By doing so, we only need to solve two triangular systems to compute the solution. It is only applyable on **symetric** matrices but is roughtly twice as efficient as the LU solver. The $$\mathbf{LDL^T}$$ decomposition is heavily related to the Cholesky decomposition.
 

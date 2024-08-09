@@ -5,13 +5,13 @@ title: Lagrange Constraint
 Constraint based on Lagrange Multipliers
 ========================================
 
-SOFA allows the use of Lagrange multipliers to handle complex constraints, such as contacts and joints between moving objets that can not be straightforwarly implemented using [projection matrices](./projective-constraint/).
+SOFA allows the use of Lagrange multipliers to handle complex constraints, such as contacts and joints between moving objets that can not be straightforwarly implemented using [projection matrices](./../projective-constraint/).
 
 
 General presentation of the constraint problem
 ----------------------------------------------
 
-To solve the dynamic of two constrained objects, we use a Lagrange Multipliers approach and a single linearization by time step. From the [physical system](../multi-model-representation/physics-integration/) to solve, the constraint problem can be expressed with the linear system as:
+To solve the dynamic of two constrained objects, we use a Lagrange Multipliers approach and a single linearization by time step. From the [physical system](../../multi-model-representation/physics-integration/) to solve, the constraint problem can be expressed with the linear system as:
 
 $$\left(\mathbf{M}+dt\textstyle\frac{\partial f}{\partial \dot{x}}+dt^2\textstyle\frac{\partial f}{\partial x}\right)\Delta v=-dt(f+dt\textstyle\frac{\partial f}{\partial x}v - \mathbf{H}^T\lambda)$$
 
@@ -65,11 +65,11 @@ Finally, the resolution of the constraint problem is done using the [Gauss-Seide
 FreeMotionAnimationLoop
 -----------------
 
-To solve such complex constraint-based interactions, the simulation requires a specific [animation loop](../animation-loop/): the [_FreeMotionAnimationLoop_](../../components/animationloop/freemotionanimationloop/). This animation loop divides each simulation step into two successive resolution steps: the free motion and a corrective motion.
+To solve such complex constraint-based interactions, the simulation requires a specific [animation loop](../../animation-loop/): the [_FreeMotionAnimationLoop_](../../../components/animationloop/freemotionanimationloop/). This animation loop divides each simulation step into two successive resolution steps: the free motion and a corrective motion.
 
 
 #### Free motion ####
-The first step triggered by the _FreeMotionAnimationLoop_ is the free motion step. It consists in the resolution of the unconstrained (free) system $$\mathbf{A}x=b$$ as described in the System Resolution section. Note that this free resolution may also include [projective constraints](./projective-constraint) that will be projected on the linear system. In the same way, [collision](../multi-model-representation/collision) might also be detected and a response would be created.	
+The first step triggered by the _FreeMotionAnimationLoop_ is the free motion step. It consists in the resolution of the unconstrained (free) system $$\mathbf{A}x=b$$ as described in the System Resolution section. Note that this free resolution may also include [projective constraints](./../projective-constraint) that will be projected on the linear system. In the same way, [collision](../../multi-model-representation/collision) might also be detected and a response would be created.	
 
 In the _solve()_ function of the _FreeMotionAnimationLoop_, you will find the following functions responsible for the free motion:
 ``` cpp
@@ -128,7 +128,7 @@ The step of building the system (see the [Build system](#build-system), [Constra
 
 #### Build system ####
 
-This is the denser part of the constraint resolution. Most steps done to build the constraint problem are triggered using [visitors](../visitors/) browsing the simulation graph. All the following functions are actually not implemented by _ConstraintSolver_ but by the constraint laws available in the scene $$\Phi$$ and $$\Psi$$ (see the [Constraint law](#constraint-laws) section).
+This is the denser part of the constraint resolution. Most steps done to build the constraint problem are triggered using [visitors](../../visitors/) browsing the simulation graph. All the following functions are actually not implemented by _ConstraintSolver_ but by the constraint laws available in the scene $$\Phi$$ and $$\Psi$$ (see the [Constraint law](#constraint-laws) section).
 
 The following steps are processed one after another:
 
@@ -191,7 +191,7 @@ ConstraintCorrection
 
 As explained above, a _ConstraintCorrection_ is required in the simulation to define the way the compliance matrix $$\mathbf{W}$$ is computed. Different classes of _ConstraintCorrection_ exist in SOFA corresponding to different approaches:
 
-  - _[UncoupledConstraintCorrection](../../components/constraint/lagrangian/correction/uncoupledconstraintcorrection/)_: makes the approximation that the compliance matrix $$\mathbf{W}$$ is diagonal. This is as strong assumption since a diagonal matrix means that all constraints are independent from each other. Note that you can directly specify the compliance matrix values within the Data field "compliance"
+  - _[UncoupledConstraintCorrection](../../../components/constraint/lagrangian/correction/uncoupledconstraintcorrection/)_: makes the approximation that the compliance matrix $$\mathbf{W}$$ is diagonal. This is as strong assumption since a diagonal matrix means that all constraints are independent from each other. Note that you can directly specify the compliance matrix values within the Data field "compliance"
 
   - _LinearSolverConstraintCorrection_: computes the compliance matrix $$\mathbf{W}=\mathbf{H}\mathbf{A}^{-1}\mathbf{H}^T$$ where $$\mathbf{A}^{-1}$$ comes from a direct solver associated to the object. Since the direct solvers in SOFA factorize the matrix $$\mathbf{A}$$ (for instance using a LDL factorization if you use the _LDLSolver_), the factorization is reused to compute the compliance matrix. The matrix-matrix multiplication $$\mathbf{H}\mathbf{A}^{-1}\mathbf{H}^T$$ is not possible in case of a matrix-free solver, since the assembled inverse matrix $$\mathbf{A}^{-1}$$ is not available. From the factorization of $$\mathbf{A}$$, the computation of $$\mathbf{H}\mathbf{A}^{-1}\mathbf{H}^T$$ done in the function _addJMInvJt()_ requires to call the _solve()_ function from the direct solver, computing a matrix-vector multiplication, for each line of the constraint matrix $$\mathbf{H}$$, i.e. for each constraint. This approach can therefore be very computationally-demanding if you have many constraints. Note that this ConstraintCorrection proposes an optimization for wire-like structures (boolean option)
 

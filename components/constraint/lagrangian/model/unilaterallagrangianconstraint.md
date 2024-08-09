@@ -6,7 +6,7 @@ UnilateralLagrangianConstraint
 ===============================
 
 
-This component belongs to the category of [Constraint Laws](../../../../simulation-principles/constraint/lagrange-constraint/#constraint-laws) used for the Lagrange constraint resolution and inherits from the PairInteractionConstraint. The UnilateralLagrangianConstraint defines an [non-holonomic constraint](https://en.wikipedia.org/wiki/Nonholonomic_system) law between a pair of simulated body, i.e. the constraint defined between the pair of objects must have an inequality form:
+This component belongs to the category of [Constraint Laws](../../../../../simulation-principles/constraint/lagrange-constraint/#constraint-laws) used for the Lagrange constraint resolution and inherits from the PairInteractionConstraint. The UnilateralLagrangianConstraint defines an [non-holonomic constraint](https://en.wikipedia.org/wiki/Nonholonomic_system) law between a pair of simulated body, i.e. the constraint defined between the pair of objects must have an inequality form:
 
 $$\Psi(x_1,x_2...)~\geq~0$$
 
@@ -28,7 +28,7 @@ As all constraint laws, the UnilateralLagrangianConstraint will be called in the
 Usage
 -----
 
-The UnilateralLagrangianConstraint can only be used in the context of [Lagrange constraint](../../../../simulation-principles/constraint/lagrange-constraint/) resolution. The scene must therefore contain:
+The UnilateralLagrangianConstraint can only be used in the context of [Lagrange constraint](../../../../../simulation-principles/constraint/lagrange-constraint/) resolution. The scene must therefore contain:
 
 - a FreeMotionAnimationLoop
 - a ConstraintSolver

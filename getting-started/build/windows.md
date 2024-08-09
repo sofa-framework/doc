@@ -218,4 +218,4 @@ The two scripts `setup-windows_1.bat` and `setup-windows_2.bat` install the mini
 
 ## Compilation tutorial
 
-See our page presenting [video tutorial for compilation on Windows](../video-tutorials/how-to-compile-sofa/#windows).
+See our page presenting [video tutorial for compilation on Windows](../../video-tutorials/how-to-compile-sofa/#windows).

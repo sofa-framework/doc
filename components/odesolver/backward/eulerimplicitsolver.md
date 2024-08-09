@@ -5,7 +5,7 @@ title: EulerImplicitSolver
 EulerImplicitSolver  
 ===================
 
-This component belongs to the category of [integration schemes or ODE Solver](../../../simulation-principles/system-resolution/integration-scheme/). This scheme builds the system following an implicit scheme: forces are considered based on the state information at the next time step $$x(t+dt)$$, unknown at the current time step.
+This component belongs to the category of [integration schemes or ODE Solver](../../../../simulation-principles/system-resolution/integration-scheme/). This scheme builds the system following an implicit scheme: forces are considered based on the state information at the next time step $$x(t+dt)$$, unknown at the current time step.
 
 Looking at continuum mechanics, the linear system $$\mathbf{A}x=b$$ arises from the dynamic equation. This dynamic is written as follows but other physics (like heat transfer) result in a similar equation:
 
@@ -31,7 +31,7 @@ We can notice the appearance of the stiffness matrix : $$\mathbf{K}_{ij}=\textst
 
 $$\left( \mathbf{M}-dt^2 \cdot \mathbf{K} \right) \Delta v=dt\cdot f(x(t))+dt^2\cdot \mathbf{K}v(t)$$
 
-The computation of the **right hand side** is done by the ForceFields. Just like in the explicit case (see [EulerExplicitSolver](../forward/eulerexplicitsolver/)), the explicit contribution $$dt\left(f(x(t))\right)$$ is implemented in the same function `addForce()`. The second part $$dt^2\cdot \frac{\partial f}{\partial x}v(t)$$ is computed by the function `addDForce()`.
+The computation of the **right hand side** is done by the ForceFields. Just like in the explicit case (see [EulerExplicitSolver](../../forward/eulerexplicitsolver/)), the explicit contribution $$dt\left(f(x(t))\right)$$ is implemented in the same function `addForce()`. The second part $$dt^2\cdot \frac{\partial f}{\partial x}v(t)$$ is computed by the function `addDForce()`.
 
 It is important to note that, depending on the **choice of LinearSolver** (direct or iterative), the API functions called to build the **left hand side** system matrix $$\mathbf{A}=\left( M-dt^2 \cdot \frac{\partial f}{\partial x} \right)$$ will not be the same:
 
@@ -74,7 +74,7 @@ This results in the following linear system:
 
 $$\left( \mathbf{M}-\frac{dt^2}{2} \frac{\partial f}{\partial x}\right) \Delta v=dt\cdot f(x(t))+\frac{dt^2}{2}\cdot \frac{\partial f}{\partial x}v(t)$$
 
-Finally, with Rayleigh damping, the option is given to the user to add numerical damping. The description of the meaning and effect of these Rayleigh damping coefficients is given in [ODESolver](../../../simulation-principles/system-resolution/integration-scheme/#rayleigh-damping).
+Finally, with Rayleigh damping, the option is given to the user to add numerical damping. The description of the meaning and effect of these Rayleigh damping coefficients is given in [ODESolver](../../../../simulation-principles/system-resolution/integration-scheme/#rayleigh-damping).
 
 
 Sequence diagram
@@ -90,7 +90,7 @@ Usage
 
 The EulerImplicitSolver **requires**:
 
-- a [LinearSolver](../../../simulation-principles/system-resolution/linear-solver/) to solve the linear system
+- a [LinearSolver](../../../../simulation-principles/system-resolution/linear-solver/) to solve the linear system
 - and a MechanicalObject to store the state vectors.
 
 <!-- automatically generated doc START -->

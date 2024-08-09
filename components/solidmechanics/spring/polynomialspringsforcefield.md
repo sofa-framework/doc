@@ -5,7 +5,7 @@ title: PolynomialSpringsForceField
 PolynomialSpringsForceField
 ===========================
 
-This component belongs to the category of [ForceField](../../../simulation-principles/multi-model-representation/forcefield/). This component allows to simulate springs with Polynomial stress strain behavior. If we note:
+This component belongs to the category of [ForceField](../../../../simulation-principles/multi-model-representation/forcefield/). This component allows to simulate springs with Polynomial stress strain behavior. If we note:
 
 - $$F$$ the spring force
 - $$S$$ the cross section (always 1.0)

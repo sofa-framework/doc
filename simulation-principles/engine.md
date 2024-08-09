@@ -36,7 +36,7 @@ This function is in charge of the computation of the ouput Data based on the inp
 Example of use
 --------------
 
-Here is an example with the [TransformEngine](../components/engine/transform/transformengine/) with an input data ("input_position") and an output data ("output_position") resulting from a transformation defined by the user (here translation):
+Here is an example with the [TransformEngine](../../components/engine/transform/transformengine/) with an input data ("input_position") and an output data ("output_position") resulting from a transformation defined by the user (here translation):
 
 ``` xml
 <TransformEngine name="translationEngine" template="Vec3d" translation="10 0 0" input_position="@meshLoader.position" />

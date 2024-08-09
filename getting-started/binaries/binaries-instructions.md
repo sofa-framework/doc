@@ -21,7 +21,7 @@ If you downloaded an installer file, simply run the file, and follow the install
 
 ## Execute
 
-To run SOFA, locate and execute the application called `runSofa`. For more detailed information on how to use the application, you can refer to the [page dedicated to runsofa](../../using-sofa/runsofa/). This documentation will provide you with further guidance on using SOFA effectively.
+To run SOFA, locate and execute the application called `runSofa`. For more detailed information on how to use the application, you can refer to the [page dedicated to runsofa](../../../using-sofa/runsofa/). This documentation will provide you with further guidance on using SOFA effectively.
 
 ### Notes for macOS Users
 
@@ -29,7 +29,7 @@ Unfortunately, macOS binaries of SOFA are not code-signed. It means that macOS a
 
 There are several solutions to run SOFA anyway:
 
-- Build SOFA by yourself. MacOS does not add the quarantine flags on the local builds. See the instructions [here](../build/macos/).
+- Build SOFA by yourself. MacOS does not add the quarantine flags on the local builds. See the instructions [here](../../build/macos/).
 - Run the following command:
 
 ```bash

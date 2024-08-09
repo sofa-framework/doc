@@ -36,9 +36,9 @@ Explicit schemes are usually known as being fast to solve (since the created lin
 
 Explicit ODESolvers in SOFA:
 
-- [EulerExplicitSolver](../../components/odesolver/forward/eulerexplicitsolver/)
-- [CentralDifferenceSolver](../../components/odesolver/forward/centraldifferencesolver/)
-- [RungeKutta2Solver](../../components/odesolver/forward/rungekutta2solver/)
+- [EulerExplicitSolver](../../../components/odesolver/forward/eulerexplicitsolver/)
+- [CentralDifferenceSolver](../../../components/odesolver/forward/centraldifferencesolver/)
+- [RungeKutta2Solver](../../../components/odesolver/forward/rungekutta2solver/)
 
 
 ### Implicit scheme
@@ -55,15 +55,15 @@ Implicit schemes are known as being slower to solve (the outcoming linear system
 
 Implicit ODESolvers in SOFA:
 
-- [EulerImplicitSolver](../../components/odesolver/backward/eulerimplicitsolver/)
-- [NewmarkImplicitSolver](../../components/odesolver/backward/newmarkimplicitsolver/)
-- [VariationalSymplecticSolver](../../components/odesolver/backward/variationalsymplecticsolver/)
+- [EulerImplicitSolver](../../../components/odesolver/backward/eulerimplicitsolver/)
+- [NewmarkImplicitSolver](../../../components/odesolver/backward/newmarkimplicitsolver/)
+- [VariationalSymplecticSolver](../../../components/odesolver/backward/variationalsymplecticsolver/)
 
 
 In the SOFA code
 ----------------
 
-The integration scheme is described in the `solve()` function of the ODESolver. This *solve()* function is called by the [AnimationLoop](../animation-loop/) (through a dedicated visitor) and builds the complete linear system $$\mathbf{A}x=b$$.
+The integration scheme is described in the `solve()` function of the ODESolver. This *solve()* function is called by the [AnimationLoop](../../animation-loop/) (through a dedicated visitor) and builds the complete linear system $$\mathbf{A}x=b$$.
 
 
 ### Specification of the scheme
@@ -86,7 +86,7 @@ The left hand side matrix $$\mathbf{A}$$ is built using the function:
 ``` cpp
 matrix = MechanicalMatrix(r_M, r_B, r_K);
 ```
-where $$r_M$$ (mass coefficient), $$r_B$$ (damping coefficient) and $$r_K$$ (stiffness coefficient) are Rayleigh coefficients (see section below). Depending on the scheme (explicit or implicit, see previous paragraph) and on the type of LinearSolver used (if any), the abstract function `MechanicalMatrix` will trigger different [visitors](../visitors/), thus different functions to compute the system matrix $$\mathbf{A}$$. Discover the API used for the computation of $$\mathbf{A}$$ in the [ForceField](../multi-model-representation/forcefield/#forcefield-api) and [Mass](../multi-model-representation/mass/#mass-api) doc pages.
+where $$r_M$$ (mass coefficient), $$r_B$$ (damping coefficient) and $$r_K$$ (stiffness coefficient) are Rayleigh coefficients (see section below). Depending on the scheme (explicit or implicit, see previous paragraph) and on the type of LinearSolver used (if any), the abstract function `MechanicalMatrix` will trigger different [visitors](../../visitors/), thus different functions to compute the system matrix $$\mathbf{A}$$. Discover the API used for the computation of $$\mathbf{A}$$ in the [ForceField](../../multi-model-representation/forcefield/#forcefield-api) and [Mass](../../multi-model-representation/mass/#mass-api) doc pages.
 
 
 The right hand side vector *b* is built through the function:
@@ -94,14 +94,14 @@ The right hand side vector *b* is built through the function:
 computeForce(b)
 ```
 
-Again, Depending on the scheme (explicit or implicit, see previous paragraph), the abstract function `computeForce` will trigger different [visitors](../visitors/), thus different functions to accumulate the forces into the vector $$b$$. Discover the API used for the computation of $$b$$ in the [ForceField](../multi-model-representation/forcefield/#forcefield-api) doc page.
+Again, Depending on the scheme (explicit or implicit, see previous paragraph), the abstract function `computeForce` will trigger different [visitors](../../visitors/), thus different functions to accumulate the forces into the vector $$b$$. Discover the API used for the computation of $$b$$ in the [ForceField](../../multi-model-representation/forcefield/#forcefield-api) doc page.
 
 
 
 
 ### State vectors in ODESolver
 
-In order to build the linear matrix system, the ODESolver uses information contained in [state vectors](../mechanicalobject/#state-vectors) (like DOFs and their derivatives) within the scope of the ODESolver. The ODESolver does not access the state vectors directly. It accesses the state vectors remotely using visitors, which traverse the graph starting from the node which contains the solver. This keeps the implementation of the solver independent of the simulated objects and their types.
+In order to build the linear matrix system, the ODESolver uses information contained in [state vectors](../../mechanicalobject/#state-vectors) (like DOFs and their derivatives) within the scope of the ODESolver. The ODESolver does not access the state vectors directly. It accesses the state vectors remotely using visitors, which traverse the graph starting from the node which contains the solver. This keeps the implementation of the solver independent of the simulated objects and their types.
 
 Each type of solver may use different auxiliary state vectors to implement their simulation method. State vectors (MultiVec) are allocated and processed in the scope of the solver in a thread-safe way using an instance of _simulation::common::VectorOperations_. For instance, a Runge-Kutta algorithms needs to save the result of previous time steps.
 
@@ -117,7 +117,7 @@ MultiVecCoord previousPos(&vop, previousPosID);         // additional vector
 
 ### Compute the solution
 
-In most cases, the matrix system $$\mathbf{A}x=b$$ can then be sent to a [LinearSolver](../system-resolution/linear-solver/) in charge of finally solving the system defined according to the chosen scheme. Within the function *ODESolver::solve()*, the call to the LinearSolver will appear through the function call:
+In most cases, the matrix system $$\mathbf{A}x=b$$ can then be sent to a [LinearSolver](../../system-resolution/linear-solver/) in charge of finally solving the system defined according to the chosen scheme. Within the function *ODESolver::solve()*, the call to the LinearSolver will appear through the function call:
 
 ``` cpp
 matrix.solve(x, b);

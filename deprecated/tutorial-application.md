@@ -2,7 +2,7 @@
 title: Tutorial application
 ---
 
-**NOTE:** Every scene detailed in tutorial can also be launched using the [runSofa](../getting-started/run-sofa/) application directly.
+**NOTE:** Every scene detailed in tutorial can also be launched using the [runSofa](../../getting-started/run-sofa/) application directly.
 
 Tutorial Application
 --------------------

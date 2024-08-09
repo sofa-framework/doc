@@ -5,7 +5,7 @@ title: EulerExplicitSolver
 EulerExplicitSolver  
 ===================
 
-The EulerExplicitSolver component belongs to the category of [integration schemes or ODE Solver](../../../simulation-principles/system-resolution/integration-scheme/). This scheme allows to solve dynamic systems explicitly: all forces will be computed based on the state information at the current time step $$x(t)$$.
+The EulerExplicitSolver component belongs to the category of [integration schemes or ODE Solver](../../../../simulation-principles/system-resolution/integration-scheme/). This scheme allows to solve dynamic systems explicitly: all forces will be computed based on the state information at the current time step $$x(t)$$.
 
 Looking at continuum mechanics, the linear system $$\mathbf{A}x=b$$ arises from the dynamic equation. This dynamic is written as follows but other physics (like heat transfer) result in a similar equation:
 
@@ -38,7 +38,7 @@ Sequence diagram
 Usage  
 -----  
 
-The EulerExplicitSolver **requires** a MechanicalObject to store the state vectors. However, as explained above, no LinearSolver is needed and the EulerExplicitSolver is **only working using a [UniformMass](../../mass/uniformmass/) or [DiagonalMass](../../mass/diagonalmass/)**, which ensures to have a diagonal system matrix.
+The EulerExplicitSolver **requires** a MechanicalObject to store the state vectors. However, as explained above, no LinearSolver is needed and the EulerExplicitSolver is **only working using a [UniformMass](../../../mass/uniformmass/) or [DiagonalMass](../../../mass/diagonalmass/)**, which ensures to have a diagonal system matrix.
 <!-- automatically generated doc START -->
 <!-- generate_doc -->
 

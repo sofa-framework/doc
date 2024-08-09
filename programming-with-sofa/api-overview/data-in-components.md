@@ -14,7 +14,7 @@ Wrapping values in this template class provides the following features:
     automatic updates
 -   thread-safe access (work in progress)
 
-[Naming convention](../guidelines/#naming)
+[Naming convention](../../guidelines/#naming)
 in SOFA specifies that Data name must be preceeded from `d_`.
 
 

@@ -15,7 +15,7 @@ i.e. a plugin which is not provided in the source code of SOFA.
 Two ways of building a plugin are possible:
 
 - you are compiling SOFA and you integrate your plugin project along SOFA (aka [_in-tree build_](#in-tree-build)).
-- you have an install of SOFA (either you downloaded a [pre-built configuration](https://www.sofa-framework.org/download/), or you installed by yourself from a [SOFA build](../getting-started/build/build-options/)), and you want to use this installation to build your plugin (aka [_out-of-tree build_](#out-of-tree-build))
+- you have an install of SOFA (either you downloaded a [pre-built configuration](https://www.sofa-framework.org/download/), or you installed by yourself from a [SOFA build](../../getting-started/build/build-options/)), and you want to use this installation to build your plugin (aka [_out-of-tree build_](#out-of-tree-build))
 
 ## In-tree build
 

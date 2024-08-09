@@ -141,4 +141,4 @@ def createScene(node):
     child_dofs = child_node.addObject('MechanicalObject', template = 'Vec3', name = 'dofs')
 ```
 
-Please refer to the [documentation](../plugins/usual-plugins/python-scripting/) for further details.
+Please refer to the [documentation](../../plugins/usual-plugins/python-scripting/) for further details.
