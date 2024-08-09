@@ -19,7 +19,7 @@ In an XML format, this would be written as follows:
 State vectors (DOFs)
 --------------------
 
-As described in [the introduction to state vectors](https://www.sofa-framework.org/community/doc/simulation-principles/mechanicalobject/#state-vectors), the degrees of freedom (DOFs) of your simulation are stored in state vectors. These vectors are managed by the main component of a simulation: the MechanicalObject. The SOFA framework was historically focused on soft tissue mechanics. Therefore, the semantic is strongly related to mechanics.
+As described in [the introduction to state vectors](./mechanicalobject/#state-vectors), the degrees of freedom (DOFs) of your simulation are stored in state vectors. These vectors are managed by the main component of a simulation: the MechanicalObject. The SOFA framework was historically focused on soft tissue mechanics. Therefore, the semantic is strongly related to mechanics.
 
 Depending on the physics (DOFs) you want to compute, you will have to choose the template of the MechanicalObject among: 1, 2, 3 or 6 reals per node, 1 rigid per node.
 
@@ -39,7 +39,7 @@ To solve the mathematical system at each time step, solvers have to be defined. 
 *   an integration scheme, or ODE solver: Euler explicit, implicit, Runge Kutta, etc. This schemes describes how to compute the next state based on the current one.
 *   a linear solver: iterative (conjugate gradient) or direct (LU, LDL, etc.) to solve the linear system assembled by the previous integration scheme.
 
-Discover more about how the mathematical system is solved in SOFA in the [associated page](https://www.sofa-framework.org/support/doc/).
+Discover more about how the mathematical system is solved in SOFA in the [associated page](./system-resolution/integration-scheme/).
 
 In an XML format, this would be written as follows:
 ```xml

@@ -14,7 +14,7 @@ Wrapping values in this template class provides the following features:
     automatic updates
 -   thread-safe access (work in progress)
 
-[Naming convention](https://www.sofa-framework.org/community/doc/programming-with-sofa/guidelines/#naming)
+[Naming convention](../guidelines/#naming)
 in SOFA specifies that Data name must be preceeded from `d_`.
 
 
@@ -128,7 +128,7 @@ it updates its value based on the source, recursively.
 In XML, links are set using the `@` symbol as in the following example:
 
 ```xml
-<FixedConstraint  indices="@box_roi.indices"/>
+<FixedProjectiveConstraint  indices="@box_roi.indices"/>
 ```
 
 In C++, links are set using method `BaseData::setParent( BaseData* )`, as

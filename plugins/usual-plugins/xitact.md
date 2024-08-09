@@ -2,8 +2,7 @@
 title: Xitact
 ---
 
-Xitact are haptic device product by **Mentice**, two models are handle
-in SOFA:
+Xitact are haptic device product by the company **Mentice**. Two models are handled in SOFA:
 
 -   Xitact™ IHP: a haptic device designed to track the motion of a
     surgical instrument and to provide realistic force feedback during

@@ -18,7 +18,7 @@ __namespace__: `#!c++ sofa::component::engine::select::boxroi`
 
 __parents__: 
 
-- `#!c++ DataEngine`
+- `#!c++ BaseROI`
 
 __categories__: 
 
@@ -80,71 +80,54 @@ if true, handle the events, otherwise ignore the events
 	<tr>
 		<td>computeEdges</td>
 		<td>
-If true, will compute edge list and index list inside the ROI. (default = true)
+If true, will compute edge list and index list inside the ROI.
 </td>
 		<td>1</td>
 	</tr>
 	<tr>
 		<td>computeTriangles</td>
 		<td>
-If true, will compute triangle list and index list inside the ROI. (default = true)
+If true, will compute triangle list and index list inside the ROI.
+</td>
+		<td>1</td>
+	</tr>
+	<tr>
+		<td>computeQuads</td>
+		<td>
+If true, will compute quad list and index list inside the ROI.
 </td>
 		<td>1</td>
 	</tr>
 	<tr>
 		<td>computeTetrahedra</td>
 		<td>
-If true, will compute tetrahedra list and index list inside the ROI. (default = true)
+If true, will compute tetrahedra list and index list inside the ROI.
 </td>
 		<td>1</td>
 	</tr>
 	<tr>
 		<td>computeHexahedra</td>
 		<td>
-If true, will compute hexahedra list and index list inside the ROI. (default = true)
-</td>
-		<td>1</td>
-	</tr>
-	<tr>
-		<td>computeQuad</td>
-		<td>
-If true, will compute quad list and index list inside the ROI. (default = true)
+If true, will compute hexahedra list and index list inside the ROI.
 </td>
 		<td>1</td>
 	</tr>
 	<tr>
 		<td>strict</td>
 		<td>
-If true, an element is inside the box if all of its nodes are inside. If False, only the center point of the element is checked. (default = true)
+If true, an element is inside the box if all of its nodes are inside. If False, only the center point of the element is checked.
 </td>
 		<td>1</td>
 	</tr>
 	<tr>
 		<td>doUpdate</td>
 		<td>
-If true, updates the selection at the beginning of simulation steps. (default = true)
+If true, updates the selection at the beginning of simulation steps.
 </td>
 		<td>1</td>
 	</tr>
 	<tr>
 		<td colspan="3">Inputs</td>
-	</tr>
-	<tr>
-		<td>box</td>
-		<td>
-List of boxes, each defined by two 3D points : xmin,ymin,zmin, xmax,ymax,zmax
-</td>
-		<td></td>
-	</tr>
-	<tr>
-		<td>orientedBox</td>
-		<td>
-List of boxes defined by 3 points (p0, p1, p2) and a depth distance 
-A parallelogram will be defined by (p0, p1, p2, p3 = p0 + (p2-p1)). 
-The box will finaly correspond to the parallelogram extrusion of depth/2 
-along its normal and depth/2 in the opposite direction. 
-</td>
-		<td></td>
 	</tr>
 	<tr>
 		<td>position</td>
@@ -170,6 +153,13 @@ Triangle Topology
 		<td></td>
 	</tr>
 	<tr>
+		<td>quads</td>
+		<td>
+Quad Topology
+</td>
+		<td></td>
+	</tr>
+	<tr>
 		<td>tetrahedra</td>
 		<td>
 Tetrahedron Topology
@@ -184,9 +174,19 @@ Hexahedron Topology
 		<td></td>
 	</tr>
 	<tr>
-		<td>quad</td>
+		<td>box</td>
 		<td>
-Quad Topology
+List of boxes, each defined by two 3D points : xmin,ymin,zmin, xmax,ymax,zmax
+</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>orientedBox</td>
+		<td>
+List of boxes defined by 3 points (p0, p1, p2) and a depth distance 
+A parallelogram will be defined by (p0, p1, p2, p3 = p0 + (p2-p1)). 
+The box will finaly correspond to the parallelogram extrusion of depth/2 
+along its normal and depth/2 in the opposite direction. 
 </td>
 		<td></td>
 	</tr>
@@ -215,6 +215,13 @@ Indices of the triangles contained in the ROI
 		<td></td>
 	</tr>
 	<tr>
+		<td>quadIndices</td>
+		<td>
+Indices of the quad contained in the ROI
+</td>
+		<td></td>
+	</tr>
+	<tr>
 		<td>tetrahedronIndices</td>
 		<td>
 Indices of the tetrahedra contained in the ROI
@@ -225,13 +232,6 @@ Indices of the tetrahedra contained in the ROI
 		<td>hexahedronIndices</td>
 		<td>
 Indices of the hexahedra contained in the ROI
-</td>
-		<td></td>
-	</tr>
-	<tr>
-		<td>quadIndices</td>
-		<td>
-Indices of the quad contained in the ROI
 </td>
 		<td></td>
 	</tr>
@@ -257,6 +257,13 @@ Triangles contained in the ROI
 		<td></td>
 	</tr>
 	<tr>
+		<td>quadsInROI</td>
+		<td>
+Quad contained in the ROI
+</td>
+		<td></td>
+	</tr>
+	<tr>
 		<td>tetrahedraInROI</td>
 		<td>
 Tetrahedra contained in the ROI
@@ -271,13 +278,6 @@ Hexahedra contained in the ROI
 		<td></td>
 	</tr>
 	<tr>
-		<td>quadInROI</td>
-		<td>
-Quad contained in the ROI
-</td>
-		<td></td>
-	</tr>
-	<tr>
 		<td>nbIndices</td>
 		<td>
 Number of selected indices
@@ -285,61 +285,117 @@ Number of selected indices
 		<td></td>
 	</tr>
 	<tr>
+		<td>pointsOutROI</td>
+		<td>
+Points not contained in the ROI
+</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>edgesOutROI</td>
+		<td>
+Edges not contained in the ROI
+</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>trianglesOutROI</td>
+		<td>
+Triangles not contained in the ROI
+</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>tetrahedraOutROI</td>
+		<td>
+Tetrahedra not contained in the ROI
+</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>indicesOut</td>
+		<td>
+Indices of the points not contained in the ROI
+</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>edgeOutIndices</td>
+		<td>
+Indices of the edges not contained in the ROI
+</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>triangleOutIndices</td>
+		<td>
+Indices of the triangles not contained in the ROI
+</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>tetrahedronOutIndices</td>
+		<td>
+Indices of the tetrahedra not contained in the ROI
+</td>
+		<td></td>
+	</tr>
+	<tr>
 		<td colspan="3">Visualization</td>
 	</tr>
 	<tr>
-		<td>drawBoxes</td>
+		<td>drawROI</td>
 		<td>
-Draw bounding box (default = false)
+Draw the ROI.
 </td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>drawPoints</td>
 		<td>
-Draw Points. (default = false)
+Draw Points.
 </td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>drawEdges</td>
 		<td>
-Draw Edges. (default = false)
+Draw Edges.
 </td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>drawTriangles</td>
 		<td>
-Draw Triangles. (default = false)
-</td>
-		<td>0</td>
-	</tr>
-	<tr>
-		<td>drawTetrahedra</td>
-		<td>
-Draw Tetrahedra. (default = false)
-</td>
-		<td>0</td>
-	</tr>
-	<tr>
-		<td>drawHexahedra</td>
-		<td>
-Draw Tetrahedra. (default = false)
+Draw Triangles.
 </td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>drawQuads</td>
 		<td>
-Draw Quads. (default = false)
+Draw Quads.
+</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>drawTetrahedra</td>
+		<td>
+Draw Tetrahedra.
+</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>drawHexahedra</td>
+		<td>
+Draw Tetrahedra.
 </td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>drawSize</td>
 		<td>
-rendering size for box and topological elements
+rendering size for ROI and topological elements
 </td>
 		<td>1</td>
 	</tr>
@@ -359,13 +415,13 @@ Links:
 
 ## Examples
 
-Component/Engine/Select/BoxROI_1d.scn
+Component/Engine/Select/BoxROI_2d.scn
 
 === "XML"
 
     ```xml
     <?xml version="1.0" ?>
-    <Node name="root" gravity="9.81 0 0" dt="0.02">
+    <Node name="root" gravity="0 -9.81 1" dt="0.02">
         <RequiredPlugin name="Sofa.Component.Constraint.Projective"/> <!-- Needed to use components [FixedProjectiveConstraint] -->
         <RequiredPlugin name="Sofa.Component.Engine.Select"/> <!-- Needed to use components [BoxROI] -->
         <RequiredPlugin name="Sofa.Component.LinearSolver.Iterative"/> <!-- Needed to use components [CGLinearSolver] -->
@@ -384,12 +440,12 @@ Component/Engine/Select/BoxROI_1d.scn
         <Node name="M1">
             <EulerImplicitSolver name="odesolver" rayleighStiffness="0.1" rayleighMass="0.1" />
             <CGLinearSolver template="CompressedRowSparseMatrix" iterations="1000" threshold="1e-9" tolerance="1e-9"/>
-            <MechanicalObject template="Vec1" showObject="true" showObjectScale="10"/>
+            <MechanicalObject template="Vec2"/>
             <UniformMass vertexMass="1" />
-            <RegularGridTopology nx="21" ny="1" nz="1" xmin="0" xmax="20" ymin="0" ymax="0" zmin="0" zmax="0"/>
-            <BoxROI name="box" box="-0.1 -1e4 -1e4  0.1 1e4 1e4"/>
+            <RegularGridTopology nx="21" ny="5" nz="1" xmin="0" xmax="20" ymin="0" ymax="4" zmin="0" zmax="0"/>
+            <BoxROI name="box" box="-0.1 -0.1 -1e4  0.1 4.1 1e4"/>
             <FixedProjectiveConstraint indices="@box.indices" />
-            <MeshSpringForceField stiffness="500"/>
+            <MeshSpringForceField stiffness="10000"/>
         </Node>
     </Node>
     ```
@@ -399,7 +455,7 @@ Component/Engine/Select/BoxROI_1d.scn
     ```python
     def createScene(rootNode):
 
-        root = rootNode.addChild('root', gravity="9.81 0 0", dt="0.02")
+        root = rootNode.addChild('root', gravity="0 -9.81 1", dt="0.02")
         root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Projective")
         root.addObject('RequiredPlugin', name="Sofa.Component.Engine.Select")
         root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Iterative")
@@ -416,12 +472,12 @@ Component/Engine/Select/BoxROI_1d.scn
         M1 = root.addChild('M1')
         M1.addObject('EulerImplicitSolver', name="odesolver", rayleighStiffness="0.1", rayleighMass="0.1")
         M1.addObject('CGLinearSolver', template="CompressedRowSparseMatrix", iterations="1000", threshold="1e-9", tolerance="1e-9")
-        M1.addObject('MechanicalObject', template="Vec1", showObject="true", showObjectScale="10")
+        M1.addObject('MechanicalObject', template="Vec2")
         M1.addObject('UniformMass', vertexMass="1")
-        M1.addObject('RegularGridTopology', nx="21", ny="1", nz="1", xmin="0", xmax="20", ymin="0", ymax="0", zmin="0", zmax="0")
-        M1.addObject('BoxROI', name="box", box="-0.1 -1e4 -1e4  0.1 1e4 1e4")
+        M1.addObject('RegularGridTopology', nx="21", ny="5", nz="1", xmin="0", xmax="20", ymin="0", ymax="4", zmin="0", zmax="0")
+        M1.addObject('BoxROI', name="box", box="-0.1 -0.1 -1e4  0.1 4.1 1e4")
         M1.addObject('FixedProjectiveConstraint', indices="@box.indices")
-        M1.addObject('MeshSpringForceField', stiffness="500")
+        M1.addObject('MeshSpringForceField', stiffness="10000")
     ```
 
 Component/Engine/Select/BoxROI.scn
@@ -531,13 +587,13 @@ Component/Engine/Select/BoxROI.scn
         visu.addObject('IdentityMapping', template="Vec3,Vec3", name="default8", input="@..", output="@Visual")
     ```
 
-Component/Engine/Select/BoxROI_2d.scn
+Component/Engine/Select/BoxROI_1d.scn
 
 === "XML"
 
     ```xml
     <?xml version="1.0" ?>
-    <Node name="root" gravity="0 -9.81 1" dt="0.02">
+    <Node name="root" gravity="9.81 0 0" dt="0.02">
         <RequiredPlugin name="Sofa.Component.Constraint.Projective"/> <!-- Needed to use components [FixedProjectiveConstraint] -->
         <RequiredPlugin name="Sofa.Component.Engine.Select"/> <!-- Needed to use components [BoxROI] -->
         <RequiredPlugin name="Sofa.Component.LinearSolver.Iterative"/> <!-- Needed to use components [CGLinearSolver] -->
@@ -556,12 +612,12 @@ Component/Engine/Select/BoxROI_2d.scn
         <Node name="M1">
             <EulerImplicitSolver name="odesolver" rayleighStiffness="0.1" rayleighMass="0.1" />
             <CGLinearSolver template="CompressedRowSparseMatrix" iterations="1000" threshold="1e-9" tolerance="1e-9"/>
-            <MechanicalObject template="Vec2"/>
+            <MechanicalObject template="Vec1" showObject="true" showObjectScale="10"/>
             <UniformMass vertexMass="1" />
-            <RegularGridTopology nx="21" ny="5" nz="1" xmin="0" xmax="20" ymin="0" ymax="4" zmin="0" zmax="0"/>
-            <BoxROI name="box" box="-0.1 -0.1 -1e4  0.1 4.1 1e4"/>
+            <RegularGridTopology nx="21" ny="1" nz="1" xmin="0" xmax="20" ymin="0" ymax="0" zmin="0" zmax="0"/>
+            <BoxROI name="box" box="-0.1 -1e4 -1e4  0.1 1e4 1e4"/>
             <FixedProjectiveConstraint indices="@box.indices" />
-            <MeshSpringForceField stiffness="10000"/>
+            <MeshSpringForceField stiffness="500"/>
         </Node>
     </Node>
     ```
@@ -571,7 +627,7 @@ Component/Engine/Select/BoxROI_2d.scn
     ```python
     def createScene(rootNode):
 
-        root = rootNode.addChild('root', gravity="0 -9.81 1", dt="0.02")
+        root = rootNode.addChild('root', gravity="9.81 0 0", dt="0.02")
         root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Projective")
         root.addObject('RequiredPlugin', name="Sofa.Component.Engine.Select")
         root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Iterative")
@@ -588,11 +644,11 @@ Component/Engine/Select/BoxROI_2d.scn
         M1 = root.addChild('M1')
         M1.addObject('EulerImplicitSolver', name="odesolver", rayleighStiffness="0.1", rayleighMass="0.1")
         M1.addObject('CGLinearSolver', template="CompressedRowSparseMatrix", iterations="1000", threshold="1e-9", tolerance="1e-9")
-        M1.addObject('MechanicalObject', template="Vec2")
+        M1.addObject('MechanicalObject', template="Vec1", showObject="true", showObjectScale="10")
         M1.addObject('UniformMass', vertexMass="1")
-        M1.addObject('RegularGridTopology', nx="21", ny="5", nz="1", xmin="0", xmax="20", ymin="0", ymax="4", zmin="0", zmax="0")
-        M1.addObject('BoxROI', name="box", box="-0.1 -0.1 -1e4  0.1 4.1 1e4")
+        M1.addObject('RegularGridTopology', nx="21", ny="1", nz="1", xmin="0", xmax="20", ymin="0", ymax="0", zmin="0", zmax="0")
+        M1.addObject('BoxROI', name="box", box="-0.1 -1e4 -1e4  0.1 1e4 1e4")
         M1.addObject('FixedProjectiveConstraint', indices="@box.indices")
-        M1.addObject('MeshSpringForceField', stiffness="10000")
+        M1.addObject('MeshSpringForceField', stiffness="500")
     ```
 

@@ -5,7 +5,8 @@ title: Detection Sweep and Prune
 Collisions Detection: DirectSAP
 ===============================
 
-The DirectSAP component belongs to the category of [Collision Detection](https://www.sofa-framework.org/community/doc/main-principles/collision/#collision-detection). In this section, we describe the two collision detection methods based on the "[Sweep and Prune](https://en.wikipedia.org/wiki/Sweep_and_prune)" algorithm, noted SAP. The SAP method belongs to the topological methods for broad phase, based on the positions of objects in relation to others.
+The DirectSAP component belongs to the category of [Collision Detection](../../../../simulation-principles/multi-model-representation/collision/#collision-detection).
+In this section, we describe the two collision detection methods based on the "[Sweep and Prune](https://en.wikipedia.org/wiki/Sweep_and_prune)" algorithm, noted SAP. The SAP method belongs to the topological methods for broad phase, based on the positions of objects in relation to others.
 
 
 <a href="https://github.com/sofa-framework/doc/blob/master/images/collision/SAP.png?raw=true"><img src="https://github.com/sofa-framework/doc/blob/master/images/collision/SAP.png?raw=true" title="SAP algorithm on x- and y-axis with a non-overlapping condition (left) and an overlapping one (right). Image from paper: Collision Detection: Broad Phase Adaptation from Multi-Core to Multi-GPU Architecture"/></a>
@@ -33,14 +34,14 @@ It is one of the most used methods in the broad-phase algorithms because it prov
 
 - the first one is in charge of the bounding volume update of each active virtual objects. In SOFA, these bounding volume are defined in DSAPBoxes which are simple bounding boxes. Each DSAPBox contains a Cube which contains only one final CollisionElement and pointers to min and max EndPoints.
 - the second part is in charge of the detection of overlapping between objects. To do that a projection of higher and upper bounds on the three axis of coordinates (x, y and z) of each
-AABBs is made. 
+AABBs is made.
 
-Only the pairs of objects whose projected bounding volumes overlap on all axes will be saved in the set of active boxes to be considered for the narrow phase. We can notice two related but different concepts on the way the SAP operates internally: the **DirectSAP** starts from scratch each time even though internal structures could be updated as performed in the [IncrSAP](https://www.sofa-framework.org/community/doc/components/collision/sweep-and-prune-update/).
+Only the pairs of objects whose projected bounding volumes overlap on all axes will be saved in the set of active boxes to be considered for the narrow phase. We can notice two related but different concepts on the way the SAP operates internally: the **DirectSAP** starts from scratch each time even though internal structures could be updated as performed in the [IncrSAP](./incrsap/).
 
 
 ### Narrow phase
 
-The narrow phase browses all boxes considered as active by the broad phase. From this information, it is possible to recover the finest CollisionModel (which is not a CubeModel) corresponding to each box. An intersection check will then be done between these pairs. This check also depends on the [intersection method](https://www.sofa-framework.org/community/doc/main-principles/collisions/#intersection-methods) used. This last phase returns the DetectionOutput vector containing elements of CollisionModels in collision and the contact points on the surface of each model.
+The narrow phase browses all boxes considered as active by the broad phase. From this information, it is possible to recover the finest CollisionModel (which is not a CubeModel) corresponding to each box. An intersection check will then be done between these pairs. This check also depends on the [intersection method](../../../../simulation-principles/multi-model-representation/collision/#intersection-methods) used. This last phase returns the DetectionOutput vector containing elements of CollisionModels in collision and the contact points on the surface of each model.
 
 
 

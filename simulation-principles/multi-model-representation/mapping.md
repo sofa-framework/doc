@@ -23,19 +23,19 @@ Typical mappings compute the correspondence between different geometrical models
 
 One can define two representations of an object, both using a different topology:
 
-  - one mechanical model with its degrees of freedom <img class="latex" src="https://latex.codecogs.com/png.latex?q" title="DOF of mechanical model" />
-  - one collision model with its degrees of freedom <img class="latex" src="https://latex.codecogs.com/png.latex?p" title="DOF of collision model" />
+  - one mechanical model with its degrees of freedom $$q$$
+  - one collision model with its degrees of freedom $$p$$
 
 ![Application of mappings](https://www.sofa-framework.org/wp-content/uploads/2018/10/Mapping-illustration.png)
 
-The mapping defines a function (that can be non-linear) <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbb{J}" title="Mapping function" /> mapping kinematically the position of the parent mechanical model to the child collision model: <img class="latex" src="https://latex.codecogs.com/png.latex?p=\mathbb{J}(q)" title="Mapping relationship" />. The derivative of the degrees of freedom (velocities in case of positions) can be mapped in a similar way using the relationship <img class="latex" src="https://latex.codecogs.com/png.latex?v_p=\mathbf{J}v_q" title="Jacobian function" />, with <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{J}=\textstyle\frac{\partial%20p}{\partial%20q}" title="Jacobian matrix" /> is the associated Jacobian matrix. The mechanical model thus drives the collision model. In the case of a _BarycentricMapping_, the matrix <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{J}" title="Jacobian matrix" /> includes the barycentric coordinates.
+The mapping defines a function (that can be non-linear) $$\mathbb{J}$$ mapping kinematically the position of the parent mechanical model to the child collision model: $$p=\mathbb{J}(q)$$. The derivative of the degrees of freedom (velocities in case of positions) can be mapped in a similar way using the relationship $$v_p=\mathbf{J}v_q$$, with $$\mathbf{J}=\textstyle\frac{\partial p}{\partial q}$$ is the associated Jacobian matrix. The mechanical model thus drives the collision model. In the case of a _BarycentricMapping_, the matrix $$\mathbf{J}$$ includes the barycentric coordinates.
 
-By applying the principle of virtual work, the mapping can also translate forces applied to the child collision model <img class="latex" src="https://latex.codecogs.com/png.latex?f_p" title="Forces on collision model" /> into forces applied to the parent mechanical model <img class="latex" src="https://latex.codecogs.com/png.latex?f_q" title="Forces on mechanical model" />, using the relationship <img class="latex" src="https://latex.codecogs.com/png.latex?f_{q}=\mathbf{J}^{T}f_{p}" title="Bidirectional use of mapping" />. Mappings can therefore build a bijective correspondence between two representations of an object. Note that several mappings can also be applied recursively when necessary.
+By applying the principle of virtual work, the mapping can also translate forces applied to the child collision model $$f_p$$ into forces applied to the parent mechanical model $$f_q$$, using the relationship $$f_{q}=\mathbf{J}^{T}f_{p}$$. Mappings can therefore build a bijective correspondence between two representations of an object. Note that several mappings can also be applied recursively when necessary.
 
 When a force field is associated to a mapped state, it contributes to the stiffness matrix indirectly, through the mapping. Two terms appear.
 
-- The first term is the projection of the mapped stiffness matrix from the mapped space into the main state <img class="latex" src="https://latex.codecogs.com/png.latex?\mathbf{J}^{T}\frac{\partial%20f_p}{\partial%20p}\mathbf{J}" title="Mapped stiffness matrix" />.
-- The second term is called geometric stiffness: <img class="latex" src="https://latex.codecogs.com/png.latex?\frac{\partial%20\mathbf{J}^{T}}{\partial%20q}f_p" title="Geometric stiffness" />. Geometric stiffness relies on the derivative of the Jacobian matrix. This derivative is null if the mapping is linear.
+- The first term is the projection of the mapped stiffness matrix from the mapped space into the main state $$\mathbf{J}^{T}\frac{\partial f_p}{\partial p}\mathbf{J}$$.
+- The second term is called geometric stiffness: $$\frac{\partial \mathbf{J}^{T}}{\partial q}f_p$$. Geometric stiffness relies on the derivative of the Jacobian matrix. This derivative is null if the mapping is linear.
 
 > ⚠️ **WARNING**: Depending on the nature of a non-linear mapping, geometric stiffness may lead to non-symmetric terms in the mechanical matrix. Such mappings have an option to make the contributions symmetric. An alternative is to use an appropriate linear solver (LU solver for example).
 

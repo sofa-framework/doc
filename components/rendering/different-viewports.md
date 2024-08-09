@@ -28,5 +28,5 @@ copy-paste the 2 vectors into the corresponding fields.
 
 #### Example
 
--   example/Component/visualmodel/OglViewport.scn
+-   [example/Component/visualmodel/OglViewport.scn](https://github.com/sofa-framework/sofa/blob/master/examples/Component/Visual/OglViewport.scn)
 

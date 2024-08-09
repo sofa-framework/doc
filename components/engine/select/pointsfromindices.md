@@ -1,28 +1,12 @@
----
-title: PointsFromIndices
----
+# PointsFromIndices
 
-PointsFromIndices
-================
+Find the points given a list of indices
 
-This component belongs to the category of [Engines](https://www.sofa-framework.org/community/doc/simulation-principles/engine/). This engine returns positions from given indices.
 
-Input Data
-----------
+__Templates__:
 
--   **position**: positions of the mechanical object
--   **indices**: indices we want to have corresponding positions
+- `#!c++ Vec3d`
 
-Output Data
-----------
-
--   **indices\_position**: positions according to given indices  
-
-Examples
---------
-
-An example scene involving the PointsFromIndices engine is available in [*examples/Component/Engine/Select/PointsFromIndices.scn*](https://github.com/sofa-framework/sofa/blob/master/examples/Component/Engine/Select/PointsFromIndices.scn)
-<!-- automatically generated doc START -->
 __Target__: `Sofa.Component.Engine.Select`
 
 __namespace__: `#!c++ sofa::component::engine::select`
@@ -215,5 +199,3 @@ Component/Engine/Select/PointsFromIndices.scn
         Selection.addObject('MechanicalObject', template="Vec3", position="@../PFI.indices_position", name="SelectedDOFs", showIndices="1", showIndicesScale="0.2")
     ```
 
-
-<!-- automatically generated doc END -->

@@ -2,7 +2,7 @@
 title: Tutorial application
 ---
 
-**NOTE:** Every scenes detailed in tutorial can also be launched using the [runSofa](https://www.sofa-framework.org/community/doc/getting-started/run-sofa/) application directly.
+**NOTE:** Every scene detailed in tutorial can also be launched using the [runSofa](../getting-started/run-sofa/) application directly.
 
 Tutorial Application
 --------------------
@@ -25,19 +25,16 @@ left to right:
 
 -   **A Tutorial Selector**: we can choose different categories of the
     Tutorials: Step by Step, Collision, ForceFields, Mappings, ... or
-    the whole SOFA Tutorials "All Sofa Tutorials".
+    the whole SOFA Tutorials "All SOFA Tutorials".
 -   **A HTML based description**: a brief description of the
     corresponding category.
 
-When a category (e.g Step by Step) is chosen and if we double click on a
+When a category (e.g Step by Step) is chosen and if we double-click on a
 component of that category, the third part appears:
 
 -   **A SOFA Scene-Graph**: the representation of SOFA components. You
-    can modify/delete a component by right clicking on that component.
-    You can also add another component to the scene graph by clicking on
-    "Edit in Modeler". In Modeler you can run the scene using SOFA (see
-    [Modeler](https://www.sofa-framework.org/community/doc/modeler))
-
+    can modify/delete a component by right-clicking on that component.
+    
 \[caption id="attachment\_1241" align="aligncenter" width="500"\]
 [![ModifyComponent](https://www.sofa-framework.org/wp-content/uploads/2014/11/ModifyComponent.png){.wp-image-1241
 width="500"

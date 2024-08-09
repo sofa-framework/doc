@@ -269,100 +269,6 @@ Component/SolidMechanics/FEM/TriangularFEMForceFieldOptim.scn
         VisuA.addObject('IdentityMapping', name="visualMapping", input="@../DOFs", output="@Visual")
     ```
 
-SofaCUDA/share/sofa/examples/SofaCUDA/benchmarks/TriangularFEMForceFieldOptim_tissue100x100_gpu.scn
-
-=== "XML"
-
-    ```xml
-    <?xml version="1.0" ?>
-    <Node name="root" gravity="0 -9 -1" dt="0.01">
-        <RequiredPlugin name="Sofa.Component.Collision.Detection.Algorithm"/> <!-- Needed to use components [BVHNarrowPhase BruteForceBroadPhase CollisionPipeline] -->
-        <RequiredPlugin name="Sofa.Component.Collision.Detection.Intersection"/> <!-- Needed to use components [DiscreteIntersection] -->
-        <RequiredPlugin name="Sofa.Component.Collision.Response.Contact"/> <!-- Needed to use components [CollisionResponse] -->
-        <RequiredPlugin name="Sofa.Component.LinearSolver.Iterative"/> <!-- Needed to use components [CGLinearSolver] -->
-        <RequiredPlugin name="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
-        <RequiredPlugin name="Sofa.Component.Topology.Container.Dynamic"/> <!-- Needed to use components [TriangleSetTopologyContainer TriangleSetTopologyModifier] -->
-        <RequiredPlugin name="Sofa.Component.Topology.Container.Grid"/> <!-- Needed to use components [RegularGridTopology] -->
-        <RequiredPlugin name="Sofa.Component.Visual"/> <!-- Needed to use components [VisualStyle] -->
-        <RequiredPlugin name="Sofa.GL.Component.Rendering3D"/> <!-- Needed to use components [OglModel] -->
-        <RequiredPlugin name="SofaCUDA"/> <!-- Needed to use components [DiagonalMass FixedProjectiveConstraint IdentityMapping MechanicalObject TriangleSetGeometryAlgorithms TriangularFEMForceFieldOptim] -->
-    
-        <VisualStyle displayFlags="showBehaviorModels showVisual" />
-    	
-        <DefaultAnimationLoop />
-        <DefaultVisualManagerLoop />
-        <CollisionPipeline verbose="0" />
-        <BruteForceBroadPhase/>
-        <BVHNarrowPhase/>
-        <CollisionResponse response="PenalityContactForceField" />
-        <DiscreteIntersection/>
-        
-        <RegularGridTopology name="tissue" n="100 100 1" min="0 0 0" max="10 10 0" />
-        
-        <Node name="TriangularFEMForceFieldOptim-GPU-Green">
-            <EulerImplicitSolver name="cg_odesolver" rayleighStiffness="0.1" rayleighMass="0.1" />
-            <CGLinearSolver iterations="20" name="linear solver" tolerance="1.0e-6" threshold="1.0e-6" />
-            
-            <MechanicalObject position="@../tissue.position" name="dofs" template="CudaVec3f"/>
-    
-            <TriangleSetTopologyContainer name="Container" src="@../tissue"/>
-            <TriangleSetTopologyModifier name="Modifier" />
-            <TriangleSetGeometryAlgorithms name="GeomAlgo" template="CudaVec3f" />
-    
-            <DiagonalMass massDensity="0.15" template="CudaVec3f,CudaVec3f"/>
-            <FixedProjectiveConstraint indices="9900 9901 9902 9903 9996 9997 9998 9999" />
-    
-            <TriangularFEMForceFieldOptim name="FEM" youngModulus="600" poissonRatio="0.3" method="large" template="CudaVec3f"/>
-            <Node name="Visu">
-                <OglModel name="Visual" color="green" />
-                <IdentityMapping input="@../dofs" output="@Visual" />
-            </Node>
-        </Node>
-    </Node>
-    ```
-
-=== "Python"
-
-    ```python
-    def createScene(rootNode):
-
-        root = rootNode.addChild('root', gravity="0 -9 -1", dt="0.01")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Algorithm")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Intersection")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Response.Contact")
-        root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Iterative")
-        root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Dynamic")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Grid")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Visual")
-        root.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
-        root.addObject('RequiredPlugin', name="SofaCUDA")
-        root.addObject('VisualStyle', displayFlags="showBehaviorModels showVisual")
-        root.addObject('DefaultAnimationLoop')
-        root.addObject('DefaultVisualManagerLoop')
-        root.addObject('CollisionPipeline', verbose="0")
-        root.addObject('BruteForceBroadPhase')
-        root.addObject('BVHNarrowPhase')
-        root.addObject('CollisionResponse', response="PenalityContactForceField")
-        root.addObject('DiscreteIntersection')
-        root.addObject('RegularGridTopology', name="tissue", n="100 100 1", min="0 0 0", max="10 10 0")
-
-        TriangularFEMForceFieldOptim-GPU-Green = root.addChild('TriangularFEMForceFieldOptim-GPU-Green')
-        TriangularFEMForceFieldOptim-GPU-Green.addObject('EulerImplicitSolver', name="cg_odesolver", rayleighStiffness="0.1", rayleighMass="0.1")
-        TriangularFEMForceFieldOptim-GPU-Green.addObject('CGLinearSolver', iterations="20", name="linear solver", tolerance="1.0e-6", threshold="1.0e-6")
-        TriangularFEMForceFieldOptim-GPU-Green.addObject('MechanicalObject', position="@../tissue.position", name="dofs", template="CudaVec3f")
-        TriangularFEMForceFieldOptim-GPU-Green.addObject('TriangleSetTopologyContainer', name="Container", src="@../tissue")
-        TriangularFEMForceFieldOptim-GPU-Green.addObject('TriangleSetTopologyModifier', name="Modifier")
-        TriangularFEMForceFieldOptim-GPU-Green.addObject('TriangleSetGeometryAlgorithms', name="GeomAlgo", template="CudaVec3f")
-        TriangularFEMForceFieldOptim-GPU-Green.addObject('DiagonalMass', massDensity="0.15", template="CudaVec3f,CudaVec3f")
-        TriangularFEMForceFieldOptim-GPU-Green.addObject('FixedProjectiveConstraint', indices="9900 9901 9902 9903 9996 9997 9998 9999")
-        TriangularFEMForceFieldOptim-GPU-Green.addObject('TriangularFEMForceFieldOptim', name="FEM", youngModulus="600", poissonRatio="0.3", method="large", template="CudaVec3f")
-
-        Visu = TriangularFEMForceFieldOptim-GPU-Green.addChild('Visu')
-        Visu.addObject('OglModel', name="Visual", color="green")
-        Visu.addObject('IdentityMapping', input="@../dofs", output="@Visual")
-    ```
-
 SofaCUDA/share/sofa/examples/SofaCUDA/benchmarks/TriangularFEMForceFieldOptim_tissue100x100_cpu.scn
 
 === "XML"
@@ -461,6 +367,100 @@ SofaCUDA/share/sofa/examples/SofaCUDA/benchmarks/TriangularFEMForceFieldOptim_ti
 
         Visu = TriangularFEMForceFieldOptim-CPU-red.addChild('Visu')
         Visu.addObject('OglModel', name="Visual", color="red")
+        Visu.addObject('IdentityMapping', input="@../dofs", output="@Visual")
+    ```
+
+SofaCUDA/share/sofa/examples/SofaCUDA/benchmarks/TriangularFEMForceFieldOptim_tissue100x100_gpu.scn
+
+=== "XML"
+
+    ```xml
+    <?xml version="1.0" ?>
+    <Node name="root" gravity="0 -9 -1" dt="0.01">
+        <RequiredPlugin name="Sofa.Component.Collision.Detection.Algorithm"/> <!-- Needed to use components [BVHNarrowPhase BruteForceBroadPhase CollisionPipeline] -->
+        <RequiredPlugin name="Sofa.Component.Collision.Detection.Intersection"/> <!-- Needed to use components [DiscreteIntersection] -->
+        <RequiredPlugin name="Sofa.Component.Collision.Response.Contact"/> <!-- Needed to use components [CollisionResponse] -->
+        <RequiredPlugin name="Sofa.Component.LinearSolver.Iterative"/> <!-- Needed to use components [CGLinearSolver] -->
+        <RequiredPlugin name="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+        <RequiredPlugin name="Sofa.Component.Topology.Container.Dynamic"/> <!-- Needed to use components [TriangleSetTopologyContainer TriangleSetTopologyModifier] -->
+        <RequiredPlugin name="Sofa.Component.Topology.Container.Grid"/> <!-- Needed to use components [RegularGridTopology] -->
+        <RequiredPlugin name="Sofa.Component.Visual"/> <!-- Needed to use components [VisualStyle] -->
+        <RequiredPlugin name="Sofa.GL.Component.Rendering3D"/> <!-- Needed to use components [OglModel] -->
+        <RequiredPlugin name="SofaCUDA"/> <!-- Needed to use components [DiagonalMass FixedProjectiveConstraint IdentityMapping MechanicalObject TriangleSetGeometryAlgorithms TriangularFEMForceFieldOptim] -->
+    
+        <VisualStyle displayFlags="showBehaviorModels showVisual" />
+    	
+        <DefaultAnimationLoop />
+        <DefaultVisualManagerLoop />
+        <CollisionPipeline verbose="0" />
+        <BruteForceBroadPhase/>
+        <BVHNarrowPhase/>
+        <CollisionResponse response="PenalityContactForceField" />
+        <DiscreteIntersection/>
+        
+        <RegularGridTopology name="tissue" n="100 100 1" min="0 0 0" max="10 10 0" />
+        
+        <Node name="TriangularFEMForceFieldOptim-GPU-Green">
+            <EulerImplicitSolver name="cg_odesolver" rayleighStiffness="0.1" rayleighMass="0.1" />
+            <CGLinearSolver iterations="20" name="linear solver" tolerance="1.0e-6" threshold="1.0e-6" />
+            
+            <MechanicalObject position="@../tissue.position" name="dofs" template="CudaVec3f"/>
+    
+            <TriangleSetTopologyContainer name="Container" src="@../tissue"/>
+            <TriangleSetTopologyModifier name="Modifier" />
+            <TriangleSetGeometryAlgorithms name="GeomAlgo" template="CudaVec3f" />
+    
+            <DiagonalMass massDensity="0.15" template="CudaVec3f,CudaVec3f"/>
+            <FixedProjectiveConstraint indices="9900 9901 9902 9903 9996 9997 9998 9999" />
+    
+            <TriangularFEMForceFieldOptim name="FEM" youngModulus="600" poissonRatio="0.3" method="large" template="CudaVec3f"/>
+            <Node name="Visu">
+                <OglModel name="Visual" color="green" />
+                <IdentityMapping input="@../dofs" output="@Visual" />
+            </Node>
+        </Node>
+    </Node>
+    ```
+
+=== "Python"
+
+    ```python
+    def createScene(rootNode):
+
+        root = rootNode.addChild('root', gravity="0 -9 -1", dt="0.01")
+        root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Algorithm")
+        root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Intersection")
+        root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Response.Contact")
+        root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Iterative")
+        root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
+        root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Dynamic")
+        root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Grid")
+        root.addObject('RequiredPlugin', name="Sofa.Component.Visual")
+        root.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
+        root.addObject('RequiredPlugin', name="SofaCUDA")
+        root.addObject('VisualStyle', displayFlags="showBehaviorModels showVisual")
+        root.addObject('DefaultAnimationLoop')
+        root.addObject('DefaultVisualManagerLoop')
+        root.addObject('CollisionPipeline', verbose="0")
+        root.addObject('BruteForceBroadPhase')
+        root.addObject('BVHNarrowPhase')
+        root.addObject('CollisionResponse', response="PenalityContactForceField")
+        root.addObject('DiscreteIntersection')
+        root.addObject('RegularGridTopology', name="tissue", n="100 100 1", min="0 0 0", max="10 10 0")
+
+        TriangularFEMForceFieldOptim-GPU-Green = root.addChild('TriangularFEMForceFieldOptim-GPU-Green')
+        TriangularFEMForceFieldOptim-GPU-Green.addObject('EulerImplicitSolver', name="cg_odesolver", rayleighStiffness="0.1", rayleighMass="0.1")
+        TriangularFEMForceFieldOptim-GPU-Green.addObject('CGLinearSolver', iterations="20", name="linear solver", tolerance="1.0e-6", threshold="1.0e-6")
+        TriangularFEMForceFieldOptim-GPU-Green.addObject('MechanicalObject', position="@../tissue.position", name="dofs", template="CudaVec3f")
+        TriangularFEMForceFieldOptim-GPU-Green.addObject('TriangleSetTopologyContainer', name="Container", src="@../tissue")
+        TriangularFEMForceFieldOptim-GPU-Green.addObject('TriangleSetTopologyModifier', name="Modifier")
+        TriangularFEMForceFieldOptim-GPU-Green.addObject('TriangleSetGeometryAlgorithms', name="GeomAlgo", template="CudaVec3f")
+        TriangularFEMForceFieldOptim-GPU-Green.addObject('DiagonalMass', massDensity="0.15", template="CudaVec3f,CudaVec3f")
+        TriangularFEMForceFieldOptim-GPU-Green.addObject('FixedProjectiveConstraint', indices="9900 9901 9902 9903 9996 9997 9998 9999")
+        TriangularFEMForceFieldOptim-GPU-Green.addObject('TriangularFEMForceFieldOptim', name="FEM", youngModulus="600", poissonRatio="0.3", method="large", template="CudaVec3f")
+
+        Visu = TriangularFEMForceFieldOptim-GPU-Green.addChild('Visu')
+        Visu.addObject('OglModel', name="Visual", color="green")
         Visu.addObject('IdentityMapping', input="@../dofs", output="@Visual")
     ```
 

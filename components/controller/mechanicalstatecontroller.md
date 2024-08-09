@@ -124,88 +124,6 @@ Links:
 
 ## Examples
 
-Component/Controller/MechanicalStateController.scn
-
-=== "XML"
-
-    ```xml
-    <!-- MechanicalStateController example -->
-    <Node name="root" dt="0.005" gravity="0 -10 0">
-        <RequiredPlugin name="Sofa.Component.Collision.Detection.Algorithm"/> <!-- Needed to use components [BVHNarrowPhase BruteForceBroadPhase CollisionPipeline] -->
-        <RequiredPlugin name="Sofa.Component.Collision.Detection.Intersection"/> <!-- Needed to use components [LocalMinDistance] -->
-        <RequiredPlugin name="Sofa.Component.Collision.Response.Contact"/> <!-- Needed to use components [CollisionResponse] -->
-        <RequiredPlugin name="Sofa.Component.Constraint.Projective"/> <!-- Needed to use components [FixedProjectiveConstraint] -->
-        <RequiredPlugin name="Sofa.Component.Controller"/> <!-- Needed to use components [MechanicalStateController] -->
-        <RequiredPlugin name="Sofa.Component.IO.Mesh"/> <!-- Needed to use components [MeshGmshLoader] -->
-        <RequiredPlugin name="Sofa.Component.LinearSolver.Direct"/> <!-- Needed to use components [BTDLinearSolver] -->
-        <RequiredPlugin name="Sofa.Component.Mass"/> <!-- Needed to use components [UniformMass] -->
-        <RequiredPlugin name="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
-        <RequiredPlugin name="Sofa.Component.SolidMechanics.FEM.Elastic"/> <!-- Needed to use components [BeamFEMForceField] -->
-        <RequiredPlugin name="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
-        <RequiredPlugin name="Sofa.Component.Topology.Container.Dynamic"/> <!-- Needed to use components [EdgeSetGeometryAlgorithms EdgeSetTopologyContainer EdgeSetTopologyModifier] -->
-        <RequiredPlugin name="Sofa.Component.Visual"/> <!-- Needed to use components [VisualStyle] -->
-    
-        <DefaultAnimationLoop/>
-        <VisualStyle displayFlags="showForceFields showCollisionModels" />
-        <CollisionPipeline depth="6" verbose="0" draw="0" />
-        <BruteForceBroadPhase/>
-        <BVHNarrowPhase/>
-        <LocalMinDistance name="Proximity" alarmDistance="1.0" contactDistance="0.5" />
-        <CollisionResponse name="Response" response="PenalityContactForceField" />
-        <Node name="InstrumentEdgeSet">
-            <EulerImplicitSolver rayleighStiffness="0" printLog="false"  rayleighMass="0.1" />
-            <BTDLinearSolver template="BTDMatrix6d" printLog="false" verbose="false" />
-            <MeshGmshLoader name="loader" filename="mesh/edgeSet.msh" />
-            <MechanicalObject src="@loader" name="MechanicalDOFs" template="Rigid3" position="0 0 0 0 0 0 1  1 0 0 0 0 0 1  2 0 0 0 0 0 1" showObject="1"/>
-            <include href="Objects/EdgeSetTopology.xml" src="@loader" template="Rigid3" />
-            <MechanicalStateController template="Rigid3" listening="true" mainDirection="-1.0 0.0 0.0" handleEventTriggersUpdate="true" />
-            <FixedProjectiveConstraint name="FixedProjectiveConstraint" indices="0" />
-            <UniformMass vertexMass="1 1 0.1 0 0 0 0.1 0 0 0 0.1" printLog="false" /> 
-    
-            <BeamFEMForceField name="FEM" radius="0.1" youngModulus="50000000" poissonRatio=".49"/>
-        </Node>
-    </Node>
-    ```
-
-=== "Python"
-
-    ```python
-    def createScene(rootNode):
-
-        root = rootNode.addChild('root', dt="0.005", gravity="0 -10 0")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Algorithm")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Intersection")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Response.Contact")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Projective")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Controller")
-        root.addObject('RequiredPlugin', name="Sofa.Component.IO.Mesh")
-        root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Direct")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Mass")
-        root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
-        root.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.FEM.Elastic")
-        root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Dynamic")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Visual")
-        root.addObject('DefaultAnimationLoop')
-        root.addObject('VisualStyle', displayFlags="showForceFields showCollisionModels")
-        root.addObject('CollisionPipeline', depth="6", verbose="0", draw="0")
-        root.addObject('BruteForceBroadPhase')
-        root.addObject('BVHNarrowPhase')
-        root.addObject('LocalMinDistance', name="Proximity", alarmDistance="1.0", contactDistance="0.5")
-        root.addObject('CollisionResponse', name="Response", response="PenalityContactForceField")
-
-        InstrumentEdgeSet = root.addChild('InstrumentEdgeSet')
-        InstrumentEdgeSet.addObject('EulerImplicitSolver', rayleighStiffness="0", printLog="false", rayleighMass="0.1")
-        InstrumentEdgeSet.addObject('BTDLinearSolver', template="BTDMatrix6d", printLog="false", verbose="false")
-        InstrumentEdgeSet.addObject('MeshGmshLoader', name="loader", filename="mesh/edgeSet.msh")
-        InstrumentEdgeSet.addObject('MechanicalObject', src="@loader", name="MechanicalDOFs", template="Rigid3", position="0 0 0 0 0 0 1  1 0 0 0 0 0 1  2 0 0 0 0 0 1", showObject="1")
-        InstrumentEdgeSet.addObject('include', href="Objects/EdgeSetTopology.xml", src="@loader", template="Rigid3")
-        InstrumentEdgeSet.addObject('MechanicalStateController', template="Rigid3", listening="true", mainDirection="-1.0 0.0 0.0", handleEventTriggersUpdate="true")
-        InstrumentEdgeSet.addObject('FixedProjectiveConstraint', name="FixedProjectiveConstraint", indices="0")
-        InstrumentEdgeSet.addObject('UniformMass', vertexMass="1 1 0.1 0 0 0 0.1 0 0 0 0.1", printLog="false")
-        InstrumentEdgeSet.addObject('BeamFEMForceField', name="FEM", radius="0.1", youngModulus="50000000", poissonRatio=".49")
-    ```
-
 Component/Controller/MechanicalStateControllerTranslation.scn
 
 === "XML"
@@ -303,5 +221,87 @@ Component/Controller/MechanicalStateControllerTranslation.scn
         Surf2.addObject('PointCollisionModel')
         Surf2.addObject('RigidMapping')
         InstrumentEdgeSet.addObject('MechanicalStateController', template="Rigid3", onlyTranslation="true", listening="true", handleEventTriggersUpdate="true")
+    ```
+
+Component/Controller/MechanicalStateController.scn
+
+=== "XML"
+
+    ```xml
+    <!-- MechanicalStateController example -->
+    <Node name="root" dt="0.005" gravity="0 -10 0">
+        <RequiredPlugin name="Sofa.Component.Collision.Detection.Algorithm"/> <!-- Needed to use components [BVHNarrowPhase BruteForceBroadPhase CollisionPipeline] -->
+        <RequiredPlugin name="Sofa.Component.Collision.Detection.Intersection"/> <!-- Needed to use components [LocalMinDistance] -->
+        <RequiredPlugin name="Sofa.Component.Collision.Response.Contact"/> <!-- Needed to use components [CollisionResponse] -->
+        <RequiredPlugin name="Sofa.Component.Constraint.Projective"/> <!-- Needed to use components [FixedProjectiveConstraint] -->
+        <RequiredPlugin name="Sofa.Component.Controller"/> <!-- Needed to use components [MechanicalStateController] -->
+        <RequiredPlugin name="Sofa.Component.IO.Mesh"/> <!-- Needed to use components [MeshGmshLoader] -->
+        <RequiredPlugin name="Sofa.Component.LinearSolver.Direct"/> <!-- Needed to use components [BTDLinearSolver] -->
+        <RequiredPlugin name="Sofa.Component.Mass"/> <!-- Needed to use components [UniformMass] -->
+        <RequiredPlugin name="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+        <RequiredPlugin name="Sofa.Component.SolidMechanics.FEM.Elastic"/> <!-- Needed to use components [BeamFEMForceField] -->
+        <RequiredPlugin name="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
+        <RequiredPlugin name="Sofa.Component.Topology.Container.Dynamic"/> <!-- Needed to use components [EdgeSetGeometryAlgorithms EdgeSetTopologyContainer EdgeSetTopologyModifier] -->
+        <RequiredPlugin name="Sofa.Component.Visual"/> <!-- Needed to use components [VisualStyle] -->
+    
+        <DefaultAnimationLoop/>
+        <VisualStyle displayFlags="showForceFields showCollisionModels" />
+        <CollisionPipeline depth="6" verbose="0" draw="0" />
+        <BruteForceBroadPhase/>
+        <BVHNarrowPhase/>
+        <LocalMinDistance name="Proximity" alarmDistance="1.0" contactDistance="0.5" />
+        <CollisionResponse name="Response" response="PenalityContactForceField" />
+        <Node name="InstrumentEdgeSet">
+            <EulerImplicitSolver rayleighStiffness="0" printLog="false"  rayleighMass="0.1" />
+            <BTDLinearSolver template="BTDMatrix6d" printLog="false" verbose="false" />
+            <MeshGmshLoader name="loader" filename="mesh/edgeSet.msh" />
+            <MechanicalObject src="@loader" name="MechanicalDOFs" template="Rigid3" position="0 0 0 0 0 0 1  1 0 0 0 0 0 1  2 0 0 0 0 0 1" showObject="1"/>
+            <include href="Objects/EdgeSetTopology.xml" src="@loader" template="Rigid3" />
+            <MechanicalStateController template="Rigid3" listening="true" mainDirection="-1.0 0.0 0.0" handleEventTriggersUpdate="true" />
+            <FixedProjectiveConstraint name="FixedProjectiveConstraint" indices="0" />
+            <UniformMass vertexMass="1 1 0.1 0 0 0 0.1 0 0 0 0.1" printLog="false" /> 
+    
+            <BeamFEMForceField name="FEM" radius="0.1" youngModulus="50000000" poissonRatio=".49"/>
+        </Node>
+    </Node>
+    ```
+
+=== "Python"
+
+    ```python
+    def createScene(rootNode):
+
+        root = rootNode.addChild('root', dt="0.005", gravity="0 -10 0")
+        root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Algorithm")
+        root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Intersection")
+        root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Response.Contact")
+        root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Projective")
+        root.addObject('RequiredPlugin', name="Sofa.Component.Controller")
+        root.addObject('RequiredPlugin', name="Sofa.Component.IO.Mesh")
+        root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Direct")
+        root.addObject('RequiredPlugin', name="Sofa.Component.Mass")
+        root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
+        root.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.FEM.Elastic")
+        root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
+        root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Dynamic")
+        root.addObject('RequiredPlugin', name="Sofa.Component.Visual")
+        root.addObject('DefaultAnimationLoop')
+        root.addObject('VisualStyle', displayFlags="showForceFields showCollisionModels")
+        root.addObject('CollisionPipeline', depth="6", verbose="0", draw="0")
+        root.addObject('BruteForceBroadPhase')
+        root.addObject('BVHNarrowPhase')
+        root.addObject('LocalMinDistance', name="Proximity", alarmDistance="1.0", contactDistance="0.5")
+        root.addObject('CollisionResponse', name="Response", response="PenalityContactForceField")
+
+        InstrumentEdgeSet = root.addChild('InstrumentEdgeSet')
+        InstrumentEdgeSet.addObject('EulerImplicitSolver', rayleighStiffness="0", printLog="false", rayleighMass="0.1")
+        InstrumentEdgeSet.addObject('BTDLinearSolver', template="BTDMatrix6d", printLog="false", verbose="false")
+        InstrumentEdgeSet.addObject('MeshGmshLoader', name="loader", filename="mesh/edgeSet.msh")
+        InstrumentEdgeSet.addObject('MechanicalObject', src="@loader", name="MechanicalDOFs", template="Rigid3", position="0 0 0 0 0 0 1  1 0 0 0 0 0 1  2 0 0 0 0 0 1", showObject="1")
+        InstrumentEdgeSet.addObject('include', href="Objects/EdgeSetTopology.xml", src="@loader", template="Rigid3")
+        InstrumentEdgeSet.addObject('MechanicalStateController', template="Rigid3", listening="true", mainDirection="-1.0 0.0 0.0", handleEventTriggersUpdate="true")
+        InstrumentEdgeSet.addObject('FixedProjectiveConstraint', name="FixedProjectiveConstraint", indices="0")
+        InstrumentEdgeSet.addObject('UniformMass', vertexMass="1 1 0.1 0 0 0 0.1 0 0 0 0.1", printLog="false")
+        InstrumentEdgeSet.addObject('BeamFEMForceField', name="FEM", radius="0.1", youngModulus="50000000", poissonRatio=".49")
     ```
 

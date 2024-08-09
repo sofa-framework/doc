@@ -1,37 +1,12 @@
----
-title: ExtrudeSurface
----
+# ExtrudeSurface
 
-ExtrudeSurface
-==============
-
-This component belongs to the category of [Engines](https://www.sofa-framework.org/community/doc/simulation-principles/engine/). This engine extrude a surface and returns corresponding triangles.
-
-Input Data
-----------
-
--   **triangles**: list of triangles of the object to extrude. It must me a vector of BaseMeshTopology::Triangle
--   **surfaceTriangles**: list of triangles of the surface to extrude. The type of triangle must be BaseMeshTopology::TriangleID, and not BaseMeshTopology::Triangle
--   **surfaceVertices**: list of positions
-
-Output Data
-----------
-
--   **extrusionVertices**: list of positions of the new triangles, created from extrusion
--   **extrusionTriangles**: list of triangles from extrusion (vector of BaseMeshTopology::Triangle)
+This class truns on spiral any topological model
 
 
-Important Parameter
--------------------
+__Templates__:
 
+- `#!c++ Vec3d`
 
--   **heightFactor**: extrusion is based on normals. So, this factor defines the final height of the extrusion.
-
-Examples
---------
-
-An example scene involving the ExtrudeSurface engine is available in [*examples/Component/Engine/Generate/ExtrudeSurface.scn*](https://github.com/sofa-framework/sofa/blob/master/examples/Component/Engine/Generate/ExtrudeSurface.scn)
-<!-- automatically generated doc START -->
 __Target__: `Sofa.Component.Engine.Generate`
 
 __namespace__: `#!c++ sofa::component::engine::generate`
@@ -233,5 +208,3 @@ Component/Engine/Generate/ExtrudeSurface.scn
         root.addObject('OglModel', src="@myLoader")
     ```
 
-
-<!-- automatically generated doc END -->

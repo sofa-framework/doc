@@ -5,9 +5,9 @@ title: The ObjectFactory
 The ObjectFactory
 -----------------
 
-The ObjectFactory is mostly a register which gives a correspondancy
+The ObjectFactory is mostly a register which gives a correspondence
 between a component name and a function pointer to a method able to
-construct that object. It is located in the sofacore library.
+construct that object. It is located in the Sofa.Core library.
 
 Registering a component
 -----------------------
@@ -47,7 +47,7 @@ called in the output binary. The summary of the steps to follow is here
         directories you will find a file called
         initNameCategoryComponent.cpp with NameCategoryComponent being
         the category of your component: ForceField, Constraint,
-        Mapping ... This is were you put the SOFA\_LINK\_CLASS macro
+        Mapping ... This is where you put the SOFA\_LINK\_CLASS macro
     -   If you are writing a plugin, you have to call in the
         SOFA\_LINK\_CLASS macro from your initMyPlugin.cpp.
 
@@ -149,4 +149,3 @@ sofa::core::objectmodel::BaseObjectDescription options("myFF1","TetrahedronFEMFo
     BaseForceField::SPtr ff = sofa::core::objectmodel::SPtr_dynamic_cast(sofa::core::ObjectFactory::CreateObject(node, &options));
 ```
 
- 

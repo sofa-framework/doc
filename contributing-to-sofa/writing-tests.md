@@ -33,7 +33,6 @@ Structure of a test in SOFA
 Any test structure should have a similar structure as:
 
 ``` cpp
-
  // Constructor or the Test object
 Test();
 
@@ -316,7 +315,7 @@ Once you build every tests you want, simply go in your build directory
 and execute the following command in order to launch the whole test
 suite:
 
-` ctest --verbose`
+`ctest --verbose`
 
 ### Visual Studio
 

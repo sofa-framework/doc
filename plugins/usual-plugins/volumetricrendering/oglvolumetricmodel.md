@@ -158,7 +158,7 @@ Links:
 
 ## Examples
 
-VolumetricRendering/OglVolumetricModel_tetra_physics.scn
+VolumetricRendering/OglVolumetricModel_hexa_physics.scn
 
 === "XML"
 
@@ -171,20 +171,20 @@ VolumetricRendering/OglVolumetricModel_tetra_physics.scn
             <EulerImplicitSolver  rayleighStiffness="0.1" rayleighMass="0.1" />
             <CGLinearSolver iterations="100" tolerance="1.0e-7" threshold="1.0e-7"/>
     
-    		<MeshVTKLoader name="loader" filename="mesh/raptorTetra_8418.vtu" />
-    		<MechanicalObject src="@loader" template="Vec3d" />
-     		<include href="Objects/TetrahedronSetTopology.xml" src="@loader" />
+    		<SparseGridTopology name="grid" n="21 21 21" fileTopology="mesh/raptor_8kp.obj" />
     
-    	 	<TetrahedronFEMForceField name="FEM" youngModulus="500" poissonRatio="0.4" method="large"
-    	 		computeVonMisesStress="2"
-    	 	 />
+    		<MechanicalObject name="dofs" template="Vec3d" />
+    	 	<HexahedronSetTopologyContainer hexahedra="@grid.hexahedra" />
+    	 	<HexahedronSetGeometryAlgorithms />
+    
+    	 	<HexahedronFEMForceField name="FEM" youngModulus="500" poissonRatio="0.4" method="large" />
     
     		<Node>
     	 		<OglShader geometryVerticesOut="12" geometryInputType="10" geometryOutputType="5" 
     	 			vertFilename="share/shaders/tetra.vert" geoFilename="share/shaders/tetra_triangles.geo" fragFilename="share/shaders/tetra.frag" />
     	 		<OglFloatVariable id="volumeScale" value="0.9"/>
     	 		<OglFloatVariable id="u_enableLight" value="1"/>
-    	 		<OglFloat4Attribute id="a_vertexColor" value="@../FEM.vonMisesStressColors"/>
+    	 		<OglFloat4Attribute id="a_vertexColor" value="@../grid.position"/>
     			<OglVolumetricModel printLog="false" color="1 0 1 1" />
     
     			<IdentityMapping />
@@ -205,16 +205,17 @@ VolumetricRendering/OglVolumetricModel_tetra_physics.scn
         HexaRaptor = root.addChild('HexaRaptor')
         HexaRaptor.addObject('EulerImplicitSolver', rayleighStiffness="0.1", rayleighMass="0.1")
         HexaRaptor.addObject('CGLinearSolver', iterations="100", tolerance="1.0e-7", threshold="1.0e-7")
-        HexaRaptor.addObject('MeshVTKLoader', name="loader", filename="mesh/raptorTetra_8418.vtu")
-        HexaRaptor.addObject('MechanicalObject', src="@loader", template="Vec3d")
-        HexaRaptor.addObject('include', href="Objects/TetrahedronSetTopology.xml", src="@loader")
-        HexaRaptor.addObject('TetrahedronFEMForceField', name="FEM", youngModulus="500", poissonRatio="0.4", method="large", computeVonMisesStress="2")
+        HexaRaptor.addObject('SparseGridTopology', name="grid", n="21 21 21", fileTopology="mesh/raptor_8kp.obj")
+        HexaRaptor.addObject('MechanicalObject', name="dofs", template="Vec3d")
+        HexaRaptor.addObject('HexahedronSetTopologyContainer', hexahedra="@grid.hexahedra")
+        HexaRaptor.addObject('HexahedronSetGeometryAlgorithms')
+        HexaRaptor.addObject('HexahedronFEMForceField', name="FEM", youngModulus="500", poissonRatio="0.4", method="large")
 
         HexaRaptor = HexaRaptor.addChild('HexaRaptor')
         HexaRaptor.addObject('OglShader', geometryVerticesOut="12", geometryInputType="10", geometryOutputType="5", vertFilename="share/shaders/tetra.vert", geoFilename="share/shaders/tetra_triangles.geo", fragFilename="share/shaders/tetra.frag")
         HexaRaptor.addObject('OglFloatVariable', id="volumeScale", value="0.9")
         HexaRaptor.addObject('OglFloatVariable', id="u_enableLight", value="1")
-        HexaRaptor.addObject('OglFloat4Attribute', id="a_vertexColor", value="@../FEM.vonMisesStressColors")
+        HexaRaptor.addObject('OglFloat4Attribute', id="a_vertexColor", value="@../grid.position")
         HexaRaptor.addObject('OglVolumetricModel', printLog="false", color="1 0 1 1")
         HexaRaptor.addObject('IdentityMapping')
     ```
@@ -282,165 +283,6 @@ VolumetricRendering/OglVolumetricModel_tetra_clipped_physics.scn
         HexaRaptor.addObject('IdentityMapping')
     ```
 
-VolumetricRendering/OglVolumetricModel_tetra.scn
-
-=== "XML"
-
-    ```xml
-    <?xml version="1.0"?>
-    <Node name="root" dt="0.02">
-        <RequiredPlugin name="VolumetricRendering" />
-    
-    	<MeshVTKLoader name="loader" filename="mesh/raptorTetra_8418.vtu" />
-    	<MechanicalObject src="@loader" template="Vec3d" />
-     	<include href="Objects/TetrahedronSetTopology.xml" src="@loader" />
-    
-    	<Node>
-     		<OglShader geometryVerticesOut="12" geometryInputType="10" geometryOutputType="5" 
-     			vertFilename="share/shaders/tetra.vert" geoFilename="share/shaders/tetra_triangles.geo" fragFilename="share/shaders/tetra.frag" />
-     		<OglFloatVariable id="volumeScale" value="0.9"/>
-     		<OglFloatVariable id="u_enableLight" value="1"/>
-     		<OglFloat4Attribute id="a_vertexColor" value="@../loader.position"/>
-    		<OglVolumetricModel printLog="false"  />
-    	</Node>
-    
-    </Node>
-    ```
-
-=== "Python"
-
-    ```python
-    def createScene(rootNode):
-
-        root = rootNode.addChild('root', dt="0.02")
-        root.addObject('RequiredPlugin', name="VolumetricRendering")
-        root.addObject('MeshVTKLoader', name="loader", filename="mesh/raptorTetra_8418.vtu")
-        root.addObject('MechanicalObject', src="@loader", template="Vec3d")
-        root.addObject('include', href="Objects/TetrahedronSetTopology.xml", src="@loader")
-
-        root = root.addChild('root')
-        root.addObject('OglShader', geometryVerticesOut="12", geometryInputType="10", geometryOutputType="5", vertFilename="share/shaders/tetra.vert", geoFilename="share/shaders/tetra_triangles.geo", fragFilename="share/shaders/tetra.frag")
-        root.addObject('OglFloatVariable', id="volumeScale", value="0.9")
-        root.addObject('OglFloatVariable', id="u_enableLight", value="1")
-        root.addObject('OglFloat4Attribute', id="a_vertexColor", value="@../loader.position")
-        root.addObject('OglVolumetricModel', printLog="false")
-    ```
-
-VolumetricRendering/OglVolumetricModel_hexa.scn
-
-=== "XML"
-
-    ```xml
-    <?xml version="1.0"?>
-    <Node name="root" dt="0.02">
-        <RequiredPlugin name="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
-        <RequiredPlugin name="Sofa.Component.Topology.Container.Dynamic"/> <!-- Needed to use components [HexahedronSetTopologyContainer] -->
-        <RequiredPlugin name="Sofa.Component.Topology.Container.Grid"/> <!-- Needed to use components [SparseGridTopology] -->
-        <RequiredPlugin name="Sofa.GL.Component.Shader"/> <!-- Needed to use components [OglFloatVariable,OglShader] -->
-        <RequiredPlugin name="VolumetricRendering" />
-    
-        <DefaultAnimationLoop/>
-        <SparseGridTopology name="grid" n="51 51 51" fileTopology="mesh/raptor_8kp.obj" />
-    
-        <MechanicalObject template="Vec3d" />
-        <HexahedronSetTopologyContainer hexahedra="@grid.hexahedra" />
-    
-        <Node>
-            <OglShader geometryVerticesOut="12" geometryInputType="10" geometryOutputType="5"
-                       fileVertexShaders="['share/shaders/tetra.vert']" fileGeometryShaders="['share/shaders/tetra_triangles.geo']" fileFragmentShaders="['share/shaders/tetra.frag']" />
-            <OglFloatVariable id="volumeScale" value="0.9"/>
-            <OglFloatVariable id="u_enableLight" value="1"/>
-            <OglVolumetricModel printLog="false" color="1 0 1 1" />
-        </Node>
-    
-    </Node>
-    ```
-
-=== "Python"
-
-    ```python
-    def createScene(rootNode):
-
-        root = rootNode.addChild('root', dt="0.02")
-        root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Dynamic")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Grid")
-        root.addObject('RequiredPlugin', name="Sofa.GL.Component.Shader")
-        root.addObject('RequiredPlugin', name="VolumetricRendering")
-        root.addObject('DefaultAnimationLoop')
-        root.addObject('SparseGridTopology', name="grid", n="51 51 51", fileTopology="mesh/raptor_8kp.obj")
-        root.addObject('MechanicalObject', template="Vec3d")
-        root.addObject('HexahedronSetTopologyContainer', hexahedra="@grid.hexahedra")
-
-        root = root.addChild('root')
-        root.addObject('OglShader', geometryVerticesOut="12", geometryInputType="10", geometryOutputType="5", fileVertexShaders="['share/shaders/tetra.vert']", fileGeometryShaders="['share/shaders/tetra_triangles.geo']", fileFragmentShaders="['share/shaders/tetra.frag']")
-        root.addObject('OglFloatVariable', id="volumeScale", value="0.9")
-        root.addObject('OglFloatVariable', id="u_enableLight", value="1")
-        root.addObject('OglVolumetricModel', printLog="false", color="1 0 1 1")
-    ```
-
-VolumetricRendering/OglVolumetricModel_hexa_physics.scn
-
-=== "XML"
-
-    ```xml
-    <?xml version="1.0"?>
-    <Node name="root" dt="0.02">
-        <RequiredPlugin name="VolumetricRendering" />
-    
-        <Node name="HexaRaptor" >
-            <EulerImplicitSolver  rayleighStiffness="0.1" rayleighMass="0.1" />
-            <CGLinearSolver iterations="100" tolerance="1.0e-7" threshold="1.0e-7"/>
-    
-    		<SparseGridTopology name="grid" n="21 21 21" fileTopology="mesh/raptor_8kp.obj" />
-    
-    		<MechanicalObject name="dofs" template="Vec3d" />
-    	 	<HexahedronSetTopologyContainer hexahedra="@grid.hexahedra" />
-    	 	<HexahedronSetGeometryAlgorithms />
-    
-    	 	<HexahedronFEMForceField name="FEM" youngModulus="500" poissonRatio="0.4" method="large" />
-    
-    		<Node>
-    	 		<OglShader geometryVerticesOut="12" geometryInputType="10" geometryOutputType="5" 
-    	 			vertFilename="share/shaders/tetra.vert" geoFilename="share/shaders/tetra_triangles.geo" fragFilename="share/shaders/tetra.frag" />
-    	 		<OglFloatVariable id="volumeScale" value="0.9"/>
-    	 		<OglFloatVariable id="u_enableLight" value="1"/>
-    	 		<OglFloat4Attribute id="a_vertexColor" value="@../grid.position"/>
-    			<OglVolumetricModel printLog="false" color="1 0 1 1" />
-    
-    			<IdentityMapping />
-    		</Node>
-    	</Node>
-    
-    </Node>
-    ```
-
-=== "Python"
-
-    ```python
-    def createScene(rootNode):
-
-        root = rootNode.addChild('root', dt="0.02")
-        root.addObject('RequiredPlugin', name="VolumetricRendering")
-
-        HexaRaptor = root.addChild('HexaRaptor')
-        HexaRaptor.addObject('EulerImplicitSolver', rayleighStiffness="0.1", rayleighMass="0.1")
-        HexaRaptor.addObject('CGLinearSolver', iterations="100", tolerance="1.0e-7", threshold="1.0e-7")
-        HexaRaptor.addObject('SparseGridTopology', name="grid", n="21 21 21", fileTopology="mesh/raptor_8kp.obj")
-        HexaRaptor.addObject('MechanicalObject', name="dofs", template="Vec3d")
-        HexaRaptor.addObject('HexahedronSetTopologyContainer', hexahedra="@grid.hexahedra")
-        HexaRaptor.addObject('HexahedronSetGeometryAlgorithms')
-        HexaRaptor.addObject('HexahedronFEMForceField', name="FEM", youngModulus="500", poissonRatio="0.4", method="large")
-
-        HexaRaptor = HexaRaptor.addChild('HexaRaptor')
-        HexaRaptor.addObject('OglShader', geometryVerticesOut="12", geometryInputType="10", geometryOutputType="5", vertFilename="share/shaders/tetra.vert", geoFilename="share/shaders/tetra_triangles.geo", fragFilename="share/shaders/tetra.frag")
-        HexaRaptor.addObject('OglFloatVariable', id="volumeScale", value="0.9")
-        HexaRaptor.addObject('OglFloatVariable', id="u_enableLight", value="1")
-        HexaRaptor.addObject('OglFloat4Attribute', id="a_vertexColor", value="@../grid.position")
-        HexaRaptor.addObject('OglVolumetricModel', printLog="false", color="1 0 1 1")
-        HexaRaptor.addObject('IdentityMapping')
-    ```
-
 VolumetricRendering/OglVolumetricModel_hexa_link.scn
 
 === "XML"
@@ -486,6 +328,111 @@ VolumetricRendering/OglVolumetricModel_hexa_link.scn
         root.addObject('OglFloatVariable', id="volumeScale", value="0.9")
         root.addObject('OglFloatVariable', id="u_enableLight", value="1")
         root.addObject('OglVolumetricModel', position="@../Input/dofs.position", hexahedra="@../Input/topology.hexahedra", printLog="false", color="1 0 1 1")
+    ```
+
+VolumetricRendering/OglVolumetricModel_tetra.scn
+
+=== "XML"
+
+    ```xml
+    <?xml version="1.0"?>
+    <Node name="root" dt="0.02">
+        <RequiredPlugin name="VolumetricRendering" />
+    
+    	<MeshVTKLoader name="loader" filename="mesh/raptorTetra_8418.vtu" />
+    	<MechanicalObject src="@loader" template="Vec3d" />
+     	<include href="Objects/TetrahedronSetTopology.xml" src="@loader" />
+    
+    	<Node>
+     		<OglShader geometryVerticesOut="12" geometryInputType="10" geometryOutputType="5" 
+     			vertFilename="share/shaders/tetra.vert" geoFilename="share/shaders/tetra_triangles.geo" fragFilename="share/shaders/tetra.frag" />
+     		<OglFloatVariable id="volumeScale" value="0.9"/>
+     		<OglFloatVariable id="u_enableLight" value="1"/>
+     		<OglFloat4Attribute id="a_vertexColor" value="@../loader.position"/>
+    		<OglVolumetricModel printLog="false"  />
+    	</Node>
+    
+    </Node>
+    ```
+
+=== "Python"
+
+    ```python
+    def createScene(rootNode):
+
+        root = rootNode.addChild('root', dt="0.02")
+        root.addObject('RequiredPlugin', name="VolumetricRendering")
+        root.addObject('MeshVTKLoader', name="loader", filename="mesh/raptorTetra_8418.vtu")
+        root.addObject('MechanicalObject', src="@loader", template="Vec3d")
+        root.addObject('include', href="Objects/TetrahedronSetTopology.xml", src="@loader")
+
+        root = root.addChild('root')
+        root.addObject('OglShader', geometryVerticesOut="12", geometryInputType="10", geometryOutputType="5", vertFilename="share/shaders/tetra.vert", geoFilename="share/shaders/tetra_triangles.geo", fragFilename="share/shaders/tetra.frag")
+        root.addObject('OglFloatVariable', id="volumeScale", value="0.9")
+        root.addObject('OglFloatVariable', id="u_enableLight", value="1")
+        root.addObject('OglFloat4Attribute', id="a_vertexColor", value="@../loader.position")
+        root.addObject('OglVolumetricModel', printLog="false")
+    ```
+
+VolumetricRendering/OglVolumetricModel_tetra_physics.scn
+
+=== "XML"
+
+    ```xml
+    <?xml version="1.0"?>
+    <Node name="root" dt="0.02">
+        <RequiredPlugin name="VolumetricRendering" />
+    
+        <Node name="HexaRaptor" >
+            <EulerImplicitSolver  rayleighStiffness="0.1" rayleighMass="0.1" />
+            <CGLinearSolver iterations="100" tolerance="1.0e-7" threshold="1.0e-7"/>
+    
+    		<MeshVTKLoader name="loader" filename="mesh/raptorTetra_8418.vtu" />
+    		<MechanicalObject src="@loader" template="Vec3d" />
+     		<include href="Objects/TetrahedronSetTopology.xml" src="@loader" />
+    
+    	 	<TetrahedronFEMForceField name="FEM" youngModulus="500" poissonRatio="0.4" method="large"
+    	 		computeVonMisesStress="2"
+    	 	 />
+    
+    		<Node>
+    	 		<OglShader geometryVerticesOut="12" geometryInputType="10" geometryOutputType="5" 
+    	 			vertFilename="share/shaders/tetra.vert" geoFilename="share/shaders/tetra_triangles.geo" fragFilename="share/shaders/tetra.frag" />
+    	 		<OglFloatVariable id="volumeScale" value="0.9"/>
+    	 		<OglFloatVariable id="u_enableLight" value="1"/>
+    	 		<OglFloat4Attribute id="a_vertexColor" value="@../FEM.vonMisesStressColors"/>
+    			<OglVolumetricModel printLog="false" color="1 0 1 1" />
+    
+    			<IdentityMapping />
+    		</Node>
+    	</Node>
+    
+    </Node>
+    ```
+
+=== "Python"
+
+    ```python
+    def createScene(rootNode):
+
+        root = rootNode.addChild('root', dt="0.02")
+        root.addObject('RequiredPlugin', name="VolumetricRendering")
+
+        HexaRaptor = root.addChild('HexaRaptor')
+        HexaRaptor.addObject('EulerImplicitSolver', rayleighStiffness="0.1", rayleighMass="0.1")
+        HexaRaptor.addObject('CGLinearSolver', iterations="100", tolerance="1.0e-7", threshold="1.0e-7")
+        HexaRaptor.addObject('MeshVTKLoader', name="loader", filename="mesh/raptorTetra_8418.vtu")
+        HexaRaptor.addObject('MechanicalObject', src="@loader", template="Vec3d")
+        HexaRaptor.addObject('include', href="Objects/TetrahedronSetTopology.xml", src="@loader")
+        HexaRaptor.addObject('TetrahedronFEMForceField', name="FEM", youngModulus="500", poissonRatio="0.4", method="large", computeVonMisesStress="2")
+
+        HexaRaptor = HexaRaptor.addChild('HexaRaptor')
+        HexaRaptor.addObject('OglShader', geometryVerticesOut="12", geometryInputType="10", geometryOutputType="5", vertFilename="share/shaders/tetra.vert", geoFilename="share/shaders/tetra_triangles.geo", fragFilename="share/shaders/tetra.frag")
+        HexaRaptor.addObject('OglFloatVariable', id="volumeScale", value="0.9")
+        HexaRaptor.addObject('OglFloatVariable', id="u_enableLight", value="1")
+        HexaRaptor.addObject('OglFloat4Attribute', id="a_vertexColor", value="@../FEM.vonMisesStressColors")
+        HexaRaptor.addObject('OglVolumetricModel', printLog="false", color="1 0 1 1")
+        HexaRaptor.addObject('IdentityMapping')
     ```
 
 VolumetricRendering/OglVolumetricModel_physics.scn
@@ -548,5 +495,58 @@ VolumetricRendering/OglVolumetricModel_physics.scn
         HexaRaptor.addObject('OglFloat4Attribute', id="a_vertexColor", value="@../grid.position")
         HexaRaptor.addObject('OglVolumetricModel', printLog="false", color="1 0 1 1")
         HexaRaptor.addObject('IdentityMapping')
+    ```
+
+VolumetricRendering/OglVolumetricModel_hexa.scn
+
+=== "XML"
+
+    ```xml
+    <?xml version="1.0"?>
+    <Node name="root" dt="0.02">
+        <RequiredPlugin name="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
+        <RequiredPlugin name="Sofa.Component.Topology.Container.Dynamic"/> <!-- Needed to use components [HexahedronSetTopologyContainer] -->
+        <RequiredPlugin name="Sofa.Component.Topology.Container.Grid"/> <!-- Needed to use components [SparseGridTopology] -->
+        <RequiredPlugin name="Sofa.GL.Component.Shader"/> <!-- Needed to use components [OglFloatVariable,OglShader] -->
+        <RequiredPlugin name="VolumetricRendering" />
+    
+        <DefaultAnimationLoop/>
+        <SparseGridTopology name="grid" n="51 51 51" fileTopology="mesh/raptor_8kp.obj" />
+    
+        <MechanicalObject template="Vec3d" />
+        <HexahedronSetTopologyContainer hexahedra="@grid.hexahedra" />
+    
+        <Node>
+            <OglShader geometryVerticesOut="12" geometryInputType="10" geometryOutputType="5"
+                       fileVertexShaders="['share/shaders/tetra.vert']" fileGeometryShaders="['share/shaders/tetra_triangles.geo']" fileFragmentShaders="['share/shaders/tetra.frag']" />
+            <OglFloatVariable id="volumeScale" value="0.9"/>
+            <OglFloatVariable id="u_enableLight" value="1"/>
+            <OglVolumetricModel printLog="false" color="1 0 1 1" />
+        </Node>
+    
+    </Node>
+    ```
+
+=== "Python"
+
+    ```python
+    def createScene(rootNode):
+
+        root = rootNode.addChild('root', dt="0.02")
+        root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
+        root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Dynamic")
+        root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Grid")
+        root.addObject('RequiredPlugin', name="Sofa.GL.Component.Shader")
+        root.addObject('RequiredPlugin', name="VolumetricRendering")
+        root.addObject('DefaultAnimationLoop')
+        root.addObject('SparseGridTopology', name="grid", n="51 51 51", fileTopology="mesh/raptor_8kp.obj")
+        root.addObject('MechanicalObject', template="Vec3d")
+        root.addObject('HexahedronSetTopologyContainer', hexahedra="@grid.hexahedra")
+
+        root = root.addChild('root')
+        root.addObject('OglShader', geometryVerticesOut="12", geometryInputType="10", geometryOutputType="5", fileVertexShaders="['share/shaders/tetra.vert']", fileGeometryShaders="['share/shaders/tetra_triangles.geo']", fileFragmentShaders="['share/shaders/tetra.frag']")
+        root.addObject('OglFloatVariable', id="volumeScale", value="0.9")
+        root.addObject('OglFloatVariable', id="u_enableLight", value="1")
+        root.addObject('OglVolumetricModel', printLog="false", color="1 0 1 1")
     ```
 

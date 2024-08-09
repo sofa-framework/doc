@@ -5,7 +5,7 @@ title: Inspect components
 The Monitor Component
 ---------------------
 
-A Sofa Component named Monitor (**sofa::component::misc::Monitor**) can
+A SOFA component named Monitor (**sofa::component::misc::Monitor**) can
 help you to visualize, to monitor or to export some properties.
 
 #### Quick overview of Monitor possibilities

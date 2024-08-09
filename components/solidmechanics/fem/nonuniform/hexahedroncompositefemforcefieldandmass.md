@@ -271,7 +271,6 @@ Links:
 |mechanicalStates|List of mechanical states to which this component is associated|
 |mstate|MechanicalState used by this component|
 |topology|link to the topology container|
-|topology|link to the topology container|
 
 
 

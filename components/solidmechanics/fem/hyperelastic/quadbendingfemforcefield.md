@@ -1,54 +1,12 @@
----
-title: QuadBendingFEMForceField
----
+# QuadBendingFEMForceField
 
-QuadBendingFEMForceField
-========================
-
-This component belongs to the category of [ForceField](https://www.sofa-framework.org/community/doc/simulation-principles/multi-model-representation/forcefield/). The page is still incomplete, but give us a bit of time to work on it!
-
-Description of the component ...
-
-What it is made for, what it does
+Bending Quad finite elements
 
 
+__Templates__:
 
-Sequence diagram
-----------------
+- `#!c++ Vec3d`
 
-
-Data  
-----
-
-
-
-Usage
------
-
-How to use it, what **required** component, case
-
-In which case it works, in which case it doesn't
-
-Limitations
-
-Example
--------
-
-This component is used as follows in XML format:
-
-``` xml
-<QuadBendingFEMForceField data_field="X" />
-```
-or using SofaPython3:
-
-``` python
-node.addObject('QuadBendingFEMForceField', data_field='X')
-```
-
-With a description of each data
-
-An example scene involving a QuadBendingFEMForceField is available in [*examples/Component/SolidMechanics/FEM/QuadBendingFEMForceField.scn*](https://github.com/sofa-framework/sofa/blob/master/examples/Component/SolidMechanics/FEM/QuadBendingFEMForceField.scn)
-<!-- automatically generated doc START -->
 __Target__: `Sofa.Component.SolidMechanics.FEM.Elastic`
 
 __namespace__: `#!c++ sofa::component::solidmechanics::fem::elastic`
@@ -286,5 +244,3 @@ Component/SolidMechanics/FEM/QuadBendingFEMForceField.scn
         Visual.addObject('IdentityMapping', template="Vec3,Vec3", name="visualMapping", input="@../DOFs", output="@Visual")
     ```
 
-
-<!-- automatically generated doc END -->

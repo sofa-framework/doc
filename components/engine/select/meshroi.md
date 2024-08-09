@@ -15,7 +15,7 @@ __namespace__: `#!c++ sofa::component::engine::select`
 
 __parents__: 
 
-- `#!c++ DataEngine`
+- `#!c++ BaseROI`
 
 __categories__: 
 
@@ -89,9 +89,37 @@ If true, will compute triangle list and index list inside the ROI.
 		<td>1</td>
 	</tr>
 	<tr>
+		<td>computeQuads</td>
+		<td>
+If true, will compute quad list and index list inside the ROI.
+</td>
+		<td>1</td>
+	</tr>
+	<tr>
 		<td>computeTetrahedra</td>
 		<td>
 If true, will compute tetrahedra list and index list inside the ROI.
+</td>
+		<td>1</td>
+	</tr>
+	<tr>
+		<td>computeHexahedra</td>
+		<td>
+If true, will compute hexahedra list and index list inside the ROI.
+</td>
+		<td>1</td>
+	</tr>
+	<tr>
+		<td>strict</td>
+		<td>
+If true, an element is inside the box if all of its nodes are inside. If False, only the center point of the element is checked.
+</td>
+		<td>1</td>
+	</tr>
+	<tr>
+		<td>doUpdate</td>
+		<td>
+If true, updates the selection at the beginning of simulation steps.
 </td>
 		<td>1</td>
 	</tr>
@@ -103,19 +131,14 @@ Compute with the mesh (not only bounding box)
 		<td>1</td>
 	</tr>
 	<tr>
-		<td>doUpdate</td>
-		<td>
-Update the computation (not only at the init)
-</td>
-		<td>0</td>
-	</tr>
-	<tr>
 		<td colspan="3">Inputs</td>
 	</tr>
 	<tr>
 		<td>position</td>
 		<td>
-Rest position coordinates of the degrees of freedom
+Rest position coordinates of the degrees of freedom. 
+If empty the positions from a MechanicalObject then a MeshLoader are searched in the current context. 
+If none are found the parent's context is searched for MechanicalObject.
 </td>
 		<td></td>
 	</tr>
@@ -134,9 +157,23 @@ Triangle Topology
 		<td></td>
 	</tr>
 	<tr>
+		<td>quads</td>
+		<td>
+Quad Topology
+</td>
+		<td></td>
+	</tr>
+	<tr>
 		<td>tetrahedra</td>
 		<td>
 Tetrahedron Topology
+</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>hexahedra</td>
+		<td>
+Hexahedron Topology
 </td>
 		<td></td>
 	</tr>
@@ -165,13 +202,6 @@ ROI Triangle Topology
 		<td colspan="3">Outputs</td>
 	</tr>
 	<tr>
-		<td>box</td>
-		<td>
-Bounding box defined by xmin,ymin,zmin, xmax,ymax,zmax
-</td>
-		<td></td>
-	</tr>
-	<tr>
 		<td>indices</td>
 		<td>
 Indices of the points contained in the ROI
@@ -193,9 +223,23 @@ Indices of the triangles contained in the ROI
 		<td></td>
 	</tr>
 	<tr>
+		<td>quadIndices</td>
+		<td>
+Indices of the quad contained in the ROI
+</td>
+		<td></td>
+	</tr>
+	<tr>
 		<td>tetrahedronIndices</td>
 		<td>
 Indices of the tetrahedra contained in the ROI
+</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>hexahedronIndices</td>
+		<td>
+Indices of the hexahedra contained in the ROI
 </td>
 		<td></td>
 	</tr>
@@ -221,9 +265,30 @@ Triangles contained in the ROI
 		<td></td>
 	</tr>
 	<tr>
+		<td>quadsInROI</td>
+		<td>
+Quad contained in the ROI
+</td>
+		<td></td>
+	</tr>
+	<tr>
 		<td>tetrahedraInROI</td>
 		<td>
 Tetrahedra contained in the ROI
+</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>hexahedraInROI</td>
+		<td>
+Hexahedra contained in the ROI
+</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>nbIndices</td>
+		<td>
+Number of selected indices
 </td>
 		<td></td>
 	</tr>
@@ -284,7 +349,70 @@ Indices of the tetrahedra not contained in the ROI
 		<td></td>
 	</tr>
 	<tr>
+		<td>box</td>
+		<td>
+Bounding box defined by xmin,ymin,zmin, xmax,ymax,zmax
+</td>
+		<td></td>
+	</tr>
+	<tr>
 		<td colspan="3">Visualization</td>
+	</tr>
+	<tr>
+		<td>drawROI</td>
+		<td>
+Draw the ROI.
+</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>drawPoints</td>
+		<td>
+Draw Points.
+</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>drawEdges</td>
+		<td>
+Draw Edges.
+</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>drawTriangles</td>
+		<td>
+Draw Triangles.
+</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>drawQuads</td>
+		<td>
+Draw Quads.
+</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>drawTetrahedra</td>
+		<td>
+Draw Tetrahedra.
+</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>drawHexahedra</td>
+		<td>
+Draw Tetrahedra.
+</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>drawSize</td>
+		<td>
+rendering size for ROI and topological elements
+</td>
+		<td>1</td>
 	</tr>
 	<tr>
 		<td>drawOut</td>
@@ -294,51 +422,9 @@ Draw the data not contained in the ROI
 		<td>0</td>
 	</tr>
 	<tr>
-		<td>drawMesh</td>
-		<td>
-Draw Mesh used for the ROI
-</td>
-		<td>0</td>
-	</tr>
-	<tr>
 		<td>drawBox</td>
 		<td>
 Draw the Bounding box around the mesh used for the ROI
-</td>
-		<td>0</td>
-	</tr>
-	<tr>
-		<td>drawPoints</td>
-		<td>
-Draw Points
-</td>
-		<td>0</td>
-	</tr>
-	<tr>
-		<td>drawEdges</td>
-		<td>
-Draw Edges
-</td>
-		<td>0</td>
-	</tr>
-	<tr>
-		<td>drawTriangles</td>
-		<td>
-Draw Triangles
-</td>
-		<td>0</td>
-	</tr>
-	<tr>
-		<td>drawTetrahedra</td>
-		<td>
-Draw Tetrahedra
-</td>
-		<td>0</td>
-	</tr>
-	<tr>
-		<td>drawSize</td>
-		<td>
-rendering size for mesh and topological elements
 </td>
 		<td>0</td>
 	</tr>

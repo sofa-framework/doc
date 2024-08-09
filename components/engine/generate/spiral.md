@@ -1,32 +1,12 @@
----
-title: Spiral
----
+# Spiral
 
-Spiral
-======
+This class truns on spiral any topological model
 
-This component belongs to the category of [Engines](https://www.sofa-framework.org/community/doc/simulation-principles/engine/). This engine turns on spiral any topological model.
 
-Input Data
-----------
+__Templates__:
 
--   **rest_position**: rest position of the mechanical object
+- `#!c++ Vec3d`
 
-Output Data
-----------
-
--   **position**: position of the mechanical object once it has been turned on spiral
-
-Additional Parameter
---------------------
-
--   **curvature**: real defining the curvature of the spiral
-
-Examples
---------
-
-An example scene involving the Spiral engine is available in [*examples/Component/Engine/Generate/spiral.scn*](https://github.com/sofa-framework/sofa/blob/master/examples/Component/Engine/Generate/spiral.scn)
-<!-- automatically generated doc START -->
 __Target__: `Sofa.Component.Engine.Generate`
 
 __namespace__: `#!c++ sofa::component::engine::generate`
@@ -133,5 +113,3 @@ Links:
 
 
 
-
-<!-- automatically generated doc END -->

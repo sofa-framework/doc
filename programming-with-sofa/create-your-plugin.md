@@ -44,9 +44,9 @@ documentation of your plugin.
 #include <sofa/helper/system/config.h>
 
 #ifdef SOFA_BUILD_MYPLUGIN
-#define SOFA_MyPlugin_API SOFA_EXPORT_DYNAMIC_LIBRARY
+#define SOFA_MYPLUGIN_API SOFA_EXPORT_DYNAMIC_LIBRARY
 #else
-#define SOFA_MyPlugin_API SOFA_IMPORT_DYNAMIC_LIBRARY
+#define SOFA_MYPLUGIN_API SOFA_IMPORT_DYNAMIC_LIBRARY
 #endif
 
 /** mainpage
@@ -115,13 +115,13 @@ To integrate with the build system of SOFA, your CMakeLists.txt file
 should be structured as follows:
 
 ``` {.cmake}
-cmake_minimum_required(VERSION 3.1)
+cmake_minimum_required(VERSION 3.22)
 
 #replace here with your project name and version number
 project(MyPlugin VERSION X.X)
 
 #look for all packages on which your project depends
-find_package(SofaFramework REQUIRED)
+find_package(Sofa.Framework REQUIRED)
 
 set(HEADER_FILES
     MyHeaderFile1.h
@@ -136,7 +136,7 @@ set(SOURCE_FILES
 )
 
 add_library(${PROJECT_NAME} SHARED ${HEADER_FILES} ${SOURCE_FILES})
-target_link_libraries(${PROJECT_NAME} SofaCore)
+target_link_libraries(${PROJECT_NAME} Sofa.Core)
 set_target_properties(${PROJECT_NAME} PROPERTIES COMPILE_FLAGS "-DSOFA_BUILD_MYPLUGIN")
 ```
 

@@ -56,7 +56,7 @@ An example scene involving a ArticulatedSystemMapping is available in [*applicat
 
 <Node name="restarticulation">
     <MechanicalObject name="rest" template="Vec1d" position="0 0 0 0" />
-    <FixedConstraint indices="0 1 2 3" />
+    <FixedProjectiveConstraint indices="0 1 2 3" />
 </Node>
 
 
@@ -69,9 +69,8 @@ An example scene involving a ArticulatedSystemMapping is available in [*applicat
         <BeamFEMForceField name="FEM" radius="0.1" youngModulus="1e8" poissonRatio="0.45"/>
         <MeshTopology name="lines" lines="0 1 1 2 2 3 3 4 " />
         <UniformMass template="Rigid3d" name="mass" vertexMass="0.1 0.1 [1 0 0,0 1 0,0 0 1]" />
-        <FixedConstraint template="Rigid3d" name="fixOrigin" indices="0" />
+        <FixedProjectiveConstraint template="Rigid3d" name="fixOrigin" indices="0" />
         <ArticulatedSystemMapping input1="@../Articulations" output="@DOFs" />
-        
     </Node>
 
 
@@ -118,7 +117,7 @@ The ArticulatedHierarchyContainer must be defined before the description of the 
 
 The ArticulationCenter defines the location of the articulation. In the example, the position of one articulation is defined relatively to the position of the others. For instance, the second articulation "articulationCenter2" is located in x+=1 relatively to the first articulation, and x-=1 relatively to the third articulation.
 
-Finally a StiffSpringForceField is added to enforce each articulation get back to its rest configuration (saved in the MechanicalObject "rest") through elastic forces. This component is optional.
+Finally, a StiffSpringForceField is added to enforce each articulation get back to its rest configuration (saved in the MechanicalObject "rest") through elastic forces. This component is optional.
 <!-- automatically generated doc START -->
 __Target__: `ArticulatedSystemPlugin`
 

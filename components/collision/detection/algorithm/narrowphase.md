@@ -5,7 +5,7 @@ title: NarrowPhase
 Narrow Phase Components
 ======================
 
-The narrow phase collision detection components are executed in a [collision pipeline](https://www.sofa-framework.org/community/doc/using-sofa/components/collisions/pipelines/collisionpipeline).
+The narrow phase collision detection components are executed in a [collision pipeline](../collisionpipeline).
 
 Introduction
 ============
@@ -18,7 +18,7 @@ The number of tests depends on the number of objects, and the number of collisio
 For performances reasons, this approach is never selected because of its quadratic complexity.
 
 Instead, the collision detection will be divided in two parts:
-1. The [broad phase collision detection](https://www.sofa-framework.org/community/doc/using-sofa/components/collisions/broadphases/broadphase)
+1. The [broad phase collision detection](../broadphase)
 2. The narrow phase collision detection
 
 The Narrow Phase
@@ -29,7 +29,7 @@ The broad phase output is a list of collision models potentially in collision.
 The goal of the narrow phase is to examine the list more closely and determine if they are actually in intersection.
 If it is the case, it detects which elements are in intersection.
 
-Following the [DefaultPipeline](https://www.sofa-framework.org/community/doc/using-sofa/components/collisions/pipelines/defaultpipeline), the output of the narrow phase is provided to the contact manager.
+Following the [DefaultPipeline](../defaultpipeline), the output of the narrow phase is provided to the contact manager.
 
 The Implementation
 ------------------
@@ -72,7 +72,7 @@ Examples of Components
 
 The following components are all narrow phase collision detections, and can be placed in a simulation scene:
 
-- [BVHNarrowPhase](https://www.sofa-framework.org/community/doc/using-sofa/components/collisions/narrowphases/bvhnarrowphase)
+- [BVHNarrowPhase](../bvhnarrowphase)
 - ParallelBVHNarrowPhase (plugin MultiThreading)
 - DirectSAPNarrowPhase
 

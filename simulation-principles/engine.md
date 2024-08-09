@@ -32,27 +32,11 @@ void doUpdate()
 This function is in charge of the computation of the ouput Data based on the input Data. It is the delegate function from the `update()` function implemented in DataEngine which updates all inputs before calling the `doUpdate()` function.
 
 
-List of Engines
---------------
-
-- [BoxROI](https://www.sofa-framework.org/community/doc/components/engines/roi-selection/#boxroi)
-- [PlaneROI](https://www.sofa-framework.org/community/doc/components/engines/roi-selection/#planeroi)
-- [SphereROI](https://www.sofa-framework.org/community/doc/components/engines/roi-selection/#sphereroi)
-- [ExtrudeSurface](https://www.sofa-framework.org/community/doc/components/engines/extrudesurface/)
-- [MergePoints](https://www.sofa-framework.org/community/doc/components/engines/mergepoints/)
-- [PointsFromIndices](https://www.sofa-framework.org/community/doc/components/engines/pointsfromindices/)
-- [TextureInterpolation](https://www.sofa-framework.org/community/doc/components/engines/textureinterpolation/)
-- [TransformEngine](https://www.sofa-framework.org/community/doc/components/engines/transformengine/)
-- [TransformPosition](https://www.sofa-framework.org/community/doc/components/engines/transformposition/)
-- [Spiral](https://www.sofa-framework.org/community/doc/components/engines/spiral/)
-- [Vertex2Frame](https://www.sofa-framework.org/community/doc/components/engines/vertex2frame/)
-- [SubsetTopology](https://www.sofa-framework.org/community/doc/components/engines/subsettopology/)
-
 
 Example of use
 --------------
 
-Here is an example with the [TransformEngine](https://www.sofa-framework.org/community/doc/components/engines/transformengine/) with an input data ("input_position") and an output data ("output_position") resulting from a transformation defined by the user (here translation):
+Here is an example with the [TransformEngine](../components/engine/transform/transformengine/) with an input data ("input_position") and an output data ("output_position") resulting from a transformation defined by the user (here translation):
 
 ``` xml
 <TransformEngine name="translationEngine" template="Vec3d" translation="10 0 0" input_position="@meshLoader.position" />

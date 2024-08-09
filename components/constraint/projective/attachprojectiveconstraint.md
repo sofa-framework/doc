@@ -5,56 +5,27 @@ title: AttachProjectiveConstraint
 AttachProjectiveConstraint
 ================
 
-This component belongs to the category of [Projective Constraint](https://www.sofa-framework.org/community/doc/main-principles/constraint/projective-constraint/). The AttachProjectiveConstraint works with a pair of objects, and it projects the degrees of freedom (e.g. position) and their derivatives (e.g. velocity), so that both objects are attached. As being a projective constraint, this projective constraints ensures a geometrical connection between both objects at the end of the time step, but it does not integrate the physics of both object (contrary to Lagrange based constraints).
+This component belongs to the category of [Projective Constraint](../../../simulation-principles/constraint/projective-constraint/).
+The AttachProjectiveConstraint works with a pair of objects, and it projects the degrees of freedom (e.g. position) and their derivatives (e.g. velocity), so that both objects are attached.
+As being a projective constraint, this projective constraints ensures a geometrical connection between both objects at the end of the time step, but it does not integrate the physics of both object (contrary to Lagrange based constraints).
 
 
-
-Data 
-----
-
-The AttachProjectiveConstraint can be initialized using three input data:
-
-- **object1**: link to the first model (MechanicalModel)
-- **object2**: link to the second model (MechanicalModel)
-- **indices1**: corresponding to the indices of the source points on the first model
-- **indices2**: corresponding to the indices of the fixed points on the second model
-- **constraintFactor**: allows for the partial application of the constraint using this factor per pair of points constrained (0=the constraint is released. 1=the constraint is fully constrained)
-- **twoWay**:
-  - if true, this boolean projects the constraint vertices of both _object1_ and _object2_ towards their average degrees of freedom and derivatives: 
+Note that constraining objects using the data **twoWay** will project the constraint vertices of both _object1_ and _object2_ towards their average degrees of freedom and derivatives:
   ```cpp
   Deriv corr = (dx2-dx1)*0.5*responseFactor*getConstraintFactor(index);
         dx1 += corr;
         dx2 -= corr;
   ```
-  - if false, the position of the _object1_ are projected onto the _object2_. Therefore, _object2_ only follows _object1_ without affecting the motion of _object1_
+- if false, the position of the _object1_ are projected onto the _object2_. Therefore, _object2_ only follows _object1_ without affecting the motion of _object1_
   ```cpp
   dx2 = Deriv();
   ```
-
 
 
 Usage
 -----
 
 The AttachProjectiveConstraint **requires** two MechanicalObjects so that both degrees of freedom can be accessed and projected to the attached configuration. An integration scheme and a solver are also necessary to solve the linear system at each time step.
-
-
-Example
--------
-
-This component is used as follows in XML format:
-
-``` xml
-<AttachProjectiveConstraint name="AttachProjectiveConstraint" object1="@M1" object2="@M2" indices1="0 1 2" indices2="10 11 12" constraintFactor="1 1 1"/>
-```
-
-or using SofaPython3:
-
-``` python
-node.addObject('AttachProjectiveConstraint', object1="@M1", object2="@M2", indices1="0 1 2", indices2="10 11 12", constraintFactor="1 1 1")
-```
-
-An example scene involving a AttachProjectiveConstraint is available in [*examples/Component/Constraint/Projective/AttachProjectiveConstraint.scn*](https://github.com/sofa-framework/sofa/blob/master/examples/Component/Constraint/Projective/AttachProjectiveConstraint.scn)
 <!-- automatically generated doc START -->
 __Target__: `Sofa.Component.Constraint.Projective`
 
@@ -253,142 +224,6 @@ Links:
 
 ## Examples
 
-Component/Constraint/Projective/AttachProjectiveConstraintMatrix.scn
-
-=== "XML"
-
-    ```xml
-    <Node name="root" dt="0.02">
-        <RequiredPlugin name="Sofa.Component.Constraint.Projective"/> <!-- Needed to use components [AttachProjectiveConstraint FixedProjectiveConstraint] -->
-        <RequiredPlugin name="Sofa.Component.Engine.Select"/> <!-- Needed to use components [BoxROI] -->
-        <RequiredPlugin name="Sofa.Component.LinearSolver.Direct"/> <!-- Needed to use components [EigenSimplicialLDLT] -->
-        <RequiredPlugin name="Sofa.Component.LinearSolver.Iterative"/> <!-- Needed to use components [CGLinearSolver] -->
-        <RequiredPlugin name="Sofa.Component.Mass"/> <!-- Needed to use components [UniformMass] -->
-        <RequiredPlugin name="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
-        <RequiredPlugin name="Sofa.Component.SolidMechanics.FEM.Elastic"/> <!-- Needed to use components [TetrahedronFEMForceField] -->
-        <RequiredPlugin name="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
-        <RequiredPlugin name="Sofa.Component.Topology.Container.Grid"/> <!-- Needed to use components [RegularGridTopology] -->
-        <RequiredPlugin name="Sofa.Component.Visual"/> <!-- Needed to use components [VisualStyle] -->
-    
-        <VisualStyle displayFlags="showBehaviorModels showForceFields" />
-        <DefaultAnimationLoop/>
-        <Node name="AttachOneWay">
-            <EulerImplicitSolver name="cg_odesolver" printLog="false"  rayleighStiffness="0.1" rayleighMass="0.1" />
-            <CGLinearSolver iterations="25" name="linear solver" tolerance="1.0e-9" threshold="1.0e-9" />
-            <Node name="M1">
-                <MechanicalObject showObject="1"/>
-                <UniformMass vertexMass="1" />
-                <RegularGridTopology nx="4" ny="4" nz="10" xmin="1" xmax="4" ymin="0" ymax="3" zmin="0" zmax="9" />
-                <BoxConstraint box="0.9 -0.1 -0.1 4.1 3.1 0.1" />
-                <TetrahedronFEMForceField name="FEM" youngModulus="4000" poissonRatio="0.3" />
-            </Node>
-            <Node name="M2">
-                <MechanicalObject />
-                <UniformMass vertexMass="1" />
-                <RegularGridTopology nx="4" ny="4" nz="10" xmin="1" xmax="4" ymin="0" ymax="3" zmin="9" zmax="18" />
-                <TetrahedronFEMForceField name="FEM" youngModulus="4000" poissonRatio="0.3" />
-            </Node>
-            <!--
-    		<Node name="M3">
-    			<EulerImplicitSolver name="cg_odesolver" printLog="false"/>
-    			<CGLinearSolver iterations="25" name="linear solver" tolerance="1.0e-9" threshold="1.0e-9"/>
-    			<MechanicalObject/>
-    			<UniformMass mass="1"/>
-    			<RegularGridTopology nx="4" ny="4" nz="10" xmin="1" xmax="4" ymin="0" ymax="3" zmin="18" zmax="27"/>
-    			<TetrahedronFEMForceField name="FEM" youngModulus="4000" poissonRatio="0.3"/>
-    		</Node>
-    		-->
-            <AttachProjectiveConstraint object1="@M1" object2="@M2" indices1="144 145 146 147 148 149 150 151 152 153 154 155 156 157 158 159" indices2="0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15"/>
-            <!--	<AttachProjectiveConstraint object1="@M2" object2="@M3" radius="0.1" indices1="144 145 146 147 148 149 150 151 152 153 154 155 156 157 158 159" indices2="0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15" constraintFactor="1"/>	-->
-        </Node>
-        <Node name="AttachOneWay2">
-            <EulerImplicitSolver name="cg_odesolver" printLog="false" />
-            <EigenSimplicialLDLT template="CompressedRowSparseMatrixMat3x3"/>
-            <Node name="M1">
-                <MechanicalObject />
-                <UniformMass vertexMass="1" />
-                <RegularGridTopology nx="4" ny="4" nz="10" xmin="-4" xmax="-1" ymin="0" ymax="3" zmin="0" zmax="9" />
-                <BoxConstraint box="-4.1 -0.9 -0.1 4.1 3.1 0.1" />
-                <TetrahedronFEMForceField name="FEM" youngModulus="4000" poissonRatio="0.3" />
-            </Node>
-            <Node name="M2">
-                <MechanicalObject />
-                <UniformMass vertexMass="1" />
-                <RegularGridTopology nx="4" ny="4" nz="10" xmin="-4" xmax="-1" ymin="0" ymax="3" zmin="9" zmax="18" />
-                <TetrahedronFEMForceField name="FEM" youngModulus="4000" poissonRatio="0.3" />
-            </Node>
-            <!--
-    		<Node name="M3">
-    			<EulerImplicitSolver name="cg_odesolver" printLog="false"/>
-    			<CGLinearSolver iterations="25" name="linear solver" tolerance="1.0e-9" threshold="1.0e-9"/>
-    			<MechanicalObject/>
-    			<UniformMass mass="1"/>
-    			<RegularGridTopology nx="4" ny="4" nz="10" xmin="-4" xmax="-1" ymin="0" ymax="3" zmin="18" zmax="27"/>
-    			<TetrahedronFEMForceField name="FEM" youngModulus="4000" poissonRatio="0.3"/>
-    		</Node>
-    		-->
-            <AttachProjectiveConstraint object1="@M1" object2="@M2" indices1="144 145 146 147 148 149 150 151 152 153 154 155 156 157 158 159" indices2="0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15"/>
-            <!--	<AttachProjectiveConstraint object1="@M2" object2="@M3" radius="0.1" indices1="144 145 146 147 148 149 150 151 152 153 154 155 156 157 158 159" indices2="0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15" constraintFactor="1"/>	-->
-        </Node>
-    </Node>
-    ```
-
-=== "Python"
-
-    ```python
-    def createScene(rootNode):
-
-        root = rootNode.addChild('root', dt="0.02")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Projective")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Engine.Select")
-        root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Direct")
-        root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Iterative")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Mass")
-        root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
-        root.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.FEM.Elastic")
-        root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Grid")
-        root.addObject('RequiredPlugin', name="Sofa.Component.Visual")
-        root.addObject('VisualStyle', displayFlags="showBehaviorModels showForceFields")
-        root.addObject('DefaultAnimationLoop')
-
-        AttachOneWay = root.addChild('AttachOneWay')
-        AttachOneWay.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
-        AttachOneWay.addObject('CGLinearSolver', iterations="25", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
-
-        M1 = AttachOneWay.addChild('M1')
-        M1.addObject('MechanicalObject', showObject="1")
-        M1.addObject('UniformMass', vertexMass="1")
-        M1.addObject('RegularGridTopology', nx="4", ny="4", nz="10", xmin="1", xmax="4", ymin="0", ymax="3", zmin="0", zmax="9")
-        M1.addObject('BoxConstraint', box="0.9 -0.1 -0.1 4.1 3.1 0.1")
-        M1.addObject('TetrahedronFEMForceField', name="FEM", youngModulus="4000", poissonRatio="0.3")
-
-        M2 = AttachOneWay.addChild('M2')
-        M2.addObject('MechanicalObject')
-        M2.addObject('UniformMass', vertexMass="1")
-        M2.addObject('RegularGridTopology', nx="4", ny="4", nz="10", xmin="1", xmax="4", ymin="0", ymax="3", zmin="9", zmax="18")
-        M2.addObject('TetrahedronFEMForceField', name="FEM", youngModulus="4000", poissonRatio="0.3")
-        AttachOneWay.addObject('AttachProjectiveConstraint', object1="@M1", object2="@M2", indices1="144 145 146 147 148 149 150 151 152 153 154 155 156 157 158 159", indices2="0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15")
-
-        AttachOneWay2 = root.addChild('AttachOneWay2')
-        AttachOneWay2.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="false")
-        AttachOneWay2.addObject('EigenSimplicialLDLT', template="CompressedRowSparseMatrixMat3x3")
-
-        M1 = AttachOneWay2.addChild('M1')
-        M1.addObject('MechanicalObject')
-        M1.addObject('UniformMass', vertexMass="1")
-        M1.addObject('RegularGridTopology', nx="4", ny="4", nz="10", xmin="-4", xmax="-1", ymin="0", ymax="3", zmin="0", zmax="9")
-        M1.addObject('BoxConstraint', box="-4.1 -0.9 -0.1 4.1 3.1 0.1")
-        M1.addObject('TetrahedronFEMForceField', name="FEM", youngModulus="4000", poissonRatio="0.3")
-
-        M2 = AttachOneWay2.addChild('M2')
-        M2.addObject('MechanicalObject')
-        M2.addObject('UniformMass', vertexMass="1")
-        M2.addObject('RegularGridTopology', nx="4", ny="4", nz="10", xmin="-4", xmax="-1", ymin="0", ymax="3", zmin="9", zmax="18")
-        M2.addObject('TetrahedronFEMForceField', name="FEM", youngModulus="4000", poissonRatio="0.3")
-        AttachOneWay2.addObject('AttachProjectiveConstraint', object1="@M1", object2="@M2", indices1="144 145 146 147 148 149 150 151 152 153 154 155 156 157 158 159", indices2="0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15")
-    ```
-
 Component/Constraint/Projective/AttachProjectiveConstraint.scn
 
 === "XML"
@@ -568,6 +403,142 @@ Component/Constraint/Projective/AttachProjectiveConstraint.scn
         M3.addObject('TetrahedronFEMForceField', name="FEM", youngModulus="4000", poissonRatio="0.3")
         AttachTwoWay.addObject('AttachProjectiveConstraint', object1="@M1", object2="@M2", twoWay="true", indices1="144 145 146 147 148 149 150 151 152 153 154 155 156 157 158 159", indices2="0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15", constraintFactor="1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1")
         AttachTwoWay.addObject('AttachProjectiveConstraint', object1="@M2", object2="@M3", twoWay="true", indices1="144 145 146 147 148 149 150 151 152 153 154 155 156 157 158 159", indices2="0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15")
+    ```
+
+Component/Constraint/Projective/AttachProjectiveConstraintMatrix.scn
+
+=== "XML"
+
+    ```xml
+    <Node name="root" dt="0.02">
+        <RequiredPlugin name="Sofa.Component.Constraint.Projective"/> <!-- Needed to use components [AttachProjectiveConstraint FixedProjectiveConstraint] -->
+        <RequiredPlugin name="Sofa.Component.Engine.Select"/> <!-- Needed to use components [BoxROI] -->
+        <RequiredPlugin name="Sofa.Component.LinearSolver.Direct"/> <!-- Needed to use components [EigenSimplicialLDLT] -->
+        <RequiredPlugin name="Sofa.Component.LinearSolver.Iterative"/> <!-- Needed to use components [CGLinearSolver] -->
+        <RequiredPlugin name="Sofa.Component.Mass"/> <!-- Needed to use components [UniformMass] -->
+        <RequiredPlugin name="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+        <RequiredPlugin name="Sofa.Component.SolidMechanics.FEM.Elastic"/> <!-- Needed to use components [TetrahedronFEMForceField] -->
+        <RequiredPlugin name="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
+        <RequiredPlugin name="Sofa.Component.Topology.Container.Grid"/> <!-- Needed to use components [RegularGridTopology] -->
+        <RequiredPlugin name="Sofa.Component.Visual"/> <!-- Needed to use components [VisualStyle] -->
+    
+        <VisualStyle displayFlags="showBehaviorModels showForceFields" />
+        <DefaultAnimationLoop/>
+        <Node name="AttachOneWay">
+            <EulerImplicitSolver name="cg_odesolver" printLog="false"  rayleighStiffness="0.1" rayleighMass="0.1" />
+            <CGLinearSolver iterations="25" name="linear solver" tolerance="1.0e-9" threshold="1.0e-9" />
+            <Node name="M1">
+                <MechanicalObject showObject="1"/>
+                <UniformMass vertexMass="1" />
+                <RegularGridTopology nx="4" ny="4" nz="10" xmin="1" xmax="4" ymin="0" ymax="3" zmin="0" zmax="9" />
+                <BoxConstraint box="0.9 -0.1 -0.1 4.1 3.1 0.1" />
+                <TetrahedronFEMForceField name="FEM" youngModulus="4000" poissonRatio="0.3" />
+            </Node>
+            <Node name="M2">
+                <MechanicalObject />
+                <UniformMass vertexMass="1" />
+                <RegularGridTopology nx="4" ny="4" nz="10" xmin="1" xmax="4" ymin="0" ymax="3" zmin="9" zmax="18" />
+                <TetrahedronFEMForceField name="FEM" youngModulus="4000" poissonRatio="0.3" />
+            </Node>
+            <!--
+    		<Node name="M3">
+    			<EulerImplicitSolver name="cg_odesolver" printLog="false"/>
+    			<CGLinearSolver iterations="25" name="linear solver" tolerance="1.0e-9" threshold="1.0e-9"/>
+    			<MechanicalObject/>
+    			<UniformMass mass="1"/>
+    			<RegularGridTopology nx="4" ny="4" nz="10" xmin="1" xmax="4" ymin="0" ymax="3" zmin="18" zmax="27"/>
+    			<TetrahedronFEMForceField name="FEM" youngModulus="4000" poissonRatio="0.3"/>
+    		</Node>
+    		-->
+            <AttachProjectiveConstraint object1="@M1" object2="@M2" indices1="144 145 146 147 148 149 150 151 152 153 154 155 156 157 158 159" indices2="0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15"/>
+            <!--	<AttachProjectiveConstraint object1="@M2" object2="@M3" radius="0.1" indices1="144 145 146 147 148 149 150 151 152 153 154 155 156 157 158 159" indices2="0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15" constraintFactor="1"/>	-->
+        </Node>
+        <Node name="AttachOneWay2">
+            <EulerImplicitSolver name="cg_odesolver" printLog="false" />
+            <EigenSimplicialLDLT template="CompressedRowSparseMatrixMat3x3"/>
+            <Node name="M1">
+                <MechanicalObject />
+                <UniformMass vertexMass="1" />
+                <RegularGridTopology nx="4" ny="4" nz="10" xmin="-4" xmax="-1" ymin="0" ymax="3" zmin="0" zmax="9" />
+                <BoxConstraint box="-4.1 -0.9 -0.1 4.1 3.1 0.1" />
+                <TetrahedronFEMForceField name="FEM" youngModulus="4000" poissonRatio="0.3" />
+            </Node>
+            <Node name="M2">
+                <MechanicalObject />
+                <UniformMass vertexMass="1" />
+                <RegularGridTopology nx="4" ny="4" nz="10" xmin="-4" xmax="-1" ymin="0" ymax="3" zmin="9" zmax="18" />
+                <TetrahedronFEMForceField name="FEM" youngModulus="4000" poissonRatio="0.3" />
+            </Node>
+            <!--
+    		<Node name="M3">
+    			<EulerImplicitSolver name="cg_odesolver" printLog="false"/>
+    			<CGLinearSolver iterations="25" name="linear solver" tolerance="1.0e-9" threshold="1.0e-9"/>
+    			<MechanicalObject/>
+    			<UniformMass mass="1"/>
+    			<RegularGridTopology nx="4" ny="4" nz="10" xmin="-4" xmax="-1" ymin="0" ymax="3" zmin="18" zmax="27"/>
+    			<TetrahedronFEMForceField name="FEM" youngModulus="4000" poissonRatio="0.3"/>
+    		</Node>
+    		-->
+            <AttachProjectiveConstraint object1="@M1" object2="@M2" indices1="144 145 146 147 148 149 150 151 152 153 154 155 156 157 158 159" indices2="0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15"/>
+            <!--	<AttachProjectiveConstraint object1="@M2" object2="@M3" radius="0.1" indices1="144 145 146 147 148 149 150 151 152 153 154 155 156 157 158 159" indices2="0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15" constraintFactor="1"/>	-->
+        </Node>
+    </Node>
+    ```
+
+=== "Python"
+
+    ```python
+    def createScene(rootNode):
+
+        root = rootNode.addChild('root', dt="0.02")
+        root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Projective")
+        root.addObject('RequiredPlugin', name="Sofa.Component.Engine.Select")
+        root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Direct")
+        root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Iterative")
+        root.addObject('RequiredPlugin', name="Sofa.Component.Mass")
+        root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
+        root.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.FEM.Elastic")
+        root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
+        root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Grid")
+        root.addObject('RequiredPlugin', name="Sofa.Component.Visual")
+        root.addObject('VisualStyle', displayFlags="showBehaviorModels showForceFields")
+        root.addObject('DefaultAnimationLoop')
+
+        AttachOneWay = root.addChild('AttachOneWay')
+        AttachOneWay.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
+        AttachOneWay.addObject('CGLinearSolver', iterations="25", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
+
+        M1 = AttachOneWay.addChild('M1')
+        M1.addObject('MechanicalObject', showObject="1")
+        M1.addObject('UniformMass', vertexMass="1")
+        M1.addObject('RegularGridTopology', nx="4", ny="4", nz="10", xmin="1", xmax="4", ymin="0", ymax="3", zmin="0", zmax="9")
+        M1.addObject('BoxConstraint', box="0.9 -0.1 -0.1 4.1 3.1 0.1")
+        M1.addObject('TetrahedronFEMForceField', name="FEM", youngModulus="4000", poissonRatio="0.3")
+
+        M2 = AttachOneWay.addChild('M2')
+        M2.addObject('MechanicalObject')
+        M2.addObject('UniformMass', vertexMass="1")
+        M2.addObject('RegularGridTopology', nx="4", ny="4", nz="10", xmin="1", xmax="4", ymin="0", ymax="3", zmin="9", zmax="18")
+        M2.addObject('TetrahedronFEMForceField', name="FEM", youngModulus="4000", poissonRatio="0.3")
+        AttachOneWay.addObject('AttachProjectiveConstraint', object1="@M1", object2="@M2", indices1="144 145 146 147 148 149 150 151 152 153 154 155 156 157 158 159", indices2="0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15")
+
+        AttachOneWay2 = root.addChild('AttachOneWay2')
+        AttachOneWay2.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="false")
+        AttachOneWay2.addObject('EigenSimplicialLDLT', template="CompressedRowSparseMatrixMat3x3")
+
+        M1 = AttachOneWay2.addChild('M1')
+        M1.addObject('MechanicalObject')
+        M1.addObject('UniformMass', vertexMass="1")
+        M1.addObject('RegularGridTopology', nx="4", ny="4", nz="10", xmin="-4", xmax="-1", ymin="0", ymax="3", zmin="0", zmax="9")
+        M1.addObject('BoxConstraint', box="-4.1 -0.9 -0.1 4.1 3.1 0.1")
+        M1.addObject('TetrahedronFEMForceField', name="FEM", youngModulus="4000", poissonRatio="0.3")
+
+        M2 = AttachOneWay2.addChild('M2')
+        M2.addObject('MechanicalObject')
+        M2.addObject('UniformMass', vertexMass="1")
+        M2.addObject('RegularGridTopology', nx="4", ny="4", nz="10", xmin="-4", xmax="-1", ymin="0", ymax="3", zmin="9", zmax="18")
+        M2.addObject('TetrahedronFEMForceField', name="FEM", youngModulus="4000", poissonRatio="0.3")
+        AttachOneWay2.addObject('AttachProjectiveConstraint', object1="@M1", object2="@M2", indices1="144 145 146 147 148 149 150 151 152 153 154 155 156 157 158 159", indices2="0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15")
     ```
 
 

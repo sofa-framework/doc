@@ -1,7 +1,7 @@
 Collisions Detection: Ray tracing
 =================================
 
-The RayTraceDetection component belongs to the category of [Collision Detection](https://www.sofa-framework.org/community/doc/main-principles/collision/#collision-detection). This method traces a ray for each point in one object following the opposite of the point's normal up to find a triangle in the other object. Both triangles are tested to evaluate if they are in a colliding state. 
+The RayTraceDetection component belongs to the category of [Collision Detection](../simulation-principles/collision/#collision-detection). This method traces a ray for each point in one object following the opposite of the point's normal up to find a triangle in the other object. Both triangles are tested to evaluate if they are in a colliding state. 
 
 It **must be used with a TriangleOctreeModel**, as an octree is used to traverse the object.
 
@@ -20,7 +20,7 @@ computeBoundingTree(maxDepth=0);
 
 ### Broad phase
 
-The hierarchy is browsed, and the intersection between pairs of CubeModels is tested (using the [intersection method](https://www.sofa-framework.org/community/doc/main-principles/collisions/#intersection-methods) in the scene). If a collision is detected, the models are adding in the ```cmPair``` vector, containing potentially colliding pairs. This is done in the ```addCollisionModel()``` function. The detection between bounding volumes (CubeModel) is performed using [intersection method](https://www.sofa-framework.org/community/doc/main-principles/collisions/#intersection-methods) defined in the scene.
+The hierarchy is browsed, and the intersection between pairs of CubeModels is tested (using the [intersection method](../simulation-principles/collision/#intersection-methods) in the scene). If a collision is detected, the models are adding in the ```cmPair``` vector, containing potentially colliding pairs. This is done in the ```addCollisionModel()``` function. The detection between bounding volumes (CubeModel) is performed using [intersection method](../simulation-principles/collision/#intersection-methods) defined in the scene.
 
 
 ### Narrow phase

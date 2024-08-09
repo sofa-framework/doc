@@ -5,7 +5,7 @@ title: MinProximityIntersection
 MinProximityIntersection
 ========================
 
-This proximity method for [intersection detection](https://www.sofa-framework.org/community/doc/simulation-principles/multi-model-representation/collision/#narrow-phase-detect-intersection):
+This proximity method for [intersection detection](../../../../simulation-principles/multi-model-representation/collision/#narrow-phase-detect-intersection):
 
 - detects a possible contact as soon as pair of collision elements are close to each other (distance smaller than the alarmDistance)
 - and creates contact (aka DetectionOutput) when the distance is lower than contactDistance.
@@ -26,30 +26,10 @@ Moreover, the contacts can be a bit degenerated: many contacts with different or
 
 
 
-Data
-----
-
-The intersection methods include the following data:
-
--   **alarmDistance**: threshold distance below which the collision pipeline detects the models as getting in proximity. This distance can be increased for objects with high curvatures
--   **contactDistance** : threshold distance below which a contact will be created (in DetectionOutput) to generate a contact response
-
-
-
-
-and it allows for activating tests in the primitive checks:
-
--   **useSphereTriangle**
--   **usePointPoint**
--   **useLineLine**
--   **useLinePoint**
--   **useSurfaceNormals**
-
-
 Usage
 -----
 
-The MinProximityIntersection must be placed right after the CollisionPipeline and the associated Detection methods (usually [BruteForceBroadPhase](https://www.sofa-framework.org/community/doc/components/collisions/broadphases/bruteforcebroadphase/) and [BVHNarrowPhase](https://www.sofa-framework.org/community/doc/components/collisions/narrowphases/bvhnarrowphase/)) on top the scene graph.
+The MinProximityIntersection must be placed right after the CollisionPipeline and the associated Detection methods (usually [BruteForceBroadPhase](../algorithm/bruteforcebroadphase/) and [BVHNarrowPhase](../algorithm/bvhnarrowphase/)) on top the scene graph.
 
 
 Additional information
@@ -58,23 +38,6 @@ Additional information
 - collision models in the scene will have the data **proximity** corresponding to an enlargement of the collision model, i.e., value added to the alarmDistance and the contactDistance and also when building AABBs in the broad phase
 - a different alarmDistance and contactDistance can be specified for each CollisionModel by setting alarmDistance and contactDistance to zero and changing the proximity parameter
 
-
-Example of Usage
-----------------
-
-This component is used as follows in XML format:
-
-``` xml
-<MinProximityIntersection name="Proximity" alarmDistance=".5" contactDistance=".3" useLinePoint="false" />
-```
-
-or using SofaPython3:
-
-``` python
-node.addObject('MinProximityIntersection', name='Proximity', alarmDistance='.5', contactDistance='.3', useLinePoint='false')
-```
-
-An example scene involving a MinProximityIntersection is available in [*examples/Component/Collision/Geometry/TriangleModel.scn*](https://github.com/sofa-framework/sofa/blob/master/examples/Component/Collision/Geometry/TriangleModel.scn)
 <!-- automatically generated doc START -->
 __Target__: `Sofa.Component.Collision.Detection.Intersection`
 

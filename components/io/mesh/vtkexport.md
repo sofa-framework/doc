@@ -5,8 +5,7 @@ title: VTKExport
 Exporting in VTK format
 =======================
 
-In this section, we will explain how to export a 3D object in a VTK
-format file.
+In this section, we will explain how to export a 3D object in a VTK format file.
 
 How to use it
 -------------
@@ -37,10 +36,6 @@ array of values and Vec3{f/d} as an array of vectors ('real' vector with
 arrow and so on ...) The export is processed when Control+E keys are
 pressed.Don't forget to set listening to true.  
 
-Example
--------
-
--   [example/Component/Collision/Response/VTKExporter.scn](https://github.com/sofa-framework/sofa/tree/master/examples/Component/Collision/Response/VTKExporter.scn)
 
 [![Example\_vtkexporter\_paraview](https://www.sofa-framework.org/wp-content/uploads/2014/11/Example_vtkexporter_paraview.jpg){.size-full
 .wp-image-1624 .aligncenter width="600"

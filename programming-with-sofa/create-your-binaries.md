@@ -9,9 +9,9 @@ title: Create your binaries
 - Update SOFA version in CMakeLists.txt  
     ```cmake
     # Manually define VERSION
-    set(Sofa_VERSION_MAJOR <new release major version>)
-    set(Sofa_VERSION_MINOR <new release minor version>)
-    set(Sofa_VERSION_PATCH <new release patch version>)
+    set(SOFA_VERSION_MAJOR <new release major version>)
+    set(SOFA_VERSION_MINOR <new release minor version>)
+    set(SOFA_VERSION_PATCH <new release patch version>)
     ```
 - Update External Projects versions  
   For each ExternalProject.cmake.in file in the sources, edit the line `GIT_TAG origin/<branch of the new release>`
@@ -68,8 +68,8 @@ Once the binaries are generated:
 - Create a [release](https://github.com/sofa-framework/sofa/releases) on GitHub.
 - Update the link on the [download](https://www.sofa-framework.org/download/) page for the binaries (add changes in dependencies).
 - Update the doc for building SOFA:
-    - on [Linux](https://www.sofa-framework.org/community/doc/getting-started/build/linux/)
-    - on [MacOS](https://www.sofa-framework.org/community/doc/getting-started/build/mac-os-x/)
-    - on [Windows](https://www.sofa-framework.org/community/doc/getting-started/build/windows/)
+    - on [Linux](../getting-started/build/linux/)
+    - on [MacOS](../getting-started/build/mac-os-x/)
+    - on [Windows](../getting-started/build/windows/)
 - Update the flags on the forum.
 - Create a post on the forum, on Twitter, on LinkedIn.
