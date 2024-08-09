@@ -102,8 +102,16 @@ def copy_subfolder(source_dir, source_subfolder, dest_dir, dest_subfolder):
         if os.path.isdir(source_item_path):
 
             existing_dest_item = item
+            
             for dest_item in os.listdir(dest_path):
-                if dest_item.endswith(item):
+
+                compare_dest_item = dest_item
+                underscore_index = compare_dest_item.find('_')
+
+                if underscore_index != -1:
+                    compare_dest_item = compare_dest_item[underscore_index + 1:]
+
+                if compare_dest_item == item:
                     existing_dest_item = dest_item
                     break
 
