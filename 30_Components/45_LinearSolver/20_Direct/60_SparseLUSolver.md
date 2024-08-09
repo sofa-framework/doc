@@ -1,7 +1,7 @@
 SparseLUSolver
 ==============
 
-This component belongs to the category of [LinearSolver](../../../simulation-principles/system-resolution/linear-solver/). The role of the SparseLUSolver is to solve the linear system $$\mathbf{A}x=b$$ assuming that the matrix $$\mathbf{A}$$ is invertible and sparse.
+This component belongs to the category of [LinearSolver](../../../../simulation-principles/system-resolution/linear-solver/). The role of the SparseLUSolver is to solve the linear system $$\mathbf{A}x=b$$ assuming that the matrix $$\mathbf{A}$$ is invertible and sparse.
 
 In order to solve this system, this solver will factorize the matrix $$\mathbf{A}$$ into the product $$\mathbf{A=LU}$$ where $$\mathbf{L}$$ is a lower triangular matrix with ones on its diagonal and $$\mathbf{U}$$ is an upper triangular matrix (for more, see [LU decomposition article](https://en.wikipedia.org/wiki/LU_decomposition)).
 

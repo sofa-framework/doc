@@ -1,11 +1,11 @@
 Collisions Detection: IncrSAP
 =============================
 
-The IncrSAP component belongs to the category of [Collision Detection](../../../../simulation-principles/multi-model-representation/collision/#collision-detection). In this section, we describe the two collision detection methods based on the "[Sweep and Prune](https://en.wikipedia.org/wiki/Sweep_and_prune)" algorithm, noted SAP. The SAP method belongs to the topological methods for broad phase, based on the positions of objects in relation to others.
+The IncrSAP component belongs to the category of [Collision Detection](../../../../../simulation-principles/multi-model-representation/collision/#collision-detection). In this section, we describe the two collision detection methods based on the "[Sweep and Prune](https://en.wikipedia.org/wiki/Sweep_and_prune)" algorithm, noted SAP. The SAP method belongs to the topological methods for broad phase, based on the positions of objects in relation to others.
 
 <a href="https://github.com/sofa-framework/doc/blob/master/images/collision/SAP.png?raw=true"><img src="https://github.com/sofa-framework/doc/blob/master/images/collision/SAP.png?raw=true" title="SAP algorithm on x- and y-axis with a non-overlapping condition (left) and an overlapping one (right). Image from paper: Collision Detection: Broad Phase Adaptation from Multi-Core to Multi-GPU Architecture"/></a>
 
-IncrSAP corresponds to the implementation of SAP in an incremental manner, i.e. collision primitives are stored and updated which should speed up the collision detection compared to the [DirectSAPNarrowPhase](./directsapnarrowphase/).
+IncrSAP corresponds to the implementation of SAP in an incremental manner, i.e. collision primitives are stored and updated which should speed up the collision detection compared to the [DirectSAPNarrowPhase](./../directsapnarrowphase/).
 
 ### Preliminary phase
 
@@ -29,13 +29,13 @@ It is one of the most used methods in the broad-phase algorithms because it prov
 - the second part is in charge of the detection of overlapping between objects. To do that a projection of higher and upper bounds on the three axis of coordinates (x, y and z) of each
 AABBs is made. 
 
-Only the pairs of objects whose projected bounding volumes overlap on all axes will be saved in the set of active boxes to be considered for the narrow phase. Unlike like the [DirectSAPNarrowPhase](./directsapnarrowphase/) which starts from scratch at each time step, the IncrSAP updates internal structures: this is the **IncrSAP** and should therefore be fore efficient.
+Only the pairs of objects whose projected bounding volumes overlap on all axes will be saved in the set of active boxes to be considered for the narrow phase. Unlike like the [DirectSAPNarrowPhase](./../directsapnarrowphase/) which starts from scratch at each time step, the IncrSAP updates internal structures: this is the **IncrSAP** and should therefore be fore efficient.
 
 
 
 ### Narrow phase
 
-The narrow phase browses all boxes considered as active by the broad phase. From this information, it is possible to recover the finest CollisionModel (which is not a CubeModel) corresponding to each box. An intersection check will then be done between these pairs. This check also depends on the [intersection method](../../../../simulation-principles/multi-model-representation/collision/#intersection-methods) used. This last phase returns the DetectionOutput vector containing elements of CollisionModels in collision and the contact points on the surface of each model.
+The narrow phase browses all boxes considered as active by the broad phase. From this information, it is possible to recover the finest CollisionModel (which is not a CubeModel) corresponding to each box. An intersection check will then be done between these pairs. This check also depends on the [intersection method](../../../../../simulation-principles/multi-model-representation/collision/#intersection-methods) used. This last phase returns the DetectionOutput vector containing elements of CollisionModels in collision and the contact points on the surface of each model.
 
 
 

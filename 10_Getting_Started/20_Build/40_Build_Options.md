@@ -111,7 +111,7 @@ no code optimization. **RelWithDebInfo** is similar to **Release**, but keeps th
 
 - **SOFA\_EXTERNAL\_DIRECTORIES**: path to external directories, this can be especially useful
 to build external plugins with SOFA. For more information, please read the documentation
-about [Building a plugin](../../using-sofa/build-a-plugin "Building a plugin").
+about [Building a plugin](../../../using-sofa/build-a-plugin "Building a plugin").
 
 
 - **SOFA_BUILD\_TUTORIALS** : this options activates the build of
@@ -120,7 +120,7 @@ all tutorials located in *applications/tutorials*.
 
 - **SOFA_BUILD\_TESTS** : this option activates unit tests for SOFA.
 For more information, please go to the [Tests
-page](../../contributing-to-sofa/writing-tests "Writing Tests").
+page](../../../contributing-to-sofa/writing-tests "Writing Tests").
 
 
 - **SOFA\_FLOATING\_POINT\_TYPE** : this option determines the type(s) (float, double or both)
@@ -136,7 +136,7 @@ deactivate the macro **SOFA\_WITH\_DOUBLE** and **SOFA\_WITH\_FLOAT** in the cod
 - **SOFA\_DUMP\_VISITOR\_INFO** : enabling this option allows to get more debugging information at each
 step of the simulations. For a more complete description and how to use
 these information, please go to the [Inspect Performances
-page](../../using-sofa/performances/inspect-performances "Inspect Performances").
+page](../../../using-sofa/performances/inspect-performances "Inspect Performances").
 
 - **SOFA_WITH_DEVTOOLS** : enabling this option activates more features for developers such as more verbose log messages.
 It is enabled by default.
@@ -146,7 +146,7 @@ code of SOFA. It will be always be activated for DLLs on windows. On
 some platforms, it can fix RTTI issues (typeid / dynamic\_cast), and it
 significantly speeds up compilation and linking on every platform. More
 information here: [Shared Libraries
-Mechanism](../../programming-with-sofa/api-overview/macro-for-dll-import-export/ "Shared Libraries Mechanism").
+Mechanism](../../../programming-with-sofa/api-overview/macro-for-dll-import-export/ "Shared Libraries Mechanism").
 
 
 - **SOFA\_NO\_OPENGL** : this option will remove any OpenGL-related code from SOFA. This is

@@ -1,7 +1,7 @@
 FixedProjectiveConstraint
 =========================
 
-This component belongs to the category of [Projective Constraint](../../../simulation-principles/constraint/projective-constraint/).
+This component belongs to the category of [Projective Constraint](../../../../simulation-principles/constraint/projective-constraint/).
 The FixedProjectiveConstraint projects a constant velocity.  If the fixed points have a zero velocity at the simulation start, they will keep a zero velocity i.e. be fixed.
 
 As introduced in the page about the Projective Constraint, the FixedProjectiveConstraint corresponds to a projection matrix noted $$\mathbf{P}$$ which will multiply the system matrix $$\mathbf{A}$$ so that: $$\mathbf{P}^T\mathbf{A}\mathbf{P}\Deltav=\mathbf{P}^Tb$$. This projection matrix $$\mathbf{P}$$ is the identity matrix in which the diagonal value corresponding to the indices of the fixed points equals zero. These lines and columns equals 0. As a consequence, when the integration scheme (ODESolver) will call the ```projectResponse()``` or ```projectVelocity()``` the constraint will be applied, ensuring that the desired degrees of freedom remain fixed.

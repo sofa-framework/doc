@@ -1,12 +1,12 @@
 MeshMatrixMass  
 ==============
 
-This component belongs to the category of [Masses](../../simulation-principles/multi-model-representation/mass/). In the dynamic equation (see [Physics integration](../../simulation-principles/multi-model-representation/physics-integration/) page), the mass density results from the first derivative in time of the momentum term. The MeshMatrixMass computes the integral of this mass density over the volume of the object geometry. To do so and for any given topology (triangles, quads, tetrahedra or hexahedra), the MeshMatrixMass integrates the mass density inside each elements and sums the mass matrix $$\mathbf{M}$$ in the system matrix $$\mathbf{A}$$.
+This component belongs to the category of [Masses](../../../simulation-principles/multi-model-representation/mass/). In the dynamic equation (see [Physics integration](../../../simulation-principles/multi-model-representation/physics-integration/) page), the mass density results from the first derivative in time of the momentum term. The MeshMatrixMass computes the integral of this mass density over the volume of the object geometry. To do so and for any given topology (triangles, quads, tetrahedra or hexahedra), the MeshMatrixMass integrates the mass density inside each elements and sums the mass matrix $$\mathbf{M}$$ in the system matrix $$\mathbf{A}$$.
 
 
 ### Volume integration
 
-As detailed in the [Physics integration](../../simulation-principles/multi-model-representation/physics-integration/) page, the left hand side part of the linear momentum conservation equals $$\rho\dot{v}$$. To integrate over the domain, its weak form will result in the mass matrix:
+As detailed in the [Physics integration](../../../simulation-principles/multi-model-representation/physics-integration/) page, the left hand side part of the linear momentum conservation equals $$\rho\dot{v}$$. To integrate over the domain, its weak form will result in the mass matrix:
 
 $$\mathbf{M}\dot{v}=\int_{\Omega} \phi_j \rho \dot{v}d\Omega$$
 
@@ -14,7 +14,7 @@ where $$\phi_j$$ are the test functions, which are basis functions ensuring the 
 
 $$\mathbf{M}\dot{v}=\sum_{e=0}^E \int_{V_e} \phi_j \rho \dot{v}dV_e$$
 
-The FEM relies on simple geometries in which any field can be interpolated using shape functions $$\phi_i$$ (see [FEM at a glance](../../simulation-principles/multi-model-representation/physics-integration/#fem-at-a-glance)). Note that the same basis functions are chosen for both the test and the shape functions. The interpolation of the acceleration term $$\dot{v}$$ thus gives:
+The FEM relies on simple geometries in which any field can be interpolated using shape functions $$\phi_i$$ (see [FEM at a glance](../../../simulation-principles/multi-model-representation/physics-integration/#fem-at-a-glance)). Note that the same basis functions are chosen for both the test and the shape functions. The interpolation of the acceleration term $$\dot{v}$$ thus gives:
 
 $$\mathbf{M}\dot{v}=\sum_{e=0}^E \rho \int_{V_e} \phi_j \sum_{i=0}^{N} \phi_i \dot{v}_i dV_e$$
 
@@ -43,7 +43,7 @@ $$\mathbf{M}\dot{v}=\sum_{e=0}^E \frac{\rho V_e}{20}\begin{bmatrix}2&1&1&1\\1&2&
 
 ### API
 
-Depending on the type of [LinearSolver](../../simulation-principles/system-resolution/linear-solver/) used:
+Depending on the type of [LinearSolver](../../../simulation-principles/system-resolution/linear-solver/) used:
 
 - for iterative solvers, the result of the multiplication between the mass matrix $$\mathbf{M}$$ and an approximated solution is computed by the function:
 

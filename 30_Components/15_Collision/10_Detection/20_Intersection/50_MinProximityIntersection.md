@@ -1,7 +1,7 @@
 MinProximityIntersection
 ========================
 
-This proximity method for [intersection detection](../../../../simulation-principles/multi-model-representation/collision/#narrow-phase-detect-intersection):
+This proximity method for [intersection detection](../../../../../simulation-principles/multi-model-representation/collision/#narrow-phase-detect-intersection):
 
 - detects a possible contact as soon as pair of collision elements are close to each other (distance smaller than the alarmDistance)
 - and creates contact (aka DetectionOutput) when the distance is lower than contactDistance.
@@ -25,7 +25,7 @@ Moreover, the contacts can be a bit degenerated: many contacts with different or
 Usage
 -----
 
-The MinProximityIntersection must be placed right after the CollisionPipeline and the associated Detection methods (usually [BruteForceBroadPhase](../algorithm/bruteforcebroadphase/) and [BVHNarrowPhase](../algorithm/bvhnarrowphase/)) on top the scene graph.
+The MinProximityIntersection must be placed right after the CollisionPipeline and the associated Detection methods (usually [BruteForceBroadPhase](../../algorithm/bruteforcebroadphase/) and [BVHNarrowPhase](../../algorithm/bvhnarrowphase/)) on top the scene graph.
 
 
 Additional information

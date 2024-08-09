@@ -1,10 +1,10 @@
 Collision Pipelines: DefaultPipeline
 ==============================================
 
-The DefaultPipeline is a [Collision Pipeline](./collisionpipeline).
+The DefaultPipeline is a [Collision Pipeline](./../collisionpipeline).
 It performs steps related to the collision, mainly collision detection and collision response.
 
-The [animation loop](../../../../simulation-principles/animation-loop/) executes the 3 steps of the pipeline (see documentation on [Collision Pipeline](./collisionpipeline)).
+The [animation loop](../../../../../simulation-principles/animation-loop/) executes the 3 steps of the pipeline (see documentation on [Collision Pipeline](./../collisionpipeline)).
 
 Interaction with Other Components
 =================================
@@ -12,10 +12,10 @@ Interaction with Other Components
 _DefaultPipeline_ requires other components defined in the same context:
 
 - An intersection method (e.g. MinProximityIntersection, LocalMinDistance)
-- A broad phase detection (e.g. [_BruteForceBroadPhase_](./bruteforcebroadphase))
-- A narrow phase detection (e.g. [_BVHNarrowPhase_](./bvhnarrowphase))
+- A broad phase detection (e.g. [_BruteForceBroadPhase_](./../bruteforcebroadphase))
+- A narrow phase detection (e.g. [_BVHNarrowPhase_](./../bvhnarrowphase))
 - A contact manager (e.g. DefaultContactManager)
-- [optional] A group manager (e.g. [_DefaultCollisionGroupManager_](../../collisiongroupmanagers/collisiongroupmanager))
+- [optional] A group manager (e.g. [_DefaultCollisionGroupManager_](../../../collisiongroupmanagers/collisiongroupmanager))
 
 If no intersection method is provided, a default _DiscreteIntersection_ component is created and added to the scene graph, with a warning to the user, and used as the intersection method.
 

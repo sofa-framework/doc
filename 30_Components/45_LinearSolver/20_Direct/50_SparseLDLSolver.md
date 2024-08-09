@@ -1,7 +1,7 @@
 SparseLDLSolver
 ===============
 
-This component belongs to the category of [LinearSolver](../../../simulation-principles/system-resolution/linear-solver/). The role of the SparseLDLSolver is to solve the linear system $$\mathbf{A}x=b$$ assuming that the matrix $$\mathbf{A}$$ is symmetric and sparse.
+This component belongs to the category of [LinearSolver](../../../../simulation-principles/system-resolution/linear-solver/). The role of the SparseLDLSolver is to solve the linear system $$\mathbf{A}x=b$$ assuming that the matrix $$\mathbf{A}$$ is symmetric and sparse.
 
 
 To do so, the SparseLDLSolver relies on the method of [LDL decomposition](https://en.wikipedia.org/wiki/Cholesky_decomposition#LDL_decomposition_2). The system matrix will be decomposed $$\mathbf{A}=\mathbf{L}\mathbf{D}\mathbf{L}^T$$, where $$\mathbf{L}$$ is a lower triangular matrix $$\mathbf{A}$$ and $$\mathbf{D}$$ is a diagonal matrix. This decomposition is an extension of the Cholesky decomposition which reduces its numerical inaccuracy.

@@ -266,4 +266,4 @@ COPY\_ONLY with COPYONLY and **Configure** again.
 
 ## Compilation tutorial
 
-See our page presenting [video tutorial for compilation on Linux](../video-tutorials/how-to-compile-sofa/#linux).
+See our page presenting [video tutorial for compilation on Linux](../../video-tutorials/how-to-compile-sofa/#linux).

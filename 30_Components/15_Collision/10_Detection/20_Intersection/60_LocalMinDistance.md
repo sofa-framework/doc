@@ -1,7 +1,7 @@
 LocalMinDistance
 ================
 
-This proximity method is an [intersection detection](../../../../simulation-principles/multi-model-representation/collision/#narrow-phase-detect-intersection) close to the previous [MinProximityIntersection](./minproximityintersection/) but in addition, it filters the list of DetectionOutput to keep only the contacts with the local minimal distance.
+This proximity method is an [intersection detection](../../../../../simulation-principles/multi-model-representation/collision/#narrow-phase-detect-intersection) close to the previous [MinProximityIntersection](./../minproximityintersection/) but in addition, it filters the list of DetectionOutput to keep only the contacts with the local minimal distance.
 
 To find an optimal number of contact points, the LocalMinDistance computes cones on all nodes of the collision model. A cone is the combination of the orthogonal directions/planes of the neighboring lines/surfaces.
 
@@ -28,7 +28,7 @@ The cones on the sides (no 1 and 3) are open with an 90 degree angle, while the 
 Usage
 -----
 
-The MinProximityIntersection must be placed right after the CollisionPipeline and the associated Detection method (usually [BruteForce](../algorithm/bruteforcebroadphase/)) on top the scene graph.
+The MinProximityIntersection must be placed right after the CollisionPipeline and the associated Detection method (usually [BruteForce](../../algorithm/bruteforcebroadphase/)) on top the scene graph.
 
 
 Additional information

@@ -1,7 +1,7 @@
 Linear solvers
 ==============
 
-Once the [integration scheme](./integration-scheme/) described how the linear matrix system is built, this system $$\mathbf{A}x=b$$ must be solved in order to find the solution $$x(t+dt)$$ at the next time step.
+Once the [integration scheme](./../integration-scheme/) described how the linear matrix system is built, this system $$\mathbf{A}x=b$$ must be solved in order to find the solution $$x(t+dt)$$ at the next time step.
 
 To solve this system, two main categories of algorithms exist: the **direct** solvers and the **iterative** solvers.
 
@@ -17,11 +17,11 @@ For small-size linear systems, the direct methods will be efficient. Large and s
 
 Among the numerous direct solvers available in SOFA, we can mention:
 
-- [SparseLDLSolver](../../components/linearsolver/direct/sparseldlsolver/) and [AsyncSparseLDLSolver](../../components/linearsolvers/direct/asyncsparseldlsolver//)
-- [SparseLUSolver](../../components/linearsolvers/direct/sparselusolver/)
-- [CholeskySolver](../../components/linearsolvers/direct/choleskysolver/) / [SparseCholeskySolver](../../components/linearsolvers/direct/sparsecholeskysolver/)
-- [SVDLinearSolver](../../components/linearsolvers/direct/svdlinearsolver) (Jacobi SVD)
-- [BTDLinearSolver](../../components/linearsolvers/direct/btdlinearsolver)
+- [SparseLDLSolver](../../../components/linearsolver/direct/sparseldlsolver/) and [AsyncSparseLDLSolver](../../../components/linearsolvers/direct/asyncsparseldlsolver//)
+- [SparseLUSolver](../../../components/linearsolvers/direct/sparselusolver/)
+- [CholeskySolver](../../../components/linearsolvers/direct/choleskysolver/) / [SparseCholeskySolver](../../../components/linearsolvers/direct/sparsecholeskysolver/)
+- [SVDLinearSolver](../../../components/linearsolvers/direct/svdlinearsolver) (Jacobi SVD)
+- [BTDLinearSolver](../../../components/linearsolvers/direct/btdlinearsolver)
 
 
 
@@ -52,9 +52,9 @@ For well-conditioned problems (even large systems), the convergence remains mono
 
 Iterative solvers in SOFA are:
 
-- [CGLinearSolver](../../linearsolver/iterative/cglinearsolver/)
-- [ShewchukPCGLinearSolver](../../components/linearsolver/iterative/preconditioned-cg/)
-- [MinResLinearSolver](../../components/linearsolver/iterative/minreslinearsolver/)
+- [CGLinearSolver](../../../linearsolver/iterative/cglinearsolver/)
+- [ShewchukPCGLinearSolver](../../../components/linearsolver/iterative/preconditioned-cg/)
+- [MinResLinearSolver](../../../components/linearsolver/iterative/minreslinearsolver/)
 
 
 #### In the SOFA code
@@ -85,8 +85,8 @@ For example, `<SparseLDLSolver/>` is a shortcut for `<SparseLDLSolver template="
 `CompressedRowSparseMatrixd` means the matrix is assembled in a compressed sparse row data structure.
 SparseLDLSolver also supports the template parameter `CompressedRowSparseMatrixMat3x3d`, where the entries of the matrix are 3x3 blocks.
 
-Another example is [CGLinearSolver](../../linearsolver/iterative/cglinearsolver/).
+Another example is [CGLinearSolver](../../../linearsolver/iterative/cglinearsolver/).
 Its default template parameter is `GraphScattered`.
 This template parameter means the implementation is matrix-free.
-However, [CGLinearSolver](../../linearsolver/iterative/cglinearsolver/) is a solver supporting also assembled matrices.
+However, [CGLinearSolver](../../../linearsolver/iterative/cglinearsolver/) is a solver supporting also assembled matrices.
 For example, it is possible to declare `<CGLinearSolver template="CompressedRowSparseMatrixMat3x3d"/>`.

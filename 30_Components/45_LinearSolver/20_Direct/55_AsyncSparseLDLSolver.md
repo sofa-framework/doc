@@ -1,7 +1,7 @@
 ﻿AsyncSparseLDLSolver
 ====================
 
-AsyncSparseLDLSolver is based on [SparseLDLSolver](./sparseldlsolver/).
+AsyncSparseLDLSolver is based on [SparseLDLSolver](./../sparseldlsolver/).
 It follows some ideas presented in:
 
 > Courtecuisse, Hadrien, et al. "Asynchronous preconditioners for efficient solving of non-linear deformations." VRIPHYS-Virtual Reality Interaction and Physical Simulation. Eurographics Association, 2010.
@@ -25,7 +25,7 @@ It may also introduce instabilities.
 
 ## A Preconditioner
 
-AsyncSparseLDLSolver can be used as a preconditioner of [ShewchukPCGLinearSolver](../iterative/preconditioned-cg/).
+AsyncSparseLDLSolver can be used as a preconditioner of [ShewchukPCGLinearSolver](../../iterative/preconditioned-cg/).
 
 ## Performances
 
