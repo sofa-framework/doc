@@ -270,7 +270,7 @@ ArticulatedSystemMapping.scn
         <RequiredPlugin name="Sofa.Component.Mass"/> <!-- Needed to use components [UniformMass] -->
         <RequiredPlugin name="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
         <RequiredPlugin name="Sofa.Component.SolidMechanics.FEM.Elastic"/> <!-- Needed to use components [BeamFEMForceField] -->
-        <RequiredPlugin name="Sofa.Component.SolidMechanics.Spring"/> <!-- Needed to use components [StiffSpringForceField] -->
+        <RequiredPlugin name="Sofa.Component.SolidMechanics.Spring"/> <!-- Needed to use components [SpringForceField] -->
         <RequiredPlugin name="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
         <RequiredPlugin name="Sofa.Component.Topology.Container.Constant"/> <!-- Needed to use components [MeshTopology] -->
         <RequiredPlugin name="Sofa.GL.Component.Rendering3D"/> <!-- Needed to use components [OglModel] -->
@@ -337,7 +337,7 @@ ArticulatedSystemMapping.scn
                     </Node>
                 </Node>
             </Node>
-            <StiffSpringForceField name="Spring" object1="@articulation" object2="@restarticulation" spring=" 1 1 100.0 1.0 0.0  2 2 100.0 1.0 0.0  3 3 100.0 1.0 0.0" />
+            <SpringForceField name="Spring" object1="@articulation" object2="@restarticulation" spring=" 1 1 100.0 1.0 0.0  2 2 100.0 1.0 0.0  3 3 100.0 1.0 0.0" />
         </Node>
     </Node>
 
@@ -445,7 +445,7 @@ ArticulatedSystemMapping.scn
 
        articulations.addObject('Articulation', translation="0", rotation="1", rotationAxis="0 0 1", articulationIndex="3")
 
-       node.addObject('StiffSpringForceField', name="Spring", object1="@articulation", object2="@restarticulation", spring=" 1 1 100.0 1.0 0.0  2 2 100.0 1.0 0.0  3 3 100.0 1.0 0.0")
+       node.addObject('SpringForceField', name="Spring", object1="@articulation", object2="@restarticulation", spring=" 1 1 100.0 1.0 0.0  2 2 100.0 1.0 0.0  3 3 100.0 1.0 0.0")
     ```
 
 

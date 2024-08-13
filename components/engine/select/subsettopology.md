@@ -789,7 +789,7 @@ SubsetTopology_refiningMesh.scn
         <RequiredPlugin name="Sofa.Component.Mass"/> <!-- Needed to use components [UniformMass] -->
         <RequiredPlugin name="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
         <RequiredPlugin name="Sofa.Component.SolidMechanics.FEM.Elastic"/> <!-- Needed to use components [HexahedronFEMForceField TetrahedronFEMForceField] -->
-        <RequiredPlugin name="Sofa.Component.SolidMechanics.Spring"/> <!-- Needed to use components [StiffSpringForceField] -->
+        <RequiredPlugin name="Sofa.Component.SolidMechanics.Spring"/> <!-- Needed to use components [SpringForceField] -->
         <RequiredPlugin name="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
         <RequiredPlugin name="Sofa.Component.Topology.Container.Dynamic"/> <!-- Needed to use components [TetrahedronSetGeometryAlgorithms TetrahedronSetTopologyContainer TetrahedronSetTopologyModifier TriangleSetGeometryAlgorithms TriangleSetTopologyContainer TriangleSetTopologyModifier] -->
         <RequiredPlugin name="Sofa.Component.Topology.Container.Grid"/> <!-- Needed to use components [SparseGridTopology] -->
@@ -849,7 +849,7 @@ SubsetTopology_refiningMesh.scn
                     </Node>
                 </Node>
             </Node>
-            <StiffSpringForceField name="Spring" object1="@in/mecaObj1" object2="@Out/tetra/mecaObj3" tags="extraSpring" spring="0 0 10000 0 0&#x0A;&#x09;&#x09;&#x09;&#x09;&#x09;       1 1 10000 0 0&#x0A;&#x09;&#x09;&#x09;&#x09;&#x09;       2 2 10000 0 0&#x0A;&#x09;&#x09;&#x09;&#x09;&#x09;       3 3 10000 0 0&#x0A;&#x09;&#x09;&#x09;&#x09;&#x09;       4 4 10000 0 0&#x0A;&#x09;&#x09;&#x09;&#x09;&#x09;       5 5 10000 0 0&#x0A;&#x09;&#x09;&#x09;&#x09;&#x09;       6 6 10000 0 0&#x0A;&#x09;&#x09;&#x09;&#x09;&#x09;       7 7 10000 0 0&#x0A;&#x09;&#x09;&#x09;&#x09;&#x09;       8 8 10000 0 0&#x0A;&#x09;&#x09;&#x09;&#x09;&#x09;       9 9 10000 0 0&#x0A;&#x09;&#x09;&#x09;&#x09;&#x09;       10 10 10000 0 0&#x0A;&#x09;&#x09;&#x09;&#x09;&#x09;       11 11 10000 0 0&#x0A;&#x09;&#x09;&#x09;&#x09;&#x09;       12 12 10000 0 0&#x0A;&#x09;&#x09;&#x09;&#x09;&#x09;       13 13 10000 0 0&#x0A;&#x09;&#x09;&#x09;&#x09;&#x09;       14 14 10000 0 0&#x0A;&#x09;&#x09;&#x09;&#x09;&#x09;       15 15 10000 0 0&#x0A;&#x09;&#x09;&#x09;&#x09;&#x09;       16 16 10000 0 0&#x0A;&#x09;&#x09;&#x09;&#x09;&#x09;       17 17 10000 0 0&#x0A;&#x09;&#x09;&#x09;&#x09;&#x09;       18 18 10000 0 0&#x0A;&#x09;&#x09;&#x09;&#x09;&#x09;       19 19 10000 0 0&#x0A;&#x09;&#x09;&#x09;&#x09;&#x09;       20 20 10000 0 0&#x0A;&#x09;&#x09;&#x09;&#x09;&#x09;       21 21 10000 0 0&#x0A;&#x09;&#x09;&#x09;&#x09;&#x09;       22 22 10000 0 0" />
+            <SpringForceField name="Spring" object1="@in/mecaObj1" object2="@Out/tetra/mecaObj3" tags="extraSpring" spring="0 0 10000 0 0&#x0A;&#x09;&#x09;&#x09;&#x09;&#x09;       1 1 10000 0 0&#x0A;&#x09;&#x09;&#x09;&#x09;&#x09;       2 2 10000 0 0&#x0A;&#x09;&#x09;&#x09;&#x09;&#x09;       3 3 10000 0 0&#x0A;&#x09;&#x09;&#x09;&#x09;&#x09;       4 4 10000 0 0&#x0A;&#x09;&#x09;&#x09;&#x09;&#x09;       5 5 10000 0 0&#x0A;&#x09;&#x09;&#x09;&#x09;&#x09;       6 6 10000 0 0&#x0A;&#x09;&#x09;&#x09;&#x09;&#x09;       7 7 10000 0 0&#x0A;&#x09;&#x09;&#x09;&#x09;&#x09;       8 8 10000 0 0&#x0A;&#x09;&#x09;&#x09;&#x09;&#x09;       9 9 10000 0 0&#x0A;&#x09;&#x09;&#x09;&#x09;&#x09;       10 10 10000 0 0&#x0A;&#x09;&#x09;&#x09;&#x09;&#x09;       11 11 10000 0 0&#x0A;&#x09;&#x09;&#x09;&#x09;&#x09;       12 12 10000 0 0&#x0A;&#x09;&#x09;&#x09;&#x09;&#x09;       13 13 10000 0 0&#x0A;&#x09;&#x09;&#x09;&#x09;&#x09;       14 14 10000 0 0&#x0A;&#x09;&#x09;&#x09;&#x09;&#x09;       15 15 10000 0 0&#x0A;&#x09;&#x09;&#x09;&#x09;&#x09;       16 16 10000 0 0&#x0A;&#x09;&#x09;&#x09;&#x09;&#x09;       17 17 10000 0 0&#x0A;&#x09;&#x09;&#x09;&#x09;&#x09;       18 18 10000 0 0&#x0A;&#x09;&#x09;&#x09;&#x09;&#x09;       19 19 10000 0 0&#x0A;&#x09;&#x09;&#x09;&#x09;&#x09;       20 20 10000 0 0&#x0A;&#x09;&#x09;&#x09;&#x09;&#x09;       21 21 10000 0 0&#x0A;&#x09;&#x09;&#x09;&#x09;&#x09;       22 22 10000 0 0" />
         </Node>
     </Node>
 
@@ -941,7 +941,7 @@ SubsetTopology_refiningMesh.scn
        node.addObject('OglModel', name="Visual", color="blue", dx="60")
        node.addObject('IdentityMapping', input="@..", output="@Visual")
 
-       square_gravity.addObject('StiffSpringForceField', name="Spring", object1="@in/mecaObj1", object2="@Out/tetra/mecaObj3", tags="extraSpring", spring="0 0 10000 0 0
+       square_gravity.addObject('SpringForceField', name="Spring", object1="@in/mecaObj1", object2="@Out/tetra/mecaObj3", tags="extraSpring", spring="0 0 10000 0 0
 					       1 1 10000 0 0
 					       2 2 10000 0 0
 					       3 3 10000 0 0

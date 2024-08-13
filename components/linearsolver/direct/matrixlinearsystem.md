@@ -175,6 +175,7 @@ MatrixLinearSystem.scn
             <RequiredPlugin name="Sofa.Component.Visual"/> <!-- Needed to use components [VisualStyle] -->
             <RequiredPlugin name="Sofa.GL.Component.Rendering3D"/> <!-- Needed to use components [OglModel] -->
             <RequiredPlugin name="SofaMatrix"/> <!-- Needed to use components [GlobalSystemMatrixImage] -->
+    
         </Node>
     
         <VisualStyle displayFlags="showBehaviorModels showWireframe" />
@@ -241,7 +242,7 @@ MatrixLinearSystem.scn
                 <MatrixProjectionMethod areJacobiansConstant="true" mechanicalStates="@/rigidSections/green/a/DOFs @/rigidSections/green/b/DOFs"/>
                 <MatrixProjectionMethod areJacobiansConstant="true" mechanicalStates="@/rigidSections/green/b/DOFs @/rigidSections/green/a/DOFs"/>
                 <MatrixProjectionMethod areJacobiansConstant="true" mechanicalStates="@/rigidSections/green/b/DOFs @/rigidSections/green/b/DOFs"/>
-                <StiffSpringForceField object1="@a/DOFs" object2="@b/DOFs" spring="0 0 100 1 1" showArrowSize="0.05" drawMode="2"/>
+                <SpringForceField object1="@a/DOFs" object2="@b/DOFs" spring="0 0 100 1 1" showArrowSize="0.05" drawMode="2"/>
     
                 <Node name="Visual">
                     <RegularGridTopology name="grid" n="@../grid.n" xmin="-1.5" xmax="1.5" ymin="-9" ymax="-6" zmin="0" zmax="19" computeTriangleList="false" />
@@ -284,13 +285,13 @@ MatrixLinearSystem.scn
                 <VisualStyle displayFlags="showInteractionForceFields" />
     
                 <Node name="nonMappedDOFsSpring">
-                    <StiffSpringForceField object1="@red/DOFs" object2="@blue/DOFs" spring="19 19 50 1 1" showArrowSize="0.05" drawMode="2"/>
+                    <SpringForceField object1="@red/DOFs" object2="@blue/DOFs" spring="19 19 50 1 1" showArrowSize="0.05" drawMode="2"/>
                 </Node>
     
                 <Node name="springBetweenMappedAndNonMapped">
                     <BoxROI position="@red/FEM/DOFs.position" box="-1.6 -1.6 18.9 -1.4 -1.4 19.1" drawBoxes="true"/>
                     <BoxROI position="@green/DOFs.position" box="-1.6 -6.1 18.9 -1.4 -5.9 19.1" drawBoxes="true"/>
-                    <StiffSpringForceField object1="@red/FEM/DOFs" object2="@green/DOFs" spring="304 316 100 1 1" showArrowSize="0.05" drawMode="2"/>
+                    <SpringForceField object1="@red/FEM/DOFs" object2="@green/DOFs" spring="304 316 100 1 1" showArrowSize="0.05" drawMode="2"/>
                 </Node>
             </Node>
         </Node>
@@ -392,7 +393,7 @@ MatrixLinearSystem.scn
        green.addObject('MatrixProjectionMethod', areJacobiansConstant="true", mechanicalStates="@/rigidSections/green/a/DOFs @/rigidSections/green/b/DOFs")
        green.addObject('MatrixProjectionMethod', areJacobiansConstant="true", mechanicalStates="@/rigidSections/green/b/DOFs @/rigidSections/green/a/DOFs")
        green.addObject('MatrixProjectionMethod', areJacobiansConstant="true", mechanicalStates="@/rigidSections/green/b/DOFs @/rigidSections/green/b/DOFs")
-       green.addObject('StiffSpringForceField', object1="@a/DOFs", object2="@b/DOFs", spring="0 0 100 1 1", showArrowSize="0.05", drawMode="2")
+       green.addObject('SpringForceField', object1="@a/DOFs", object2="@b/DOFs", spring="0 0 100 1 1", showArrowSize="0.05", drawMode="2")
 
        visual = green.addChild('Visual')
 
@@ -433,12 +434,12 @@ MatrixLinearSystem.scn
 
        non_mapped_do_fs_spring = spring.addChild('nonMappedDOFsSpring')
 
-       non_mapped_do_fs_spring.addObject('StiffSpringForceField', object1="@red/DOFs", object2="@blue/DOFs", spring="19 19 50 1 1", showArrowSize="0.05", drawMode="2")
+       non_mapped_do_fs_spring.addObject('SpringForceField', object1="@red/DOFs", object2="@blue/DOFs", spring="19 19 50 1 1", showArrowSize="0.05", drawMode="2")
 
        spring_between_mapped_and_non_mapped = spring.addChild('springBetweenMappedAndNonMapped')
 
        spring_between_mapped_and_non_mapped.addObject('BoxROI', position="@red/FEM/DOFs.position", box="-1.6 -1.6 18.9 -1.4 -1.4 19.1", drawBoxes="true")
        spring_between_mapped_and_non_mapped.addObject('BoxROI', position="@green/DOFs.position", box="-1.6 -6.1 18.9 -1.4 -5.9 19.1", drawBoxes="true")
-       spring_between_mapped_and_non_mapped.addObject('StiffSpringForceField', object1="@red/FEM/DOFs", object2="@green/DOFs", spring="304 316 100 1 1", showArrowSize="0.05", drawMode="2")
+       spring_between_mapped_and_non_mapped.addObject('SpringForceField', object1="@red/FEM/DOFs", object2="@green/DOFs", spring="304 316 100 1 1", showArrowSize="0.05", drawMode="2")
     ```
 

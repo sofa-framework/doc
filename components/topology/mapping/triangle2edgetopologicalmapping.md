@@ -100,7 +100,7 @@ Triangle2EdgeTopologicalMapping.scn
         <RequiredPlugin name="Sofa.Component.Mass"/> <!-- Needed to use components [DiagonalMass] -->
         <RequiredPlugin name="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
         <RequiredPlugin name="Sofa.Component.SolidMechanics.FEM.Elastic"/> <!-- Needed to use components [TriangularFEMForceField] -->
-        <RequiredPlugin name="Sofa.Component.SolidMechanics.Spring"/> <!-- Needed to use components [StiffSpringForceField TriangularBendingSprings] -->
+        <RequiredPlugin name="Sofa.Component.SolidMechanics.Spring"/> <!-- Needed to use components [SpringForceField TriangularBendingSprings] -->
         <RequiredPlugin name="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
         <RequiredPlugin name="Sofa.Component.Topology.Container.Dynamic"/> <!-- Needed to use components [EdgeSetGeometryAlgorithms EdgeSetTopologyContainer EdgeSetTopologyModifier TriangleSetGeometryAlgorithms TriangleSetTopologyContainer TriangleSetTopologyModifier] -->
         <RequiredPlugin name="Sofa.Component.Topology.Mapping"/> <!-- Needed to use components [Triangle2EdgeTopologicalMapping] -->
@@ -121,7 +121,7 @@ Triangle2EdgeTopologicalMapping.scn
             <include href="Objects/TriangleSetTopology.xml" src="@loader" />
             <DiagonalMass massDensity="0.15" />
             <FixedProjectiveConstraint indices="0 1" />
-            <StiffSpringForceField name="FF" />
+            <SpringForceField name="FF" />
             <TriangularFEMForceField name="FEM" youngModulus="60" poissonRatio="0.3" method="large" />
             <TriangularBendingSprings name="FEM-Bend" stiffness="300" damping="1.0" />
             <TriangleCollisionModel />
@@ -182,7 +182,7 @@ Triangle2EdgeTopologicalMapping.scn
        square_gravity.addObject('include', href="Objects/TriangleSetTopology.xml", src="@loader")
        square_gravity.addObject('DiagonalMass', massDensity="0.15")
        square_gravity.addObject('FixedProjectiveConstraint', indices="0 1")
-       square_gravity.addObject('StiffSpringForceField', name="FF")
+       square_gravity.addObject('SpringForceField', name="FF")
        square_gravity.addObject('TriangularFEMForceField', name="FEM", youngModulus="60", poissonRatio="0.3", method="large")
        square_gravity.addObject('TriangularBendingSprings', name="FEM-Bend", stiffness="300", damping="1.0")
        square_gravity.addObject('TriangleCollisionModel', )

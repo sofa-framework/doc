@@ -16,7 +16,7 @@ __namespace__: sofa::component::solidmechanics::spring
 
 __parents__:
 
-- StiffSpringForceField
+- SpringForceField
 
 ### Data
 
@@ -79,13 +79,6 @@ Rayleigh damping - stiffness matrix coefficient
 		<td>0</td>
 	</tr>
 	<tr>
-		<td>stiffness</td>
-		<td>
-uniform stiffness for the all springs
-		</td>
-		<td>100</td>
-	</tr>
-	<tr>
 		<td>damping</td>
 		<td>
 uniform damping for the all springs
@@ -93,11 +86,39 @@ uniform damping for the all springs
 		<td>5</td>
 	</tr>
 	<tr>
+		<td>stiffness</td>
+		<td>
+uniform stiffness for the all springs
+		</td>
+		<td>100</td>
+	</tr>
+	<tr>
 		<td>spring</td>
 		<td>
 pairs of indices, stiffness, damping, rest length
 		</td>
 		<td></td>
+	</tr>
+	<tr>
+		<td>lengths</td>
+		<td>
+List of lengths to create the springs. Must have the same than indices1 & indices2, or if only one element, it will be applied to all springs. If empty, 0 will be applied everywhere
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>elongationOnly</td>
+		<td>
+///< List of boolean stating on the fact that the spring should only apply forces on elongations. Must have the same than indices1 & indices2, or if only one element, it will be applied to all springs. If empty, False will be applied everywhere
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>enabled</td>
+		<td>
+///< List of boolean stating on the fact that the spring should only apply forces on elongations. Must have the same than indices1 & indices2, or if only one element, it will be applied to all springs. If empty, False will be applied everywhere
+		</td>
+		<td>0</td>
 	</tr>
 	<tr>
 		<td>springsIndices1</td>
@@ -110,27 +131,6 @@ List of indices in springs from the first mstate
 		<td>springsIndices2</td>
 		<td>
 List of indices in springs from the second mstate
-		</td>
-		<td></td>
-	</tr>
-	<tr>
-		<td>indices1</td>
-		<td>
-Indices of the source points on the first model
-		</td>
-		<td></td>
-	</tr>
-	<tr>
-		<td>indices2</td>
-		<td>
-Indices of the fixed points on the second model
-		</td>
-		<td></td>
-	</tr>
-	<tr>
-		<td>lengths</td>
-		<td>
-List of lengths to create the springs. Must have the same than indices1 & indices2, or if only one element, it will be applied to all springs. If empty, 0 will be applied everywhere
 		</td>
 		<td></td>
 	</tr>
@@ -225,7 +225,7 @@ __namespace__: sofa::component::solidmechanics::spring
 
 __parents__:
 
-- StiffSpringForceField
+- SpringForceField
 
 ### Data
 
@@ -288,13 +288,6 @@ Rayleigh damping - stiffness matrix coefficient
 		<td>0</td>
 	</tr>
 	<tr>
-		<td>stiffness</td>
-		<td>
-uniform stiffness for the all springs
-		</td>
-		<td>100</td>
-	</tr>
-	<tr>
 		<td>damping</td>
 		<td>
 uniform damping for the all springs
@@ -302,11 +295,39 @@ uniform damping for the all springs
 		<td>5</td>
 	</tr>
 	<tr>
+		<td>stiffness</td>
+		<td>
+uniform stiffness for the all springs
+		</td>
+		<td>100</td>
+	</tr>
+	<tr>
 		<td>spring</td>
 		<td>
 pairs of indices, stiffness, damping, rest length
 		</td>
 		<td></td>
+	</tr>
+	<tr>
+		<td>lengths</td>
+		<td>
+List of lengths to create the springs. Must have the same than indices1 & indices2, or if only one element, it will be applied to all springs. If empty, 0 will be applied everywhere
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>elongationOnly</td>
+		<td>
+///< List of boolean stating on the fact that the spring should only apply forces on elongations. Must have the same than indices1 & indices2, or if only one element, it will be applied to all springs. If empty, False will be applied everywhere
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>enabled</td>
+		<td>
+///< List of boolean stating on the fact that the spring should only apply forces on elongations. Must have the same than indices1 & indices2, or if only one element, it will be applied to all springs. If empty, False will be applied everywhere
+		</td>
+		<td>0</td>
 	</tr>
 	<tr>
 		<td>springsIndices1</td>
@@ -319,27 +340,6 @@ List of indices in springs from the first mstate
 		<td>springsIndices2</td>
 		<td>
 List of indices in springs from the second mstate
-		</td>
-		<td></td>
-	</tr>
-	<tr>
-		<td>indices1</td>
-		<td>
-Indices of the source points on the first model
-		</td>
-		<td></td>
-	</tr>
-	<tr>
-		<td>indices2</td>
-		<td>
-Indices of the fixed points on the second model
-		</td>
-		<td></td>
-	</tr>
-	<tr>
-		<td>lengths</td>
-		<td>
-List of lengths to create the springs. Must have the same than indices1 & indices2, or if only one element, it will be applied to all springs. If empty, 0 will be applied everywhere
 		</td>
 		<td></td>
 	</tr>
@@ -434,7 +434,7 @@ __namespace__: sofa::component::solidmechanics::spring
 
 __parents__:
 
-- StiffSpringForceField
+- SpringForceField
 
 ### Data
 
@@ -497,13 +497,6 @@ Rayleigh damping - stiffness matrix coefficient
 		<td>0</td>
 	</tr>
 	<tr>
-		<td>stiffness</td>
-		<td>
-uniform stiffness for the all springs
-		</td>
-		<td>100</td>
-	</tr>
-	<tr>
 		<td>damping</td>
 		<td>
 uniform damping for the all springs
@@ -511,11 +504,39 @@ uniform damping for the all springs
 		<td>5</td>
 	</tr>
 	<tr>
+		<td>stiffness</td>
+		<td>
+uniform stiffness for the all springs
+		</td>
+		<td>100</td>
+	</tr>
+	<tr>
 		<td>spring</td>
 		<td>
 pairs of indices, stiffness, damping, rest length
 		</td>
 		<td></td>
+	</tr>
+	<tr>
+		<td>lengths</td>
+		<td>
+List of lengths to create the springs. Must have the same than indices1 & indices2, or if only one element, it will be applied to all springs. If empty, 0 will be applied everywhere
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>elongationOnly</td>
+		<td>
+///< List of boolean stating on the fact that the spring should only apply forces on elongations. Must have the same than indices1 & indices2, or if only one element, it will be applied to all springs. If empty, False will be applied everywhere
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>enabled</td>
+		<td>
+///< List of boolean stating on the fact that the spring should only apply forces on elongations. Must have the same than indices1 & indices2, or if only one element, it will be applied to all springs. If empty, False will be applied everywhere
+		</td>
+		<td>0</td>
 	</tr>
 	<tr>
 		<td>springsIndices1</td>
@@ -528,27 +549,6 @@ List of indices in springs from the first mstate
 		<td>springsIndices2</td>
 		<td>
 List of indices in springs from the second mstate
-		</td>
-		<td></td>
-	</tr>
-	<tr>
-		<td>indices1</td>
-		<td>
-Indices of the source points on the first model
-		</td>
-		<td></td>
-	</tr>
-	<tr>
-		<td>indices2</td>
-		<td>
-Indices of the fixed points on the second model
-		</td>
-		<td></td>
-	</tr>
-	<tr>
-		<td>lengths</td>
-		<td>
-List of lengths to create the springs. Must have the same than indices1 & indices2, or if only one element, it will be applied to all springs. If empty, 0 will be applied everywhere
 		</td>
 		<td></td>
 	</tr>
@@ -643,7 +643,7 @@ __namespace__: sofa::component::solidmechanics::spring
 
 __parents__:
 
-- StiffSpringForceField
+- SpringForceField
 
 ### Data
 
@@ -706,13 +706,6 @@ Rayleigh damping - stiffness matrix coefficient
 		<td>0</td>
 	</tr>
 	<tr>
-		<td>stiffness</td>
-		<td>
-uniform stiffness for the all springs
-		</td>
-		<td>100</td>
-	</tr>
-	<tr>
 		<td>damping</td>
 		<td>
 uniform damping for the all springs
@@ -720,11 +713,39 @@ uniform damping for the all springs
 		<td>5</td>
 	</tr>
 	<tr>
+		<td>stiffness</td>
+		<td>
+uniform stiffness for the all springs
+		</td>
+		<td>100</td>
+	</tr>
+	<tr>
 		<td>spring</td>
 		<td>
 pairs of indices, stiffness, damping, rest length
 		</td>
 		<td></td>
+	</tr>
+	<tr>
+		<td>lengths</td>
+		<td>
+List of lengths to create the springs. Must have the same than indices1 & indices2, or if only one element, it will be applied to all springs. If empty, 0 will be applied everywhere
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>elongationOnly</td>
+		<td>
+///< List of boolean stating on the fact that the spring should only apply forces on elongations. Must have the same than indices1 & indices2, or if only one element, it will be applied to all springs. If empty, False will be applied everywhere
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>enabled</td>
+		<td>
+///< List of boolean stating on the fact that the spring should only apply forces on elongations. Must have the same than indices1 & indices2, or if only one element, it will be applied to all springs. If empty, False will be applied everywhere
+		</td>
+		<td>0</td>
 	</tr>
 	<tr>
 		<td>springsIndices1</td>
@@ -737,27 +758,6 @@ List of indices in springs from the first mstate
 		<td>springsIndices2</td>
 		<td>
 List of indices in springs from the second mstate
-		</td>
-		<td></td>
-	</tr>
-	<tr>
-		<td>indices1</td>
-		<td>
-Indices of the source points on the first model
-		</td>
-		<td></td>
-	</tr>
-	<tr>
-		<td>indices2</td>
-		<td>
-Indices of the fixed points on the second model
-		</td>
-		<td></td>
-	</tr>
-	<tr>
-		<td>lengths</td>
-		<td>
-List of lengths to create the springs. Must have the same than indices1 & indices2, or if only one element, it will be applied to all springs. If empty, 0 will be applied everywhere
 		</td>
 		<td></td>
 	</tr>

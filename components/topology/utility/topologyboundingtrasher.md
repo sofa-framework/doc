@@ -127,7 +127,7 @@ TopologyBoundingTrasher.scn
     	<RequiredPlugin name="Sofa.Component.Mass"/> <!-- Needed to use components [DiagonalMass] -->
     	<RequiredPlugin name="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
     	<RequiredPlugin name="Sofa.Component.SolidMechanics.FEM.Elastic"/> <!-- Needed to use components [TriangularFEMForceField] -->
-    	<RequiredPlugin name="Sofa.Component.SolidMechanics.Spring"/> <!-- Needed to use components [StiffSpringForceField TriangularBendingSprings] -->
+    	<RequiredPlugin name="Sofa.Component.SolidMechanics.Spring"/> <!-- Needed to use components [SpringForceField TriangularBendingSprings] -->
     	<RequiredPlugin name="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
     	<RequiredPlugin name="Sofa.Component.Topology.Container.Dynamic"/> <!-- Needed to use components [TriangleSetGeometryAlgorithms TriangleSetTopologyContainer TriangleSetTopologyModifier] -->
     	<RequiredPlugin name="Sofa.Component.Topology.Utility"/> <!-- Needed to use components [TopologyBoundingTrasher] -->
@@ -150,7 +150,7 @@ TopologyBoundingTrasher.scn
     		<TriangleSetTopologyModifier   name="Modifier" />
     		<TriangleSetGeometryAlgorithms name="GeomAlgo" template="Vec3" />
     		<DiagonalMass massDensity="1" />
-    		<StiffSpringForceField name="FF" />
+    		<SpringForceField name="FF" />
     		<TriangularFEMForceField name="FEM" youngModulus="60" poissonRatio="0.3" method="large" />
     		<TriangularBendingSprings name="FEM-Bend" stiffness="300" damping="1.0" />
     		
@@ -203,7 +203,7 @@ TopologyBoundingTrasher.scn
        square_gravity.addObject('TriangleSetTopologyModifier', name="Modifier")
        square_gravity.addObject('TriangleSetGeometryAlgorithms', name="GeomAlgo", template="Vec3")
        square_gravity.addObject('DiagonalMass', massDensity="1")
-       square_gravity.addObject('StiffSpringForceField', name="FF")
+       square_gravity.addObject('SpringForceField', name="FF")
        square_gravity.addObject('TriangularFEMForceField', name="FEM", youngModulus="60", poissonRatio="0.3", method="large")
        square_gravity.addObject('TriangularBendingSprings', name="FEM-Bend", stiffness="300", damping="1.0")
        square_gravity.addObject('TopologyBoundingTrasher', box="-10 -10 -10 11 11 11", topology="@Container", drawBox="1", position="@Volume.position")
