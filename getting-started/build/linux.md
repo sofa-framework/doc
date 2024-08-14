@@ -102,6 +102,18 @@ SOFA requires some libraries:
     We recommend to install Qt **in your user directory** with [the unified installer](http://download.qt.io/official_releases/online_installers).  
     Make sure to enable **Charts** and **WebEngine** components.  
     ![](https://www.sofa-framework.org/wp-content/uploads/2020/04/install_qt_linux.png)
+    -   Qt Wayland:
+    X11 is known as an old display protocol. Recently, some Linux distributions switched to a new display protocol/server named Wayland.
+    If you are using Wayland, or to check whether you are using it:
+        -   Run this command to check your protocol:
+            ```bash
+            echo $XDG_SESSION_TYPE
+            ```
+        -   If you are using Wayland, install the associated qtwayland running this command (here for Qt5):
+            ```bash
+            sudo apt install qtwayland5
+            ```
+            and set the environment variable `export QT_QPA_PLATFORM=wayland`
 
 -   **OpenGL**
     ```
