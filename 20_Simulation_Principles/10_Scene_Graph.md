@@ -1,5 +1,4 @@
-Scene graph
-===========
+# Scene graph
 
 A simulation in SOFA is described as a scene with an intrinsic generalized hierarchy. This scene is composed of nodes organized as a tree or as a Directed Acyclic Graph (DAG). The different simulated objects are described in separate nodes, and different representations of a same object can be done in different sub-nodes.
 
@@ -12,8 +11,7 @@ Fig. 1 - A graph with one single child node
 
 </div>
 
-Structure of a scene
---------------------
+## Structure of a scene
 
 The scene starts from a parent node, called the "Root" node. All other nodes (called child nodes) inherit from this main node. In the figure 1, a first child node "Liver" is defined and represents a first object. Usually, one node gathers the components associated with the same object (same degrees of freedom).
 
@@ -43,20 +41,52 @@ To build a simulation in SOFA, the scene graph can be written both using:
 *   Python scripts. Read the [associated page](../../using-sofa/features/python-scripting/) about how to write in Python.
 
 
-Data
-====
+### Data
 
 This "Liver" node of Fig. 1 includes components (solvers, forcefield, mass) used to build the mechanical simulation of the liver. Each of these components contains attributes. For instance, a component of mass features an attribute for mass density; an iterative linear solver needs an attribute defining a maximum of iterations. These attributes are also called **Data**. These Data are containers providing a reflective API used for serialization in XML files and automatic creation of input/output widgets in the user interface.
 
 Two Data instances can be connected one with another to keep their value synchronized. This is only possible if they both have the same type (`float`, `vector<double>`). A mechanism of lazy evaluation is used to recursively flag Data that are not up-to-date. Then, the Data is recomputed (only if necessary). The network of interconnected Data objects defines a data dependency graph. In an XML file, one Data is connected to another when "@" is used:
+
 ```xml
 <Component dataname="@path_to/component.data" />
 ```
 
-Read more about data on the [Components and Data](../../programming-with-sofa/start-coding/components-api/components-and-datas/) documentation page.
+#### src
 
+To simplify the reading of a scene, SOFA introduces a special attribute called `src`. `src` is a data field that must point to another component. When it is used, links between Data with the same name will be created between both components. For example:
 
-Tags
-----
+```xml
+<ComponentA name="componentA"/>
+<ComponentB src="@componentA"/>
+```
+
+In the example, if `ComponentA` and `ComponentB` both have a Data `position`, they will be linked. It works for multiple Data with the same name.
+
+It is often used to link Data representing a mesh. For example:
+
+```xml
+<MeshOBJLoader name="loader" filename="mesh/myMesh.obj" />
+<MeshTopology src="@loader" />
+```
+
+This example is equivalent to:
+
+```xml
+<MeshOBJLoader name="loader" filename="mesh/myMesh.obj" />
+<MeshTopology 
+    position="@loader.position"
+    edges="@loader.edges"
+    triangles="@loader.triangles"
+    quads="@loader.quads" 
+    tetrahedra="@loader.tetrahedra"
+    hexahedra="@loader.hexahedra"
+    uv="@loader.uv"
+/>
+```
+
+Note that `src` is not a real Data. It is read when parsing the scene file.
+
+### Tags
+
 Any component can be set with one or several "Tags". The "tags" data field is available for any SOFA component. 
 A tag is useful to find a specific component in the scene, to distinguish several instances of a same class in the scene graph or to process these instances differently one from another (see next article about the _MultiTagAnimationLoop_).
