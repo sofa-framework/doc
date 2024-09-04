@@ -4,11 +4,10 @@ This component is classified under the category of [Mappings](../../../../simula
 It maps each triangle in a topology to a scalar value representing its area.
 
 The inputs of the component are:
-- A `State`: it contains the list of coordinates of the triangles vertices
-- A `BaseMeshTopology`: it contains the list of triangles, typically defined by indices that reference their vertices.
+- a `State`: it contains the list of coordinates of the triangles vertices
+- a `BaseMeshTopology`: it contains the list of triangles, typically defined by indices that reference their vertices.
 
-The output is a
-- A `State` where the `position` field is the list of scalar values representing the area of the triangles. These values are output in the same order as the input triangle list, ensuring a direct correlation between each triangle and its corresponding area value.
+The output is a `State` where the `position` field is the list of scalar values representing the area of the triangles. These values are output in the same order as the input triangle list, ensuring a direct correlation between each triangle and its corresponding area value.
 
 ## Mapping function
 
@@ -81,6 +80,7 @@ U_{jk} =
 $$
 
 where $[a]_\times$ refers to the skew-symmetric matrix such that
+
 $$
 [a]_\times = 
 \begin{bmatrix}
