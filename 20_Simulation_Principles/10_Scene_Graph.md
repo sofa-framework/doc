@@ -51,7 +51,7 @@ Two Data instances can be connected one with another to keep their value synchro
 <Component dataname="@path_to/component.data" />
 ```
 
-#### src
+#### The src Attribute
 
 To simplify the reading of a scene, SOFA introduces a special attribute called `src`. `src` is a data field that must point to another component. When it is used, links between Data with the same name will be created between both components. For example:
 
