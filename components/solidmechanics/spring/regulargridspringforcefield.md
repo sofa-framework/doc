@@ -116,9 +116,9 @@ List of lengths to create the springs. Must have the same than indices1 & indice
 	<tr>
 		<td>enabled</td>
 		<td>
-///< List of boolean stating on the fact that the spring should only apply forces on elongations. Must have the same than indices1 & indices2, or if only one element, it will be applied to all springs. If empty, False will be applied everywhere
+///< List of boolean stating on the fact that the spring is enabled. Must have the same than indices1 & indices2, or if only one element, it will be applied to all springs. If empty, True will be applied everywhere
 		</td>
-		<td>0</td>
+		<td>1</td>
 	</tr>
 	<tr>
 		<td>springsIndices1</td>
@@ -325,9 +325,9 @@ List of lengths to create the springs. Must have the same than indices1 & indice
 	<tr>
 		<td>enabled</td>
 		<td>
-///< List of boolean stating on the fact that the spring should only apply forces on elongations. Must have the same than indices1 & indices2, or if only one element, it will be applied to all springs. If empty, False will be applied everywhere
+///< List of boolean stating on the fact that the spring is enabled. Must have the same than indices1 & indices2, or if only one element, it will be applied to all springs. If empty, True will be applied everywhere
 		</td>
-		<td>0</td>
+		<td>1</td>
 	</tr>
 	<tr>
 		<td>springsIndices1</td>
@@ -534,9 +534,9 @@ List of lengths to create the springs. Must have the same than indices1 & indice
 	<tr>
 		<td>enabled</td>
 		<td>
-///< List of boolean stating on the fact that the spring should only apply forces on elongations. Must have the same than indices1 & indices2, or if only one element, it will be applied to all springs. If empty, False will be applied everywhere
+///< List of boolean stating on the fact that the spring is enabled. Must have the same than indices1 & indices2, or if only one element, it will be applied to all springs. If empty, True will be applied everywhere
 		</td>
-		<td>0</td>
+		<td>1</td>
 	</tr>
 	<tr>
 		<td>springsIndices1</td>
@@ -743,9 +743,9 @@ List of lengths to create the springs. Must have the same than indices1 & indice
 	<tr>
 		<td>enabled</td>
 		<td>
-///< List of boolean stating on the fact that the spring should only apply forces on elongations. Must have the same than indices1 & indices2, or if only one element, it will be applied to all springs. If empty, False will be applied everywhere
+///< List of boolean stating on the fact that the spring is enabled. Must have the same than indices1 & indices2, or if only one element, it will be applied to all springs. If empty, True will be applied everywhere
 		</td>
-		<td>0</td>
+		<td>1</td>
 	</tr>
 	<tr>
 		<td>springsIndices1</td>

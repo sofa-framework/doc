@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # AddPluginRepository
 
-Add a path to PluginRepository
+Add a path to PluginRepository.
 
 
 __Target__: Sofa.Component.SceneUtility

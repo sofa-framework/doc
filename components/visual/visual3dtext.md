@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # Visual3DText
 
-Display 3D camera-oriented text
+Display 3D camera-oriented text.
 
 
 __Target__: Sofa.Component.Visual

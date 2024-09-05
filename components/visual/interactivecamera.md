@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # InteractiveCamera
 
-InteractiveCamera
+Camera with mouse and keyboard controls.
 
 
 __Target__: Sofa.Component.Visual

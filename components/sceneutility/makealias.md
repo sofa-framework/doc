@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # MakeAlias
 
-This object create an alias to a component name to make the scene more readable. 
+This object creates an alias to a component name to make the scene more readable.
 
 
 __Target__: Sofa.Component.SceneUtility

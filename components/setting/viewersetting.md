@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # ViewerSetting
 
-Configuration for the Viewer of your application
+Configuration for the Viewer of your application.
 
 
 __Target__: Sofa.Component.Setting

@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # VisualTransform
 
-TODO
+Visually apply a (translation,rotation) transformation to visual elements rendering within a node or a sub-graph.
 
 
 __Target__: Sofa.Component.Visual

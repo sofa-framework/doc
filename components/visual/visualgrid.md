@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # VisualGrid
 
-Display a simple grid
+Display a simple grid.
 
 
 __Target__: Sofa.Component.Visual

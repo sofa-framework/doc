@@ -103,6 +103,20 @@ input quads
 		<td></td>
 	</tr>
 	<tr>
+		<td>inputTetrahedra</td>
+		<td>
+input tetrahedra
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>inputHexahedra</td>
+		<td>
+input hexahedra
+		</td>
+		<td></td>
+	</tr>
+	<tr>
 		<td>indices</td>
 		<td>
 Index lists of the selected vertices
@@ -137,6 +151,20 @@ Triangles of mesh subset
 		<td>quads</td>
 		<td>
 Quads of mesh subset
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>tetrahedra</td>
+		<td>
+Tetrahedra of mesh subset
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>hexahedra</td>
+		<td>
+Hexahedra of mesh subset
 		</td>
 		<td></td>
 	</tr>

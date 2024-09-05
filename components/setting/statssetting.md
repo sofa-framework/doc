@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # StatsSetting
 
-Stats settings
+Stats settings.
 
 
 __Target__: Sofa.Component.Setting

@@ -410,13 +410,13 @@ rendering size for ROI and topological elements
 
 ## Examples 
 
-BoxROI_2d.scn
+BoxROI_1d.scn
 
 === "XML"
 
     ```xml
     <?xml version="1.0" ?>
-    <Node name="root" gravity="0 -9.81 1" dt="0.02">
+    <Node name="root" gravity="9.81 0 0" dt="0.02">
         <RequiredPlugin name="Sofa.Component.Constraint.Projective"/> <!-- Needed to use components [FixedProjectiveConstraint] -->
         <RequiredPlugin name="Sofa.Component.Engine.Select"/> <!-- Needed to use components [BoxROI] -->
         <RequiredPlugin name="Sofa.Component.LinearSolver.Iterative"/> <!-- Needed to use components [CGLinearSolver] -->
@@ -435,12 +435,12 @@ BoxROI_2d.scn
         <Node name="M1">
             <EulerImplicitSolver name="odesolver" rayleighStiffness="0.1" rayleighMass="0.1" />
             <CGLinearSolver template="CompressedRowSparseMatrix" iterations="1000" threshold="1e-9" tolerance="1e-9"/>
-            <MechanicalObject template="Vec2"/>
+            <MechanicalObject template="Vec1" showObject="true" showObjectScale="10"/>
             <UniformMass vertexMass="1" />
-            <RegularGridTopology nx="21" ny="5" nz="1" xmin="0" xmax="20" ymin="0" ymax="4" zmin="0" zmax="0"/>
-            <BoxROI name="box" box="-0.1 -0.1 -1e4  0.1 4.1 1e4"/>
+            <RegularGridTopology nx="21" ny="1" nz="1" xmin="0" xmax="20" ymin="0" ymax="0" zmin="0" zmax="0"/>
+            <BoxROI name="box" box="-0.1 -1e4 -1e4  0.1 1e4 1e4"/>
             <FixedProjectiveConstraint indices="@box.indices" />
-            <MeshSpringForceField stiffness="10000"/>
+            <MeshSpringForceField stiffness="500"/>
         </Node>
     </Node>
 
@@ -451,7 +451,7 @@ BoxROI_2d.scn
     ```python
     def createScene(root_node):
 
-       root = root_node.addChild('root', gravity="0 -9.81 1", dt="0.02")
+       root = root_node.addChild('root', gravity="9.81 0 0", dt="0.02")
 
        root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Projective")
        root.addObject('RequiredPlugin', name="Sofa.Component.Engine.Select")
@@ -470,12 +470,12 @@ BoxROI_2d.scn
 
        m1.addObject('EulerImplicitSolver', name="odesolver", rayleighStiffness="0.1", rayleighMass="0.1")
        m1.addObject('CGLinearSolver', template="CompressedRowSparseMatrix", iterations="1000", threshold="1e-9", tolerance="1e-9")
-       m1.addObject('MechanicalObject', template="Vec2")
+       m1.addObject('MechanicalObject', template="Vec1", showObject="true", showObjectScale="10")
        m1.addObject('UniformMass', vertexMass="1")
-       m1.addObject('RegularGridTopology', nx="21", ny="5", nz="1", xmin="0", xmax="20", ymin="0", ymax="4", zmin="0", zmax="0")
-       m1.addObject('BoxROI', name="box", box="-0.1 -0.1 -1e4  0.1 4.1 1e4")
+       m1.addObject('RegularGridTopology', nx="21", ny="1", nz="1", xmin="0", xmax="20", ymin="0", ymax="0", zmin="0", zmax="0")
+       m1.addObject('BoxROI', name="box", box="-0.1 -1e4 -1e4  0.1 1e4 1e4")
        m1.addObject('FixedProjectiveConstraint', indices="@box.indices")
-       m1.addObject('MeshSpringForceField', stiffness="10000")
+       m1.addObject('MeshSpringForceField', stiffness="500")
     ```
 
 BoxROI.scn
@@ -589,13 +589,13 @@ BoxROI.scn
        visu.addObject('IdentityMapping', template="Vec3,Vec3", name="default8", input="@..", output="@Visual")
     ```
 
-BoxROI_1d.scn
+BoxROI_2d.scn
 
 === "XML"
 
     ```xml
     <?xml version="1.0" ?>
-    <Node name="root" gravity="9.81 0 0" dt="0.02">
+    <Node name="root" gravity="0 -9.81 1" dt="0.02">
         <RequiredPlugin name="Sofa.Component.Constraint.Projective"/> <!-- Needed to use components [FixedProjectiveConstraint] -->
         <RequiredPlugin name="Sofa.Component.Engine.Select"/> <!-- Needed to use components [BoxROI] -->
         <RequiredPlugin name="Sofa.Component.LinearSolver.Iterative"/> <!-- Needed to use components [CGLinearSolver] -->
@@ -614,12 +614,12 @@ BoxROI_1d.scn
         <Node name="M1">
             <EulerImplicitSolver name="odesolver" rayleighStiffness="0.1" rayleighMass="0.1" />
             <CGLinearSolver template="CompressedRowSparseMatrix" iterations="1000" threshold="1e-9" tolerance="1e-9"/>
-            <MechanicalObject template="Vec1" showObject="true" showObjectScale="10"/>
+            <MechanicalObject template="Vec2"/>
             <UniformMass vertexMass="1" />
-            <RegularGridTopology nx="21" ny="1" nz="1" xmin="0" xmax="20" ymin="0" ymax="0" zmin="0" zmax="0"/>
-            <BoxROI name="box" box="-0.1 -1e4 -1e4  0.1 1e4 1e4"/>
+            <RegularGridTopology nx="21" ny="5" nz="1" xmin="0" xmax="20" ymin="0" ymax="4" zmin="0" zmax="0"/>
+            <BoxROI name="box" box="-0.1 -0.1 -1e4  0.1 4.1 1e4"/>
             <FixedProjectiveConstraint indices="@box.indices" />
-            <MeshSpringForceField stiffness="500"/>
+            <MeshSpringForceField stiffness="10000"/>
         </Node>
     </Node>
 
@@ -630,7 +630,7 @@ BoxROI_1d.scn
     ```python
     def createScene(root_node):
 
-       root = root_node.addChild('root', gravity="9.81 0 0", dt="0.02")
+       root = root_node.addChild('root', gravity="0 -9.81 1", dt="0.02")
 
        root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Projective")
        root.addObject('RequiredPlugin', name="Sofa.Component.Engine.Select")
@@ -649,11 +649,11 @@ BoxROI_1d.scn
 
        m1.addObject('EulerImplicitSolver', name="odesolver", rayleighStiffness="0.1", rayleighMass="0.1")
        m1.addObject('CGLinearSolver', template="CompressedRowSparseMatrix", iterations="1000", threshold="1e-9", tolerance="1e-9")
-       m1.addObject('MechanicalObject', template="Vec1", showObject="true", showObjectScale="10")
+       m1.addObject('MechanicalObject', template="Vec2")
        m1.addObject('UniformMass', vertexMass="1")
-       m1.addObject('RegularGridTopology', nx="21", ny="1", nz="1", xmin="0", xmax="20", ymin="0", ymax="0", zmin="0", zmax="0")
-       m1.addObject('BoxROI', name="box", box="-0.1 -1e4 -1e4  0.1 1e4 1e4")
+       m1.addObject('RegularGridTopology', nx="21", ny="5", nz="1", xmin="0", xmax="20", ymin="0", ymax="4", zmin="0", zmax="0")
+       m1.addObject('BoxROI', name="box", box="-0.1 -0.1 -1e4  0.1 4.1 1e4")
        m1.addObject('FixedProjectiveConstraint', indices="@box.indices")
-       m1.addObject('MeshSpringForceField', stiffness="500")
+       m1.addObject('MeshSpringForceField', stiffness="10000")
     ```
 

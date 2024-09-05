@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # SofaDefaultPathSetting
 
-Default Paths for Sofa Application
+Default Paths for Sofa Application.
 
 
 __Target__: Sofa.Component.Setting

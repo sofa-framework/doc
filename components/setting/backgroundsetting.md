@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # BackgroundSetting
 
-Background setting
+Background setting.
 
 
 __Target__: Sofa.Component.Setting

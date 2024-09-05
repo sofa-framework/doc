@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # TrailRenderer
 
-Render a trail behind particles
+Render a trail behind particles.
 
 
 Templates:

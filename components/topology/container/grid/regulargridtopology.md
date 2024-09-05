@@ -251,198 +251,6 @@ if true, draw the topology hexahedra
 
 ## Examples 
 
-RegularGridTopology_dimension.scn
-
-=== "XML"
-
-    ```xml
-    <?xml version="1.0"?>
-    <Node name="root" gravity="0 -9.81 0" dt="0.01">
-        <Node name="RequiredPlugins" >
-            <RequiredPlugin name="Sofa.Component.Collision.Detection.Algorithm"/> <!-- Needed to use components [BVHNarrowPhase BruteForceBroadPhase CollisionPipeline] -->
-            <RequiredPlugin name="Sofa.Component.Collision.Detection.Intersection"/> <!-- Needed to use components [MinProximityIntersection] -->
-            <RequiredPlugin name="Sofa.Component.Collision.Geometry"/> <!-- Needed to use components [TriangleCollisionModel] -->
-            <RequiredPlugin name="Sofa.Component.Collision.Response.Contact"/> <!-- Needed to use components [CollisionResponse] -->
-            <RequiredPlugin name="Sofa.Component.Constraint.Projective"/> <!-- Needed to use components [FixedProjectiveConstraint] -->
-            <RequiredPlugin name="Sofa.Component.Engine.Select"/> <!-- Needed to use components [BoxROI] -->
-            <RequiredPlugin name="Sofa.Component.LinearSolver.Iterative"/> <!-- Needed to use components [CGLinearSolver] -->
-            <RequiredPlugin name="Sofa.Component.Mapping.Linear"/> <!-- Needed to use components [IdentityMapping] -->
-            <RequiredPlugin name="Sofa.Component.Mass"/> <!-- Needed to use components [UniformMass] -->
-            <RequiredPlugin name="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
-            <RequiredPlugin name="Sofa.Component.SolidMechanics.FEM.Elastic"/> <!-- Needed to use components [HexahedronFEMForceField TriangularFEMForceField] -->
-            <RequiredPlugin name="Sofa.Component.SolidMechanics.Spring"/> <!-- Needed to use components [RegularGridSpringForceField TriangularBendingSprings] -->
-            <RequiredPlugin name="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
-            <RequiredPlugin name="Sofa.Component.Topology.Container.Dynamic"/> <!-- Needed to use components [QuadSetGeometryAlgorithms QuadSetTopologyContainer QuadSetTopologyModifier] -->
-            <RequiredPlugin name="Sofa.Component.Topology.Container.Grid"/> <!-- Needed to use components [RegularGridTopology] -->
-            <RequiredPlugin name="Sofa.Component.Topology.Mapping"/> <!-- Needed to use components [Hexa2QuadTopologicalMapping] -->
-            <RequiredPlugin name="Sofa.Component.Visual"/> <!-- Needed to use components [VisualStyle] -->
-            <RequiredPlugin name="Sofa.GL.Component.Rendering3D"/> <!-- Needed to use components [OglModel] -->
-        </Node>
-        <VisualStyle displayFlags="showBehaviorModels showVisual" />
-        <DefaultAnimationLoop/>
-    
-        <CollisionPipeline name="default21" verbose="0" />
-        <DefaultAnimationLoop/>
-        <BruteForceBroadPhase/>
-        <BVHNarrowPhase/>
-        <CollisionResponse name="default22" response="PenalityContactForceField" />
-        <MinProximityIntersection name="Proximity" alarmDistance="0.8" contactDistance="0.5" />
-    
-        <EulerImplicitSolver name="cg_odesolver" printLog="0"  rayleighStiffness="0.1" rayleighMass="0.1" />
-        <CGLinearSolver template="GraphScattered" name="linear solver" iterations="25" tolerance="1e-09" threshold="1e-09" />
-    
-    
-        <Node name="Cube" gravity="0 -9.81 0">
-            <RegularGridTopology name="grid" n="6 6 6" min="-10 -10 -10" max="10 10 10" p0="-30 -10 -10" computeHexaList="1"/>
-            <MechanicalObject template="Vec3" name="Hexa" />
-            <UniformMass template="Vec3" name="default25" vertexMass="10" />
-            <HexahedronFEMForceField template="Vec3" name="FEM" method="large" poissonRatio="0.3" youngModulus="500" />
-            <BoxROI template="Vec3" name="box_roi" box="-31 9 -11 -9 11 11" drawSize="0" />
-            <FixedProjectiveConstraint template="Vec3" name="default27" indices="@box_roi.indices" drawSize="0" />
-    
-            <Node name="Q">
-                <QuadSetTopologyContainer  name="Container" />
-                <QuadSetTopologyModifier   name="Modifier" />
-                <QuadSetGeometryAlgorithms name="GeomAlgo"   template="Vec3" />
-                <Hexa2QuadTopologicalMapping input="@../grid" output="@Container" />
-                <TriangleCollisionModel />
-                <Node name="Visu">
-                    <OglModel name="Visual" color="blue" quads="@../Container.quads" />
-                    <IdentityMapping input="@../../Hexa" output="@Visual" />
-                </Node>
-            </Node>
-        </Node>
-    
-    
-        <Node name="Square" gravity="0 -9.81 0">
-            <RegularGridTopology name="grid" n="6 1 6" min="-10 -10 -10" max="10 10 10" p0="-6 10 -10" computeHexaList="0"/>
-            <MechanicalObject template="Vec3" name="Tri" />
-            <UniformMass template="Vec3" name="default25" vertexMass="10" />
-            <TriangularFEMForceField name="FEM" youngModulus="600" poissonRatio="0.3" method="large" />
-            <TriangularBendingSprings name="FEM-Bend" stiffness="300" damping="1.0" />
-            <BoxROI template="Vec3" name="box_roi" box="-7 9 -11 17 11 -9" drawBoxes="0" />
-            <FixedProjectiveConstraint template="Vec3" name="default27" indices="@box_roi.indices" drawSize="0" />
-    
-            <TriangleCollisionModel />
-            <Node name="Visu">
-                <OglModel name="Visual" color="blue" triangles="@../grid.triangles" />
-                <IdentityMapping input="@../Tri" output="@Visual" />
-            </Node>
-        </Node>
-    
-    
-        <Node name="Line" gravity="0 -9.81 0">
-            <RegularGridTopology name="grid" n="1 1 6" min="-10 -10 -10" max="10 10 10" p0="18 10 -10" computeHexaList="0"/>
-            <MechanicalObject template="Vec3" name="Edge" />
-            <UniformMass template="Vec3" name="default25" vertexMass="10" />
-    
-            <RegularGridSpringForceField name="Springs" stiffness="300" damping="2" />
-            <BoxROI template="Vec3" name="box_roi" box="17 9 -11 20 11 -9" drawBoxes="0" />
-            <FixedProjectiveConstraint template="Vec3" name="default27" indices="@box_roi.indices" drawSize="0" />
-    
-            <Node name="Visu">
-                <OglModel name="Visual" color="white" edges="@../grid.edges" />
-                <IdentityMapping input="@../Edge" output="@Visual" />
-            </Node>
-        </Node>
-    
-    
-    </Node>
-
-    ```
-
-=== "Python"
-
-    ```python
-    def createScene(root_node):
-
-       root = root_node.addChild('root', gravity="0 -9.81 0", dt="0.01")
-
-       required_plugins = root.addChild('RequiredPlugins')
-
-       required_plugins.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Algorithm")
-       required_plugins.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Intersection")
-       required_plugins.addObject('RequiredPlugin', name="Sofa.Component.Collision.Geometry")
-       required_plugins.addObject('RequiredPlugin', name="Sofa.Component.Collision.Response.Contact")
-       required_plugins.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Projective")
-       required_plugins.addObject('RequiredPlugin', name="Sofa.Component.Engine.Select")
-       required_plugins.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Iterative")
-       required_plugins.addObject('RequiredPlugin', name="Sofa.Component.Mapping.Linear")
-       required_plugins.addObject('RequiredPlugin', name="Sofa.Component.Mass")
-       required_plugins.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
-       required_plugins.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.FEM.Elastic")
-       required_plugins.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.Spring")
-       required_plugins.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
-       required_plugins.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Dynamic")
-       required_plugins.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Grid")
-       required_plugins.addObject('RequiredPlugin', name="Sofa.Component.Topology.Mapping")
-       required_plugins.addObject('RequiredPlugin', name="Sofa.Component.Visual")
-       required_plugins.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
-
-       root.addObject('VisualStyle', displayFlags="showBehaviorModels showVisual")
-       root.addObject('DefaultAnimationLoop', )
-       root.addObject('CollisionPipeline', name="default21", verbose="0")
-       root.addObject('DefaultAnimationLoop', )
-       root.addObject('BruteForceBroadPhase', )
-       root.addObject('BVHNarrowPhase', )
-       root.addObject('CollisionResponse', name="default22", response="PenalityContactForceField")
-       root.addObject('MinProximityIntersection', name="Proximity", alarmDistance="0.8", contactDistance="0.5")
-       root.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="0", rayleighStiffness="0.1", rayleighMass="0.1")
-       root.addObject('CGLinearSolver', template="GraphScattered", name="linear solver", iterations="25", tolerance="1e-09", threshold="1e-09")
-
-       cube = root.addChild('Cube', gravity="0 -9.81 0")
-
-       cube.addObject('RegularGridTopology', name="grid", n="6 6 6", min="-10 -10 -10", max="10 10 10", p0="-30 -10 -10", computeHexaList="1")
-       cube.addObject('MechanicalObject', template="Vec3", name="Hexa")
-       cube.addObject('UniformMass', template="Vec3", name="default25", vertexMass="10")
-       cube.addObject('HexahedronFEMForceField', template="Vec3", name="FEM", method="large", poissonRatio="0.3", youngModulus="500")
-       cube.addObject('BoxROI', template="Vec3", name="box_roi", box="-31 9 -11 -9 11 11", drawSize="0")
-       cube.addObject('FixedProjectiveConstraint', template="Vec3", name="default27", indices="@box_roi.indices", drawSize="0")
-
-       q = Cube.addChild('Q')
-
-       q.addObject('QuadSetTopologyContainer', name="Container")
-       q.addObject('QuadSetTopologyModifier', name="Modifier")
-       q.addObject('QuadSetGeometryAlgorithms', name="GeomAlgo", template="Vec3")
-       q.addObject('Hexa2QuadTopologicalMapping', input="@../grid", output="@Container")
-       q.addObject('TriangleCollisionModel', )
-
-       visu = Q.addChild('Visu')
-
-       visu.addObject('OglModel', name="Visual", color="blue", quads="@../Container.quads")
-       visu.addObject('IdentityMapping', input="@../../Hexa", output="@Visual")
-
-       square = root.addChild('Square', gravity="0 -9.81 0")
-
-       square.addObject('RegularGridTopology', name="grid", n="6 1 6", min="-10 -10 -10", max="10 10 10", p0="-6 10 -10", computeHexaList="0")
-       square.addObject('MechanicalObject', template="Vec3", name="Tri")
-       square.addObject('UniformMass', template="Vec3", name="default25", vertexMass="10")
-       square.addObject('TriangularFEMForceField', name="FEM", youngModulus="600", poissonRatio="0.3", method="large")
-       square.addObject('TriangularBendingSprings', name="FEM-Bend", stiffness="300", damping="1.0")
-       square.addObject('BoxROI', template="Vec3", name="box_roi", box="-7 9 -11 17 11 -9", drawBoxes="0")
-       square.addObject('FixedProjectiveConstraint', template="Vec3", name="default27", indices="@box_roi.indices", drawSize="0")
-       square.addObject('TriangleCollisionModel', )
-
-       visu = Square.addChild('Visu')
-
-       visu.addObject('OglModel', name="Visual", color="blue", triangles="@../grid.triangles")
-       visu.addObject('IdentityMapping', input="@../Tri", output="@Visual")
-
-       line = root.addChild('Line', gravity="0 -9.81 0")
-
-       line.addObject('RegularGridTopology', name="grid", n="1 1 6", min="-10 -10 -10", max="10 10 10", p0="18 10 -10", computeHexaList="0")
-       line.addObject('MechanicalObject', template="Vec3", name="Edge")
-       line.addObject('UniformMass', template="Vec3", name="default25", vertexMass="10")
-       line.addObject('RegularGridSpringForceField', name="Springs", stiffness="300", damping="2")
-       line.addObject('BoxROI', template="Vec3", name="box_roi", box="17 9 -11 20 11 -9", drawBoxes="0")
-       line.addObject('FixedProjectiveConstraint', template="Vec3", name="default27", indices="@box_roi.indices", drawSize="0")
-
-       visu = Line.addChild('Visu')
-
-       visu.addObject('OglModel', name="Visual", color="white", edges="@../grid.edges")
-       visu.addObject('IdentityMapping', input="@../Edge", output="@Visual")
-    ```
-
 RegularGridTopology.scn
 
 === "XML"
@@ -708,5 +516,197 @@ RegularGridTopology_TrianglesMesh.scn
 
        node.addObject('OglModel', name="Visual", color="red")
        node.addObject('IdentityMapping', input="@..", output="@Visual")
+    ```
+
+RegularGridTopology_dimension.scn
+
+=== "XML"
+
+    ```xml
+    <?xml version="1.0"?>
+    <Node name="root" gravity="0 -9.81 0" dt="0.01">
+        <Node name="RequiredPlugins" >
+            <RequiredPlugin name="Sofa.Component.Collision.Detection.Algorithm"/> <!-- Needed to use components [BVHNarrowPhase BruteForceBroadPhase CollisionPipeline] -->
+            <RequiredPlugin name="Sofa.Component.Collision.Detection.Intersection"/> <!-- Needed to use components [MinProximityIntersection] -->
+            <RequiredPlugin name="Sofa.Component.Collision.Geometry"/> <!-- Needed to use components [TriangleCollisionModel] -->
+            <RequiredPlugin name="Sofa.Component.Collision.Response.Contact"/> <!-- Needed to use components [CollisionResponse] -->
+            <RequiredPlugin name="Sofa.Component.Constraint.Projective"/> <!-- Needed to use components [FixedProjectiveConstraint] -->
+            <RequiredPlugin name="Sofa.Component.Engine.Select"/> <!-- Needed to use components [BoxROI] -->
+            <RequiredPlugin name="Sofa.Component.LinearSolver.Iterative"/> <!-- Needed to use components [CGLinearSolver] -->
+            <RequiredPlugin name="Sofa.Component.Mapping.Linear"/> <!-- Needed to use components [IdentityMapping] -->
+            <RequiredPlugin name="Sofa.Component.Mass"/> <!-- Needed to use components [UniformMass] -->
+            <RequiredPlugin name="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+            <RequiredPlugin name="Sofa.Component.SolidMechanics.FEM.Elastic"/> <!-- Needed to use components [HexahedronFEMForceField TriangularFEMForceField] -->
+            <RequiredPlugin name="Sofa.Component.SolidMechanics.Spring"/> <!-- Needed to use components [RegularGridSpringForceField TriangularBendingSprings] -->
+            <RequiredPlugin name="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
+            <RequiredPlugin name="Sofa.Component.Topology.Container.Dynamic"/> <!-- Needed to use components [QuadSetGeometryAlgorithms QuadSetTopologyContainer QuadSetTopologyModifier] -->
+            <RequiredPlugin name="Sofa.Component.Topology.Container.Grid"/> <!-- Needed to use components [RegularGridTopology] -->
+            <RequiredPlugin name="Sofa.Component.Topology.Mapping"/> <!-- Needed to use components [Hexa2QuadTopologicalMapping] -->
+            <RequiredPlugin name="Sofa.Component.Visual"/> <!-- Needed to use components [VisualStyle] -->
+            <RequiredPlugin name="Sofa.GL.Component.Rendering3D"/> <!-- Needed to use components [OglModel] -->
+        </Node>
+        <VisualStyle displayFlags="showBehaviorModels showVisual" />
+        <DefaultAnimationLoop/>
+    
+        <CollisionPipeline name="default21" verbose="0" />
+        <DefaultAnimationLoop/>
+        <BruteForceBroadPhase/>
+        <BVHNarrowPhase/>
+        <CollisionResponse name="default22" response="PenalityContactForceField" />
+        <MinProximityIntersection name="Proximity" alarmDistance="0.8" contactDistance="0.5" />
+    
+        <EulerImplicitSolver name="cg_odesolver" printLog="0"  rayleighStiffness="0.1" rayleighMass="0.1" />
+        <CGLinearSolver template="GraphScattered" name="linear solver" iterations="25" tolerance="1e-09" threshold="1e-09" />
+    
+    
+        <Node name="Cube" gravity="0 -9.81 0">
+            <RegularGridTopology name="grid" n="6 6 6" min="-10 -10 -10" max="10 10 10" p0="-30 -10 -10" computeHexaList="1"/>
+            <MechanicalObject template="Vec3" name="Hexa" />
+            <UniformMass template="Vec3" name="default25" vertexMass="10" />
+            <HexahedronFEMForceField template="Vec3" name="FEM" method="large" poissonRatio="0.3" youngModulus="500" />
+            <BoxROI template="Vec3" name="box_roi" box="-31 9 -11 -9 11 11" drawSize="0" />
+            <FixedProjectiveConstraint template="Vec3" name="default27" indices="@box_roi.indices" drawSize="0" />
+    
+            <Node name="Q">
+                <QuadSetTopologyContainer  name="Container" />
+                <QuadSetTopologyModifier   name="Modifier" />
+                <QuadSetGeometryAlgorithms name="GeomAlgo"   template="Vec3" />
+                <Hexa2QuadTopologicalMapping input="@../grid" output="@Container" />
+                <TriangleCollisionModel />
+                <Node name="Visu">
+                    <OglModel name="Visual" color="blue" quads="@../Container.quads" />
+                    <IdentityMapping input="@../../Hexa" output="@Visual" />
+                </Node>
+            </Node>
+        </Node>
+    
+    
+        <Node name="Square" gravity="0 -9.81 0">
+            <RegularGridTopology name="grid" n="6 1 6" min="-10 -10 -10" max="10 10 10" p0="-6 10 -10" computeHexaList="0"/>
+            <MechanicalObject template="Vec3" name="Tri" />
+            <UniformMass template="Vec3" name="default25" vertexMass="10" />
+            <TriangularFEMForceField name="FEM" youngModulus="600" poissonRatio="0.3" method="large" />
+            <TriangularBendingSprings name="FEM-Bend" stiffness="300" damping="1.0" />
+            <BoxROI template="Vec3" name="box_roi" box="-7 9 -11 17 11 -9" drawBoxes="0" />
+            <FixedProjectiveConstraint template="Vec3" name="default27" indices="@box_roi.indices" drawSize="0" />
+    
+            <TriangleCollisionModel />
+            <Node name="Visu">
+                <OglModel name="Visual" color="blue" triangles="@../grid.triangles" />
+                <IdentityMapping input="@../Tri" output="@Visual" />
+            </Node>
+        </Node>
+    
+    
+        <Node name="Line" gravity="0 -9.81 0">
+            <RegularGridTopology name="grid" n="1 1 6" min="-10 -10 -10" max="10 10 10" p0="18 10 -10" computeHexaList="0"/>
+            <MechanicalObject template="Vec3" name="Edge" />
+            <UniformMass template="Vec3" name="default25" vertexMass="10" />
+    
+            <RegularGridSpringForceField name="Springs" stiffness="300" damping="2" />
+            <BoxROI template="Vec3" name="box_roi" box="17 9 -11 20 11 -9" drawBoxes="0" />
+            <FixedProjectiveConstraint template="Vec3" name="default27" indices="@box_roi.indices" drawSize="0" />
+    
+            <Node name="Visu">
+                <OglModel name="Visual" color="white" edges="@../grid.edges" />
+                <IdentityMapping input="@../Edge" output="@Visual" />
+            </Node>
+        </Node>
+    
+    
+    </Node>
+
+    ```
+
+=== "Python"
+
+    ```python
+    def createScene(root_node):
+
+       root = root_node.addChild('root', gravity="0 -9.81 0", dt="0.01")
+
+       required_plugins = root.addChild('RequiredPlugins')
+
+       required_plugins.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Algorithm")
+       required_plugins.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Intersection")
+       required_plugins.addObject('RequiredPlugin', name="Sofa.Component.Collision.Geometry")
+       required_plugins.addObject('RequiredPlugin', name="Sofa.Component.Collision.Response.Contact")
+       required_plugins.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Projective")
+       required_plugins.addObject('RequiredPlugin', name="Sofa.Component.Engine.Select")
+       required_plugins.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Iterative")
+       required_plugins.addObject('RequiredPlugin', name="Sofa.Component.Mapping.Linear")
+       required_plugins.addObject('RequiredPlugin', name="Sofa.Component.Mass")
+       required_plugins.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
+       required_plugins.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.FEM.Elastic")
+       required_plugins.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.Spring")
+       required_plugins.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
+       required_plugins.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Dynamic")
+       required_plugins.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Grid")
+       required_plugins.addObject('RequiredPlugin', name="Sofa.Component.Topology.Mapping")
+       required_plugins.addObject('RequiredPlugin', name="Sofa.Component.Visual")
+       required_plugins.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
+
+       root.addObject('VisualStyle', displayFlags="showBehaviorModels showVisual")
+       root.addObject('DefaultAnimationLoop', )
+       root.addObject('CollisionPipeline', name="default21", verbose="0")
+       root.addObject('DefaultAnimationLoop', )
+       root.addObject('BruteForceBroadPhase', )
+       root.addObject('BVHNarrowPhase', )
+       root.addObject('CollisionResponse', name="default22", response="PenalityContactForceField")
+       root.addObject('MinProximityIntersection', name="Proximity", alarmDistance="0.8", contactDistance="0.5")
+       root.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="0", rayleighStiffness="0.1", rayleighMass="0.1")
+       root.addObject('CGLinearSolver', template="GraphScattered", name="linear solver", iterations="25", tolerance="1e-09", threshold="1e-09")
+
+       cube = root.addChild('Cube', gravity="0 -9.81 0")
+
+       cube.addObject('RegularGridTopology', name="grid", n="6 6 6", min="-10 -10 -10", max="10 10 10", p0="-30 -10 -10", computeHexaList="1")
+       cube.addObject('MechanicalObject', template="Vec3", name="Hexa")
+       cube.addObject('UniformMass', template="Vec3", name="default25", vertexMass="10")
+       cube.addObject('HexahedronFEMForceField', template="Vec3", name="FEM", method="large", poissonRatio="0.3", youngModulus="500")
+       cube.addObject('BoxROI', template="Vec3", name="box_roi", box="-31 9 -11 -9 11 11", drawSize="0")
+       cube.addObject('FixedProjectiveConstraint', template="Vec3", name="default27", indices="@box_roi.indices", drawSize="0")
+
+       q = Cube.addChild('Q')
+
+       q.addObject('QuadSetTopologyContainer', name="Container")
+       q.addObject('QuadSetTopologyModifier', name="Modifier")
+       q.addObject('QuadSetGeometryAlgorithms', name="GeomAlgo", template="Vec3")
+       q.addObject('Hexa2QuadTopologicalMapping', input="@../grid", output="@Container")
+       q.addObject('TriangleCollisionModel', )
+
+       visu = Q.addChild('Visu')
+
+       visu.addObject('OglModel', name="Visual", color="blue", quads="@../Container.quads")
+       visu.addObject('IdentityMapping', input="@../../Hexa", output="@Visual")
+
+       square = root.addChild('Square', gravity="0 -9.81 0")
+
+       square.addObject('RegularGridTopology', name="grid", n="6 1 6", min="-10 -10 -10", max="10 10 10", p0="-6 10 -10", computeHexaList="0")
+       square.addObject('MechanicalObject', template="Vec3", name="Tri")
+       square.addObject('UniformMass', template="Vec3", name="default25", vertexMass="10")
+       square.addObject('TriangularFEMForceField', name="FEM", youngModulus="600", poissonRatio="0.3", method="large")
+       square.addObject('TriangularBendingSprings', name="FEM-Bend", stiffness="300", damping="1.0")
+       square.addObject('BoxROI', template="Vec3", name="box_roi", box="-7 9 -11 17 11 -9", drawBoxes="0")
+       square.addObject('FixedProjectiveConstraint', template="Vec3", name="default27", indices="@box_roi.indices", drawSize="0")
+       square.addObject('TriangleCollisionModel', )
+
+       visu = Square.addChild('Visu')
+
+       visu.addObject('OglModel', name="Visual", color="blue", triangles="@../grid.triangles")
+       visu.addObject('IdentityMapping', input="@../Tri", output="@Visual")
+
+       line = root.addChild('Line', gravity="0 -9.81 0")
+
+       line.addObject('RegularGridTopology', name="grid", n="1 1 6", min="-10 -10 -10", max="10 10 10", p0="18 10 -10", computeHexaList="0")
+       line.addObject('MechanicalObject', template="Vec3", name="Edge")
+       line.addObject('UniformMass', template="Vec3", name="default25", vertexMass="10")
+       line.addObject('RegularGridSpringForceField', name="Springs", stiffness="300", damping="2")
+       line.addObject('BoxROI', template="Vec3", name="box_roi", box="17 9 -11 20 11 -9", drawBoxes="0")
+       line.addObject('FixedProjectiveConstraint', template="Vec3", name="default27", indices="@box_roi.indices", drawSize="0")
+
+       visu = Line.addChild('Visu')
+
+       visu.addObject('OglModel', name="Visual", color="white", edges="@../grid.edges")
+       visu.addObject('IdentityMapping', input="@../Edge", output="@Visual")
     ```
 

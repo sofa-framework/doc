@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # AddDataRepository
 
-Add a path to DataRepository
+Add a path to DataRepository.
 
 
 __Target__: Sofa.Component.SceneUtility

@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # MakeDataAlias
 
-This object create an alias to a data field. 
+This object creates an alias to a data field.
 
 
 __Target__: Sofa.Component.SceneUtility

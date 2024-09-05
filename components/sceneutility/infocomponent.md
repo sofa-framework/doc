@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # InfoComponent
 
-This object retain the info/error message
+This object retain the info/error message.
 
 
 __Target__: Sofa.Component.SceneUtility

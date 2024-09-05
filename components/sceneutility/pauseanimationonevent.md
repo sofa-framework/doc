@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # PauseAnimationOnEvent
 
-PauseAnimationOnEvent
+This component pauses the simulation when receiving a PauseEvent.
 
 
 __Target__: Sofa.Component.SceneUtility
