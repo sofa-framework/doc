@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # ReadTopology
 
-Read topology containers informations from file at each timestep
+Read topology containers informations from file at each timestep.
 
 
 __Target__: Sofa.Component.Playback

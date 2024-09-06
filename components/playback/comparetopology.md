@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # CompareTopology
 
-Compare Topology containers from a reference frame to the associated Topology
+Compare Topology containers from a reference frame to the associated Topology.
 
 
 __Target__: Sofa.Component.Playback

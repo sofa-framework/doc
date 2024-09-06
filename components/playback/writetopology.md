@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # WriteTopology
 
-Write topology containers informations to file at each timestep
+Write topology containers informations to file at each timestep.
 
 
 __Target__: Sofa.Component.Playback

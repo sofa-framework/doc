@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # InputEventReader
 
-Read events from file
+Read events from file.
 
 
 __Target__: Sofa.Component.Playback

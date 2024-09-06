@@ -79,6 +79,20 @@ Rayleigh damping - stiffness matrix coefficient
 		<td>0</td>
 	</tr>
 	<tr>
+		<td>poissonRatio</td>
+		<td>
+FEM Poisson Ratio in Hooke's law [0,0.5[
+		</td>
+		<td>0.45</td>
+	</tr>
+	<tr>
+		<td>youngModulus</td>
+		<td>
+FEM Young's Modulus in Hooke's law
+		</td>
+		<td>5000</td>
+	</tr>
+	<tr>
 		<td>triangleInfo</td>
 		<td>
 Internal triangle data
@@ -98,20 +112,6 @@ Internal point data
 large: large displacements, small: small displacements
 		</td>
 		<td>large</td>
-	</tr>
-	<tr>
-		<td>poissonRatio</td>
-		<td>
-Poisson ratio in Hooke's law (vector)
-		</td>
-		<td>0.3</td>
-	</tr>
-	<tr>
-		<td>youngModulus</td>
-		<td>
-Young modulus in Hooke's law (vector)
-		</td>
-		<td>1000</td>
 	</tr>
 	<tr>
 		<td>rotatedInitialElements</td>

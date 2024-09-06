@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # CompareState
 
-Compare State vectors from a reference frame to the associated Mechanical State
+Compare State vectors from a reference frame to the associated Mechanical State.
 
 
 __Target__: Sofa.Component.Playback

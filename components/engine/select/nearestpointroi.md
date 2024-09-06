@@ -138,6 +138,16 @@ List of distances between pairs of points
 		</td>
 		<td></td>
 	</tr>
+	<tr>
+		<td colspan="3">Visualization</td>
+	</tr>
+	<tr>
+		<td>drawPairs</td>
+		<td>
+Option to draw the positions pairs computed
+		</td>
+		<td>0</td>
+	</tr>
 
 </tbody>
 </table>
@@ -288,6 +298,16 @@ list of couples (parent index + index in the parent)
 List of distances between pairs of points
 		</td>
 		<td></td>
+	</tr>
+	<tr>
+		<td colspan="3">Visualization</td>
+	</tr>
+	<tr>
+		<td>drawPairs</td>
+		<td>
+Option to draw the positions pairs computed
+		</td>
+		<td>0</td>
 	</tr>
 
 </tbody>
@@ -440,6 +460,16 @@ List of distances between pairs of points
 		</td>
 		<td></td>
 	</tr>
+	<tr>
+		<td colspan="3">Visualization</td>
+	</tr>
+	<tr>
+		<td>drawPairs</td>
+		<td>
+Option to draw the positions pairs computed
+		</td>
+		<td>0</td>
+	</tr>
 
 </tbody>
 </table>
@@ -590,6 +620,16 @@ list of couples (parent index + index in the parent)
 List of distances between pairs of points
 		</td>
 		<td></td>
+	</tr>
+	<tr>
+		<td colspan="3">Visualization</td>
+	</tr>
+	<tr>
+		<td>drawPairs</td>
+		<td>
+Option to draw the positions pairs computed
+		</td>
+		<td>0</td>
 	</tr>
 
 </tbody>
@@ -742,6 +782,16 @@ List of distances between pairs of points
 		</td>
 		<td></td>
 	</tr>
+	<tr>
+		<td colspan="3">Visualization</td>
+	</tr>
+	<tr>
+		<td>drawPairs</td>
+		<td>
+Option to draw the positions pairs computed
+		</td>
+		<td>0</td>
+	</tr>
 
 </tbody>
 </table>
@@ -892,6 +942,16 @@ list of couples (parent index + index in the parent)
 List of distances between pairs of points
 		</td>
 		<td></td>
+	</tr>
+	<tr>
+		<td colspan="3">Visualization</td>
+	</tr>
+	<tr>
+		<td>drawPairs</td>
+		<td>
+Option to draw the positions pairs computed
+		</td>
+		<td>0</td>
 	</tr>
 
 </tbody>

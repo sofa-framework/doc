@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # ReadState
 
-Read State vectors from file at each timestep
+Read State vectors from file at each timestep.
 
 
 __Target__: Sofa.Component.Playback

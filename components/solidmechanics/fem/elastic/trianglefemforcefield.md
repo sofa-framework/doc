@@ -16,7 +16,7 @@ __namespace__: sofa::component::solidmechanics::fem::elastic
 
 __parents__:
 
-- ForceField
+- BaseLinearElasticityFEMForceField
 
 ### Data
 
@@ -79,6 +79,20 @@ Rayleigh damping - stiffness matrix coefficient
 		<td>0</td>
 	</tr>
 	<tr>
+		<td>poissonRatio</td>
+		<td>
+FEM Poisson Ratio in Hooke's law [0,0.5[
+		</td>
+		<td>0.45</td>
+	</tr>
+	<tr>
+		<td>youngModulus</td>
+		<td>
+FEM Young's Modulus in Hooke's law
+		</td>
+		<td>5000</td>
+	</tr>
+	<tr>
 		<td>initialPoints</td>
 		<td>
 Initial Position
@@ -91,20 +105,6 @@ Initial Position
 large: large displacements, small: small displacements
 		</td>
 		<td>large</td>
-	</tr>
-	<tr>
-		<td>poissonRatio</td>
-		<td>
-Poisson ratio in Hooke's law
-		</td>
-		<td>0.3</td>
-	</tr>
-	<tr>
-		<td>youngModulus</td>
-		<td>
-Young modulus in Hooke's law
-		</td>
-		<td>1000</td>
 	</tr>
 	<tr>
 		<td>thickness</td>

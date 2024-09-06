@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # WriteState
 
-Write State vectors to file at each timestep
+Write State vectors to file at each timestep.
 
 
 __Target__: Sofa.Component.Playback
