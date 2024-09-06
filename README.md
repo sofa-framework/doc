@@ -23,8 +23,9 @@ Before crafting your own code, explore the [SOFA plugin list](https://www.sofa-f
 ### Cite SOFA
 
 Detailed introductions about SOFA and SOFA in soft-robotics were written:
-*   SOFA Framework: **SOFA: A Multi-Model Framework for Interactive Physical Simulation**. F. Faure et al. _Soft Tissue Biomechanical Modeling for Computer Assisted Surgery_, 2012 \[[BibTex](https://hal.inria.fr/hal-00681539v1/bibtex)\]
-*   SoftRobot: **Software toolkit for modeling, simulation and control of soft robots**. E. Coevoet et al. _Advanced Robotics_, 2017 \[[BibTex](https://hal.inria.fr/hal-01649355v1/bibtex)\]
+
+- SOFA Framework: **SOFA: A Multi-Model Framework for Interactive Physical Simulation**. F. Faure et al. _Soft Tissue Biomechanical Modeling for Computer Assisted Surgery_, 2012 \[[BibTex](https://hal.inria.fr/hal-00681539v1/bibtex)\]
+- SoftRobot: **Software toolkit for modeling, simulation and control of soft robots**. E. Coevoet et al. _Advanced Robotics_, 2017 \[[BibTex](https://hal.inria.fr/hal-01649355v1/bibtex)\]
 
 ### Contribution
 Everyone is very welcome to contribute to this documentation. This can be done by pull-requesting changes on the [documentation GitHub repository](https://github.com/sofa-framework/doc/) or by [reporting any missing information](https://github.com/sofa-framework/doc/issues/new) so that this documentation may constantly improve!
