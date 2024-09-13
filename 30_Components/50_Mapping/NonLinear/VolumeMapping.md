@@ -84,27 +84,27 @@ $$
 Then,
 
 $$
-\frac{\partial D_{iv_{t_{i_0}}}}{\partial v_{t_{i_1}}} = \frac{1}{6} [v_{t_{i_1}} - v_{t_{i_2}}]_\times
+\frac{\partial D_{iv_{t_{i_0}}}}{\partial v_{t_{i_1}}} = \frac{1}{6} [v_{t_{i_2}} - v_{t_{i_3}}]_\times
 $$
 
 $$
-\frac{\partial D_{iv_{t_{i_0}}}}{\partial v_{t_{i_2}}} = \frac{1}{6} [v_{t_{i_2}} - v_{t_{i_0}}]_\times
+\frac{\partial D_{iv_{t_{i_0}}}}{\partial v_{t_{i_2}}} = \frac{1}{6} [v_{t_{i_3}} - v_{t_{i_1}}]_\times
 $$
 
 $$
-\frac{\partial D_{iv_{t_{i_0}}}}{\partial v_{t_{i_3}}} = \frac{1}{6} [v_{t_{i_0}} - v_{t_{i_1}}]_\times
+\frac{\partial D_{iv_{t_{i_0}}}}{\partial v_{t_{i_3}}} = \frac{1}{6} [v_{t_{i_1}} - v_{t_{i_2}}]_\times
 $$
 
 $$
-\frac{\partial D_{iv_{t_{i_1}}}}{\partial v_{t_{i_2}}} = \frac{1}{6} [-v_{t_{i_2}}]_\times
+\frac{\partial D_{iv_{t_{i_1}}}}{\partial v_{t_{i_2}}} = \frac{1}{6} [v_{t_{i_0}} - v_{t_{i_3}}]_\times
 $$
 
 $$
-\frac{\partial D_{iv_{t_{i_1}}}}{\partial v_{t_{i_3}}} = \frac{1}{6} [v_{t_{i_1}}]_\times
+\frac{\partial D_{iv_{t_{i_1}}}}{\partial v_{t_{i_3}}} = \frac{1}{6} [v_{t_{i_2}} - v_{t_{i_0}}]_\times
 $$
 
 $$
-\frac{\partial D_{iv_{t_{i_2}}}}{\partial v_{t_{i_3}}} = \frac{1}{6} [-v_{t_{i_0}}]_\times
+\frac{\partial D_{iv_{t_{i_2}}}}{\partial v_{t_{i_3}}} = \frac{1}{6} [v_{t_{i_0}} - v_{t_{i_1}}]_\times
 $$
 
 where $[a]_\times$ refers to the skew-symmetric matrix such that
