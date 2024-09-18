@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # StaticSolver
 
-Static ODE Solver
+Static ODE Solver.
 
 
 __Target__: Sofa.Component.ODESolver.Backward

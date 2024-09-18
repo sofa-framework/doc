@@ -46,7 +46,7 @@ The EulerExplicitSolver **requires** a MechanicalObject to store the state vecto
 <!-- automatically generated doc START -->
 <!-- generate_doc -->
 
-A simple explicit time integrator
+A simple explicit time integrator.
 
 
 __Target__: Sofa.Component.ODESolver.Forward

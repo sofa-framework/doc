@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # DampVelocitySolver
 
-Reduce the velocities
+Reduce the velocities.
 
 
 __Target__: Sofa.Component.ODESolver.Forward

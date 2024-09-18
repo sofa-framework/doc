@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # RungeKutta2Solver
 
-A popular explicit time integrator
+A popular explicit time integrator.
 
 
 __Target__: Sofa.Component.ODESolver.Forward

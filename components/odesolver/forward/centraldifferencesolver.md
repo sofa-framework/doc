@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # CentralDifferenceSolver
 
-Explicit time integrator using central difference (also known as Verlet of Leap-frog)
+Explicit time integrator using central difference (also known as Verlet of Leap-frog).
 
 
 __Target__: Sofa.Component.ODESolver.Forward

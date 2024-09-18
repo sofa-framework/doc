@@ -59,7 +59,7 @@ At each simulation step and each Newton Raphson iteration, the NewmarkImplicitSo
 <!-- automatically generated doc START -->
 <!-- generate_doc -->
 
-Implicit time integrator using Newmark scheme
+Implicit time integrator using Newmark scheme.
 
 
 __Target__: Sofa.Component.ODESolver.Backward

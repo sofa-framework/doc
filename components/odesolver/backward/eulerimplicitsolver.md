@@ -117,7 +117,7 @@ The EulerImplicitSolver **requires**:
 <!-- automatically generated doc START -->
 <!-- generate_doc -->
 
-Time integrator using implicit backward Euler scheme
+Time integrator using implicit backward Euler scheme.
 
 
 __Target__: Sofa.Component.ODESolver.Backward

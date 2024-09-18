@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # VariationalSymplecticSolver
 
-Implicit time integrator which conserves linear momentum and mechanical energy
+Implicit time integrator which conserves linear momentum and mechanical energy.
 
 
 __Target__: Sofa.Component.ODESolver.Backward
