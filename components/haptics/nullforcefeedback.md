@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # NullForceFeedback
 
-Null force feedback for haptic feedback device
+Null force feedback for haptic feedback device.
 
 
 __Target__: Sofa.Component.Haptics

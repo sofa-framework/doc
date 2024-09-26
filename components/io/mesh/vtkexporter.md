@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # VTKExporter
 
-Save State vectors from file at each timestep
+Export a given mesh in a VTK file.
 
 
 __Target__: Sofa.Component.IO.Mesh

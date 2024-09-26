@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # EllipsoidForceField
 
-Repulsion applied by an ellipsoid toward the exterior or the interior
+Outward / inward repulsion applied by an ellipsoid geometry.
 
 
 ## Vec1d

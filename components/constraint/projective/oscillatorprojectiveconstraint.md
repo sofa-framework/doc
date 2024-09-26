@@ -217,6 +217,66 @@ Define a sequence of oscillating particules:
 
 ## Examples 
 
+OscillatorProjectiveConstraint_rigid.scn
+
+=== "XML"
+
+    ```xml
+    <Node      name="Root"  dt="0.04" bbox="-1 -1 -1 1 1 1" >
+        <RequiredPlugin name="Sofa.Component.Constraint.Projective"/> <!-- Needed to use components [OscillatorProjectiveConstraint] -->
+        <RequiredPlugin name="Sofa.Component.Mass"/> <!-- Needed to use components [UniformMass] -->
+        <RequiredPlugin name="Sofa.Component.ODESolver.Forward"/> <!-- Needed to use components [EulerExplicitSolver] -->
+        <RequiredPlugin name="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
+        <RequiredPlugin name="Sofa.Component.Visual"/> <!-- Needed to use components [VisualStyle] -->
+        <VisualStyle displayFlags="showBehaviorModels" />
+        <DefaultAnimationLoop/>
+        <EulerExplicitSolver name="solver" />
+    
+        <Node name="Point Oscillator"  >
+            <MechanicalObject template="Vec3" name="mech" position="0 0 0"  velocity="1 0 0"  force="1 0 0" externalForce="1 0 0" derivX="1 0 0"  restScale="1" />
+            <UniformMass name="m" />
+            <OscillatorProjectiveConstraint template="Vec3" name="osc"  oscillators="0  1 1 1  1 0 0  1 5" />
+        </Node>
+    
+        <Node name="Rigid Oscillator" >
+            <MechanicalObject template="Rigid3" name="mech2" position="0 0 0 0 0 0 1"  velocity="0 0 0 0 0 0" />
+            <UniformMass name="m2" />
+            <OscillatorProjectiveConstraint template="Rigid3" name="osc2" oscillators="0  1 1 0 0 0 0 1   0 1 1 0 0.707 0.707  1 5" />
+        </Node>
+    
+    </Node>
+
+    ```
+
+=== "Python"
+
+    ```python
+    def createScene(root_node):
+
+       root = root_node.addChild('Root', dt="0.04", bbox="-1 -1 -1 1 1 1")
+
+       root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Projective")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Mass")
+       root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Forward")
+       root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Visual")
+       root.addObject('VisualStyle', displayFlags="showBehaviorModels")
+       root.addObject('DefaultAnimationLoop', )
+       root.addObject('EulerExplicitSolver', name="solver")
+
+       point__oscillator = Root.addChild('Point Oscillator')
+
+       point__oscillator.addObject('MechanicalObject', template="Vec3", name="mech", position="0 0 0", velocity="1 0 0", force="1 0 0", externalForce="1 0 0", derivX="1 0 0", restScale="1")
+       point__oscillator.addObject('UniformMass', name="m")
+       point__oscillator.addObject('OscillatorProjectiveConstraint', template="Vec3", name="osc", oscillators="0  1 1 1  1 0 0  1 5")
+
+       rigid__oscillator = Root.addChild('Rigid Oscillator')
+
+       rigid__oscillator.addObject('MechanicalObject', template="Rigid3", name="mech2", position="0 0 0 0 0 0 1", velocity="0 0 0 0 0 0")
+       rigid__oscillator.addObject('UniformMass', name="m2")
+       rigid__oscillator.addObject('OscillatorProjectiveConstraint', template="Rigid3", name="osc2", oscillators="0  1 1 0 0 0 0 1   0 1 1 0 0.707 0.707  1 5")
+    ```
+
 OscillatorProjectiveConstraint.scn
 
 === "XML"
@@ -329,65 +389,5 @@ OscillatorProjectiveConstraint.scn
        surf.addObject('MechanicalObject', position="@[-1].position")
        surf.addObject('SphereCollisionModel', name="CollisionModel", listRadius="@[-2].listRadius")
        surf.addObject('BarycentricMapping', name="sphere mapping")
-    ```
-
-OscillatorProjectiveConstraint_rigid.scn
-
-=== "XML"
-
-    ```xml
-    <Node      name="Root"  dt="0.04" bbox="-1 -1 -1 1 1 1" >
-        <RequiredPlugin name="Sofa.Component.Constraint.Projective"/> <!-- Needed to use components [OscillatorProjectiveConstraint] -->
-        <RequiredPlugin name="Sofa.Component.Mass"/> <!-- Needed to use components [UniformMass] -->
-        <RequiredPlugin name="Sofa.Component.ODESolver.Forward"/> <!-- Needed to use components [EulerExplicitSolver] -->
-        <RequiredPlugin name="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
-        <RequiredPlugin name="Sofa.Component.Visual"/> <!-- Needed to use components [VisualStyle] -->
-        <VisualStyle displayFlags="showBehaviorModels" />
-        <DefaultAnimationLoop/>
-        <EulerExplicitSolver name="solver" />
-    
-        <Node name="Point Oscillator"  >
-            <MechanicalObject template="Vec3" name="mech" position="0 0 0"  velocity="1 0 0"  force="1 0 0" externalForce="1 0 0" derivX="1 0 0"  restScale="1" />
-            <UniformMass name="m" />
-            <OscillatorProjectiveConstraint template="Vec3" name="osc"  oscillators="0  1 1 1  1 0 0  1 5" />
-        </Node>
-    
-        <Node name="Rigid Oscillator" >
-            <MechanicalObject template="Rigid3" name="mech2" position="0 0 0 0 0 0 1"  velocity="0 0 0 0 0 0" />
-            <UniformMass name="m2" />
-            <OscillatorProjectiveConstraint template="Rigid3" name="osc2" oscillators="0  1 1 0 0 0 0 1   0 1 1 0 0.707 0.707  1 5" />
-        </Node>
-    
-    </Node>
-
-    ```
-
-=== "Python"
-
-    ```python
-    def createScene(root_node):
-
-       root = root_node.addChild('Root', dt="0.04", bbox="-1 -1 -1 1 1 1")
-
-       root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Projective")
-       root.addObject('RequiredPlugin', name="Sofa.Component.Mass")
-       root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Forward")
-       root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
-       root.addObject('RequiredPlugin', name="Sofa.Component.Visual")
-       root.addObject('VisualStyle', displayFlags="showBehaviorModels")
-       root.addObject('DefaultAnimationLoop', )
-       root.addObject('EulerExplicitSolver', name="solver")
-
-       point__oscillator = Root.addChild('Point Oscillator')
-
-       point__oscillator.addObject('MechanicalObject', template="Vec3", name="mech", position="0 0 0", velocity="1 0 0", force="1 0 0", externalForce="1 0 0", derivX="1 0 0", restScale="1")
-       point__oscillator.addObject('UniformMass', name="m")
-       point__oscillator.addObject('OscillatorProjectiveConstraint', template="Vec3", name="osc", oscillators="0  1 1 1  1 0 0  1 5")
-
-       rigid__oscillator = Root.addChild('Rigid Oscillator')
-
-       rigid__oscillator.addObject('MechanicalObject', template="Rigid3", name="mech2", position="0 0 0 0 0 0 1", velocity="0 0 0 0 0 0")
-       rigid__oscillator.addObject('UniformMass', name="m2")
-       rigid__oscillator.addObject('OscillatorProjectiveConstraint', template="Rigid3", name="osc2", oscillators="0  1 1 0 0 0 0 1   0 1 1 0 0.707 0.707  1 5")
     ```
 

@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # NullForceFeedbackT
 
-Null force feedback for haptic feedback device
+Null force feedback for haptic feedback device.
 
 
 Templates:

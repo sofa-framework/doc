@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # TorsionForceField
 
-Applies a torque to specified points
+Applies a torque to specified degrees of freedom.
 
 
 ## Rigid3d

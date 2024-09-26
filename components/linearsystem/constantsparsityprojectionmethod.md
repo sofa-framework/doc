@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # ConstantSparsityProjectionMethod
 
-Matrix mapping computing the matrix projection taking advantage of the constant sparsity pattern
+Matrix mapping computing the matrix projection taking advantage of the constant sparsity pattern.
 
 
 ## CompressedRowSparseMatrixd

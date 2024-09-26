@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # SphereForceField
 
-Repulsion applied by a sphere toward the exterior
+Outward repulsion applied by a sphere geometry
 
 
 ## Vec1d

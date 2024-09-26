@@ -89,16 +89,16 @@ pairs of indices, stiffness, damping, rest length
 		<td colspan="3">Visualization</td>
 	</tr>
 	<tr>
-		<td>show lawful Torsion</td>
+		<td>showLawfulTorsion</td>
 		<td>
-dislpay the lawful part of the joint rotation
+display the lawful part of the joint rotation
 		</td>
 		<td>0</td>
 	</tr>
 	<tr>
-		<td>show illicit Torsion</td>
+		<td>showExtraTorsion</td>
 		<td>
-dislpay the illicit part of the joint rotation
+display the illicit part of the joint rotation
 		</td>
 		<td>0</td>
 	</tr>

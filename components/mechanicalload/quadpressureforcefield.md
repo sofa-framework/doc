@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # QuadPressureForceField
 
-QuadPressure
+Pressure applied on a quadrangular geometry.
 
 
 ## Vec3d

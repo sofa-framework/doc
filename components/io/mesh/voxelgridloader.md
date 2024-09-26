@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # VoxelGridLoader
 
-Voxel loader based on RAW files
+Voxel loader based on RAW files.
 
 
 __Target__: Sofa.Component.IO.Mesh

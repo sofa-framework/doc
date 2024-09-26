@@ -2,7 +2,7 @@
 # MatrixLinearSystem
 
 Linear system
-Linear system
+Linear system.
 
 
 Templates:

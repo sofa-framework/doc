@@ -19,7 +19,7 @@ As a Forcefield, the ConstantForceField requires a **MechanicalObject** and the 
 <!-- automatically generated doc START -->
 <!-- generate_doc -->
 
-Constant forces applied to given degrees of freedom
+Constant forces applied to given degrees of freedom.
 
 
 ## Rigid2d

@@ -321,6 +321,72 @@ draw constrained points
 
 ## Examples 
 
+AffineMovementProjectiveConstraint.scn
+
+=== "XML"
+
+    ```xml
+    <?xml version="1.0"?>
+        <Node 	name="root" gravity="0 0 0" dt="0.01"  >
+        <RequiredPlugin name="Sofa.Component.Constraint.Projective"/> <!-- Needed to use components [AffineMovementProjectiveConstraint] -->
+        <RequiredPlugin name="Sofa.Component.Engine.Select"/> <!-- Needed to use components [BoxROI PairBoxROI] -->
+        <RequiredPlugin name="Sofa.Component.LinearSolver.Iterative"/> <!-- Needed to use components [CGLinearSolver] -->
+        <RequiredPlugin name="Sofa.Component.Mass"/> <!-- Needed to use components [UniformMass] -->
+        <RequiredPlugin name="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+        <RequiredPlugin name="Sofa.Component.SolidMechanics.Spring"/> <!-- Needed to use components [MeshSpringForceField] -->
+        <RequiredPlugin name="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
+        <RequiredPlugin name="Sofa.Component.Topology.Container.Grid"/> <!-- Needed to use components [RegularGridTopology] -->
+        <RequiredPlugin name="Sofa.Component.Visual"/> <!-- Needed to use components [VisualStyle] -->
+    
+        <VisualStyle displayFlags="hideVisualModels showBehavior" />
+        <DefaultAnimationLoop/>
+        <Node 	name="Square"  >
+            <EulerImplicitSolver name="Euler Implicit" rayleighStiffness="0.5"  rayleighMass="0.5"  vdamping="0" />
+            <CGLinearSolver template="GraphScattered" name="CG Solver" iterations="40"  tolerance="1e-06"  threshold="1e-10"/>
+            <MechanicalObject template="Vec3" name="mObject1" showObject="true" showObjectScale="3"/>
+            <RegularGridTopology name ="loader" nx="5" ny="5" nz="1" xmin="0" xmax="1" ymin="0" ymax="1" zmin="0" zmax="1" position="@mObject1.position" drawHexahedra="true"/>
+            <UniformMass totalMass="1"/>
+            <MeshSpringForceField template="Vec3" name="forcefield" linesStiffness="10" />
+            <BoxROI name="Box" box="-0.1 -0.1 0  1.1 1.1 0"/>
+            <PairBoxROI name="PairBox" inclusiveBox="-0.1 -0.1 0  1.1 1.1 0" includedBox="0.1 0.1 0 0.9 0.9 0"/>
+            <AffineMovementProjectiveConstraint name="bilinearConstraint" template="Vec3" indices="@PairBox.indices" meshIndices = "@Box.indices" translation="0.1 0 0" rotation="[0.7 -0.7 0,0.7 0.7 0,0 0 1]"  drawConstrainedPoints="1"/>
+        </Node>
+    </Node>
+
+    ```
+
+=== "Python"
+
+    ```python
+    def createScene(root_node):
+
+       root = root_node.addChild('root', gravity="0 0 0", dt="0.01")
+
+       root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Projective")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Engine.Select")
+       root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Iterative")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Mass")
+       root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.Spring")
+       root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Grid")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Visual")
+       root.addObject('VisualStyle', displayFlags="hideVisualModels showBehavior")
+       root.addObject('DefaultAnimationLoop', )
+
+       square = root.addChild('Square')
+
+       square.addObject('EulerImplicitSolver', name="Euler Implicit", rayleighStiffness="0.5", rayleighMass="0.5", vdamping="0")
+       square.addObject('CGLinearSolver', template="GraphScattered", name="CG Solver", iterations="40", tolerance="1e-06", threshold="1e-10")
+       square.addObject('MechanicalObject', template="Vec3", name="mObject1", showObject="true", showObjectScale="3")
+       square.addObject('RegularGridTopology', name="loader", nx="5", ny="5", nz="1", xmin="0", xmax="1", ymin="0", ymax="1", zmin="0", zmax="1", position="@mObject1.position", drawHexahedra="true")
+       square.addObject('UniformMass', totalMass="1")
+       square.addObject('MeshSpringForceField', template="Vec3", name="forcefield", linesStiffness="10")
+       square.addObject('BoxROI', name="Box", box="-0.1 -0.1 0  1.1 1.1 0")
+       square.addObject('PairBoxROI', name="PairBox", inclusiveBox="-0.1 -0.1 0  1.1 1.1 0", includedBox="0.1 0.1 0 0.9 0.9 0")
+       square.addObject('AffineMovementProjectiveConstraint', name="bilinearConstraint", template="Vec3", indices="@PairBox.indices", meshIndices="@Box.indices", translation="0.1 0 0", rotation="[0.7 -0.7 0,0.7 0.7 0,0 0 1]", drawConstrainedPoints="1")
+    ```
+
 AffineMovementProjectiveConstraint3D.scn
 
 === "XML"
@@ -386,71 +452,5 @@ AffineMovementProjectiveConstraint3D.scn
        square.addObject('BoxROI', name="Box", box="-0.1 -0.1 -0.1  1.1 1.1 1.1")
        square.addObject('PairBoxROI', name="PairBox", inclusiveBox="-0.1 -0.1 -0.1  1.1 1.1 1.1", includedBox="0.1 0.1 0.1 0.9 0.9 0.9")
        square.addObject('AffineMovementProjectiveConstraint', name="bilinearConstraint", template="Vec3", indices="@PairBox.indices", meshIndices="@Box.indices", translation="0.1 0.1 0.1", rotation="[1 0 0,0 1 0,1 0 1]")
-    ```
-
-AffineMovementProjectiveConstraint.scn
-
-=== "XML"
-
-    ```xml
-    <?xml version="1.0"?>
-        <Node 	name="root" gravity="0 0 0" dt="0.01"  >
-        <RequiredPlugin name="Sofa.Component.Constraint.Projective"/> <!-- Needed to use components [AffineMovementProjectiveConstraint] -->
-        <RequiredPlugin name="Sofa.Component.Engine.Select"/> <!-- Needed to use components [BoxROI PairBoxROI] -->
-        <RequiredPlugin name="Sofa.Component.LinearSolver.Iterative"/> <!-- Needed to use components [CGLinearSolver] -->
-        <RequiredPlugin name="Sofa.Component.Mass"/> <!-- Needed to use components [UniformMass] -->
-        <RequiredPlugin name="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
-        <RequiredPlugin name="Sofa.Component.SolidMechanics.Spring"/> <!-- Needed to use components [MeshSpringForceField] -->
-        <RequiredPlugin name="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
-        <RequiredPlugin name="Sofa.Component.Topology.Container.Grid"/> <!-- Needed to use components [RegularGridTopology] -->
-        <RequiredPlugin name="Sofa.Component.Visual"/> <!-- Needed to use components [VisualStyle] -->
-    
-        <VisualStyle displayFlags="hideVisualModels showBehavior" />
-        <DefaultAnimationLoop/>
-        <Node 	name="Square"  >
-            <EulerImplicitSolver name="Euler Implicit" rayleighStiffness="0.5"  rayleighMass="0.5"  vdamping="0" />
-            <CGLinearSolver template="GraphScattered" name="CG Solver" iterations="40"  tolerance="1e-06"  threshold="1e-10"/>
-            <MechanicalObject template="Vec3" name="mObject1" showObject="true" showObjectScale="3"/>
-            <RegularGridTopology name ="loader" nx="5" ny="5" nz="1" xmin="0" xmax="1" ymin="0" ymax="1" zmin="0" zmax="1" position="@mObject1.position" drawHexahedra="true"/>
-            <UniformMass totalMass="1"/>
-            <MeshSpringForceField template="Vec3" name="forcefield" linesStiffness="10" />
-            <BoxROI name="Box" box="-0.1 -0.1 0  1.1 1.1 0"/>
-            <PairBoxROI name="PairBox" inclusiveBox="-0.1 -0.1 0  1.1 1.1 0" includedBox="0.1 0.1 0 0.9 0.9 0"/>
-            <AffineMovementProjectiveConstraint name="bilinearConstraint" template="Vec3" indices="@PairBox.indices" meshIndices = "@Box.indices" translation="0.1 0 0" rotation="[0.7 -0.7 0,0.7 0.7 0,0 0 1]"  drawConstrainedPoints="1"/>
-        </Node>
-    </Node>
-
-    ```
-
-=== "Python"
-
-    ```python
-    def createScene(root_node):
-
-       root = root_node.addChild('root', gravity="0 0 0", dt="0.01")
-
-       root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Projective")
-       root.addObject('RequiredPlugin', name="Sofa.Component.Engine.Select")
-       root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Iterative")
-       root.addObject('RequiredPlugin', name="Sofa.Component.Mass")
-       root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
-       root.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.Spring")
-       root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
-       root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Grid")
-       root.addObject('RequiredPlugin', name="Sofa.Component.Visual")
-       root.addObject('VisualStyle', displayFlags="hideVisualModels showBehavior")
-       root.addObject('DefaultAnimationLoop', )
-
-       square = root.addChild('Square')
-
-       square.addObject('EulerImplicitSolver', name="Euler Implicit", rayleighStiffness="0.5", rayleighMass="0.5", vdamping="0")
-       square.addObject('CGLinearSolver', template="GraphScattered", name="CG Solver", iterations="40", tolerance="1e-06", threshold="1e-10")
-       square.addObject('MechanicalObject', template="Vec3", name="mObject1", showObject="true", showObjectScale="3")
-       square.addObject('RegularGridTopology', name="loader", nx="5", ny="5", nz="1", xmin="0", xmax="1", ymin="0", ymax="1", zmin="0", zmax="1", position="@mObject1.position", drawHexahedra="true")
-       square.addObject('UniformMass', totalMass="1")
-       square.addObject('MeshSpringForceField', template="Vec3", name="forcefield", linesStiffness="10")
-       square.addObject('BoxROI', name="Box", box="-0.1 -0.1 0  1.1 1.1 0")
-       square.addObject('PairBoxROI', name="PairBox", inclusiveBox="-0.1 -0.1 0  1.1 1.1 0", includedBox="0.1 0.1 0 0.9 0.9 0")
-       square.addObject('AffineMovementProjectiveConstraint', name="bilinearConstraint", template="Vec3", indices="@PairBox.indices", meshIndices="@Box.indices", translation="0.1 0 0", rotation="[0.7 -0.7 0,0.7 0.7 0,0 0 1]", drawConstrainedPoints="1")
     ```
 

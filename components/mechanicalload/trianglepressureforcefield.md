@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # TrianglePressureForceField
 
-TrianglePressure
+Pressure applied on a triangular geometry.
 
 
 ## Vec3d

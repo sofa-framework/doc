@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # SurfacePressureForceField
 
-SurfacePressure
+Pressure applied on a generic surface (triangular or quadrangular).
 
 
 ## Rigid3d

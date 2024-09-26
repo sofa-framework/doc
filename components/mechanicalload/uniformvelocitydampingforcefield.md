@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # UniformVelocityDampingForceField
 
-Uniform velocity damping
+Uniform velocity damping.
 
 
 ## Rigid2d

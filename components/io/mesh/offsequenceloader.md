@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # OffSequenceLoader
 
-Read and load an .off file at each timestep
+Read and load an .off file at each timestep.
 
 
 __Target__: Sofa.Component.IO.Mesh

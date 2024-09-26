@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # EdgePressureForceField
 
-Apply a force on edges, distributed on the edge nodes
+Apply a force on edges, distributed on the edge nodes.
 
 
 ## Vec3d

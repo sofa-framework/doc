@@ -120,4 +120,7 @@ set to true to apply this mapping to restPosition at init
 |master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
 |input|Input object to map|State&lt;Vec3d&gt;|
 |output|Output object to map|State&lt;Vec3d&gt;|
+|topologicalMapping|Link to a Mesh2PointTopologicalMapping|Mesh2PointTopologicalMapping|
+|inputTopology|Link to the input topology|BaseMeshTopology|
+|outputTopology|Link to the output topology|BaseMeshTopology|
 

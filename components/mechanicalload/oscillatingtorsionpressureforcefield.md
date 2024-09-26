@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # OscillatingTorsionPressureForceField
 
-OscillatingTorsionPressure
+OscillatingTorsionPressure.
 
 
 ## Vec3d

@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # DiagonalVelocityDampingForceField
 
-Diagonal velocity damping
+Diagonal velocity damping.
 
 
 ## Rigid2d

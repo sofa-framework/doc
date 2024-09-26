@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # Gravity
 
-Gravity in world coordinates
+Gravity in world coordinates.
 
 
 __Target__: Sofa.Component.MechanicalLoad

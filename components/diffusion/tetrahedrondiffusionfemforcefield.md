@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # TetrahedronDiffusionFEMForceField
 
-Isotropic or anisotropic diffusion on Tetrahedral Meshes
+Isotropic or anisotropic diffusion on Tetrahedral Meshes.
 
 
 ## Vec1d

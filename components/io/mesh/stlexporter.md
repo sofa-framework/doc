@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # STLExporter
 
-Save a topology in file
+Save a topology in file.
 
 
 __Target__: Sofa.Component.IO.Mesh

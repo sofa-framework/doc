@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # LinearForceField
 
-Linearly interpolated force applied to given degrees of freedom
+Linearly-interpolated force applied to given degrees of freedom.
 
 
 ## Rigid3d

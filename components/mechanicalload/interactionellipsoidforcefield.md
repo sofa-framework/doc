@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # InteractionEllipsoidForceField
 
-Repulsion applied by an ellipsoid toward the exterior or the interior
+Outward / inward repulsion applied by an ellipsoid geometry, which can possibly act on several objects.
 
 
 ## Vec3d,Rigid3d

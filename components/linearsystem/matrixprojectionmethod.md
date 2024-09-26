@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # MatrixProjectionMethod
 
-Matrix mapping computing the matrix projection using the Eigen library
+Matrix mapping computing the matrix projection using the Eigen library.
 
 
 ## CompressedRowSparseMatrixd

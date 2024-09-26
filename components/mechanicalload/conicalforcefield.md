@@ -133,7 +133,7 @@ cone color. (default=0.0,0.0,0.0,1.0,1.0)
 <!-- automatically generated doc START -->
 <!-- generate_doc -->
 
-Repulsion applied by a cone toward the exterior
+Outward repulsion applied by a cone geometry.
 
 
 ## Vec3d

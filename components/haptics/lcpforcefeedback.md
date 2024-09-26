@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # LCPForceFeedback
 
-LCP force feedback for the device
+LCP force feedback for the device.
 
 
 Templates:

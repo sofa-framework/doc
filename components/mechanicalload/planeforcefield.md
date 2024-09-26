@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # PlaneForceField
 
-Repulsion applied by a plane toward the exterior (half-space)
+Repulsion along the normal to a plane.
 
 
 ## Rigid3d

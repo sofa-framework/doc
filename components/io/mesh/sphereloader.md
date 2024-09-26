@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # SphereLoader
 
-Loader for sphere model description files
+Loader for sphere model description files.
 
 
 __Target__: Sofa.Component.IO.Mesh

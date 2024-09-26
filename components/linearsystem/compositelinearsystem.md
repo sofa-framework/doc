@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # CompositeLinearSystem
 
-Component acting like a linear system, but delegates the linear system functionalities to a list of real linear systems
+Component acting like a linear system, but delegates the linear system functionalities to a list of real linear systems.
 
 
 ## BlockDiagonalMatrixMat3x3d

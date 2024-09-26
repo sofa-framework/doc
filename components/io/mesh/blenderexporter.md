@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # BlenderExporter
 
-Export the simulation result as blender point cache files
+Export the simulation result as blender point cache files.
 
 
 Templates:
