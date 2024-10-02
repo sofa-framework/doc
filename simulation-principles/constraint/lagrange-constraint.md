@@ -162,7 +162,7 @@ The following steps are processed one after another:
 
   - select which method will be used to solve the constraint problem. The associated visitor is _MechanicalGetConstraintResolutionVisitor_
 
-  - finally build the $ based on the previously computed matrices. This task is performed by the _ConstraintCorrection_. The detail of the assembly of $\mathbf{W}$$ is given below in the [ConstraintCorrection](#constraintcorrection) section. The associated function of the _ConstraintCorrection_ is _addComplianceInConstraintSpace()_
+  - finally build the matrix $\mathbf{W}$, the compliance matrix projected in the constraint space, based on the previously computed matrices. This task is performed by the _ConstraintCorrection_. The detail of the assembly of $\mathbf{W}$ is given below in the [ConstraintCorrection](#constraintcorrection) section. The associated function of the _ConstraintCorrection_ is _addComplianceInConstraintSpace()_
 
   - store $\mathbf{H}^T\lambda$ which corresponds to the projection of the Lagrange multipliers $\lambda$ into the physics space, and is homogeneous to forces. This vector is made available with the function _storeLambda()_. This will be finally used to compute the corrective motion, resulting from the constraint resolution
 
