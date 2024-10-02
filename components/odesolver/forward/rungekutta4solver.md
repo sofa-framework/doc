@@ -86,7 +86,7 @@ RungeKutta4Solver.scn
 
     ```xml
     <?xml version="1.0" ?>
-    <Node name="root" gravity="-1.8 0 100" dt="0.001">
+    <Node name="root" gravity="-1.8 0 100" dt="0.0005">
         <RequiredPlugin name="Sofa.Component.Constraint.Projective"/> <!-- Needed to use components [FixedProjectiveConstraint] -->
         <RequiredPlugin name="Sofa.Component.IO.Mesh"/> <!-- Needed to use components [MeshGmshLoader MeshOBJLoader] -->
         <RequiredPlugin name="Sofa.Component.LinearSolver.Iterative"/> <!-- Needed to use components [CGLinearSolver] -->
@@ -101,13 +101,13 @@ RungeKutta4Solver.scn
         
         <Node name="DeformableObject">
             <RungeKutta4Solver name="odeExplicitSolver" />
-            <CGLinearSolver iterations="100" tolerance="1e-5" threshold="1e-5"/>
+            <SparseLDLSolver template="CompressedRowSparseMatrixMat3x3d"/>
             <MeshGmshLoader name="loader" filename="mesh/truthcylinder1.msh" />
             <MeshTopology src="@loader" />
             <MechanicalObject src="@loader" />
             <UniformMass totalMass="15" />
             <FixedProjectiveConstraint indices="0 1 2 3 4 5 6 7 8 9 10 &#x0A;&#x09;&#x09;&#x09;&#x09;&#x09;&#x09;&#x09;11 12 13 14 15 16 17 18 19 20 &#x0A;&#x09;&#x09;&#x09;&#x09;&#x09;&#x09;&#x09;21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 &#x0A;&#x09;&#x09;&#x09;&#x09;&#x09;&#x09;&#x09;41 42 43 44 45 46 47 268 269 270 271 343 345" />
-            <TetrahedronFEMForceField name="FEM" youngModulus="1000" poissonRatio="0.45" method="large" />
+            <TetrahedronFEMForceField name="FEM" youngModulus="5000" poissonRatio="0.45" method="large" />
             <Node>
                 <MeshOBJLoader name="meshLoader_0" filename="mesh/truthcylinder1.obj" handleSeams="1" />
                 <OglModel name="m_Visual" src="@meshLoader_0" color="red" />
@@ -123,7 +123,7 @@ RungeKutta4Solver.scn
     ```python
     def createScene(root_node):
 
-       root = root_node.addChild('root', gravity="-1.8 0 100", dt="0.001")
+       root = root_node.addChild('root', gravity="-1.8 0 100", dt="0.0005")
 
        root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Projective")
        root.addObject('RequiredPlugin', name="Sofa.Component.IO.Mesh")
@@ -140,7 +140,7 @@ RungeKutta4Solver.scn
        deformable_object = root.addChild('DeformableObject')
 
        deformable_object.addObject('RungeKutta4Solver', name="odeExplicitSolver")
-       deformable_object.addObject('CGLinearSolver', iterations="100", tolerance="1e-5", threshold="1e-5")
+       deformable_object.addObject('SparseLDLSolver', template="CompressedRowSparseMatrixMat3x3d")
        deformable_object.addObject('MeshGmshLoader', name="loader", filename="mesh/truthcylinder1.msh")
        deformable_object.addObject('MeshTopology', src="@loader")
        deformable_object.addObject('MechanicalObject', src="@loader")
@@ -149,7 +149,7 @@ RungeKutta4Solver.scn
 							11 12 13 14 15 16 17 18 19 20 
 							21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 
 							41 42 43 44 45 46 47 268 269 270 271 343 345")
-       deformable_object.addObject('TetrahedronFEMForceField', name="FEM", youngModulus="1000", poissonRatio="0.45", method="large")
+       deformable_object.addObject('TetrahedronFEMForceField', name="FEM", youngModulus="5000", poissonRatio="0.45", method="large")
 
        node = DeformableObject.addChild('node')
 

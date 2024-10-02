@@ -85,7 +85,7 @@ __namespace__: sofa::component::mapping::nonlinear
 
 __parents__:
 
-- Mapping
+- BaseNonLinearMapping
 
 ### Data
 
@@ -183,13 +183,6 @@ Method used to compute the geometric stiffness:
 -Exact: the exact geometric stiffness is computed
 		</td>
 		<td>Exact</td>
-	</tr>
-	<tr>
-		<td>useGeometricStiffnessMatrix</td>
-		<td>
-If available (cached), the geometric stiffness matrix is used in order to compute the product with the parent displacement. Otherwise, the product is computed directly using the available vectors (matrix-free method).
-		</td>
-		<td>1</td>
 	</tr>
 
 </tbody>

@@ -231,9 +231,9 @@ SimpleTesselatedTetraTopologicalMapping.scn
     ```xml
     <Node name="root" dt="0.05" showBehaviorModels="1" showCollisionModels="1" showMappings="0" showForceFields="1" showBoundingTree="0" gravity="0 0 0">
         <Node name="RequiredPlugins">
-            <RequiredPlugin name="Sofa.Component.Collision.Detection.Algorithm"/> <!-- Needed to use components [BVHNarrowPhase, BruteForceBroadPhase, DefaultPipeline] -->  
+            <RequiredPlugin name="Sofa.Component.Collision.Detection.Algorithm"/> <!-- Needed to use components [BVHNarrowPhase, BruteForceBroadPhase, CollisionPipeline] -->  
             <RequiredPlugin name="Sofa.Component.Collision.Geometry"/> <!-- Needed to use components [TriangleCollisionModel] -->  
-            <RequiredPlugin name="Sofa.Component.Collision.Response.Contact"/> <!-- Needed to use components [DefaultContactManager] -->  
+            <RequiredPlugin name="Sofa.Component.Collision.Response.Contact"/> <!-- Needed to use components [CollisionResponse] -->  
             <RequiredPlugin name="Sofa.Component.Constraint.Projective"/> <!-- Needed to use components [FixedConstraint] -->  
             <RequiredPlugin name="Sofa.Component.IO.Mesh"/> <!-- Needed to use components [MeshGmshLoader] -->  
             <RequiredPlugin name="Sofa.Component.LinearSolver.Iterative"/> <!-- Needed to use components [CGLinearSolver] -->  
@@ -245,10 +245,10 @@ SimpleTesselatedTetraTopologicalMapping.scn
             <RequiredPlugin name="Sofa.Component.Topology.Container.Dynamic"/> <!-- Needed to use components [TetrahedronSetGeometryAlgorithms, TetrahedronSetTopologyContainer, TetrahedronSetTopologyModifier] -->  
             <RequiredPlugin name="Sofa.Component.Visual"/> <!-- Needed to use components [VisualStyle] -->  
         </Node>
-        <DefaultPipeline verbose="0" name="CollisionPipeline"/>
+        <CollisionPipeline verbose="0" name="CollisionPipeline"/>
         <BruteForceBroadPhase/>
         <BVHNarrowPhase/>
-        <DefaultContactManager response="PenalityContactForceField" name="collision response"/>
+        <CollisionResponse response="PenalityContactForceField" name="collision response"/>
         <Node name="TetraTopology1">
             <EulerImplicitSolver name="cg_odesolver" printLog="false" rayleighStiffness="0.1" rayleighMass="0.1" />
             <CGLinearSolver iterations="25" name="linear solver" tolerance="1.0e-9" threshold="1.0e-9" />
@@ -298,10 +298,10 @@ SimpleTesselatedTetraTopologicalMapping.scn
        required_plugins.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Dynamic")
        required_plugins.addObject('RequiredPlugin', name="Sofa.Component.Visual")
 
-       root.addObject('DefaultPipeline', verbose="0", name="CollisionPipeline")
+       root.addObject('CollisionPipeline', verbose="0", name="CollisionPipeline")
        root.addObject('BruteForceBroadPhase', )
        root.addObject('BVHNarrowPhase', )
-       root.addObject('DefaultContactManager', response="PenalityContactForceField", name="collision response")
+       root.addObject('CollisionResponse', response="PenalityContactForceField", name="collision response")
 
        tetra_topology1 = root.addChild('TetraTopology1')
 

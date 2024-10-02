@@ -29,12 +29,12 @@ $n$ is the number of triangles in the topology and $m$ is the number of vertices
 The mapping function of this mapping is $f(x) = (f_0(x), \dots, f_{n-1}(x))$. For $0 \le i < n$:
 
 $$
-f_i(x) = \text{Area}(v_{t_{i_0}}, v_{t_{i_1}}, v_{t_{i_1}})
+f_i(x) = \text{Area}(v_{t_{i_0}}, v_{t_{i_1}}, v_{t_{i_2}})
 $$
 
 with $t_{i_j}$ is the index of the $j$-th vertex in the $i$-th triangle.
 $x \in \mathbb{R}^{3m}$ is the input vector, i.e. the concatenation of all vertices positions.
-$v_i$ is the $i$-th vertex position, i.e $v_i = (x_{3i}, x_{3i+1}, x_{3i+2})$.
+$v_i$ is the $i$-th vertex position, i.e. $v_i = (x_{3i}, x_{3i+1}, x_{3i+2})$.
 
 ## Jacobian Matrix
 
@@ -109,7 +109,7 @@ __namespace__: sofa::component::mapping::nonlinear
 
 __parents__:
 
-- Mapping
+- BaseNonLinearMapping
 
 ### Data
 

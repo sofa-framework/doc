@@ -16,7 +16,7 @@ __namespace__: sofa::component::mapping::nonlinear
 
 __parents__:
 
-- Mapping
+- BaseNonLinearMapping
 
 ### Data
 
@@ -150,7 +150,7 @@ Scale for object display
 	<tr>
 		<td>showColor</td>
 		<td>
-Color for object display. (default=[1.0,1.0,0.0,1.0])
+Color for object display.
 		</td>
 		<td>1 1 0 1</td>
 	</tr>
@@ -182,7 +182,7 @@ __namespace__: sofa::component::mapping::nonlinear
 
 __parents__:
 
-- Mapping
+- BaseNonLinearMapping
 
 ### Data
 
@@ -316,7 +316,7 @@ Scale for object display
 	<tr>
 		<td>showColor</td>
 		<td>
-Color for object display. (default=[1.0,1.0,0.0,1.0])
+Color for object display.
 		</td>
 		<td>1 1 0 1</td>
 	</tr>
@@ -348,7 +348,7 @@ __namespace__: sofa::component::mapping::nonlinear
 
 __parents__:
 
-- Mapping
+- BaseNonLinearMapping
 
 ### Data
 
@@ -482,7 +482,7 @@ Scale for object display
 	<tr>
 		<td>showColor</td>
 		<td>
-Color for object display. (default=[1.0,1.0,0.0,1.0])
+Color for object display.
 		</td>
 		<td>1 1 0 1</td>
 	</tr>

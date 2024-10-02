@@ -16,7 +16,7 @@ __namespace__: sofa::component::mapping::nonlinear
 
 __parents__:
 
-- Mapping
+- BaseNonLinearMapping
 
 ### Data
 
@@ -162,7 +162,7 @@ __namespace__: sofa::component::mapping::nonlinear
 
 __parents__:
 
-- Mapping
+- BaseNonLinearMapping
 
 ### Data
 
