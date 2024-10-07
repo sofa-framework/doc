@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # NormalsFromPoints
 
-Compute vertex normals by averaging face normals
+Compute vertex normals by averaging face normals.
 
 
 ## Vec3d

@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # CylinderGridTopology
 
-Cylinder grid in 3D
+Cylinder grid in 3D.
 
 
 __Target__: Sofa.Component.Topology.Container.Grid

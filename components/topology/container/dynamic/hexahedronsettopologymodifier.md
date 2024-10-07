@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # HexahedronSetTopologyModifier
 
-Hexahedron set topology modifier
+Topology modifier dedicated to an hexahedral topology.
 
 
 __Target__: Sofa.Component.Topology.Container.Dynamic

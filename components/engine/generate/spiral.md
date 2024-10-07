@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # Spiral
 
-This class truns on spiral any topological model
+Engine turning on spiral any topological model.
 
 
 ## Vec3d

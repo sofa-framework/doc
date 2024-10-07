@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # COLAMDOrderingMethod
 
-Column approximate minimum degree ordering implemented in the Eigen library
+Column approximate minimum degree ordering implemented in the Eigen library.
 
 
 __Target__: Sofa.Component.LinearSolver.Ordering

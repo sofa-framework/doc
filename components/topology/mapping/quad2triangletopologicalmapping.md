@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # Quad2TriangleTopologicalMapping
 
-Special case of mapping where QuadSetTopology is converted to TriangleSetTopology
+Topological mapping where QuadSetTopology is converted to TriangleSetTopology
 
 
 __Target__: Sofa.Component.Topology.Mapping

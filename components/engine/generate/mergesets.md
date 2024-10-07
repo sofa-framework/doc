@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # MergeSets
 
-Merge two sets of indices using specified boolean operation
+Merge two sets of indices using specified boolean operation.
 
 
 Templates:

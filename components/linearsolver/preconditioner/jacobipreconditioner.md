@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # JacobiPreconditioner
 
-Linear solver based on a diagonal matrix (i.e. Jacobi preconditioner)
+Linear solver based on a diagonal matrix (i.e. Jacobi preconditioner).
 
 
 ## DiagonalMatrix

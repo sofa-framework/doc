@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # QuadSetTopologyContainer
 
-Quad set topology container
+Topology container dedicated to a quad topology.
 
 
 __Target__: Sofa.Component.Topology.Container.Dynamic

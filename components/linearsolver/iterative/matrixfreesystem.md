@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # MatrixFreeSystem
 
-Matrix-free linear system
+Matrix-free (unbuilt) linear system.
 
 
 ## GraphScattered

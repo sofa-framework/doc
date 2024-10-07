@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # PrecomputedWarpPreconditioner
 
-Linear system solver based on a precomputed inverse matrix, wrapped by a per-node rotation matrix
+Linear system solver based on a precomputed inverse matrix, wrapped by a per-node rotation matrix.
 
 
 ## CompressedRowSparseMatrixd

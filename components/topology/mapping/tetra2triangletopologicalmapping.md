@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # Tetra2TriangleTopologicalMapping
 
-Special case of mapping where TetrahedronSetTopology is converted to TriangleSetTopology
+Topological mapping where TetrahedronSetTopology is converted to TriangleSetTopology
 
 
 __Target__: Sofa.Component.Topology.Mapping

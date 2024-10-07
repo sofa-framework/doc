@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # IdentityTopologicalMapping
 
-This class is a specific implementation of TopologicalMapping where the destination topology should be kept identical to the source topology. The implementation currently assumes that both topology have been initialized identically.
+TopologicalMapping where the destination topology should be kept identical to the source topology. The implementation currently assumes that both topology have been initialized identically.
 
 
 __Target__: Sofa.Component.Topology.Mapping

@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # TetrahedronSetTopologyContainer
 
-Tetrahedron set topology container
+Topology container dedicated to a tetrahedral topology.
 
 
 __Target__: Sofa.Component.Topology.Container.Dynamic

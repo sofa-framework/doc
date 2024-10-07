@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # BlockJacobiPreconditioner
 
-Linear solver based on a NxN block diagonal matrix (i.e. block Jacobi preconditioner)
+Linear solver based on a NxN block diagonal matrix (i.e. block Jacobi preconditioner).
 
 
 ## FullVector

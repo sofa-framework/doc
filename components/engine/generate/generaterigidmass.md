@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # GenerateRigidMass
 
-An engine computing the RigidMass of a mesh : mass, volume and inertia matrix.
+Engine computing the RigidMass of a mesh: mass, volume and inertia matrix.
 
 
 ## Rigid3d

@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # SmoothMeshEngine
 
-Compute the laplacian smoothing of a mesh
+Compute the laplacian smoothing of a mesh.
 
 
 ## Vec3d

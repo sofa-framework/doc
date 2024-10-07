@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # DifferenceEngine
 
-Computing the difference between two vector of dofs
+Computing the difference between two vector of dofs.
 
 
 Templates:

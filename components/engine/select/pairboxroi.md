@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # PairBoxROI
 
-Find the primitives (vertex/edge/triangle/tetrahedron) inside a given box
+Find all the points located between two boxes.
 
 
 Templates:

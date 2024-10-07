@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # InvertTransformMatrixEngine
 
-Inverts the input transform
+Inverts the input transform.
 
 
 __Target__: Sofa.Component.Engine.Transform

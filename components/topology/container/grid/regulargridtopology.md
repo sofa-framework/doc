@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # RegularGridTopology
 
-Regular grid in 3D
+Regular grid in 3D.
 
 
 __Target__: Sofa.Component.Topology.Container.Grid

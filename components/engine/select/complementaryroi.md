@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # ComplementaryROI
 
-Find the points that are NOT in the input sets
+Find the points that are NOT in the input sets.
 
 
 ## Vec3d

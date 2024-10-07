@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # JoinPoints
 
-?
+Merge points from a set of points within a given distance.
 
 
 ## Vec3d

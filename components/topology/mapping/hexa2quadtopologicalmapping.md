@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # Hexa2QuadTopologicalMapping
 
-Special case of mapping where HexahedronSetTopology is converted to QuadSetTopology
+Topological mapping where HexahedronSetTopology is converted to QuadSetTopology
 
 
 __Target__: Sofa.Component.Topology.Mapping

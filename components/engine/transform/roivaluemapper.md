@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # ROIValueMapper
 
-Generate a list of values from value-indices pairs
+Generate a list of values from value-indices pairs.
 
 
 __Target__: Sofa.Component.Engine.Transform

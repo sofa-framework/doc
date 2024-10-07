@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # SparseGridTopology
 
-Sparse grid in 3D
+Sparse grid in 3D.
 
 
 __Target__: Sofa.Component.Topology.Container.Grid

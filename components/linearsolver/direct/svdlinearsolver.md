@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # SVDLinearSolver
 
-Linear system solver using a SVD decomposition of a dense matrix
+Linear system solver using a SVD decomposition of a dense matrix.
 
 
 ## CompressedRowSparseMatrixMat3x3d

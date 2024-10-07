@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # GridTopology
 
-Base class fo a regular grid in 3D
+Base class fo a regular grid in 3D.
 
 
 __Target__: Sofa.Component.Topology.Container.Grid

@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # RigidToQuatEngine
 
-Transform a couple of Vec3 and Quaternion in Rigid
+Transform a couple of Vec3 and Quaternion in Rigid.
 
 
 ## Vec3d

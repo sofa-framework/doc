@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # MeshTopology
 
-Generic mesh topology
+Generic constant topology loaded from a mesh file.
 
 
 __Target__: Sofa.Component.Topology.Container.Constant

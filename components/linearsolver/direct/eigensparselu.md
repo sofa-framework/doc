@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # EigenSparseLU
 
-Direct Linear Solver using a Sparse LU factorization.
+Direct linear solver using a Sparse LU factorization.
 
 
 ## CompressedRowSparseMatrixMat3x3d

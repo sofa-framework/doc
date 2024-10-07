@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # PrecomputedMatrixSystem
 
-Matrix system
+Precomputed matrix system.
 
 
 ## CompressedRowSparseMatrixd

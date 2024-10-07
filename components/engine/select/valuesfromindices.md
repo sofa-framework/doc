@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # ValuesFromIndices
 
-Find the values given a list of indices
+Find the values given a list of indices.
 
 
 Templates:

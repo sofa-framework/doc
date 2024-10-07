@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # Triangle2EdgeTopologicalMapping
 
-Special case of mapping where TriangleSetTopology is converted to EdgeSetTopology
+Topological mapping where TriangleSetTopology is converted to EdgeSetTopology
 
 
 __Target__: Sofa.Component.Topology.Mapping

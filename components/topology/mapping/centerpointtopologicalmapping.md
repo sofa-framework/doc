@@ -1,6 +1,7 @@
 <!-- generate_doc -->
 # CenterPointTopologicalMapping
 
+Topological mapping where each primitive in the input topology will be mapped to a point in the output topology.
 
 
 __Target__: Sofa.Component.Topology.Mapping

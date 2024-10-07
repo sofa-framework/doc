@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # MeshSampler
 
-Select uniformly distributed points on a mesh based on Euclidean or Geodesic distance measure
+Select uniformly distributed points on a mesh based on Euclidean or Geodesic distance measure.
 
 
 ## Vec3d

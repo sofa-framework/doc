@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # EigenSparseQR
 
-Direct Linear Solver using a Sparse QR factorization.
+Direct linear solver using a Sparse QR factorization.
 
 
 ## CompressedRowSparseMatrixMat3x3d

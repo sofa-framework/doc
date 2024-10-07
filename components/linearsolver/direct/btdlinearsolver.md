@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # BTDLinearSolver
 
-Linear system solver using Thomas Algorithm for Block Tridiagonal matrices
+Linear system solver using Thomas Algorithm for Block Tridiagonal matrices.
 
 
 ## BTDMatrix6d

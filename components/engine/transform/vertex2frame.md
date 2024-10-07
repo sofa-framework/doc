@@ -1,6 +1,7 @@
 <!-- generate_doc -->
 # Vertex2Frame
 
+Return a rigid position from the vertices, texCoords, normals and facets of any mesh.
 
 
 ## Rigid3d

@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # TriangleSetTopologyModifier
 
-Triangle set topology modifier
+Topology modifier dedicated to a triangular topology.
 
 
 __Target__: Sofa.Component.Topology.Container.Dynamic

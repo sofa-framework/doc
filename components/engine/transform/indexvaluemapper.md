@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # IndexValueMapper
 
-Input values to output values mapper. Includes indices rules, such as replacement, resize
+Input values to output values mapper. Includes indices rules, such as replacement, resize.
 
 
 ## Vec3d

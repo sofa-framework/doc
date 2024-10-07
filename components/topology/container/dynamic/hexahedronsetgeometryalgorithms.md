@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # HexahedronSetGeometryAlgorithms
 
-Hexahedron set geometry algorithms
+Geometry algorithms dedicated to an hexahedral topology.
 
 
 Templates:

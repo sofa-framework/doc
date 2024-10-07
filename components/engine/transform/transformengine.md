@@ -9,7 +9,7 @@ This component belongs to the category of [Engines](../../../../simulation-princ
 <!-- automatically generated doc START -->
 <!-- generate_doc -->
 
-Transform position of 3d points
+Engine applying a transformation on 3d points (translation / rotation).
 
 
 Templates:

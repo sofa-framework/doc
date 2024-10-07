@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # GenerateSphere
 
-Generate a sphereical (Bezier) Tetrahedral and Triangular Mesh
+Engine generating a spherical (Bezier) tetrahedral and triangular mesh.
 
 
 ## Vec3d

@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # CubeTopology
 
-Surface of a cube in 3D
+Surface topology of a cube in 3D (points, edges and quads).
 
 
 __Target__: Sofa.Component.Topology.Container.Constant

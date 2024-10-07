@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # SphereROI
 
-Find the primitives (vertex/edge/triangle/tetrahedron) inside a given sphere
+Engine selecting the primitives (vertex/edge/triangle/tetrahedron) inside a given sphere.
 
 
 Templates:

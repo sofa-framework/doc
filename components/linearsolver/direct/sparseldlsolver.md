@@ -62,7 +62,7 @@ As a direct solver, the SparseLDLSolver might be extremely time consuming for la
 <!-- automatically generated doc START -->
 <!-- generate_doc -->
 
-Direct Linear Solver using a Sparse LDL^T factorization.
+Direct linear solver using a Sparse LDL^T factorization.
 
 
 ## CompressedRowSparseMatrixMat3x3d

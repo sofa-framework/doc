@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # ValuesFromPositions
 
-Assign values to primitives (vertex/edge/triangle/tetrahedron) based on a linear interpolation of values along a direction
+Assign values to primitives (vertex/edge/triangle/tetrahedron) based on a linear interpolation of values along a direction.
 
 
 Templates:

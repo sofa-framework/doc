@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # TriangleSetGeometryAlgorithms
 
-Triangle set geometry algorithms
+Geometry algorithms dedicated to a triangular topology.
 
 
 Templates:

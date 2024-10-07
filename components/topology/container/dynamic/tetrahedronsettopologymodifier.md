@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # TetrahedronSetTopologyModifier
 
-Tetrahedron set topology modifier
+Topology modifier dedicated to a tetrahedral topology.
 
 
 __Target__: Sofa.Component.Topology.Container.Dynamic

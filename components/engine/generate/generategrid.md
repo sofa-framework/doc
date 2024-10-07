@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # GenerateGrid
 
-Generate a Grid Tetrahedral or Hexahedral Mesh
+Engine generating a grid tetrahedral or hexahedral mesh.
 
 
 Templates:

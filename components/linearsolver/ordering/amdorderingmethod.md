@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # AMDOrderingMethod
 
-Approximate minimum degree ordering implemented in the Eigen library
+Approximate minimum degree ordering implemented in the Eigen library.
 
 
 __Target__: Sofa.Component.LinearSolver.Ordering

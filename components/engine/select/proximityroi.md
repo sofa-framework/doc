@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # ProximityROI
 
-Find the N closest primitives from a given position
+Find the N closest primitives from a given position.
 
 
 ## Vec3d

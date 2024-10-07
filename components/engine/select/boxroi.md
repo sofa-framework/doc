@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # BoxROI
 
-Find the primitives (vertex/edge/triangle/quad/tetrahedron/hexahedron) inside given boxes
+Engine selecting the any primitives (vertex/edge/triangle/quad/tetrahedron/hexahedron) inside given boxes.
 
 
 Templates:

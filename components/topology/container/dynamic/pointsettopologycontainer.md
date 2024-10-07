@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # PointSetTopologyContainer
 
-Point set topology container
+Topology container dedicated to a point topology.
 
 
 __Target__: Sofa.Component.Topology.Container.Dynamic

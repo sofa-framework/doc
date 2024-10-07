@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # EdgeSetTopologyContainer
 
-Edge set topology container
+Topology container for an edge topology.
 
 
 __Target__: Sofa.Component.Topology.Container.Dynamic

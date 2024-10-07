@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # PlaneROI
 
-Find the primitives inside a given plane
+Find the primitives inside a given plane.
 
 
 Templates:

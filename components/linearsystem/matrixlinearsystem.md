@@ -1,8 +1,8 @@
 <!-- generate_doc -->
 # MatrixLinearSystem
 
-Linear system
 Linear system.
+Linear system dedicated to a Band Tri Diagonal matrix.
 
 
 Templates:

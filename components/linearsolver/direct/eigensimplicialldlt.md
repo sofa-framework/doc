@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # EigenSimplicialLDLT
 
-Direct Linear Solver using a Sparse LDL^T factorization.
+Direct linear solver using a Sparse LDL^T factorization.
 
 
 ## CompressedRowSparseMatrixMat3x3d

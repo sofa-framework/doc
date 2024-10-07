@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # MapIndices
 
-Apply a permutation to a set of indices
+Apply a permutation to a set of indices.
 
 
 Templates:

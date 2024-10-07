@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # MeshSplittingEngine
 
-This class breaks a mesh in multiple parts, based on selected vertices or cells.
+Engine breaking a mesh in multiple parts, based on selected vertices or cells.
 
 
 ## Vec3d

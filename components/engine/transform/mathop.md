@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # MathOp
 
-Apply a math operation to combine several inputs
+Apply a math operation to combine several inputs.
 
 
 Templates:

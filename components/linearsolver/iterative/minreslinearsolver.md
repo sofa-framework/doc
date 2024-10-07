@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # MinResLinearSolver
 
-Linear system solver using the MINRES iterative algorithm
+Linear system solver using the MINRES iterative algorithm.
 
 
 ## CompressedRowSparseMatrixMat2x2d

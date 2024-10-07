@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # RandomPointDistributionInSurface
 
-This class truns on spiral any topological model
+Engine distributing points over a surface randomly.
 
 
 ## Vec3d

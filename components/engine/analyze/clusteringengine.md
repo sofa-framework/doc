@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # ClusteringEngine
 
-Group points into overlapping clusters according to a user defined number of clusters and radius
+Group points into overlapping clusters according to a user defined number of clusters and radius.
 
 
 ## Vec3d

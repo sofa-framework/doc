@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # NearestPointROI
 
-Attach given pair of particles, projecting the positions of the second particles to the first ones
+Attach given pair of particles, projecting the positions of the second particles to the first ones.
 
 
 ## Rigid2d

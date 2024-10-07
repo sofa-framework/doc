@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # PointSetGeometryAlgorithms
 
-Point set geometry algorithms
+Geometry algorithms dedicated to a point topology.
 
 
 Templates:

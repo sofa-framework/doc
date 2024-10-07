@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # Hexa2TetraTopologicalMapping
 
-Special case of mapping where HexahedronSetTopology is converted to TetrahedronSetTopology
+Topological mapping where HexahedronSetTopology is converted to TetrahedronSetTopology
 
 
 __Target__: Sofa.Component.Topology.Mapping

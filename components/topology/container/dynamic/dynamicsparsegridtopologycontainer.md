@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # DynamicSparseGridTopologyContainer
 
-Hexahedron set topology container
+Dynamic sparse grid geometry container.
 
 
 __Target__: Sofa.Component.Topology.Container.Dynamic

@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # MultilevelHexahedronSetTopologyContainer
 
-Hexahedron set topology container
+Multilevel Hexahedron set topology container.
 
 
 __Target__: Sofa.Component.Topology.Container.Dynamic

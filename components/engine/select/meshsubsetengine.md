@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # MeshSubsetEngine
 
-Extract a mesh subset based on selected vertices
+Extract a mesh subset based on selected vertices.
 
 
 ## Vec3d

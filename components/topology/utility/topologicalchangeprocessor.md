@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # TopologicalChangeProcessor
 
-Read topological Changes and process them.
+Read topological changes and process them.
 
 
 __Target__: Sofa.Component.Topology.Utility

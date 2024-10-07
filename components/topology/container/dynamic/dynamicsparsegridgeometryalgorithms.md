@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # DynamicSparseGridGeometryAlgorithms
 
-Hexahedron set geometry algorithms
+Dynamic sparse grid geometry algorithms.
 
 
 Templates:

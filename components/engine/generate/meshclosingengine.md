@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # MeshClosingEngine
 
-Merge several meshes
+Close a given mesh.
 
 
 ## Vec3d

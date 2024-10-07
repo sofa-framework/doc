@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # GroupFilterYoungModulus
 
-This class gives a vector of young modulus according of a list of defined groups
+Engine defining a vector of young modulus according of a list of defined groups.
 
 
 ## Vec3d

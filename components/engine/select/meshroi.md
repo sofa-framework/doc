@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # MeshROI
 
-Find the primitives (vertex/edge/triangle/tetrahedron) inside a given mesh
+Find the primitives (vertex/edge/triangle/tetrahedron) inside a given mesh.
 
 
 Templates:

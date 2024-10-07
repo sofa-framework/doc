@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # ShewchukPCGLinearSolver
 
-Linear system solver using the conjugate gradient iterative algorithm
+Linear system solver using the Shewchuk conjugate gradient iterative algorithm.
 
 
 ## GraphScattered

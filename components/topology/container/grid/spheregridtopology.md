@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # SphereGridTopology
 
-Sphere grid in 3D
+Sphere grid in 3D.
 
 
 __Target__: Sofa.Component.Topology.Container.Grid

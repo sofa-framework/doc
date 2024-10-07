@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # IndicesFromValues
 
-Find the indices of a list of values within a larger set of values
+Engine finding the indices of a list of values within a larger set of values.
 
 
 Templates:

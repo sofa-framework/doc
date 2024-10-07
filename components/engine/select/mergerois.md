@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # MergeROIs
 
-Merge a list of ROIs (vector<Indices>) into a single Data (vector<svector<Indices>>)
+Merge a list of ROIs (vector<Indices>) into a single Data (vector<svector<Indices>>).
 
 
 __Target__: Sofa.Component.Engine.Select

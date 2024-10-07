@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # ScaleTransformMatrixEngine
 
-Compose the input transform (if any) with the given scale transformation
+Compose the input transform (if any) with the given scale transformation.
 
 
 __Target__: Sofa.Component.Engine.Transform

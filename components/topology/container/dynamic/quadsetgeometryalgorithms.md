@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # QuadSetGeometryAlgorithms
 
-Quad set geometry algorithms
+Geometry algorithms dedicated to a quad topology.
 
 
 Templates:

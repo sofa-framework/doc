@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # ExtrudeQuadsAndGenerateHexas
 
-This engine extrudes a quad-based surface into a set of hexahedral elements
+Engine extruding a quad-based surface into a set of hexahedral elements.
 
 
 ## Vec3d

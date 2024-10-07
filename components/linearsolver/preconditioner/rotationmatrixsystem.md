@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # RotationMatrixSystem
 
-Rotation matrix warpping the main linear system
+Rotation matrix warpping the main linear system.
 
 
 ## RotationMatrixd

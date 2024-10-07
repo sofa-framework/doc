@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # MeshBarycentricMapperEngine
 
-This class maps a set of points in a topological model and provide barycentric coordinates
+Engine mapping a set of points in a topological model and provide barycentric coordinates
 
 
 ## Vec3d

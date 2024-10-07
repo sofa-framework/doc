@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # PointsFromIndices
 
-Find the points given a list of indices
+Find the points given a list of indices.
 
 
 ## Vec3d

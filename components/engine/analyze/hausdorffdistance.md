@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # HausdorffDistance
 
-Compute the Hausdorff distance of two point clouds
+Compute the Hausdorff distance of two point clouds.
 
 
 Templates:

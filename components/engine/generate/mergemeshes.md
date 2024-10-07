@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # MergeMeshes
 
-Merge several meshes
+Merge several meshes.
 
 
 Templates:

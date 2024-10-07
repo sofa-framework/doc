@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # GenerateCylinder
 
-Generate a Cylindrical Tetrahedral Mesh
+Engine generating a cylindrical tetrahedral mesh.
 
 
 ## Vec3d

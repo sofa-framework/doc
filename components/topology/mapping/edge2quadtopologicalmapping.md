@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # Edge2QuadTopologicalMapping
 
-Special case of mapping where EdgeSetTopology is converted to QuadSetTopology.
+Topological mapping where EdgeSetTopology is converted to QuadSetTopology.
 
 
 __Target__: Sofa.Component.Topology.Mapping

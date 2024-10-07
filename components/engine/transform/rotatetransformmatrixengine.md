@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # RotateTransformMatrixEngine
 
-Compose the input transform (if any) with the given rotation
+Compose the input transform (if any) with the given rotation.
 
 
 __Target__: Sofa.Component.Engine.Transform

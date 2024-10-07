@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # MergePoints
 
-Merge 2 cordinate vectors
+Merge 2 cordinate vectors.
 
 
 Templates:

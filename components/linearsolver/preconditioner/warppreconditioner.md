@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # WarpPreconditioner
 
-Linear system solver wrapping another (precomputed) linear solver by a per-node rotation matrix
+Linear system solver wrapping another (precomputed) linear solver by a per-node rotation matrix.
 
 
 ## RotationMatrixd

@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # ProjectiveTransformEngine
 
-Project the position of 3d points onto a plane according to a projection matrix
+Project the position of 3d points onto a plane according to a projection matrix.
 
 
 ## Vec3d

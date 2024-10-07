@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # AverageCoord
 
-Compute the average of coordinates
+Compute the average of coordinates.
 
 
 ## Rigid2d

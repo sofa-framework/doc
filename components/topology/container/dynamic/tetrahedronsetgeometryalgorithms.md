@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # TetrahedronSetGeometryAlgorithms
 
-Tetrahedron set geometry algorithms
+Geometry algorithms dedicated to a tetrahedral topology.
 
 
 Templates:

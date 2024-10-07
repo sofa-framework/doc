@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # EdgeSetGeometryAlgorithms
 
-Edge set geometry algorithms
+Geometry algorithms dedicated to an edge topology.
 
 
 Templates:

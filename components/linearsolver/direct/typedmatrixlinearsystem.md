@@ -1,30 +1,22 @@
 <!-- generate_doc -->
-# MergeVectors
+# TypedMatrixLinearSystem
 
-Apply a merge operation to combine several inputs.
+Linear system dedicated to a Band Tri Diagonal typed matrix.
 
+
+## BTDMatrix6d
 
 Templates:
 
-- vector<RigidCoord2d>
-- vector<RigidCoord3d>
-- vector<RigidDeriv2d>
-- vector<RigidDeriv3d>
-- vector<Vec2I>
-- vector<Vec2d>
-- vector<Vec3d>
-- vector<Vec4d>
-- vector<bool>
-- vector<d>
-- vector<i>
+- BTDMatrix6d
 
-__Target__: Sofa.Component.Engine.Generate
+__Target__: Sofa.Component.LinearSolver.Direct
 
-__namespace__: sofa::component::engine::generate
+__namespace__: sofa::component::linearsystem
 
 __parents__:
 
-- DataEngine
+- BaseMatrixLinearSystem
 
 ### Data
 
@@ -80,16 +72,9 @@ if true, handle the events, otherwise ignore the events
 		<td>0</td>
 	</tr>
 	<tr>
-		<td>nbInputs</td>
+		<td>matrixSize</td>
 		<td>
-Number of input vectors
-		</td>
-		<td>2</td>
-	</tr>
-	<tr>
-		<td>output</td>
-		<td>
-Output vector
+Size of the global matrix
 		</td>
 		<td></td>
 	</tr>

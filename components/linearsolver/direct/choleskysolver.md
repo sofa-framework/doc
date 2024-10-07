@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # CholeskySolver
 
-Direct linear solver based on Cholesky factorization, for dense matrices
+Direct linear solver based on Cholesky factorization, for dense matrices.
 
 
 ## FullMatrix

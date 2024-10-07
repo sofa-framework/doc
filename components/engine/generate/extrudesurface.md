@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # ExtrudeSurface
 
-This class truns on spiral any topological model
+Engine creating a mesh from the extrusion of the surface of a given mesh.
 
 
 ## Vec3d

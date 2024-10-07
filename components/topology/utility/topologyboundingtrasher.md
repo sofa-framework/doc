@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # TopologyBoundingTrasher
 
-A class to remove all elements going outside from the given Bounding Box.
+Component removing all elements going outside from the given bounding box.
 
 
 ## Vec3d

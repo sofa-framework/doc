@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # SubsetTopologicalMapping
 
-This class is a specific implementation of TopologicalMapping where the destination topology is a subset of the source topology. The implementation currently assumes that both topologies have been initialized correctly.
+TopologicalMapping where the destination topology is a subset of the source topology. The implementation currently assumes that both topologies have been initialized correctly.
 
 
 __Target__: Sofa.Component.Topology.Mapping

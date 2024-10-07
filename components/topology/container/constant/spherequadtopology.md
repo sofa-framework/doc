@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # SphereQuadTopology
 
-Sphere topology constructed with deformed quads
+Sphere topology constructed with deformed quads.
 
 
 __Target__: Sofa.Component.Topology.Container.Constant

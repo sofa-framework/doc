@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # ExtrudeEdgesAndGenerateQuads
 
-This engine extrudes an edge-based curve into a quad surface patch
+Engine extruding an edge-based curve into a quad surface patch.
 
 
 ## Vec3d

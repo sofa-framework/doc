@@ -12,7 +12,7 @@ This component belongs to the category of [Engines](../../../../simulation-princ
 <!-- automatically generated doc START -->
 <!-- generate_doc -->
 
-Transform position of 3d points
+Transform position of 3d points.
 
 
 ## Vec3d

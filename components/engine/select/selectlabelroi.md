@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # SelectLabelROI
 
-Select a subset of labeled points or cells stored in (vector<svector<label>>) given certain labels
+Select a subset of labeled points or cells stored in (vector<svector<label>>) given certain labels.
 
 
 Templates:

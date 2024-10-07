@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # TranslateTransformMatrixEngine
 
-Compose the input transform (if any) with the given translation
+Compose the input transform (if any) with the given translation.
 
 
 __Target__: Sofa.Component.Engine.Transform

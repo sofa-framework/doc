@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # SumEngine
 
-Computing the Sum between two vector of dofs
+Computing the sum between two vector of dofs.
 
 
 Templates:
