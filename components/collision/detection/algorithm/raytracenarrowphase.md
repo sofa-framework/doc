@@ -37,7 +37,7 @@ Colliding objects must have a TriangleOctreeModel:
 ```<!-- automatically generated doc START -->
 <!-- generate_doc -->
 
-Collision detection using TriangleOctreeModel
+Narrow phase of the collision detection using TriangleOctreeModel
 
 
 __Target__: Sofa.Component.Collision.Detection.Algorithm

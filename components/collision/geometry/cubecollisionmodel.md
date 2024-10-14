@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # CubeCollisionModel
 
-Collision model representing a cube
+Collision model representing a cube.
 
 
 __Target__: Sofa.Component.Collision.Geometry

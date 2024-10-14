@@ -1,7 +1,7 @@
 <!-- generate_doc -->
-# TriangularAnisotropicFEMForceField
+# NonUniformHexahedralFEMForceFieldAndMass
 
-Triangular finite element model using anisotropic material.
+Non uniform Hexahedral finite elements.
 
 
 ## Vec3d
@@ -10,13 +10,13 @@ Templates:
 
 - Vec3d
 
-__Target__: Sofa.Component.SolidMechanics.FEM.Elastic
+__Target__: Sofa.Component.SolidMechanics.FEM.NonUniform
 
-__namespace__: sofa::component::solidmechanics::fem::elastic
+__namespace__: sofa::component::solidmechanics::fem::nonuniform
 
 __parents__:
 
-- TriangularFEMForceField
+- HexahedralFEMForceFieldAndMass
 
 ### Data
 
@@ -79,6 +79,20 @@ Rayleigh damping - stiffness matrix coefficient
 		<td>0</td>
 	</tr>
 	<tr>
+		<td>separateGravity</td>
+		<td>
+add separately gravity to velocity computation
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>rayleighMass</td>
+		<td>
+Rayleigh damping - mass matrix coefficient
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
 		<td>poissonRatio</td>
 		<td>
 FEM Poisson Ratio in Hooke's law [0,0.5[
@@ -93,117 +107,72 @@ FEM Young's Modulus in Hooke's law
 		<td>5000</td>
 	</tr>
 	<tr>
-		<td>triangleInfo</td>
-		<td>
-Internal triangle data
-		</td>
-		<td></td>
-	</tr>
-	<tr>
-		<td>vertexInfo</td>
-		<td>
-Internal point data
-		</td>
-		<td></td>
-	</tr>
-	<tr>
 		<td>method</td>
 		<td>
-large: large displacements, small: small displacements
+"large" or "polar" displacements
 		</td>
 		<td>large</td>
 	</tr>
 	<tr>
-		<td>rotatedInitialElements</td>
+		<td>hexahedronInfo</td>
 		<td>
-Flag activating rendering of stress directions within each triangle
+Internal hexahedron data
 		</td>
 		<td></td>
 	</tr>
 	<tr>
-		<td>initialTransformation</td>
+		<td>density</td>
 		<td>
-Flag activating rendering of stress directions within each triangle
-		</td>
-		<td></td>
-	</tr>
-	<tr>
-		<td>hosfordExponant</td>
-		<td>
-Exponant in the Hosford yield criteria
+density == volumetric mass in english (kg.m-3)
 		</td>
 		<td>1</td>
 	</tr>
 	<tr>
-		<td>criteriaValue</td>
+		<td>lumpedMass</td>
 		<td>
-Fracturable threshold used to draw fracturable triangles
-		</td>
-		<td>1e+15</td>
-	</tr>
-	<tr>
-		<td>computePrincipalStress</td>
-		<td>
-Compute principal stress for each triangle
+Does it use lumped masses?
 		</td>
 		<td>0</td>
 	</tr>
 	<tr>
-		<td>transverseYoungModulus</td>
+		<td>massMatrices</td>
 		<td>
-transverseYoungModulus
-		</td>
-		<td>1000</td>
-	</tr>
-	<tr>
-		<td>fiberAngle</td>
-		<td>
-Fiber angle in global reference frame (in degrees)
-		</td>
-		<td>0</td>
-	</tr>
-	<tr>
-		<td>fiberCenter</td>
-		<td>
-Concentric fiber center in global reference frame
+Mass matrices per element (M_i)
 		</td>
 		<td></td>
 	</tr>
 	<tr>
-		<td>localFiberDirection</td>
+		<td>totalMass</td>
 		<td>
-Computed fibers direction within each triangle
+Total mass per element
 		</td>
 		<td></td>
 	</tr>
 	<tr>
-		<td colspan="3">Visualization</td>
-	</tr>
-	<tr>
-		<td>showStressValue</td>
+		<td>particleMasses</td>
 		<td>
-Flag activating rendering of stress values as a color in each triangle
+Mass per particle
 		</td>
-		<td>1</td>
+		<td></td>
 	</tr>
 	<tr>
-		<td>showStressVector</td>
+		<td>lumpedMasses</td>
 		<td>
-Flag activating rendering of stress directions within each triangle
+Lumped masses
 		</td>
-		<td>0</td>
+		<td></td>
 	</tr>
 	<tr>
-		<td>showFracturableTriangles</td>
+		<td>recursive</td>
 		<td>
-Flag activating rendering of triangles to fracture
+Use recursive matrix computation
 		</td>
 		<td>0</td>
 	</tr>
 	<tr>
-		<td>showFiber</td>
+		<td>useMBK</td>
 		<td>
-Flag activating rendering of fiber directions within each triangle
+compute MBK and use it in addMBKdx, instead of using addDForce and addMDx.
 		</td>
 		<td>1</td>
 	</tr>

@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # SpringForceField
 
-Springs
+Springs.
 
 
 ## Rigid3d

@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # HexahedronFEMForceFieldAndMass
 
-Hexahedral finite elements with mass
+Hexahedral finite elements with mass.
 
 
 ## Vec3d

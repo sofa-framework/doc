@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # CollisionResponse
 
-Default class to create reactions to the collisions
+Default class to create reactions to the collisions.
 
 
 __Target__: Sofa.Component.Collision.Response.Contact

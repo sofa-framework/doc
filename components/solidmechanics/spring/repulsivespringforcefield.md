@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # RepulsiveSpringForceField
 
-Springs which only repell
+Springs which only repel.
 
 
 ## Vec1d

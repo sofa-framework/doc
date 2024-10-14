@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # HexahedralFEMForceField
 
-Hexahedral finite elements
+Hexahedral finite elements.
 
 
 ## Vec3d

@@ -72,7 +72,7 @@ The following components are all collision pipelines, and can be placed in a sim
 <!-- automatically generated doc START -->
 <!-- generate_doc -->
 
-The default collision detection and modeling pipeline
+The default collision detection and modeling pipeline.
 
 
 __Target__: Sofa.Component.Collision.Detection.Algorithm

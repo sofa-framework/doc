@@ -48,7 +48,7 @@ This component is used as follows in XML format:
 ```<!-- automatically generated doc START -->
 <!-- generate_doc -->
 
-Collision detection using sweep and prune
+Narrow phase of the collision detection using sweep and prune.
 
 
 __Target__: Sofa.Component.Collision.Detection.Algorithm

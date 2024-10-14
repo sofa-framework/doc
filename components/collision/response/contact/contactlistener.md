@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # ContactListener
 
-ContactListener .. 
+Utility component to retrieve information about contacts.
 
 
 __Target__: Sofa.Component.Collision.Response.Contact

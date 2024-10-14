@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # PlasticMaterial
 
-Plastic material
+Plastic material.
 
 
 __Target__: Sofa.Component.SolidMechanics.FEM.HyperElastic

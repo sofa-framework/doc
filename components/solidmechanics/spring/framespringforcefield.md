@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # FrameSpringForceField
 
-Springs for Flexibles
+Springs for Flexibles.
 
 
 ## Rigid3d

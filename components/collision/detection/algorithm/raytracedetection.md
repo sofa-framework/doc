@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # RayTraceDetection
 
-Collision detection using TriangleOctreeModel
+Collision detection using TriangleOctreeModel.
 
 
 __Target__: Sofa.Component.Collision.Detection.Algorithm

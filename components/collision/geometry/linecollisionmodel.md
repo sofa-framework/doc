@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # LineCollisionModel
 
-collision model using a linear mesh, as described in MeshTopology
+Collision model using a linear mesh, as described in MeshTopology.
 
 
 ## Vec3d

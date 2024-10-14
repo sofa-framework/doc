@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # CylinderCollisionModel
 
-Collision model which represents a set of rigid cylinders
+Collision model which represents a set of rigid cylinders.
 
 
 ## Rigid3d

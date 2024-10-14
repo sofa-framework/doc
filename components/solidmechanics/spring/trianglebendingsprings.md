@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # TriangleBendingSprings
 
-Springs added to a traingular mesh to prevent bending
+Springs added to a triangular mesh to prevent bending.
 
 
 ## Vec2d

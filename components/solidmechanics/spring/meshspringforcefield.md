@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # MeshSpringForceField
 
-Spring force field acting along the edges of a mesh
+Spring force field acting along the edges of a mesh.
 
 
 ## Vec1d

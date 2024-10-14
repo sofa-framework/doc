@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # TriangleCollisionModel
 
-collision model using a triangular mesh, as described in BaseMeshTopology
+Collision model using a triangular mesh, as described in BaseMeshTopology.
 
 
 ## Vec3d

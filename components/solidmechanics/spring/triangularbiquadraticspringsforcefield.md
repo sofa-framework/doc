@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # TriangularBiquadraticSpringsForceField
 
-Biquadratic Springs on a Triangular Mesh
+Biquadratic Springs on a Triangular Mesh.
 
 
 ## Vec3d

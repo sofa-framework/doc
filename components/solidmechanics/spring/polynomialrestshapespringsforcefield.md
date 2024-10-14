@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # PolynomialRestShapeSpringsForceField
 
-Simple elastic springs applied to given degrees of freedom between their current and rest shape position
+Simple elastic springs applied to given degrees of freedom between their current and rest shape position.
 
 
 ## Vec3d

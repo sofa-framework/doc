@@ -31,7 +31,7 @@ This component is used as follows in XML format:
 ```<!-- automatically generated doc START -->
 <!-- generate_doc -->
 
-Broad phase collision detection using extensive pair-wise tests
+Broad phase collision detection using extensive pair-wise tests.
 
 
 __Target__: Sofa.Component.Collision.Detection.Algorithm

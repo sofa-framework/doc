@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # GearSpringForceField
 
-Gear springs for Rigids
+Gear springs for Rigids.
 
 
 ## Rigid3d

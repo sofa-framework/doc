@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # BruteForceDetection
 
-Combination of brute force broad phase and BVH narrow phase collision detection
+Combination of brute force broad phase and BVH narrow phase collision detection.
 
 
 __Target__: Sofa.Component.Collision.Detection.Algorithm

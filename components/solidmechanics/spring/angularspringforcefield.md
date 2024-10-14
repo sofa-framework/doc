@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # AngularSpringForceField
 
-Angular springs applied to rotational degrees of freedom of a rigid body or frame
+Angular springs applied to rotational degrees of freedom of a rigid body or frame.
 
 
 ## Rigid3d

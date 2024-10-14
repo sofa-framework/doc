@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # JointSpringForceField
 
-Springs for Rigids
+Springs for Rigids.
 
 
 ## Rigid3d

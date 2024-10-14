@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # SphereCollisionModel
 
-Collision model which represents a set of Spheres
+Collision model which represents a set of Spheres.
 
 
 Templates:

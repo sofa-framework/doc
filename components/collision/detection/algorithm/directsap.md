@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # DirectSAP
 
-Collision detection using sweep and prune
+Collision detection using sweep and prune.
 
 
 __Target__: Sofa.Component.Collision.Detection.Algorithm

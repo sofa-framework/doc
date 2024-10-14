@@ -42,7 +42,7 @@ This component is used as follows in XML format:
 ```<!-- automatically generated doc START -->
 <!-- generate_doc -->
 
-Narrow phase collision detection based on boundary volume hierarchy
+Narrow phase collision detection based on boundary volume hierarchy.
 
 
 __Target__: Sofa.Component.Collision.Detection.Algorithm

@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # BeamFEMForceField
 
-Beam finite elements
+Beam finite elements.
 
 
 ## Rigid3d

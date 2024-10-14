@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # TetrahedronCollisionModel
 
-collision model using a tetrahedral mesh, as described in BaseMeshTopology
+Collision model using a tetrahedral mesh, as described in BaseMeshTopology.
 
 
 __Target__: Sofa.Component.Collision.Geometry

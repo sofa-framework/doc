@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # PenalityContactForceField
 
-Contact using repulsive springs
+Contact using repulsive springs.
 
 
 ## Vec3d

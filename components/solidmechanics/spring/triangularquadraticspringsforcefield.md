@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # TriangularQuadraticSpringsForceField
 
-Quadratic Springs on a Triangular Mesh
+Quadratic Springs on a Triangular Mesh.
 
 
 ## Vec3d

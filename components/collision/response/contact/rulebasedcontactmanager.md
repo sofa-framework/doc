@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # RuleBasedContactManager
 
-Create different response to the collisions based on a set of rules
+Create different response to the collisions based on a set of rules.
 
 
 __Target__: Sofa.Component.Collision.Response.Contact

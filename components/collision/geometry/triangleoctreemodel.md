@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # TriangleOctreeModel
 
-collision model using a triangular mesh mapped to an Octree
+Collision model using a triangular mesh mapped to an Octree.
 
 
 __Target__: Sofa.Component.Collision.Geometry

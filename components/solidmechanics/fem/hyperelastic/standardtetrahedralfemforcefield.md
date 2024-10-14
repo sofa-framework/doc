@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # StandardTetrahedralFEMForceField
 
-Generic Tetrahedral finite elements
+Generic Tetrahedral finite elements.
 
 
 ## Vec3d

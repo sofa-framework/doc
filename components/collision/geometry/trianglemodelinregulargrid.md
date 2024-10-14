@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # TriangleModelInRegularGrid
 
-collision model using a triangular mesh in a regular grid, as described in BaseMeshTopology
+Collision model using a triangular mesh in a regular grid, as described in BaseMeshTopology.
 
 
 __Target__: Sofa.Component.Collision.Geometry

@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # QuadularBendingSprings
 
-Springs added to a quad mesh to prevent bending
+Springs added to a quad mesh to prevent bending.
 
 
 ## Vec3d

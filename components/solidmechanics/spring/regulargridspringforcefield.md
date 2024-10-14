@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # RegularGridSpringForceField
 
-Spring acting on the edges and faces of a regular grid
+Spring acting on the edges and faces of a regular grid.
 
 
 ## Vec1d

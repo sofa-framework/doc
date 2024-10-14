@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # FastTetrahedralCorotationalForceField
 
-Fast Corotational Tetrahedral Mesh
+Fast Corotational Tetrahedral Mesh.
 
 
 ## Vec3d

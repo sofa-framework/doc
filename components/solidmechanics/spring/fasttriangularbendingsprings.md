@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # FastTriangularBendingSprings
 
-Springs added to a triangular mesh to prevent bending
+Springs added to a triangular mesh to prevent bending.
 
 
 ## Vec3d

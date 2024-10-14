@@ -41,7 +41,7 @@ Additional information
 <!-- automatically generated doc START -->
 <!-- generate_doc -->
 
-A set of methods to compute if two primitives are close enough to consider they collide
+A set of methods to compute if two primitives are close enough to consider they collide.
 
 
 __Target__: Sofa.Component.Collision.Detection.Intersection

@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # DiscreteIntersection
 
-TODO-DiscreteIntersectionClass
+Detect intersection using discrete methods.
 
 
 __Target__: Sofa.Component.Collision.Detection.Intersection

@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # PointCollisionModel
 
-Collision model which represents a set of points
+Collision model which represents a set of points.
 
 
 ## Vec3d

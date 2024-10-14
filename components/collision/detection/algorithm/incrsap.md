@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # IncrSAP
 
-Collision detection using incremental sweep and prune
+Collision detection using incremental sweep and prune.
 
 
 __Target__: Sofa.Component.Collision.Detection.Algorithm
