@@ -1013,7 +1013,7 @@ SubsetTopology_subsetbehaviormodel.scn
             <EulerImplicitSolver name="cg_odesolver"  rayleighStiffness="0.1" rayleighMass="0.1" />
             <CGLinearSolver template="GraphScattered" name="default18" iterations="100" tolerance="1e-05" threshold="1e-05"/>
             <MechanicalObject template="Rigid3" name="rigid" position="0 0 0 0 0 0 1" velocity="0 0 0 0 0 0" force="0 0 0 0 0 0" externalForce="0 0 0 0 0 0" derivX="0 0 0 0 0 0" free_position="0 0 0 0 0 0 1" free_velocity="0 0 0 0 0 0" restScale="1" />
-            <UniformMass name="default0" />
+            <UniformMass name="default0" totalMass="1.0"/>
             <Node name="topology" gravity="0 -9.81 0">
                 <MeshGmshLoader name="loader" filename="mesh/truthcylinder1.msh" />
                 <MeshTopology src="@loader" name="meshTopology" />
@@ -1080,7 +1080,7 @@ SubsetTopology_subsetbehaviormodel.scn
        cylinder.addObject('EulerImplicitSolver', name="cg_odesolver", rayleighStiffness="0.1", rayleighMass="0.1")
        cylinder.addObject('CGLinearSolver', template="GraphScattered", name="default18", iterations="100", tolerance="1e-05", threshold="1e-05")
        cylinder.addObject('MechanicalObject', template="Rigid3", name="rigid", position="0 0 0 0 0 0 1", velocity="0 0 0 0 0 0", force="0 0 0 0 0 0", externalForce="0 0 0 0 0 0", derivX="0 0 0 0 0 0", free_position="0 0 0 0 0 0 1", free_velocity="0 0 0 0 0 0", restScale="1")
-       cylinder.addObject('UniformMass', name="default0")
+       cylinder.addObject('UniformMass', name="default0", totalMass="1.0")
 
        topology = Cylinder.addChild('topology', gravity="0 -9.81 0")
 

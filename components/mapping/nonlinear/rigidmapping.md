@@ -559,7 +559,7 @@ RigidMapping-basic.scn
             <CGLinearSolver template="GraphScattered" name="linear solver used by implicit ODE solvers" printLog="0" iterations="25" tolerance="1e-5" threshold="1e-5"/>
             <MechanicalObject template="Rigid3" />
             <PartialFixedProjectiveConstraint fixedDirections="1 1 1 0 0 0" />
-            <UniformMass template="Rigid3" name="mass" />
+            <UniformMass template="Rigid3" name="mass" totalMass="1.0"/>
             <Node name="child node with DOFs mapped from the parent">
                 <MechanicalObject template="Vec3" name="endpoint coordinates" position="1 -0.0 0"  />
                 <RigidMapping name="angle-coord mapping" input="@.." output="@." index="0" />
@@ -594,7 +594,7 @@ RigidMapping-basic.scn
        parent_node_with_independent__do_fs.addObject('CGLinearSolver', template="GraphScattered", name="linear solver used by implicit ODE solvers", printLog="0", iterations="25", tolerance="1e-5", threshold="1e-5")
        parent_node_with_independent__do_fs.addObject('MechanicalObject', template="Rigid3")
        parent_node_with_independent__do_fs.addObject('PartialFixedProjectiveConstraint', fixedDirections="1 1 1 0 0 0")
-       parent_node_with_independent__do_fs.addObject('UniformMass', template="Rigid3", name="mass")
+       parent_node_with_independent__do_fs.addObject('UniformMass', template="Rigid3", name="mass", totalMass="1.0")
 
        child_node_with__do_fs_mapped_from_the_parent = parent node with independent DOFs.addChild('child node with DOFs mapped from the parent')
 
@@ -627,7 +627,7 @@ RigidMapping2d-basic.scn
             <CGLinearSolver template="GraphScattered" name="linear solver used by implicit ODE solvers" printLog="0" iterations="25" tolerance="1e-5" threshold="1e-5"/>
             <MechanicalObject template="Rigid2" />
             <PartialFixedProjectiveConstraint fixedDirections="1 1 0" />
-            <UniformMass template="Rigid2" name="mass" />
+            <UniformMass template="Rigid2" name="mass" totalMass="1.0"/>
             <Node name="child node with DOFs mapped from the parent">
                 <MechanicalObject template="Vec2" name="endpoint coordinates" position="1 0 "  />
                 <RigidMapping template="" name="angle-coord mapping" input="@.." output="@." index="0" />
@@ -662,7 +662,7 @@ RigidMapping2d-basic.scn
        parent_node_with_independent__do_fs.addObject('CGLinearSolver', template="GraphScattered", name="linear solver used by implicit ODE solvers", printLog="0", iterations="25", tolerance="1e-5", threshold="1e-5")
        parent_node_with_independent__do_fs.addObject('MechanicalObject', template="Rigid2")
        parent_node_with_independent__do_fs.addObject('PartialFixedProjectiveConstraint', fixedDirections="1 1 0")
-       parent_node_with_independent__do_fs.addObject('UniformMass', template="Rigid2", name="mass")
+       parent_node_with_independent__do_fs.addObject('UniformMass', template="Rigid2", name="mass", totalMass="1.0")
 
        child_node_with__do_fs_mapped_from_the_parent = parent node with independent DOFs.addChild('child node with DOFs mapped from the parent')
 
@@ -728,7 +728,7 @@ RigidMapping.scn
                 <EulerImplicitSolver />
                 <CGLinearSolver iterations="25" threshold="0.000000000001" tolerance="0.000001" />
                 <MechanicalObject template="Rigid3" dx="5" />
-                <UniformMass />
+                <UniformMass totalMass="1.0"/>
                 <Node name="Visu">
                     <MeshOBJLoader name="meshLoader_4" filename="mesh/torus2.obj" handleSeams="1" />
                     <OglModel name="Visual" src="@meshLoader_4" color="gray" texturename="textures/brushed_metal.bmp" />
@@ -746,7 +746,7 @@ RigidMapping.scn
                 <EulerImplicitSolver />
                 <CGLinearSolver iterations="25" threshold="0.000000000001" tolerance="0.000001" />
                 <MechanicalObject template="Rigid3" dx="7.5" />
-                <UniformMass />
+                <UniformMass totalMass="1.0"/>
                 <Node name="Visu">
                     <MeshOBJLoader name="meshLoader_0" filename="mesh/torus.obj" handleSeams="1" />
                     <OglModel name="Visual" src="@meshLoader_0" color="gray" texturename="textures/brushed_metal.bmp" />
@@ -764,7 +764,7 @@ RigidMapping.scn
                 <EulerImplicitSolver />
                 <CGLinearSolver iterations="25" threshold="0.000000000001" tolerance="0.000001" />
                 <MechanicalObject template="Rigid3" dx="10" />
-                <UniformMass />
+                <UniformMass totalMass="1.0"/>
                 <Node name="Visu">
                     <MeshOBJLoader name="meshLoader_1" filename="mesh/torus2.obj" handleSeams="1" />
                     <OglModel name="Visual" src="@meshLoader_1" color="gray" texturename="textures/brushed_metal.bmp" />
@@ -846,7 +846,7 @@ RigidMapping.scn
        torus_rigid2.addObject('EulerImplicitSolver', )
        torus_rigid2.addObject('CGLinearSolver', iterations="25", threshold="0.000000000001", tolerance="0.000001")
        torus_rigid2.addObject('MechanicalObject', template="Rigid3", dx="5")
-       torus_rigid2.addObject('UniformMass', )
+       torus_rigid2.addObject('UniformMass', totalMass="1.0")
 
        visu = TorusRigid2.addChild('Visu')
 
@@ -867,7 +867,7 @@ RigidMapping.scn
        torus_rigid3.addObject('EulerImplicitSolver', )
        torus_rigid3.addObject('CGLinearSolver', iterations="25", threshold="0.000000000001", tolerance="0.000001")
        torus_rigid3.addObject('MechanicalObject', template="Rigid3", dx="7.5")
-       torus_rigid3.addObject('UniformMass', )
+       torus_rigid3.addObject('UniformMass', totalMass="1.0")
 
        visu = TorusRigid3.addChild('Visu')
 
@@ -888,7 +888,7 @@ RigidMapping.scn
        torus_rigid4.addObject('EulerImplicitSolver', )
        torus_rigid4.addObject('CGLinearSolver', iterations="25", threshold="0.000000000001", tolerance="0.000001")
        torus_rigid4.addObject('MechanicalObject', template="Rigid3", dx="10")
-       torus_rigid4.addObject('UniformMass', )
+       torus_rigid4.addObject('UniformMass', totalMass="1.0")
 
        visu = TorusRigid4.addChild('Visu')
 

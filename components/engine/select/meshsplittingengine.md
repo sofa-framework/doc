@@ -191,7 +191,7 @@ MeshSplittingEngine.scn
                 <CGLinearSolver iterations="50" threshold="1e-15" tolerance="1e-15" printLog="0" />
                 
                 <MechanicalObject name="rigidframe" template="Rigid3" position="1 0 1 0 0 0 1" />
-                <UniformMass  />
+                <UniformMass totalMass="1.0"/>
                 <FixedProjectiveConstraint indices="0"/>
                 
                 <Node name="rigidmapped points">
@@ -258,7 +258,7 @@ MeshSplittingEngine.scn
        rigid.addObject('EulerImplicitSolver', rayleighStiffness="0.1", rayleighMass="0.1")
        rigid.addObject('CGLinearSolver', iterations="50", threshold="1e-15", tolerance="1e-15", printLog="0")
        rigid.addObject('MechanicalObject', name="rigidframe", template="Rigid3", position="1 0 1 0 0 0 1")
-       rigid.addObject('UniformMass', )
+       rigid.addObject('UniformMass', totalMass="1.0")
        rigid.addObject('FixedProjectiveConstraint', indices="0")
 
        rigidmapped_points = rigid.addChild('rigidmapped points')

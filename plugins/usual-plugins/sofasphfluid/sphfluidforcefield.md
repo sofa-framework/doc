@@ -193,7 +193,7 @@ SPHFluidForceFieldCUDA.scn
     			ymin="-3" ymax="12"
     			zmin="-1.5" zmax="0"
     		/>
-    		<UniformMass name="M1" mass="1" />
+    		<UniformMass name="M1" vertexMass="1" />
     		<SpatialGridContainer cellWidth="1.5" />
     		<SPHFluidForceField radius="0.75" density="15" viscosity="10" pressure="1000" surfaceTension="-1000" />
     		<!-- The following force fields handle collision with walls and an inclined floor -->
@@ -228,7 +228,7 @@ SPHFluidForceFieldCUDA.scn
        node.addObject('RungeKutta4Solver', )
        node.addObject('MechanicalObject', name="MModel", template="CudaVec3f")
        node.addObject('RegularGridTopology', nx="5", ny="40", nz="5", xmin="-1.5", xmax="0", ymin="-3", ymax="12", zmin="-1.5", zmax="0")
-       node.addObject('UniformMass', name="M1", mass="1")
+       node.addObject('UniformMass', name="M1", vertexMass="1")
        node.addObject('SpatialGridContainer', cellWidth="1.5")
        node.addObject('SPHFluidForceField', radius="0.75", density="15", viscosity="10", pressure="1000", surfaceTension="-1000")
        node.addObject('PlaneForceField', normal="1 0 0", d="-4")

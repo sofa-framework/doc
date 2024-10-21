@@ -144,7 +144,7 @@ TrailRenderer.scn
         <MechanicalObject template="Vec3" name="particle"
                           position="0 0 0  0 0 0  0 0 0  0 0 0"
                           velocity="5 5 0  -5 5 0  7 7 0  -7 7 0" showObject="true" showObjectScale="10"/>
-        <UniformMass/>
+        <UniformMass totalMass="1.0"/>
         <TrailRenderer template="Vec3" position="@particle.position" nbSteps="200"/>
     </Node>
 
@@ -170,7 +170,7 @@ TrailRenderer.scn
        root.addObject('DefaultAnimationLoop', )
        root.addObject('EulerExplicitSolver', )
        root.addObject('MechanicalObject', template="Vec3", name="particle", position="0 0 0  0 0 0  0 0 0  0 0 0", velocity="5 5 0  -5 5 0  7 7 0  -7 7 0", showObject="true", showObjectScale="10")
-       root.addObject('UniformMass', )
+       root.addObject('UniformMass', totalMass="1.0")
        root.addObject('TrailRenderer', template="Vec3", position="@particle.position", nbSteps="200")
     ```
 

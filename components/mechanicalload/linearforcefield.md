@@ -657,7 +657,7 @@ LinearForceField.scn
             <EulerExplicitSolver />
             <CGLinearSolver iterations="25" threshold="0.00000001" tolerance="1e-5"/>
             <MechanicalObject template="Rigid3" dx="2" dy="0" dz="0" rx="0" ry="0" rz="0" scale="1.0" />
-            <UniformMass />
+            <UniformMass totalMass="1.0"/>
             <!-- forces for a rigid is composed of two parts translation of the rigid dof [x y z] and a quaternion for the rotation [x y z w] -->
             <LinearForceField points="0" forces="0 0 0 0 0 0  1 0 0 0 0 0  -1 0 0 0 0 0  -1 0 0 0 0 0  0 0 0 0 0 0" force="2.0" times="0 4 8 10 12" />
             <Node name="Visu">
@@ -670,7 +670,7 @@ LinearForceField.scn
             <EulerExplicitSolver />
             <CGLinearSolver iterations="25" threshold="0.00000001" tolerance="1e-5"/>
             <MechanicalObject template="Rigid3" dx="2" dy="2" dz="0" rx="0" ry="0" rz="0" scale="1.0" />
-            <UniformMass />
+            <UniformMass totalMass="1.0"/>
             <!-- forces for a rigid is composed of two parts translation of the rigid dof [x y z] and a quaternion for the rotation [x y z w] -->
             <LinearForceField points="0" forces="0 0 0 0 0 0  0 1 0 0 0 0  0 -1 0 0 0 0  0 -1 0 0 0 0  0 0 0 0 0 0" force="2.0" times="0 4 8 10 12" />
             <Node name="Visu">
@@ -707,7 +707,7 @@ LinearForceField.scn
        torus_rigid_x.addObject('EulerExplicitSolver', )
        torus_rigid_x.addObject('CGLinearSolver', iterations="25", threshold="0.00000001", tolerance="1e-5")
        torus_rigid_x.addObject('MechanicalObject', template="Rigid3", dx="2", dy="0", dz="0", rx="0", ry="0", rz="0", scale="1.0")
-       torus_rigid_x.addObject('UniformMass', )
+       torus_rigid_x.addObject('UniformMass', totalMass="1.0")
        torus_rigid_x.addObject('LinearForceField', points="0", forces="0 0 0 0 0 0  1 0 0 0 0 0  -1 0 0 0 0 0  -1 0 0 0 0 0  0 0 0 0 0 0", force="2.0", times="0 4 8 10 12")
 
        visu = TorusRigidX.addChild('Visu')
@@ -721,7 +721,7 @@ LinearForceField.scn
        torus_rigid_y.addObject('EulerExplicitSolver', )
        torus_rigid_y.addObject('CGLinearSolver', iterations="25", threshold="0.00000001", tolerance="1e-5")
        torus_rigid_y.addObject('MechanicalObject', template="Rigid3", dx="2", dy="2", dz="0", rx="0", ry="0", rz="0", scale="1.0")
-       torus_rigid_y.addObject('UniformMass', )
+       torus_rigid_y.addObject('UniformMass', totalMass="1.0")
        torus_rigid_y.addObject('LinearForceField', points="0", forces="0 0 0 0 0 0  0 1 0 0 0 0  0 -1 0 0 0 0  0 -1 0 0 0 0  0 0 0 0 0 0", force="2.0", times="0 4 8 10 12")
 
        visu = TorusRigidY.addChild('Visu')

@@ -162,7 +162,7 @@ MultiStepAnimationLoop.scn
                 <EulerImplicitSolver  rayleighStiffness="0.1" rayleighMass="0.1" />
                 <CGLinearSolver iterations="25" threshold="0.000000000001" tolerance="0.000001" />
                 <MechanicalObject template="Rigid3" dx="2.5" />
-                <UniformMass />
+                <UniformMass totalMass="1.0"/>
                 <Node name="Visu">
                     <MeshOBJLoader name="meshLoader_3" filename="mesh/torus.obj" handleSeams="1" />
                     <OglModel name="Visual" src="@meshLoader_3" color="gray" />
@@ -180,7 +180,7 @@ MultiStepAnimationLoop.scn
                 <EulerImplicitSolver />
                 <CGLinearSolver iterations="25" threshold="0.000000000001" tolerance="0.000001" />
                 <MechanicalObject template="Rigid3" dx="5" />
-                <UniformMass />
+                <UniformMass totalMass="1.0"/>
                 <Node name="Visu">
                     <MeshOBJLoader name="meshLoader_0" filename="mesh/torus2.obj" handleSeams="1" />
                     <OglModel name="Visual" src="@meshLoader_0" color="gray" />
@@ -198,7 +198,7 @@ MultiStepAnimationLoop.scn
                 <EulerImplicitSolver />
                 <CGLinearSolver iterations="25" threshold="0.000000000001" tolerance="0.000001" />
                 <MechanicalObject template="Rigid3" dx="7.5" />
-                <UniformMass />
+                <UniformMass totalMass="1.0"/>
                 <Node name="Visu">
                     <MeshOBJLoader name="meshLoader_1" filename="mesh/torus.obj" handleSeams="1" />
                     <OglModel name="Visual" src="@meshLoader_1" color="gray" />
@@ -216,7 +216,7 @@ MultiStepAnimationLoop.scn
                 <EulerImplicitSolver />
                 <CGLinearSolver iterations="25" threshold="0.000000000001" tolerance="0.000001" />
                 <MechanicalObject template="Rigid3" dx="10" />
-                <UniformMass />
+                <UniformMass totalMass="1.0"/>
                 <Node name="Visu">
                     <MeshOBJLoader name="meshLoader_2" filename="mesh/torus2.obj" handleSeams="1" />
                     <OglModel name="Visual" src="@meshLoader_2" color="gray" />
@@ -278,7 +278,7 @@ MultiStepAnimationLoop.scn
        torus_rigid_1.addObject('EulerImplicitSolver', rayleighStiffness="0.1", rayleighMass="0.1")
        torus_rigid_1.addObject('CGLinearSolver', iterations="25", threshold="0.000000000001", tolerance="0.000001")
        torus_rigid_1.addObject('MechanicalObject', template="Rigid3", dx="2.5")
-       torus_rigid_1.addObject('UniformMass', )
+       torus_rigid_1.addObject('UniformMass', totalMass="1.0")
 
        visu = TorusRigid-1.addChild('Visu')
 
@@ -299,7 +299,7 @@ MultiStepAnimationLoop.scn
        torus_rigid_2.addObject('EulerImplicitSolver', )
        torus_rigid_2.addObject('CGLinearSolver', iterations="25", threshold="0.000000000001", tolerance="0.000001")
        torus_rigid_2.addObject('MechanicalObject', template="Rigid3", dx="5")
-       torus_rigid_2.addObject('UniformMass', )
+       torus_rigid_2.addObject('UniformMass', totalMass="1.0")
 
        visu = TorusRigid-2.addChild('Visu')
 
@@ -320,7 +320,7 @@ MultiStepAnimationLoop.scn
        torus_rigid_3.addObject('EulerImplicitSolver', )
        torus_rigid_3.addObject('CGLinearSolver', iterations="25", threshold="0.000000000001", tolerance="0.000001")
        torus_rigid_3.addObject('MechanicalObject', template="Rigid3", dx="7.5")
-       torus_rigid_3.addObject('UniformMass', )
+       torus_rigid_3.addObject('UniformMass', totalMass="1.0")
 
        visu = TorusRigid-3.addChild('Visu')
 
@@ -341,7 +341,7 @@ MultiStepAnimationLoop.scn
        torus_rigid_4.addObject('EulerImplicitSolver', )
        torus_rigid_4.addObject('CGLinearSolver', iterations="25", threshold="0.000000000001", tolerance="0.000001")
        torus_rigid_4.addObject('MechanicalObject', template="Rigid3", dx="10")
-       torus_rigid_4.addObject('UniformMass', )
+       torus_rigid_4.addObject('UniformMass', totalMass="1.0")
 
        visu = TorusRigid-4.addChild('Visu')
 

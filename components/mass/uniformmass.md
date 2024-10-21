@@ -1229,6 +1229,7 @@ UniformMass.scn
         <RequiredPlugin name="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
         <RequiredPlugin name="Sofa.Component.Topology.Container.Dynamic"/> <!-- Needed to use components [TetrahedronSetGeometryAlgorithms TetrahedronSetTopologyContainer] -->
         <RequiredPlugin name="Sofa.GL.Component.Rendering3D"/> <!-- Needed to use components [OglModel] -->
+        <RequiredPlugin name="Sofa.Component.Visual"/> 
     
         <CollisionPipeline verbose="0" name="CollisionPipeline" />
         <BruteForceBroadPhase/>
@@ -1236,6 +1237,8 @@ UniformMass.scn
         <CollisionResponse response="PenalityContactForceField" name="collision response" />
         <DiscreteIntersection />
         <DefaultAnimationLoop/>
+    
+        <InteractiveCamera position="-2 2.6 17.9" orientation="0 0 0 1" distance="17.9" />
     
         <MeshGmshLoader name="loader" filename="mesh/liver.msh" />
         <MeshOBJLoader name="meshLoader_0" filename="mesh/liver-smooth.obj" handleSeams="1" />
@@ -1247,7 +1250,7 @@ UniformMass.scn
             <!-- Container for the tetrahedra-->
             <TetrahedronSetTopologyContainer name="TetraTopo" src="@../loader" />
             <TetrahedronSetGeometryAlgorithms name="GeomAlgo" />
-            <UniformMass totalMass="60"  name="uniformlyConstantMass" />
+            <UniformMass totalMass="60" name="uniformlyConstantMass" printLog="1"/>
             <TetrahedralCorotationalFEMForceField template="Vec3" name="FEM" method="large" poissonRatio="0.45" youngModulus="5000" />
             <FixedProjectiveConstraint name="FixedProjectiveConstraint" indices="3 39 64" />
             
@@ -1287,12 +1290,14 @@ UniformMass.scn
        root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
        root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Dynamic")
        root.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Visual")
        root.addObject('CollisionPipeline', verbose="0", name="CollisionPipeline")
        root.addObject('BruteForceBroadPhase', )
        root.addObject('BVHNarrowPhase', )
        root.addObject('CollisionResponse', response="PenalityContactForceField", name="collision response")
        root.addObject('DiscreteIntersection', )
        root.addObject('DefaultAnimationLoop', )
+       root.addObject('InteractiveCamera', position="-2 2.6 17.9", orientation="0 0 0 1", distance="17.9")
        root.addObject('MeshGmshLoader', name="loader", filename="mesh/liver.msh")
        root.addObject('MeshOBJLoader', name="meshLoader_0", filename="mesh/liver-smooth.obj", handleSeams="1")
 
@@ -1303,7 +1308,7 @@ UniformMass.scn
        liver.addObject('MechanicalObject', name="dofs", src="@../loader")
        liver.addObject('TetrahedronSetTopologyContainer', name="TetraTopo", src="@../loader")
        liver.addObject('TetrahedronSetGeometryAlgorithms', name="GeomAlgo")
-       liver.addObject('UniformMass', totalMass="60", name="uniformlyConstantMass")
+       liver.addObject('UniformMass', totalMass="60", name="uniformlyConstantMass", printLog="1")
        liver.addObject('TetrahedralCorotationalFEMForceField', template="Vec3", name="FEM", method="large", poissonRatio="0.45", youngModulus="5000")
        liver.addObject('FixedProjectiveConstraint', name="FixedProjectiveConstraint", indices="3 39 64")
 

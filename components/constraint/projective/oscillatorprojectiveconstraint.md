@@ -348,13 +348,13 @@ OscillatorProjectiveConstraint_rigid.scn
     
         <Node name="Point Oscillator"  >
             <MechanicalObject template="Vec3" name="mech" position="0 0 0"  velocity="1 0 0"  force="1 0 0" externalForce="1 0 0" derivX="1 0 0"  restScale="1" />
-            <UniformMass name="m" />
+            <UniformMass name="m" totalMass="1.0"/>
             <OscillatorProjectiveConstraint template="Vec3" name="osc"  oscillators="0  1 1 1  1 0 0  1 5" />
         </Node>
     
         <Node name="Rigid Oscillator" >
             <MechanicalObject template="Rigid3" name="mech2" position="0 0 0 0 0 0 1"  velocity="0 0 0 0 0 0" />
-            <UniformMass name="m2" />
+            <UniformMass name="m2" totalMass="1.0"/>
             <OscillatorProjectiveConstraint template="Rigid3" name="osc2" oscillators="0  1 1 0 0 0 0 1   0 1 1 0 0.707 0.707  1 5" />
         </Node>
     
@@ -381,13 +381,13 @@ OscillatorProjectiveConstraint_rigid.scn
        point__oscillator = Root.addChild('Point Oscillator')
 
        point__oscillator.addObject('MechanicalObject', template="Vec3", name="mech", position="0 0 0", velocity="1 0 0", force="1 0 0", externalForce="1 0 0", derivX="1 0 0", restScale="1")
-       point__oscillator.addObject('UniformMass', name="m")
+       point__oscillator.addObject('UniformMass', name="m", totalMass="1.0")
        point__oscillator.addObject('OscillatorProjectiveConstraint', template="Vec3", name="osc", oscillators="0  1 1 1  1 0 0  1 5")
 
        rigid__oscillator = Root.addChild('Rigid Oscillator')
 
        rigid__oscillator.addObject('MechanicalObject', template="Rigid3", name="mech2", position="0 0 0 0 0 0 1", velocity="0 0 0 0 0 0")
-       rigid__oscillator.addObject('UniformMass', name="m2")
+       rigid__oscillator.addObject('UniformMass', name="m2", totalMass="1.0")
        rigid__oscillator.addObject('OscillatorProjectiveConstraint', template="Rigid3", name="osc2", oscillators="0  1 1 0 0 0 0 1   0 1 1 0 0.707 0.707  1 5")
     ```
 

@@ -898,7 +898,7 @@ ConstantForceField.scn
             <EulerImplicitSolver rayleighStiffness="0.01" />
             <CGLinearSolver iterations="25" threshold="0.00000001" tolerance="1e-5"/>
             <MechanicalObject template="Rigid3" dx="2" dy="0" dz="0" rx="0" ry="0" rz="0" scale="1.0" />
-            <UniformMass />
+            <UniformMass totalMass="1.0"/>
             <!-- forces for a rigid is composed of two parts translation of the rigid dof [x y z] and a quaternion for the rotation [x y z w] -->
             <ConstantForceField indices="0" forces="0 0.10 0     0 1 0" />
             <Node name="Visu">
@@ -954,7 +954,7 @@ ConstantForceField.scn
        torus_rigid.addObject('EulerImplicitSolver', rayleighStiffness="0.01")
        torus_rigid.addObject('CGLinearSolver', iterations="25", threshold="0.00000001", tolerance="1e-5")
        torus_rigid.addObject('MechanicalObject', template="Rigid3", dx="2", dy="0", dz="0", rx="0", ry="0", rz="0", scale="1.0")
-       torus_rigid.addObject('UniformMass', )
+       torus_rigid.addObject('UniformMass', totalMass="1.0")
        torus_rigid.addObject('ConstantForceField', indices="0", forces="0 0.10 0     0 1 0")
 
        visu = TorusRigid.addChild('Visu')

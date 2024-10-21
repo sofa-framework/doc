@@ -156,10 +156,10 @@ FixedRotationProjectiveConstraint.scn
                 <MechanicalObject template="Rigid3" name="default0" translation="0 0 0" rotation="0 0 0" restScale="1" position="0 0 0 0 0 0 1 1 0 0 0 0 0 1" />
                 <FixedProjectiveConstraint template="Rigid3" name="default1" indices="0" />
                 <FixedRotationProjectiveConstraint template="Rigid3" name="default2" FixedXRotation="0" FixedYRotation="0" FixedZRotation="1" />
-                <UniformMass name="default3" showAxisSizeFactor="1" />
+                <UniformMass name="default3" showAxisSizeFactor="1" totalMass="1.0"/>
                 <Node name="spring" gravity="0 -9.81 0">
                     <MechanicalObject template="Rigid3" name="default4" translation="0 0 0" rotation="0 0 0" restScale="1" position="0 0 0 0 0 0 1 -1 0 0 0 0 0 1" />
-                    <UniformMass name="default54" showAxisSizeFactor="1" />
+                    <UniformMass name="default54" showAxisSizeFactor="1" totalMass="1.0"/>
                     <RigidMapping template="Rigid3,Rigid3" name="default1" rigidIndexPerPoint="1 1" axisLength="0.001" />
                     <JointSpringForceField template="Rigid3" name="default5" spring="BEGIN_SPRING  0 1  KS_T 1e+06 100000  KS_R 0 1000  KS_B 100  END_SPRING&#x0A;" />
                 </Node>
@@ -167,10 +167,10 @@ FixedRotationProjectiveConstraint.scn
             <Node name="Rotation around Z axis is free" gravity="0 -9.81 0">
                 <MechanicalObject template="Rigid3" name="default6" translation="0 0 0" rotation="0 0 0" restScale="1" position="3 0 0 0 0 0 1 4 0 0 0 0 0 1" />
                 <FixedProjectiveConstraint template="Rigid3" name="default7" indices="0" />
-                <UniformMass name="default54" showAxisSizeFactor="1" />
+                <UniformMass name="default54" showAxisSizeFactor="1" totalMass="1.0"/>
                 <Node name="spring" gravity="0 -9.81 0">
                     <MechanicalObject template="Rigid3" name="default9" translation="0 0 0" rotation="0 0 0" restScale="1" position="0 0 0 0 0 0 1 -1 0 0 0 0 0 1" />
-                    <UniformMass name="default10" showAxisSizeFactor="1" />
+                    <UniformMass name="default10" showAxisSizeFactor="1" totalMass="1.0"/>
                     <RigidMapping template="Rigid3,Rigid3" name="default11" rigidIndexPerPoint="1 1" axisLength="0.001" />
                     <JointSpringForceField template="Rigid3" name="default12" spring="BEGIN_SPRING  0 1  END_SPRING&#x0A;" />
                 </Node>
@@ -216,12 +216,12 @@ FixedRotationProjectiveConstraint.scn
        rotation_around__z_axis_not_authorized.addObject('MechanicalObject', template="Rigid3", name="default0", translation="0 0 0", rotation="0 0 0", restScale="1", position="0 0 0 0 0 0 1 1 0 0 0 0 0 1")
        rotation_around__z_axis_not_authorized.addObject('FixedProjectiveConstraint', template="Rigid3", name="default1", indices="0")
        rotation_around__z_axis_not_authorized.addObject('FixedRotationProjectiveConstraint', template="Rigid3", name="default2", FixedXRotation="0", FixedYRotation="0", FixedZRotation="1")
-       rotation_around__z_axis_not_authorized.addObject('UniformMass', name="default3", showAxisSizeFactor="1")
+       rotation_around__z_axis_not_authorized.addObject('UniformMass', name="default3", showAxisSizeFactor="1", totalMass="1.0")
 
        spring = Rotation around Z axis not authorized.addChild('spring', gravity="0 -9.81 0")
 
        spring.addObject('MechanicalObject', template="Rigid3", name="default4", translation="0 0 0", rotation="0 0 0", restScale="1", position="0 0 0 0 0 0 1 -1 0 0 0 0 0 1")
-       spring.addObject('UniformMass', name="default54", showAxisSizeFactor="1")
+       spring.addObject('UniformMass', name="default54", showAxisSizeFactor="1", totalMass="1.0")
        spring.addObject('RigidMapping', template="Rigid3,Rigid3", name="default1", rigidIndexPerPoint="1 1", axisLength="0.001")
        spring.addObject('JointSpringForceField', template="Rigid3", name="default5", spring="BEGIN_SPRING  0 1  KS_T 1e+06 100000  KS_R 0 1000  KS_B 100  END_SPRING
 ")
@@ -230,12 +230,12 @@ FixedRotationProjectiveConstraint.scn
 
        rotation_around__z_axis_is_free.addObject('MechanicalObject', template="Rigid3", name="default6", translation="0 0 0", rotation="0 0 0", restScale="1", position="3 0 0 0 0 0 1 4 0 0 0 0 0 1")
        rotation_around__z_axis_is_free.addObject('FixedProjectiveConstraint', template="Rigid3", name="default7", indices="0")
-       rotation_around__z_axis_is_free.addObject('UniformMass', name="default54", showAxisSizeFactor="1")
+       rotation_around__z_axis_is_free.addObject('UniformMass', name="default54", showAxisSizeFactor="1", totalMass="1.0")
 
        spring = Rotation around Z axis is free.addChild('spring', gravity="0 -9.81 0")
 
        spring.addObject('MechanicalObject', template="Rigid3", name="default9", translation="0 0 0", rotation="0 0 0", restScale="1", position="0 0 0 0 0 0 1 -1 0 0 0 0 0 1")
-       spring.addObject('UniformMass', name="default10", showAxisSizeFactor="1")
+       spring.addObject('UniformMass', name="default10", showAxisSizeFactor="1", totalMass="1.0")
        spring.addObject('RigidMapping', template="Rigid3,Rigid3", name="default11", rigidIndexPerPoint="1 1", axisLength="0.001")
        spring.addObject('JointSpringForceField', template="Rigid3", name="default12", spring="BEGIN_SPRING  0 1  END_SPRING
 ")

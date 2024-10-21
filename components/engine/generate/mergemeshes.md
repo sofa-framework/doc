@@ -270,7 +270,7 @@ MergeMeshes.scn
         	  
             <MeshTopology src="@basis" drawTriangles="1"/>
             <MechanicalObject showObject="1"/>
-            <UniformMass />
+            <UniformMass totalMass="1.0"/>
         </Node>
     </Node>
 
@@ -303,6 +303,6 @@ MergeMeshes.scn
        node.addObject('MergeMeshes', name="basis", nbMeshes="2", position1="@frog.position", triangles1="@frog.triangles", position2="@dragon.position", triangles2="@dragon.triangles")
        node.addObject('MeshTopology', src="@basis", drawTriangles="1")
        node.addObject('MechanicalObject', showObject="1")
-       node.addObject('UniformMass', )
+       node.addObject('UniformMass', totalMass="1.0")
     ```
 

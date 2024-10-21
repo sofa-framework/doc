@@ -168,7 +168,7 @@ StandardTetrahedralFEMForceField.scn
             <RegularGridTopology name="hexaGrid" min="0 0 0" max="1 1 2.7" n="3 3 8" p0="0 0 0"/>
     
             <MechanicalObject name="mechObj"/>
-            <UniformMass/>
+            <UniformMass totalMass="1.0"/>
             <TetrahedronFEMForceField name="FEM" youngModulus="10000" poissonRatio="0.45" method="large" />
     
             <BoxROI drawBoxes="0" box="0 0 0 1 1 0.05" name="box"/>
@@ -183,7 +183,7 @@ StandardTetrahedralFEMForceField.scn
             <RegularGridTopology name="hexaGrid" min="0 0 0" max="1 1 2.7" n="3 3 8" p0="2 0 0"/>
     
             <MechanicalObject name="mechObj"/>
-            <UniformMass/>
+            <UniformMass totalMass="1.0"/>
     
             <Node name="tetras">
                 <TetrahedronSetTopologyContainer name="Container"/>
@@ -206,7 +206,7 @@ StandardTetrahedralFEMForceField.scn
             <RegularGridTopology name="hexaGrid" min="0 0 0" max="1 1 2.7" n="3 3 8" p0="4 0 0"/>
     
             <MechanicalObject name="mechObj"/>
-            <UniformMass/>
+            <UniformMass totalMass="1.0"/>
     
             <Node name="tetras">
                 <TetrahedronSetTopologyContainer name="Container"/>
@@ -230,7 +230,7 @@ StandardTetrahedralFEMForceField.scn
             <RegularGridTopology name="hexaGrid" min="0 0 0" max="1 1 2.7" n="3 3 8" p0="6 0 0"/>
     
             <MechanicalObject name="mechObj"/>
-            <UniformMass/>
+            <UniformMass totalMass="1.0"/>
     
             <Node name="tetras">
                 <TetrahedronSetTopologyContainer name="Container"/>
@@ -254,7 +254,7 @@ StandardTetrahedralFEMForceField.scn
             <RegularGridTopology name="hexaGrid" min="0 0 0" max="1 1 2.7" n="3 3 8" p0="8 0 0"/>
     
             <MechanicalObject name="mechObj"/>
-            <UniformMass/>
+            <UniformMass totalMass="1.0"/>
     
             <Node name="tetras">
                 <TetrahedronSetTopologyContainer name="Container"/>
@@ -301,7 +301,7 @@ StandardTetrahedralFEMForceField.scn
        corrotational.addObject('CGLinearSolver', iterations="25", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
        corrotational.addObject('RegularGridTopology', name="hexaGrid", min="0 0 0", max="1 1 2.7", n="3 3 8", p0="0 0 0")
        corrotational.addObject('MechanicalObject', name="mechObj")
-       corrotational.addObject('UniformMass', )
+       corrotational.addObject('UniformMass', totalMass="1.0")
        corrotational.addObject('TetrahedronFEMForceField', name="FEM", youngModulus="10000", poissonRatio="0.45", method="large")
        corrotational.addObject('BoxROI', drawBoxes="0", box="0 0 0 1 1 0.05", name="box")
        corrotational.addObject('FixedProjectiveConstraint', indices="@box.indices")
@@ -313,7 +313,7 @@ StandardTetrahedralFEMForceField.scn
        arruda_boyce.addObject('CGLinearSolver', iterations="25", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
        arruda_boyce.addObject('RegularGridTopology', name="hexaGrid", min="0 0 0", max="1 1 2.7", n="3 3 8", p0="2 0 0")
        arruda_boyce.addObject('MechanicalObject', name="mechObj")
-       arruda_boyce.addObject('UniformMass', )
+       arruda_boyce.addObject('UniformMass', totalMass="1.0")
 
        tetras = ArrudaBoyce.addChild('tetras')
 
@@ -333,7 +333,7 @@ StandardTetrahedralFEMForceField.scn
        st_venant_kirchhoff.addObject('CGLinearSolver', iterations="25", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
        st_venant_kirchhoff.addObject('RegularGridTopology', name="hexaGrid", min="0 0 0", max="1 1 2.7", n="3 3 8", p0="4 0 0")
        st_venant_kirchhoff.addObject('MechanicalObject', name="mechObj")
-       st_venant_kirchhoff.addObject('UniformMass', )
+       st_venant_kirchhoff.addObject('UniformMass', totalMass="1.0")
 
        tetras = StVenantKirchhoff.addChild('tetras')
 
@@ -353,7 +353,7 @@ StandardTetrahedralFEMForceField.scn
        neo_hookean.addObject('CGLinearSolver', iterations="25", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
        neo_hookean.addObject('RegularGridTopology', name="hexaGrid", min="0 0 0", max="1 1 2.7", n="3 3 8", p0="6 0 0")
        neo_hookean.addObject('MechanicalObject', name="mechObj")
-       neo_hookean.addObject('UniformMass', )
+       neo_hookean.addObject('UniformMass', totalMass="1.0")
 
        tetras = NeoHookean.addChild('tetras')
 
@@ -373,7 +373,7 @@ StandardTetrahedralFEMForceField.scn
        mooney_rivlin.addObject('CGLinearSolver', iterations="25", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
        mooney_rivlin.addObject('RegularGridTopology', name="hexaGrid", min="0 0 0", max="1 1 2.7", n="3 3 8", p0="8 0 0")
        mooney_rivlin.addObject('MechanicalObject', name="mechObj")
-       mooney_rivlin.addObject('UniformMass', )
+       mooney_rivlin.addObject('UniformMass', totalMass="1.0")
 
        tetras = MooneyRivlin.addChild('tetras')
 

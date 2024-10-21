@@ -253,7 +253,7 @@ TransformPosition.scn
             <SparseGridTopology name="grid" fileTopology="mesh/dragon.obj" n="7 6 5" />
             <TransformPosition name="transfo" method="fromFile" filename="transfo.tfm" input_position="@grid.position"/>
             <MechanicalObject  name="Particles" restScale="1" position="@transfo.output_position" />
-            <UniformMass  name="Mass" />
+            <UniformMass  name="Mass" totalMass="1.0"/>
             <PlaneForceField  name="Plane" normal="0 0 1" d="-10" />
             <HexahedronFEMForceField  name="FEM" youngModulus="200" poissonRatio="0.45"/>
             <Node name="VisualNode" gravity="0 -9.81 0">
@@ -307,7 +307,7 @@ TransformPosition.scn
        object.addObject('SparseGridTopology', name="grid", fileTopology="mesh/dragon.obj", n="7 6 5")
        object.addObject('TransformPosition', name="transfo", method="fromFile", filename="transfo.tfm", input_position="@grid.position")
        object.addObject('MechanicalObject', name="Particles", restScale="1", position="@transfo.output_position")
-       object.addObject('UniformMass', name="Mass")
+       object.addObject('UniformMass', name="Mass", totalMass="1.0")
        object.addObject('PlaneForceField', name="Plane", normal="0 0 1", d="-10")
        object.addObject('HexahedronFEMForceField', name="FEM", youngModulus="200", poissonRatio="0.45")
 
