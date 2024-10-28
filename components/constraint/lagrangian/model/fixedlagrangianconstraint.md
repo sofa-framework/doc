@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # FixedLagrangianConstraint
 
-Lagrangian-based fixation of DOFs of the model
+Lagrangian-based fixation of DOFs of the model.
 
 
 ## Rigid3d
@@ -46,7 +46,7 @@ if true, emits extra messages at runtime.
 	<tr>
 		<td>tags</td>
 		<td>
-list of the subsets the objet belongs to
+list of the subsets the object belongs to
 		</td>
 		<td></td>
 	</tr>
@@ -165,7 +165,7 @@ if true, emits extra messages at runtime.
 	<tr>
 		<td>tags</td>
 		<td>
-list of the subsets the objet belongs to
+list of the subsets the object belongs to
 		</td>
 		<td></td>
 	</tr>
@@ -284,7 +284,7 @@ if true, emits extra messages at runtime.
 	<tr>
 		<td>tags</td>
 		<td>
-list of the subsets the objet belongs to
+list of the subsets the object belongs to
 		</td>
 		<td></td>
 	</tr>
@@ -403,7 +403,7 @@ if true, emits extra messages at runtime.
 	<tr>
 		<td>tags</td>
 		<td>
-list of the subsets the objet belongs to
+list of the subsets the object belongs to
 		</td>
 		<td></td>
 	</tr>
@@ -522,7 +522,7 @@ if true, emits extra messages at runtime.
 	<tr>
 		<td>tags</td>
 		<td>
-list of the subsets the objet belongs to
+list of the subsets the object belongs to
 		</td>
 		<td></td>
 	</tr>

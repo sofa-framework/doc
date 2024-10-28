@@ -40,7 +40,7 @@ if true, emits extra messages at runtime.
 	<tr>
 		<td>tags</td>
 		<td>
-list of the subsets the objet belongs to
+list of the subsets the object belongs to
 		</td>
 		<td></td>
 	</tr>
@@ -124,7 +124,7 @@ Set the color of the light. (default=[1.0,1.0,1.0,1.0])
 	<tr>
 		<td>VSMLightBleeding</td>
 		<td>
-[Shadowing] (VSM only) Light bleeding paramter
+[Shadowing] (VSM only) Light bleeding parameter
 		</td>
 		<td>0.05</td>
 	</tr>
@@ -138,7 +138,7 @@ Set the color of the light. (default=[1.0,1.0,1.0,1.0])
 	<tr>
 		<td>textureUnit</td>
 		<td>
-[Shadowing] Texture unit for the genereated shadow texture
+[Shadowing] Texture unit for the generated shadow texture
 		</td>
 		<td>1</td>
 	</tr>

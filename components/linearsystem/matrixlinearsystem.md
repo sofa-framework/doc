@@ -1,8 +1,8 @@
 <!-- generate_doc -->
 # MatrixLinearSystem
 
-Linear system.
 Linear system dedicated to a Band Tri Diagonal matrix.
+Linear system.
 
 
 Templates:
@@ -52,7 +52,7 @@ if true, emits extra messages at runtime.
 	<tr>
 		<td>tags</td>
 		<td>
-list of the subsets the objet belongs to
+list of the subsets the object belongs to
 		</td>
 		<td></td>
 	</tr>

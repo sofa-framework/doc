@@ -40,7 +40,7 @@ if true, emits extra messages at runtime.
 	<tr>
 		<td>tags</td>
 		<td>
-list of the subsets the objet belongs to
+list of the subsets the object belongs to
 		</td>
 		<td></td>
 	</tr>
@@ -152,7 +152,7 @@ position of the base of the part of the device
 	<tr>
 		<td>angle</td>
 		<td>
-Angluar values of joint (rad)
+Angular values of joint (rad)
 		</td>
 		<td></td>
 	</tr>

@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # VoidMapping
 
-Special mapping that 'map' points for void ( no input DOF ). This is useful to be able to create animated objects mixed with real DOFs.
+Special mapping that 'map' points for void (no input DOF). This is useful to be able to create animated objects mixed with real DOFs.
 
 
 __Target__: Sofa.Component.Mapping.Linear
@@ -40,7 +40,7 @@ if true, emits extra messages at runtime.
 	<tr>
 		<td>tags</td>
 		<td>
-list of the subsets the objet belongs to
+list of the subsets the object belongs to
 		</td>
 		<td></td>
 	</tr>

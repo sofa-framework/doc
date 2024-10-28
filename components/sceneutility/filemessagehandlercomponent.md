@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # FileMessageHandlerComponent
 
-This component dump all the messages intoa file.
+This component dumps all the messages into a file.
 
 
 __Target__: Sofa.Component.SceneUtility
@@ -40,7 +40,7 @@ if true, emits extra messages at runtime.
 	<tr>
 		<td>tags</td>
 		<td>
-list of the subsets the objet belongs to
+list of the subsets the object belongs to
 		</td>
 		<td></td>
 	</tr>

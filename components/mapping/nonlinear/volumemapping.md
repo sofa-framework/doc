@@ -122,7 +122,7 @@ The other elements of the matrix are obtained by symmetry of the Hessian matrix.
 <!-- automatically generated doc START -->
 <!-- generate_doc -->
 
-Mapping each tetrahedron in a topology to a scalar value representing its volume
+Mapping each tetrahedron in a topology to a scalar value representing its volume.
 
 
 ## Vec3d,Vec1d
@@ -167,7 +167,7 @@ if true, emits extra messages at runtime.
 	<tr>
 		<td>tags</td>
 		<td>
-list of the subsets the objet belongs to
+list of the subsets the object belongs to
 		</td>
 		<td></td>
 	</tr>

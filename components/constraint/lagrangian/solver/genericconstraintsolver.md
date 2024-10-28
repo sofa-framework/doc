@@ -40,7 +40,7 @@ if true, emits extra messages at runtime.
 	<tr>
 		<td>tags</td>
 		<td>
-list of the subsets the objet belongs to
+list of the subsets the object belongs to
 		</td>
 		<td></td>
 	</tr>
@@ -103,7 +103,7 @@ Scale the error tolerance with the number of constraints
 	<tr>
 		<td>allVerified</td>
 		<td>
-All contraints must be verified (each constraint's error < tolerance)
+All constraints must be verified (each constraint's error < tolerance)
 		</td>
 		<td>0</td>
 	</tr>

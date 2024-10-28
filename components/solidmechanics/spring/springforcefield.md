@@ -46,7 +46,7 @@ if true, emits extra messages at runtime.
 	<tr>
 		<td>tags</td>
 		<td>
-list of the subsets the objet belongs to
+list of the subsets the object belongs to
 		</td>
 		<td></td>
 	</tr>
@@ -79,18 +79,18 @@ Rayleigh damping - stiffness matrix coefficient
 		<td>0</td>
 	</tr>
 	<tr>
-		<td>damping</td>
-		<td>
-uniform damping for the all springs
-		</td>
-		<td>5</td>
-	</tr>
-	<tr>
 		<td>stiffness</td>
 		<td>
 uniform stiffness for the all springs
 		</td>
 		<td>100</td>
+	</tr>
+	<tr>
+		<td>damping</td>
+		<td>
+uniform damping for the all springs
+		</td>
+		<td>5</td>
 	</tr>
 	<tr>
 		<td>spring</td>
@@ -213,7 +213,7 @@ if true, emits extra messages at runtime.
 	<tr>
 		<td>tags</td>
 		<td>
-list of the subsets the objet belongs to
+list of the subsets the object belongs to
 		</td>
 		<td></td>
 	</tr>
@@ -246,18 +246,18 @@ Rayleigh damping - stiffness matrix coefficient
 		<td>0</td>
 	</tr>
 	<tr>
-		<td>damping</td>
-		<td>
-uniform damping for the all springs
-		</td>
-		<td>5</td>
-	</tr>
-	<tr>
 		<td>stiffness</td>
 		<td>
 uniform stiffness for the all springs
 		</td>
 		<td>100</td>
+	</tr>
+	<tr>
+		<td>damping</td>
+		<td>
+uniform damping for the all springs
+		</td>
+		<td>5</td>
 	</tr>
 	<tr>
 		<td>spring</td>
@@ -380,7 +380,7 @@ if true, emits extra messages at runtime.
 	<tr>
 		<td>tags</td>
 		<td>
-list of the subsets the objet belongs to
+list of the subsets the object belongs to
 		</td>
 		<td></td>
 	</tr>
@@ -413,18 +413,18 @@ Rayleigh damping - stiffness matrix coefficient
 		<td>0</td>
 	</tr>
 	<tr>
-		<td>damping</td>
-		<td>
-uniform damping for the all springs
-		</td>
-		<td>5</td>
-	</tr>
-	<tr>
 		<td>stiffness</td>
 		<td>
 uniform stiffness for the all springs
 		</td>
 		<td>100</td>
+	</tr>
+	<tr>
+		<td>damping</td>
+		<td>
+uniform damping for the all springs
+		</td>
+		<td>5</td>
 	</tr>
 	<tr>
 		<td>spring</td>
@@ -547,7 +547,7 @@ if true, emits extra messages at runtime.
 	<tr>
 		<td>tags</td>
 		<td>
-list of the subsets the objet belongs to
+list of the subsets the object belongs to
 		</td>
 		<td></td>
 	</tr>
@@ -580,18 +580,18 @@ Rayleigh damping - stiffness matrix coefficient
 		<td>0</td>
 	</tr>
 	<tr>
-		<td>damping</td>
-		<td>
-uniform damping for the all springs
-		</td>
-		<td>5</td>
-	</tr>
-	<tr>
 		<td>stiffness</td>
 		<td>
 uniform stiffness for the all springs
 		</td>
 		<td>100</td>
+	</tr>
+	<tr>
+		<td>damping</td>
+		<td>
+uniform damping for the all springs
+		</td>
+		<td>5</td>
 	</tr>
 	<tr>
 		<td>spring</td>
@@ -714,7 +714,7 @@ if true, emits extra messages at runtime.
 	<tr>
 		<td>tags</td>
 		<td>
-list of the subsets the objet belongs to
+list of the subsets the object belongs to
 		</td>
 		<td></td>
 	</tr>
@@ -747,18 +747,18 @@ Rayleigh damping - stiffness matrix coefficient
 		<td>0</td>
 	</tr>
 	<tr>
-		<td>damping</td>
-		<td>
-uniform damping for the all springs
-		</td>
-		<td>5</td>
-	</tr>
-	<tr>
 		<td>stiffness</td>
 		<td>
 uniform stiffness for the all springs
 		</td>
 		<td>100</td>
+	</tr>
+	<tr>
+		<td>damping</td>
+		<td>
+uniform damping for the all springs
+		</td>
+		<td>5</td>
 	</tr>
 	<tr>
 		<td>spring</td>

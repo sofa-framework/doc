@@ -46,7 +46,7 @@ if true, emits extra messages at runtime.
 	<tr>
 		<td>tags</td>
 		<td>
-list of the subsets the objet belongs to
+list of the subsets the object belongs to
 		</td>
 		<td></td>
 	</tr>
@@ -109,7 +109,7 @@ global pivot points used when translations instead of the rigid mass centers
 	<tr>
 		<td>external_points</td>
 		<td>
-points from the external Mechancial State that define the rest shape springs
+points from the external Mechanical State that define the rest shape springs
 		</td>
 		<td></td>
 	</tr>
@@ -204,7 +204,7 @@ if true, emits extra messages at runtime.
 	<tr>
 		<td>tags</td>
 		<td>
-list of the subsets the objet belongs to
+list of the subsets the object belongs to
 		</td>
 		<td></td>
 	</tr>
@@ -267,7 +267,7 @@ global pivot points used when translations instead of the rigid mass centers
 	<tr>
 		<td>external_points</td>
 		<td>
-points from the external Mechancial State that define the rest shape springs
+points from the external Mechanical State that define the rest shape springs
 		</td>
 		<td></td>
 	</tr>
@@ -362,7 +362,7 @@ if true, emits extra messages at runtime.
 	<tr>
 		<td>tags</td>
 		<td>
-list of the subsets the objet belongs to
+list of the subsets the object belongs to
 		</td>
 		<td></td>
 	</tr>
@@ -425,7 +425,7 @@ global pivot points used when translations instead of the rigid mass centers
 	<tr>
 		<td>external_points</td>
 		<td>
-points from the external Mechancial State that define the rest shape springs
+points from the external Mechanical State that define the rest shape springs
 		</td>
 		<td></td>
 	</tr>

@@ -70,7 +70,7 @@ However, the UniformMass should be carefully used if accuracy is a criterion, es
 <!-- automatically generated doc START -->
 <!-- generate_doc -->
 
-Define the same mass for all the particles
+Compute a mass equally spread over the number of nodes.
 
 
 ## Rigid2d
@@ -115,7 +115,7 @@ if true, emits extra messages at runtime.
 	<tr>
 		<td>tags</td>
 		<td>
-list of the subsets the objet belongs to
+list of the subsets the object belongs to
 		</td>
 		<td></td>
 	</tr>
@@ -196,7 +196,7 @@ to be used if the mass is placed under a mapping
 		<td>
 optional range of local DOF indices. 
 Any computation involving only indices outside of this range 
-are discarded (useful for parallelization using mesh partitionning)
+are discarded (useful for parallelization using mesh partitioning)
 		</td>
 		<td>-1 -1</td>
 	</tr>
@@ -304,7 +304,7 @@ if true, emits extra messages at runtime.
 	<tr>
 		<td>tags</td>
 		<td>
-list of the subsets the objet belongs to
+list of the subsets the object belongs to
 		</td>
 		<td></td>
 	</tr>
@@ -385,7 +385,7 @@ to be used if the mass is placed under a mapping
 		<td>
 optional range of local DOF indices. 
 Any computation involving only indices outside of this range 
-are discarded (useful for parallelization using mesh partitionning)
+are discarded (useful for parallelization using mesh partitioning)
 		</td>
 		<td>-1 -1</td>
 	</tr>
@@ -493,7 +493,7 @@ if true, emits extra messages at runtime.
 	<tr>
 		<td>tags</td>
 		<td>
-list of the subsets the objet belongs to
+list of the subsets the object belongs to
 		</td>
 		<td></td>
 	</tr>
@@ -574,7 +574,7 @@ to be used if the mass is placed under a mapping
 		<td>
 optional range of local DOF indices. 
 Any computation involving only indices outside of this range 
-are discarded (useful for parallelization using mesh partitionning)
+are discarded (useful for parallelization using mesh partitioning)
 		</td>
 		<td>-1 -1</td>
 	</tr>
@@ -682,7 +682,7 @@ if true, emits extra messages at runtime.
 	<tr>
 		<td>tags</td>
 		<td>
-list of the subsets the objet belongs to
+list of the subsets the object belongs to
 		</td>
 		<td></td>
 	</tr>
@@ -763,7 +763,7 @@ to be used if the mass is placed under a mapping
 		<td>
 optional range of local DOF indices. 
 Any computation involving only indices outside of this range 
-are discarded (useful for parallelization using mesh partitionning)
+are discarded (useful for parallelization using mesh partitioning)
 		</td>
 		<td>-1 -1</td>
 	</tr>
@@ -871,7 +871,7 @@ if true, emits extra messages at runtime.
 	<tr>
 		<td>tags</td>
 		<td>
-list of the subsets the objet belongs to
+list of the subsets the object belongs to
 		</td>
 		<td></td>
 	</tr>
@@ -952,7 +952,7 @@ to be used if the mass is placed under a mapping
 		<td>
 optional range of local DOF indices. 
 Any computation involving only indices outside of this range 
-are discarded (useful for parallelization using mesh partitionning)
+are discarded (useful for parallelization using mesh partitioning)
 		</td>
 		<td>-1 -1</td>
 	</tr>
@@ -1060,7 +1060,7 @@ if true, emits extra messages at runtime.
 	<tr>
 		<td>tags</td>
 		<td>
-list of the subsets the objet belongs to
+list of the subsets the object belongs to
 		</td>
 		<td></td>
 	</tr>
@@ -1141,7 +1141,7 @@ to be used if the mass is placed under a mapping
 		<td>
 optional range of local DOF indices. 
 Any computation involving only indices outside of this range 
-are discarded (useful for parallelization using mesh partitionning)
+are discarded (useful for parallelization using mesh partitioning)
 		</td>
 		<td>-1 -1</td>
 	</tr>

@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # HermiteSplineProjectiveConstraint
 
-Apply a hermite cubic spline trajectory to given points
+Apply a hermite cubic spline trajectory to given points.
 
 
 ## Rigid3d
@@ -46,7 +46,7 @@ if true, emits extra messages at runtime.
 	<tr>
 		<td>tags</td>
 		<td>
-list of the subsets the objet belongs to
+list of the subsets the object belongs to
 		</td>
 		<td></td>
 	</tr>
@@ -131,7 +131,7 @@ second control point
 	<tr>
 		<td>dX1</td>
 		<td>
-sceond control tangente
+second control tangente
 		</td>
 		<td></td>
 	</tr>
@@ -208,7 +208,7 @@ if true, emits extra messages at runtime.
 	<tr>
 		<td>tags</td>
 		<td>
-list of the subsets the objet belongs to
+list of the subsets the object belongs to
 		</td>
 		<td></td>
 	</tr>
@@ -293,7 +293,7 @@ second control point
 	<tr>
 		<td>dX1</td>
 		<td>
-sceond control tangente
+second control tangente
 		</td>
 		<td></td>
 	</tr>

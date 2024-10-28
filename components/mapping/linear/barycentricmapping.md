@@ -1,7 +1,8 @@
 <!-- generate_doc -->
 # BarycentricMapping
 
-Mapping using barycentric coordinates of the child with respect to cells of its parent
+Mapping using barycentric coordinates of the child with respect to cells of its parent.
+Mapping using barycentric coordinates of the child with respect to cells of its parent.
 
 
 ## Vec3d,Rigid3d
@@ -46,7 +47,7 @@ if true, emits extra messages at runtime.
 	<tr>
 		<td>tags</td>
 		<td>
-list of the subsets the objet belongs to
+list of the subsets the object belongs to
 		</td>
 		<td></td>
 	</tr>
@@ -174,7 +175,7 @@ if true, emits extra messages at runtime.
 	<tr>
 		<td>tags</td>
 		<td>
-list of the subsets the objet belongs to
+list of the subsets the object belongs to
 		</td>
 		<td></td>
 	</tr>

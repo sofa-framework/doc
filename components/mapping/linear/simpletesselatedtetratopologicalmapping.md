@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # SimpleTesselatedTetraTopologicalMapping
 
-Special case of mapping where TetrahedronSetTopology is converted into a finer TetrahedronSetTopology
+Special case of mapping where TetrahedronSetTopology is converted into a finer TetrahedronSetTopology.
 
 
 __Target__: Sofa.Component.Mapping.Linear
@@ -40,7 +40,7 @@ if true, emits extra messages at runtime.
 	<tr>
 		<td>tags</td>
 		<td>
-list of the subsets the objet belongs to
+list of the subsets the object belongs to
 		</td>
 		<td></td>
 	</tr>

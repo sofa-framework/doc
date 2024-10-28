@@ -40,7 +40,7 @@ if true, emits extra messages at runtime.
 	<tr>
 		<td>tags</td>
 		<td>
-list of the subsets the objet belongs to
+list of the subsets the object belongs to
 		</td>
 		<td></td>
 	</tr>
@@ -166,7 +166,7 @@ if > 0 : dimension of each cell in the created grid
 	<tr>
 		<td>nbVirtualFinerLevels</td>
 		<td>
-create virtual (not in the animation tree) finer sparse grids in order to dispose of finest information (usefull to compute better mechanical properties for example)
+create virtual (not in the animation tree) finer sparse grids in order to dispose of finest information (useful to compute better mechanical properties for example)
 		</td>
 		<td>0</td>
 	</tr>

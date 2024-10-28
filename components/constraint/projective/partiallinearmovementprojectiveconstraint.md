@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # PartialLinearMovementProjectiveConstraint
 
-translate given particles
+Impose a motion to given DOFs (translation and rotation) in some directions only.
 
 
 ## Rigid3d
@@ -46,7 +46,7 @@ if true, emits extra messages at runtime.
 	<tr>
 		<td>tags</td>
 		<td>
-list of the subsets the objet belongs to
+list of the subsets the object belongs to
 		</td>
 		<td></td>
 	</tr>
@@ -124,21 +124,21 @@ The main indice node in the list of constrained nodes, it defines how to apply t
 	<tr>
 		<td>minDepIndice</td>
 		<td>
-The indice node in the list of constrained nodes, which is imposed the minimum displacment 
+The indice node in the list of constrained nodes, which is imposed the minimum displacement 
 		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>maxDepIndice</td>
 		<td>
-The indice node in the list of constrained nodes, which is imposed the maximum displacment 
+The indice node in the list of constrained nodes, which is imposed the maximum displacement 
 		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>imposedDisplacmentOnMacroNodes</td>
 		<td>
-The imposed displacment on macro nodes
+The imposed displacement on macro nodes
 		</td>
 		<td></td>
 	</tr>
@@ -239,7 +239,7 @@ if true, emits extra messages at runtime.
 	<tr>
 		<td>tags</td>
 		<td>
-list of the subsets the objet belongs to
+list of the subsets the object belongs to
 		</td>
 		<td></td>
 	</tr>
@@ -317,21 +317,21 @@ The main indice node in the list of constrained nodes, it defines how to apply t
 	<tr>
 		<td>minDepIndice</td>
 		<td>
-The indice node in the list of constrained nodes, which is imposed the minimum displacment 
+The indice node in the list of constrained nodes, which is imposed the minimum displacement 
 		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>maxDepIndice</td>
 		<td>
-The indice node in the list of constrained nodes, which is imposed the maximum displacment 
+The indice node in the list of constrained nodes, which is imposed the maximum displacement 
 		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>imposedDisplacmentOnMacroNodes</td>
 		<td>
-The imposed displacment on macro nodes
+The imposed displacement on macro nodes
 		</td>
 		<td></td>
 	</tr>
@@ -432,7 +432,7 @@ if true, emits extra messages at runtime.
 	<tr>
 		<td>tags</td>
 		<td>
-list of the subsets the objet belongs to
+list of the subsets the object belongs to
 		</td>
 		<td></td>
 	</tr>
@@ -510,21 +510,21 @@ The main indice node in the list of constrained nodes, it defines how to apply t
 	<tr>
 		<td>minDepIndice</td>
 		<td>
-The indice node in the list of constrained nodes, which is imposed the minimum displacment 
+The indice node in the list of constrained nodes, which is imposed the minimum displacement 
 		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>maxDepIndice</td>
 		<td>
-The indice node in the list of constrained nodes, which is imposed the maximum displacment 
+The indice node in the list of constrained nodes, which is imposed the maximum displacement 
 		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>imposedDisplacmentOnMacroNodes</td>
 		<td>
-The imposed displacment on macro nodes
+The imposed displacement on macro nodes
 		</td>
 		<td></td>
 	</tr>
@@ -625,7 +625,7 @@ if true, emits extra messages at runtime.
 	<tr>
 		<td>tags</td>
 		<td>
-list of the subsets the objet belongs to
+list of the subsets the object belongs to
 		</td>
 		<td></td>
 	</tr>
@@ -703,21 +703,21 @@ The main indice node in the list of constrained nodes, it defines how to apply t
 	<tr>
 		<td>minDepIndice</td>
 		<td>
-The indice node in the list of constrained nodes, which is imposed the minimum displacment 
+The indice node in the list of constrained nodes, which is imposed the minimum displacement 
 		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>maxDepIndice</td>
 		<td>
-The indice node in the list of constrained nodes, which is imposed the maximum displacment 
+The indice node in the list of constrained nodes, which is imposed the maximum displacement 
 		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>imposedDisplacmentOnMacroNodes</td>
 		<td>
-The imposed displacment on macro nodes
+The imposed displacement on macro nodes
 		</td>
 		<td></td>
 	</tr>
@@ -818,7 +818,7 @@ if true, emits extra messages at runtime.
 	<tr>
 		<td>tags</td>
 		<td>
-list of the subsets the objet belongs to
+list of the subsets the object belongs to
 		</td>
 		<td></td>
 	</tr>
@@ -896,21 +896,21 @@ The main indice node in the list of constrained nodes, it defines how to apply t
 	<tr>
 		<td>minDepIndice</td>
 		<td>
-The indice node in the list of constrained nodes, which is imposed the minimum displacment 
+The indice node in the list of constrained nodes, which is imposed the minimum displacement 
 		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>maxDepIndice</td>
 		<td>
-The indice node in the list of constrained nodes, which is imposed the maximum displacment 
+The indice node in the list of constrained nodes, which is imposed the maximum displacement 
 		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>imposedDisplacmentOnMacroNodes</td>
 		<td>
-The imposed displacment on macro nodes
+The imposed displacement on macro nodes
 		</td>
 		<td></td>
 	</tr>

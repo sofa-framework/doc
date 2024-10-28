@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # BeamLinearMapping
 
-Set the positions and velocities of points attached to a beam using linear interpolation between DOFs
+Set the positions and velocities of points attached to a beam using linear interpolation between DOFs.
 
 
 ## Rigid3d,Vec3d
@@ -46,7 +46,7 @@ if true, emits extra messages at runtime.
 	<tr>
 		<td>tags</td>
 		<td>
-list of the subsets the objet belongs to
+list of the subsets the object belongs to
 		</td>
 		<td></td>
 	</tr>

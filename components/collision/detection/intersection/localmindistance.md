@@ -83,7 +83,7 @@ if true, emits extra messages at runtime.
 	<tr>
 		<td>tags</td>
 		<td>
-list of the subsets the objet belongs to
+list of the subsets the object belongs to
 		</td>
 		<td></td>
 	</tr>
@@ -111,7 +111,7 @@ if true, handle the events, otherwise ignore the events
 	<tr>
 		<td>alarmDistance</td>
 		<td>
-Distance above which the intersection computations ignores the promixity pair. This distance can also be used in some broad phase algorithms to reduce the search area
+Distance above which the intersection computations ignores the proximity pair. This distance can also be used in some broad phase algorithms to reduce the search area
 		</td>
 		<td>1</td>
 	</tr>

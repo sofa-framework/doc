@@ -46,7 +46,7 @@ if true, emits extra messages at runtime.
 	<tr>
 		<td>tags</td>
 		<td>
-list of the subsets the objet belongs to
+list of the subsets the object belongs to
 		</td>
 		<td></td>
 	</tr>
@@ -102,7 +102,7 @@ Use a preconditioner
 	<tr>
 		<td>update_step</td>
 		<td>
-Number of steps before the next refresh of precondtioners
+Number of steps before the next refresh of preconditioners
 		</td>
 		<td>1</td>
 	</tr>

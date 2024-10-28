@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # StopperLagrangianConstraint
 
-TODO-StopperLagrangianConstraint
+Lagrangian-based constraint forcing a 1D DoF to be  inside a given range.
 
 
 ## Vec1d
@@ -46,7 +46,7 @@ if true, emits extra messages at runtime.
 	<tr>
 		<td>tags</td>
 		<td>
-list of the subsets the objet belongs to
+list of the subsets the object belongs to
 		</td>
 		<td></td>
 	</tr>

@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # QuatToRigidEngine
 
-Transform a vector of Rigids into two independant vectors for positions (Vec3) and orientations (Quat).
+Transform a vector of Rigids into two independent vectors for positions (Vec3) and orientations (Quat).
 
 
 ## Vec3d
@@ -46,7 +46,7 @@ if true, emits extra messages at runtime.
 	<tr>
 		<td>tags</td>
 		<td>
-list of the subsets the objet belongs to
+list of the subsets the object belongs to
 		</td>
 		<td></td>
 	</tr>

@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # DeformableOnRigidFrameMapping
 
-Set the positions and velocities of points attached to a rigid parent
+Set the positions and velocities of points attached to a rigid parent.
 
 
 ## Vec3d,Rigid3d,Vec3d
@@ -46,7 +46,7 @@ if true, emits extra messages at runtime.
 	<tr>
 		<td>tags</td>
 		<td>
-list of the subsets the objet belongs to
+list of the subsets the object belongs to
 		</td>
 		<td></td>
 	</tr>
@@ -161,7 +161,7 @@ Scale factor applied on the linear force accumulated on the rigid model
 |slaves|Sub-objects used internally by this object|BaseObject|
 |master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
 |input1|Input Object(s) (1st Data type)|State&lt;Vec3d&gt;|
-|input2|Input Object(s) (2st Data type)|State&lt;Rigid3d&gt;|
+|input2|Input Object(s) (2nd Data type)|State&lt;Rigid3d&gt;|
 |output|Output Object(s)|State&lt;Vec3d&gt;|
 
 ## Examples 

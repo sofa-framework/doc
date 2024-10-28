@@ -94,7 +94,7 @@ $\otimes$ is the outer product, and $s = [(1,1,1)]_\times$
 <!-- automatically generated doc START -->
 <!-- generate_doc -->
 
-Mapping each triangle in a topology to a scalar value representing its area
+Mapping each triangle in a topology to a scalar value representing its area.
 
 
 ## Vec3d,Vec1d
@@ -139,7 +139,7 @@ if true, emits extra messages at runtime.
 	<tr>
 		<td>tags</td>
 		<td>
-list of the subsets the objet belongs to
+list of the subsets the object belongs to
 		</td>
 		<td></td>
 	</tr>

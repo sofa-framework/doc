@@ -46,7 +46,7 @@ if true, emits extra messages at runtime.
 	<tr>
 		<td>tags</td>
 		<td>
-list of the subsets the objet belongs to
+list of the subsets the object belongs to
 		</td>
 		<td></td>
 	</tr>
@@ -105,7 +105,7 @@ verification of the subpartSolve
 	<tr>
 		<td>showProblem</td>
 		<td>
-display debug informations about subpartSolve computation
+display debug information about subpartSolve computation
 		</td>
 		<td>0</td>
 	</tr>

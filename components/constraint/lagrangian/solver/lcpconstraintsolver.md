@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # LCPConstraintSolver
 
-A Constraint Solver using the Linear Complementarity Problem formulation to solve BaseConstraint based components
+A Constraint Solver using the Linear Complementarity Problem formulation to solve BaseConstraint based components.
 
 
 __Target__: Sofa.Component.Constraint.Lagrangian.Solver
@@ -40,7 +40,7 @@ if true, emits extra messages at runtime.
 	<tr>
 		<td>tags</td>
 		<td>
-list of the subsets the objet belongs to
+list of the subsets the object belongs to
 		</td>
 		<td></td>
 	</tr>

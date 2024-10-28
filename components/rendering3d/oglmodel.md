@@ -46,7 +46,7 @@ if true, emits extra messages at runtime.
 	<tr>
 		<td>tags</td>
 		<td>
-list of the subsets the objet belongs to
+list of the subsets the object belongs to
 		</td>
 		<td></td>
 	</tr>
@@ -284,7 +284,7 @@ Enable smooth point rendering
 	<tr>
 		<td>primitiveType</td>
 		<td>
-Select types of primitives to send (necessary for some shader types such as geometry or tesselation)
+Select types of primitives to send (necessary for some shader types such as geometry or tessellation)
 		</td>
 		<td></td>
 	</tr>

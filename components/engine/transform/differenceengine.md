@@ -45,7 +45,7 @@ if true, emits extra messages at runtime.
 	<tr>
 		<td>tags</td>
 		<td>
-list of the subsets the objet belongs to
+list of the subsets the object belongs to
 		</td>
 		<td></td>
 	</tr>
@@ -83,7 +83,7 @@ input vector
 	<tr>
 		<td>substractor</td>
 		<td>
-vector to substract to input
+vector to subtract to input
 		</td>
 		<td></td>
 	</tr>

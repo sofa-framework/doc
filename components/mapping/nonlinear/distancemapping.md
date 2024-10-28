@@ -46,7 +46,7 @@ if true, emits extra messages at runtime.
 	<tr>
 		<td>tags</td>
 		<td>
-list of the subsets the objet belongs to
+list of the subsets the object belongs to
 		</td>
 		<td></td>
 	</tr>
@@ -119,7 +119,7 @@ Method used to compute the geometric stiffness:
 	<tr>
 		<td>computeDistance</td>
 		<td>
-if 'computeDistance = true', then rest length of each element equal 0, otherwise rest length is the initial lenght of each of them
+if 'computeDistance = true', then rest length of each element equal 0, otherwise rest length is the initial length of each of them
 		</td>
 		<td>0</td>
 	</tr>
@@ -206,7 +206,7 @@ if true, emits extra messages at runtime.
 	<tr>
 		<td>tags</td>
 		<td>
-list of the subsets the objet belongs to
+list of the subsets the object belongs to
 		</td>
 		<td></td>
 	</tr>
@@ -279,7 +279,7 @@ Method used to compute the geometric stiffness:
 	<tr>
 		<td>computeDistance</td>
 		<td>
-if 'computeDistance = true', then rest length of each element equal 0, otherwise rest length is the initial lenght of each of them
+if 'computeDistance = true', then rest length of each element equal 0, otherwise rest length is the initial length of each of them
 		</td>
 		<td>0</td>
 	</tr>

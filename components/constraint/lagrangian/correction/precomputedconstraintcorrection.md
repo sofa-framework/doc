@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # PrecomputedConstraintCorrection
 
-Component computing constraint forces within a simulated body using the compliance method.
+Component precomputing constraint forces within a simulated body using the compliance method.
 
 
 Templates:
@@ -46,7 +46,7 @@ if true, emits extra messages at runtime.
 	<tr>
 		<td>tags</td>
 		<td>
-list of the subsets the objet belongs to
+list of the subsets the object belongs to
 		</td>
 		<td></td>
 	</tr>

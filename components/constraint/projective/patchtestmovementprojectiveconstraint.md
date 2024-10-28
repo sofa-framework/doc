@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # PatchTestMovementProjectiveConstraint
 
-bilinear constraint
+Impose a motion to all the boundary points of a mesh.
 
 
 ## Rigid3d
@@ -46,7 +46,7 @@ if true, emits extra messages at runtime.
 	<tr>
 		<td>tags</td>
 		<td>
-list of the subsets the objet belongs to
+list of the subsets the object belongs to
 		</td>
 		<td></td>
 	</tr>
@@ -204,7 +204,7 @@ if true, emits extra messages at runtime.
 	<tr>
 		<td>tags</td>
 		<td>
-list of the subsets the objet belongs to
+list of the subsets the object belongs to
 		</td>
 		<td></td>
 	</tr>

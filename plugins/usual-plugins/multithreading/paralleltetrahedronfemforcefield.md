@@ -46,7 +46,7 @@ if true, emits extra messages at runtime.
 	<tr>
 		<td>tags</td>
 		<td>
-list of the subsets the objet belongs to
+list of the subsets the object belongs to
 		</td>
 		<td></td>
 	</tr>
@@ -193,7 +193,7 @@ Vector of colors describing the VonMises stress
 	<tr>
 		<td>updateStiffness</td>
 		<td>
-udpate structures (precomputed in init) using stiffness parameters in each iteration (set listening=1)
+update structures (precomputed in init) using stiffness parameters in each iteration (set listening=1)
 		</td>
 		<td>0</td>
 	</tr>

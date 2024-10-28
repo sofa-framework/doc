@@ -40,7 +40,7 @@ Moreover, each constrained object must define in its node a ConstraintCorrection
 <!-- automatically generated doc START -->
 <!-- generate_doc -->
 
-TODO-UnilateralLagrangianConstraint
+Lagrangian-based inequality constraint
 
 
 ## Vec3d
@@ -85,7 +85,7 @@ if true, emits extra messages at runtime.
 	<tr>
 		<td>tags</td>
 		<td>
-list of the subsets the objet belongs to
+list of the subsets the object belongs to
 		</td>
 		<td></td>
 	</tr>

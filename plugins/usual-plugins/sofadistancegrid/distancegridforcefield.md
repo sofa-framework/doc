@@ -46,7 +46,7 @@ if true, emits extra messages at runtime.
 	<tr>
 		<td>tags</td>
 		<td>
-list of the subsets the objet belongs to
+list of the subsets the object belongs to
 		</td>
 		<td></td>
 	</tr>
@@ -186,7 +186,7 @@ display color.(default=[0.0,0.5,0.2,1.0])
 	<tr>
 		<td>localRange</td>
 		<td>
-optional range of local DOF indices. Any computation involving only indices outside of this range are discarded (useful for parallelization using mesh partitionning)
+optional range of local DOF indices. Any computation involving only indices outside of this range are discarded (useful for parallelization using mesh partitioning)
 		</td>
 		<td>-1 -1</td>
 	</tr>

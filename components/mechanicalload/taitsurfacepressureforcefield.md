@@ -50,7 +50,7 @@ if true, emits extra messages at runtime.
 	<tr>
 		<td>tags</td>
 		<td>
-list of the subsets the objet belongs to
+list of the subsets the object belongs to
 		</td>
 		<td></td>
 	</tr>
@@ -85,7 +85,7 @@ Rayleigh damping - stiffness matrix coefficient
 	<tr>
 		<td>pressureTriangles</td>
 		<td>
-OUT: list of triangles where a pressure is applied (mesh triangles + tesselated quads)
+OUT: list of triangles where a pressure is applied (mesh triangles + tessellated quads)
 		</td>
 		<td></td>
 	</tr>

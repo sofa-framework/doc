@@ -38,7 +38,7 @@ Moreover, each constrained object must define in its node a ConstraintCorrection
 <!-- automatically generated doc START -->
 <!-- generate_doc -->
 
-BilateralLagrangianConstraint defining an holonomic equality constraint (attachment)
+BilateralLagrangianConstraint defining an holonomic equality constraint (attachment).
 
 
 ## Rigid3d
@@ -83,7 +83,7 @@ if true, emits extra messages at runtime.
 	<tr>
 		<td>tags</td>
 		<td>
-list of the subsets the objet belongs to
+list of the subsets the object belongs to
 		</td>
 		<td></td>
 	</tr>
@@ -233,7 +233,7 @@ if true, emits extra messages at runtime.
 	<tr>
 		<td>tags</td>
 		<td>
-list of the subsets the objet belongs to
+list of the subsets the object belongs to
 		</td>
 		<td></td>
 	</tr>

@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # SkinningMapping
 
-skin a model from a set of rigid dofs
+Skin a model from a set of rigid DOFs.
 
 
 ## Rigid3d,Vec3d
@@ -46,7 +46,7 @@ if true, emits extra messages at runtime.
 	<tr>
 		<td>tags</td>
 		<td>
-list of the subsets the objet belongs to
+list of the subsets the object belongs to
 		</td>
 		<td></td>
 	</tr>

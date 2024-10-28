@@ -111,7 +111,7 @@ if true, emits extra messages at runtime.
 	<tr>
 		<td>tags</td>
 		<td>
-list of the subsets the objet belongs to
+list of the subsets the object belongs to
 		</td>
 		<td></td>
 	</tr>
@@ -139,7 +139,7 @@ if true, handle the events, otherwise ignore the events
 	<tr>
 		<td>verbose</td>
 		<td>
-Display extra informations at each computation step. (default=false)
+Display extra information at each computation step. (default=false)
 		</td>
 		<td>0</td>
 	</tr>

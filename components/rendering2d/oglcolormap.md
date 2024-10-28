@@ -40,7 +40,7 @@ if true, emits extra messages at runtime.
 	<tr>
 		<td>tags</td>
 		<td>
-list of the subsets the objet belongs to
+list of the subsets the object belongs to
 		</td>
 		<td></td>
 	</tr>
@@ -110,14 +110,14 @@ Add a title to the legend
 	<tr>
 		<td>min</td>
 		<td>
-min value for drawing the legend without the need to actually use the range with getEvaluator method wich sets the min
+min value for drawing the legend without the need to actually use the range with getEvaluator method which sets the min
 		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>max</td>
 		<td>
-max value for drawing the legend without the need to actually use the range with getEvaluator method wich sets the max
+max value for drawing the legend without the need to actually use the range with getEvaluator method which sets the max
 		</td>
 		<td>0</td>
 	</tr>

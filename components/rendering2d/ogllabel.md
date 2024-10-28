@@ -40,7 +40,7 @@ if true, emits extra messages at runtime.
 	<tr>
 		<td>tags</td>
 		<td>
-list of the subsets the objet belongs to
+list of the subsets the object belongs to
 		</td>
 		<td></td>
 	</tr>
@@ -124,7 +124,7 @@ The color of the text to display. (default='gray')
 	<tr>
 		<td>selectContrastingColor</td>
 		<td>
-Overide the color value but one that contrast with the background color
+Override the color value but one that contrast with the background color
 		</td>
 		<td>0</td>
 	</tr>

@@ -40,7 +40,7 @@ if true, emits extra messages at runtime.
 	<tr>
 		<td>tags</td>
 		<td>
-list of the subsets the objet belongs to
+list of the subsets the object belongs to
 		</td>
 		<td></td>
 	</tr>
@@ -75,14 +75,14 @@ input events file name
 	<tr>
 		<td>inverseSense</td>
 		<td>
-inverse the sense of the mouvement
+inverse the sense of the movement
 		</td>
 		<td>0</td>
 	</tr>
 	<tr>
 		<td>printEvent</td>
 		<td>
-Print event informations
+Print event information
 		</td>
 		<td>0</td>
 	</tr>

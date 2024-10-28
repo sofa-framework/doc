@@ -70,7 +70,7 @@ It means, the only available template for this mapping is `Vec1`.
 <!-- automatically generated doc START -->
 <!-- generate_doc -->
 
-Compute the square
+Compute the square value from the inputs.
 
 
 ## Vec1d,Vec1d
@@ -115,7 +115,7 @@ if true, emits extra messages at runtime.
 	<tr>
 		<td>tags</td>
 		<td>
-list of the subsets the objet belongs to
+list of the subsets the object belongs to
 		</td>
 		<td></td>
 	</tr>

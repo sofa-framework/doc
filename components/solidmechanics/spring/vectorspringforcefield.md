@@ -46,7 +46,7 @@ if true, emits extra messages at runtime.
 	<tr>
 		<td>tags</td>
 		<td>
-list of the subsets the objet belongs to
+list of the subsets the object belongs to
 		</td>
 		<td></td>
 	</tr>
@@ -88,7 +88,7 @@ springs data
 	<tr>
 		<td>filename</td>
 		<td>
-File name from which the spring informations are loaded
+File name from which the spring information are loaded
 		</td>
 		<td></td>
 	</tr>
@@ -109,7 +109,7 @@ Default edge viscosity used in absence of file information
 	<tr>
 		<td>useTopology</td>
 		<td>
-Activate/Desactivate topology mode of the component (springs on each edge)
+Activate/Deactivate topology mode of the component (springs on each edge)
 		</td>
 		<td>0</td>
 	</tr>

@@ -46,7 +46,7 @@ if true, emits extra messages at runtime.
 	<tr>
 		<td>tags</td>
 		<td>
-list of the subsets the objet belongs to
+list of the subsets the object belongs to
 		</td>
 		<td></td>
 	</tr>
@@ -130,7 +130,7 @@ Flag activating rendering of stress directions within each triangle
 	<tr>
 		<td>hosfordExponant</td>
 		<td>
-Exponant in the Hosford yield criteria
+Exponent in the Hosford yield criteria
 		</td>
 		<td>1</td>
 	</tr>
