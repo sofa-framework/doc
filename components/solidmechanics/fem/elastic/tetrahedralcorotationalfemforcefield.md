@@ -128,6 +128,27 @@ Allow specification of different stiffness per element. If there are N element a
 		<td>0</td>
 	</tr>
 	<tr>
+		<td>computeVonMisesStress</td>
+		<td>
+compute and display von Mises stress: 0: no computations, 1: using corotational strain, 2: using full Green strain. Set listening=1
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>vonMisesPerElement</td>
+		<td>
+von Mises Stress per element
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>vonMisesPerNode</td>
+		<td>
+von Mises Stress per node
+		</td>
+		<td></td>
+	</tr>
+	<tr>
 		<td colspan="3">Visualization</td>
 	</tr>
 	<tr>
@@ -238,7 +259,7 @@ TetrahedralCorotationalFEMForceField.scn
             <Hexa2TetraTopologicalMapping input="@grid" output="@Tetra_topo" />
             
             <DiagonalMass massDensity="0.2" />
-            <TetrahedralCorotationalFEMForceField name="CFEM" youngModulus="1000" poissonRatio="0.3" method="large" />
+            <TetrahedralCorotationalFEMForceField name="CFEM" youngModulus="1000" poissonRatio="0.3" method="large" computeVonMisesStress="1"/>
             
             <BoxROI template="Vec3" name="box_roi" box="-6 -6 -1 30 6 0.1" drawBoxes="1" />
             <FixedProjectiveConstraint template="Vec3" indices="@box_roi.indices" />
@@ -257,7 +278,7 @@ TetrahedralCorotationalFEMForceField.scn
             <Hexa2TetraTopologicalMapping input="@grid" output="@Tetra_topo" />
             
             <DiagonalMass massDensity="0.2" />
-            <TetrahedralCorotationalFEMForceField name="CFEM" youngModulus="1000" poissonRatio="0.3" method="polar" />
+            <TetrahedralCorotationalFEMForceField name="CFEM" youngModulus="1000" poissonRatio="0.3" method="polar" computeVonMisesStress="1"/>
             
             <BoxROI template="Vec3" name="box_roi" box="-6 -6 -1 30 6 0.1" drawBoxes="1" />
             <FixedProjectiveConstraint template="Vec3" indices="@box_roi.indices" />
@@ -315,7 +336,7 @@ TetrahedralCorotationalFEMForceField.scn
        beam_fem__large.addObject('TetrahedronSetGeometryAlgorithms', template="Vec3", name="GeomAlgo")
        beam_fem__large.addObject('Hexa2TetraTopologicalMapping', input="@grid", output="@Tetra_topo")
        beam_fem__large.addObject('DiagonalMass', massDensity="0.2")
-       beam_fem__large.addObject('TetrahedralCorotationalFEMForceField', name="CFEM", youngModulus="1000", poissonRatio="0.3", method="large")
+       beam_fem__large.addObject('TetrahedralCorotationalFEMForceField', name="CFEM", youngModulus="1000", poissonRatio="0.3", method="large", computeVonMisesStress="1")
        beam_fem__large.addObject('BoxROI', template="Vec3", name="box_roi", box="-6 -6 -1 30 6 0.1", drawBoxes="1")
        beam_fem__large.addObject('FixedProjectiveConstraint', template="Vec3", indices="@box_roi.indices")
 
@@ -330,7 +351,7 @@ TetrahedralCorotationalFEMForceField.scn
        beam_fem__polar.addObject('TetrahedronSetGeometryAlgorithms', template="Vec3", name="GeomAlgo")
        beam_fem__polar.addObject('Hexa2TetraTopologicalMapping', input="@grid", output="@Tetra_topo")
        beam_fem__polar.addObject('DiagonalMass', massDensity="0.2")
-       beam_fem__polar.addObject('TetrahedralCorotationalFEMForceField', name="CFEM", youngModulus="1000", poissonRatio="0.3", method="polar")
+       beam_fem__polar.addObject('TetrahedralCorotationalFEMForceField', name="CFEM", youngModulus="1000", poissonRatio="0.3", method="polar", computeVonMisesStress="1")
        beam_fem__polar.addObject('BoxROI', template="Vec3", name="box_roi", box="-6 -6 -1 30 6 0.1", drawBoxes="1")
        beam_fem__polar.addObject('FixedProjectiveConstraint', template="Vec3", indices="@box_roi.indices")
     ```
