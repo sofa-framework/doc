@@ -282,7 +282,9 @@ AreaMapping.scn
             </Node>
     
             <Node name="Visu">
-                <OglModel name="Visual" color="green" />
+                <VisualStyle displayFlags="hideWireframe"/>
+                <DataDisplay name="Visual" triangleData="@../constraintSpace/areaDoFs.position"/>
+                <OglColorMap colorScheme="HSV" showLegend="true" legendTitle="Triangle area" min="@Visual.currentMin" max="@Visual.currentMax"/>
                 <IdentityMapping input="@.." output="@Visual" />
             </Node>
         </Node>
@@ -307,7 +309,7 @@ AreaMapping.scn
             </Node>
     
             <Node name="Visu">
-                <OglModel name="Visual" color="red" />
+                <OglModel name="Visual" color="darkgray" />
                 <IdentityMapping input="@.." output="@Visual" />
             </Node>
         </Node>
@@ -367,7 +369,9 @@ AreaMapping.scn
 
        visu = withAreaConstraints.addChild('Visu')
 
-       visu.addObject('OglModel', name="Visual", color="green")
+       visu.addObject('VisualStyle', displayFlags="hideWireframe")
+       visu.addObject('DataDisplay', name="Visual", triangleData="@../constraintSpace/areaDoFs.position")
+       visu.addObject('OglColorMap', colorScheme="HSV", showLegend="true", legendTitle="Triangle area", min="@Visual.currentMin", max="@Visual.currentMax")
        visu.addObject('IdentityMapping', input="@..", output="@Visual")
 
        no_constraints = root.addChild('noConstraints')
@@ -389,7 +393,7 @@ AreaMapping.scn
 
        visu = noConstraints.addChild('Visu')
 
-       visu.addObject('OglModel', name="Visual", color="red")
+       visu.addObject('OglModel', name="Visual", color="darkgray")
        visu.addObject('IdentityMapping', input="@..", output="@Visual")
     ```
 

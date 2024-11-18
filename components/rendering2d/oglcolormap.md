@@ -96,14 +96,14 @@ Draw the legend on screen with an x,y offset
 	<tr>
 		<td>legendTitle</td>
 		<td>
-Font size of the legend (if any)
+Add a title to the legend
 		</td>
 		<td></td>
 	</tr>
 	<tr>
 		<td>legendSize</td>
 		<td>
-Add a title to the legend
+Font size of the legend (if any)
 		</td>
 		<td>11</td>
 	</tr>
