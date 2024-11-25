@@ -154,7 +154,7 @@ Relative position to maintain between attached points (optional)
 	<tr>
 		<td>numericalTolerance</td>
 		<td>
-a real value specifying the tolerance during the constraint solving. (optional, default=0.0001)
+a real value specifying the tolerance during the constraint solving.
 		</td>
 		<td>0.0001</td>
 	</tr>
@@ -304,7 +304,7 @@ Relative position to maintain between attached points (optional)
 	<tr>
 		<td>numericalTolerance</td>
 		<td>
-a real value specifying the tolerance during the constraint solving. (optional, default=0.0001)
+a real value specifying the tolerance during the constraint solving.
 		</td>
 		<td>0.0001</td>
 	</tr>

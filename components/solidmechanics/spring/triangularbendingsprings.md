@@ -138,7 +138,7 @@ TriangularBendingSprings.scn
             <RequiredPlugin name="Sofa.Component.Constraint.Projective"/> <!-- Needed to use components [FixedProjectiveConstraint] -->
             <RequiredPlugin name="Sofa.Component.IO.Mesh"/> <!-- Needed to use components [MeshGmshLoader] -->
             <RequiredPlugin name="Sofa.Component.LinearSolver.Direct"/> <!-- Needed to use components [AsyncSparseLDLSolver] -->
-            <RequiredPlugin name="Sofa.Component.LinearSolver.Iterative"/> <!-- Needed to use components [ShewchukPCGLinearSolver] -->
+            <RequiredPlugin name="Sofa.Component.LinearSolver.Iterative"/> <!-- Needed to use components [PCGLinearSolver] -->
             <RequiredPlugin name="Sofa.Component.Mapping.Linear"/> <!-- Needed to use components [IdentityMapping] -->
             <RequiredPlugin name="Sofa.Component.Mass"/> <!-- Needed to use components [DiagonalMass] -->
             <RequiredPlugin name="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
@@ -154,7 +154,7 @@ TriangularBendingSprings.scn
     
         <Node name="SquareGravity">
             <EulerImplicitSolver name="cg_odesolver" printLog="false"  rayleighStiffness="0.1" rayleighMass="0.1" />
-            <ShewchukPCGLinearSolver preconditioner="@preconditioner"/>
+            <PCGLinearSolver preconditioner="@preconditioner"/>
             <AsyncSparseLDLSolver name="preconditioner" template="CompressedRowSparseMatrixMat3x3"/>
             <MeshGmshLoader name="loader" filename="mesh/square3.msh" createSubelements="true"/>
             <MechanicalObject src="@loader" scale="10" />
@@ -201,7 +201,7 @@ TriangularBendingSprings.scn
        square_gravity = root.addChild('SquareGravity')
 
        square_gravity.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
-       square_gravity.addObject('ShewchukPCGLinearSolver', preconditioner="@preconditioner")
+       square_gravity.addObject('PCGLinearSolver', preconditioner="@preconditioner")
        square_gravity.addObject('AsyncSparseLDLSolver', name="preconditioner", template="CompressedRowSparseMatrixMat3x3")
        square_gravity.addObject('MeshGmshLoader', name="loader", filename="mesh/square3.msh", createSubelements="true")
        square_gravity.addObject('MechanicalObject', src="@loader", scale="10")

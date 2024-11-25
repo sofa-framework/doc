@@ -1,5 +1,5 @@
 <!-- generate_doc -->
-# ShewchukPCGLinearSolver
+# PCGLinearSolver
 
 Linear system solver using the Shewchuk conjugate gradient iterative algorithm.
 
