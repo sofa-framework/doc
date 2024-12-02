@@ -69,42 +69,42 @@ if true, handle the events, otherwise ignore the events
 	<tr>
 		<td>newton_iterations</td>
 		<td>
-Number of Netwon iterations between each load increments (normally, one load increment per simulation time-step.
+Number of Newton iterations between each load increments (normally, one load increment per simulation time-step.
 		</td>
 		<td>1</td>
 	</tr>
 	<tr>
 		<td>absolute_correction_tolerance_threshold</td>
 		<td>
-Convergence criterion of the norm |du| under which the Netwon iterations stop
+Convergence criterion of the norm |du| under which the Newton iterations stop
 		</td>
 		<td>1e-05</td>
 	</tr>
 	<tr>
 		<td>relative_correction_tolerance_threshold</td>
 		<td>
-Convergence criterion regarding the ratio |du| / |U| under which the Netwon iterations stop
+Convergence criterion regarding the ratio |du| / |U| under which the Newton iterations stop
 		</td>
 		<td>1e-05</td>
 	</tr>
 	<tr>
 		<td>absolute_residual_tolerance_threshold</td>
 		<td>
-Convergence criterion of the norm |R| under which the Netwon iterations stop.Use a negative value to disable this criterion
+Convergence criterion of the norm |R| under which the Newton iterations stop.Use a negative value to disable this criterion
 		</td>
 		<td>1e-05</td>
 	</tr>
 	<tr>
 		<td>relative_residual_tolerance_threshold</td>
 		<td>
-Convergence criterion regarding the ratio |R|/|R0| under which the Netwon iterations stop.Use a negative value to disable this criterion
+Convergence criterion regarding the ratio |R|/|R0| under which the Newton iterations stop.Use a negative value to disable this criterion
 		</td>
 		<td>1e-05</td>
 	</tr>
 	<tr>
 		<td>should_diverge_when_residual_is_growing</td>
 		<td>
-Boolean stopping Netwon iterations when the residual is greater than the one from the previous iteration
+Boolean stopping Newton iterations when the residual is greater than the one from the previous iteration
 		</td>
 		<td>0</td>
 	</tr>
