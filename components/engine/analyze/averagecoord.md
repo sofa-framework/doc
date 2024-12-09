@@ -84,7 +84,7 @@ indices of the coordinates to average
 	<tr>
 		<td>vecId</td>
 		<td>
-index of the vector (default value corresponds to core::VecCoordId::position() )
+index of the vector (default value corresponds to core::vec_id::write_access::position )
 		</td>
 		<td>1</td>
 	</tr>
@@ -195,7 +195,7 @@ indices of the coordinates to average
 	<tr>
 		<td>vecId</td>
 		<td>
-index of the vector (default value corresponds to core::VecCoordId::position() )
+index of the vector (default value corresponds to core::vec_id::write_access::position )
 		</td>
 		<td>1</td>
 	</tr>
@@ -306,7 +306,7 @@ indices of the coordinates to average
 	<tr>
 		<td>vecId</td>
 		<td>
-index of the vector (default value corresponds to core::VecCoordId::position() )
+index of the vector (default value corresponds to core::vec_id::write_access::position )
 		</td>
 		<td>1</td>
 	</tr>
@@ -417,7 +417,7 @@ indices of the coordinates to average
 	<tr>
 		<td>vecId</td>
 		<td>
-index of the vector (default value corresponds to core::VecCoordId::position() )
+index of the vector (default value corresponds to core::vec_id::write_access::position )
 		</td>
 		<td>1</td>
 	</tr>

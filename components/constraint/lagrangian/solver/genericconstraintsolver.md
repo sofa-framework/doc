@@ -68,9 +68,12 @@ if true, handle the events, otherwise ignore the events
 	<tr>
 		<td>resolutionMethod</td>
 		<td>
-Method used to solve the constraint problem, among: "ProjectedGaussSeidel", "UnbuiltGaussSeidel" or "for NonsmoothNonlinearConjugateGradient"
+Method used to solve the constraint problem
+- ProjectedGaussSeidel: Projected Gauss-Seidel
+- UnbuiltGaussSeidel: Gauss-Seidel where the matrix is not assembled
+- NonsmoothNonlinearConjugateGradient: Non-smooth non-linear conjugate gradient
 		</td>
-		<td></td>
+		<td>ProjectedGaussSeidel</td>
 	</tr>
 	<tr>
 		<td>maxIterations</td>

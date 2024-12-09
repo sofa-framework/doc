@@ -76,15 +76,22 @@ Display the object or not
 		<td>style</td>
 		<td>
 Style of the frame
+- Arrows: The frame is composed of arrows
+- Cylinders: The frame is composed of cylinders
+- CubeCones: The frame is composed of cubes and cones
 		</td>
-		<td></td>
+		<td>Cylinders</td>
 	</tr>
 	<tr>
 		<td>alignment</td>
 		<td>
 Alignment of the frame in the view
+- BottomLeft: The scene frame is displayed in the bottom-left corner
+- BottomRight: The scene frame is displayed in the bottom-right corner
+- TopRight: The scene frame is displayed in the top-right corner
+- TopLeft: The scene frame is displayed in the top-left corner
 		</td>
-		<td></td>
+		<td>BottomRight</td>
 	</tr>
 	<tr>
 		<td>viewportSize</td>
