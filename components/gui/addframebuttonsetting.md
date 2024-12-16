@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # AddFrameButtonSetting
 
-Add a frame to a skinned model
+Button setting adding a frame to a skinned model.
 
 
 __Target__: Sofa.GUI.Component

@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # MouseInteractor
 
-Perform tasks related to the interaction with the mouse
+Perform tasks related to the interaction with the mouse.
 Perform tasks related to the interaction with the mouse and rigid objects
 
 

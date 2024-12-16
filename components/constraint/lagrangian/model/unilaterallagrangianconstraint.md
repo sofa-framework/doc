@@ -55,7 +55,7 @@ __namespace__: sofa::component::constraint::lagrangian::model
 
 __parents__:
 
-- PairInteractionConstraint
+- BaseContactLagrangianConstraint
 
 ### Data
 

@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # OglModel
 
-Generic visual model for OpenGL display
+Generic visual model for OpenGL display.
 
 
 ## Vec3d

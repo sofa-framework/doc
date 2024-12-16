@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # OglOITShader
 
-OglOITShader
+Shader implementating Order Independent Transparency.
 
 
 __Target__: Sofa.GL.Component.Shader

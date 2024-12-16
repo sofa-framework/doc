@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # OglCylinderModel
 
-A simple visualization for set of cylinder.
+OpenGL-based visualization for a cylinders over edges.
 
 
 __Target__: Sofa.GL.Component.Rendering3D

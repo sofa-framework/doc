@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # StartNavigationButtonSetting
 
-Start Navigation Button configuration
+Start Navigation Button configuration.
 
 
 __Target__: Sofa.GUI.Component

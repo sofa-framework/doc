@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # SlicedVolumetricModel
 
-A simple visualization for a cloud of points.
+Sliced visualization for a volumetric model defined with hexahedra.
 
 
 __Target__: Sofa.GL.Component.Rendering3D

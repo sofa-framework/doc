@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # OglShaderVisualModel
 
-Visual model for OpenGL display using Glew extensions
+Visual model for OpenGL display using a custom shader.
 
 
 ## Vec3d

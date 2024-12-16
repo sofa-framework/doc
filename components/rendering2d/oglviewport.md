@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # OglViewport
 
-OglViewport
+Set an additional viewport into the main one.
 
 
 __Target__: Sofa.GL.Component.Rendering2D

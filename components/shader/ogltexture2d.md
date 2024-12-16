@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # OglTexture2D
 
-OglTexture2D
+Load a 2d texture to be used in a shader.
 
 
 __Target__: Sofa.GL.Component.Shader

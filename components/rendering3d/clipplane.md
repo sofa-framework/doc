@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # ClipPlane
 
-OpenGL Clipping Plane
+Define arbitrary clipping plane into OpenGL.
 
 
 __Target__: Sofa.GL.Component.Rendering3D

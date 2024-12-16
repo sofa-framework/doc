@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # OrderIndependentTransparencyManager
 
-OrderIndependentTransparencyManager
+Order Independent Transparency Manager (to be used with OglOITShader).
 
 
 __Target__: Sofa.GL.Component.Shader

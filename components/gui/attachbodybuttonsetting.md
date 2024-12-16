@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # AttachBodyButtonSetting
 
-Attach Body Button configuration
+Attach Body Button configuration.
 
 
 __Target__: Sofa.GUI.Component

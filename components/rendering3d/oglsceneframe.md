@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # OglSceneFrame
 
-Display a frame at the corner of the scene view
+Display a frame at the corner of the scene view.
 
 
 __Target__: Sofa.GL.Component.Rendering3D

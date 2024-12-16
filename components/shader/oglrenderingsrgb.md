@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # OglRenderingSRGB
 
-OglRenderingSRGB
+Set the current visual context framebuffer with SRGB.
 
 
 __Target__: Sofa.GL.Component.Shader

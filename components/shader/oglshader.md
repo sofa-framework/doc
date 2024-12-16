@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # OglShader
 
-OglShader
+Set custom shader for the current visual context.
 
 
 __Target__: Sofa.GL.Component.Shader

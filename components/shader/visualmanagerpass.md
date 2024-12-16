@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # VisualManagerPass
 
-VisualManagerPass
+Render pass element: render the relevant tagged objects in a FBO.
 
 
 __Target__: Sofa.GL.Component.Shader

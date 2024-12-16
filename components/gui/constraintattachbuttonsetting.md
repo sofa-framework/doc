@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # ConstraintAttachButtonSetting
 
-Attach an object to the mouse using lagrangian multiplier
+Attach an object to the mouse using lagrangian multiplier.
 
 
 __Target__: Sofa.GUI.Component

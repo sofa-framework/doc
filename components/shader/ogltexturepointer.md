@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # OglTexturePointer
 
-OglTexturePointer
+Pointer to a OglTexture, useful for sharing a texture between multiple shaders.
 
 
 __Target__: Sofa.GL.Component.Shader

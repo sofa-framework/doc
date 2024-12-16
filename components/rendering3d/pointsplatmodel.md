@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # PointSplatModel
 
-A simple visualization for a cloud of points.
+Visualization for a cloud of points using splatting.
 
 
 __Target__: Sofa.GL.Component.Rendering3D

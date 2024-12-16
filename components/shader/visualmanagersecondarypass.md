@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # VisualManagerSecondaryPass
 
-VisualManagerSecondaryPass
+Chain different rendering pass, for compositing.
 
 
 __Target__: Sofa.GL.Component.Shader

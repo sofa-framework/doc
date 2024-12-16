@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # MergeVisualModels
 
-Merge several visual models
+Merge several visual models.
 
 
 ## Vec3d

@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # PostProcessManager
 
-PostProcessManager
+Add a post process pass to the actual rendering.
 
 
 __Target__: Sofa.GL.Component.Shader

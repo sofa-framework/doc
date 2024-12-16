@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # DataDisplay
 
-Rendering of meshes colored by data
+Color rendering of data associated with a mesh.
 
 
 __Target__: Sofa.GL.Component.Rendering3D

@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # OglShaderDefineMacro
 
-OglShaderDefineMacro
+Add a custom preprocessor instruction to the shader in the current visual context.
 
 
 __Target__: Sofa.GL.Component.Shader

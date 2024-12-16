@@ -1,16 +1,22 @@
 <!-- generate_doc -->
-# CompositingVisualLoop
+# AugmentedLagrangianConstraint
 
-Visual loop enabling multipass rendering. Needs multiple fbo data and a compositing shader.
+AugmentedLagrangianConstraint
 
 
-__Target__: Sofa.GL.Component.Shader
+## Vec3d
 
-__namespace__: sofa::gl::component::shader
+Templates:
+
+- Vec3d
+
+__Target__: Sofa.Component.Constraint.Lagrangian.Model
+
+__namespace__: sofa::component::constraint::lagrangian::model
 
 __parents__:
 
-- DefaultVisualManagerLoop
+- BaseContactLagrangianConstraint
 
 ### Data
 
@@ -66,25 +72,26 @@ if true, handle the events, otherwise ignore the events
 		<td>0</td>
 	</tr>
 	<tr>
-		<td>enable</td>
+		<td>group</td>
 		<td>
-Display the object or not
+ID of the group containing this constraint. This ID is used to specify which constraints are solved by which solver, by specifying in each solver which groups of constraints it should handle.
 		</td>
-		<td>1</td>
+		<td>0</td>
 	</tr>
 	<tr>
-		<td>vertFilename</td>
+		<td>constraintIndex</td>
 		<td>
-Set the vertex shader filename to load
+Constraint index (first index in the right hand term resolution vector)
 		</td>
-		<td>shaders/compositing.vert</td>
+		<td>0</td>
 	</tr>
 	<tr>
-		<td>fragFilename</td>
+		<td>endTime</td>
 		<td>
-Set the fragment shader filename to load
+The constraint stops acting after the given value.
+Use a negative value for infinite constraints
 		</td>
-		<td>shaders/compositing.frag</td>
+		<td>-1</td>
 	</tr>
 
 </tbody>
@@ -98,5 +105,7 @@ Set the fragment shader filename to load
 |context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
 |slaves|Sub-objects used internally by this object|BaseObject|
 |master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
-|targetNode|Link to the scene's node where the rendering will take place|Node|
+|mechanicalStates|List of mechanical states to which this component is associated|BaseMechanicalState|
+|object1|First object associated to this component|MechanicalState&lt;Vec3d&gt;|
+|object2|Second object associated to this component|MechanicalState&lt;Vec3d&gt;|
 

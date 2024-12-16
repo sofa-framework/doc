@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # AddRecordedCameraButtonSetting
 
-Save Camera's View Point Button configuration
+Save Camera's View Point Button configuration.
 
 
 __Target__: Sofa.GUI.Component

@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # FixPickedParticleButtonSetting
 
-Fix a picked particle in space
+Fix a picked particle in space.
 
 
 __Target__: Sofa.GUI.Component
