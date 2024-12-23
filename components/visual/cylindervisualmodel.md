@@ -1,12 +1,12 @@
 <!-- generate_doc -->
-# OglCylinderModel
+# CylinderVisualModel
 
-OpenGL-based visualization for a cylinders over edges.
+Visualize a set of cylinders.
 
 
-__Target__: Sofa.GL.Component.Rendering3D
+__Target__: Sofa.Component.Visual
 
-__namespace__: sofa::gl::component::rendering3d
+__namespace__: sofa::component::visual
 
 __parents__:
 
@@ -133,20 +133,20 @@ Normals of the model
 
 ## Examples 
 
-OglCylinderModel.scn
+CylinderVisualModel.scn
 
 === "XML"
 
     ```xml
     <?xml version="1.0"?>
     <Node name="root" dt="0.02">
-        <RequiredPlugin name="Sofa.Component.Visual"/> <!-- Needed to use components [VisualStyle] -->
-        <RequiredPlugin name="Sofa.GL.Component.Rendering3D"/> <!-- Needed to use components [OglCylinderModel] -->
+        <RequiredPlugin name="Sofa.Component.Visual"/> <!-- Needed to use components [VisualStyle, CylinderVisualModel] -->
         <DefaultAnimationLoop/>
         <VisualStyle displayFlags="showVisual" />
-        <OglCylinderModel  position="0 0 0   10 0 0 "  edges="0 1" />
+        <CylinderVisualModel  position="0 0 0   10 0 0 "  edges="0 1" color="yellow" />
         
     </Node>
+
     ```
 
 === "Python"
@@ -157,9 +157,8 @@ OglCylinderModel.scn
        root = root_node.addChild('root', dt="0.02")
 
        root.addObject('RequiredPlugin', name="Sofa.Component.Visual")
-       root.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
        root.addObject('DefaultAnimationLoop', )
        root.addObject('VisualStyle', displayFlags="showVisual")
-       root.addObject('OglCylinderModel', position="0 0 0   10 0 0 ", edges="0 1")
+       root.addObject('CylinderVisualModel', position="0 0 0   10 0 0 ", edges="0 1", color="yellow")
     ```
 

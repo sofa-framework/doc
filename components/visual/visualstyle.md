@@ -101,7 +101,7 @@ __namespace__: sofa::component::visual
 
 __parents__:
 
-- VisualModel
+- BaseVisualStyle
 
 ### Data
 
@@ -155,13 +155,6 @@ The state of the component among (Dirty, Valid, Undefined, Loading, Invalid).
 if true, handle the events, otherwise ignore the events
 		</td>
 		<td>0</td>
-	</tr>
-	<tr>
-		<td>enable</td>
-		<td>
-Display the object or not
-		</td>
-		<td>1</td>
 	</tr>
 	<tr>
 		<td>displayFlags</td>

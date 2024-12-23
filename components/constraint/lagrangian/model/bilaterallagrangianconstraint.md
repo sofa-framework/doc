@@ -152,13 +152,6 @@ Relative position to maintain between attached points (optional)
 		<td></td>
 	</tr>
 	<tr>
-		<td>numericalTolerance</td>
-		<td>
-a real value specifying the tolerance during the constraint solving.
-		</td>
-		<td>0.0001</td>
-	</tr>
-	<tr>
 		<td>activate</td>
 		<td>
 control constraint activation (true by default)
@@ -300,13 +293,6 @@ index of the constraint on the second model (object2)
 Relative position to maintain between attached points (optional)
 		</td>
 		<td></td>
-	</tr>
-	<tr>
-		<td>numericalTolerance</td>
-		<td>
-a real value specifying the tolerance during the constraint solving.
-		</td>
-		<td>0.0001</td>
 	</tr>
 	<tr>
 		<td>activate</td>
