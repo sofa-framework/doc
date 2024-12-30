@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # AnimationLoopParallelScheduler
 
-parallel animation loop, using intel tbb library
+Parallel animation loop, using the Intel tbb library.
 
 
 __Target__: MultiThreading

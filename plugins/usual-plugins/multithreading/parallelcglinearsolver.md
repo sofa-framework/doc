@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # ParallelCGLinearSolver
 
-Linear system solver using the conjugate gradient iterative algorithm in parallel
+Parallel version of the linear solver using the conjugate gradient iterative algorithm.
 
 
 ## ParallelCompressedRowSparseMatrixMat3x3d

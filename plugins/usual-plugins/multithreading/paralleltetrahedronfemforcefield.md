@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # ParallelTetrahedronFEMForceField
 
-Parallel tetrahedral finite elements
+Parallel implementation of a linear elastic material using tetrahedral finite elements..
 
 
 ## Vec3d
@@ -12,7 +12,7 @@ Templates:
 
 __Target__: MultiThreading
 
-__namespace__: multithreading::component::solidmechanics::fem::elastic
+__namespace__: multithreading::component::forcefield::solidmechanics::fem::elastic
 
 __parents__:
 

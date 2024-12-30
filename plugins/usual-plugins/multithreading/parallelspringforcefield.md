@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # ParallelSpringForceField
 
-Parallel stiff springs
+Parallel stiff springs.
 
 
 ## Rigid3d

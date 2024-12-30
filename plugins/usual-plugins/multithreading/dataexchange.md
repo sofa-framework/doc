@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # DataExchange
 
-DataExchange
+Component for data memory sharing in the context of multi-threading applications
 
 
 Templates:

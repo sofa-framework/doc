@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # ParallelBVHNarrowPhase
 
-Narrow phase collision detection based on boundary volume hierarchy
+Parallel version of the narrow phase collision detection based on boundary volume hierarchy.
 
 
 __Target__: MultiThreading

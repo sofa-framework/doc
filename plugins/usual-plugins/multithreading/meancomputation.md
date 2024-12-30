@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # MeanComputation
 
-Compute the mean of the input elements
+Compute the mean of the input elements.
 
 
 Templates:

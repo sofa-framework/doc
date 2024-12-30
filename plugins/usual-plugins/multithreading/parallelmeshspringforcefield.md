@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # ParallelMeshSpringForceField
 
-Parallel stiff springs acting along the edges of a mesh
+Parallel stiff springs acting along the edges of a mesh.
 
 
 ## Vec1d

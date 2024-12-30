@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # ParallelHexahedronFEMForceField
 
-Parallel hexahedral finite elements
+Parallel implementation of a linear elastic material using hexahedral finite elements.
 
 
 ## Vec3d

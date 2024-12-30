@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # ParallelBruteForceBroadPhase
 
-Collision detection using extensive pair-wise tests performed in parallel
+Parallel version of the collision detection using extensive pair-wise tests performed concurrently.
 
 
 __Target__: MultiThreading

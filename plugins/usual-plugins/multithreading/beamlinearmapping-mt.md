@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # BeamLinearMapping_mt
 
-Set the positions and velocities of points attached to a beam using linear interpolation between DOFs
+Set the positions and velocities of points attached to a beam using linear interpolation between DOFs.
 
 
 ## Rigid3d,Vec3d
