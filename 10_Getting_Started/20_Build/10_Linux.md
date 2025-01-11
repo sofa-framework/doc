@@ -289,7 +289,7 @@ Fedora image: [https://hub.docker.com/r/sofaframework/sofabuilder_fedora](https:
 ## Nix package
 
 [Nix](https://nix.dev/) is a package manager which stores all packages into a common place called the Nix store, usually located at /nix/store. Each package is stored in a unique subdirectory in the store, and each package has its own tree structure. A Nix package for SOFA is available and can be used as follows:
-- [Install Nix](https://nix.dev/install-nix)
-- Build using `nix build github:sofa-framework/sofa` (for master). Note that you can point towards any commit hash: `nix build github:sofa-framework/sofa/COMMIT_HASH_HERE`
+- Install [Nix](https://nix.dev/install-nix), you can run `sh <(curl -L https://nixos.org/nix/install) --daemon`, restart your terminal or check the installation using `nix --version`
+- From the SOFA sources, build using the command `nix build --extra-experimental-features nix-command --extra-experimental-features flakes` (for master). Note that you can point towards any commit hash: `nix build github:sofa-framework/sofa/COMMIT_HASH_HERE`
 - Command `nix develop` provides a shell with an environment containing all required dependencies to build the project in the usual CMake way
-- Finally `nix run` starts the software
+- Finally, starts SOFA `nix run --extra-experimental-features nix-command --extra-experimental-features flakes`
