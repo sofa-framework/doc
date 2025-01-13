@@ -122,6 +122,13 @@ List of uv coordinates
 		<td></td>
 	</tr>
 	<tr>
+		<td>computeAllBuffers</td>
+		<td>
+Option to compute all crossed topology buffers at init. False by default
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
 		<td>fillWeighted</td>
 		<td>
 Is quantity of matter inside a cell taken into account? (.5 for boundary, 1 for inside)

@@ -122,6 +122,13 @@ List of uv coordinates
 		<td></td>
 	</tr>
 	<tr>
+		<td>computeAllBuffers</td>
+		<td>
+Option to compute all crossed topology buffers at init. False by default
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
 		<td>n</td>
 		<td>
 grid resolution. (default = 2 2 2)
