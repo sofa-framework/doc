@@ -1,15 +1,5 @@
 **It is STRONGLY advised to read through this entire doc page before getting started.**
 
-## Preconfigured Docker image
-
-We provide preconfigured Docker images based on Ubuntu or Fedora.  
-These images contain all the tools and dependencies needed to build SOFA.  
-Feel free to use them and to propose your own versions on Docker Hub!
-
-Ubuntu image: [https://hub.docker.com/r/sofaframework/sofabuilder_ubuntu](https://hub.docker.com/r/sofaframework/sofabuilder_ubuntu)
-
-Fedora image: [https://hub.docker.com/r/sofaframework/sofabuilder_fedora](https://hub.docker.com/r/sofaframework/sofabuilder_fedora)
-
 ## Supported Linux version
 
 SOFA policy is to support only the latest Ubuntu LTS.
@@ -279,3 +269,27 @@ COPY\_ONLY with COPYONLY and **Configure** again.
 ## Compilation tutorial
 
 See our page presenting [video tutorial for compilation on Linux](../../video-tutorials/how-to-compile-sofa/#linux).
+
+
+
+# Alternative build methods
+
+
+## Preconfigured Docker image
+
+We provide preconfigured Docker images based on Ubuntu or Fedora.  
+These images contain all the tools and dependencies needed to build SOFA.  
+Feel free to use them and to propose your own versions on Docker Hub!
+
+Ubuntu image: [https://hub.docker.com/r/sofaframework/sofabuilder_ubuntu](https://hub.docker.com/r/sofaframework/sofabuilder_ubuntu)
+
+Fedora image: [https://hub.docker.com/r/sofaframework/sofabuilder_fedora](https://hub.docker.com/r/sofaframework/sofabuilder_fedora)
+
+
+## Nix package
+
+[Nix](https://nix.dev/) is a package manager which stores all packages into a common place called the Nix store, usually located at /nix/store. Each package is stored in a unique subdirectory in the store, and each package has its own tree structure. A Nix package for SOFA is available and can be used as follows:
+- Install [Nix](https://nix.dev/install-nix), you can run `sh <(curl -L https://nixos.org/nix/install) --daemon`, restart your terminal or check the installation using `nix --version`
+- From the SOFA sources, build using the command `nix build --extra-experimental-features nix-command --extra-experimental-features flakes` (for master). Note that you can point towards any commit hash: `nix build github:sofa-framework/sofa/COMMIT_HASH_HERE`
+- Command `nix develop` provides a shell with an environment containing all required dependencies to build the project in the usual CMake way
+- Finally, starts SOFA `nix run --extra-experimental-features nix-command --extra-experimental-features flakes`
