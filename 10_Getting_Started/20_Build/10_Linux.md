@@ -129,7 +129,7 @@ SOFA requires some libraries:
     sudo apt install libpng-dev libjpeg-dev libtiff-dev libglew-dev zlib1g-dev
     ```
 
--   SOFA v20.06 and newer also need **Eigen** (>= 3.2.10)  
+-   **Eigen** (>= 3.2.10)  
     ```
     sudo apt install libeigen3-dev
     ```
@@ -180,16 +180,16 @@ as follows:
 sofa/
 ├── build/
 │   ├── master/
-│   └── v24.06/
+│   └── v24.12/
 └── src/
     └── < SOFA sources here >
 ```
 
 **First**, checkout the sources from Git repository:
 
-Get the current **stable** version on the v24.06 branch:
+Get the current **stable** version on the v24.12 branch:
 ``` {.bash .stable}
-git clone -b v24.06 https://github.com/sofa-framework/sofa.git sofa/src
+git clone -b v24.12 https://github.com/sofa-framework/sofa.git sofa/src
 ```
 
 **OR** get the development **unstable** version on the master branch:
@@ -289,7 +289,8 @@ Fedora image: [https://hub.docker.com/r/sofaframework/sofabuilder_fedora](https:
 ## Nix package
 
 [Nix](https://nix.dev/) is a package manager which stores all packages into a common place called the Nix store, usually located at /nix/store. Each package is stored in a unique subdirectory in the store, and each package has its own tree structure. A Nix package for SOFA is available and can be used as follows:
+
 - Install [Nix](https://nix.dev/install-nix), you can run `sh <(curl -L https://nixos.org/nix/install) --daemon`, restart your terminal or check the installation using `nix --version`
 - From the SOFA sources, build using the command `nix build --extra-experimental-features nix-command --extra-experimental-features flakes` (for master). Note that you can point towards any commit hash: `nix build github:sofa-framework/sofa/COMMIT_HASH_HERE`
 - Command `nix develop` provides a shell with an environment containing all required dependencies to build the project in the usual CMake way
-- Finally, starts SOFA `nix run --extra-experimental-features nix-command --extra-experimental-features flakes`
+- Finally, starts SOFA `nix run --impure .#nixgl --extra-experimental-features nix-command --extra-experimental-features flakes`

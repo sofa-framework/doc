@@ -75,7 +75,7 @@ SOFA requires some libraries:
     Download the [Windows dependency pack](https://www.sofa-framework.org/download/WinDepPack/VS-2017/latest).  
     You will need to unzip it directly in SOFA sources (later in this tutorial).
 
--   SOFA v20.06 and newer also need **Eigen** (>= 3.2.10)  
+-   **Eigen** (>= 3.2.10)  
     Download and extract the [latest Eigen sources](https://gitlab.com/libeigen/eigen/-/releases).
 
 ### [optional] PATH modification
@@ -97,16 +97,16 @@ as follows:
 sofa/
 ├── build/
 │   ├── master/
-│   └── v24.06/
+│   └── v24.12/
 └── src/
     └── < SOFA sources here >
 ```
 
 **First**, checkout the sources from Git repository:
 
-Get the current **stable** version on the v24.06 branch:
+Get the current **stable** version on the v24.12 branch:
 ``` {.bash .stable}
-git clone -b v24.06 https://github.com/sofa-framework/sofa.git sofa/src
+git clone -b v24.12 https://github.com/sofa-framework/sofa.git sofa/src
 ```
 
 **OR** get the development **unstable** version on the master branch:
