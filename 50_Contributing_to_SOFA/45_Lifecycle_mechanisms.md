@@ -178,7 +178,7 @@ This section relies a lot on the DeprecatedData and RemovedData mechanism, intro
   </tr>
   <tr>
     <td>Deprecation<br>(6 months)</td>
-    <td><ul><li>Use a fake DeprecatedData with the old datafield name in the component class</li></ul></td>
+    <td><ul><li>Use RenamedData<DataTypes> with the old datafield name in the component class</li></ul></td>
     <td><ul><li>Update all scenes using the data</li></ul></td>
   </tr>
   <tr>
