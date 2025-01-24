@@ -76,7 +76,14 @@ Depending on the choice of LinearSolver (direct or iterative), the API functions
 
 #### Dissipation
 
-SOFA is a framework aiming at interactive simulations. For this purpose, dissipative schemes are very appropriate. The Euler scheme is an order 1 integration scheme (in time, since only using the current state $x(t)$ and no older one like $x(t-dt)$). It is known to be a dissipative scheme. Moreover, only one Newton step is performed in the EulerImplicit, which might harm the energy conservation.
+SOFA is a framework aiming at interactive simulations. For this purpose, dissipative schemes are very appropriate. The Euler scheme is an order 1 time integration scheme (since only using the current state $x(t)$ and no older one like $x(t-dt)$). It is known to be a dissipative scheme. Moreover, only one Newton step is performed in the EulerImplicit, which might harm the energy conservation.
+
+#### Numerical damping
+
+With Rayleigh damping, the option is given to the user to add numerical damping. The description of the meaning and effect of these Rayleigh damping coefficients is given in [ODESolver](../../../../simulation-principles/system-resolution/integration-scheme/#rayleigh-damping).
+
+
+#### Trapezoidal rule
 
 Activating the trapezoidalScheme option of the Euler implicit scheme will make the scheme less dissipative. This is due to the fact that the [trapezoidal rule](https://en.wikipedia.org/wiki/Trapezoidal_rule) increases the order of the time integration. Moreover, higher order schemes are known to be less dissipative.
 It is also known to increase robustness and stability to the time integration due to the order 2 in time of this trapezoidal scheme. The modified scheme is the following:
@@ -88,10 +95,8 @@ $$
 This results in the following linear system:
 
 $$
-\left( \mathbf{M}-\frac{dt^2}{2} \frac{\partial f}{\partial x}\right) \Delta v=dt\cdot f(x(t))+\frac{dt^2}{2}\cdot \frac{\partial f}{\partial x}v(t)
+\left( \mathbf{M}-\frac{dt^2}{4} \frac{\partial f}{\partial x}\right) \Delta v=dt\cdot f(x(t))+\frac{dt^2}{2}\cdot \frac{\partial f}{\partial x}v(t)
 $$
-
-Finally, with Rayleigh damping, the option is given to the user to add numerical damping. The description of the meaning and effect of these Rayleigh damping coefficients is given in [ODESolver](../../../../simulation-principles/system-resolution/integration-scheme/#rayleigh-damping).
 
 
 Sequence diagram
