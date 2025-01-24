@@ -80,7 +80,14 @@ Depending on the choice of LinearSolver (direct or iterative), the API functions
 
 #### Dissipation
 
-SOFA is a framework aiming at interactive simulations. For this purpose, dissipative schemes are very appropriate. The Euler scheme is an order 1 integration scheme (in time, since only using the current state $x(t)$ and no older one like $x(t-dt)$). It is known to be a dissipative scheme. Moreover, only one Newton step is performed in the EulerImplicit, which might harm the energy conservation.
+SOFA is a framework aiming at interactive simulations. For this purpose, dissipative schemes are very appropriate. The Euler scheme is an order 1 time integration scheme (since only using the current state $x(t)$ and no older one like $x(t-dt)$). It is known to be a dissipative scheme. Moreover, only one Newton step is performed in the EulerImplicit, which might harm the energy conservation.
+
+#### Numerical damping
+
+With Rayleigh damping, the option is given to the user to add numerical damping. The description of the meaning and effect of these Rayleigh damping coefficients is given in [ODESolver](../../../../simulation-principles/system-resolution/integration-scheme/#rayleigh-damping).
+
+
+#### Trapezoidal rule
 
 Activating the trapezoidalScheme option of the Euler implicit scheme will make the scheme less dissipative. This is due to the fact that the [trapezoidal rule](https://en.wikipedia.org/wiki/Trapezoidal_rule) increases the order of the time integration. Moreover, higher order schemes are known to be less dissipative.
 It is also known to increase robustness and stability to the time integration due to the order 2 in time of this trapezoidal scheme. The modified scheme is the following:
@@ -92,10 +99,8 @@ $$
 This results in the following linear system:
 
 $$
-\left( \mathbf{M}-\frac{dt^2}{2} \frac{\partial f}{\partial x}\right) \Delta v=dt\cdot f(x(t))+\frac{dt^2}{2}\cdot \frac{\partial f}{\partial x}v(t)
+\left( \mathbf{M}-\frac{dt^2}{4} \frac{\partial f}{\partial x}\right) \Delta v=dt\cdot f(x(t))+\frac{dt^2}{2}\cdot \frac{\partial f}{\partial x}v(t)
 $$
-
-Finally, with Rayleigh damping, the option is given to the user to add numerical damping. The description of the meaning and effect of these Rayleigh damping coefficients is given in [ODESolver](../../../../simulation-principles/system-resolution/integration-scheme/#rayleigh-damping).
 
 
 Sequence diagram
@@ -246,6 +251,88 @@ If true, do not use realloc and free visitors in fwdInteractionForceField.
 |linearSolver|Linear solver used by this component|LinearSolver|
 
 ## Examples 
+
+EulerImplicitSolver.scn
+
+=== "XML"
+
+    ```xml
+    <Node name="root" gravity="-1.8 0 100" dt="0.0001">
+        <RequiredPlugin name="Sofa.Component.Constraint.Projective"/> <!-- Needed to use components [FixedProjectiveConstraint] -->
+        <RequiredPlugin name="Sofa.Component.IO.Mesh"/> <!-- Needed to use components [MeshGmshLoader MeshOBJLoader] -->
+        <RequiredPlugin name="Sofa.Component.LinearSolver.Iterative"/> <!-- Needed to use components [CGLinearSolver] -->
+        <RequiredPlugin name="Sofa.Component.Mapping.Linear"/> <!-- Needed to use components [BarycentricMapping] -->
+        <RequiredPlugin name="Sofa.Component.Mass"/> <!-- Needed to use components [MeshMatrixMass] -->
+        <RequiredPlugin name="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+        <RequiredPlugin name="Sofa.Component.SolidMechanics.FEM.Elastic"/> <!-- Needed to use components [TetrahedronFEMForceField] -->
+        <RequiredPlugin name="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
+        <RequiredPlugin name="Sofa.Component.Topology.Container.Dynamic"/> <!-- Needed to use components [TetrahedronSetGeometryAlgorithms TetrahedronSetTopologyContainer] -->
+        <RequiredPlugin name="Sofa.GL.Component.Rendering3D"/> <!-- Needed to use components [OglModel] -->
+        <DefaultAnimationLoop/>
+    
+        <Node name="DeformableObject">
+    
+            <EulerImplicitSolver name="odeImplicitSolver" />
+            <CGLinearSolver iterations="1000" tolerance="1e-9" threshold="1e-9"/>
+    
+            <MeshGmshLoader name="loader" filename="mesh/truthcylinder1.msh" />
+            <TetrahedronSetTopologyContainer src="@loader" name="topologyContainer"/>
+            <TetrahedronSetGeometryAlgorithms name="geomAlgo"/>
+            <MechanicalObject src="@loader" dx="60" />
+            <MeshMatrixMass totalMass="15" topology="@topologyContainer"/>
+            <FixedProjectiveConstraint indices="0 1 2 3 4 5 6 7 8 9 10 &#x0A;&#x09;&#x09;&#x09;&#x09;&#x09;&#x09;&#x09;11 12 13 14 15 16 17 18 19 20 &#x0A;&#x09;&#x09;&#x09;&#x09;&#x09;&#x09;&#x09;21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 &#x0A;&#x09;&#x09;&#x09;&#x09;&#x09;&#x09;&#x09;41 42 43 44 45 46 47 268 269 270 271 343 345" />
+            <TetrahedronFEMForceField name="FEM" youngModulus="1000" poissonRatio="0.49" method="small" />
+    
+            <Node>
+                <MeshOBJLoader name="meshLoader_0" filename="mesh/truthcylinder1.obj" handleSeams="1" />
+                <OglModel name="Visual" src="@meshLoader_0" color="red" dx="60" />
+                <BarycentricMapping input="@.." output="@Visual" />
+            </Node>
+        </Node>
+    </Node>
+
+    ```
+
+=== "Python"
+
+    ```python
+    def createScene(root_node):
+
+       root = root_node.addChild('root', gravity="-1.8 0 100", dt="0.0001")
+
+       root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Projective")
+       root.addObject('RequiredPlugin', name="Sofa.Component.IO.Mesh")
+       root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Iterative")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Mapping.Linear")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Mass")
+       root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.FEM.Elastic")
+       root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Dynamic")
+       root.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
+       root.addObject('DefaultAnimationLoop', )
+
+       deformable_object = root.addChild('DeformableObject')
+
+       deformable_object.addObject('EulerImplicitSolver', name="odeImplicitSolver")
+       deformable_object.addObject('CGLinearSolver', iterations="1000", tolerance="1e-9", threshold="1e-9")
+       deformable_object.addObject('MeshGmshLoader', name="loader", filename="mesh/truthcylinder1.msh")
+       deformable_object.addObject('TetrahedronSetTopologyContainer', src="@loader", name="topologyContainer")
+       deformable_object.addObject('TetrahedronSetGeometryAlgorithms', name="geomAlgo")
+       deformable_object.addObject('MechanicalObject', src="@loader", dx="60")
+       deformable_object.addObject('MeshMatrixMass', totalMass="15", topology="@topologyContainer")
+       deformable_object.addObject('FixedProjectiveConstraint', indices="0 1 2 3 4 5 6 7 8 9 10 
+							11 12 13 14 15 16 17 18 19 20 
+							21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 
+							41 42 43 44 45 46 47 268 269 270 271 343 345")
+       deformable_object.addObject('TetrahedronFEMForceField', name="FEM", youngModulus="1000", poissonRatio="0.49", method="small")
+
+       node = DeformableObject.addChild('node')
+
+       node.addObject('MeshOBJLoader', name="meshLoader_0", filename="mesh/truthcylinder1.obj", handleSeams="1")
+       node.addObject('OglModel', name="Visual", src="@meshLoader_0", color="red", dx="60")
+       node.addObject('BarycentricMapping', input="@..", output="@Visual")
+    ```
 
 EulerImplicitSolver-comparison.scn
 
@@ -426,88 +513,6 @@ EulerImplicitSolver-comparison.scn
 
        node.addObject('MeshOBJLoader', name="meshLoader_2", filename="mesh/truthcylinder1.obj", handleSeams="1")
        node.addObject('OglModel', name="Visual", src="@meshLoader_2", color="red", dx="60")
-       node.addObject('BarycentricMapping', input="@..", output="@Visual")
-    ```
-
-EulerImplicitSolver.scn
-
-=== "XML"
-
-    ```xml
-    <Node name="root" gravity="-1.8 0 100" dt="0.0001">
-        <RequiredPlugin name="Sofa.Component.Constraint.Projective"/> <!-- Needed to use components [FixedProjectiveConstraint] -->
-        <RequiredPlugin name="Sofa.Component.IO.Mesh"/> <!-- Needed to use components [MeshGmshLoader MeshOBJLoader] -->
-        <RequiredPlugin name="Sofa.Component.LinearSolver.Iterative"/> <!-- Needed to use components [CGLinearSolver] -->
-        <RequiredPlugin name="Sofa.Component.Mapping.Linear"/> <!-- Needed to use components [BarycentricMapping] -->
-        <RequiredPlugin name="Sofa.Component.Mass"/> <!-- Needed to use components [MeshMatrixMass] -->
-        <RequiredPlugin name="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
-        <RequiredPlugin name="Sofa.Component.SolidMechanics.FEM.Elastic"/> <!-- Needed to use components [TetrahedronFEMForceField] -->
-        <RequiredPlugin name="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
-        <RequiredPlugin name="Sofa.Component.Topology.Container.Dynamic"/> <!-- Needed to use components [TetrahedronSetGeometryAlgorithms TetrahedronSetTopologyContainer] -->
-        <RequiredPlugin name="Sofa.GL.Component.Rendering3D"/> <!-- Needed to use components [OglModel] -->
-        <DefaultAnimationLoop/>
-    
-        <Node name="DeformableObject">
-    
-            <EulerImplicitSolver name="odeImplicitSolver" />
-            <CGLinearSolver iterations="1000" tolerance="1e-9" threshold="1e-9"/>
-    
-            <MeshGmshLoader name="loader" filename="mesh/truthcylinder1.msh" />
-            <TetrahedronSetTopologyContainer src="@loader" name="topologyContainer"/>
-            <TetrahedronSetGeometryAlgorithms name="geomAlgo"/>
-            <MechanicalObject src="@loader" dx="60" />
-            <MeshMatrixMass totalMass="15" topology="@topologyContainer"/>
-            <FixedProjectiveConstraint indices="0 1 2 3 4 5 6 7 8 9 10 &#x0A;&#x09;&#x09;&#x09;&#x09;&#x09;&#x09;&#x09;11 12 13 14 15 16 17 18 19 20 &#x0A;&#x09;&#x09;&#x09;&#x09;&#x09;&#x09;&#x09;21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 &#x0A;&#x09;&#x09;&#x09;&#x09;&#x09;&#x09;&#x09;41 42 43 44 45 46 47 268 269 270 271 343 345" />
-            <TetrahedronFEMForceField name="FEM" youngModulus="1000" poissonRatio="0.49" method="small" />
-    
-            <Node>
-                <MeshOBJLoader name="meshLoader_0" filename="mesh/truthcylinder1.obj" handleSeams="1" />
-                <OglModel name="Visual" src="@meshLoader_0" color="red" dx="60" />
-                <BarycentricMapping input="@.." output="@Visual" />
-            </Node>
-        </Node>
-    </Node>
-
-    ```
-
-=== "Python"
-
-    ```python
-    def createScene(root_node):
-
-       root = root_node.addChild('root', gravity="-1.8 0 100", dt="0.0001")
-
-       root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Projective")
-       root.addObject('RequiredPlugin', name="Sofa.Component.IO.Mesh")
-       root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Iterative")
-       root.addObject('RequiredPlugin', name="Sofa.Component.Mapping.Linear")
-       root.addObject('RequiredPlugin', name="Sofa.Component.Mass")
-       root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
-       root.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.FEM.Elastic")
-       root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
-       root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Dynamic")
-       root.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
-       root.addObject('DefaultAnimationLoop', )
-
-       deformable_object = root.addChild('DeformableObject')
-
-       deformable_object.addObject('EulerImplicitSolver', name="odeImplicitSolver")
-       deformable_object.addObject('CGLinearSolver', iterations="1000", tolerance="1e-9", threshold="1e-9")
-       deformable_object.addObject('MeshGmshLoader', name="loader", filename="mesh/truthcylinder1.msh")
-       deformable_object.addObject('TetrahedronSetTopologyContainer', src="@loader", name="topologyContainer")
-       deformable_object.addObject('TetrahedronSetGeometryAlgorithms', name="geomAlgo")
-       deformable_object.addObject('MechanicalObject', src="@loader", dx="60")
-       deformable_object.addObject('MeshMatrixMass', totalMass="15", topology="@topologyContainer")
-       deformable_object.addObject('FixedProjectiveConstraint', indices="0 1 2 3 4 5 6 7 8 9 10 
-							11 12 13 14 15 16 17 18 19 20 
-							21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 
-							41 42 43 44 45 46 47 268 269 270 271 343 345")
-       deformable_object.addObject('TetrahedronFEMForceField', name="FEM", youngModulus="1000", poissonRatio="0.49", method="small")
-
-       node = DeformableObject.addChild('node')
-
-       node.addObject('MeshOBJLoader', name="meshLoader_0", filename="mesh/truthcylinder1.obj", handleSeams="1")
-       node.addObject('OglModel', name="Visual", src="@meshLoader_0", color="red", dx="60")
        node.addObject('BarycentricMapping', input="@..", output="@Visual")
     ```
 

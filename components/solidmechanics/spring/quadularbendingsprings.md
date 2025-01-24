@@ -148,7 +148,7 @@ QuadularBendingSprings.scn
             <RegularGridTopology min="0 0 0" max="1 0 1" nx="20" ny="1" nz="20" name="grid" />
             <MechanicalObject name="Quads" />
             <QuadSetTopologyContainer name="Container" quads="@grid.quads"/>
-            <QuadularBendingSprings name="FEM-Bend" stiffness="3000" damping="1.0" topology="@Container" draw="true"/>
+            <QuadularBendingSprings name="FEM-Bend" stiffness="3000" damping="1.0" topology="@Container"/>
             <DiagonalMass massDensity="1.5" />
             <BoxROI box="-0.0001 -0.0001 -0.0001 0.0001 0.0001 0.0001  0.999 -0.0001 -0.0001 1.0001 0.0001 0.0001" name="box"/>
             <FixedProjectiveConstraint indices="@box.indices" />
@@ -201,7 +201,7 @@ QuadularBendingSprings.scn
        quadular_springs.addObject('RegularGridTopology', min="0 0 0", max="1 0 1", nx="20", ny="1", nz="20", name="grid")
        quadular_springs.addObject('MechanicalObject', name="Quads")
        quadular_springs.addObject('QuadSetTopologyContainer', name="Container", quads="@grid.quads")
-       quadular_springs.addObject('QuadularBendingSprings', name="FEM-Bend", stiffness="3000", damping="1.0", topology="@Container", draw="true")
+       quadular_springs.addObject('QuadularBendingSprings', name="FEM-Bend", stiffness="3000", damping="1.0", topology="@Container")
        quadular_springs.addObject('DiagonalMass', massDensity="1.5")
        quadular_springs.addObject('BoxROI', box="-0.0001 -0.0001 -0.0001 0.0001 0.0001 0.0001  0.999 -0.0001 -0.0001 1.0001 0.0001 0.0001", name="box")
        quadular_springs.addObject('FixedProjectiveConstraint', indices="@box.indices")

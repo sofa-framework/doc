@@ -160,7 +160,8 @@ FillReducingOrdering.scn
         <RequiredPlugin name="Sofa.Component.Topology.Container.Dynamic"/> <!-- Needed to use components [TetrahedronSetGeometryAlgorithms TetrahedronSetTopologyContainer] -->
         <RequiredPlugin name="Sofa.Component.Visual"/> <!-- Needed to use components [VisualStyle] -->
         <RequiredPlugin name="Sofa.GL.Component.Rendering2D"/> <!-- Needed to use components [OglLabel] -->
-        <RequiredPlugin name="SofaMatrix"/> <!-- Needed to use components [FillReducingOrdering GlobalSystemMatrixImage] -->
+        <RequiredPlugin name="SofaMatrix"/> <!-- Needed to use components [FillReducingOrdering] -->
+         <RequiredPlugin name="SofaMatrix.Qt"/> <!-- Needed to use components [GlobalSystemMatrixImage] -->
     
         <VisualStyle displayFlags="showForceFields hideVisualModels showBehaviorModels" />
     
@@ -236,6 +237,7 @@ FillReducingOrdering.scn
        root.addObject('RequiredPlugin', name="Sofa.Component.Visual")
        root.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering2D")
        root.addObject('RequiredPlugin', name="SofaMatrix")
+       root.addObject('RequiredPlugin', name="SofaMatrix.Qt")
        root.addObject('VisualStyle', displayFlags="showForceFields hideVisualModels showBehaviorModels")
 
        mesh = root.addChild('Mesh')

@@ -1445,7 +1445,8 @@ BarycentricMappingTrussBeam.scn
             <ConstantForceField forces="0 -0.1 0" />
     
             <Node name="Triangle">
-                <include href="Objects/TriangleSetTopology.xml" />
+                <TriangleSetTopologyContainer name="Container"/>
+                <TriangleSetTopologyModifier />
                 <Tetra2TriangleTopologicalMapping input="@/Truss/Container" output="@Container" />
                 <TriangleCollisionModel />
                 <Node name="TriangleVisual">
@@ -1462,9 +1463,10 @@ BarycentricMappingTrussBeam.scn
                 <ConstantForceField indices="5" forces="0 0 0 -10 0 0" />
                 <BarycentricMapping isMechanical="true" input="@TrussMO" output="@BeamMO" />
                 <Node name="VisuThread">
-                    <MechanicalObject name="Quads" />
-                    <include href="Objects/QuadSetTopology.xml" />
+                    <QuadSetTopologyContainer name="Container"/>
+                    <QuadSetTopologyModifier />
                     <Edge2QuadTopologicalMapping nbPointsOnEachCircle="10" radius="0.005" input="@BeamMesh" output="@Container" />
+                    <MechanicalObject name="Quads" />
                     <TubularMapping nbPointsOnEachCircle="10" radius="0.005" input="@BeamMO" output="@Quads" />
                     <Node name="VisuOgl">
                         <OglModel name="Visual" color="0.5 0.5 1.0" />
@@ -1529,7 +1531,8 @@ BarycentricMappingTrussBeam.scn
 
        triangle = Truss.addChild('Triangle')
 
-       triangle.addObject('include', href="Objects/TriangleSetTopology.xml")
+       triangle.addObject('TriangleSetTopologyContainer', name="Container")
+       triangle.addObject('TriangleSetTopologyModifier', )
        triangle.addObject('Tetra2TriangleTopologicalMapping', input="@/Truss/Container", output="@Container")
        triangle.addObject('TriangleCollisionModel', )
 
@@ -1550,9 +1553,10 @@ BarycentricMappingTrussBeam.scn
 
        visu_thread = Beam.addChild('VisuThread')
 
-       visu_thread.addObject('MechanicalObject', name="Quads")
-       visu_thread.addObject('include', href="Objects/QuadSetTopology.xml")
+       visu_thread.addObject('QuadSetTopologyContainer', name="Container")
+       visu_thread.addObject('QuadSetTopologyModifier', )
        visu_thread.addObject('Edge2QuadTopologicalMapping', nbPointsOnEachCircle="10", radius="0.005", input="@BeamMesh", output="@Container")
+       visu_thread.addObject('MechanicalObject', name="Quads")
        visu_thread.addObject('TubularMapping', nbPointsOnEachCircle="10", radius="0.005", input="@BeamMO", output="@Quads")
 
        visu_ogl = VisuThread.addChild('VisuOgl')

@@ -485,7 +485,7 @@ MeshROI.scn
             <Node name="MeshROI"  >
                 <MeshOBJLoader name="ROIloader" filename="mesh/malleus.obj" scale3d="1 1 1" translation="0 0 0" rotation="0 0 0"/>
                 <OglModel />
-                <MeshROI name="ROIm"  drawMesh="0" drawBox="0" drawEdges="0" drawTriangles="1" drawTetrahedra="1" drawOut="0" computeMeshROI="1"  doUpdate="0"
+                <MeshROI name="ROIm"  drawBox="0" drawEdges="0" drawTriangles="1" drawTetrahedra="1" drawOut="0" computeMeshROI="1"  doUpdate="0"
                    position="@../mecaObj.position" tetrahedra="@../loader.tetrahedra" ROIposition="@ROIloader.position" ROItriangles="@ROIloader.triangles" />
             </Node>
         </Node>
@@ -538,6 +538,6 @@ MeshROI.scn
 
        mesh_roi.addObject('MeshOBJLoader', name="ROIloader", filename="mesh/malleus.obj", scale3d="1 1 1", translation="0 0 0", rotation="0 0 0")
        mesh_roi.addObject('OglModel', )
-       mesh_roi.addObject('MeshROI', name="ROIm", drawMesh="0", drawBox="0", drawEdges="0", drawTriangles="1", drawTetrahedra="1", drawOut="0", computeMeshROI="1", doUpdate="0", position="@../mecaObj.position", tetrahedra="@../loader.tetrahedra", ROIposition="@ROIloader.position", ROItriangles="@ROIloader.triangles")
+       mesh_roi.addObject('MeshROI', name="ROIm", drawBox="0", drawEdges="0", drawTriangles="1", drawTetrahedra="1", drawOut="0", computeMeshROI="1", doUpdate="0", position="@../mecaObj.position", tetrahedra="@../loader.tetrahedra", ROIposition="@ROIloader.position", ROItriangles="@ROIloader.triangles")
     ```
 

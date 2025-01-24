@@ -525,7 +525,7 @@ DistanceFromTargetMapping.scn
         <StringMeshCreator name="loader" resolution="20" scale3d="1 1 1" />
     
         <EulerImplicitSolver />
-        <EigenSimplicialLLT />
+        <EigenSimplicialLLT template="CompressedRowSparseMatrixMat3x3d"/>
     
         <EdgeSetTopologyContainer name="topology" position="@loader.position" edges="@loader.edges"/>
         <MechanicalObject name="dofs" template="Vec3" />
@@ -564,7 +564,7 @@ DistanceFromTargetMapping.scn
        root.addObject('DefaultVisualManagerLoop', )
        root.addObject('StringMeshCreator', name="loader", resolution="20", scale3d="1 1 1")
        root.addObject('EulerImplicitSolver', )
-       root.addObject('EigenSimplicialLLT', )
+       root.addObject('EigenSimplicialLLT', template="CompressedRowSparseMatrixMat3x3d")
        root.addObject('EdgeSetTopologyContainer', name="topology", position="@loader.position", edges="@loader.edges")
        root.addObject('MechanicalObject', name="dofs", template="Vec3")
        root.addObject('EdgeSetGeometryAlgorithms', drawEdges="true")

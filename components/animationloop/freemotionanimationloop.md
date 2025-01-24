@@ -176,6 +176,7 @@ FreeMotionAnimationLoop.scn
         <RequiredPlugin name="Sofa.Component.Topology.Container.Constant"/> <!-- Needed to use components [MeshTopology] -->
         <RequiredPlugin name="Sofa.Component.Visual"/> <!-- Needed to use components [VisualStyle] -->
         <RequiredPlugin name="Sofa.GL.Component.Rendering3D"/> <!-- Needed to use components [OglModel] -->
+        <RequiredPlugin name="Sofa.Component.LinearSolver.Direct"/> <!-- Needed to use components [SparseLDLSolver] -->  
     
         <VisualStyle displayFlags="showBehaviorModels"/>
         <FreeMotionAnimationLoop parallelCollisionDetectionAndFreeMotion="true"/>
@@ -196,26 +197,26 @@ FreeMotionAnimationLoop.scn
             <OglModel name="Visual" src="@meshLoader_0" color="0.5 0.5 0.5 1.0"/>
         </Node>
         <Node name="TorusFEM">
-            <EulerImplicitSolver rayleighMass="0.01" rayleighStiffness="0.001"/>
-            <CGLinearSolver iterations="15" threshold="1.0e-15" tolerance="1.0e-9"/>
-            <!--<SparseLDLSolver />-->
             <MeshGmshLoader name="loader" filename="mesh/torus_low_res.msh"/>
             <MeshTopology src="@loader"/>
+            <EulerImplicitSolver rayleighMass="0.01" rayleighStiffness="0.001"/>
+            <SparseLDLSolver />
             <MechanicalObject src="@loader" dx="-12" dy="0" dz="0" rx="0" ry="0" rz="0" scale="5.0"/>
             <UniformMass totalMass="0.2"/>
             <TetrahedronFEMForceField name="FEM" youngModulus="60000" poissonRatio="0.48" computeGlobalMatrix="false" method="polar"/>
-            <!--<LinearSolverConstraintCorrection />-->
-            <PrecomputedConstraintCorrection rotations="true" recompute="true"/>
+            <LinearSolverConstraintCorrection />
+    
             <Node name="Visu">
                 <MeshOBJLoader name="meshLoader_2" filename="mesh/torus.obj" scale="5.0" handleSeams="1" />
                 <OglModel name="Visual" src="@meshLoader_2" color="red" dx="-12" dy="0" dz="0" rx="0" ry="0" rz="0"/>
                 <BarycentricMapping input="@.." output="@Visual"/>
             </Node>
+    
             <Node name="Surf2">
                 <MeshOBJLoader name="loader" filename="mesh/torus_for_collision.obj"/>
                 <MeshTopology src="@loader"/>
                 <MechanicalObject src="@loader" dx="-12" dy="0" dz="0" rx="0" ry="0" rz="0" scale="5.0"/>
-                <TriangleCollisionModel contactStiffness="0.1"/>
+                <TriangleCollisionModel/>
                 <LineCollisionModel/>
                 <PointCollisionModel/>
                 <BarycentricMapping/>
@@ -271,6 +272,7 @@ FreeMotionAnimationLoop.scn
        root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Constant")
        root.addObject('RequiredPlugin', name="Sofa.Component.Visual")
        root.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
+       root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Direct")
        root.addObject('VisualStyle', displayFlags="showBehaviorModels")
        root.addObject('FreeMotionAnimationLoop', parallelCollisionDetectionAndFreeMotion="true")
        root.addObject('LCPConstraintSolver', tolerance="1e-3", maxIt="1000")
@@ -293,14 +295,14 @@ FreeMotionAnimationLoop.scn
 
        torus_fem = root.addChild('TorusFEM')
 
-       torus_fem.addObject('EulerImplicitSolver', rayleighMass="0.01", rayleighStiffness="0.001")
-       torus_fem.addObject('CGLinearSolver', iterations="15", threshold="1.0e-15", tolerance="1.0e-9")
        torus_fem.addObject('MeshGmshLoader', name="loader", filename="mesh/torus_low_res.msh")
        torus_fem.addObject('MeshTopology', src="@loader")
+       torus_fem.addObject('EulerImplicitSolver', rayleighMass="0.01", rayleighStiffness="0.001")
+       torus_fem.addObject('SparseLDLSolver', )
        torus_fem.addObject('MechanicalObject', src="@loader", dx="-12", dy="0", dz="0", rx="0", ry="0", rz="0", scale="5.0")
        torus_fem.addObject('UniformMass', totalMass="0.2")
        torus_fem.addObject('TetrahedronFEMForceField', name="FEM", youngModulus="60000", poissonRatio="0.48", computeGlobalMatrix="false", method="polar")
-       torus_fem.addObject('PrecomputedConstraintCorrection', rotations="true", recompute="true")
+       torus_fem.addObject('LinearSolverConstraintCorrection', )
 
        visu = TorusFEM.addChild('Visu')
 
@@ -313,7 +315,7 @@ FreeMotionAnimationLoop.scn
        surf2.addObject('MeshOBJLoader', name="loader", filename="mesh/torus_for_collision.obj")
        surf2.addObject('MeshTopology', src="@loader")
        surf2.addObject('MechanicalObject', src="@loader", dx="-12", dy="0", dz="0", rx="0", ry="0", rz="0", scale="5.0")
-       surf2.addObject('TriangleCollisionModel', contactStiffness="0.1")
+       surf2.addObject('TriangleCollisionModel', )
        surf2.addObject('LineCollisionModel', )
        surf2.addObject('PointCollisionModel', )
        surf2.addObject('BarycentricMapping', )

@@ -715,6 +715,7 @@ LinearVelocityProjectiveConstraint.scn
     
         <!-- # Header of the simulation -->
         <FreeMotionAnimationLoop name="FreeMotionAnimationLoop" parallelODESolving="true" parallelCollisionDetectionAndFreeMotion="true"/>
+        <GenericConstraintSolver maxIterations="1000" tolerance="0.001" />
     
         <Node name="Box">
             <EulerImplicitSolver name="EulerImplicitScheme" />
@@ -787,6 +788,7 @@ LinearVelocityProjectiveConstraint.scn
        root.addObject('VisualStyle', name="RenderingOptions", displayFlags="showVisualModels")
        root.addObject('BackgroundSetting', color="0.8 0.8 0.8 1")
        root.addObject('FreeMotionAnimationLoop', name="FreeMotionAnimationLoop", parallelODESolving="true", parallelCollisionDetectionAndFreeMotion="true")
+       root.addObject('GenericConstraintSolver', maxIterations="1000", tolerance="0.001")
 
        box = root.addChild('Box')
 

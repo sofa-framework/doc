@@ -196,7 +196,7 @@ TriangularFEMForceFieldOptim.scn
         <MeshGmshLoader filename="mesh/square3.msh" name="loaderSquare" />
         <Node name="SquareGravity1">
             <EulerImplicitSolver name="odesolver1" printLog="0"  rayleighStiffness="0.1" rayleighMass="0.1" />
-            <CGLinearSolver verbose="0" printLog="0" iterations="25" name="linearsolver1" tolerance="1.0e-9" threshold="1.0e-9" />
+            <CGLinearSolver printLog="0" iterations="25" name="linearsolver1" tolerance="1.0e-9" threshold="1.0e-9" />
             <TriangleSetTopologyContainer name="Container" src="@../loaderSquare" />
             <MechanicalObject name="DOFs" src="@../loaderSquare" scale="100"  />
             <TriangleSetTopologyModifier name="Modifier" />
@@ -255,7 +255,7 @@ TriangularFEMForceFieldOptim.scn
        square_gravity1 = root.addChild('SquareGravity1')
 
        square_gravity1.addObject('EulerImplicitSolver', name="odesolver1", printLog="0", rayleighStiffness="0.1", rayleighMass="0.1")
-       square_gravity1.addObject('CGLinearSolver', verbose="0", printLog="0", iterations="25", name="linearsolver1", tolerance="1.0e-9", threshold="1.0e-9")
+       square_gravity1.addObject('CGLinearSolver', printLog="0", iterations="25", name="linearsolver1", tolerance="1.0e-9", threshold="1.0e-9")
        square_gravity1.addObject('TriangleSetTopologyContainer', name="Container", src="@../loaderSquare")
        square_gravity1.addObject('MechanicalObject', name="DOFs", src="@../loaderSquare", scale="100")
        square_gravity1.addObject('TriangleSetTopologyModifier', name="Modifier")

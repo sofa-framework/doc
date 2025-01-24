@@ -107,7 +107,7 @@ Gravity.scn
         <RequiredPlugin name="Sofa.Component.Topology.Container.Constant"/> <!-- Needed to use components [MeshTopology] -->
         <RequiredPlugin name="Sofa.Component.Topology.Container.Grid"/> <!-- Needed to use components [RegularGridTopology] -->
         <RequiredPlugin name="Sofa.GL.Component.Rendering3D"/> <!-- Needed to use components [OglModel] -->
-        <RequiredPlugin name="SofaGraphComponent"/> <!-- Needed to use components [Gravity] -->
+        <RequiredPlugin name="Sofa.Component.MechanicalLoad"/> <!-- Needed to use components [Gravity] -->
     
         <CollisionPipeline verbose="0" depth="10" draw="0" />
         <BruteForceBroadPhase/>
@@ -206,7 +206,7 @@ Gravity.scn
        root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Constant")
        root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Grid")
        root.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
-       root.addObject('RequiredPlugin', name="SofaGraphComponent")
+       root.addObject('RequiredPlugin', name="Sofa.Component.MechanicalLoad")
        root.addObject('CollisionPipeline', verbose="0", depth="10", draw="0")
        root.addObject('BruteForceBroadPhase', )
        root.addObject('BVHNarrowPhase', )

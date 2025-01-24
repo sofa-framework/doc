@@ -405,8 +405,8 @@ DistanceMultiMapping.scn
     
         <Node name="connection">
             <MechanicalObject template="Vec1" name="connectionDOF" />
-            <EdgeSetTopologyContainer edges="0 1"/>
-            <DistanceMultiMapping template="Vec3,Vec1" input="@../springs0 @../springs1" output="@connectionDOF" indexPairs="0 19 1 0" restLengths="1" geometricStiffness="0" applyRestPosition="true" computeDistance="true"/>
+            <EdgeSetTopologyContainer name="edgeTopo" edges="0 1"/>
+            <DistanceMultiMapping template="Vec3,Vec1" topology="@edgeTopo" input="@../springs0 @../springs1" output="@connectionDOF" indexPairs="0 19 1 0" restLengths="1" geometricStiffness="0" applyRestPosition="true" computeDistance="true"/>
             <RestShapeSpringsForceField template="Vec1" stiffness="1"/>
         </Node>
     
@@ -478,8 +478,8 @@ DistanceMultiMapping.scn
        connection = Root.addChild('connection')
 
        connection.addObject('MechanicalObject', template="Vec1", name="connectionDOF")
-       connection.addObject('EdgeSetTopologyContainer', edges="0 1")
-       connection.addObject('DistanceMultiMapping', template="Vec3,Vec1", input="@../springs0 @../springs1", output="@connectionDOF", indexPairs="0 19 1 0", restLengths="1", geometricStiffness="0", applyRestPosition="true", computeDistance="true")
+       connection.addObject('EdgeSetTopologyContainer', name="edgeTopo", edges="0 1")
+       connection.addObject('DistanceMultiMapping', template="Vec3,Vec1", topology="@edgeTopo", input="@../springs0 @../springs1", output="@connectionDOF", indexPairs="0 19 1 0", restLengths="1", geometricStiffness="0", applyRestPosition="true", computeDistance="true")
        connection.addObject('RestShapeSpringsForceField', template="Vec1", stiffness="1")
     ```
 

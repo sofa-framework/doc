@@ -253,6 +253,7 @@ AreaMapping.scn
             <RequiredPlugin name="Sofa.Component.Topology.Container.Grid"/> <!-- Needed to use components [RegularGridTopology] -->
             <RequiredPlugin name="Sofa.Component.Visual"/> <!-- Needed to use components [VisualStyle] -->
             <RequiredPlugin name="Sofa.GL.Component.Rendering3D"/> <!-- Needed to use components [OglModel] -->
+            <RequiredPlugin name="Sofa.GL.Component.Rendering2D"/> <!-- Needed to use components [OglColorMap] --> 
         </Node>
     
         <FreeMotionAnimationLoop solveVelocityConstraintFirst="true" computeBoundingBox="false" parallelODESolving="true"/>
@@ -343,6 +344,7 @@ AreaMapping.scn
        plugins.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Grid")
        plugins.addObject('RequiredPlugin', name="Sofa.Component.Visual")
        plugins.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
+       plugins.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering2D")
 
        root.addObject('FreeMotionAnimationLoop', solveVelocityConstraintFirst="true", computeBoundingBox="false", parallelODESolving="true")
        root.addObject('GenericConstraintSolver', tolerance="1e-9", maxIterations="1000")

@@ -195,7 +195,7 @@ MergePoints.scn
     			<UniformMass totalMass="50.0" />
                 <HexahedronFEMForceField name="FEM" youngModulus="4000.0" poissonRatio="0.30" method="large" updateStiffnessMatrix="false" printLog="0" 
                 drawing="1"/>            
-                <UncoupledConstraintCorrection />
+                <UncoupledConstraintCorrection defaultCompliance="0.05"/>
                 
                 <Node name="Visu">	
     				<QuadSetTopologyContainer  name="Container" 
@@ -272,7 +272,7 @@ MergePoints.scn
        simu_head.addObject('BoxConstraint', box="-2 4 4 2 8 4.5", drawBoxes="0")
        simu_head.addObject('UniformMass', totalMass="50.0")
        simu_head.addObject('HexahedronFEMForceField', name="FEM", youngModulus="4000.0", poissonRatio="0.30", method="large", updateStiffnessMatrix="false", printLog="0", drawing="1")
-       simu_head.addObject('UncoupledConstraintCorrection', )
+       simu_head.addObject('UncoupledConstraintCorrection', defaultCompliance="0.05")
 
        visu = simu_head.addChild('Visu')
 

@@ -189,9 +189,9 @@ SlidingLagrangianConstraint.scn
             <Node name="ColliCube">
                 <MeshTopology filename="mesh/cube.obj" />
                 <MechanicalObject scale="1.0" />
-                <TriangleCollisionModel contactStiffness="0.1" />
-                <LineCollisionModel contactStiffness="0.1" />
-                <PointCollisionModel contactStiffness="0.1" />
+                <TriangleCollisionModel />
+                <LineCollisionModel />
+                <PointCollisionModel />
                 <RigidMapping />
             </Node>
             <Node name="Constraints">
@@ -217,9 +217,9 @@ SlidingLagrangianConstraint.scn
             <Node name="ColliCube">
                 <MeshTopology filename="mesh/cube.obj" />
                 <MechanicalObject scale="1.0" />
-                <TriangleCollisionModel contactStiffness="0.1" />
-                <LineCollisionModel contactStiffness="0.1" />
-                <PointCollisionModel contactStiffness="0.1" />
+                <TriangleCollisionModel />
+                <LineCollisionModel />
+                <PointCollisionModel />
                 <RigidMapping />
             </Node>
             <Node name="Constraints">
@@ -287,9 +287,9 @@ SlidingLagrangianConstraint.scn
 
        colli_cube.addObject('MeshTopology', filename="mesh/cube.obj")
        colli_cube.addObject('MechanicalObject', scale="1.0")
-       colli_cube.addObject('TriangleCollisionModel', contactStiffness="0.1")
-       colli_cube.addObject('LineCollisionModel', contactStiffness="0.1")
-       colli_cube.addObject('PointCollisionModel', contactStiffness="0.1")
+       colli_cube.addObject('TriangleCollisionModel', )
+       colli_cube.addObject('LineCollisionModel', )
+       colli_cube.addObject('PointCollisionModel', )
        colli_cube.addObject('RigidMapping', )
 
        constraints = CUBE_1.addChild('Constraints')
@@ -321,9 +321,9 @@ SlidingLagrangianConstraint.scn
 
        colli_cube.addObject('MeshTopology', filename="mesh/cube.obj")
        colli_cube.addObject('MechanicalObject', scale="1.0")
-       colli_cube.addObject('TriangleCollisionModel', contactStiffness="0.1")
-       colli_cube.addObject('LineCollisionModel', contactStiffness="0.1")
-       colli_cube.addObject('PointCollisionModel', contactStiffness="0.1")
+       colli_cube.addObject('TriangleCollisionModel', )
+       colli_cube.addObject('LineCollisionModel', )
+       colli_cube.addObject('PointCollisionModel', )
        colli_cube.addObject('RigidMapping', )
 
        constraints = CUBE_2.addChild('Constraints')

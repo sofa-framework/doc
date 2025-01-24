@@ -174,7 +174,7 @@ MatrixLinearSystem.scn
             <RequiredPlugin name="Sofa.Component.Topology.Container.Grid"/> <!-- Needed to use components [RegularGridTopology] -->
             <RequiredPlugin name="Sofa.Component.Visual"/> <!-- Needed to use components [VisualStyle] -->
             <RequiredPlugin name="Sofa.GL.Component.Rendering3D"/> <!-- Needed to use components [OglModel] -->
-            <RequiredPlugin name="SofaMatrix"/> <!-- Needed to use components [GlobalSystemMatrixImage] -->
+            <RequiredPlugin name="SofaMatrix.Qt"/> <!-- Needed to use components [GlobalSystemMatrixImage] -->
     
         </Node>
     
@@ -325,7 +325,7 @@ MatrixLinearSystem.scn
        plugins.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Grid")
        plugins.addObject('RequiredPlugin', name="Sofa.Component.Visual")
        plugins.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
-       plugins.addObject('RequiredPlugin', name="SofaMatrix")
+       plugins.addObject('RequiredPlugin', name="SofaMatrix.Qt")
 
        root.addObject('VisualStyle', displayFlags="showBehaviorModels showWireframe")
        root.addObject('DefaultAnimationLoop', )

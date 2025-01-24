@@ -193,7 +193,7 @@ DeformableOnRigidFrameMapping.scn
         <RequiredPlugin name="Sofa.Component.Visual"/> <!-- Needed to use components [VisualStyle] -->
         <RequiredPlugin name="Sofa.GL.Component.Rendering3D"/> <!-- Needed to use components [OglModel] -->
         <VisualStyle displayFlags="showBehavior showVisual" />
-        <CollisionPipeline depth="6" verbose="0" draw="0" />
+        <CollisionPipeline depth="6" draw="0" />
         <BruteForceBroadPhase/>
         <BVHNarrowPhase/>
         <NewProximityIntersection name="Proximity" alarmDistance="0.3" contactDistance="0.2" />
@@ -212,7 +212,7 @@ DeformableOnRigidFrameMapping.scn
             <!-- 		<Node name="TorusRigid"> -->
             <Node name="Torus">
                 <EulerImplicitSolver  rayleighStiffness="0.1" rayleighMass="0.1" />
-                <CGLinearSolver iterations="50" threshold="1e-15" tolerance="1e-15" verbose="0" />
+                <CGLinearSolver iterations="50" threshold="1e-15" tolerance="1e-15" />
                 <MechanicalObject name="rigidframe" template="Rigid3" position="1 2 0 0 0 0.7 0.7" />
                 <UniformMass filename="BehaviorModels/torus.rigid" />
                 <!--<FixedProjectiveConstraint /> -->
@@ -274,7 +274,7 @@ DeformableOnRigidFrameMapping.scn
        root.addObject('RequiredPlugin', name="Sofa.Component.Visual")
        root.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
        root.addObject('VisualStyle', displayFlags="showBehavior showVisual")
-       root.addObject('CollisionPipeline', depth="6", verbose="0", draw="0")
+       root.addObject('CollisionPipeline', depth="6", draw="0")
        root.addObject('BruteForceBroadPhase', )
        root.addObject('BVHNarrowPhase', )
        root.addObject('NewProximityIntersection', name="Proximity", alarmDistance="0.3", contactDistance="0.2")
@@ -295,7 +295,7 @@ DeformableOnRigidFrameMapping.scn
        torus = ChainRigid.addChild('Torus')
 
        torus.addObject('EulerImplicitSolver', rayleighStiffness="0.1", rayleighMass="0.1")
-       torus.addObject('CGLinearSolver', iterations="50", threshold="1e-15", tolerance="1e-15", verbose="0")
+       torus.addObject('CGLinearSolver', iterations="50", threshold="1e-15", tolerance="1e-15")
        torus.addObject('MechanicalObject', name="rigidframe", template="Rigid3", position="1 2 0 0 0 0.7 0.7")
        torus.addObject('UniformMass', filename="BehaviorModels/torus.rigid")
 

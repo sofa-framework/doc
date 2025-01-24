@@ -263,7 +263,24 @@ VolumeMapping.scn
     <?xml version="1.0" ?>
     <Node name="root" gravity="0 -9.81 0" dt="0.02">
     
-        <CollisionPipeline name="CollisionPipeline" verbose="0"/>
+        <RequiredPlugin name="Sofa.Component.Collision.Detection.Algorithm"/> <!-- Needed to use components [BVHNarrowPhase,BruteForceBroadPhase,CollisionPipeline] -->  
+        <RequiredPlugin name="Sofa.Component.Collision.Detection.Intersection"/> <!-- Needed to use components [DiscreteIntersection] -->  
+        <RequiredPlugin name="Sofa.Component.Collision.Geometry"/> <!-- Needed to use components [SphereCollisionModel] -->  
+        <RequiredPlugin name="Sofa.Component.Collision.Response.Contact"/> <!-- Needed to use components [CollisionResponse] -->  
+        <RequiredPlugin name="Sofa.Component.Constraint.Projective"/> <!-- Needed to use components [FixedProjectiveConstraint] -->  
+        <RequiredPlugin name="Sofa.Component.IO.Mesh"/> <!-- Needed to use components [MeshGmshLoader,MeshOBJLoader,SphereLoader] -->  
+        <RequiredPlugin name="Sofa.Component.LinearSolver.Direct"/> <!-- Needed to use components [EigenSimplicialLDLT] -->  
+        <RequiredPlugin name="Sofa.Component.Mapping.Linear"/> <!-- Needed to use components [BarycentricMapping] -->  
+        <RequiredPlugin name="Sofa.Component.Mapping.NonLinear"/> <!-- Needed to use components [VolumeMapping] -->  
+        <RequiredPlugin name="Sofa.Component.Mass"/> <!-- Needed to use components [DiagonalMass] -->  
+        <RequiredPlugin name="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->  
+        <RequiredPlugin name="Sofa.Component.SolidMechanics.FEM.Elastic"/> <!-- Needed to use components [TetrahedralCorotationalFEMForceField] -->  
+        <RequiredPlugin name="Sofa.Component.SolidMechanics.Spring"/> <!-- Needed to use components [RestShapeSpringsForceField] -->  
+        <RequiredPlugin name="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->  
+        <RequiredPlugin name="Sofa.Component.Topology.Container.Dynamic"/> <!-- Needed to use components [TetrahedronSetGeometryAlgorithms,TetrahedronSetTopologyContainer] -->  
+        <RequiredPlugin name="Sofa.GL.Component.Rendering3D"/>
+    
+        <CollisionPipeline name="CollisionPipeline" />
         <DefaultAnimationLoop/>
         <BruteForceBroadPhase/>
         <BVHNarrowPhase/>
@@ -310,7 +327,23 @@ VolumeMapping.scn
 
        root = root_node.addChild('root', gravity="0 -9.81 0", dt="0.02")
 
-       root.addObject('CollisionPipeline', name="CollisionPipeline", verbose="0")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Algorithm")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Intersection")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Geometry")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Response.Contact")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Projective")
+       root.addObject('RequiredPlugin', name="Sofa.Component.IO.Mesh")
+       root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Direct")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Mapping.Linear")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Mapping.NonLinear")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Mass")
+       root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.FEM.Elastic")
+       root.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.Spring")
+       root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Dynamic")
+       root.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
+       root.addObject('CollisionPipeline', name="CollisionPipeline")
        root.addObject('DefaultAnimationLoop', )
        root.addObject('BruteForceBroadPhase', )
        root.addObject('BVHNarrowPhase', )
