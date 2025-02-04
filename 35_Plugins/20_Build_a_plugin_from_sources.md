@@ -32,10 +32,10 @@ In this directory, the structure is:
     - ...
 
 
-#### CMakeList of the repository
+#### CMakeLists.txt of the repository
 
 In order to handle this repository as one single set of external plugins,
-you need to write a short CMakeList.txt file as follows:
+you need to write a short CMakeLists.txt file as follows:
 
 ```
 cmake_minimum_required(VERSION 3.22)
