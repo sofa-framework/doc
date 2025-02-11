@@ -182,13 +182,13 @@ This section relies a lot on the DeprecatedData and RemovedData mechanism, intro
     <td><ul><li>Update all scenes using the data</li></ul></td>
   </tr>
   <tr>
-    <td>Renaming<br>(6 months)</td>
-    <td><ul><li>Replace the DeprecatedData with RemovedData in the component class</li></ul></td>
+    <td>Renaming</td>
+    <td><ul><li>Replace the RenamedData<DataTypes> with the DeprecatedAndRemoved</li></ul></td>
     <td></td>
   </tr>
   <tr>
     <td>Cleanup</td>
-    <td><ul><li>Remove the RemovedData member in the component class</li></ul></td>
+    <td><ul><li>Remove the DeprecatedAndRemoved member in the component class</li></ul></td>
     <td></td>
   </tr>
 </tbody>
