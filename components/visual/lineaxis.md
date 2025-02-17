@@ -75,23 +75,37 @@ Display the object or not
 	<tr>
 		<td>axis</td>
 		<td>
-Axis to draw
+Axis to draw.
 		</td>
 		<td>xyz</td>
 	</tr>
 	<tr>
 		<td>size</td>
 		<td>
-Size of the squared grid
+Size of the lines.
 		</td>
 		<td>10</td>
 	</tr>
 	<tr>
+		<td>infinite</td>
+		<td>
+If true, ignore the 'size' and draw infinite lines.
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
 		<td>thickness</td>
 		<td>
-Thickness of the lines in the grid
+Thickness of the lines.
 		</td>
 		<td>1</td>
+	</tr>
+	<tr>
+		<td>vanishing</td>
+		<td>
+In case of infinite lines, should the lines gradually vanish.
+		</td>
+		<td>0</td>
 	</tr>
 
 </tbody>
