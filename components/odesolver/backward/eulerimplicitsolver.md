@@ -236,6 +236,20 @@ If true, do not use realloc and free visitors in fwdInteractionForceField.
 		</td>
 		<td>0</td>
 	</tr>
+	<tr>
+		<td>computeResidual</td>
+		<td>
+If true, the residual is computed at the end of the solving
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>residual</td>
+		<td>
+Residual norm at the end of the free-motion solving
+		</td>
+		<td>1.79769e+308</td>
+	</tr>
 
 </tbody>
 </table>
@@ -272,7 +286,7 @@ EulerImplicitSolver.scn
     
         <Node name="DeformableObject">
     
-            <EulerImplicitSolver name="odeImplicitSolver" />
+            <EulerImplicitSolver name="odeImplicitSolver" computeResidual="true"/>
             <CGLinearSolver iterations="1000" tolerance="1e-9" threshold="1e-9"/>
     
             <MeshGmshLoader name="loader" filename="mesh/truthcylinder1.msh" />
@@ -314,7 +328,7 @@ EulerImplicitSolver.scn
 
        deformable_object = root.addChild('DeformableObject')
 
-       deformable_object.addObject('EulerImplicitSolver', name="odeImplicitSolver")
+       deformable_object.addObject('EulerImplicitSolver', name="odeImplicitSolver", computeResidual="true")
        deformable_object.addObject('CGLinearSolver', iterations="1000", tolerance="1e-9", threshold="1e-9")
        deformable_object.addObject('MeshGmshLoader', name="loader", filename="mesh/truthcylinder1.msh")
        deformable_object.addObject('TetrahedronSetTopologyContainer', src="@loader", name="topologyContainer")
