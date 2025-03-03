@@ -378,6 +378,145 @@ rendering size for box and topological elements
 
 ## Examples 
 
+SubsetTopology.scn
+
+=== "XML"
+
+    ```xml
+    <Node name="root" gravity="0 -9.81 0" dt="0.05">
+        <RequiredPlugin name="Sofa.Component.Collision.Detection.Algorithm"/> <!-- Needed to use components [BVHNarrowPhase BruteForceBroadPhase CollisionPipeline] -->
+        <RequiredPlugin name="Sofa.Component.Collision.Detection.Intersection"/> <!-- Needed to use components [MinProximityIntersection] -->
+        <RequiredPlugin name="Sofa.Component.Collision.Geometry"/> <!-- Needed to use components [TriangleCollisionModel] -->
+        <RequiredPlugin name="Sofa.Component.Collision.Response.Contact"/> <!-- Needed to use components [CollisionResponse] -->
+        <RequiredPlugin name="Sofa.Component.Constraint.Projective"/> <!-- Needed to use components [FixedProjectiveConstraint] -->
+        <RequiredPlugin name="Sofa.Component.Engine.Select"/> <!-- Needed to use components [SubsetTopology] -->
+        <RequiredPlugin name="Sofa.Component.IO.Mesh"/> <!-- Needed to use components [MeshGmshLoader] -->
+        <RequiredPlugin name="Sofa.Component.LinearSolver.Iterative"/> <!-- Needed to use components [CGLinearSolver] -->
+        <RequiredPlugin name="Sofa.Component.Mapping.Linear"/> <!-- Needed to use components [IdentityMapping] -->
+        <RequiredPlugin name="Sofa.Component.Mass"/> <!-- Needed to use components [DiagonalMass] -->
+        <RequiredPlugin name="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+        <RequiredPlugin name="Sofa.Component.SolidMechanics.FEM.Elastic"/> <!-- Needed to use components [TriangularFEMForceField] -->
+        <RequiredPlugin name="Sofa.Component.SolidMechanics.Spring"/> <!-- Needed to use components [TriangularBendingSprings] -->
+        <RequiredPlugin name="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
+        <RequiredPlugin name="Sofa.Component.Topology.Container.Dynamic"/> <!-- Needed to use components [TriangleSetGeometryAlgorithms TriangleSetTopologyContainer TriangleSetTopologyModifier] -->
+        <RequiredPlugin name="Sofa.GL.Component.Rendering3D"/> <!-- Needed to use components [OglModel] -->
+    
+        <DefaultAnimationLoop/>
+        <CollisionPipeline name="default0" verbose="0" />
+        <BruteForceBroadPhase/>
+        <BVHNarrowPhase/>
+        <CollisionResponse name="default1" response="PenalityContactForceField" />
+        <MinProximityIntersection name="Proximity" alarmDistance="0.8" contactDistance="0.5" />
+        <Node name="SquareGravity">
+            <MeshGmshLoader name="meshLoader" filename="mesh/square3.msh" />
+            <EulerImplicitSolver name="cg_odesolver"  rayleighStiffness="0.1" rayleighMass="0.1" />
+            <CGLinearSolver iterations="100" tolerance="1e-05" threshold="1e-05"/>
+            <SubsetTopology template="Vec3" box="0.3 0 -0.1 0.6 1 0.1" drawTriangle="0" drawROI="1" src="@meshLoader" rest_position="@meshLoader.position" name="Subset" />
+            <Node name="in">
+                <MechanicalObject template="Vec3" name="mecaObj2" position="@../meshLoader.position" />
+                <TriangleSetTopologyContainer name="Container" position="@mecaObj2.position" triangles="@../Subset.trianglesInROI" />
+                <TriangleSetTopologyModifier name="Modifier" />
+                <TriangleSetGeometryAlgorithms template="Vec3" name="GeomAlgo" />
+                <DiagonalMass name="default5" massDensity="1.15" />
+                <TriangularFEMForceField template="Vec3" name="FEM" method="large" poissonRatio="0.3" youngModulus="30" />
+                <TriangularBendingSprings template="Vec3" name="FEM-Bend" stiffness="300" damping="1" />
+                <TriangleCollisionModel template="Vec3" name="default7" />
+    
+                <Node >
+                  <OglModel name="Visual" color="blue" />
+                  <IdentityMapping input="@.." output="@Visual" />
+                </Node>        </Node>
+            <Node name="Out">
+                <MechanicalObject template="Vec3" name="mecaObj2" position="@../meshLoader.position" />
+                <TriangleSetTopologyContainer name="Container" position="@mecaObj2.position" triangles="@../Subset.trianglesOutROI" />
+                <TriangleSetTopologyModifier name="Modifier" />
+                <TriangleSetGeometryAlgorithms template="Vec3" name="GeomAlgo" />
+                <DiagonalMass name="default5" massDensity="1.15" />
+                <TriangularFEMForceField template="Vec3" name="FEM" method="large" poissonRatio="0.3" youngModulus="30" />
+                <TriangularBendingSprings template="Vec3" name="FEM-Bend" stiffness="300" damping="1" />
+                <TriangleCollisionModel template="Vec3" name="default7" />
+                <FixedProjectiveConstraint template="Vec3" name="default6" indices="0 1" />
+                <Node >
+                  <OglModel name="Visual" color="red" />
+                  <IdentityMapping input="@.." output="@Visual" />
+                </Node>
+    	 </Node>
+        </Node>
+    </Node>
+
+    ```
+
+=== "Python"
+
+    ```python
+    def createScene(root_node):
+
+       root = root_node.addChild('root', gravity="0 -9.81 0", dt="0.05")
+
+       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Algorithm")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Intersection")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Geometry")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Response.Contact")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Projective")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Engine.Select")
+       root.addObject('RequiredPlugin', name="Sofa.Component.IO.Mesh")
+       root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Iterative")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Mapping.Linear")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Mass")
+       root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.FEM.Elastic")
+       root.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.Spring")
+       root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Dynamic")
+       root.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
+       root.addObject('DefaultAnimationLoop', )
+       root.addObject('CollisionPipeline', name="default0", verbose="0")
+       root.addObject('BruteForceBroadPhase', )
+       root.addObject('BVHNarrowPhase', )
+       root.addObject('CollisionResponse', name="default1", response="PenalityContactForceField")
+       root.addObject('MinProximityIntersection', name="Proximity", alarmDistance="0.8", contactDistance="0.5")
+
+       square_gravity = root.addChild('SquareGravity')
+
+       square_gravity.addObject('MeshGmshLoader', name="meshLoader", filename="mesh/square3.msh")
+       square_gravity.addObject('EulerImplicitSolver', name="cg_odesolver", rayleighStiffness="0.1", rayleighMass="0.1")
+       square_gravity.addObject('CGLinearSolver', iterations="100", tolerance="1e-05", threshold="1e-05")
+       square_gravity.addObject('SubsetTopology', template="Vec3", box="0.3 0 -0.1 0.6 1 0.1", drawTriangle="0", drawROI="1", src="@meshLoader", rest_position="@meshLoader.position", name="Subset")
+
+       in = SquareGravity.addChild('in')
+
+       in.addObject('MechanicalObject', template="Vec3", name="mecaObj2", position="@../meshLoader.position")
+       in.addObject('TriangleSetTopologyContainer', name="Container", position="@mecaObj2.position", triangles="@../Subset.trianglesInROI")
+       in.addObject('TriangleSetTopologyModifier', name="Modifier")
+       in.addObject('TriangleSetGeometryAlgorithms', template="Vec3", name="GeomAlgo")
+       in.addObject('DiagonalMass', name="default5", massDensity="1.15")
+       in.addObject('TriangularFEMForceField', template="Vec3", name="FEM", method="large", poissonRatio="0.3", youngModulus="30")
+       in.addObject('TriangularBendingSprings', template="Vec3", name="FEM-Bend", stiffness="300", damping="1")
+       in.addObject('TriangleCollisionModel', template="Vec3", name="default7")
+
+       node = in.addChild('node')
+
+       node.addObject('OglModel', name="Visual", color="blue")
+       node.addObject('IdentityMapping', input="@..", output="@Visual")
+
+       out = SquareGravity.addChild('Out')
+
+       out.addObject('MechanicalObject', template="Vec3", name="mecaObj2", position="@../meshLoader.position")
+       out.addObject('TriangleSetTopologyContainer', name="Container", position="@mecaObj2.position", triangles="@../Subset.trianglesOutROI")
+       out.addObject('TriangleSetTopologyModifier', name="Modifier")
+       out.addObject('TriangleSetGeometryAlgorithms', template="Vec3", name="GeomAlgo")
+       out.addObject('DiagonalMass', name="default5", massDensity="1.15")
+       out.addObject('TriangularFEMForceField', template="Vec3", name="FEM", method="large", poissonRatio="0.3", youngModulus="30")
+       out.addObject('TriangularBendingSprings', template="Vec3", name="FEM-Bend", stiffness="300", damping="1")
+       out.addObject('TriangleCollisionModel', template="Vec3", name="default7")
+       out.addObject('FixedProjectiveConstraint', template="Vec3", name="default6", indices="0 1")
+
+       node = Out.addChild('node')
+
+       node.addObject('OglModel', name="Visual", color="red")
+       node.addObject('IdentityMapping', input="@..", output="@Visual")
+    ```
+
 SubsetTopology_refiningMesh.scn
 
 === "XML"
@@ -573,7 +712,7 @@ SubsetTopology_refiningMesh.scn
 					       22 22 10000 0 0")
     ```
 
-SubsetTopology.scn
+SubsetTopology_localIndicesOption.scn
 
 === "XML"
 
@@ -594,26 +733,28 @@ SubsetTopology.scn
         <RequiredPlugin name="Sofa.Component.SolidMechanics.Spring"/> <!-- Needed to use components [TriangularBendingSprings] -->
         <RequiredPlugin name="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
         <RequiredPlugin name="Sofa.Component.Topology.Container.Dynamic"/> <!-- Needed to use components [TriangleSetGeometryAlgorithms TriangleSetTopologyContainer TriangleSetTopologyModifier] -->
+        <RequiredPlugin name="Sofa.Component.Visual"/> <!-- Needed to use components [VisualStyle] -->
         <RequiredPlugin name="Sofa.GL.Component.Rendering3D"/> <!-- Needed to use components [OglModel] -->
     
         <DefaultAnimationLoop/>
+        <VisualStyle displayFlags="showBehaviorModels" />
         <CollisionPipeline name="default0" verbose="0" />
         <BruteForceBroadPhase/>
         <BVHNarrowPhase/>
         <CollisionResponse name="default1" response="PenalityContactForceField" />
         <MinProximityIntersection name="Proximity" alarmDistance="0.8" contactDistance="0.5" />
         <Node name="SquareGravity">
-            <MeshGmshLoader name="meshLoader" filename="mesh/square3.msh" />
             <EulerImplicitSolver name="cg_odesolver"  rayleighStiffness="0.1" rayleighMass="0.1" />
-            <CGLinearSolver iterations="100" tolerance="1e-05" threshold="1e-05"/>
-            <SubsetTopology template="Vec3" box="0.3 0 -0.1 0.6 1 0.1" drawTriangle="0" drawROI="1" src="@meshLoader" rest_position="@meshLoader.position" name="Subset" />
+            <CGLinearSolver iterations="100" tolerance="1e-5" threshold="1e-5"/>
+            <MeshGmshLoader name="meshLoader" filename="mesh/square3.msh" />
+            <SubsetTopology template="Vec3" box="0.3 0 -0.1 0.6 1 0.1" drawROI="1" src="@meshLoader" rest_position="@meshLoader.position" name="Subset" localIndices="1" />
             <Node name="in">
-                <MechanicalObject template="Vec3" name="mecaObj2" position="@../meshLoader.position" />
+                <MechanicalObject template="Vec3" name="mecaObj2" position="@../Subset.pointsInROI" />
                 <TriangleSetTopologyContainer name="Container" position="@mecaObj2.position" triangles="@../Subset.trianglesInROI" />
                 <TriangleSetTopologyModifier name="Modifier" />
                 <TriangleSetGeometryAlgorithms template="Vec3" name="GeomAlgo" />
                 <DiagonalMass name="default5" massDensity="1.15" />
-                <TriangularFEMForceField template="Vec3" name="FEM" method="large" poissonRatio="0.3" youngModulus="30" />
+                <TriangularFEMForceField template="Vec3" name="FEM" method="large" poissonRatio="0.3" youngModulus="60" />
                 <TriangularBendingSprings template="Vec3" name="FEM-Bend" stiffness="300" damping="1" />
                 <TriangleCollisionModel template="Vec3" name="default7" />
     
@@ -622,20 +763,21 @@ SubsetTopology.scn
                   <IdentityMapping input="@.." output="@Visual" />
                 </Node>        </Node>
             <Node name="Out">
-                <MechanicalObject template="Vec3" name="mecaObj2" position="@../meshLoader.position" />
+                <MechanicalObject template="Vec3" name="mecaObj2" position="@../Subset.pointsOutROI" />
                 <TriangleSetTopologyContainer name="Container" position="@mecaObj2.position" triangles="@../Subset.trianglesOutROI" />
                 <TriangleSetTopologyModifier name="Modifier" />
                 <TriangleSetGeometryAlgorithms template="Vec3" name="GeomAlgo" />
                 <DiagonalMass name="default5" massDensity="1.15" />
-                <TriangularFEMForceField template="Vec3" name="FEM" method="large" poissonRatio="0.3" youngModulus="30" />
-                <TriangularBendingSprings template="Vec3" name="FEM-Bend" stiffness="300" damping="1" />
                 <TriangleCollisionModel template="Vec3" name="default7" />
+                <TriangularFEMForceField template="Vec3" name="FEM" method="large" poissonRatio="0.3" youngModulus="60" />
+                <TriangularBendingSprings template="Vec3" name="FEM-Bend" stiffness="300" damping="1" />
                 <FixedProjectiveConstraint template="Vec3" name="default6" indices="0 1" />
+    
                 <Node >
                   <OglModel name="Visual" color="red" />
                   <IdentityMapping input="@.." output="@Visual" />
                 </Node>
-    	 </Node>
+            </Node>
         </Node>
     </Node>
 
@@ -663,8 +805,10 @@ SubsetTopology.scn
        root.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.Spring")
        root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
        root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Dynamic")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Visual")
        root.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
        root.addObject('DefaultAnimationLoop', )
+       root.addObject('VisualStyle', displayFlags="showBehaviorModels")
        root.addObject('CollisionPipeline', name="default0", verbose="0")
        root.addObject('BruteForceBroadPhase', )
        root.addObject('BVHNarrowPhase', )
@@ -673,19 +817,19 @@ SubsetTopology.scn
 
        square_gravity = root.addChild('SquareGravity')
 
-       square_gravity.addObject('MeshGmshLoader', name="meshLoader", filename="mesh/square3.msh")
        square_gravity.addObject('EulerImplicitSolver', name="cg_odesolver", rayleighStiffness="0.1", rayleighMass="0.1")
-       square_gravity.addObject('CGLinearSolver', iterations="100", tolerance="1e-05", threshold="1e-05")
-       square_gravity.addObject('SubsetTopology', template="Vec3", box="0.3 0 -0.1 0.6 1 0.1", drawTriangle="0", drawROI="1", src="@meshLoader", rest_position="@meshLoader.position", name="Subset")
+       square_gravity.addObject('CGLinearSolver', iterations="100", tolerance="1e-5", threshold="1e-5")
+       square_gravity.addObject('MeshGmshLoader', name="meshLoader", filename="mesh/square3.msh")
+       square_gravity.addObject('SubsetTopology', template="Vec3", box="0.3 0 -0.1 0.6 1 0.1", drawROI="1", src="@meshLoader", rest_position="@meshLoader.position", name="Subset", localIndices="1")
 
        in = SquareGravity.addChild('in')
 
-       in.addObject('MechanicalObject', template="Vec3", name="mecaObj2", position="@../meshLoader.position")
+       in.addObject('MechanicalObject', template="Vec3", name="mecaObj2", position="@../Subset.pointsInROI")
        in.addObject('TriangleSetTopologyContainer', name="Container", position="@mecaObj2.position", triangles="@../Subset.trianglesInROI")
        in.addObject('TriangleSetTopologyModifier', name="Modifier")
        in.addObject('TriangleSetGeometryAlgorithms', template="Vec3", name="GeomAlgo")
        in.addObject('DiagonalMass', name="default5", massDensity="1.15")
-       in.addObject('TriangularFEMForceField', template="Vec3", name="FEM", method="large", poissonRatio="0.3", youngModulus="30")
+       in.addObject('TriangularFEMForceField', template="Vec3", name="FEM", method="large", poissonRatio="0.3", youngModulus="60")
        in.addObject('TriangularBendingSprings', template="Vec3", name="FEM-Bend", stiffness="300", damping="1")
        in.addObject('TriangleCollisionModel', template="Vec3", name="default7")
 
@@ -696,14 +840,14 @@ SubsetTopology.scn
 
        out = SquareGravity.addChild('Out')
 
-       out.addObject('MechanicalObject', template="Vec3", name="mecaObj2", position="@../meshLoader.position")
+       out.addObject('MechanicalObject', template="Vec3", name="mecaObj2", position="@../Subset.pointsOutROI")
        out.addObject('TriangleSetTopologyContainer', name="Container", position="@mecaObj2.position", triangles="@../Subset.trianglesOutROI")
        out.addObject('TriangleSetTopologyModifier', name="Modifier")
        out.addObject('TriangleSetGeometryAlgorithms', template="Vec3", name="GeomAlgo")
        out.addObject('DiagonalMass', name="default5", massDensity="1.15")
-       out.addObject('TriangularFEMForceField', template="Vec3", name="FEM", method="large", poissonRatio="0.3", youngModulus="30")
-       out.addObject('TriangularBendingSprings', template="Vec3", name="FEM-Bend", stiffness="300", damping="1")
        out.addObject('TriangleCollisionModel', template="Vec3", name="default7")
+       out.addObject('TriangularFEMForceField', template="Vec3", name="FEM", method="large", poissonRatio="0.3", youngModulus="60")
+       out.addObject('TriangularBendingSprings', template="Vec3", name="FEM-Bend", stiffness="300", damping="1")
        out.addObject('FixedProjectiveConstraint', template="Vec3", name="default6", indices="0 1")
 
        node = Out.addChild('node')
@@ -964,150 +1108,6 @@ SubsetTopology_subsetbehaviormodel.scn
        surf.addObject('TriangleSetTopologyModifier', )
        surf.addObject('Tetra2TriangleTopologicalMapping', input="@../container", output="@container")
        surf.addObject('TriangleCollisionModel', template="Vec3")
-    ```
-
-SubsetTopology_localIndicesOption.scn
-
-=== "XML"
-
-    ```xml
-    <Node name="root" gravity="0 -9.81 0" dt="0.05">
-        <RequiredPlugin name="Sofa.Component.Collision.Detection.Algorithm"/> <!-- Needed to use components [BVHNarrowPhase BruteForceBroadPhase CollisionPipeline] -->
-        <RequiredPlugin name="Sofa.Component.Collision.Detection.Intersection"/> <!-- Needed to use components [MinProximityIntersection] -->
-        <RequiredPlugin name="Sofa.Component.Collision.Geometry"/> <!-- Needed to use components [TriangleCollisionModel] -->
-        <RequiredPlugin name="Sofa.Component.Collision.Response.Contact"/> <!-- Needed to use components [CollisionResponse] -->
-        <RequiredPlugin name="Sofa.Component.Constraint.Projective"/> <!-- Needed to use components [FixedProjectiveConstraint] -->
-        <RequiredPlugin name="Sofa.Component.Engine.Select"/> <!-- Needed to use components [SubsetTopology] -->
-        <RequiredPlugin name="Sofa.Component.IO.Mesh"/> <!-- Needed to use components [MeshGmshLoader] -->
-        <RequiredPlugin name="Sofa.Component.LinearSolver.Iterative"/> <!-- Needed to use components [CGLinearSolver] -->
-        <RequiredPlugin name="Sofa.Component.Mapping.Linear"/> <!-- Needed to use components [IdentityMapping] -->
-        <RequiredPlugin name="Sofa.Component.Mass"/> <!-- Needed to use components [DiagonalMass] -->
-        <RequiredPlugin name="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
-        <RequiredPlugin name="Sofa.Component.SolidMechanics.FEM.Elastic"/> <!-- Needed to use components [TriangularFEMForceField] -->
-        <RequiredPlugin name="Sofa.Component.SolidMechanics.Spring"/> <!-- Needed to use components [TriangularBendingSprings] -->
-        <RequiredPlugin name="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
-        <RequiredPlugin name="Sofa.Component.Topology.Container.Dynamic"/> <!-- Needed to use components [TriangleSetGeometryAlgorithms TriangleSetTopologyContainer TriangleSetTopologyModifier] -->
-        <RequiredPlugin name="Sofa.Component.Visual"/> <!-- Needed to use components [VisualStyle] -->
-        <RequiredPlugin name="Sofa.GL.Component.Rendering3D"/> <!-- Needed to use components [OglModel] -->
-    
-        <DefaultAnimationLoop/>
-        <VisualStyle displayFlags="showBehaviorModels" />
-        <CollisionPipeline name="default0" verbose="0" />
-        <BruteForceBroadPhase/>
-        <BVHNarrowPhase/>
-        <CollisionResponse name="default1" response="PenalityContactForceField" />
-        <MinProximityIntersection name="Proximity" alarmDistance="0.8" contactDistance="0.5" />
-        <Node name="SquareGravity">
-            <EulerImplicitSolver name="cg_odesolver"  rayleighStiffness="0.1" rayleighMass="0.1" />
-            <CGLinearSolver iterations="100" tolerance="1e-5" threshold="1e-5"/>
-            <MeshGmshLoader name="meshLoader" filename="mesh/square3.msh" />
-            <SubsetTopology template="Vec3" box="0.3 0 -0.1 0.6 1 0.1" drawROI="1" src="@meshLoader" rest_position="@meshLoader.position" name="Subset" localIndices="1" />
-            <Node name="in">
-                <MechanicalObject template="Vec3" name="mecaObj2" position="@../Subset.pointsInROI" />
-                <TriangleSetTopologyContainer name="Container" position="@mecaObj2.position" triangles="@../Subset.trianglesInROI" />
-                <TriangleSetTopologyModifier name="Modifier" />
-                <TriangleSetGeometryAlgorithms template="Vec3" name="GeomAlgo" />
-                <DiagonalMass name="default5" massDensity="1.15" />
-                <TriangularFEMForceField template="Vec3" name="FEM" method="large" poissonRatio="0.3" youngModulus="60" />
-                <TriangularBendingSprings template="Vec3" name="FEM-Bend" stiffness="300" damping="1" />
-                <TriangleCollisionModel template="Vec3" name="default7" />
-    
-                <Node >
-                  <OglModel name="Visual" color="blue" />
-                  <IdentityMapping input="@.." output="@Visual" />
-                </Node>        </Node>
-            <Node name="Out">
-                <MechanicalObject template="Vec3" name="mecaObj2" position="@../Subset.pointsOutROI" />
-                <TriangleSetTopologyContainer name="Container" position="@mecaObj2.position" triangles="@../Subset.trianglesOutROI" />
-                <TriangleSetTopologyModifier name="Modifier" />
-                <TriangleSetGeometryAlgorithms template="Vec3" name="GeomAlgo" />
-                <DiagonalMass name="default5" massDensity="1.15" />
-                <TriangleCollisionModel template="Vec3" name="default7" />
-                <TriangularFEMForceField template="Vec3" name="FEM" method="large" poissonRatio="0.3" youngModulus="60" />
-                <TriangularBendingSprings template="Vec3" name="FEM-Bend" stiffness="300" damping="1" />
-                <FixedProjectiveConstraint template="Vec3" name="default6" indices="0 1" />
-    
-                <Node >
-                  <OglModel name="Visual" color="red" />
-                  <IdentityMapping input="@.." output="@Visual" />
-                </Node>
-            </Node>
-        </Node>
-    </Node>
-
-    ```
-
-=== "Python"
-
-    ```python
-    def createScene(root_node):
-
-       root = root_node.addChild('root', gravity="0 -9.81 0", dt="0.05")
-
-       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Algorithm")
-       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Intersection")
-       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Geometry")
-       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Response.Contact")
-       root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Projective")
-       root.addObject('RequiredPlugin', name="Sofa.Component.Engine.Select")
-       root.addObject('RequiredPlugin', name="Sofa.Component.IO.Mesh")
-       root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Iterative")
-       root.addObject('RequiredPlugin', name="Sofa.Component.Mapping.Linear")
-       root.addObject('RequiredPlugin', name="Sofa.Component.Mass")
-       root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
-       root.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.FEM.Elastic")
-       root.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.Spring")
-       root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
-       root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Dynamic")
-       root.addObject('RequiredPlugin', name="Sofa.Component.Visual")
-       root.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
-       root.addObject('DefaultAnimationLoop', )
-       root.addObject('VisualStyle', displayFlags="showBehaviorModels")
-       root.addObject('CollisionPipeline', name="default0", verbose="0")
-       root.addObject('BruteForceBroadPhase', )
-       root.addObject('BVHNarrowPhase', )
-       root.addObject('CollisionResponse', name="default1", response="PenalityContactForceField")
-       root.addObject('MinProximityIntersection', name="Proximity", alarmDistance="0.8", contactDistance="0.5")
-
-       square_gravity = root.addChild('SquareGravity')
-
-       square_gravity.addObject('EulerImplicitSolver', name="cg_odesolver", rayleighStiffness="0.1", rayleighMass="0.1")
-       square_gravity.addObject('CGLinearSolver', iterations="100", tolerance="1e-5", threshold="1e-5")
-       square_gravity.addObject('MeshGmshLoader', name="meshLoader", filename="mesh/square3.msh")
-       square_gravity.addObject('SubsetTopology', template="Vec3", box="0.3 0 -0.1 0.6 1 0.1", drawROI="1", src="@meshLoader", rest_position="@meshLoader.position", name="Subset", localIndices="1")
-
-       in = SquareGravity.addChild('in')
-
-       in.addObject('MechanicalObject', template="Vec3", name="mecaObj2", position="@../Subset.pointsInROI")
-       in.addObject('TriangleSetTopologyContainer', name="Container", position="@mecaObj2.position", triangles="@../Subset.trianglesInROI")
-       in.addObject('TriangleSetTopologyModifier', name="Modifier")
-       in.addObject('TriangleSetGeometryAlgorithms', template="Vec3", name="GeomAlgo")
-       in.addObject('DiagonalMass', name="default5", massDensity="1.15")
-       in.addObject('TriangularFEMForceField', template="Vec3", name="FEM", method="large", poissonRatio="0.3", youngModulus="60")
-       in.addObject('TriangularBendingSprings', template="Vec3", name="FEM-Bend", stiffness="300", damping="1")
-       in.addObject('TriangleCollisionModel', template="Vec3", name="default7")
-
-       node = in.addChild('node')
-
-       node.addObject('OglModel', name="Visual", color="blue")
-       node.addObject('IdentityMapping', input="@..", output="@Visual")
-
-       out = SquareGravity.addChild('Out')
-
-       out.addObject('MechanicalObject', template="Vec3", name="mecaObj2", position="@../Subset.pointsOutROI")
-       out.addObject('TriangleSetTopologyContainer', name="Container", position="@mecaObj2.position", triangles="@../Subset.trianglesOutROI")
-       out.addObject('TriangleSetTopologyModifier', name="Modifier")
-       out.addObject('TriangleSetGeometryAlgorithms', template="Vec3", name="GeomAlgo")
-       out.addObject('DiagonalMass', name="default5", massDensity="1.15")
-       out.addObject('TriangleCollisionModel', template="Vec3", name="default7")
-       out.addObject('TriangularFEMForceField', template="Vec3", name="FEM", method="large", poissonRatio="0.3", youngModulus="60")
-       out.addObject('TriangularBendingSprings', template="Vec3", name="FEM-Bend", stiffness="300", damping="1")
-       out.addObject('FixedProjectiveConstraint', template="Vec3", name="default6", indices="0 1")
-
-       node = Out.addChild('node')
-
-       node.addObject('OglModel', name="Visual", color="red")
-       node.addObject('IdentityMapping', input="@..", output="@Visual")
     ```
 
 

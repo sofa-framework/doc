@@ -76,6 +76,9 @@ Display the object or not
 		<td>plane</td>
 		<td>
 Plane of the grid
+- x: The grid is oriented in the plane defined by the equation x=0
+- y: The grid is oriented in the plane defined by the equation y=0
+- z: The grid is oriented in the plane defined by the equation z=0
 		</td>
 		<td>z</td>
 	</tr>

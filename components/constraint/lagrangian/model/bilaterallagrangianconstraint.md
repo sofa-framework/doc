@@ -328,349 +328,6 @@ keep the initial difference in orientation (only for rigids)
 
 ## Examples 
 
-BilateralLagrangianConstraint_PGS.scn
-
-=== "XML"
-
-    ```xml
-    <?xml version="1.0"?>
-    <!-- BilateralLagrangianConstraint example -->
-    <Node name="root" dt="0.001" gravity="0 -981 0">
-        <RequiredPlugin name="Sofa.Component.AnimationLoop"/> <!-- Needed to use components [FreeMotionAnimationLoop] -->
-        <RequiredPlugin name="Sofa.Component.Collision.Detection.Algorithm"/> <!-- Needed to use components [BVHNarrowPhase BruteForceBroadPhase CollisionPipeline] -->
-        <RequiredPlugin name="Sofa.Component.Collision.Detection.Intersection"/> <!-- Needed to use components [LocalMinDistance] -->
-        <RequiredPlugin name="Sofa.Component.Collision.Geometry"/> <!-- Needed to use components [LineCollisionModel PointCollisionModel TriangleCollisionModel] -->
-        <RequiredPlugin name="Sofa.Component.Collision.Response.Contact"/> <!-- Needed to use components [CollisionResponse] -->
-        <RequiredPlugin name="Sofa.Component.Constraint.Lagrangian.Correction"/> <!-- Needed to use components [UncoupledConstraintCorrection] -->
-        <RequiredPlugin name="Sofa.Component.Constraint.Lagrangian.Model"/> <!-- Needed to use components [BilateralLagrangianConstraint] -->
-        <RequiredPlugin name="Sofa.Component.Constraint.Lagrangian.Solver"/> <!-- Needed to use components [GenericConstraintSolver] -->
-        <RequiredPlugin name="Sofa.Component.IO.Mesh"/> <!-- Needed to use components [MeshOBJLoader] -->
-        <RequiredPlugin name="Sofa.Component.LinearSolver.Iterative"/> <!-- Needed to use components [CGLinearSolver] -->
-        <RequiredPlugin name="Sofa.Component.Mapping.NonLinear"/> <!-- Needed to use components [RigidMapping] -->
-        <RequiredPlugin name="Sofa.Component.Mass"/> <!-- Needed to use components [UniformMass] -->
-        <RequiredPlugin name="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
-        <RequiredPlugin name="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
-        <RequiredPlugin name="Sofa.Component.Topology.Container.Constant"/> <!-- Needed to use components [MeshTopology] -->
-        <RequiredPlugin name="Sofa.Component.Visual"/> <!-- Needed to use components [VisualStyle] -->
-        <RequiredPlugin name="Sofa.GL.Component.Rendering3D"/> <!-- Needed to use components [OglModel] -->
-        
-        <VisualStyle displayFlags="showForceFields" />
-        <DefaultVisualManagerLoop />
-        <FreeMotionAnimationLoop />
-        <GenericConstraintSolver tolerance="0.001" maxIterations="1000" resolutionMethod="ProjectedGaussSeidel"/>
-        <CollisionPipeline depth="6" verbose="0" draw="0" />
-        <BruteForceBroadPhase/>
-        <BVHNarrowPhase/>
-        <LocalMinDistance name="Proximity" alarmDistance="0.2" contactDistance="0.09" angleCone="0.0" />
-        <CollisionResponse name="Response" response="FrictionContactConstraint" />
-    
-        <Node name="CUBE_0">
-            <MechanicalObject dy="2.5" />
-            <Node name="Visu">
-                <MeshOBJLoader name="meshLoader_0" filename="mesh/cube.obj" handleSeams="1" />
-                <OglModel name="Visual" src="@meshLoader_0" color="1 0 0 1" dy="2.5" />
-            </Node>
-            <Node name="ColliCube">
-                <MeshOBJLoader name="loader" filename="mesh/cube.obj" triangulate="1" />
-                <MeshTopology src="@loader" />
-                <MechanicalObject src="@loader" template="Vec3" dy="2.5" />
-                <TriangleCollisionModel simulated="0" moving="0" />
-                <LineCollisionModel simulated="0" moving="0" />
-                <PointCollisionModel simulated="0" moving="0" />
-            </Node>
-            <Node name="Constraints">
-                <MechanicalObject name="points" template="Vec3" position="1 1.25 1" />
-            </Node>
-        </Node>
-        <Node name="CUBE_1">
-            <EulerImplicitSolver printLog="false" rayleighStiffness="0.1" rayleighMass="0.1"/>
-            <CGLinearSolver iterations="25" tolerance="1.0e-9" threshold="1.0e-9" />
-            <MechanicalObject template="Rigid3" scale="1.0" dx="0.0" dy="0" dz="0.0" />
-            <UniformMass totalMass="0.1" />
-            <UncoupledConstraintCorrection />
-            <Node name="Visu">
-                <MeshOBJLoader name="meshLoader_2" filename="mesh/cube.obj" handleSeams="1" />
-                <OglModel name="Visual" src="@meshLoader_2" color="1 1 0 1.0" />
-                <RigidMapping input="@.." output="@Visual" />
-            </Node>
-            <Node name="ColliCube">
-                <MeshOBJLoader name="loader" filename="mesh/cube.obj" triangulate="1" />
-                <MeshTopology src="@loader" />
-                <MechanicalObject src="@loader" />
-                <TriangleCollisionModel />
-                <LineCollisionModel />
-                <PointCollisionModel />
-                <RigidMapping />
-            </Node>
-            <Node name="Constraints">
-                <MechanicalObject name="points" template="Vec3" position="1 1.25 1&#x09;-1.25 -1.25 1.25" />
-                <RigidMapping />
-            </Node>
-        </Node>
-        <BilateralLagrangianConstraint template="Vec3" object1="@CUBE_0/Constraints/points" object2="@CUBE_1/Constraints/points" first_point="0" second_point="0" />
-        <Node name="CUBE_2">
-            <EulerImplicitSolver printLog="false" rayleighStiffness="0.1" rayleighMass="0.1"/>
-            <CGLinearSolver iterations="25" tolerance="1.0e-9" threshold="1.0e-9" />
-            <MechanicalObject template="Rigid3" scale="1.0" dx="0.0" dy="-2.5" dz="0.0" />
-            <UniformMass totalMass="0.1" />
-            <UncoupledConstraintCorrection />
-            <Node name="Visu">
-                <MeshOBJLoader name="meshLoader_3" filename="mesh/cube.obj" handleSeams="1" />
-                <OglModel name="Visual" src="@meshLoader_3" color="0 1 0 1.0" />
-                <RigidMapping input="@.." output="@Visual" />
-            </Node>
-            <Node name="ColliCube">
-                <MeshOBJLoader name="loader" filename="mesh/cube.obj" />
-                <MeshTopology src="@loader" />
-                <MechanicalObject src="@loader" scale="1.0" />
-                <TriangleCollisionModel />
-                <LineCollisionModel />
-                <PointCollisionModel />
-                <RigidMapping />
-            </Node>
-            <Node name="Constraints">
-                <MechanicalObject name="points" template="Vec3" position="-1.25 1.25 1.25&#x09;1.25 -1.25 -1.25" />
-                <RigidMapping />
-            </Node>
-        </Node>
-        <BilateralLagrangianConstraint template="Vec3" object1="@CUBE_1/Constraints/points" object2="@CUBE_2/Constraints/points" first_point="1" second_point="0" />
-        <Node name="CUBE_3">
-            <EulerImplicitSolver printLog="false" rayleighStiffness="0.1" rayleighMass="0.1"/>
-            <CGLinearSolver iterations="25" tolerance="1.0e-9" threshold="1.0e-9" />
-            <MechanicalObject template="Rigid3" scale="1.0" dx="0.0" dy="-5.0" dz="0.0" />
-            <UniformMass totalMass="0.1" />
-            <UncoupledConstraintCorrection />
-            <Node name="Visu">
-                <MeshOBJLoader name="meshLoader_4" filename="mesh/cube.obj" handleSeams="1" />
-                <OglModel name="Visual" src="@meshLoader_4" color="0 1 1 1.0" />
-                <RigidMapping input="@.." output="@Visual" />
-            </Node>
-            <Node name="ColliCube">
-                <MeshOBJLoader name="loader" filename="mesh/cube.obj" />
-                <MeshTopology src="@loader" />
-                <MechanicalObject src="@loader" scale="1.0" />
-                <TriangleCollisionModel />
-                <LineCollisionModel />
-                <PointCollisionModel />
-                <RigidMapping />
-            </Node>
-            <Node name="Constraints">
-                <MechanicalObject name="points" template="Vec3" position="1.25 1.25 -1.25" />
-                <RigidMapping />
-            </Node>
-        </Node>
-        <BilateralLagrangianConstraint template="Vec3" object1="@CUBE_2/Constraints/points" object2="@CUBE_3/Constraints/points" first_point="1" second_point="0" />
-        <Node name="CUBE_4">
-            <EulerImplicitSolver printLog="false" rayleighStiffness="0.1" rayleighMass="0.1"/>
-            <CGLinearSolver iterations="25" tolerance="1.0e-9" threshold="1.0e-9" />
-            <MechanicalObject template="Rigid3" scale="1.0" dx="0.0" dy="-2.5" dz="-2.5" />
-            <UniformMass totalMass="0.1" />
-            <UncoupledConstraintCorrection />
-            <Node name="Visu">
-                <MeshOBJLoader name="meshLoader_1" filename="mesh/cube.obj" handleSeams="1" />
-                <OglModel name="Visual" src="@meshLoader_1" color="0 0 1 1.0" />
-                <RigidMapping input="@.." output="@Visual" />
-            </Node>
-            <Node name="ColliCube">
-                <MeshOBJLoader name="loader" filename="mesh/cube.obj" />
-                <MeshTopology src="@loader" />
-                <MechanicalObject src="@loader" scale="1.0" />
-                <TriangleCollisionModel />
-                <LineCollisionModel />
-                <PointCollisionModel />
-                <RigidMapping />
-            </Node>
-            <Node name="Constraints">
-                <MechanicalObject name="points" template="Vec3" position="1.25 -1.25 1.25&#x09;1.25 1.25 1.25" />
-                <RigidMapping />
-            </Node>
-        </Node>
-        <BilateralLagrangianConstraint template="Vec3" object1="@CUBE_2/Constraints/points" object2="@CUBE_4/Constraints/points" first_point="1" second_point="0" />
-    </Node>
-
-    ```
-
-=== "Python"
-
-    ```python
-    def createScene(root_node):
-
-       root = root_node.addChild('root', dt="0.001", gravity="0 -981 0")
-
-       root.addObject('RequiredPlugin', name="Sofa.Component.AnimationLoop")
-       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Algorithm")
-       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Intersection")
-       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Geometry")
-       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Response.Contact")
-       root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Lagrangian.Correction")
-       root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Lagrangian.Model")
-       root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Lagrangian.Solver")
-       root.addObject('RequiredPlugin', name="Sofa.Component.IO.Mesh")
-       root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Iterative")
-       root.addObject('RequiredPlugin', name="Sofa.Component.Mapping.NonLinear")
-       root.addObject('RequiredPlugin', name="Sofa.Component.Mass")
-       root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
-       root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
-       root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Constant")
-       root.addObject('RequiredPlugin', name="Sofa.Component.Visual")
-       root.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
-       root.addObject('VisualStyle', displayFlags="showForceFields")
-       root.addObject('DefaultVisualManagerLoop', )
-       root.addObject('FreeMotionAnimationLoop', )
-       root.addObject('GenericConstraintSolver', tolerance="0.001", maxIterations="1000", resolutionMethod="ProjectedGaussSeidel")
-       root.addObject('CollisionPipeline', depth="6", verbose="0", draw="0")
-       root.addObject('BruteForceBroadPhase', )
-       root.addObject('BVHNarrowPhase', )
-       root.addObject('LocalMinDistance', name="Proximity", alarmDistance="0.2", contactDistance="0.09", angleCone="0.0")
-       root.addObject('CollisionResponse', name="Response", response="FrictionContactConstraint")
-
-       cube_0 = root.addChild('CUBE_0')
-
-       cube_0.addObject('MechanicalObject', dy="2.5")
-
-       visu = CUBE_0.addChild('Visu')
-
-       visu.addObject('MeshOBJLoader', name="meshLoader_0", filename="mesh/cube.obj", handleSeams="1")
-       visu.addObject('OglModel', name="Visual", src="@meshLoader_0", color="1 0 0 1", dy="2.5")
-
-       colli_cube = CUBE_0.addChild('ColliCube')
-
-       colli_cube.addObject('MeshOBJLoader', name="loader", filename="mesh/cube.obj", triangulate="1")
-       colli_cube.addObject('MeshTopology', src="@loader")
-       colli_cube.addObject('MechanicalObject', src="@loader", template="Vec3", dy="2.5")
-       colli_cube.addObject('TriangleCollisionModel', simulated="0", moving="0")
-       colli_cube.addObject('LineCollisionModel', simulated="0", moving="0")
-       colli_cube.addObject('PointCollisionModel', simulated="0", moving="0")
-
-       constraints = CUBE_0.addChild('Constraints')
-
-       constraints.addObject('MechanicalObject', name="points", template="Vec3", position="1 1.25 1")
-
-       cube_1 = root.addChild('CUBE_1')
-
-       cube_1.addObject('EulerImplicitSolver', printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
-       cube_1.addObject('CGLinearSolver', iterations="25", tolerance="1.0e-9", threshold="1.0e-9")
-       cube_1.addObject('MechanicalObject', template="Rigid3", scale="1.0", dx="0.0", dy="0", dz="0.0")
-       cube_1.addObject('UniformMass', totalMass="0.1")
-       cube_1.addObject('UncoupledConstraintCorrection', )
-
-       visu = CUBE_1.addChild('Visu')
-
-       visu.addObject('MeshOBJLoader', name="meshLoader_2", filename="mesh/cube.obj", handleSeams="1")
-       visu.addObject('OglModel', name="Visual", src="@meshLoader_2", color="1 1 0 1.0")
-       visu.addObject('RigidMapping', input="@..", output="@Visual")
-
-       colli_cube = CUBE_1.addChild('ColliCube')
-
-       colli_cube.addObject('MeshOBJLoader', name="loader", filename="mesh/cube.obj", triangulate="1")
-       colli_cube.addObject('MeshTopology', src="@loader")
-       colli_cube.addObject('MechanicalObject', src="@loader")
-       colli_cube.addObject('TriangleCollisionModel', )
-       colli_cube.addObject('LineCollisionModel', )
-       colli_cube.addObject('PointCollisionModel', )
-       colli_cube.addObject('RigidMapping', )
-
-       constraints = CUBE_1.addChild('Constraints')
-
-       constraints.addObject('MechanicalObject', name="points", template="Vec3", position="1 1.25 1	-1.25 -1.25 1.25")
-       constraints.addObject('RigidMapping', )
-
-       root.addObject('BilateralLagrangianConstraint', template="Vec3", object1="@CUBE_0/Constraints/points", object2="@CUBE_1/Constraints/points", first_point="0", second_point="0")
-
-       cube_2 = root.addChild('CUBE_2')
-
-       cube_2.addObject('EulerImplicitSolver', printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
-       cube_2.addObject('CGLinearSolver', iterations="25", tolerance="1.0e-9", threshold="1.0e-9")
-       cube_2.addObject('MechanicalObject', template="Rigid3", scale="1.0", dx="0.0", dy="-2.5", dz="0.0")
-       cube_2.addObject('UniformMass', totalMass="0.1")
-       cube_2.addObject('UncoupledConstraintCorrection', )
-
-       visu = CUBE_2.addChild('Visu')
-
-       visu.addObject('MeshOBJLoader', name="meshLoader_3", filename="mesh/cube.obj", handleSeams="1")
-       visu.addObject('OglModel', name="Visual", src="@meshLoader_3", color="0 1 0 1.0")
-       visu.addObject('RigidMapping', input="@..", output="@Visual")
-
-       colli_cube = CUBE_2.addChild('ColliCube')
-
-       colli_cube.addObject('MeshOBJLoader', name="loader", filename="mesh/cube.obj")
-       colli_cube.addObject('MeshTopology', src="@loader")
-       colli_cube.addObject('MechanicalObject', src="@loader", scale="1.0")
-       colli_cube.addObject('TriangleCollisionModel', )
-       colli_cube.addObject('LineCollisionModel', )
-       colli_cube.addObject('PointCollisionModel', )
-       colli_cube.addObject('RigidMapping', )
-
-       constraints = CUBE_2.addChild('Constraints')
-
-       constraints.addObject('MechanicalObject', name="points", template="Vec3", position="-1.25 1.25 1.25	1.25 -1.25 -1.25")
-       constraints.addObject('RigidMapping', )
-
-       root.addObject('BilateralLagrangianConstraint', template="Vec3", object1="@CUBE_1/Constraints/points", object2="@CUBE_2/Constraints/points", first_point="1", second_point="0")
-
-       cube_3 = root.addChild('CUBE_3')
-
-       cube_3.addObject('EulerImplicitSolver', printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
-       cube_3.addObject('CGLinearSolver', iterations="25", tolerance="1.0e-9", threshold="1.0e-9")
-       cube_3.addObject('MechanicalObject', template="Rigid3", scale="1.0", dx="0.0", dy="-5.0", dz="0.0")
-       cube_3.addObject('UniformMass', totalMass="0.1")
-       cube_3.addObject('UncoupledConstraintCorrection', )
-
-       visu = CUBE_3.addChild('Visu')
-
-       visu.addObject('MeshOBJLoader', name="meshLoader_4", filename="mesh/cube.obj", handleSeams="1")
-       visu.addObject('OglModel', name="Visual", src="@meshLoader_4", color="0 1 1 1.0")
-       visu.addObject('RigidMapping', input="@..", output="@Visual")
-
-       colli_cube = CUBE_3.addChild('ColliCube')
-
-       colli_cube.addObject('MeshOBJLoader', name="loader", filename="mesh/cube.obj")
-       colli_cube.addObject('MeshTopology', src="@loader")
-       colli_cube.addObject('MechanicalObject', src="@loader", scale="1.0")
-       colli_cube.addObject('TriangleCollisionModel', )
-       colli_cube.addObject('LineCollisionModel', )
-       colli_cube.addObject('PointCollisionModel', )
-       colli_cube.addObject('RigidMapping', )
-
-       constraints = CUBE_3.addChild('Constraints')
-
-       constraints.addObject('MechanicalObject', name="points", template="Vec3", position="1.25 1.25 -1.25")
-       constraints.addObject('RigidMapping', )
-
-       root.addObject('BilateralLagrangianConstraint', template="Vec3", object1="@CUBE_2/Constraints/points", object2="@CUBE_3/Constraints/points", first_point="1", second_point="0")
-
-       cube_4 = root.addChild('CUBE_4')
-
-       cube_4.addObject('EulerImplicitSolver', printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
-       cube_4.addObject('CGLinearSolver', iterations="25", tolerance="1.0e-9", threshold="1.0e-9")
-       cube_4.addObject('MechanicalObject', template="Rigid3", scale="1.0", dx="0.0", dy="-2.5", dz="-2.5")
-       cube_4.addObject('UniformMass', totalMass="0.1")
-       cube_4.addObject('UncoupledConstraintCorrection', )
-
-       visu = CUBE_4.addChild('Visu')
-
-       visu.addObject('MeshOBJLoader', name="meshLoader_1", filename="mesh/cube.obj", handleSeams="1")
-       visu.addObject('OglModel', name="Visual", src="@meshLoader_1", color="0 0 1 1.0")
-       visu.addObject('RigidMapping', input="@..", output="@Visual")
-
-       colli_cube = CUBE_4.addChild('ColliCube')
-
-       colli_cube.addObject('MeshOBJLoader', name="loader", filename="mesh/cube.obj")
-       colli_cube.addObject('MeshTopology', src="@loader")
-       colli_cube.addObject('MechanicalObject', src="@loader", scale="1.0")
-       colli_cube.addObject('TriangleCollisionModel', )
-       colli_cube.addObject('LineCollisionModel', )
-       colli_cube.addObject('PointCollisionModel', )
-       colli_cube.addObject('RigidMapping', )
-
-       constraints = CUBE_4.addChild('Constraints')
-
-       constraints.addObject('MechanicalObject', name="points", template="Vec3", position="1.25 -1.25 1.25	1.25 1.25 1.25")
-       constraints.addObject('RigidMapping', )
-
-       root.addObject('BilateralLagrangianConstraint', template="Vec3", object1="@CUBE_2/Constraints/points", object2="@CUBE_4/Constraints/points", first_point="1", second_point="0")
-    ```
-
 BilateralLagrangianConstraint_UGS.scn
 
 === "XML"
@@ -1014,6 +671,673 @@ BilateralLagrangianConstraint_UGS.scn
        root.addObject('BilateralLagrangianConstraint', template="Vec3", object1="@CUBE_2/Constraints/points", object2="@CUBE_4/Constraints/points", first_point="1", second_point="0")
     ```
 
+BilateralLagrangianConstraint_Rigid.scn
+
+=== "XML"
+
+    ```xml
+    <?xml version="1.0"?>
+    <!-- BilateralLagrangianConstraint example using rigid-->
+    <Node name="root" dt="0.1" gravity="0 -0.981 0">
+        <RequiredPlugin name="Sofa.Component.AnimationLoop"/> <!-- Needed to use components [FreeMotionAnimationLoop] -->
+        <RequiredPlugin name="Sofa.Component.Collision.Geometry"/> <!-- Needed to use components [SphereCollisionModel] -->
+        <RequiredPlugin name="Sofa.Component.Constraint.Lagrangian.Correction"/> <!-- Needed to use components [LinearSolverConstraintCorrection] -->
+        <RequiredPlugin name="Sofa.Component.Constraint.Lagrangian.Model"/> <!-- Needed to use components [BilateralLagrangianConstraint] -->
+        <RequiredPlugin name="Sofa.Component.Constraint.Lagrangian.Solver"/> <!-- Needed to use components [GenericConstraintSolver] -->
+        <RequiredPlugin name="Sofa.Component.Constraint.Projective"/> <!-- Needed to use components [FixedProjectiveConstraint] -->
+        <RequiredPlugin name="Sofa.Component.LinearSolver.Direct"/> <!-- Needed to use components [BTDLinearSolver] -->
+        <RequiredPlugin name="Sofa.Component.Mapping.NonLinear"/> <!-- Needed to use components [RigidMapping] -->
+        <RequiredPlugin name="Sofa.Component.Mass"/> <!-- Needed to use components [UniformMass] -->
+        <RequiredPlugin name="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+        <RequiredPlugin name="Sofa.Component.SolidMechanics.FEM.Elastic"/> <!-- Needed to use components [BeamFEMForceField] -->
+        <RequiredPlugin name="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
+        <RequiredPlugin name="Sofa.Component.Topology.Container.Constant"/> <!-- Needed to use components [MeshTopology] -->
+        <RequiredPlugin name="Sofa.Component.Visual"/> <!-- Needed to use components [VisualStyle] -->
+    
+        <VisualStyle displayFlags="showBehaviorModels showForceFields" />
+        <FreeMotionAnimationLoop />
+        <GenericConstraintSolver tolerance="0.001" maxIterations="1000"/>
+        <Node name="Beam1">
+            <EulerImplicitSolver name="odesolver" printLog="false"  rayleighStiffness="0.1" rayleighMass="0.1" />
+            <BTDLinearSolver printLog="false" verbose="false" />
+            <MechanicalObject template="Rigid3" name="DOFs1" position="0 0 0 0 0 0 1  1 0 0 0 0 0 1  2 0 0 0 0 0 1  3 0 0 0 0 0 1  4 0 0 0 0 0 1  5 0 0 0 0 0 1  6 0 0 0 0 0 1  7 0 0 0 0 0 1" />
+            <MeshTopology name="lines" lines="0 1 1 2 2 3 3 4 4 5 5 6 6 7" />
+            <UniformMass vertexMass="1 1 0.01 0 0 0 0.1 0 0 0 0.1 0" printLog="false" />
+            <BeamFEMForceField name="FEM" poissonRatio="0.49" radius="0.1" youngModulus="2000000" />
+            <FixedProjectiveConstraint name="FixedProjectiveConstraint" indices="7" />
+            <LinearSolverConstraintCorrection />
+             <SphereCollisionModel radius="0.1" group="1"/>
+            <Node name="ConstraintPoint">
+                <MechanicalObject template="Rigid3" name="dof1" position="0 0 0 0 0 -0.707107 0.707107 " />
+                <RigidMapping index="0" />
+            </Node>
+        </Node>
+        <Node name="Beam2">
+            <EulerImplicitSolver name="odesolver" printLog="false" />
+            <BTDLinearSolver printLog="false" verbose="false" />
+            <MechanicalObject template="Rigid3" name="DOFs2" position="0 0 0 0 0 -0.707107 0.707107 0 -1 0 0 0-0.707107 0.707107  0 -2 0 0 0 -0.707107 0.707107  0 -3 0 0 0 -0.707107 0.707107  0 -4 0 0 0 -0.707107 0.707107  0 -5 0 0 0 -0.707107 0.707107  0 -6 0 0 0 -0.707107 0.707107  0 -7 0 0 0 -0.707107 0.707107" />
+            <MeshTopology name="lines" lines="0 1 1 2 2 3 3 4 4 5 5 6 6 7" />
+            <UniformMass vertexMass="1 1 0.01 0 0 0 0.1 0 0 0 0.1 0" printLog="false" />
+            <BeamFEMForceField name="FEM" poissonRatio="0.49" radius="0.1" youngModulus="20000000" />
+            <LinearSolverConstraintCorrection />
+            <SphereCollisionModel radius="0.1" group="1"/>
+        </Node>
+        <BilateralLagrangianConstraint template="Rigid3" object1="@Beam1/ConstraintPoint/dof1" object2="@Beam2/DOFs2" first_point="0" second_point="0" />
+    </Node>
+
+    ```
+
+=== "Python"
+
+    ```python
+    def createScene(root_node):
+
+       root = root_node.addChild('root', dt="0.1", gravity="0 -0.981 0")
+
+       root.addObject('RequiredPlugin', name="Sofa.Component.AnimationLoop")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Geometry")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Lagrangian.Correction")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Lagrangian.Model")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Lagrangian.Solver")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Projective")
+       root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Direct")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Mapping.NonLinear")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Mass")
+       root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.FEM.Elastic")
+       root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Constant")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Visual")
+       root.addObject('VisualStyle', displayFlags="showBehaviorModels showForceFields")
+       root.addObject('FreeMotionAnimationLoop', )
+       root.addObject('GenericConstraintSolver', tolerance="0.001", maxIterations="1000")
+
+       beam1 = root.addChild('Beam1')
+
+       beam1.addObject('EulerImplicitSolver', name="odesolver", printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
+       beam1.addObject('BTDLinearSolver', printLog="false", verbose="false")
+       beam1.addObject('MechanicalObject', template="Rigid3", name="DOFs1", position="0 0 0 0 0 0 1  1 0 0 0 0 0 1  2 0 0 0 0 0 1  3 0 0 0 0 0 1  4 0 0 0 0 0 1  5 0 0 0 0 0 1  6 0 0 0 0 0 1  7 0 0 0 0 0 1")
+       beam1.addObject('MeshTopology', name="lines", lines="0 1 1 2 2 3 3 4 4 5 5 6 6 7")
+       beam1.addObject('UniformMass', vertexMass="1 1 0.01 0 0 0 0.1 0 0 0 0.1 0", printLog="false")
+       beam1.addObject('BeamFEMForceField', name="FEM", poissonRatio="0.49", radius="0.1", youngModulus="2000000")
+       beam1.addObject('FixedProjectiveConstraint', name="FixedProjectiveConstraint", indices="7")
+       beam1.addObject('LinearSolverConstraintCorrection', )
+       beam1.addObject('SphereCollisionModel', radius="0.1", group="1")
+
+       constraint_point = Beam1.addChild('ConstraintPoint')
+
+       constraint_point.addObject('MechanicalObject', template="Rigid3", name="dof1", position="0 0 0 0 0 -0.707107 0.707107 ")
+       constraint_point.addObject('RigidMapping', index="0")
+
+       beam2 = root.addChild('Beam2')
+
+       beam2.addObject('EulerImplicitSolver', name="odesolver", printLog="false")
+       beam2.addObject('BTDLinearSolver', printLog="false", verbose="false")
+       beam2.addObject('MechanicalObject', template="Rigid3", name="DOFs2", position="0 0 0 0 0 -0.707107 0.707107 0 -1 0 0 0-0.707107 0.707107  0 -2 0 0 0 -0.707107 0.707107  0 -3 0 0 0 -0.707107 0.707107  0 -4 0 0 0 -0.707107 0.707107  0 -5 0 0 0 -0.707107 0.707107  0 -6 0 0 0 -0.707107 0.707107  0 -7 0 0 0 -0.707107 0.707107")
+       beam2.addObject('MeshTopology', name="lines", lines="0 1 1 2 2 3 3 4 4 5 5 6 6 7")
+       beam2.addObject('UniformMass', vertexMass="1 1 0.01 0 0 0 0.1 0 0 0 0.1 0", printLog="false")
+       beam2.addObject('BeamFEMForceField', name="FEM", poissonRatio="0.49", radius="0.1", youngModulus="20000000")
+       beam2.addObject('LinearSolverConstraintCorrection', )
+       beam2.addObject('SphereCollisionModel', radius="0.1", group="1")
+
+       root.addObject('BilateralLagrangianConstraint', template="Rigid3", object1="@Beam1/ConstraintPoint/dof1", object2="@Beam2/DOFs2", first_point="0", second_point="0")
+    ```
+
+BilateralLagrangianConstraint_PGS.scn
+
+=== "XML"
+
+    ```xml
+    <?xml version="1.0"?>
+    <!-- BilateralLagrangianConstraint example -->
+    <Node name="root" dt="0.001" gravity="0 -981 0">
+        <RequiredPlugin name="Sofa.Component.AnimationLoop"/> <!-- Needed to use components [FreeMotionAnimationLoop] -->
+        <RequiredPlugin name="Sofa.Component.Collision.Detection.Algorithm"/> <!-- Needed to use components [BVHNarrowPhase BruteForceBroadPhase CollisionPipeline] -->
+        <RequiredPlugin name="Sofa.Component.Collision.Detection.Intersection"/> <!-- Needed to use components [LocalMinDistance] -->
+        <RequiredPlugin name="Sofa.Component.Collision.Geometry"/> <!-- Needed to use components [LineCollisionModel PointCollisionModel TriangleCollisionModel] -->
+        <RequiredPlugin name="Sofa.Component.Collision.Response.Contact"/> <!-- Needed to use components [CollisionResponse] -->
+        <RequiredPlugin name="Sofa.Component.Constraint.Lagrangian.Correction"/> <!-- Needed to use components [UncoupledConstraintCorrection] -->
+        <RequiredPlugin name="Sofa.Component.Constraint.Lagrangian.Model"/> <!-- Needed to use components [BilateralLagrangianConstraint] -->
+        <RequiredPlugin name="Sofa.Component.Constraint.Lagrangian.Solver"/> <!-- Needed to use components [GenericConstraintSolver] -->
+        <RequiredPlugin name="Sofa.Component.IO.Mesh"/> <!-- Needed to use components [MeshOBJLoader] -->
+        <RequiredPlugin name="Sofa.Component.LinearSolver.Iterative"/> <!-- Needed to use components [CGLinearSolver] -->
+        <RequiredPlugin name="Sofa.Component.Mapping.NonLinear"/> <!-- Needed to use components [RigidMapping] -->
+        <RequiredPlugin name="Sofa.Component.Mass"/> <!-- Needed to use components [UniformMass] -->
+        <RequiredPlugin name="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+        <RequiredPlugin name="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
+        <RequiredPlugin name="Sofa.Component.Topology.Container.Constant"/> <!-- Needed to use components [MeshTopology] -->
+        <RequiredPlugin name="Sofa.Component.Visual"/> <!-- Needed to use components [VisualStyle] -->
+        <RequiredPlugin name="Sofa.GL.Component.Rendering3D"/> <!-- Needed to use components [OglModel] -->
+        
+        <VisualStyle displayFlags="showForceFields" />
+        <DefaultVisualManagerLoop />
+        <FreeMotionAnimationLoop />
+        <GenericConstraintSolver tolerance="0.001" maxIterations="1000" resolutionMethod="ProjectedGaussSeidel"/>
+        <CollisionPipeline depth="6" verbose="0" draw="0" />
+        <BruteForceBroadPhase/>
+        <BVHNarrowPhase/>
+        <LocalMinDistance name="Proximity" alarmDistance="0.2" contactDistance="0.09" angleCone="0.0" />
+        <CollisionResponse name="Response" response="FrictionContactConstraint" />
+    
+        <Node name="CUBE_0">
+            <MechanicalObject dy="2.5" />
+            <Node name="Visu">
+                <MeshOBJLoader name="meshLoader_0" filename="mesh/cube.obj" handleSeams="1" />
+                <OglModel name="Visual" src="@meshLoader_0" color="1 0 0 1" dy="2.5" />
+            </Node>
+            <Node name="ColliCube">
+                <MeshOBJLoader name="loader" filename="mesh/cube.obj" triangulate="1" />
+                <MeshTopology src="@loader" />
+                <MechanicalObject src="@loader" template="Vec3" dy="2.5" />
+                <TriangleCollisionModel simulated="0" moving="0" />
+                <LineCollisionModel simulated="0" moving="0" />
+                <PointCollisionModel simulated="0" moving="0" />
+            </Node>
+            <Node name="Constraints">
+                <MechanicalObject name="points" template="Vec3" position="1 1.25 1" />
+            </Node>
+        </Node>
+        <Node name="CUBE_1">
+            <EulerImplicitSolver printLog="false" rayleighStiffness="0.1" rayleighMass="0.1"/>
+            <CGLinearSolver iterations="25" tolerance="1.0e-9" threshold="1.0e-9" />
+            <MechanicalObject template="Rigid3" scale="1.0" dx="0.0" dy="0" dz="0.0" />
+            <UniformMass totalMass="0.1" />
+            <UncoupledConstraintCorrection />
+            <Node name="Visu">
+                <MeshOBJLoader name="meshLoader_2" filename="mesh/cube.obj" handleSeams="1" />
+                <OglModel name="Visual" src="@meshLoader_2" color="1 1 0 1.0" />
+                <RigidMapping input="@.." output="@Visual" />
+            </Node>
+            <Node name="ColliCube">
+                <MeshOBJLoader name="loader" filename="mesh/cube.obj" triangulate="1" />
+                <MeshTopology src="@loader" />
+                <MechanicalObject src="@loader" />
+                <TriangleCollisionModel />
+                <LineCollisionModel />
+                <PointCollisionModel />
+                <RigidMapping />
+            </Node>
+            <Node name="Constraints">
+                <MechanicalObject name="points" template="Vec3" position="1 1.25 1&#x09;-1.25 -1.25 1.25" />
+                <RigidMapping />
+            </Node>
+        </Node>
+        <BilateralLagrangianConstraint template="Vec3" object1="@CUBE_0/Constraints/points" object2="@CUBE_1/Constraints/points" first_point="0" second_point="0" />
+        <Node name="CUBE_2">
+            <EulerImplicitSolver printLog="false" rayleighStiffness="0.1" rayleighMass="0.1"/>
+            <CGLinearSolver iterations="25" tolerance="1.0e-9" threshold="1.0e-9" />
+            <MechanicalObject template="Rigid3" scale="1.0" dx="0.0" dy="-2.5" dz="0.0" />
+            <UniformMass totalMass="0.1" />
+            <UncoupledConstraintCorrection />
+            <Node name="Visu">
+                <MeshOBJLoader name="meshLoader_3" filename="mesh/cube.obj" handleSeams="1" />
+                <OglModel name="Visual" src="@meshLoader_3" color="0 1 0 1.0" />
+                <RigidMapping input="@.." output="@Visual" />
+            </Node>
+            <Node name="ColliCube">
+                <MeshOBJLoader name="loader" filename="mesh/cube.obj" />
+                <MeshTopology src="@loader" />
+                <MechanicalObject src="@loader" scale="1.0" />
+                <TriangleCollisionModel />
+                <LineCollisionModel />
+                <PointCollisionModel />
+                <RigidMapping />
+            </Node>
+            <Node name="Constraints">
+                <MechanicalObject name="points" template="Vec3" position="-1.25 1.25 1.25&#x09;1.25 -1.25 -1.25" />
+                <RigidMapping />
+            </Node>
+        </Node>
+        <BilateralLagrangianConstraint template="Vec3" object1="@CUBE_1/Constraints/points" object2="@CUBE_2/Constraints/points" first_point="1" second_point="0" />
+        <Node name="CUBE_3">
+            <EulerImplicitSolver printLog="false" rayleighStiffness="0.1" rayleighMass="0.1"/>
+            <CGLinearSolver iterations="25" tolerance="1.0e-9" threshold="1.0e-9" />
+            <MechanicalObject template="Rigid3" scale="1.0" dx="0.0" dy="-5.0" dz="0.0" />
+            <UniformMass totalMass="0.1" />
+            <UncoupledConstraintCorrection />
+            <Node name="Visu">
+                <MeshOBJLoader name="meshLoader_4" filename="mesh/cube.obj" handleSeams="1" />
+                <OglModel name="Visual" src="@meshLoader_4" color="0 1 1 1.0" />
+                <RigidMapping input="@.." output="@Visual" />
+            </Node>
+            <Node name="ColliCube">
+                <MeshOBJLoader name="loader" filename="mesh/cube.obj" />
+                <MeshTopology src="@loader" />
+                <MechanicalObject src="@loader" scale="1.0" />
+                <TriangleCollisionModel />
+                <LineCollisionModel />
+                <PointCollisionModel />
+                <RigidMapping />
+            </Node>
+            <Node name="Constraints">
+                <MechanicalObject name="points" template="Vec3" position="1.25 1.25 -1.25" />
+                <RigidMapping />
+            </Node>
+        </Node>
+        <BilateralLagrangianConstraint template="Vec3" object1="@CUBE_2/Constraints/points" object2="@CUBE_3/Constraints/points" first_point="1" second_point="0" />
+        <Node name="CUBE_4">
+            <EulerImplicitSolver printLog="false" rayleighStiffness="0.1" rayleighMass="0.1"/>
+            <CGLinearSolver iterations="25" tolerance="1.0e-9" threshold="1.0e-9" />
+            <MechanicalObject template="Rigid3" scale="1.0" dx="0.0" dy="-2.5" dz="-2.5" />
+            <UniformMass totalMass="0.1" />
+            <UncoupledConstraintCorrection />
+            <Node name="Visu">
+                <MeshOBJLoader name="meshLoader_1" filename="mesh/cube.obj" handleSeams="1" />
+                <OglModel name="Visual" src="@meshLoader_1" color="0 0 1 1.0" />
+                <RigidMapping input="@.." output="@Visual" />
+            </Node>
+            <Node name="ColliCube">
+                <MeshOBJLoader name="loader" filename="mesh/cube.obj" />
+                <MeshTopology src="@loader" />
+                <MechanicalObject src="@loader" scale="1.0" />
+                <TriangleCollisionModel />
+                <LineCollisionModel />
+                <PointCollisionModel />
+                <RigidMapping />
+            </Node>
+            <Node name="Constraints">
+                <MechanicalObject name="points" template="Vec3" position="1.25 -1.25 1.25&#x09;1.25 1.25 1.25" />
+                <RigidMapping />
+            </Node>
+        </Node>
+        <BilateralLagrangianConstraint template="Vec3" object1="@CUBE_2/Constraints/points" object2="@CUBE_4/Constraints/points" first_point="1" second_point="0" />
+    </Node>
+
+    ```
+
+=== "Python"
+
+    ```python
+    def createScene(root_node):
+
+       root = root_node.addChild('root', dt="0.001", gravity="0 -981 0")
+
+       root.addObject('RequiredPlugin', name="Sofa.Component.AnimationLoop")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Algorithm")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Intersection")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Geometry")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Response.Contact")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Lagrangian.Correction")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Lagrangian.Model")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Lagrangian.Solver")
+       root.addObject('RequiredPlugin', name="Sofa.Component.IO.Mesh")
+       root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Iterative")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Mapping.NonLinear")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Mass")
+       root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Constant")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Visual")
+       root.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
+       root.addObject('VisualStyle', displayFlags="showForceFields")
+       root.addObject('DefaultVisualManagerLoop', )
+       root.addObject('FreeMotionAnimationLoop', )
+       root.addObject('GenericConstraintSolver', tolerance="0.001", maxIterations="1000", resolutionMethod="ProjectedGaussSeidel")
+       root.addObject('CollisionPipeline', depth="6", verbose="0", draw="0")
+       root.addObject('BruteForceBroadPhase', )
+       root.addObject('BVHNarrowPhase', )
+       root.addObject('LocalMinDistance', name="Proximity", alarmDistance="0.2", contactDistance="0.09", angleCone="0.0")
+       root.addObject('CollisionResponse', name="Response", response="FrictionContactConstraint")
+
+       cube_0 = root.addChild('CUBE_0')
+
+       cube_0.addObject('MechanicalObject', dy="2.5")
+
+       visu = CUBE_0.addChild('Visu')
+
+       visu.addObject('MeshOBJLoader', name="meshLoader_0", filename="mesh/cube.obj", handleSeams="1")
+       visu.addObject('OglModel', name="Visual", src="@meshLoader_0", color="1 0 0 1", dy="2.5")
+
+       colli_cube = CUBE_0.addChild('ColliCube')
+
+       colli_cube.addObject('MeshOBJLoader', name="loader", filename="mesh/cube.obj", triangulate="1")
+       colli_cube.addObject('MeshTopology', src="@loader")
+       colli_cube.addObject('MechanicalObject', src="@loader", template="Vec3", dy="2.5")
+       colli_cube.addObject('TriangleCollisionModel', simulated="0", moving="0")
+       colli_cube.addObject('LineCollisionModel', simulated="0", moving="0")
+       colli_cube.addObject('PointCollisionModel', simulated="0", moving="0")
+
+       constraints = CUBE_0.addChild('Constraints')
+
+       constraints.addObject('MechanicalObject', name="points", template="Vec3", position="1 1.25 1")
+
+       cube_1 = root.addChild('CUBE_1')
+
+       cube_1.addObject('EulerImplicitSolver', printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
+       cube_1.addObject('CGLinearSolver', iterations="25", tolerance="1.0e-9", threshold="1.0e-9")
+       cube_1.addObject('MechanicalObject', template="Rigid3", scale="1.0", dx="0.0", dy="0", dz="0.0")
+       cube_1.addObject('UniformMass', totalMass="0.1")
+       cube_1.addObject('UncoupledConstraintCorrection', )
+
+       visu = CUBE_1.addChild('Visu')
+
+       visu.addObject('MeshOBJLoader', name="meshLoader_2", filename="mesh/cube.obj", handleSeams="1")
+       visu.addObject('OglModel', name="Visual", src="@meshLoader_2", color="1 1 0 1.0")
+       visu.addObject('RigidMapping', input="@..", output="@Visual")
+
+       colli_cube = CUBE_1.addChild('ColliCube')
+
+       colli_cube.addObject('MeshOBJLoader', name="loader", filename="mesh/cube.obj", triangulate="1")
+       colli_cube.addObject('MeshTopology', src="@loader")
+       colli_cube.addObject('MechanicalObject', src="@loader")
+       colli_cube.addObject('TriangleCollisionModel', )
+       colli_cube.addObject('LineCollisionModel', )
+       colli_cube.addObject('PointCollisionModel', )
+       colli_cube.addObject('RigidMapping', )
+
+       constraints = CUBE_1.addChild('Constraints')
+
+       constraints.addObject('MechanicalObject', name="points", template="Vec3", position="1 1.25 1	-1.25 -1.25 1.25")
+       constraints.addObject('RigidMapping', )
+
+       root.addObject('BilateralLagrangianConstraint', template="Vec3", object1="@CUBE_0/Constraints/points", object2="@CUBE_1/Constraints/points", first_point="0", second_point="0")
+
+       cube_2 = root.addChild('CUBE_2')
+
+       cube_2.addObject('EulerImplicitSolver', printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
+       cube_2.addObject('CGLinearSolver', iterations="25", tolerance="1.0e-9", threshold="1.0e-9")
+       cube_2.addObject('MechanicalObject', template="Rigid3", scale="1.0", dx="0.0", dy="-2.5", dz="0.0")
+       cube_2.addObject('UniformMass', totalMass="0.1")
+       cube_2.addObject('UncoupledConstraintCorrection', )
+
+       visu = CUBE_2.addChild('Visu')
+
+       visu.addObject('MeshOBJLoader', name="meshLoader_3", filename="mesh/cube.obj", handleSeams="1")
+       visu.addObject('OglModel', name="Visual", src="@meshLoader_3", color="0 1 0 1.0")
+       visu.addObject('RigidMapping', input="@..", output="@Visual")
+
+       colli_cube = CUBE_2.addChild('ColliCube')
+
+       colli_cube.addObject('MeshOBJLoader', name="loader", filename="mesh/cube.obj")
+       colli_cube.addObject('MeshTopology', src="@loader")
+       colli_cube.addObject('MechanicalObject', src="@loader", scale="1.0")
+       colli_cube.addObject('TriangleCollisionModel', )
+       colli_cube.addObject('LineCollisionModel', )
+       colli_cube.addObject('PointCollisionModel', )
+       colli_cube.addObject('RigidMapping', )
+
+       constraints = CUBE_2.addChild('Constraints')
+
+       constraints.addObject('MechanicalObject', name="points", template="Vec3", position="-1.25 1.25 1.25	1.25 -1.25 -1.25")
+       constraints.addObject('RigidMapping', )
+
+       root.addObject('BilateralLagrangianConstraint', template="Vec3", object1="@CUBE_1/Constraints/points", object2="@CUBE_2/Constraints/points", first_point="1", second_point="0")
+
+       cube_3 = root.addChild('CUBE_3')
+
+       cube_3.addObject('EulerImplicitSolver', printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
+       cube_3.addObject('CGLinearSolver', iterations="25", tolerance="1.0e-9", threshold="1.0e-9")
+       cube_3.addObject('MechanicalObject', template="Rigid3", scale="1.0", dx="0.0", dy="-5.0", dz="0.0")
+       cube_3.addObject('UniformMass', totalMass="0.1")
+       cube_3.addObject('UncoupledConstraintCorrection', )
+
+       visu = CUBE_3.addChild('Visu')
+
+       visu.addObject('MeshOBJLoader', name="meshLoader_4", filename="mesh/cube.obj", handleSeams="1")
+       visu.addObject('OglModel', name="Visual", src="@meshLoader_4", color="0 1 1 1.0")
+       visu.addObject('RigidMapping', input="@..", output="@Visual")
+
+       colli_cube = CUBE_3.addChild('ColliCube')
+
+       colli_cube.addObject('MeshOBJLoader', name="loader", filename="mesh/cube.obj")
+       colli_cube.addObject('MeshTopology', src="@loader")
+       colli_cube.addObject('MechanicalObject', src="@loader", scale="1.0")
+       colli_cube.addObject('TriangleCollisionModel', )
+       colli_cube.addObject('LineCollisionModel', )
+       colli_cube.addObject('PointCollisionModel', )
+       colli_cube.addObject('RigidMapping', )
+
+       constraints = CUBE_3.addChild('Constraints')
+
+       constraints.addObject('MechanicalObject', name="points", template="Vec3", position="1.25 1.25 -1.25")
+       constraints.addObject('RigidMapping', )
+
+       root.addObject('BilateralLagrangianConstraint', template="Vec3", object1="@CUBE_2/Constraints/points", object2="@CUBE_3/Constraints/points", first_point="1", second_point="0")
+
+       cube_4 = root.addChild('CUBE_4')
+
+       cube_4.addObject('EulerImplicitSolver', printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
+       cube_4.addObject('CGLinearSolver', iterations="25", tolerance="1.0e-9", threshold="1.0e-9")
+       cube_4.addObject('MechanicalObject', template="Rigid3", scale="1.0", dx="0.0", dy="-2.5", dz="-2.5")
+       cube_4.addObject('UniformMass', totalMass="0.1")
+       cube_4.addObject('UncoupledConstraintCorrection', )
+
+       visu = CUBE_4.addChild('Visu')
+
+       visu.addObject('MeshOBJLoader', name="meshLoader_1", filename="mesh/cube.obj", handleSeams="1")
+       visu.addObject('OglModel', name="Visual", src="@meshLoader_1", color="0 0 1 1.0")
+       visu.addObject('RigidMapping', input="@..", output="@Visual")
+
+       colli_cube = CUBE_4.addChild('ColliCube')
+
+       colli_cube.addObject('MeshOBJLoader', name="loader", filename="mesh/cube.obj")
+       colli_cube.addObject('MeshTopology', src="@loader")
+       colli_cube.addObject('MechanicalObject', src="@loader", scale="1.0")
+       colli_cube.addObject('TriangleCollisionModel', )
+       colli_cube.addObject('LineCollisionModel', )
+       colli_cube.addObject('PointCollisionModel', )
+       colli_cube.addObject('RigidMapping', )
+
+       constraints = CUBE_4.addChild('Constraints')
+
+       constraints.addObject('MechanicalObject', name="points", template="Vec3", position="1.25 -1.25 1.25	1.25 1.25 1.25")
+       constraints.addObject('RigidMapping', )
+
+       root.addObject('BilateralLagrangianConstraint', template="Vec3", object1="@CUBE_2/Constraints/points", object2="@CUBE_4/Constraints/points", first_point="1", second_point="0")
+    ```
+
+BilateralLagrangianConstraint_Soft_Rigid_Bodies.scn
+
+=== "XML"
+
+    ```xml
+    <?xml version="1.0"?>
+    <Node name="root" gravity="0 -9.81 0" dt="0.01">
+        
+        <Node name="plugins" >
+            <RequiredPlugin name="Sofa.Component.Collision.Detection.Algorithm"/> <!-- Needed to use components [BVHNarrowPhase BruteForceBroadPhase CollisionPipeline] -->
+            <RequiredPlugin name="Sofa.Component.Collision.Detection.Intersection"/> <!-- Needed to use components [MinProximityIntersection] -->
+            <RequiredPlugin name="Sofa.Component.Collision.Geometry"/> <!-- Needed to use components [LineCollisionModel PointCollisionModel TriangleCollisionModel] -->
+            <RequiredPlugin name="Sofa.Component.Collision.Response.Contact"/> <!-- Needed to use components [CollisionResponse] -->
+            <RequiredPlugin name="Sofa.Component.Constraint.Projective"/> <!-- Needed to use components [FixedProjectiveConstraint] -->
+            <RequiredPlugin name="Sofa.Component.Engine.Select"/> <!-- Needed to use components [BoxROI] -->
+            <RequiredPlugin name="Sofa.Component.LinearSolver.Iterative"/> <!-- Needed to use components [CGLinearSolver] -->
+            <RequiredPlugin name="Sofa.Component.Mapping.Linear"/> <!-- Needed to use components [IdentityMapping] -->
+            <RequiredPlugin name="Sofa.Component.Mass"/> <!-- Needed to use components [UniformMass] -->
+            <RequiredPlugin name="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+            <RequiredPlugin name="Sofa.Component.SolidMechanics.FEM.Elastic"/> <!-- Needed to use components [TetrahedronFEMForceField] -->
+            <RequiredPlugin name="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
+            <RequiredPlugin name="Sofa.Component.Topology.Container.Dynamic"/> <!-- Needed to use components [TetrahedronSetGeometryAlgorithms TetrahedronSetTopologyContainer TetrahedronSetTopologyModifier TriangleSetGeometryAlgorithms TriangleSetTopologyContainer TriangleSetTopologyModifier] -->
+            <RequiredPlugin name="Sofa.Component.Topology.Container.Grid"/> <!-- Needed to use components [RegularGridTopology] -->
+            <RequiredPlugin name="Sofa.Component.Topology.Mapping"/> <!-- Needed to use components [Hexa2TetraTopologicalMapping Tetra2TriangleTopologicalMapping] -->
+            <RequiredPlugin name="Sofa.Component.Visual"/> <!-- Needed to use components [VisualStyle] -->
+            <RequiredPlugin name="Sofa.GL.Component.Rendering3D"/> <!-- Needed to use components [OglModel] -->
+            <RequiredPlugin name="Sofa.Component.AnimationLoop"/> <!-- Needed to use components [FreeMotionAnimationLoop] -->  
+            <RequiredPlugin name="Sofa.Component.Constraint.Lagrangian.Correction"/> <!-- Needed to use components [LinearSolverConstraintCorrection] -->  
+            <RequiredPlugin name="Sofa.Component.Constraint.Lagrangian.Solver"/> <!-- Needed to use components [GenericConstraintSolver] -->  
+            <RequiredPlugin name="Sofa.Component.LinearSolver.Direct"/> <!-- Needed to use components [SparseLDLSolver] -->  
+            <RequiredPlugin name="Sofa.Component.Constraint.Lagrangian.Model"/> <!-- Needed to use components [BilateralLagrangianConstraint] -->  
+            <RequiredPlugin name="Sofa.Component.Mapping.NonLinear"/> <!-- Needed to use components [RigidMapping] -->  
+        </Node>
+    
+    
+        <FreeMotionAnimationLoop computeBoundingBox="0"/>
+        <GenericConstraintSolver maxIterations="1000" tolerance="1e-3"/>
+        
+        <VisualStyle displayFlags="showBehaviorModels showVisual showForceFields" />
+        <CollisionPipeline name="CollisionLoop" verbose="0" />
+        <BruteForceBroadPhase/>
+        <BVHNarrowPhase/>
+        <CollisionResponse name="CollisionReponse" response="FrictionContactConstraint" />
+        <MinProximityIntersection name="Proximity" alarmDistance="0.8" contactDistance="0.5" />
+        
+    
+        <Node name="DeformableGrid" >
+            <RegularGridTopology name="grid" n="6 6 6" min="-10 -10 -10" max="10 10 10" p0="-10 -10 -10" />
+            <HexahedronSetTopologyContainer name="Container" src="@grid"/>
+            <MechanicalObject template="Vec3d" name="gridDofs"/>
+    
+            <Node name="DeformableCube" bbox="-10 -10 -10 10 10 10" >
+                <EulerImplicitSolver name="cg_odesolver" />
+                <SparseLDLSolver name="linear solver" template="CompressedRowSparseMatrixMat3x3d" />
+                <TetrahedronSetTopologyContainer name="Container" />
+                <TetrahedronSetTopologyModifier name="Modifier" />
+                <TetrahedronSetGeometryAlgorithms template="Vec3d" name="GeomAlgo" />
+                <MechanicalObject template="Vec3d" name="DeformableDoFs" position="@../gridDofs.position"/>
+                <Hexa2TetraTopologicalMapping name="ExtratTetraMapping" input="@../Container" output="@Container" />
+    
+                <UniformMass template="Vec3d" name="NodalMass" vertexMass="0.25" />
+                <TetrahedronFEMForceField template="Vec3d" name="LinearElasticity" method="large" poissonRatio="0.4" youngModulus="500" />
+                <BoxROI template="Vec3d" name="box_roi" box="-11 -11 -11 11 -9 11" indices="0" drawSize="0" />
+    
+                <LinearSolverConstraintCorrection />
+    
+                <!-- Interface (of soft body) between both bodies -->
+                <Node name="MappedInterface" >
+                    <MechanicalObject template="Vec3d" name="MappedDoFs" position="@../box_roi.pointsInROI" showObject="1" showObjectScale="0"/>
+                    <BarycentricMapping input="@../DeformableDoFs" output="@MappedDoFs" />
+                </Node>
+    
+                <Node name="Visualization" >
+                    <TriangleSetTopologyContainer name="Container" />
+                    <TriangleSetTopologyModifier name="Modifier" />
+                    <TriangleSetGeometryAlgorithms name="GeomAlgo" />
+                    <Tetra2TriangleTopologicalMapping name="ExtractSurfaceMapping" input="@../Container" output="@Container" />
+    
+                    <Node name="VisualModel" >
+                        <OglModel name="VisualModel" material="Default Diffuse 1 1 0 0 0.5 Ambient 1 0.2 0 0 1 Specular 0 1 0 0 1 Emissive 0 1 0 0 1 Shininess 0 45" position="@../../DeformableDoFs.position" triangles="@Container.triangles"/>
+                        <IdentityMapping template="Vec3d,Vec3d" name="VisualMapping" input="@../../DeformableDoFs" output="@VisualModel" />
+                    </Node>
+                </Node>
+            </Node>
+        </Node>
+    
+    
+        <!-- Rigid body -->
+        <Node name="RigidBody" >
+            <EulerImplicitSolver name="EulerImplicit" />
+            <CGLinearSolver template="GraphScattered" name="CG-LinearSolver" iterations="25" tolerance="1e-09" threshold="1e-09" />
+            <MechanicalObject template="Rigid3d" name="rigidDofs" position="0 -15 0 0 0 0 1" showObject="1" showObjectScale="5"/>
+            <UniformMass name="NodalMass" totalMass="1" />
+            <LinearMovementProjectiveConstraint template="Rigid3" name="MotionConstraint" keyTimes="0 1 2 10 15 9999" movements="0 0 0   0 0 0
+                                                  0 -5 0   0 0 0
+                                                  0 0 -1  0 0 0
+                                                  0 0 -1  0 0 6.3
+                                                  0 0 -1   0 0 0
+                                                  0 0 -1   0 0 0" />
+            <UncoupledConstraintCorrection />
+            
+            <!-- Interface (of rigid body) between both bodies -->
+            <Node name="MappedRigidInterface" >
+                <MechanicalObject template="Vec3d" name="MappedDoFs" position="@DeformableGrid/DeformableCube/box_roi.pointsInROI"  showObject="1" showObjectScale="10" />
+                <RigidMapping input="@../rigidDofs" output="@MappedDoFs" globalToLocalCoords="1"/>
+            </Node>
+        </Node>
+    
+    
+    
+        <BilateralLagrangianConstraint template="Vec3d" name="Attachment" object1="@DeformableGrid/DeformableCube/MappedInterface" object2="@RigidBody/MappedRigidInterface" first_point="0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35" second_point="0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35" />
+    
+    </Node>
+
+    ```
+
+=== "Python"
+
+    ```python
+    def createScene(root_node):
+
+       root = root_node.addChild('root', gravity="0 -9.81 0", dt="0.01")
+
+       plugins = root.addChild('plugins')
+
+       plugins.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Algorithm")
+       plugins.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Intersection")
+       plugins.addObject('RequiredPlugin', name="Sofa.Component.Collision.Geometry")
+       plugins.addObject('RequiredPlugin', name="Sofa.Component.Collision.Response.Contact")
+       plugins.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Projective")
+       plugins.addObject('RequiredPlugin', name="Sofa.Component.Engine.Select")
+       plugins.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Iterative")
+       plugins.addObject('RequiredPlugin', name="Sofa.Component.Mapping.Linear")
+       plugins.addObject('RequiredPlugin', name="Sofa.Component.Mass")
+       plugins.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
+       plugins.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.FEM.Elastic")
+       plugins.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
+       plugins.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Dynamic")
+       plugins.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Grid")
+       plugins.addObject('RequiredPlugin', name="Sofa.Component.Topology.Mapping")
+       plugins.addObject('RequiredPlugin', name="Sofa.Component.Visual")
+       plugins.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
+       plugins.addObject('RequiredPlugin', name="Sofa.Component.AnimationLoop")
+       plugins.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Lagrangian.Correction")
+       plugins.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Lagrangian.Solver")
+       plugins.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Direct")
+       plugins.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Lagrangian.Model")
+       plugins.addObject('RequiredPlugin', name="Sofa.Component.Mapping.NonLinear")
+
+       root.addObject('FreeMotionAnimationLoop', computeBoundingBox="0")
+       root.addObject('GenericConstraintSolver', maxIterations="1000", tolerance="1e-3")
+       root.addObject('VisualStyle', displayFlags="showBehaviorModels showVisual showForceFields")
+       root.addObject('CollisionPipeline', name="CollisionLoop", verbose="0")
+       root.addObject('BruteForceBroadPhase', )
+       root.addObject('BVHNarrowPhase', )
+       root.addObject('CollisionResponse', name="CollisionReponse", response="FrictionContactConstraint")
+       root.addObject('MinProximityIntersection', name="Proximity", alarmDistance="0.8", contactDistance="0.5")
+
+       deformable_grid = root.addChild('DeformableGrid')
+
+       deformable_grid.addObject('RegularGridTopology', name="grid", n="6 6 6", min="-10 -10 -10", max="10 10 10", p0="-10 -10 -10")
+       deformable_grid.addObject('HexahedronSetTopologyContainer', name="Container", src="@grid")
+       deformable_grid.addObject('MechanicalObject', template="Vec3d", name="gridDofs")
+
+       deformable_cube = DeformableGrid.addChild('DeformableCube', bbox="-10 -10 -10 10 10 10")
+
+       deformable_cube.addObject('EulerImplicitSolver', name="cg_odesolver")
+       deformable_cube.addObject('SparseLDLSolver', name="linear solver", template="CompressedRowSparseMatrixMat3x3d")
+       deformable_cube.addObject('TetrahedronSetTopologyContainer', name="Container")
+       deformable_cube.addObject('TetrahedronSetTopologyModifier', name="Modifier")
+       deformable_cube.addObject('TetrahedronSetGeometryAlgorithms', template="Vec3d", name="GeomAlgo")
+       deformable_cube.addObject('MechanicalObject', template="Vec3d", name="DeformableDoFs", position="@../gridDofs.position")
+       deformable_cube.addObject('Hexa2TetraTopologicalMapping', name="ExtratTetraMapping", input="@../Container", output="@Container")
+       deformable_cube.addObject('UniformMass', template="Vec3d", name="NodalMass", vertexMass="0.25")
+       deformable_cube.addObject('TetrahedronFEMForceField', template="Vec3d", name="LinearElasticity", method="large", poissonRatio="0.4", youngModulus="500")
+       deformable_cube.addObject('BoxROI', template="Vec3d", name="box_roi", box="-11 -11 -11 11 -9 11", indices="0", drawSize="0")
+       deformable_cube.addObject('LinearSolverConstraintCorrection', )
+
+       mapped_interface = DeformableCube.addChild('MappedInterface')
+
+       mapped_interface.addObject('MechanicalObject', template="Vec3d", name="MappedDoFs", position="@../box_roi.pointsInROI", showObject="1", showObjectScale="0")
+       mapped_interface.addObject('BarycentricMapping', input="@../DeformableDoFs", output="@MappedDoFs")
+
+       visualization = DeformableCube.addChild('Visualization')
+
+       visualization.addObject('TriangleSetTopologyContainer', name="Container")
+       visualization.addObject('TriangleSetTopologyModifier', name="Modifier")
+       visualization.addObject('TriangleSetGeometryAlgorithms', name="GeomAlgo")
+       visualization.addObject('Tetra2TriangleTopologicalMapping', name="ExtractSurfaceMapping", input="@../Container", output="@Container")
+
+       visual_model = Visualization.addChild('VisualModel')
+
+       visual_model.addObject('OglModel', name="VisualModel", material="Default Diffuse 1 1 0 0 0.5 Ambient 1 0.2 0 0 1 Specular 0 1 0 0 1 Emissive 0 1 0 0 1 Shininess 0 45", position="@../../DeformableDoFs.position", triangles="@Container.triangles")
+       visual_model.addObject('IdentityMapping', template="Vec3d,Vec3d", name="VisualMapping", input="@../../DeformableDoFs", output="@VisualModel")
+
+       rigid_body = root.addChild('RigidBody')
+
+       rigid_body.addObject('EulerImplicitSolver', name="EulerImplicit")
+       rigid_body.addObject('CGLinearSolver', template="GraphScattered", name="CG-LinearSolver", iterations="25", tolerance="1e-09", threshold="1e-09")
+       rigid_body.addObject('MechanicalObject', template="Rigid3d", name="rigidDofs", position="0 -15 0 0 0 0 1", showObject="1", showObjectScale="5")
+       rigid_body.addObject('UniformMass', name="NodalMass", totalMass="1")
+       rigid_body.addObject('LinearMovementProjectiveConstraint', template="Rigid3", name="MotionConstraint", keyTimes="0 1 2 10 15 9999", movements="0 0 0   0 0 0                                               0 -5 0   0 0 0                                               0 0 -1  0 0 0                                               0 0 -1  0 0 6.3                                               0 0 -1   0 0 0                                               0 0 -1   0 0 0")
+       rigid_body.addObject('UncoupledConstraintCorrection', )
+
+       mapped_rigid_interface = RigidBody.addChild('MappedRigidInterface')
+
+       mapped_rigid_interface.addObject('MechanicalObject', template="Vec3d", name="MappedDoFs", position="@DeformableGrid/DeformableCube/box_roi.pointsInROI", showObject="1", showObjectScale="10")
+       mapped_rigid_interface.addObject('RigidMapping', input="@../rigidDofs", output="@MappedDoFs", globalToLocalCoords="1")
+
+       root.addObject('BilateralLagrangianConstraint', template="Vec3d", name="Attachment", object1="@DeformableGrid/DeformableCube/MappedInterface", object2="@RigidBody/MappedRigidInterface", first_point="0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35", second_point="0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35")
+    ```
+
 BilateralLagrangianConstraint_NNCG.scn
 
 === "XML"
@@ -1355,118 +1679,6 @@ BilateralLagrangianConstraint_NNCG.scn
        constraints.addObject('RigidMapping', )
 
        root.addObject('BilateralLagrangianConstraint', template="Vec3", object1="@CUBE_2/Constraints/points", object2="@CUBE_4/Constraints/points", first_point="1", second_point="0")
-    ```
-
-BilateralLagrangianConstraint_Rigid.scn
-
-=== "XML"
-
-    ```xml
-    <?xml version="1.0"?>
-    <!-- BilateralLagrangianConstraint example using rigid-->
-    <Node name="root" dt="0.1" gravity="0 -0.981 0">
-        <RequiredPlugin name="Sofa.Component.AnimationLoop"/> <!-- Needed to use components [FreeMotionAnimationLoop] -->
-        <RequiredPlugin name="Sofa.Component.Collision.Geometry"/> <!-- Needed to use components [SphereCollisionModel] -->
-        <RequiredPlugin name="Sofa.Component.Constraint.Lagrangian.Correction"/> <!-- Needed to use components [LinearSolverConstraintCorrection] -->
-        <RequiredPlugin name="Sofa.Component.Constraint.Lagrangian.Model"/> <!-- Needed to use components [BilateralLagrangianConstraint] -->
-        <RequiredPlugin name="Sofa.Component.Constraint.Lagrangian.Solver"/> <!-- Needed to use components [GenericConstraintSolver] -->
-        <RequiredPlugin name="Sofa.Component.Constraint.Projective"/> <!-- Needed to use components [FixedProjectiveConstraint] -->
-        <RequiredPlugin name="Sofa.Component.LinearSolver.Direct"/> <!-- Needed to use components [BTDLinearSolver] -->
-        <RequiredPlugin name="Sofa.Component.Mapping.NonLinear"/> <!-- Needed to use components [RigidMapping] -->
-        <RequiredPlugin name="Sofa.Component.Mass"/> <!-- Needed to use components [UniformMass] -->
-        <RequiredPlugin name="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
-        <RequiredPlugin name="Sofa.Component.SolidMechanics.FEM.Elastic"/> <!-- Needed to use components [BeamFEMForceField] -->
-        <RequiredPlugin name="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
-        <RequiredPlugin name="Sofa.Component.Topology.Container.Constant"/> <!-- Needed to use components [MeshTopology] -->
-        <RequiredPlugin name="Sofa.Component.Visual"/> <!-- Needed to use components [VisualStyle] -->
-    
-        <VisualStyle displayFlags="showBehaviorModels showForceFields" />
-        <FreeMotionAnimationLoop />
-        <GenericConstraintSolver tolerance="0.001" maxIterations="1000"/>
-        <Node name="Beam1">
-            <EulerImplicitSolver name="odesolver" printLog="false"  rayleighStiffness="0.1" rayleighMass="0.1" />
-            <BTDLinearSolver printLog="false" verbose="false" />
-            <MechanicalObject template="Rigid3" name="DOFs1" position="0 0 0 0 0 0 1  1 0 0 0 0 0 1  2 0 0 0 0 0 1  3 0 0 0 0 0 1  4 0 0 0 0 0 1  5 0 0 0 0 0 1  6 0 0 0 0 0 1  7 0 0 0 0 0 1" />
-            <MeshTopology name="lines" lines="0 1 1 2 2 3 3 4 4 5 5 6 6 7" />
-            <UniformMass vertexMass="1 1 0.01 0 0 0 0.1 0 0 0 0.1 0" printLog="false" />
-            <BeamFEMForceField name="FEM" poissonRatio="0.49" radius="0.1" youngModulus="2000000" />
-            <FixedProjectiveConstraint name="FixedProjectiveConstraint" indices="7" />
-            <LinearSolverConstraintCorrection />
-             <SphereCollisionModel radius="0.1" group="1"/>
-            <Node name="ConstraintPoint">
-                <MechanicalObject template="Rigid3" name="dof1" position="0 0 0 0 0 -0.707107 0.707107 " />
-                <RigidMapping index="0" />
-            </Node>
-        </Node>
-        <Node name="Beam2">
-            <EulerImplicitSolver name="odesolver" printLog="false" />
-            <BTDLinearSolver printLog="false" verbose="false" />
-            <MechanicalObject template="Rigid3" name="DOFs2" position="0 0 0 0 0 -0.707107 0.707107 0 -1 0 0 0-0.707107 0.707107  0 -2 0 0 0 -0.707107 0.707107  0 -3 0 0 0 -0.707107 0.707107  0 -4 0 0 0 -0.707107 0.707107  0 -5 0 0 0 -0.707107 0.707107  0 -6 0 0 0 -0.707107 0.707107  0 -7 0 0 0 -0.707107 0.707107" />
-            <MeshTopology name="lines" lines="0 1 1 2 2 3 3 4 4 5 5 6 6 7" />
-            <UniformMass vertexMass="1 1 0.01 0 0 0 0.1 0 0 0 0.1 0" printLog="false" />
-            <BeamFEMForceField name="FEM" poissonRatio="0.49" radius="0.1" youngModulus="20000000" />
-            <LinearSolverConstraintCorrection />
-            <SphereCollisionModel radius="0.1" group="1"/>
-        </Node>
-        <BilateralLagrangianConstraint template="Rigid3" object1="@Beam1/ConstraintPoint/dof1" object2="@Beam2/DOFs2" first_point="0" second_point="0" />
-    </Node>
-
-    ```
-
-=== "Python"
-
-    ```python
-    def createScene(root_node):
-
-       root = root_node.addChild('root', dt="0.1", gravity="0 -0.981 0")
-
-       root.addObject('RequiredPlugin', name="Sofa.Component.AnimationLoop")
-       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Geometry")
-       root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Lagrangian.Correction")
-       root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Lagrangian.Model")
-       root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Lagrangian.Solver")
-       root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Projective")
-       root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Direct")
-       root.addObject('RequiredPlugin', name="Sofa.Component.Mapping.NonLinear")
-       root.addObject('RequiredPlugin', name="Sofa.Component.Mass")
-       root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
-       root.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.FEM.Elastic")
-       root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
-       root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Constant")
-       root.addObject('RequiredPlugin', name="Sofa.Component.Visual")
-       root.addObject('VisualStyle', displayFlags="showBehaviorModels showForceFields")
-       root.addObject('FreeMotionAnimationLoop', )
-       root.addObject('GenericConstraintSolver', tolerance="0.001", maxIterations="1000")
-
-       beam1 = root.addChild('Beam1')
-
-       beam1.addObject('EulerImplicitSolver', name="odesolver", printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
-       beam1.addObject('BTDLinearSolver', printLog="false", verbose="false")
-       beam1.addObject('MechanicalObject', template="Rigid3", name="DOFs1", position="0 0 0 0 0 0 1  1 0 0 0 0 0 1  2 0 0 0 0 0 1  3 0 0 0 0 0 1  4 0 0 0 0 0 1  5 0 0 0 0 0 1  6 0 0 0 0 0 1  7 0 0 0 0 0 1")
-       beam1.addObject('MeshTopology', name="lines", lines="0 1 1 2 2 3 3 4 4 5 5 6 6 7")
-       beam1.addObject('UniformMass', vertexMass="1 1 0.01 0 0 0 0.1 0 0 0 0.1 0", printLog="false")
-       beam1.addObject('BeamFEMForceField', name="FEM", poissonRatio="0.49", radius="0.1", youngModulus="2000000")
-       beam1.addObject('FixedProjectiveConstraint', name="FixedProjectiveConstraint", indices="7")
-       beam1.addObject('LinearSolverConstraintCorrection', )
-       beam1.addObject('SphereCollisionModel', radius="0.1", group="1")
-
-       constraint_point = Beam1.addChild('ConstraintPoint')
-
-       constraint_point.addObject('MechanicalObject', template="Rigid3", name="dof1", position="0 0 0 0 0 -0.707107 0.707107 ")
-       constraint_point.addObject('RigidMapping', index="0")
-
-       beam2 = root.addChild('Beam2')
-
-       beam2.addObject('EulerImplicitSolver', name="odesolver", printLog="false")
-       beam2.addObject('BTDLinearSolver', printLog="false", verbose="false")
-       beam2.addObject('MechanicalObject', template="Rigid3", name="DOFs2", position="0 0 0 0 0 -0.707107 0.707107 0 -1 0 0 0-0.707107 0.707107  0 -2 0 0 0 -0.707107 0.707107  0 -3 0 0 0 -0.707107 0.707107  0 -4 0 0 0 -0.707107 0.707107  0 -5 0 0 0 -0.707107 0.707107  0 -6 0 0 0 -0.707107 0.707107  0 -7 0 0 0 -0.707107 0.707107")
-       beam2.addObject('MeshTopology', name="lines", lines="0 1 1 2 2 3 3 4 4 5 5 6 6 7")
-       beam2.addObject('UniformMass', vertexMass="1 1 0.01 0 0 0 0.1 0 0 0 0.1 0", printLog="false")
-       beam2.addObject('BeamFEMForceField', name="FEM", poissonRatio="0.49", radius="0.1", youngModulus="20000000")
-       beam2.addObject('LinearSolverConstraintCorrection', )
-       beam2.addObject('SphereCollisionModel', radius="0.1", group="1")
-
-       root.addObject('BilateralLagrangianConstraint', template="Rigid3", object1="@Beam1/ConstraintPoint/dof1", object2="@Beam2/DOFs2", first_point="0", second_point="0")
     ```
 
 

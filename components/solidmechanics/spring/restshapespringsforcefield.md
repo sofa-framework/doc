@@ -545,6 +545,87 @@ RestShapeSpringsForceField3.scn
        object2.addObject('UniformMass', totalMass="0.01")
     ```
 
+RestShapeSpringsForceField2.scn
+
+=== "XML"
+
+    ```xml
+    <?xml version="1.0"?>
+    
+    <Node name="root" dt="0.01" gravity="0 0 0" >
+        <RequiredPlugin name="Sofa.Component.AnimationLoop"/> <!-- Needed to use components [FreeMotionAnimationLoop] -->
+        <RequiredPlugin name="Sofa.Component.Collision.Geometry"/> <!-- Needed to use components [SphereCollisionModel] -->
+        <RequiredPlugin name="Sofa.Component.Constraint.Lagrangian.Correction"/> <!-- Needed to use components [LinearSolverConstraintCorrection] -->
+        <RequiredPlugin name="Sofa.Component.Constraint.Lagrangian.Solver"/> <!-- Needed to use components [GenericConstraintSolver] -->
+        <RequiredPlugin name="Sofa.Component.LinearSolver.Direct"/> <!-- Needed to use components [EigenSparseLU] -->
+        <RequiredPlugin name="Sofa.Component.Mass"/> <!-- Needed to use components [UniformMass] -->
+        <RequiredPlugin name="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+        <RequiredPlugin name="Sofa.Component.SolidMechanics.Spring"/> <!-- Needed to use components [RestShapeSpringsForceField] -->
+        <RequiredPlugin name="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
+        <RequiredPlugin name="Sofa.Component.Visual"/> <!-- Needed to use components [VisualStyle] -->
+        <VisualStyle displayFlags=" showCollisionModels showForceFields" />
+    
+        <FreeMotionAnimationLoop />
+        <GenericConstraintSolver maxIt="1000" tolerance="1e-10" printLog="false" />
+    
+        <Node name="Object1">
+            <MechanicalObject name="ms" template="Rigid3" position="0 0 0 0 0 0 0 1" showObject="false"/>
+            <SphereCollisionModel radius="0.01" color="0 1 0 1" />
+        </Node>
+    
+        <Node name="Object2">
+            <EulerImplicitSolver rayleighMass="0" rayleighStiffness="0"/>
+            <EigenSparseLU template="CompressedRowSparseMatrix" name="LULinearSolver"/>
+            <MechanicalObject name="mstate" template="Rigid3" position="0.1 0 0  0  0 0 0 1" />
+            <SphereCollisionModel color="1 0 0 1" radius="0.01" />
+            <RestShapeSpringsForceField stiffness="11" angularStiffness="11" external_rest_shape="@../Object1/ms" points="0" external_points="0" drawSpring="true" springColor="1 1 1 1"/>
+            <UniformMass totalMass="0.01" />
+            <SphereCollisionModel radius="0.0005" color="1 0 0  1" />
+    
+            <LinearSolverConstraintCorrection linearSolver="@LULinearSolver"/>
+        </Node>
+    </Node>
+
+    ```
+
+=== "Python"
+
+    ```python
+    def createScene(root_node):
+
+       root = root_node.addChild('root', dt="0.01", gravity="0 0 0")
+
+       root.addObject('RequiredPlugin', name="Sofa.Component.AnimationLoop")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Geometry")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Lagrangian.Correction")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Lagrangian.Solver")
+       root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Direct")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Mass")
+       root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.Spring")
+       root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Visual")
+       root.addObject('VisualStyle', displayFlags=" showCollisionModels showForceFields")
+       root.addObject('FreeMotionAnimationLoop', )
+       root.addObject('GenericConstraintSolver', maxIt="1000", tolerance="1e-10", printLog="false")
+
+       object1 = root.addChild('Object1')
+
+       object1.addObject('MechanicalObject', name="ms", template="Rigid3", position="0 0 0 0 0 0 0 1", showObject="false")
+       object1.addObject('SphereCollisionModel', radius="0.01", color="0 1 0 1")
+
+       object2 = root.addChild('Object2')
+
+       object2.addObject('EulerImplicitSolver', rayleighMass="0", rayleighStiffness="0")
+       object2.addObject('EigenSparseLU', template="CompressedRowSparseMatrix", name="LULinearSolver")
+       object2.addObject('MechanicalObject', name="mstate", template="Rigid3", position="0.1 0 0  0  0 0 0 1")
+       object2.addObject('SphereCollisionModel', color="1 0 0 1", radius="0.01")
+       object2.addObject('RestShapeSpringsForceField', stiffness="11", angularStiffness="11", external_rest_shape="@../Object1/ms", points="0", external_points="0", drawSpring="true", springColor="1 1 1 1")
+       object2.addObject('UniformMass', totalMass="0.01")
+       object2.addObject('SphereCollisionModel', radius="0.0005", color="1 0 0  1")
+       object2.addObject('LinearSolverConstraintCorrection', linearSolver="@LULinearSolver")
+    ```
+
 RestShapeSpringsForceField.scn
 
 === "XML"
@@ -777,86 +858,5 @@ RestShapeSpringsForceField.scn
        surf2.addObject('LineCollisionModel', group="1")
        surf2.addObject('PointCollisionModel', group="1")
        surf2.addObject('RigidMapping', input="@..", output="@.")
-    ```
-
-RestShapeSpringsForceField2.scn
-
-=== "XML"
-
-    ```xml
-    <?xml version="1.0"?>
-    
-    <Node name="root" dt="0.01" gravity="0 0 0" >
-        <RequiredPlugin name="Sofa.Component.AnimationLoop"/> <!-- Needed to use components [FreeMotionAnimationLoop] -->
-        <RequiredPlugin name="Sofa.Component.Collision.Geometry"/> <!-- Needed to use components [SphereCollisionModel] -->
-        <RequiredPlugin name="Sofa.Component.Constraint.Lagrangian.Correction"/> <!-- Needed to use components [LinearSolverConstraintCorrection] -->
-        <RequiredPlugin name="Sofa.Component.Constraint.Lagrangian.Solver"/> <!-- Needed to use components [GenericConstraintSolver] -->
-        <RequiredPlugin name="Sofa.Component.LinearSolver.Direct"/> <!-- Needed to use components [EigenSparseLU] -->
-        <RequiredPlugin name="Sofa.Component.Mass"/> <!-- Needed to use components [UniformMass] -->
-        <RequiredPlugin name="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
-        <RequiredPlugin name="Sofa.Component.SolidMechanics.Spring"/> <!-- Needed to use components [RestShapeSpringsForceField] -->
-        <RequiredPlugin name="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
-        <RequiredPlugin name="Sofa.Component.Visual"/> <!-- Needed to use components [VisualStyle] -->
-        <VisualStyle displayFlags=" showCollisionModels showForceFields" />
-    
-        <FreeMotionAnimationLoop />
-        <GenericConstraintSolver maxIt="1000" tolerance="1e-10" printLog="false" />
-    
-        <Node name="Object1">
-            <MechanicalObject name="ms" template="Rigid3" position="0 0 0 0 0 0 0 1" showObject="false"/>
-            <SphereCollisionModel radius="0.01" color="0 1 0 1" />
-        </Node>
-    
-        <Node name="Object2">
-            <EulerImplicitSolver rayleighMass="0" rayleighStiffness="0"/>
-            <EigenSparseLU template="CompressedRowSparseMatrix" name="LULinearSolver"/>
-            <MechanicalObject name="mstate" template="Rigid3" position="0.1 0 0  0  0 0 0 1" />
-            <SphereCollisionModel color="1 0 0 1" radius="0.01" />
-            <RestShapeSpringsForceField stiffness="11" angularStiffness="11" external_rest_shape="@../Object1/ms" points="0" external_points="0" drawSpring="true" springColor="1 1 1 1"/>
-            <UniformMass totalMass="0.01" />
-            <SphereCollisionModel radius="0.0005" color="1 0 0  1" />
-    
-            <LinearSolverConstraintCorrection linearSolver="@LULinearSolver"/>
-        </Node>
-    </Node>
-
-    ```
-
-=== "Python"
-
-    ```python
-    def createScene(root_node):
-
-       root = root_node.addChild('root', dt="0.01", gravity="0 0 0")
-
-       root.addObject('RequiredPlugin', name="Sofa.Component.AnimationLoop")
-       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Geometry")
-       root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Lagrangian.Correction")
-       root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Lagrangian.Solver")
-       root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Direct")
-       root.addObject('RequiredPlugin', name="Sofa.Component.Mass")
-       root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
-       root.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.Spring")
-       root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
-       root.addObject('RequiredPlugin', name="Sofa.Component.Visual")
-       root.addObject('VisualStyle', displayFlags=" showCollisionModels showForceFields")
-       root.addObject('FreeMotionAnimationLoop', )
-       root.addObject('GenericConstraintSolver', maxIt="1000", tolerance="1e-10", printLog="false")
-
-       object1 = root.addChild('Object1')
-
-       object1.addObject('MechanicalObject', name="ms", template="Rigid3", position="0 0 0 0 0 0 0 1", showObject="false")
-       object1.addObject('SphereCollisionModel', radius="0.01", color="0 1 0 1")
-
-       object2 = root.addChild('Object2')
-
-       object2.addObject('EulerImplicitSolver', rayleighMass="0", rayleighStiffness="0")
-       object2.addObject('EigenSparseLU', template="CompressedRowSparseMatrix", name="LULinearSolver")
-       object2.addObject('MechanicalObject', name="mstate", template="Rigid3", position="0.1 0 0  0  0 0 0 1")
-       object2.addObject('SphereCollisionModel', color="1 0 0 1", radius="0.01")
-       object2.addObject('RestShapeSpringsForceField', stiffness="11", angularStiffness="11", external_rest_shape="@../Object1/ms", points="0", external_points="0", drawSpring="true", springColor="1 1 1 1")
-       object2.addObject('UniformMass', totalMass="0.01")
-       object2.addObject('SphereCollisionModel', radius="0.0005", color="1 0 0  1")
-       object2.addObject('LinearSolverConstraintCorrection', linearSolver="@LULinearSolver")
     ```
 
