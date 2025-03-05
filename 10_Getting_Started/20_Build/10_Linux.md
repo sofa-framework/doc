@@ -141,6 +141,10 @@ You probably don't need them all, but you might find it convenient to
 install them all and not worry about it later.  
 This list does not cover all available SOFA plugins, only the ones that are built by our continuous integration platform.
 
+-  SOFAGLFW  
+   ``` {.bash .optional}
+   sudo apt install xorg-dev
+   ```
 -  CGALPlugin  
    ``` {.bash .optional}
    sudo apt install libcgal-dev libcgal-qt5-dev
