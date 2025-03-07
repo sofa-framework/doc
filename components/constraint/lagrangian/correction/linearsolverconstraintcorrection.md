@@ -79,6 +79,13 @@ constraints are reordered along a wire-like topology (from tip to base)
 		</td>
 		<td>0</td>
 	</tr>
+	<tr>
+		<td>regularizationTerm</td>
+		<td>
+Add regularization factor times the identity matrix to the compliance W when solving constraints
+		</td>
+		<td>0</td>
+	</tr>
 
 </tbody>
 </table>

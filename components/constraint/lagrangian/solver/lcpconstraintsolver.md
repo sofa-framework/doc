@@ -101,6 +101,13 @@ maximal number of iterations of the Gauss-Seidel algorithm
 		<td>1000</td>
 	</tr>
 	<tr>
+		<td>regularizationTerm</td>
+		<td>
+Add regularization factor times the identity matrix to the compliance W when solving constraints
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
 		<td>mu</td>
 		<td>
 Friction coefficient

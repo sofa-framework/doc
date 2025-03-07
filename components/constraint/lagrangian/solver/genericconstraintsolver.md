@@ -97,6 +97,13 @@ Successive Over Relaxation parameter (0-2)
 		<td>1</td>
 	</tr>
 	<tr>
+		<td>regularizationTerm</td>
+		<td>
+Add regularization factor times the identity matrix to the compliance W when solving constraints
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
 		<td>scaleTolerance</td>
 		<td>
 Scale the error tolerance with the number of constraints

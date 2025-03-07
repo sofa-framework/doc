@@ -72,6 +72,13 @@ Factor applied to the position factor and velocity factor used to calculate comp
 		</td>
 		<td>1</td>
 	</tr>
+	<tr>
+		<td>regularizationTerm</td>
+		<td>
+Add regularization factor times the identity matrix to the compliance W when solving constraints
+		</td>
+		<td>0</td>
+	</tr>
 
 </tbody>
 </table>

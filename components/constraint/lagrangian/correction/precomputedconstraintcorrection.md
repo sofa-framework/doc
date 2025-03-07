@@ -93,6 +93,13 @@ if true, always recompute the compliance
 		<td>0</td>
 	</tr>
 	<tr>
+		<td>regularizationTerm</td>
+		<td>
+Add regularization factor times the identity matrix to the compliance W when solving constraints
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
 		<td>debugViewFrameScale</td>
 		<td>
 Scale on computed node's frame
