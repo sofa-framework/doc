@@ -86,13 +86,6 @@ Create GNUPLOT files with the positions, velocities and forces of all the simula
 		</td>
 		<td>0</td>
 	</tr>
-	<tr>
-		<td>traceVisitors</td>
-		<td>
-Trace the time spent by each visitor, and allows to profile precisely one step of a simulation
-		</td>
-		<td></td>
-	</tr>
 
 </tbody>
 </table>
