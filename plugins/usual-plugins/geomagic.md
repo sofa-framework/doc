@@ -7,7 +7,7 @@ Installing the OpenHaptics SDK
 
 The Geomagic drivers and SDK can be directly downloaded from the 3DSystem website:
 
-- [OpenHaptics for **Windows** Developer Edition v3.4](https://support.3dsystems.com/s/article/OpenHaptics-for-Windows-Developer-Edition-v34?language=en_US)  
+- [OpenHaptics for **Windows** Developer Edition v3.5](https://support.3dsystems.com/s/article/OpenHaptics-for-Windows-Developer-Edition-v35?language=en_US)  
 - [OpenHaptics for **Linux** Developer Edition v3.4](https://support.3dsystems.com/s/article/OpenHaptics-for-Linux-Developer-Edition-v34?language=en_US)
 
 Following the above-mentioned links, you should find a programmers guide for assistance.
@@ -16,7 +16,8 @@ The installation directory should be:
 - `C:/OpenHaptics` for Windows
 - `/opt/OpenHaptics/Developer/3.4-0/` for Linux
 
-You can check the install by running the *Geomagic_Touch_Setup* and *Geomagic_Touch_Diagnostic* applications (located in `/opt/geomagic_touch_device_driver/` for Linux). To do so, your Geomagic device must now be connected. If you are using Ethernet connection, make sure the address assignment of the wired connection is set to "Link-Local Only" instead of "Automatic".
+We advise you to check the device installation by running the *Touch_Smart_Setup* and *Touch_Diagnostic* applications (located in `/opt/geomagic_touch_device_driver/` for Linux). To do so, your Geomagic device must now be connected. If you are using Ethernet connection, make sure the address assignment of the wired connection is set to "Link-Local Only" instead of "Automatic".
+At the end, save the configuration of the device to make sure it is well calibrated.
 
 __NB__ : for Linux, after the installation, if you already had a version of Qt installed, you might face a conflict with Qt versions. This is due to a script named _geomagic.sh_ created at the Geomagic installation (in _/etc/profile.d/_). To fix this, you can remove or comment the two following lines in the _geomagic.sh_ file:
 ```bash
