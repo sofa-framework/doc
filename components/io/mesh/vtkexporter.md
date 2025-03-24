@@ -10,7 +10,7 @@ __namespace__: sofa::component::_vtkexporter_
 
 __parents__:
 
-- BaseObject
+- BaseSimulationExporter
 
 ### Data
 
@@ -68,9 +68,37 @@ if true, handle the events, otherwise ignore the events
 	<tr>
 		<td>filename</td>
 		<td>
-output VTK file name
+Path or filename where to export the data.  If missing the name of the component is used.
 		</td>
 		<td></td>
+	</tr>
+	<tr>
+		<td>exportEveryNumberOfSteps</td>
+		<td>
+export file only at specified number of steps (0=disable, default=0)
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>exportAtBegin</td>
+		<td>
+export file before the simulation starts, once the simulation is initialized (default=false)
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>exportAtEnd</td>
+		<td>
+export file when the simulation is over and cleanup is called, i.e. just before deleting the simulation (default=false)
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>enable</td>
+		<td>
+Enable or disable the component. (default=true)
+		</td>
+		<td>1</td>
 	</tr>
 	<tr>
 		<td>XMLformat</td>
@@ -136,27 +164,6 @@ Data to visualize (on cells)
 		<td></td>
 	</tr>
 	<tr>
-		<td>exportEveryNumberOfSteps</td>
-		<td>
-export file only at specified number of steps (0=disable)
-		</td>
-		<td>0</td>
-	</tr>
-	<tr>
-		<td>exportAtBegin</td>
-		<td>
-export file at the initialization
-		</td>
-		<td>0</td>
-	</tr>
-	<tr>
-		<td>exportAtEnd</td>
-		<td>
-export file when the simulation is finished
-		</td>
-		<td>0</td>
-	</tr>
-	<tr>
 		<td>overwrite</td>
 		<td>
 overwrite the file, otherwise create a new file at each export, with suffix in the filename
@@ -194,7 +201,18 @@ VTKExporter.scn
         <MeshOBJLoader name="loader" filename="mesh/dragon.obj" />
         <MechanicalObject src="@loader" template="Vec3" name="mecha" showObject="1" />
         <TetrahedronSetTopologyContainer src="@loader" name="topo" />
-        <VTKExporter filename="example.vtk" listening="true" edges="0" triangles="1" quads="0" tetras="0" pointsDataFields="mecha.position" exportAtBegin="1" />
+        <VTKExporter name="Exporter"
+            filename="example.vtk" 
+            listening="true" 
+            edges="0" 
+            triangles="1" 
+            quads="0" 
+            tetras="0" 
+            pointsDataFields="mecha.position" 
+            exportAtBegin="1" 
+            exportAtEnd="1"
+            exportEveryNumberOfSteps="2"
+        />
     </Node>
 
     ```
@@ -215,6 +233,6 @@ VTKExporter.scn
        root.addObject('MeshOBJLoader', name="loader", filename="mesh/dragon.obj")
        root.addObject('MechanicalObject', src="@loader", template="Vec3", name="mecha", showObject="1")
        root.addObject('TetrahedronSetTopologyContainer', src="@loader", name="topo")
-       root.addObject('VTKExporter', filename="example.vtk", listening="true", edges="0", triangles="1", quads="0", tetras="0", pointsDataFields="mecha.position", exportAtBegin="1")
+       root.addObject('VTKExporter', name="Exporter", filename="example.vtk", listening="true", edges="0", triangles="1", quads="0", tetras="0", pointsDataFields="mecha.position", exportAtBegin="1", exportAtEnd="1", exportEveryNumberOfSteps="2")
     ```
 
