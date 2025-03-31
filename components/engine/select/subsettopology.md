@@ -760,7 +760,8 @@ SubsetTopology_withtetrahedra.scn
                 <include href="Objects/TriangleSetTopology.xml" src="@../loader" tags=" " />
                 <Tetra2TriangleTopologicalMapping input="@../Container" output="@Container" />
                 <TriangularBendingSprings name="FEM-Bend" stiffness="100" damping="1.0" />
-                <TrianglePressureForceField normal="0 0 1" dmin="0.9" dmax="1.1" pressure="0.4 0 0" />
+                <BoxROI name="pressureROI" position="@../Volume.position" triangles="@Container.triangles" box="0.9 -0.01 -0.01   1.1 1.01 1.01" drawBoxes="1"/>
+                <TrianglePressureForceField name="PFF" triangleList="@pressureROI.triangleIndices" pressure="0.4 0 0"/>
                 <TriangleCollisionModel />
                 <Node name="Visu">
                     <OglModel template="Vec3" name="Visual" material="Default Diffuse 1 0 0 1 0.5 Ambient 1 0.2 0 0 1 Specular 0 1 0 0 1 Emissive 0 1 0 0 1 Shininess 0 45" />
@@ -824,7 +825,8 @@ SubsetTopology_withtetrahedra.scn
        t.addObject('include', href="Objects/TriangleSetTopology.xml", src="@../loader", tags=" ")
        t.addObject('Tetra2TriangleTopologicalMapping', input="@../Container", output="@Container")
        t.addObject('TriangularBendingSprings', name="FEM-Bend", stiffness="100", damping="1.0")
-       t.addObject('TrianglePressureForceField', normal="0 0 1", dmin="0.9", dmax="1.1", pressure="0.4 0 0")
+       t.addObject('BoxROI', name="pressureROI", position="@../Volume.position", triangles="@Container.triangles", box="0.9 -0.01 -0.01   1.1 1.01 1.01", drawBoxes="1")
+       t.addObject('TrianglePressureForceField', name="PFF", triangleList="@pressureROI.triangleIndices", pressure="0.4 0 0")
        t.addObject('TriangleCollisionModel', )
 
        visu = T.addChild('Visu')

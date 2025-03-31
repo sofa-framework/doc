@@ -289,7 +289,8 @@ Tetra2TriangleTopologicalMapping_with_TetrahedronModel.scn
                 <Tetra2TriangleTopologicalMapping name="default6" input="@../Container" output="@Container" />
                 <TriangularFEMForceField template="Vec3" name="FEM" method="large" poissonRatio="0.3" youngModulus="60" />
                 <TriangularBendingSprings template="Vec3" name="FEM-Bend" stiffness="300" damping="1" />
-                <TrianglePressureForceField template="Vec3" name="default7" pressure="0.4 0 0" normal="0 0 1" dmin="0.9" dmax="1.1" />
+                <BoxROI name="pressureROI" position="@../Volume.position" triangles="@Container.triangles" box="0.9 -0.01 -0.01   1.1 1.01 1.01" drawBoxes="1"/>
+                <TrianglePressureForceField name="PFF" triangleList="@pressureROI.triangleIndices" pressure="0.4 0 0"/>
                 <Node name="Visu" gravity="0 -9.81 0">
                     <OglModel template="Vec3" name="Visual" material="Default Diffuse 1 0 0 1 1 Ambient 1 0 0 0.2 1 Specular 0 0 0 1 1 Emissive 0 0 0 1 1 Shininess 0 45" />
                     <IdentityMapping template="Vec3,Vec3" name="default9" input="@../../Volume" output="@Visual" />
@@ -356,7 +357,8 @@ Tetra2TriangleTopologicalMapping_with_TetrahedronModel.scn
        t.addObject('Tetra2TriangleTopologicalMapping', name="default6", input="@../Container", output="@Container")
        t.addObject('TriangularFEMForceField', template="Vec3", name="FEM", method="large", poissonRatio="0.3", youngModulus="60")
        t.addObject('TriangularBendingSprings', template="Vec3", name="FEM-Bend", stiffness="300", damping="1")
-       t.addObject('TrianglePressureForceField', template="Vec3", name="default7", pressure="0.4 0 0", normal="0 0 1", dmin="0.9", dmax="1.1")
+       t.addObject('BoxROI', name="pressureROI", position="@../Volume.position", triangles="@Container.triangles", box="0.9 -0.01 -0.01   1.1 1.01 1.01", drawBoxes="1")
+       t.addObject('TrianglePressureForceField', name="PFF", triangleList="@pressureROI.triangleIndices", pressure="0.4 0 0")
 
        visu = T.addChild('Visu', gravity="0 -9.81 0")
 

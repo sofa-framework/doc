@@ -296,7 +296,8 @@ PlaneROI.scn
                 <Tetra2TriangleTopologicalMapping input="@../Container" output="@Container" />
                 <TriangularFEMForceField name="FEM" youngModulus="10" poissonRatio="0.3" method="large" />
                 <TriangularBendingSprings name="FEM-Bend" stiffness="300" damping="1.0" />
-                <TrianglePressureForceField normal="0 0 1" dmin="0.9" dmax="1.1" pressure="0.4 0 0" />
+                <BoxROI name="pressureROI" position="@../Volume.position" triangles="@Container.triangles" box="0.9 -0.01 -0.01   1.1 1.01 1.01" drawBoxes="1"/>
+                <TrianglePressureForceField name="PFF" triangleList="@pressureROI.triangleIndices" pressure="0.4 0 0"/>
                 <TriangleCollisionModel />
                 <PlaneROI plane="0 0 0.5 0 0.3 1 0 0 1.5 0.2" position="@../Volume.position" drawTriangles="1" drawTetrahedra="1" triangles="@Container.triangles" tetrahedra="@../Container.tetrahedra" name="boxROI" />
                 <Node name="Visu">
@@ -361,7 +362,8 @@ PlaneROI.scn
        t.addObject('Tetra2TriangleTopologicalMapping', input="@../Container", output="@Container")
        t.addObject('TriangularFEMForceField', name="FEM", youngModulus="10", poissonRatio="0.3", method="large")
        t.addObject('TriangularBendingSprings', name="FEM-Bend", stiffness="300", damping="1.0")
-       t.addObject('TrianglePressureForceField', normal="0 0 1", dmin="0.9", dmax="1.1", pressure="0.4 0 0")
+       t.addObject('BoxROI', name="pressureROI", position="@../Volume.position", triangles="@Container.triangles", box="0.9 -0.01 -0.01   1.1 1.01 1.01", drawBoxes="1")
+       t.addObject('TrianglePressureForceField', name="PFF", triangleList="@pressureROI.triangleIndices", pressure="0.4 0 0")
        t.addObject('TriangleCollisionModel', )
        t.addObject('PlaneROI', plane="0 0 0.5 0 0.3 1 0 0 1.5 0.2", position="@../Volume.position", drawTriangles="1", drawTetrahedra="1", triangles="@Container.triangles", tetrahedra="@../Container.tetrahedra", name="boxROI")
 

@@ -148,7 +148,7 @@ HexahedralFEMForceField.scn
         <RequiredPlugin name="Sofa.Component.Visual"/> <!-- Needed to use components [VisualStyle] -->
         <RequiredPlugin name="Sofa.GL.Component.Rendering3D"/> <!-- Needed to use components [OglModel] -->
         <DefaultAnimationLoop/>
-        <VisualStyle displayFlags="showBehaviorModels" />
+        <VisualStyle displayFlags="showBehaviorModels showForceFields" />
         <CollisionPipeline verbose="0" />
         <BruteForceBroadPhase/>
         <BVHNarrowPhase/>
@@ -159,21 +159,29 @@ HexahedralFEMForceField.scn
             <CGLinearSolver iterations="25" name="linear solver" tolerance="1.0e-9" threshold="1.0e-9" />
             <MeshGmshLoader name="loader" filename="mesh/nine_hexa.msh" />
             <MechanicalObject src="@loader" name="Hexa" />
-            <include href="Objects/HexahedronSetTopology.xml" src="@loader" />
+            <HexahedronSetTopologyContainer name="Container" src="@loader"/>
+            <HexahedronSetTopologyModifier name="Modifier" />
+            <HexahedronSetGeometryAlgorithms name="GeomAlgo" />
             <HexahedralFEMForceField name="FEM" youngModulus="100" poissonRatio="0.3" method="large" />
             <DiagonalMass massDensity="0.2" />
             <FixedProjectiveConstraint indices="12 15 28 31" />
             <Node name="Q">
-                <include href="Objects/QuadSetTopology.xml" src="@../loader" />
+                <QuadSetTopologyContainer name="Container" />
+                <QuadSetTopologyModifier name="Modifier" />
+                <QuadSetGeometryAlgorithms name="GeomAlgo" />
                 <Hexa2QuadTopologicalMapping input="@../Container" output="@Container" />
-                <Node name="Visu">
-                    <OglModel name="Visual" color="yellow" />
-                    <IdentityMapping input="@../../Hexa" output="@Visual" />
-                </Node>
+    
                 <Node name="T">
-                    <include href="Objects/TriangleSetTopology.xml" src="@../Container" />
+                    <TriangleSetTopologyContainer name="Container" />
+                    <TriangleSetTopologyModifier name="Modifier" />
+                    <TriangleSetGeometryAlgorithms name="GeomAlgo" />
                     <Quad2TriangleTopologicalMapping input="@../Container" output="@Container" />
                     <TriangleCollisionModel />
+                    
+                    <Node name="Visu">
+                        <OglModel name="Visual" color="yellow" />
+                        <IdentityMapping input="@../../../Hexa" output="@Visual" />
+                    </Node>
                 </Node>
             </Node>
         </Node>
@@ -205,7 +213,7 @@ HexahedralFEMForceField.scn
        root.addObject('RequiredPlugin', name="Sofa.Component.Visual")
        root.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
        root.addObject('DefaultAnimationLoop', )
-       root.addObject('VisualStyle', displayFlags="showBehaviorModels")
+       root.addObject('VisualStyle', displayFlags="showBehaviorModels showForceFields")
        root.addObject('CollisionPipeline', verbose="0")
        root.addObject('BruteForceBroadPhase', )
        root.addObject('BVHNarrowPhase', )
@@ -218,26 +226,32 @@ HexahedralFEMForceField.scn
        h.addObject('CGLinearSolver', iterations="25", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
        h.addObject('MeshGmshLoader', name="loader", filename="mesh/nine_hexa.msh")
        h.addObject('MechanicalObject', src="@loader", name="Hexa")
-       h.addObject('include', href="Objects/HexahedronSetTopology.xml", src="@loader")
+       h.addObject('HexahedronSetTopologyContainer', name="Container", src="@loader")
+       h.addObject('HexahedronSetTopologyModifier', name="Modifier")
+       h.addObject('HexahedronSetGeometryAlgorithms', name="GeomAlgo")
        h.addObject('HexahedralFEMForceField', name="FEM", youngModulus="100", poissonRatio="0.3", method="large")
        h.addObject('DiagonalMass', massDensity="0.2")
        h.addObject('FixedProjectiveConstraint', indices="12 15 28 31")
 
        q = H.addChild('Q')
 
-       q.addObject('include', href="Objects/QuadSetTopology.xml", src="@../loader")
+       q.addObject('QuadSetTopologyContainer', name="Container")
+       q.addObject('QuadSetTopologyModifier', name="Modifier")
+       q.addObject('QuadSetGeometryAlgorithms', name="GeomAlgo")
        q.addObject('Hexa2QuadTopologicalMapping', input="@../Container", output="@Container")
-
-       visu = Q.addChild('Visu')
-
-       visu.addObject('OglModel', name="Visual", color="yellow")
-       visu.addObject('IdentityMapping', input="@../../Hexa", output="@Visual")
 
        t = Q.addChild('T')
 
-       t.addObject('include', href="Objects/TriangleSetTopology.xml", src="@../Container")
+       t.addObject('TriangleSetTopologyContainer', name="Container")
+       t.addObject('TriangleSetTopologyModifier', name="Modifier")
+       t.addObject('TriangleSetGeometryAlgorithms', name="GeomAlgo")
        t.addObject('Quad2TriangleTopologicalMapping', input="@../Container", output="@Container")
        t.addObject('TriangleCollisionModel', )
+
+       visu = T.addChild('Visu')
+
+       visu.addObject('OglModel', name="Visual", color="yellow")
+       visu.addObject('IdentityMapping', input="@../../../Hexa", output="@Visual")
     ```
 
 HexahedralFEMForceFieldAndMass.scn

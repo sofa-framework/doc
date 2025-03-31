@@ -165,6 +165,13 @@ keep the initial difference in orientation (only for rigids)
 		</td>
 		<td>0</td>
 	</tr>
+	<tr>
+		<td>load</td>
+		<td>
+Apply this factor to the constraint force to enable incremental loading. This value should be in the interval [0.0, 1.0].
+		</td>
+		<td>1</td>
+	</tr>
 
 </tbody>
 </table>
@@ -307,6 +314,13 @@ control constraint activation (true by default)
 keep the initial difference in orientation (only for rigids)
 		</td>
 		<td>0</td>
+	</tr>
+	<tr>
+		<td>load</td>
+		<td>
+Apply this factor to the constraint force to enable incremental loading. This value should be in the interval [0.0, 1.0].
+		</td>
+		<td>1</td>
 	</tr>
 
 </tbody>
