@@ -2,7 +2,7 @@
 title: Create your scene in Cpp
 ---
 
-First of all, you can really get inspiration from all **Tutorials available** in _applications/Tutorials_, that are C++ files implementing the XML tutorials available in _examples/Tutorials/_. In addition, you can read the **Main.cpp** of runSofa from _applications/projects/runSofa/_.
+First of all, you can really get inspiration from the **[fallingSOFA.cpp](https://github.com/sofa-framework/sofa/blob/master/examples/SimpleAPI/fallingSOFA.cpp)** application reimplementing the [fallingSOFA.scn](https://github.com/sofa-framework/sofa/blob/master/examples/Demos/fallingSOFA.scn) example. [fallingSOFA.cpp](https://github.com/sofa-framework/sofa/blob/master/examples/SimpleAPI/fallingSOFA.cpp) is a C++ implementation using the SimpleAPI, available in _examples/SimpleAPI/_. In addition, you can read the **[Main.cpp](https://github.com/sofa-framework/sofa/blob/master/applications/projects/runSofa/Main.cpp)** of runSofa from _applications/projects/runSofa/_.
 
 Here is a short template about how to write a scene in C++:
 
