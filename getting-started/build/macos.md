@@ -82,16 +82,12 @@ SOFA requires some libraries:
     ```bash
     brew install tinyxml2
     ```
-   
--   **Qt** (>= 5.12.0) with **Charts** and **WebEngine**    
-    We recommend to install Qt **in your user directory** with [the unified installer](http://download.qt.io/official_releases/online_installers).  
-    Make sure to enable **Charts** and **WebEngine** components.  
-    ![](https://www.sofa-framework.org/wp-content/uploads/2020/04/install_qt_macos.png)
 
 -   **Boost** (>= 1.65.1)  
     ```bash
     brew install boost
     ```
+
 -   **Python 3.10** + pip + numpy + scipy
     ```bash
     brew install python@3.10
@@ -110,6 +106,15 @@ SOFA requires some libraries:
     ```bash
     brew install eigen
     ```
+
+
+## Graphical User Interfaces
+
+-   The [Sofa.Qt](https://github.com/sofa-framework/Sofa.Qt) project relies on **Qt** (>= 5.12.0) with **Charts** and **WebEngine**    
+    We recommend to install Qt **in your user directory** with [the unified installer](http://download.qt.io/official_releases/online_installers).  
+    Make sure to enable **Charts** and **WebEngine** components.  
+    ![](https://www.sofa-framework.org/wp-content/uploads/2020/04/install_qt_macos.png)
+
 
 ## Plugins (optional)
 

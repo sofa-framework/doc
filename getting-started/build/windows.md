@@ -53,12 +53,6 @@ You can download the latest release from [their GitHub repository](https://githu
 
 SOFA requires some libraries:
 
--   **Qt** (>= 5.12.0) with **Charts** and **WebEngine**.
-    We recommend to install Qt **in your user directory** with [the unified installer](http://download.qt.io/official_releases/online_installers).  
-    ![](https://github.com/sofa-framework/doc/blob/master/images/gettingstarted/install_qt_windows_1.png?raw=true")
-    Make sure to enable **Charts** and **WebEngine** components.  
-    ![](https://github.com/sofa-framework/doc/blob/master/images/gettingstarted/install_qt_windows_2.png?raw=true")
-
 -   **Boost** (>= 1.65.1)  
     Download and install the latest version compatible with your Visual Studio from [https://sourceforge.net/projects/boost/files/boost-binaries/](https://sourceforge.net/projects/boost/files/boost-binaries/).
     
@@ -74,13 +68,21 @@ SOFA requires some libraries:
     path\to\Python310\python.exe -m pip install numpy scipy pybind11==2.9.1
     ```
     
-    
 -   **Additional libraries**: libPNG, libJPEG, libTIFF, Glew, Zlib, TinyXML2
     Download the [Windows dependency pack](https://www.sofa-framework.org/download/WinDepPack/VS-2017/latest).  
     You will need to unzip it directly in SOFA sources (later in this tutorial).
 
 -   **Eigen** (>= 3.2.10)  
     Download and extract the [latest Eigen sources](https://gitlab.com/libeigen/eigen/-/releases).
+
+## Graphical User Interfaces
+
+-   The [Sofa.Qt](https://github.com/sofa-framework/Sofa.Qt) project relies on **Qt** (>= 5.12.0) with **Charts** and **WebEngine**.
+    We recommend to install Qt **in your user directory** with [the unified installer](http://download.qt.io/official_releases/online_installers).  
+    ![](https://github.com/sofa-framework/doc/blob/master/images/gettingstarted/install_qt_windows_1.png?raw=true")
+    Make sure to enable **Charts** and **WebEngine** components.  
+    ![](https://github.com/sofa-framework/doc/blob/master/images/gettingstarted/install_qt_windows_2.png?raw=true")
+
 
 ### [optional] PATH modification
 
