@@ -84,23 +84,6 @@ SOFA requires some libraries:
     sudo apt install libtinyxml2-dev
     ```
    
--   **Qt** (>= 5.12.0) with **Charts** and **WebEngine**  
-    We recommend to install Qt **in your user directory** with [the unified installer](http://download.qt.io/official_releases/online_installers).  
-    Make sure to enable **Charts** and **WebEngine** components.  
-    ![](https://www.sofa-framework.org/wp-content/uploads/2020/04/install_qt_linux.png)
-    -   Qt Wayland:
-    X11 is known as an old display protocol. Recently, some Linux distributions switched to a new display protocol/server named Wayland.
-    If you are using Wayland, or to check whether you are using it:
-        -   Run this command to check your protocol:
-            ```bash
-            echo $XDG_SESSION_TYPE
-            ```
-        -   If you are using Wayland, install the associated qtwayland running this command (here for Qt5):
-            ```bash
-            sudo apt install qtwayland5
-            ```
-            and set the environment variable `export QT_QPA_PLATFORM=wayland`
-
 -   **OpenGL**
     ```
     sudo apt install libopengl0
@@ -134,6 +117,30 @@ SOFA requires some libraries:
     sudo apt install libeigen3-dev
     ```
 
+## Graphical User Interfaces
+
+-   The [SOFAGLFW](https://github.com/sofa-framework/SofaGLFW) project is based on both **GLFW** and **ImGui** libraries. It required the following dependencies to be installed:
+   ``` {.bash .optional}
+   sudo apt install xorg-dev libgtk-3-dev
+   ```
+-   The [Sofa.Qt](https://github.com/sofa-framework/Sofa.Qt) project relies on **Qt** (>= 5.12.0) with **Charts** and **WebEngine**.  
+    We recommend to install Qt **in your user directory** with [the unified installer](http://download.qt.io/official_releases/online_installers).  
+    Make sure to enable **Charts** and **WebEngine** components.  
+    ![](https://www.sofa-framework.org/wp-content/uploads/2020/04/install_qt_linux.png)
+    -   Qt Wayland:
+    X11 is known as an old display protocol. Recently, some Linux distributions switched to a new display protocol/server named Wayland.
+    If you are using Wayland, or to check whether you are using it:
+        -   Run this command to check your protocol:
+            ```bash
+            echo $XDG_SESSION_TYPE
+            ```
+        -   If you are using Wayland, install the associated qtwayland running this command (here for Qt5):
+            ```bash
+            sudo apt install qtwayland5
+            ```
+            and set the environment variable `export QT_QPA_PLATFORM=wayland`
+
+
 ## Plugins (optional)
 
 SOFA **plugins** depend on libraries that are available in the official repositories.  
@@ -141,10 +148,6 @@ You probably don't need them all, but you might find it convenient to
 install them all and not worry about it later.  
 This list does not cover all available SOFA plugins, only the ones that are built by our continuous integration platform.
 
--  SOFAGLFW  
-   ``` {.bash .optional}
-   sudo apt install xorg-dev
-   ```
 -  CGALPlugin  
    ``` {.bash .optional}
    sudo apt install libcgal-dev libcgal-qt5-dev
