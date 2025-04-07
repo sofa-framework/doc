@@ -410,6 +410,74 @@ rendering size for ROI and topological elements
 
 ## Examples 
 
+BoxROI_2d.scn
+
+=== "XML"
+
+    ```xml
+    <?xml version="1.0" ?>
+    <Node name="root" gravity="0 -9.81 1" dt="0.02">
+        <RequiredPlugin name="Sofa.Component.Constraint.Projective"/> <!-- Needed to use components [FixedProjectiveConstraint] -->
+        <RequiredPlugin name="Sofa.Component.Engine.Select"/> <!-- Needed to use components [BoxROI] -->
+        <RequiredPlugin name="Sofa.Component.LinearSolver.Iterative"/> <!-- Needed to use components [CGLinearSolver] -->
+        <RequiredPlugin name="Sofa.Component.Mass"/> <!-- Needed to use components [UniformMass] -->
+        <RequiredPlugin name="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+        <RequiredPlugin name="Sofa.Component.SolidMechanics.Spring"/> <!-- Needed to use components [MeshSpringForceField] -->
+        <RequiredPlugin name="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
+        <RequiredPlugin name="Sofa.Component.Topology.Container.Grid"/> <!-- Needed to use components [RegularGridTopology] -->
+        <RequiredPlugin name="Sofa.Component.Visual"/> <!-- Needed to use components [VisualStyle] -->
+    
+        <VisualStyle displayFlags="showBehaviorModels showForceFields" />
+    
+        <DefaultAnimationLoop/>
+        <DefaultVisualManagerLoop/>
+    
+        <Node name="M1">
+            <EulerImplicitSolver name="odesolver" rayleighStiffness="0.1" rayleighMass="0.1" />
+            <CGLinearSolver template="CompressedRowSparseMatrix" iterations="1000" threshold="1e-9" tolerance="1e-9"/>
+            <MechanicalObject template="Vec2"/>
+            <UniformMass vertexMass="1" />
+            <RegularGridTopology nx="21" ny="5" nz="1" xmin="0" xmax="20" ymin="0" ymax="4" zmin="0" zmax="0"/>
+            <BoxROI name="box" box="-0.1 -0.1 -1e4  0.1 4.1 1e4"/>
+            <FixedProjectiveConstraint indices="@box.indices" />
+            <MeshSpringForceField stiffness="10000"/>
+        </Node>
+    </Node>
+
+    ```
+
+=== "Python"
+
+    ```python
+    def createScene(root_node):
+
+       root = root_node.addChild('root', gravity="0 -9.81 1", dt="0.02")
+
+       root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Projective")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Engine.Select")
+       root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Iterative")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Mass")
+       root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.Spring")
+       root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Grid")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Visual")
+       root.addObject('VisualStyle', displayFlags="showBehaviorModels showForceFields")
+       root.addObject('DefaultAnimationLoop', )
+       root.addObject('DefaultVisualManagerLoop', )
+
+       m1 = root.addChild('M1')
+
+       m1.addObject('EulerImplicitSolver', name="odesolver", rayleighStiffness="0.1", rayleighMass="0.1")
+       m1.addObject('CGLinearSolver', template="CompressedRowSparseMatrix", iterations="1000", threshold="1e-9", tolerance="1e-9")
+       m1.addObject('MechanicalObject', template="Vec2")
+       m1.addObject('UniformMass', vertexMass="1")
+       m1.addObject('RegularGridTopology', nx="21", ny="5", nz="1", xmin="0", xmax="20", ymin="0", ymax="4", zmin="0", zmax="0")
+       m1.addObject('BoxROI', name="box", box="-0.1 -0.1 -1e4  0.1 4.1 1e4")
+       m1.addObject('FixedProjectiveConstraint', indices="@box.indices")
+       m1.addObject('MeshSpringForceField', stiffness="10000")
+    ```
+
 BoxROI.scn
 
 === "XML"
@@ -587,73 +655,5 @@ BoxROI_1d.scn
        m1.addObject('BoxROI', name="box", box="-0.1 -1e4 -1e4  0.1 1e4 1e4")
        m1.addObject('FixedProjectiveConstraint', indices="@box.indices")
        m1.addObject('MeshSpringForceField', stiffness="500")
-    ```
-
-BoxROI_2d.scn
-
-=== "XML"
-
-    ```xml
-    <?xml version="1.0" ?>
-    <Node name="root" gravity="0 -9.81 1" dt="0.02">
-        <RequiredPlugin name="Sofa.Component.Constraint.Projective"/> <!-- Needed to use components [FixedProjectiveConstraint] -->
-        <RequiredPlugin name="Sofa.Component.Engine.Select"/> <!-- Needed to use components [BoxROI] -->
-        <RequiredPlugin name="Sofa.Component.LinearSolver.Iterative"/> <!-- Needed to use components [CGLinearSolver] -->
-        <RequiredPlugin name="Sofa.Component.Mass"/> <!-- Needed to use components [UniformMass] -->
-        <RequiredPlugin name="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
-        <RequiredPlugin name="Sofa.Component.SolidMechanics.Spring"/> <!-- Needed to use components [MeshSpringForceField] -->
-        <RequiredPlugin name="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
-        <RequiredPlugin name="Sofa.Component.Topology.Container.Grid"/> <!-- Needed to use components [RegularGridTopology] -->
-        <RequiredPlugin name="Sofa.Component.Visual"/> <!-- Needed to use components [VisualStyle] -->
-    
-        <VisualStyle displayFlags="showBehaviorModels showForceFields" />
-    
-        <DefaultAnimationLoop/>
-        <DefaultVisualManagerLoop/>
-    
-        <Node name="M1">
-            <EulerImplicitSolver name="odesolver" rayleighStiffness="0.1" rayleighMass="0.1" />
-            <CGLinearSolver template="CompressedRowSparseMatrix" iterations="1000" threshold="1e-9" tolerance="1e-9"/>
-            <MechanicalObject template="Vec2"/>
-            <UniformMass vertexMass="1" />
-            <RegularGridTopology nx="21" ny="5" nz="1" xmin="0" xmax="20" ymin="0" ymax="4" zmin="0" zmax="0"/>
-            <BoxROI name="box" box="-0.1 -0.1 -1e4  0.1 4.1 1e4"/>
-            <FixedProjectiveConstraint indices="@box.indices" />
-            <MeshSpringForceField stiffness="10000"/>
-        </Node>
-    </Node>
-
-    ```
-
-=== "Python"
-
-    ```python
-    def createScene(root_node):
-
-       root = root_node.addChild('root', gravity="0 -9.81 1", dt="0.02")
-
-       root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Projective")
-       root.addObject('RequiredPlugin', name="Sofa.Component.Engine.Select")
-       root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Iterative")
-       root.addObject('RequiredPlugin', name="Sofa.Component.Mass")
-       root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
-       root.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.Spring")
-       root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
-       root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Grid")
-       root.addObject('RequiredPlugin', name="Sofa.Component.Visual")
-       root.addObject('VisualStyle', displayFlags="showBehaviorModels showForceFields")
-       root.addObject('DefaultAnimationLoop', )
-       root.addObject('DefaultVisualManagerLoop', )
-
-       m1 = root.addChild('M1')
-
-       m1.addObject('EulerImplicitSolver', name="odesolver", rayleighStiffness="0.1", rayleighMass="0.1")
-       m1.addObject('CGLinearSolver', template="CompressedRowSparseMatrix", iterations="1000", threshold="1e-9", tolerance="1e-9")
-       m1.addObject('MechanicalObject', template="Vec2")
-       m1.addObject('UniformMass', vertexMass="1")
-       m1.addObject('RegularGridTopology', nx="21", ny="5", nz="1", xmin="0", xmax="20", ymin="0", ymax="4", zmin="0", zmax="0")
-       m1.addObject('BoxROI', name="box", box="-0.1 -0.1 -1e4  0.1 4.1 1e4")
-       m1.addObject('FixedProjectiveConstraint', indices="@box.indices")
-       m1.addObject('MeshSpringForceField', stiffness="10000")
     ```
 

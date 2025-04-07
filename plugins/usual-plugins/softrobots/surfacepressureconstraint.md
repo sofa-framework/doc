@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # SurfacePressureConstraint
 
-This component constrains a model by applying pressure on surfaces (for exemple cavities)
+This component constrains a model by applying pressure on surfaces (for example cavities)
 
 
 ## Vec3d
