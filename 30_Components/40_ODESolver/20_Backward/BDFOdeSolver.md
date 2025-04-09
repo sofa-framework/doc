@@ -13,7 +13,7 @@ That is why this component requires a [NewtonRaphsonSolver](NewtonRaphsonSolver.
 The coefficients of the linear combination come from the approximation of the function by a Lagrange interpolation polynomial.
 The order of the BDF is the number of previous time steps required to approximate the interpolation polynomial.
 The first-order BDF requires a single time step in the past to compute the next.
-It corresponds to the backward Euler method.
+It corresponds to the [backward Euler method](EulerImplicitSolver.md).
 The coefficients are unique for a given order, but can be influenced by a change of time step size.
 The SOFA component supports any order, and any change of time step size.
 
