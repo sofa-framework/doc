@@ -33,3 +33,15 @@ Usage
 -----
 
 This component must be linked by another component requiring to solve a nonlinear equation, such as an implicit ODE solver or a static solver.
+
+In XML format, the link may look like:
+
+```xml
+<NewtonRaphsonSolver name="newton"
+                     maxNbIterationsNewton="10" absoluteResidualStoppingThreshold="1e-5"
+                     maxNbIterationsLineSearch="5" lineSearchCoefficient="0.5"
+                     relativeInitialStoppingThreshold="1e-3"
+                     absoluteEstimateDifferenceThreshold="1e-5"
+                     relativeEstimateDifferenceThreshold="1e-5"/>
+<BDFOdeSolver newtonSolver="@newton" order="2" rayleighMass="0.01" rayleighStiffness="0.01" />
+```
