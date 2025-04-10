@@ -1,0 +1,1 @@
+Project containing two plugins: a simple GUI based on GLFW and a user interface based on [Dear ImGui](https://github.com/ocornut/imgui).
