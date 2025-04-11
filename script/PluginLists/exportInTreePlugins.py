@@ -6,7 +6,7 @@ SOFA_SRC=sys.argv[1]
 
 ## Find all meaningful CMakeLists in applications
 ## This automated search is looking first in the CMakeLists at the root of {SOFA_SRC}/applications/ and for each 'add_subdirectory' it finds, it look inside of it the same way in a recursive way.
-## An easier way would have been to look for all CMakeLists in applications, but this might be wrong because som in tree plugins might also use the macros.
+## An easier way would have been to look for all CMakeLists in applications, but this might be wrong because some in tree plugins might also use the macros.
 def recFindCMakeLists(currFilename, fileList):
     currfolder = currFilename.removesuffix('CMakeLists.txt')
     with open(currFilename) as file:
