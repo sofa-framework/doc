@@ -156,6 +156,10 @@ git clone -b master https://github.com/sofa-framework/sofa.git sofa/src
 
    Do not forget to **Configure** again to check if your changes are valid.
 
+   /// note | What is there to activate ?
+   [Here](../activate-plugins/) is an exaustive list of what plugin can be activated for an in-tree compilation.
+   ///
+
 9. When you are ready, run **Generate**. In the build directory, this will create a Visual Studio project (.sln) or a Makefile depending on the generator you chose at step 4.
 
 
