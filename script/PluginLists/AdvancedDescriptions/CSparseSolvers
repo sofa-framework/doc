@@ -1,0 +1,1 @@
+Plugin containing a collection of linear solver components that are built on top of the [CSparse library](https://people.math.sc.edu/Burkardt/c_src/csparse/csparse.html).

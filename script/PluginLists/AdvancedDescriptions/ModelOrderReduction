@@ -1,0 +1,1 @@
+Plugin containing C++ components with python utilities allowing to perform model reduction and use these reduced model easily in a SOFA scene.

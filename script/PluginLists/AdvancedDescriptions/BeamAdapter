@@ -1,0 +1,1 @@
+Plugin implementing a 1-dimensional Finite Element Method (FEM) based on the Kirchhoff rod theory and allows to simulate any 1D flexible structure.
