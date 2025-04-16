@@ -31,7 +31,7 @@ jobs:
 
     steps:
 
-      - name: Setup SOFA and environment
+      - name: Install SOFA binaries and setting up environment
         id: sofa
         uses: sofa-framework/sofa-setup-action@v5
         with:
@@ -51,7 +51,7 @@ jobs:
           path: 'merged_doc'
           ref: 'merged_doc'
 
-      - name: Checkout sofa
+      - name: Clone sofa source code from 
         uses: actions/checkout@v4
         with:
           repository: 'sofa-framework/sofa'
