@@ -31,7 +31,7 @@ jobs:
 
     steps:
 
-      - name: Setup SOFA and environment
+      - name: Install SOFA binaries and setting up environment
         id: sofa
         uses: sofa-framework/sofa-setup-action@v5
         with:
@@ -51,6 +51,14 @@ jobs:
           path: 'merged_doc'
           ref: 'merged_doc'
 
+      - name: Clone sofa source code from GitHub
+        uses: actions/checkout@v4
+        with:
+          repository: 'sofa-framework/sofa'
+          ref: 'master'
+          path: sofa_src
+
+
       - name: Generate doc
         run: |
           echo $SOFA_ROOT
@@ -63,6 +71,10 @@ jobs:
           
           python ${{ github.workspace }}/SofaDocGenerator/script/title_metadata.py ${{ github.workspace }}/SofaDocGenerator/doc
           python ${{ github.workspace }}/SofaDocGenerator/script/generate_nav.py ${{ github.workspace }}/SofaDocGenerator/mkdocs/mkdocs.yml ${{ github.workspace }}/SofaDocGenerator/doc
+          
+          # Export plugin lists into the merged doc
+          python ${{ github.workspace }}/SofaDocGenerator/script/PluginLists/exportInTreePlugins.py ${{ github.workspace }}/sofa_src >> ${{ github.workspace }}/SofaDocGenerator/doc/10_Getting_Started/20_Build/50_Activate_Plugins.md
+          python ${{ github.workspace }}/SofaDocGenerator/script/PluginLists/exportSupportedPlugins.py ${{ github.workspace }}/sofa_src >> ${{ github.workspace }}/SofaDocGenerator/doc/35_Plugins/45_Suported_Plugins_List.md
 
       - name: Save merged doc
         uses: actions/upload-artifact@v4
