@@ -51,7 +51,7 @@ jobs:
           path: 'merged_doc'
           ref: 'merged_doc'
 
-      - name: Clone sofa source code from 
+      - name: Clone sofa source code from GitHub
         uses: actions/checkout@v4
         with:
           repository: 'sofa-framework/sofa'
