@@ -70,8 +70,6 @@ jobs:
           python ${{ github.workspace }}/SofaDocGenerator/script/pipeline.py ${{ github.workspace }}/SofaDocGenerator/doc ${{ github.workspace }}/sofa/share/sofa/examples ${{ github.workspace }}/sofa/plugins
           
           python ${{ github.workspace }}/SofaDocGenerator/script/title_metadata.py ${{ github.workspace }}/SofaDocGenerator/doc
-          
-          tree
 
           echo "Starting the export of plugin lists"
           # Export plugin lists into the merged doc
