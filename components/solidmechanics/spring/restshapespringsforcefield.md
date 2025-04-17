@@ -479,6 +479,72 @@ draw Spring
 
 ## Examples 
 
+RestShapeSpringsForceField3.scn
+
+=== "XML"
+
+    ```xml
+    <?xml version="1.0"?>
+    
+    <Node name="root" dt="2.0e-3" gravity="0 0 0" >
+        <RequiredPlugin name="Sofa.Component.LinearSolver.Direct"/> <!-- Needed to use components [EigenSparseLU] -->
+        <RequiredPlugin name="Sofa.Component.Mass"/> <!-- Needed to use components [UniformMass] -->
+        <RequiredPlugin name="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+        <RequiredPlugin name="Sofa.Component.SolidMechanics.Spring"/> <!-- Needed to use components [RestShapeSpringsForceField] -->
+        <RequiredPlugin name="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
+        <RequiredPlugin name="Sofa.Component.Visual"/> <!-- Needed to use components [VisualStyle] -->
+    
+        <VisualStyle displayFlags=" showCollisionModels showForceFields" />
+        <DefaultAnimationLoop/>
+    
+        <Node name="Object1">
+            <MechanicalObject name="object1MO" template="Rigid3d" position="0 0 0 0 0 0 1" showObject="true"/>
+        </Node>
+    
+        <Node name="Object2">
+            <EulerImplicitSolver rayleighMass="0" rayleighStiffness="0"/>
+            <EigenSparseLU name="LULinearSolver" template="CompressedRowSparseMatrixMat3x3d"/>
+            <MechanicalObject name="object2MO" template="Rigid3d" position="0.5 0.5 0 0.2705980500730985 0.2705980500730985 0 0.9238795325112867" showObject="true"/>
+            <RestShapeSpringsForceField stiffness="11" angularStiffness="12"
+                                        external_rest_shape="@../Object1/object1MO"
+                                        points="0" external_points="0"
+                                        drawSpring="true" springColor="1 1 1 1"
+                                        activeDirections="1 0 1 1 0 1 1"/>
+            <UniformMass totalMass="0.01" />
+        </Node>
+    </Node>
+
+    ```
+
+=== "Python"
+
+    ```python
+    def createScene(root_node):
+
+       root = root_node.addChild('root', dt="2.0e-3", gravity="0 0 0")
+
+       root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Direct")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Mass")
+       root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.Spring")
+       root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Visual")
+       root.addObject('VisualStyle', displayFlags=" showCollisionModels showForceFields")
+       root.addObject('DefaultAnimationLoop', )
+
+       object1 = root.addChild('Object1')
+
+       object1.addObject('MechanicalObject', name="object1MO", template="Rigid3d", position="0 0 0 0 0 0 1", showObject="true")
+
+       object2 = root.addChild('Object2')
+
+       object2.addObject('EulerImplicitSolver', rayleighMass="0", rayleighStiffness="0")
+       object2.addObject('EigenSparseLU', name="LULinearSolver", template="CompressedRowSparseMatrixMat3x3d")
+       object2.addObject('MechanicalObject', name="object2MO", template="Rigid3d", position="0.5 0.5 0 0.2705980500730985 0.2705980500730985 0 0.9238795325112867", showObject="true")
+       object2.addObject('RestShapeSpringsForceField', stiffness="11", angularStiffness="12", external_rest_shape="@../Object1/object1MO", points="0", external_points="0", drawSpring="true", springColor="1 1 1 1", activeDirections="1 0 1 1 0 1 1")
+       object2.addObject('UniformMass', totalMass="0.01")
+    ```
+
 RestShapeSpringsForceField.scn
 
 === "XML"
@@ -792,71 +858,5 @@ RestShapeSpringsForceField2.scn
        object2.addObject('UniformMass', totalMass="0.01")
        object2.addObject('SphereCollisionModel', radius="0.0005", color="1 0 0  1")
        object2.addObject('LinearSolverConstraintCorrection', linearSolver="@LULinearSolver")
-    ```
-
-RestShapeSpringsForceField3.scn
-
-=== "XML"
-
-    ```xml
-    <?xml version="1.0"?>
-    
-    <Node name="root" dt="2.0e-3" gravity="0 0 0" >
-        <RequiredPlugin name="Sofa.Component.LinearSolver.Direct"/> <!-- Needed to use components [EigenSparseLU] -->
-        <RequiredPlugin name="Sofa.Component.Mass"/> <!-- Needed to use components [UniformMass] -->
-        <RequiredPlugin name="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
-        <RequiredPlugin name="Sofa.Component.SolidMechanics.Spring"/> <!-- Needed to use components [RestShapeSpringsForceField] -->
-        <RequiredPlugin name="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
-        <RequiredPlugin name="Sofa.Component.Visual"/> <!-- Needed to use components [VisualStyle] -->
-    
-        <VisualStyle displayFlags=" showCollisionModels showForceFields" />
-        <DefaultAnimationLoop/>
-    
-        <Node name="Object1">
-            <MechanicalObject name="object1MO" template="Rigid3d" position="0 0 0 0 0 0 1" showObject="true"/>
-        </Node>
-    
-        <Node name="Object2">
-            <EulerImplicitSolver rayleighMass="0" rayleighStiffness="0"/>
-            <EigenSparseLU name="LULinearSolver" template="CompressedRowSparseMatrixMat3x3d"/>
-            <MechanicalObject name="object2MO" template="Rigid3d" position="0.5 0.5 0 0.2705980500730985 0.2705980500730985 0 0.9238795325112867" showObject="true"/>
-            <RestShapeSpringsForceField stiffness="11" angularStiffness="12"
-                                        external_rest_shape="@../Object1/object1MO"
-                                        points="0" external_points="0"
-                                        drawSpring="true" springColor="1 1 1 1"
-                                        activeDirections="1 0 1 1 0 1 1"/>
-            <UniformMass totalMass="0.01" />
-        </Node>
-    </Node>
-
-    ```
-
-=== "Python"
-
-    ```python
-    def createScene(root_node):
-
-       root = root_node.addChild('root', dt="2.0e-3", gravity="0 0 0")
-
-       root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Direct")
-       root.addObject('RequiredPlugin', name="Sofa.Component.Mass")
-       root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
-       root.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.Spring")
-       root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
-       root.addObject('RequiredPlugin', name="Sofa.Component.Visual")
-       root.addObject('VisualStyle', displayFlags=" showCollisionModels showForceFields")
-       root.addObject('DefaultAnimationLoop', )
-
-       object1 = root.addChild('Object1')
-
-       object1.addObject('MechanicalObject', name="object1MO", template="Rigid3d", position="0 0 0 0 0 0 1", showObject="true")
-
-       object2 = root.addChild('Object2')
-
-       object2.addObject('EulerImplicitSolver', rayleighMass="0", rayleighStiffness="0")
-       object2.addObject('EigenSparseLU', name="LULinearSolver", template="CompressedRowSparseMatrixMat3x3d")
-       object2.addObject('MechanicalObject', name="object2MO", template="Rigid3d", position="0.5 0.5 0 0.2705980500730985 0.2705980500730985 0 0.9238795325112867", showObject="true")
-       object2.addObject('RestShapeSpringsForceField', stiffness="11", angularStiffness="12", external_rest_shape="@../Object1/object1MO", points="0", external_points="0", drawSpring="true", springColor="1 1 1 1", activeDirections="1 0 1 1 0 1 1")
-       object2.addObject('UniformMass', totalMass="0.01")
     ```
 

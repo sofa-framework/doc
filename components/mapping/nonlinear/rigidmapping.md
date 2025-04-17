@@ -603,74 +603,6 @@ RigidMapping-basic.scn
        child_node_with__do_fs_mapped_from_the_parent.addObject('ConstantForceField', forces="1 -1 0", indices="0")
     ```
 
-RigidMapping2d-basic.scn
-
-=== "XML"
-
-    ```xml
-    <?xml version="1.0" ?>
-    <Node name="Root" gravity="0 0 0" time="0" animate="0" bbox="-1 -1 -1 1 1 1">
-        <RequiredPlugin name="Sofa.Component.Constraint.Projective"/> <!-- Needed to use components [PartialFixedProjectiveConstraint] -->
-        <RequiredPlugin name="Sofa.Component.LinearSolver.Iterative"/> <!-- Needed to use components [CGLinearSolver] -->
-        <RequiredPlugin name="Sofa.Component.Mapping.NonLinear"/> <!-- Needed to use components [RigidMapping] -->
-        <RequiredPlugin name="Sofa.Component.Mass"/> <!-- Needed to use components [UniformMass] -->
-        <RequiredPlugin name="Sofa.Component.MechanicalLoad"/> <!-- Needed to use components [ConstantForceField] -->
-        <RequiredPlugin name="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [StaticSolver] -->
-        <RequiredPlugin name="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
-        <RequiredPlugin name="Sofa.Component.Visual"/> <!-- Needed to use components [VisualStyle] -->
-        <VisualStyle displayFlags="showBehaviorModels showMapping" />
-        <DefaultAnimationLoop/>
-    
-        <Node name="parent node with independent DOFs">
-            <!-- 		<EulerImplicitSolver name="ODE solver" printLog="0"  verbose="0" rayleighStiffness="0.0" rayleighMass="0"/> -->
-            <StaticSolver name="ODE solver" printLog="0" />
-            <CGLinearSolver template="GraphScattered" name="linear solver used by implicit ODE solvers" printLog="0" iterations="25" tolerance="1e-5" threshold="1e-5"/>
-            <MechanicalObject template="Rigid2" />
-            <PartialFixedProjectiveConstraint fixedDirections="1 1 0" />
-            <UniformMass template="Rigid2" name="mass" totalMass="1.0"/>
-            <Node name="child node with DOFs mapped from the parent">
-                <MechanicalObject template="Vec2" name="endpoint coordinates" position="1 0 "  />
-                <RigidMapping template="" name="angle-coord mapping" input="@.." output="@." index="0" />
-                <ConstantForceField forces="1 -1" indices="0" />
-            </Node>
-        </Node>
-    </Node>
-
-    ```
-
-=== "Python"
-
-    ```python
-    def createScene(root_node):
-
-       root = root_node.addChild('Root', gravity="0 0 0", time="0", animate="0", bbox="-1 -1 -1 1 1 1")
-
-       root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Projective")
-       root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Iterative")
-       root.addObject('RequiredPlugin', name="Sofa.Component.Mapping.NonLinear")
-       root.addObject('RequiredPlugin', name="Sofa.Component.Mass")
-       root.addObject('RequiredPlugin', name="Sofa.Component.MechanicalLoad")
-       root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
-       root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
-       root.addObject('RequiredPlugin', name="Sofa.Component.Visual")
-       root.addObject('VisualStyle', displayFlags="showBehaviorModels showMapping")
-       root.addObject('DefaultAnimationLoop', )
-
-       parent_node_with_independent__do_fs = Root.addChild('parent node with independent DOFs')
-
-       parent_node_with_independent__do_fs.addObject('StaticSolver', name="ODE solver", printLog="0")
-       parent_node_with_independent__do_fs.addObject('CGLinearSolver', template="GraphScattered", name="linear solver used by implicit ODE solvers", printLog="0", iterations="25", tolerance="1e-5", threshold="1e-5")
-       parent_node_with_independent__do_fs.addObject('MechanicalObject', template="Rigid2")
-       parent_node_with_independent__do_fs.addObject('PartialFixedProjectiveConstraint', fixedDirections="1 1 0")
-       parent_node_with_independent__do_fs.addObject('UniformMass', template="Rigid2", name="mass", totalMass="1.0")
-
-       child_node_with__do_fs_mapped_from_the_parent = parent node with independent DOFs.addChild('child node with DOFs mapped from the parent')
-
-       child_node_with__do_fs_mapped_from_the_parent.addObject('MechanicalObject', template="Vec2", name="endpoint coordinates", position="1 0 ")
-       child_node_with__do_fs_mapped_from_the_parent.addObject('RigidMapping', template="", name="angle-coord mapping", input="@..", output="@.", index="0")
-       child_node_with__do_fs_mapped_from_the_parent.addObject('ConstantForceField', forces="1 -1", indices="0")
-    ```
-
 RigidMapping.scn
 
 === "XML"
@@ -903,5 +835,73 @@ RigidMapping.scn
        surf2.addObject('MechanicalObject', src="@loader")
        surf2.addObject('TriangleCollisionModel', )
        surf2.addObject('RigidMapping', )
+    ```
+
+RigidMapping2d-basic.scn
+
+=== "XML"
+
+    ```xml
+    <?xml version="1.0" ?>
+    <Node name="Root" gravity="0 0 0" time="0" animate="0" bbox="-1 -1 -1 1 1 1">
+        <RequiredPlugin name="Sofa.Component.Constraint.Projective"/> <!-- Needed to use components [PartialFixedProjectiveConstraint] -->
+        <RequiredPlugin name="Sofa.Component.LinearSolver.Iterative"/> <!-- Needed to use components [CGLinearSolver] -->
+        <RequiredPlugin name="Sofa.Component.Mapping.NonLinear"/> <!-- Needed to use components [RigidMapping] -->
+        <RequiredPlugin name="Sofa.Component.Mass"/> <!-- Needed to use components [UniformMass] -->
+        <RequiredPlugin name="Sofa.Component.MechanicalLoad"/> <!-- Needed to use components [ConstantForceField] -->
+        <RequiredPlugin name="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [StaticSolver] -->
+        <RequiredPlugin name="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
+        <RequiredPlugin name="Sofa.Component.Visual"/> <!-- Needed to use components [VisualStyle] -->
+        <VisualStyle displayFlags="showBehaviorModels showMapping" />
+        <DefaultAnimationLoop/>
+    
+        <Node name="parent node with independent DOFs">
+            <!-- 		<EulerImplicitSolver name="ODE solver" printLog="0"  verbose="0" rayleighStiffness="0.0" rayleighMass="0"/> -->
+            <StaticSolver name="ODE solver" printLog="0" />
+            <CGLinearSolver template="GraphScattered" name="linear solver used by implicit ODE solvers" printLog="0" iterations="25" tolerance="1e-5" threshold="1e-5"/>
+            <MechanicalObject template="Rigid2" />
+            <PartialFixedProjectiveConstraint fixedDirections="1 1 0" />
+            <UniformMass template="Rigid2" name="mass" totalMass="1.0"/>
+            <Node name="child node with DOFs mapped from the parent">
+                <MechanicalObject template="Vec2" name="endpoint coordinates" position="1 0 "  />
+                <RigidMapping template="" name="angle-coord mapping" input="@.." output="@." index="0" />
+                <ConstantForceField forces="1 -1" indices="0" />
+            </Node>
+        </Node>
+    </Node>
+
+    ```
+
+=== "Python"
+
+    ```python
+    def createScene(root_node):
+
+       root = root_node.addChild('Root', gravity="0 0 0", time="0", animate="0", bbox="-1 -1 -1 1 1 1")
+
+       root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Projective")
+       root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Iterative")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Mapping.NonLinear")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Mass")
+       root.addObject('RequiredPlugin', name="Sofa.Component.MechanicalLoad")
+       root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Visual")
+       root.addObject('VisualStyle', displayFlags="showBehaviorModels showMapping")
+       root.addObject('DefaultAnimationLoop', )
+
+       parent_node_with_independent__do_fs = Root.addChild('parent node with independent DOFs')
+
+       parent_node_with_independent__do_fs.addObject('StaticSolver', name="ODE solver", printLog="0")
+       parent_node_with_independent__do_fs.addObject('CGLinearSolver', template="GraphScattered", name="linear solver used by implicit ODE solvers", printLog="0", iterations="25", tolerance="1e-5", threshold="1e-5")
+       parent_node_with_independent__do_fs.addObject('MechanicalObject', template="Rigid2")
+       parent_node_with_independent__do_fs.addObject('PartialFixedProjectiveConstraint', fixedDirections="1 1 0")
+       parent_node_with_independent__do_fs.addObject('UniformMass', template="Rigid2", name="mass", totalMass="1.0")
+
+       child_node_with__do_fs_mapped_from_the_parent = parent node with independent DOFs.addChild('child node with DOFs mapped from the parent')
+
+       child_node_with__do_fs_mapped_from_the_parent.addObject('MechanicalObject', template="Vec2", name="endpoint coordinates", position="1 0 ")
+       child_node_with__do_fs_mapped_from_the_parent.addObject('RigidMapping', template="", name="angle-coord mapping", input="@..", output="@.", index="0")
+       child_node_with__do_fs_mapped_from_the_parent.addObject('ConstantForceField', forces="1 -1", indices="0")
     ```
 

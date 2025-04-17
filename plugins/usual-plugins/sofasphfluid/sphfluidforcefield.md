@@ -172,72 +172,6 @@ If true will store additionnal information on the grid to check neighbors and dr
 
 ## Examples 
 
-SPHFluidForceFieldCUDA.scn
-
-=== "XML"
-
-    ```xml
-    <Node dt="0.005" showBehaviorModels="1" showCollisionModels="1" showMappings="0" showForceFields="1" gravity="0 -10 0" >
-        <RequiredPlugin name="SofaOpenglVisual"/>
-        <RequiredPlugin name="CUDA computing" pluginName="SofaCUDA" />
-    	<Node>
-    		<RungeKutta4Solver/>
-    		<!--<CentralDifferenceSolver/>-->
-            <!--<EulerImplicitSolver rayleighStiffness="0.1" rayleighMass="0.1" />
-            <CGLinearSolver iterations="25" tolerance="1e-5" threshold="1e-5"/>-->
-    		<MechanicalObject name="MModel" template="CudaVec3f" />
-    		<!-- A topology is used here just to set initial particles positions. It is a bad idea because this object has no real topology, but it works... -->
-    		<RegularGridTopology
-    			nx="5" ny="40" nz="5"
-    			xmin="-1.5" xmax="0"
-    			ymin="-3" ymax="12"
-    			zmin="-1.5" zmax="0"
-    		/>
-    		<UniformMass name="M1" vertexMass="1" />
-    		<SpatialGridContainer cellWidth="1.5" />
-    		<SPHFluidForceField radius="0.75" density="15" viscosity="10" pressure="1000" surfaceTension="-1000" />
-    		<!-- The following force fields handle collision with walls and an inclined floor -->
-    		<PlaneForceField normal="1 0 0" d="-4"/>
-    		<PlaneForceField normal="-1 0 0" d="-4"/>
-    		<PlaneForceField normal="0.5 1 0.1" d="-4"/>
-    		<PlaneForceField normal="0 0 1" d="-4"/>
-    		<PlaneForceField normal="0 0 -1" d="-4"/>
-    <!--
-    		<Node id="Visual">
-    			<OglModel name="VModel" color="blue" useVBO="false"/>
-    			<SPHFluidSurfaceMapping name="MarchingCube" input="@../MModel" output="@VModel" isoValue="0.5" radius="0.75" step="0.25"/>
-    		</Node>
-    -->
-    	</Node>
-    </Node>
-
-    ```
-
-=== "Python"
-
-    ```python
-    def createScene(root_node):
-
-       node = root_node.addChild('node', dt="0.005", showBehaviorModels="1", showCollisionModels="1", showMappings="0", showForceFields="1", gravity="0 -10 0")
-
-       node.addObject('RequiredPlugin', name="SofaOpenglVisual")
-       node.addObject('RequiredPlugin', name="CUDA computing", pluginName="SofaCUDA")
-
-       node = node.addChild('node')
-
-       node.addObject('RungeKutta4Solver', )
-       node.addObject('MechanicalObject', name="MModel", template="CudaVec3f")
-       node.addObject('RegularGridTopology', nx="5", ny="40", nz="5", xmin="-1.5", xmax="0", ymin="-3", ymax="12", zmin="-1.5", zmax="0")
-       node.addObject('UniformMass', name="M1", vertexMass="1")
-       node.addObject('SpatialGridContainer', cellWidth="1.5")
-       node.addObject('SPHFluidForceField', radius="0.75", density="15", viscosity="10", pressure="1000", surfaceTension="-1000")
-       node.addObject('PlaneForceField', normal="1 0 0", d="-4")
-       node.addObject('PlaneForceField', normal="-1 0 0", d="-4")
-       node.addObject('PlaneForceField', normal="0.5 1 0.1", d="-4")
-       node.addObject('PlaneForceField', normal="0 0 1", d="-4")
-       node.addObject('PlaneForceField', normal="0 0 -1", d="-4")
-    ```
-
 SPHFluidForceField_benchmarks.scn
 
 === "XML"
@@ -444,5 +378,71 @@ SPHFluidForceField.scn
        node.addObject('PlaneForceField', normal="0.5 1 0.1", d="-4", showPlane="1")
        node.addObject('PlaneForceField', normal="0 0 1", d="-4", showPlane="1")
        node.addObject('PlaneForceField', normal="0 0 -1", d="-4", showPlane="1")
+    ```
+
+SPHFluidForceFieldCUDA.scn
+
+=== "XML"
+
+    ```xml
+    <Node dt="0.005" showBehaviorModels="1" showCollisionModels="1" showMappings="0" showForceFields="1" gravity="0 -10 0" >
+        <RequiredPlugin name="SofaOpenglVisual"/>
+        <RequiredPlugin name="CUDA computing" pluginName="SofaCUDA" />
+    	<Node>
+    		<RungeKutta4Solver/>
+    		<!--<CentralDifferenceSolver/>-->
+            <!--<EulerImplicitSolver rayleighStiffness="0.1" rayleighMass="0.1" />
+            <CGLinearSolver iterations="25" tolerance="1e-5" threshold="1e-5"/>-->
+    		<MechanicalObject name="MModel" template="CudaVec3f" />
+    		<!-- A topology is used here just to set initial particles positions. It is a bad idea because this object has no real topology, but it works... -->
+    		<RegularGridTopology
+    			nx="5" ny="40" nz="5"
+    			xmin="-1.5" xmax="0"
+    			ymin="-3" ymax="12"
+    			zmin="-1.5" zmax="0"
+    		/>
+    		<UniformMass name="M1" vertexMass="1" />
+    		<SpatialGridContainer cellWidth="1.5" />
+    		<SPHFluidForceField radius="0.75" density="15" viscosity="10" pressure="1000" surfaceTension="-1000" />
+    		<!-- The following force fields handle collision with walls and an inclined floor -->
+    		<PlaneForceField normal="1 0 0" d="-4"/>
+    		<PlaneForceField normal="-1 0 0" d="-4"/>
+    		<PlaneForceField normal="0.5 1 0.1" d="-4"/>
+    		<PlaneForceField normal="0 0 1" d="-4"/>
+    		<PlaneForceField normal="0 0 -1" d="-4"/>
+    <!--
+    		<Node id="Visual">
+    			<OglModel name="VModel" color="blue" useVBO="false"/>
+    			<SPHFluidSurfaceMapping name="MarchingCube" input="@../MModel" output="@VModel" isoValue="0.5" radius="0.75" step="0.25"/>
+    		</Node>
+    -->
+    	</Node>
+    </Node>
+
+    ```
+
+=== "Python"
+
+    ```python
+    def createScene(root_node):
+
+       node = root_node.addChild('node', dt="0.005", showBehaviorModels="1", showCollisionModels="1", showMappings="0", showForceFields="1", gravity="0 -10 0")
+
+       node.addObject('RequiredPlugin', name="SofaOpenglVisual")
+       node.addObject('RequiredPlugin', name="CUDA computing", pluginName="SofaCUDA")
+
+       node = node.addChild('node')
+
+       node.addObject('RungeKutta4Solver', )
+       node.addObject('MechanicalObject', name="MModel", template="CudaVec3f")
+       node.addObject('RegularGridTopology', nx="5", ny="40", nz="5", xmin="-1.5", xmax="0", ymin="-3", ymax="12", zmin="-1.5", zmax="0")
+       node.addObject('UniformMass', name="M1", vertexMass="1")
+       node.addObject('SpatialGridContainer', cellWidth="1.5")
+       node.addObject('SPHFluidForceField', radius="0.75", density="15", viscosity="10", pressure="1000", surfaceTension="-1000")
+       node.addObject('PlaneForceField', normal="1 0 0", d="-4")
+       node.addObject('PlaneForceField', normal="-1 0 0", d="-4")
+       node.addObject('PlaneForceField', normal="0.5 1 0.1", d="-4")
+       node.addObject('PlaneForceField', normal="0 0 1", d="-4")
+       node.addObject('PlaneForceField', normal="0 0 -1", d="-4")
     ```
 
