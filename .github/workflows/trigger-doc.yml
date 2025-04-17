@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       script-branch:
-        description: 'Specify the branch on which run the DocGenerateAndPublish acvtion'
+        description: 'Specify the branch on which the DocGenerateAndPublish action should run'
         default: 'gen'
         type: string
   schedule:
