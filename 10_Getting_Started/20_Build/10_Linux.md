@@ -232,7 +232,7 @@ git clone -b master https://github.com/sofa-framework/sofa.git sofa/src
    - activate or deactivate functionalities: see SOFA_XXX variables
 
    /// note | What is there to activate ?
-   [Here](../activate-plugins/) is an exaustive list of what plugin can be activated for an in-tree compilation.
+   [Here](../activate-plugins/) is an exhaustive list of plugins that can be activated for an in-tree compilation.
    ///
    
    Do not forget to **Configure** again to check if your changes are valid.
