@@ -62,6 +62,8 @@ markdown_extensions:
       alternate_style: true
   - pymdownx.arithmatex:
       generic: true
+
+plugins: 
   - pymdownx.blocks
 
 extra_javascript:
