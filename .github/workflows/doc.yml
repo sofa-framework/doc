@@ -70,12 +70,17 @@ jobs:
           python ${{ github.workspace }}/SofaDocGenerator/script/pipeline.py ${{ github.workspace }}/SofaDocGenerator/doc ${{ github.workspace }}/sofa/share/sofa/examples ${{ github.workspace }}/sofa/plugins
           
           python ${{ github.workspace }}/SofaDocGenerator/script/title_metadata.py ${{ github.workspace }}/SofaDocGenerator/doc
-          python ${{ github.workspace }}/SofaDocGenerator/script/generate_nav.py ${{ github.workspace }}/SofaDocGenerator/mkdocs/mkdocs.yml ${{ github.workspace }}/SofaDocGenerator/doc
           
+          tree
+
           echo "Starting the export of plugin lists"
           # Export plugin lists into the merged doc
           python ${{ github.workspace }}/SofaDocGenerator/script/PluginLists/exportInTreePlugins.py ${{ github.workspace }}/sofa_src >> ${{ github.workspace }}/SofaDocGenerator/doc/10_Getting_Started/20_Build/50_Activate_Plugins.md
           python ${{ github.workspace }}/SofaDocGenerator/script/PluginLists/exportSupportedPlugins.py ${{ github.workspace }}/sofa_src >> ${{ github.workspace }}/SofaDocGenerator/doc/35_Plugins/45_Suported_Plugins_List.md
+
+          echo "Launching mkdoc"
+          python ${{ github.workspace }}/SofaDocGenerator/script/generate_nav.py ${{ github.workspace }}/SofaDocGenerator/mkdocs/mkdocs.yml ${{ github.workspace }}/SofaDocGenerator/doc
+          
 
       - name: Save merged doc
         uses: actions/upload-artifact@v4
