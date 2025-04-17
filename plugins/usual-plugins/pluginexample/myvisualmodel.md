@@ -12,7 +12,7 @@ Templates:
 
 __Target__: PluginExample
 
-__namespace__: sofa::component::visual
+__namespace__: pluginexample
 
 __parents__:
 

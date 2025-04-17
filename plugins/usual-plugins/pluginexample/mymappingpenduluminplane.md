@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # MyMappingPendulumInPlane
 
-Mapping from an angle to a point in 2D
+Mapping from an angle to a point in 2D.
 
 
 ## Vec1d,Vec2d
@@ -12,7 +12,7 @@ Templates:
 
 __Target__: PluginExample
 
-__namespace__: sofa::component::mapping
+__namespace__: pluginexample
 
 __parents__:
 
@@ -137,7 +137,7 @@ Templates:
 
 __Target__: PluginExample
 
-__namespace__: sofa::component::mapping
+__namespace__: pluginexample
 
 __parents__:
 

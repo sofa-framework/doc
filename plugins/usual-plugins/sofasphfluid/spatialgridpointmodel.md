@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # SpatialGridPointModel
 
-Collision model which represents a set of points, spatially grouped using a SpatialGridContainer
+Collision model which represents a set of points, spatially grouped using a SpatialGridContainer.
 
 
 __Target__: SofaSphFluid

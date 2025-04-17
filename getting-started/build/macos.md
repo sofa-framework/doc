@@ -199,6 +199,12 @@ git clone -b master https://github.com/sofa-framework/sofa.git sofa/src
    
    Do not forget to **Configure** again to check if your changes are valid.
 
+   /// note | What is there to activate ?
+   [Here](../activate-plugins/) is an exhaustive list of plugins that can be activated for an in-tree compilation.
+   ///
+
+
+
 7. When you are ready, run **Generate**.
 
 

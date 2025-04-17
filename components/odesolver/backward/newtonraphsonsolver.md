@@ -186,7 +186,7 @@ Threshold for the absolute change in root estimate criterion. The Newton iterati
 		<td>
 Maximum number of iterations of the line search method if it has not converged.
 		</td>
-		<td>5</td>
+		<td>1</td>
 	</tr>
 	<tr>
 		<td>lineSearchCoefficient</td>

@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # SPHFluidSurfaceMapping
 
-SPHFluidSurfaceMappingClass
+Mapping the surface of a Smooth Particle Hydrodynamics model.
 
 
 ## Vec3d,Vec3d

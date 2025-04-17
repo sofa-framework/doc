@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # ParticlesRepulsionForceField
 
-ForceField using SpatialGridContainer to compute repulsion forces in a set of spheres
+ForceField using SpatialGridContainer to compute repulsion forces in a set of spheres.
 
 
 ## Vec2d

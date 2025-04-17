@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # OglFluidModel
 
-Particle model for OpenGL display, using glsl
+Particle model for OpenGL display, using glsl.
 
 
 ## Vec3d

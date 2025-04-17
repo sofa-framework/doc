@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # SPHFluidForceField
 
-Smooth Particle Hydrodynamics
+Smooth Particle Hydrodynamics.
 
 
 ## Vec3d

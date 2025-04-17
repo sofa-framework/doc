@@ -6,7 +6,7 @@ Dummy component with a custom widget.
 
 __Target__: PluginExample
 
-__namespace__: sofa::component::behaviormodel
+__namespace__: pluginexample
 
 __parents__:
 

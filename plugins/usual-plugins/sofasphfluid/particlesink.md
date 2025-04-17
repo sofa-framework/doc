@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # ParticleSink
 
-Parametrable particle generator
+Parametrable particle generator.
 
 
 ## Vec2d

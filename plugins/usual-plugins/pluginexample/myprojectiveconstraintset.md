@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # MyProjectiveConstraintSet
 
-just an example of templated component
+Just an example of templated component.
 
 
 ## Rigid3d
@@ -12,7 +12,7 @@ Templates:
 
 __Target__: PluginExample
 
-__namespace__: sofa::component::projectiveconstraintset
+__namespace__: pluginexample
 
 __parents__:
 
@@ -110,7 +110,7 @@ Templates:
 
 __Target__: PluginExample
 
-__namespace__: sofa::component::projectiveconstraintset
+__namespace__: pluginexample
 
 __parents__:
 
@@ -208,7 +208,7 @@ Templates:
 
 __Target__: PluginExample
 
-__namespace__: sofa::component::projectiveconstraintset
+__namespace__: pluginexample
 
 __parents__:
 
