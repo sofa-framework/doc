@@ -28,8 +28,6 @@ descriptionFolder=f"{script_path.parent}/AdvancedDescriptions/"
 
 possibleTypes=["application","folder","plugin"]
 
-print(descriptionFolder)
-
 allProjects = []
 def saveProject(proj):
     allProjects.append(proj)
