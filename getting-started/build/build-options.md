@@ -62,12 +62,7 @@ tool. Tips:
     default configuration, or choose a new generator, select *File* &gt;
     *Delete Cache*.
 
-\[caption id="attachment\_1054" align="aligncenter"
-width="543"\][![Cmake-gui typical
-view](https://www.sofa-framework.org/wp-content/uploads/2014/11/CmakeExampleWindowMac1.png){.size-full
-.wp-image-1054 width="543"
-height="500"}](https://www.sofa-framework.org/wp-content/uploads/2014/11/CmakeExampleWindowMac1.png)
-cmake-gui typical view (on Mac OS X Yosemite)\[/caption\]
+![Cmake-gui typical view](https://www.sofa-framework.org/wp-content/uploads/2014/11/CmakeExampleWindowMac1.png)
 
 ### Command-line configuration
 
