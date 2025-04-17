@@ -1,8 +1,11 @@
 from utils import *
 import os
 import sys
+from pathlib import Path
 
 SOFA_SRC=sys.argv[1]
+
+script_path = Path( __file__ ).absolute()
 
 ## Find all meaningful CMakeLists in applications
 ## This automated search is looking first in the CMakeLists at the root of {SOFA_SRC}/applications/ and for each 'add_subdirectory' it finds, it look inside of it the same way in a recursive way.
@@ -21,7 +24,7 @@ filenames=[f"{SOFA_SRC}/applications/CMakeLists.txt"]
 recFindCMakeLists(filenames[0],filenames)
 
 presetFilename=f"{SOFA_SRC}/CMakePresets.json"
-descriptionFolder=f"{SOFA_SRC}/scripts/subProjectLister/AdvancedDescriptions/"
+descriptionFolder=f"{script_path}/AdvancedDescriptions/"
 
 possibleTypes=["application","folder","plugin"]
 
