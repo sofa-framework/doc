@@ -192,12 +192,8 @@ git clone -b master https://github.com/sofa-framework/sofa.git sofa/src
    - if your Mac has a M1 processor: set CMAKE_OSX_ARCHITECTURES to "arm64"
    - activate or deactivate plugins: see PLUGIN_XXX variables
    - activate or deactivate functionalities: see SOFA_XXX variables
-   
    Do not forget to **Configure** again to check if your changes are valid.
-
    **_NOTE_**: here is an [exhaustive list of plugins](../activate-plugins/) that can be activated for an in-tree compilation.
-
-
 
 7. When you are ready, run **Generate**.
 
