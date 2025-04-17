@@ -1,9 +1,9 @@
 # Activable plugins for in-tree compilation
 
 Multiple extensions can be activated when building the project. They fall into three categories:
-1. Applications: extension that offers a new feature outside the SOFA API (e.g. a main for launching SOFA)
-2. Plugins: extension that enriches the SOFA API by adding new components or providing more support for external libraries (e.g. new constitutive laws, alternative GUIs)
-3. Directories: extension that contains multiple CMake projects that cannot be described by one of the above type
+1. Applications: extensions that offer SOFA-based executable applications (e.g. a main for launching SOFA)
+2. Plugins: extensions that enriche the SOFA API by adding new components or providing more support for external libraries (e.g. new constitutive laws, alternative GUIs)
+3. Directories: extensions that contain multiple CMake projects that cannot be described by only one of the above type
 Moreover, these projects are either present in the SOFA sources or they need to be fetched (meaning that they have their own external repository).
 
 This page aims at summarizing those extensions in tables containing:
