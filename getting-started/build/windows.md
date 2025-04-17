@@ -145,7 +145,6 @@ git clone -b master https://github.com/sofa-framework/sofa.git sofa/src
 
    - If you want use **Visual Studio IDE**, select "Visual Studio 15 2017 Win64" or "Visual Studio 16 2019 Win64" (or without the "Win64" if you are on Windows 32-bit).
    - If you want to use **another IDE like QtCreator**, select "CodeBlocks - Ninja" (recommended, needs [Ninja](#optional-ninja-build-system)) or "CodeBlocks - NMake".
-   
    Keep "Use default native compilers" and press "Finish".
 
 7. Fix eventual dependency errors by following CMake messages (see Troubleshooting section below). Do not worry about warnings.
@@ -157,9 +156,7 @@ git clone -b master https://github.com/sofa-framework/sofa.git sofa/src
    - choose the build type by setting CMAKE_BUILD_TYPE to "Release" or "RelWithDebInfo" (recommended) or "Debug"
    - activate or deactivate plugins: see PLUGIN_XXX variables
    - activate or deactivate features: see SOFA_XXX variables
-
    Do not forget to **Configure** again to check if your changes are valid.
-
    **_NOTE_**: here is an [exhaustive list of plugins](../activate-plugins/) that can be activated for an in-tree compilation.
 
 9. When you are ready, run **Generate**. In the build directory, this will create a Visual Studio project (.sln) or a Makefile depending on the generator you chose at step 4.

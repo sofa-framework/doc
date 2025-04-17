@@ -234,12 +234,11 @@ git clone -b master https://github.com/sofa-framework/sofa.git sofa/src
    - choose the build type by setting CMAKE_BUILD_TYPE to "Release" or "RelWithDebInfo" (recommended) or "Debug"   
    - activate or deactivate plugins: see PLUGIN_XXX variables
    - activate or deactivate functionalities: see SOFA_XXX variables
-
-   **_NOTE_**: here is an [exhaustive list of plugins](../activate-plugins/) that can be activated for an in-tree compilation.
-   
    Do not forget to **Configure** again to check if your changes are valid.
+   **_NOTE_**: here is an [exhaustive list of plugins](../activate-plugins/) that can be activated for an in-tree compilation.
 
 9. When you are ready, run **Generate**.
+
 
 
 
