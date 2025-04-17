@@ -24,9 +24,11 @@ filenames=[f"{SOFA_SRC}/applications/CMakeLists.txt"]
 recFindCMakeLists(filenames[0],filenames)
 
 presetFilename=f"{SOFA_SRC}/CMakePresets.json"
-descriptionFolder=f"{script_path}/AdvancedDescriptions/"
+descriptionFolder=f"{script_path.parent}/AdvancedDescriptions/"
 
 possibleTypes=["application","folder","plugin"]
+
+print(descriptionFolder)
 
 allProjects = []
 def saveProject(proj):
