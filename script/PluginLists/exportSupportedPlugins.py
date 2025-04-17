@@ -4,6 +4,8 @@ import sys
 
 SOFA_SRC=sys.argv[1]
 
+script_path = Path( __file__ ).absolute()
+
 ## Find all meaningful CMakeLists in applications
 ## This automated search is looking first in the CMakeLists at the root of {SOFA_SRC}/applications/ and for each 'add_subdirectory' it finds, it look inside of it the same way in a recursive way.
 ## An easier way would have been to look for all CMakeLists in applications, but this might be wrong because some in tree plugins might also use the macros.
