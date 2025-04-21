@@ -6,7 +6,7 @@ Driver allowing interfacing with Geomagic haptic devices.
 
 __Target__: Geomagic
 
-__namespace__: sofa::component::controller
+__namespace__: geomagic
 
 __parents__:
 

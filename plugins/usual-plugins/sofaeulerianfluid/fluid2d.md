@@ -1,12 +1,12 @@
 <!-- generate_doc -->
 # Fluid2D
 
-Eulerian 2D fluid
+Eulerian 2D fluid.
 
 
 __Target__: SofaEulerianFluid
 
-__namespace__: sofa::component::behaviormodel::eulerianfluid
+__namespace__: sofaeulerianfluid
 
 __parents__:
 

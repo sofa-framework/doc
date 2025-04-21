@@ -1,12 +1,12 @@
 <!-- generate_doc -->
 # GeomagicEmulator
 
-Driver allowing interfacing with Geomagic haptic devices.
+Driver emulating a Geomagic haptic device.
 
 
 __Target__: Geomagic
 
-__namespace__: sofa::component::controller
+__namespace__: geomagic
 
 __parents__:
 
