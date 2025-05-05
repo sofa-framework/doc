@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # FillReducingOrdering
 
-Reorder the degrees of freedom to reduce fill-in
+Reorder the degrees of freedom to reduce fill-in.
 
 
 ## Vec3d

@@ -6,7 +6,7 @@ Implements a handler that controls the values of the articulations of an articul
 
 __Target__: ArticulatedSystemPlugin
 
-__namespace__: sofa::component::controller
+__namespace__: articulatedsystemplugin
 
 __parents__:
 

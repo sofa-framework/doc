@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # ImplicitSurfaceMapping
 
-Compute an iso-surface from a set of particles
+Compute an iso-surface from a set of particles.
 
 
 ## Vec3d,Vec3d

@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # StarShapedField
 
-A spherical implicit field.
+A star-shape implicit field.
 
 
 __Target__: SofaImplicitField

@@ -121,7 +121,7 @@ Finally, a StiffSpringForceField is added to enforce each articulation get back 
 <!-- automatically generated doc START -->
 <!-- generate_doc -->
 
-Mapping between a set of 6D DOF's and a set of angles (µ) using an articulated hierarchy container. 
+Mapping between a set of 6D DOF's and a set of angles (µ) using an articulated hierarchy container.
 
 
 ## Vec1d,Rigid3d,Rigid3d
@@ -132,7 +132,7 @@ Templates:
 
 __Target__: ArticulatedSystemPlugin
 
-__namespace__: sofa::component::mapping
+__namespace__: articulatedsystemplugin
 
 __parents__:
 

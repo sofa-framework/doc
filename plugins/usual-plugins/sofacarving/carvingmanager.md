@@ -6,7 +6,7 @@ Manager handling carving operations between a tool and an object.
 
 __Target__: SofaCarving
 
-__namespace__: sofa::component::collision
+__namespace__: sofacarving
 
 __parents__:
 

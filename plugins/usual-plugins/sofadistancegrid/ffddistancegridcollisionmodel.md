@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # FFDDistanceGridCollisionModel
 
-Grid-based deformable distance field
+Grid-based deformable distance field.
 
 
 __Target__: SofaDistanceGrid

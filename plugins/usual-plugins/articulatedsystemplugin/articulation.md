@@ -6,7 +6,7 @@ This class defines an articulation by an axis, an orientation and an index.
 
 __Target__: ArticulatedSystemPlugin
 
-__namespace__: sofa::component::container
+__namespace__: articulatedsystemplugin
 
 __parents__:
 

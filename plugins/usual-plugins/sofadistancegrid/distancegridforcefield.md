@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # DistanceGridForceField
 
-Force applied by a distancegrid toward the exterior, the interior, or the surface
+Force applied by a distancegrid toward the exterior, the interior, or the surface.
 
 
 ## Vec3d

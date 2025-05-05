@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # BottleField
 
-A spherical implicit field.
+A bottle implicit field.
 
 
 __Target__: SofaImplicitField

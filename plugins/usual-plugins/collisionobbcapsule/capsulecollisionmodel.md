@@ -1,8 +1,8 @@
 <!-- generate_doc -->
 # CapsuleCollisionModel
 
-Collision model which represents a set of Capsules
-Collision model which represents a set of rigid capsules
+Collision model which represents a set of Capsules.
+Collision model which represents a set of rigid capsules.
 
 
 Templates:

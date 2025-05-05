@@ -1,12 +1,12 @@
 <!-- generate_doc -->
 # ArticulatedHierarchyContainer
 
-This class allow to store and retrieve all the articulation centers from an articulated rigid object
+This class allow to store and retrieve all the articulation centers from an articulated rigid object.
 
 
 __Target__: ArticulatedSystemPlugin
 
-__namespace__: sofa::component::container
+__namespace__: articulatedsystemplugin
 
 __parents__:
 

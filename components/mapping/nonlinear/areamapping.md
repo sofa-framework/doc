@@ -252,8 +252,8 @@ AreaMapping.scn
             <RequiredPlugin name="Sofa.Component.Topology.Container.Dynamic"/> <!-- Needed to use components [TriangleSetTopologyContainer] -->
             <RequiredPlugin name="Sofa.Component.Topology.Container.Grid"/> <!-- Needed to use components [RegularGridTopology] -->
             <RequiredPlugin name="Sofa.Component.Visual"/> <!-- Needed to use components [VisualStyle] -->
-            <RequiredPlugin name="Sofa.GL.Component.Rendering3D"/> <!-- Needed to use components [OglModel] -->
-            <RequiredPlugin name="Sofa.GL.Component.Rendering2D"/> <!-- Needed to use components [OglColorMap] --> 
+            <RequiredPlugin name="Sofa.GL.Component.Rendering2D"/> <!-- Needed to use components [OglColorMap] -->
+            <RequiredPlugin name="Sofa.GL.Component.Rendering3D"/> <!-- Needed to use components [DataDisplay OglModel] -->
         </Node>
     
         <FreeMotionAnimationLoop solveVelocityConstraintFirst="true" computeBoundingBox="false" parallelODESolving="true"/>
@@ -343,8 +343,8 @@ AreaMapping.scn
        plugins.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Dynamic")
        plugins.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Grid")
        plugins.addObject('RequiredPlugin', name="Sofa.Component.Visual")
-       plugins.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
        plugins.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering2D")
+       plugins.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
 
        root.addObject('FreeMotionAnimationLoop', solveVelocityConstraintFirst="true", computeBoundingBox="false", parallelODESolving="true")
        root.addObject('GenericConstraintSolver', tolerance="1e-9", maxIterations="1000")

@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # RigidDistanceGridCollisionModel
 
-Grid-based distance field
+Grid-based distance field.
 
 
 __Target__: SofaDistanceGrid

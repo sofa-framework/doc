@@ -6,7 +6,7 @@ Implements an user interaction handler that controls the values of the articulat
 
 __Target__: ArticulatedSystemPlugin
 
-__namespace__: sofa::component::controller
+__namespace__: articulatedsystemplugin
 
 __parents__:
 

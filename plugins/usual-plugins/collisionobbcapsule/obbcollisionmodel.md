@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # OBBCollisionModel
 
-Collision model which represents a set of OBBs
+Collision model which represents a set of OBBs.
 
 
 ## Rigid3d
