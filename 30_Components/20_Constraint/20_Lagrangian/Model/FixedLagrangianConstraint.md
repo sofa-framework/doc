@@ -12,7 +12,7 @@ $$
 
 where $q$ is the position and $q_0$ is the initial position.
 
-The constraint matrix $\mathbf{H}$ (derivative of the constraint law) corresponds to the identity matrix:
+The constraint matrix $\mathbf{H}$ (derivative of the constraint law) is then filled with blocks of the identity matrix (of the dimension of the number of degrees of freedom per point) under each considered fixed index. If `fixAll` is selected, then this Jacobian is the identity matrix. 
 
 $$
 \mathbf{H} = \mathbf{I} 
