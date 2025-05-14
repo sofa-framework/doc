@@ -10,36 +10,36 @@ CUDA Compilation
 To use CUDA in SOFA under Linux, you need to follow these steps:
 
 -   Get the required files from
-    [NVIDIA](https://developer.nvidia.com/cuda-downloads "http://www.nvidia.com/content/cuda/cuda-downloads.html") by specifying your operating system, distribution, architecture, version and desired installer type
--   Set the environment variables CUDA\_HOME to the location of cuda,
-    for example: export CUDA\_HOME="/usr/local/cuda"
--   Add cuda to your path: export PATH=\${CUDA\_HOME}/bin:\${PATH}
--   In CMake, turn on the **SOFA-PLUGIN\_SOFACUDA** option, and
+    [NVIDIA](https://developer.nvidia.com/cuda-downloads) by specifying your operating system, distribution, architecture, version and desired installer type
+-   Set the environment variables `CUDA_HOME` to the location of cuda,
+    for example: `export CUDA_HOME="/usr/local/cuda"`
+-   Add cuda to your path: `export PATH=\${CUDA_HOME}/bin:\${PATH}`
+-   In CMake, turn on the `PLUGIN_SOFACUDA` option, and
     reconfigure
     -   New options relating to Cuda will appear, some with the prefix
-        "SOFA-CUDA" and some with the prefix "CUDA". The SOFA-CUDA
+        "SOFACUDA_" and some with the prefix "CUDA". The SOFACUDA
         options include:
-        -   **SOFA-CUDA\_DOUBLE**: Option to activate double-precision
-            support in CUDA (requires GT200+ GPU and -arch sm\_13 flag)
-        -   **SOFA-CUDA\_PRECISE**: Option to use IEEE 754-compliant
+        -   **SOFACUDA_DOUBLE**: Option to activate double-precision
+            support in CUDA (requires GT200+ GPU and -arch sm_13 flag)
+        -   **SOFACUDA_PRECISE**: Option to use IEEE 754-compliant
             floating point operations
-        -   **SOFA-CUDA\_DOUBLE\_PRECISE**: Option to get
+        -   **SOFACUDA_DOUBLE_PRECISE**: Option to get
             double-precision for sqrt/div (requires compute
-            capability &gt;= 2 and CUDA\_VERSION &gt; 3.0) (with
-            SOFA\_GPU\_CUDA\_PRECISE and SOFA\_GPU\_CUDA\_DOUBLE you get
+            capability &gt;= 2 and CUDA_VERSION &gt; 3.0) (with
+            SOFA_GPU_CUDA_PRECISE and SOFA_GPU_CUDA_DOUBLE you get
             IEEE 754-compliant floating point operations for addition
             and multiplication only
-        -   **SOFA-CUDA\_CUBLAS**: Option to activate cublas support in
-            CUDA (requires SOFA\_GPU\_CUDA\_DOUBLE)
-        -   **SOFA-CUDA\_CUDPP**: Option to activate CUDPP
+        -   **SOFACUDA_CUBLAS**: Option to activate cublas support in
+            CUDA (requires SOFA_GPU_CUDA_DOUBLE)
+        -   **SOFACUDA_CUDPP**: Option to activate CUDPP
             (for RadixSort)
-        -   **SOFA-CUDA\_THRUST**: Option to activate THRUST
+        -   **SOFACUDA_THRUST**: Option to activate THRUST
             (for RadixSort) Note: THRUST is included in CUDA SDK 4.0+,
             it is recommended to use it if available
     -   If you want to use some of the more advanced features of Cuda,
-        such as atomics for floats, you should can set the
-        CUDA\_NVCC\_FLAGS option to --ptxas-options=-v -arch sm\_12,
-        changing sm\_12 to whatever Compute Capabilities you graphics
+        such as atomics for floats, you should set the
+        CUDA_NVCC_FLAGS option to --ptxas-options=-v -arch sm_12,
+        changing sm_12 to whatever Compute Capabilities your graphics
         card supports. See
         ([link](https://developer.nvidia.com/cuda-gpus)) for a table of
         Compute Capabilities.
@@ -62,33 +62,33 @@ To use CUDA in SOFA under Windows, you need to follow these steps:
     -   If the above path is not part of the Path variable, add a
         semicolon after the last path in the list, and add the
         above path.
--   In CMake, turn on the **PLUGIN\_SOFACUDA** option, and
+-   In CMake, turn on the `PLUGIN_SOFACUDA` option, and
     reconfigure
     -   New options relating to Cuda will appear, some with the prefix
-        "SOFA-CUDA" and some with the prefix "CUDA". The SOFA-CUDA
+        "SOFACUDA_" and some with the prefix "CUDA". The SOFACUDA
         options include:
-        -   **SOFA-CUDA\_DOUBLE**: Option to activate double-precision
-            support in CUDA (requires GT200+ GPU and -arch sm\_13 flag)
+        -   **SOFACUDA_DOUBLE**: Option to activate double-precision
+            support in CUDA (requires GT200+ GPU and -arch sm_13 flag)
         -   The appropriate Cuda driver for your system
-        -   **SOFA-CUDA\_PRECISE**: Option to use IEEE 754-compliant
+        -   **SOFACUDA_PRECISE**: Option to use IEEE 754-compliant
             floating point operations
-        -   **SOFA-CUDA\_DOUBLE\_PRECISE**: Option to get
+        -   **SOFACUDA_DOUBLE_PRECISE**: Option to get
             double-precision for sqrt/div (requires compute
-            capability &gt;= 2 and CUDA\_VERSION &gt; 3.0) (with
-            SOFA\_GPU\_CUDA\_PRECISE and SOFA\_GPU\_CUDA\_DOUBLE you get
+            capability &gt;= 2 and CUDA_VERSION &gt; 3.0) (with
+            SOFA_GPU_CUDA_PRECISE and SOFA_GPU_CUDA_DOUBLE you get
             IEEE 754-compliant floating point operations for addition
             and multiplication only
-        -   **SOFA-CUDA\_CUBLAS**: Option to activate cublas support in
-            CUDA (requires SOFA\_GPU\_CUDA\_DOUBLE)
-        -   **SOFA-CUDA\_CUDPP**: Option to activate CUDPP
+        -   **SOFACUDA_CUBLAS**: Option to activate cublas support in
+            CUDA (requires SOFA_GPU_CUDA_DOUBLE)
+        -   **SOFACUDA_CUDPP**: Option to activate CUDPP
             (for RadixSort)
-        -   **SOFA-CUDA\_THRUST**: Option to activate THRUST
+        -   **SOFACUDA_THRUST**: Option to activate THRUST
             (for RadixSort) Note: THRUST is included in CUDA SDK 4.0+,
             it is recommended to use it if available
     -   If you want to use some of the more advanced features of Cuda,
         such as atomics for floats, you can set the
-        CUDA\_NVCC\_FLAGS option to --ptxas-options=-v -arch sm\_12,
-        changing sm\_12 to whatever Compute Capabilities you graphics
+        CUDA_NVCC_FLAGS option to --ptxas-options=-v -arch sm_12,
+        changing sm_12 to whatever Compute Capabilities your graphics
         card supports. See
         ([link](https://developer.nvidia.com/cuda-gpus)) for a table of
         Compute Capabilities.
