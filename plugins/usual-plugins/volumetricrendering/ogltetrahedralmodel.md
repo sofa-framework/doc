@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # OglTetrahedralModel
 
-Tetrahedral model for OpenGL display
+Tetrahedral model for OpenGL display.
 
 
 ## Vec3d
@@ -12,7 +12,7 @@ Templates:
 
 __Target__: VolumetricRendering
 
-__namespace__: sofa::component::visualmodel
+__namespace__: volumetricrendering
 
 __parents__:
 

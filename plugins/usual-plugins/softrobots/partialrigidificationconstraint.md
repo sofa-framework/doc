@@ -16,7 +16,7 @@ __namespace__: softrobots::constraint
 
 __parents__:
 
-- Constraint
+- LagrangianConstraint
 
 ### Data
 

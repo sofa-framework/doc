@@ -35,7 +35,7 @@ __namespace__: sofa::component::constraint::lagrangian::model
 
 __parents__:
 
-- Constraint
+- LagrangianConstraint
 
 ### Data
 
@@ -154,7 +154,7 @@ __namespace__: sofa::component::constraint::lagrangian::model
 
 __parents__:
 
-- Constraint
+- LagrangianConstraint
 
 ### Data
 
@@ -273,7 +273,7 @@ __namespace__: sofa::component::constraint::lagrangian::model
 
 __parents__:
 
-- Constraint
+- LagrangianConstraint
 
 ### Data
 
@@ -392,7 +392,7 @@ __namespace__: sofa::component::constraint::lagrangian::model
 
 __parents__:
 
-- Constraint
+- LagrangianConstraint
 
 ### Data
 
@@ -511,7 +511,7 @@ __namespace__: sofa::component::constraint::lagrangian::model
 
 __parents__:
 
-- Constraint
+- LagrangianConstraint
 
 ### Data
 

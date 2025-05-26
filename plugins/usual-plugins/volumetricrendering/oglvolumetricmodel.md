@@ -1,12 +1,12 @@
 <!-- generate_doc -->
 # OglVolumetricModel
 
-Volumetric model for OpenGL display
+Volumetric model for OpenGL display.
 
 
 __Target__: VolumetricRendering
 
-__namespace__: sofa::component::visualmodel
+__namespace__: volumetricrendering
 
 __parents__:
 
