@@ -536,7 +536,7 @@ are the output DOFs initially expressed in global coordinates
 
 ## Examples 
 
-RigidMapping-basic.scn
+RigidMapping2d-basic.scn
 
 === "XML"
 
@@ -555,15 +555,16 @@ RigidMapping-basic.scn
         <DefaultAnimationLoop/>
     
         <Node name="parent node with independent DOFs">
+            <!-- 		<EulerImplicitSolver name="ODE solver" printLog="0"  verbose="0" rayleighStiffness="0.0" rayleighMass="0"/> -->
             <StaticSolver name="ODE solver" printLog="0" />
             <CGLinearSolver template="GraphScattered" name="linear solver used by implicit ODE solvers" printLog="0" iterations="25" tolerance="1e-5" threshold="1e-5"/>
-            <MechanicalObject template="Rigid3" />
-            <PartialFixedProjectiveConstraint fixedDirections="1 1 1 0 0 0" />
-            <UniformMass template="Rigid3" name="mass" totalMass="1.0"/>
+            <MechanicalObject template="Rigid2" />
+            <PartialFixedProjectiveConstraint fixedDirections="1 1 0" />
+            <UniformMass template="Rigid2" name="mass" totalMass="1.0"/>
             <Node name="child node with DOFs mapped from the parent">
-                <MechanicalObject template="Vec3" name="endpoint coordinates" position="1 -0.0 0"  />
-                <RigidMapping name="angle-coord mapping" input="@.." output="@." index="0" />
-                <ConstantForceField forces="1 -1 0" indices="0" />
+                <MechanicalObject template="Vec2" name="endpoint coordinates" position="1 0 "  />
+                <RigidMapping template="" name="angle-coord mapping" input="@.." output="@." index="0" />
+                <ConstantForceField forces="1 -1" indices="0" />
             </Node>
         </Node>
     </Node>
@@ -592,15 +593,15 @@ RigidMapping-basic.scn
 
        parent_node_with_independent__do_fs.addObject('StaticSolver', name="ODE solver", printLog="0")
        parent_node_with_independent__do_fs.addObject('CGLinearSolver', template="GraphScattered", name="linear solver used by implicit ODE solvers", printLog="0", iterations="25", tolerance="1e-5", threshold="1e-5")
-       parent_node_with_independent__do_fs.addObject('MechanicalObject', template="Rigid3")
-       parent_node_with_independent__do_fs.addObject('PartialFixedProjectiveConstraint', fixedDirections="1 1 1 0 0 0")
-       parent_node_with_independent__do_fs.addObject('UniformMass', template="Rigid3", name="mass", totalMass="1.0")
+       parent_node_with_independent__do_fs.addObject('MechanicalObject', template="Rigid2")
+       parent_node_with_independent__do_fs.addObject('PartialFixedProjectiveConstraint', fixedDirections="1 1 0")
+       parent_node_with_independent__do_fs.addObject('UniformMass', template="Rigid2", name="mass", totalMass="1.0")
 
        child_node_with__do_fs_mapped_from_the_parent = parent node with independent DOFs.addChild('child node with DOFs mapped from the parent')
 
-       child_node_with__do_fs_mapped_from_the_parent.addObject('MechanicalObject', template="Vec3", name="endpoint coordinates", position="1 -0.0 0")
-       child_node_with__do_fs_mapped_from_the_parent.addObject('RigidMapping', name="angle-coord mapping", input="@..", output="@.", index="0")
-       child_node_with__do_fs_mapped_from_the_parent.addObject('ConstantForceField', forces="1 -1 0", indices="0")
+       child_node_with__do_fs_mapped_from_the_parent.addObject('MechanicalObject', template="Vec2", name="endpoint coordinates", position="1 0 ")
+       child_node_with__do_fs_mapped_from_the_parent.addObject('RigidMapping', template="", name="angle-coord mapping", input="@..", output="@.", index="0")
+       child_node_with__do_fs_mapped_from_the_parent.addObject('ConstantForceField', forces="1 -1", indices="0")
     ```
 
 RigidMapping.scn
@@ -837,7 +838,7 @@ RigidMapping.scn
        surf2.addObject('RigidMapping', )
     ```
 
-RigidMapping2d-basic.scn
+RigidMapping-basic.scn
 
 === "XML"
 
@@ -856,16 +857,15 @@ RigidMapping2d-basic.scn
         <DefaultAnimationLoop/>
     
         <Node name="parent node with independent DOFs">
-            <!-- 		<EulerImplicitSolver name="ODE solver" printLog="0"  verbose="0" rayleighStiffness="0.0" rayleighMass="0"/> -->
             <StaticSolver name="ODE solver" printLog="0" />
             <CGLinearSolver template="GraphScattered" name="linear solver used by implicit ODE solvers" printLog="0" iterations="25" tolerance="1e-5" threshold="1e-5"/>
-            <MechanicalObject template="Rigid2" />
-            <PartialFixedProjectiveConstraint fixedDirections="1 1 0" />
-            <UniformMass template="Rigid2" name="mass" totalMass="1.0"/>
+            <MechanicalObject template="Rigid3" />
+            <PartialFixedProjectiveConstraint fixedDirections="1 1 1 0 0 0" />
+            <UniformMass template="Rigid3" name="mass" totalMass="1.0"/>
             <Node name="child node with DOFs mapped from the parent">
-                <MechanicalObject template="Vec2" name="endpoint coordinates" position="1 0 "  />
-                <RigidMapping template="" name="angle-coord mapping" input="@.." output="@." index="0" />
-                <ConstantForceField forces="1 -1" indices="0" />
+                <MechanicalObject template="Vec3" name="endpoint coordinates" position="1 -0.0 0"  />
+                <RigidMapping name="angle-coord mapping" input="@.." output="@." index="0" />
+                <ConstantForceField forces="1 -1 0" indices="0" />
             </Node>
         </Node>
     </Node>
@@ -894,14 +894,14 @@ RigidMapping2d-basic.scn
 
        parent_node_with_independent__do_fs.addObject('StaticSolver', name="ODE solver", printLog="0")
        parent_node_with_independent__do_fs.addObject('CGLinearSolver', template="GraphScattered", name="linear solver used by implicit ODE solvers", printLog="0", iterations="25", tolerance="1e-5", threshold="1e-5")
-       parent_node_with_independent__do_fs.addObject('MechanicalObject', template="Rigid2")
-       parent_node_with_independent__do_fs.addObject('PartialFixedProjectiveConstraint', fixedDirections="1 1 0")
-       parent_node_with_independent__do_fs.addObject('UniformMass', template="Rigid2", name="mass", totalMass="1.0")
+       parent_node_with_independent__do_fs.addObject('MechanicalObject', template="Rigid3")
+       parent_node_with_independent__do_fs.addObject('PartialFixedProjectiveConstraint', fixedDirections="1 1 1 0 0 0")
+       parent_node_with_independent__do_fs.addObject('UniformMass', template="Rigid3", name="mass", totalMass="1.0")
 
        child_node_with__do_fs_mapped_from_the_parent = parent node with independent DOFs.addChild('child node with DOFs mapped from the parent')
 
-       child_node_with__do_fs_mapped_from_the_parent.addObject('MechanicalObject', template="Vec2", name="endpoint coordinates", position="1 0 ")
-       child_node_with__do_fs_mapped_from_the_parent.addObject('RigidMapping', template="", name="angle-coord mapping", input="@..", output="@.", index="0")
-       child_node_with__do_fs_mapped_from_the_parent.addObject('ConstantForceField', forces="1 -1", indices="0")
+       child_node_with__do_fs_mapped_from_the_parent.addObject('MechanicalObject', template="Vec3", name="endpoint coordinates", position="1 -0.0 0")
+       child_node_with__do_fs_mapped_from_the_parent.addObject('RigidMapping', name="angle-coord mapping", input="@..", output="@.", index="0")
+       child_node_with__do_fs_mapped_from_the_parent.addObject('ConstantForceField', forces="1 -1 0", indices="0")
     ```
 

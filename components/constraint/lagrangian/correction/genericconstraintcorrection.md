@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # GenericConstraintCorrection
 
-Generic Constraint Correction.
+Component computing constraint forces within a simulated body using the compliance method.
 
 
 __Target__: Sofa.Component.Constraint.Lagrangian.Correction
