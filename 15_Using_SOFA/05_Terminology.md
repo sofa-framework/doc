@@ -1,4 +1,4 @@
-# Lexicography
+# Terminology
 
 ## Library
 Libraries are the central elements of SOFA. They define all SOFA framework mechanisms in [Sofa/framework](https://github.com/sofa-framework/sofa/tree/master/Sofa/framework).
