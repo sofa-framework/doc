@@ -129,41 +129,6 @@ If not zero, constraints whose response force becomes larger than this threshold
 		<td>0</td>
 	</tr>
 	<tr>
-		<td>multi_grid</td>
-		<td>
-activate multi_grid resolution (NOT STABLE YET)
-		</td>
-		<td>0</td>
-	</tr>
-	<tr>
-		<td>multi_grid_levels</td>
-		<td>
-if multi_grid is active: how many levels to create (>=2)
-		</td>
-		<td>2</td>
-	</tr>
-	<tr>
-		<td>merge_method</td>
-		<td>
-if multi_grid is active: which method to use to merge constraints (0 = compliance-based, 1 = spatial coordinates)
-		</td>
-		<td>0</td>
-	</tr>
-	<tr>
-		<td>merge_spatial_step</td>
-		<td>
-if merge_method is 1: grid size reduction between multigrid levels
-		</td>
-		<td>2</td>
-	</tr>
-	<tr>
-		<td>merge_local_levels</td>
-		<td>
-if merge_method is 1: up to the specified level of the multigrid, constraints are grouped locally, i.e. separately within each contact pairs, while on upper levels they are grouped globally independently of contact pairs.
-		</td>
-		<td>2</td>
-	</tr>
-	<tr>
 		<td>constraintForces</td>
 		<td>
 OUTPUT: constraint forces (stored only if computeConstraintForces=True)
@@ -195,13 +160,6 @@ Graph of residuals at each iteration
 		<td colspan="3">Visualization</td>
 	</tr>
 	<tr>
-		<td>showLevels</td>
-		<td>
-Number of constraint levels to display
-		</td>
-		<td>0</td>
-	</tr>
-	<tr>
 		<td>showCellWidth</td>
 		<td>
 Distance between each constraint cells
@@ -212,13 +170,6 @@ Distance between each constraint cells
 		<td>showTranslation</td>
 		<td>
 Position of the first cell
-		</td>
-		<td></td>
-	</tr>
-	<tr>
-		<td>showLevelTranslation</td>
-		<td>
-Translation between levels
 		</td>
 		<td></td>
 	</tr>
