@@ -1,11 +1,9 @@
-### runSOFA
-
 The default compilation of SOFA produces a binary file called **runSofa**, which can be
 found in the folder *%{SOFA\_BUILD\_DIR}/bin*.
-The execution of the binary - either via the terminal or by double-clicking the executable -
-launches a default [XML scene](./../create-your-scene-in-xml) with the name caduceus.scn, using the Qt library.
+The execution of the binary (either via the terminal or by double-clicking the executable) launches a default simulation with the default GUI (using the [SofaGLFW plugin](https://github.com/sofa-framework/SofaGLFW/) since v25.06)
+
 ![Execution of runSofa using the
-default scene caduceus](https://www.sofa-framework.org/wp-content/uploads/2014/11/Screenshot-from-2015-01-14-1839152.png)
+default scene in SofaGLFW-ImGUI](https://www.sofa-framework.org/wp-content/uploads/2025/06/Screenshot-SofaGLFW.png)
 
 ### Launch runSOFA
 
@@ -48,9 +46,8 @@ If using the shipped binaries of SOFA (or the default CMake options when compili
 
 ### Load and run a specific scene
 
-The default scene loaded by **runSofa** is named “caduceus.scn”. This
-scene file can be found in *%{SOFA\_SOURCE\_DIR}/examples/Demos*, along
-with other demo scenes. Let us see now how to load one of these scenes:
+The default scene loaded by **runSofa** is named SofaScene.scn”. This [XML scene](./../create-your-scene-in-xml) file can be found in *%{SOFA\_SOURCE\_DIR}/examples/Demos*, along with other demo scenes.
+Let us see now how to load one of these scenes:
 
 -   From the **runSofa** interface, you can select a scene file through
     the “File-&gt;Open” Menu (Ctrl+O), and run it by simply pressing the
@@ -59,3 +56,8 @@ with other demo scenes. Let us see now how to load one of these scenes:
     specify the scene file to load as an argument.
 
 
+### Open a Python script
+
+To open a Python script with runSofa, you need to make sure the SofaPython3 plugin is available. To do so, you can click on `Edit > PluginManager` and browse the plugin list. If the plugin SofaPython3 is not present, make sure to add the associated dynamic library using the button `Add`.
+
+More about SOFA & Python can be found on the [SofaPython3 documentation](https://sofapython3.readthedocs.io/en/latest).
