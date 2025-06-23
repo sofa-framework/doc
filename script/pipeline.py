@@ -31,7 +31,19 @@ def onerror(func, path, exc_info):
 def download_guidelines_file(cloned_doc_folder):
     url = 'https://raw.githubusercontent.com/sofa-framework/sofa/master/GUIDELINES.md'
     response = requests.get(url)
-    contributing_filepath = os.path.join(cloned_doc_folder, "40_Programming_with_SOFA", "01_Guidelines.md")
+    guidelines_filepath = os.path.join(cloned_doc_folder, "40_Programming_with_SOFA", "01_Guidelines.md")
+    if response.status_code == 200:
+        with open(guidelines_filepath, 'wb') as file:
+            file.write(response.content)
+        print(f'File {guidelines_filepath} downloaded successfully.')
+    else:
+        print(f'Failed to download file. Status code: {response.status_code}')
+
+
+def download_contributing_file(cloned_doc_folder):
+    url = 'https://raw.githubusercontent.com/sofa-framework/sofa/master/CONTRIBUTING.md'
+    response = requests.get(url)
+    contributing_filepath = os.path.join(cloned_doc_folder, "15_Using_SOFA", "11_runSofa_with_ImGui.md")
     if response.status_code == 200:
         with open(contributing_filepath, 'wb') as file:
             file.write(response.content)
@@ -40,14 +52,14 @@ def download_guidelines_file(cloned_doc_folder):
         print(f'Failed to download file. Status code: {response.status_code}')
 
 
-def download_contributing_file(cloned_doc_folder):
-    url = 'https://raw.githubusercontent.com/sofa-framework/sofa/master/CONTRIBUTING.md'
+def download_SofaGLFW_file(cloned_doc_folder):
+    url = 'https://raw.githubusercontent.com/sofa-framework/SofaGLFW/master/README.md'
     response = requests.get(url)
-    contributing_filepath = os.path.join(cloned_doc_folder, "50_Contributing_to_SOFA", "01_Contributing.md")
+    sofaglfw_filepath = os.path.join(cloned_doc_folder, "40_Programming_with_SOFA", "01_Guidelines.md")
     if response.status_code == 200:
-        with open(contributing_filepath, 'wb') as file:
+        with open(sofaglfw_filepath, 'wb') as file:
             file.write(response.content)
-        print(f'File {contributing_filepath} downloaded successfully.')
+        print(f'File {sofaglfw_filepath} downloaded successfully.')
     else:
         print(f'Failed to download file. Status code: {response.status_code}')
 
