@@ -46,7 +46,7 @@ If using the shipped binaries of SOFA (or the default CMake options when compili
 
 ### Load and run a specific scene
 
-The default scene loaded by **runSofa** is named SofaScene.scn”. This [XML scene](./../create-your-scene-in-xml) file can be found in *%{SOFA\_SOURCE\_DIR}/examples/Demos*, along with other demo scenes.
+The default scene loaded by **runSofa** is named "*fallingSOFA.scn*". This [XML scene](./../create-your-scene-in-xml) file can be found in *%{SOFA\_SOURCE\_DIR}/examples/Demos*, along with other demo scenes.
 Let us see now how to load one of these scenes:
 
 -   From the **runSofa** interface, you can select a scene file through
