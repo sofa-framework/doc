@@ -26,7 +26,9 @@ To run SOFA, locate and execute the application called `runSofa`. For more detai
 
 ### within a Python environment
 
-Note that the latest SOFA release has been compiled using Python3.12. Make sure to check your Python version before going any further. To use the binary release of SOFA within a Python3 environment, we wrote a section "using Python3" detailing how to [set up your environment on various operating systems](https://sofapython3.readthedocs.io/en/latest/content/Installation.html#using-python3).
+To use the binary release of SOFA within a Python3 environment, we wrote a section "using Python3" detailing how to [set up your environment on various operating systems](https://sofapython3.readthedocs.io/en/latest/content/Installation.html#using-python3).
+
+Note that the latest SOFA release has been compiled using Python3.12. Make sure to check your Python version before going any further. 
 
 
 ### Notes for macOS Users
