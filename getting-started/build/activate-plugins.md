@@ -80,7 +80,7 @@ No matter what mechanism you use (fetch or local clone), you will still need to 
 |[SofaAssimp](https://github.com/sofa-framework/sofa/tree/master/applications/plugins/SofaAssimp)|Plugin named SofaAssimp.|CMake flag `PLUGIN_SOFAASSIMP=ON`. |
 |[SofaCUDA](https://github.com/sofa-framework/sofa/tree/master/applications/plugins/SofaCUDA)|Plugin that provides a number of SOFA components that have been re-implemented using CUDA. |CMake flag `PLUGIN_SOFACUDA=ON`. Activated in presets ['full', 'supported-plugins']. |
 |[SofaCarving](https://github.com/sofa-framework/sofa/tree/master/applications/plugins/SofaCarving)|Plugin named SofaCarving.|CMake flag `PLUGIN_SOFACARVING=ON`. Activated in presets ['full']. |
-|[SofaDistanceGrid](https://github.com/sofa-framework/sofa/tree/master/applications/plugins/SofaDistanceGrid)|Plugin named SofaDistanceGrid.|CMake flag `PLUGIN_SOFADISTANCEGRID=ON`. Activated in presets ['full']. |
+|[SofaDistanceGrid](https://github.com/sofa-framework/sofa/tree/master/applications/plugins/SofaDistanceGrid)|Plugin named SofaDistanceGrid.|CMake flag `PLUGIN_SOFADISTANCEGRID=ON`. Activated in presets ['full', 'supported-plugins']. |
 |[SofaEulerianFluid](https://github.com/sofa-framework/sofa/tree/master/applications/plugins/SofaEulerianFluid)|Plugin named SofaEulerianFluid.|CMake flag `PLUGIN_SOFAEULERIANFLUID=ON`. Activated in presets ['full']. |
 |[SofaHAPI](https://github.com/sofa-framework/sofa/tree/master/applications/plugins/SofaHAPI)|Plugin named SofaHAPI.|CMake flag `PLUGIN_SOFAHAPI=ON`. |
 |[SofaImplicitField](https://github.com/sofa-framework/sofa/tree/master/applications/plugins/SofaImplicitField)|Plugin named SofaImplicitField.|CMake flag `PLUGIN_SOFAIMPLICITFIELD=ON`. Activated in presets ['full']. |

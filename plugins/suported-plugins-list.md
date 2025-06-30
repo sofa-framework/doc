@@ -27,6 +27,7 @@ This means that the SOFA consortium commits to:
 | [Sofa.Metis](https://www.github.com/sofa-framework/Sofa.Metis.git) | Plugin adding METIS-based ordering method for SOFA's linear solvers.  |
 | [Sofa.Qt](https://www.github.com/sofa-framework/Sofa.Qt.git) | Plugin containing Qt-based GUI for SOFA.  |
 | [SofaCUDA](https://github.com/sofa-framework/sofa/tree/master/applications/plugins/SofaCUDA)* | Plugin that provides a number of SOFA components that have been re-implemented using CUDA.  |
+| [SofaDistanceGrid](https://github.com/sofa-framework/sofa/tree/master/applications/plugins/SofaDistanceGrid)* | Plugin named SofaDistanceGrid. |
 | [SofaGLFW](https://www.github.com/sofa-framework/SofaGLFW.git) | Project containing two plugins: a simple GUI based on GLFW and a user interface based on [Dear ImGui](https://github.com/ocornut/imgui).  |
 | [SofaMatrix](https://github.com/sofa-framework/sofa/tree/master/applications/plugins/SofaMatrix)* | Plugin containing components used to provide insights on linear system matrices by exporting them of drawing them.  |
 | [SofaPhysicsAPI](https://github.com/sofa-framework/sofa/tree/master/applications/projects/SofaPhysicsAPI)* | Application named SofaPhysicsAPI. |
