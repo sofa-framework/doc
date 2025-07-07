@@ -95,9 +95,9 @@ flag indication if the object can self collide
 		<td>0</td>
 	</tr>
 	<tr>
-		<td>proximity</td>
+		<td>contactDistance</td>
 		<td>
-Distance to the actual (visual) surface
+This distance is added along the normal of the collision element to apply 'skinning' effect for collision. The contact arise at this distance of the element.
 		</td>
 		<td>0</td>
 	</tr>
@@ -332,7 +332,7 @@ RigidDistanceGridCollisionModel_liver_FreeMotionAnimationLoop.scn
                 filename="mesh/liver-smooth.obj"
                 scale="1.0" 
                 usePoints="0" 
-                proximity="0.1" 
+                contactDistance="0.1"
             />
             <Node name="Visu">
                 <OglModel name="VisualModel" src="@../meshLoader_0" color="white" />
@@ -416,7 +416,7 @@ RigidDistanceGridCollisionModel_liver_FreeMotionAnimationLoop.scn
 
        rigid_liver.addObject('MeshOBJLoader', name="meshLoader_0", filename="mesh/liver-smooth.obj")
        rigid_liver.addObject('MechanicalObject', template="Rigid3d", name="dofs", position="0 0 0    0 0 0 1")
-       rigid_liver.addObject('RigidDistanceGridCollisionModel', filename="mesh/liver-smooth.obj", scale="1.0", usePoints="0", proximity="0.1")
+       rigid_liver.addObject('RigidDistanceGridCollisionModel', filename="mesh/liver-smooth.obj", scale="1.0", usePoints="0", contactDistance="0.1")
 
        visu = RigidLiver.addChild('Visu')
 
@@ -488,7 +488,7 @@ RigidDistanceGridCollisionModel_liver_DefaultAnimationLoop.scn
                 filename="mesh/liver-smooth.obj"
                 scale="1.0" 
                 usePoints="0" 
-                proximity="0.1" 
+                contactDistance="0.1"
                 contactStiffness="50" 
                 contactFriction="0.0" 
             />
@@ -569,7 +569,7 @@ RigidDistanceGridCollisionModel_liver_DefaultAnimationLoop.scn
 
        rigid_liver.addObject('MeshOBJLoader', name="meshLoader_0", filename="mesh/liver-smooth.obj")
        rigid_liver.addObject('MechanicalObject', template="Rigid3d", name="dofs", position="0 0 0    0 0 0 1")
-       rigid_liver.addObject('RigidDistanceGridCollisionModel', filename="mesh/liver-smooth.obj", scale="1.0", usePoints="0", proximity="0.1", contactStiffness="50", contactFriction="0.0")
+       rigid_liver.addObject('RigidDistanceGridCollisionModel', filename="mesh/liver-smooth.obj", scale="1.0", usePoints="0", contactDistance="0.1", contactStiffness="50", contactFriction="0.0")
 
        visu = RigidLiver.addChild('Visu')
 

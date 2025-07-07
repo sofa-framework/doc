@@ -99,9 +99,9 @@ flag indication if the object can self collide
 		<td>0</td>
 	</tr>
 	<tr>
-		<td>proximity</td>
+		<td>contactDistance</td>
 		<td>
-Distance to the actual (visual) surface
+This distance is added along the normal of the collision element to apply 'skinning' effect for collision. The contact arise at this distance of the element.
 		</td>
 		<td>0</td>
 	</tr>

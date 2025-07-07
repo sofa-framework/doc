@@ -193,6 +193,7 @@ Normals of the model
 |context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
 |slaves|Sub-objects used internally by this object|BaseObject|
 |master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
+|colorMap|link to the color map|OglColorMap|
 |topology|link to the topology container|BaseMeshTopology|
 
 ## Examples 

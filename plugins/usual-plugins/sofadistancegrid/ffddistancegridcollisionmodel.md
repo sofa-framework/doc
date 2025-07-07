@@ -95,9 +95,9 @@ flag indication if the object can self collide
 		<td>0</td>
 	</tr>
 	<tr>
-		<td>proximity</td>
+		<td>contactDistance</td>
 		<td>
-Distance to the actual (visual) surface
+This distance is added along the normal of the collision element to apply 'skinning' effect for collision. The contact arise at this distance of the element.
 		</td>
 		<td>0</td>
 	</tr>
@@ -295,7 +295,7 @@ FFDDistanceGridCollisionModel_liver_DefaultAnimationLoop.scn
                 filename="mesh/liver-smooth.obj" 
                 scale="1.0" 
                 usePoints="0" 
-                proximity="0.1" 
+                contactDistance="0.1"
                 contactStiffness="500.0" 
                 contactFriction="0.0" 
                 topology="@grid"
@@ -387,7 +387,7 @@ FFDDistanceGridCollisionModel_liver_DefaultAnimationLoop.scn
        deformable_liver.addObject('BoxROI', name="box1", box="-2.5 0 -2.5 7.5 3 2")
        deformable_liver.addObject('FixedProjectiveConstraint', indices="@box1.indices")
        deformable_liver.addObject('HexahedronFEMForceField', poissonRatio="0", youngModulus="7000")
-       deformable_liver.addObject('FFDDistanceGridCollisionModel', filename="mesh/liver-smooth.obj", scale="1.0", usePoints="0", proximity="0.1", contactStiffness="500.0", contactFriction="0.0", topology="@grid")
+       deformable_liver.addObject('FFDDistanceGridCollisionModel', filename="mesh/liver-smooth.obj", scale="1.0", usePoints="0", contactDistance="0.1", contactStiffness="500.0", contactFriction="0.0", topology="@grid")
 
        visu = DeformableLiver.addChild('Visu')
 
@@ -474,7 +474,7 @@ FFDDistanceGridCollisionModel_liver_FreeMotionAnimationLoop.scn
                 filename="mesh/liver-smooth.obj" 
                 scale="1.0" 
                 usePoints="0" 
-                proximity="0.1" 
+                contactDistance="0.1"
                 contactFriction="0.0" 
                 topology="@grid"
             />
@@ -571,7 +571,7 @@ FFDDistanceGridCollisionModel_liver_FreeMotionAnimationLoop.scn
        deformable_liver.addObject('BoxROI', name="box1", box="-2.5 0 -2.5 7.5 3 2")
        deformable_liver.addObject('FixedProjectiveConstraint', indices="@box1.indices")
        deformable_liver.addObject('HexahedronFEMForceField', poissonRatio="0", youngModulus="7000")
-       deformable_liver.addObject('FFDDistanceGridCollisionModel', filename="mesh/liver-smooth.obj", scale="1.0", usePoints="0", proximity="0.1", contactFriction="0.0", topology="@grid")
+       deformable_liver.addObject('FFDDistanceGridCollisionModel', filename="mesh/liver-smooth.obj", scale="1.0", usePoints="0", contactDistance="0.1", contactFriction="0.0", topology="@grid")
 
        visu = DeformableLiver.addChild('Visu')
 
