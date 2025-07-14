@@ -182,6 +182,8 @@ overwrite the file, otherwise create a new file at each export, with suffix in t
 |context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
 |slaves|Sub-objects used internally by this object|BaseObject|
 |master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
+|topology|topology to export|BaseMeshTopology|
+|mstate|mechanical state to export|BaseMechanicalState|
 
 ## Examples 
 
@@ -212,6 +214,7 @@ VTKExporter.scn
             exportAtBegin="1" 
             exportAtEnd="1"
             exportEveryNumberOfSteps="2"
+            printLog="true"
         />
     </Node>
 
@@ -233,6 +236,6 @@ VTKExporter.scn
        root.addObject('MeshOBJLoader', name="loader", filename="mesh/dragon.obj")
        root.addObject('MechanicalObject', src="@loader", template="Vec3", name="mecha", showObject="1")
        root.addObject('TetrahedronSetTopologyContainer', src="@loader", name="topo")
-       root.addObject('VTKExporter', name="Exporter", filename="example.vtk", listening="true", edges="0", triangles="1", quads="0", tetras="0", pointsDataFields="mecha.position", exportAtBegin="1", exportAtEnd="1", exportEveryNumberOfSteps="2")
+       root.addObject('VTKExporter', name="Exporter", filename="example.vtk", listening="true", edges="0", triangles="1", quads="0", tetras="0", pointsDataFields="mecha.position", exportAtBegin="1", exportAtEnd="1", exportEveryNumberOfSteps="2", printLog="true")
     ```
 

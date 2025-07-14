@@ -221,7 +221,6 @@ DataDisplay.scn
         <RequiredPlugin name="Sofa.Component.Visual"/> <!-- Needed to use components [VisualStyle] -->
         <RequiredPlugin name="Sofa.GL.Component.Rendering2D"/> <!-- Needed to use components [OglColorMap] -->
         <RequiredPlugin name="Sofa.GL.Component.Rendering3D"/> <!-- Needed to use components [DataDisplay] -->
-        <RequiredPlugin name="SofaValidation"/> <!-- Needed to use components [EvalPointsDistance] -->
         
         <VisualStyle displayFlags="showVisual hideBehavior hideCollision hideMapping" />
         <CollisionPipeline verbose="0" name="CollisionPipeline" />
@@ -240,19 +239,21 @@ DataDisplay.scn
             <EulerImplicitSolver name="cg_odesolver" printLog="false"  rayleighStiffness="0.1" rayleighMass="0.1" />
             <CGLinearSolver iterations="25" name="linear solver" tolerance="1.0e-9" threshold="1.0e-9" />
             <RegularGridTopology src="@/Mesh/Grid" />
-            <MechanicalObject />
+            <MechanicalObject name="dofs"/>
             <UniformMass vertexMass="0.1" />
             <FixedProjectiveConstraint indices="0 9 99" />
             <TriangleFEMForceField name="FEM3" youngModulus="5000" poissonRatio="0.3" method="large" />
             <TriangleBendingSprings name="FEM-Bend" stiffness="100" damping="0.1" />
             <TriangleCollisionModel />
     
-            <EvalPointsDistance name="dist" object1="@/Mesh/MO" object2="@." listening="true" period="0.05" draw="false" />
-    
+            <Node name="distances">
+                <MechanicalObject template="Vec1" name="dofs"/>
+                <DistanceFromTargetMapping input="@../dofs" output="@dofs" targetPositions="@../dofs.rest_position"/>
+            </Node>
             
             <Node name="Data">
-                <DataDisplay pointData="@../dist.distance" />
-                <OglColorMap colorScheme="Blue to Red" />
+                <DataDisplay pointData="@../distances/dofs.position" name="data"/>
+                <OglColorMap colorScheme="Blue to Red" showLegend="true" min="@data.currentMin" max="@data.currentMax"/>
                 <IdentityMapping input="@.." output="@."/>
             </Node>
     
@@ -284,7 +285,6 @@ DataDisplay.scn
        root.addObject('RequiredPlugin', name="Sofa.Component.Visual")
        root.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering2D")
        root.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
-       root.addObject('RequiredPlugin', name="SofaValidation")
        root.addObject('VisualStyle', displayFlags="showVisual hideBehavior hideCollision hideMapping")
        root.addObject('CollisionPipeline', verbose="0", name="CollisionPipeline")
        root.addObject('BruteForceBroadPhase', )
@@ -303,18 +303,22 @@ DataDisplay.scn
        simulation.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
        simulation.addObject('CGLinearSolver', iterations="25", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
        simulation.addObject('RegularGridTopology', src="@/Mesh/Grid")
-       simulation.addObject('MechanicalObject', )
+       simulation.addObject('MechanicalObject', name="dofs")
        simulation.addObject('UniformMass', vertexMass="0.1")
        simulation.addObject('FixedProjectiveConstraint', indices="0 9 99")
        simulation.addObject('TriangleFEMForceField', name="FEM3", youngModulus="5000", poissonRatio="0.3", method="large")
        simulation.addObject('TriangleBendingSprings', name="FEM-Bend", stiffness="100", damping="0.1")
        simulation.addObject('TriangleCollisionModel', )
-       simulation.addObject('EvalPointsDistance', name="dist", object1="@/Mesh/MO", object2="@.", listening="true", period="0.05", draw="false")
+
+       distances = Simulation.addChild('distances')
+
+       distances.addObject('MechanicalObject', template="Vec1", name="dofs")
+       distances.addObject('DistanceFromTargetMapping', input="@../dofs", output="@dofs", targetPositions="@../dofs.rest_position")
 
        data = Simulation.addChild('Data')
 
-       data.addObject('DataDisplay', pointData="@../dist.distance")
-       data.addObject('OglColorMap', colorScheme="Blue to Red")
+       data.addObject('DataDisplay', pointData="@../distances/dofs.position", name="data")
+       data.addObject('OglColorMap', colorScheme="Blue to Red", showLegend="true", min="@data.currentMin", max="@data.currentMax")
        data.addObject('IdentityMapping', input="@..", output="@.")
     ```
 
