@@ -227,6 +227,6 @@ To run SOFA, locate and execute the application called `runSofa`. For more detai
 
 ## within a Python environment
 
-To use SOFA within a Python3 environment, we wrote a section "using Python3" detailing how to [set up your environment on various operating systems](https://sofapython3.readthedocs.io/en/latest/content/Installation.html#using-python3).
+To use SOFA within a Python3 environment, the section "using Python3" details how to [set up your environment on various operating systems](https://sofapython3.readthedocs.io/en/latest/content/Installation.html#using-python3).
 
 
