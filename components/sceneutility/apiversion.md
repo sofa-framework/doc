@@ -70,7 +70,7 @@ if true, handle the events, otherwise ignore the events
 		<td>
 The API Level of the scene ('17.06', '17.12', '18.06', ...)
 		</td>
-		<td>25.06.99</td>
+		<td>25.12.99</td>
 	</tr>
 
 </tbody>
