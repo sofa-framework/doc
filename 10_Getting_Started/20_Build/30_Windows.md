@@ -87,7 +87,7 @@ You can add Boost and Qt to your PATH to ease their detection by CMake.
 **Qt**: add `your/Qt/path/msvcXXXX_XX/bin` and `your/Qt/path/msvcXXXX_XX/lib`
 
 
-# Building SOFA
+# Build SOFA
 
 
 ## Setup your source and build directories
@@ -143,7 +143,7 @@ git clone -b master https://github.com/sofa-framework/sofa.git sofa/src
    - If you want to use **another IDE like QtCreator**, select "CodeBlocks - Ninja" (recommended, needs [Ninja](#optional-ninja-build-system)) or "CodeBlocks - NMake".
    Keep "Use default native compilers" and press "Finish".
 
-7. Fix eventual dependency errors by following CMake messages (see Troubleshooting section below). Do not worry about warnings.
+7. Fix eventual dependency errors by following CMake messages (see Troubleshoot section below). Do not worry about warnings.
 
    - e.g. define the `Eigen3_DIR` with the path where you installed Eigen
 
@@ -175,7 +175,7 @@ Example with Ninja:
 Time for a coffee!
 
 
-## Troubleshooting CMake errors
+## Troubleshoot CMake errors
 
 ### Qt detection error
 To solve Qt detection errors, click on **Add Entry** and add
@@ -216,3 +216,17 @@ The two scripts `setup-windows_1.bat` and `setup-windows_2.bat` install the mini
 ## Compilation tutorial
 
 See our page presenting [video tutorial for compilation on Windows](../../video-tutorials/how-to-compile-sofa/#windows).
+
+
+
+# Run SOFA
+
+## with the SOFA GUI
+To run SOFA, locate and execute the application called `runSofa`. For more detailed information on how to use the application, you can refer to the [page dedicated to runsofa](../../../using-sofa/runsofa/). This documentation will provide you with further guidance on using SOFA effectively.
+
+
+## within a Python environment
+
+To use SOFA within a Python3 environment, the section "using Python3" details how to [set up your environment on various operating systems](https://sofapython3.readthedocs.io/en/latest/content/Installation.html#using-python3).
+
+

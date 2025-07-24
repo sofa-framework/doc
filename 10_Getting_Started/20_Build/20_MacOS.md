@@ -141,7 +141,7 @@ This list does not cover all available SOFA plugins, only the ones that are buil
    ```
 
 
-# Building SOFA
+# Build SOFA
 
 
 ## Setup your source and build directories
@@ -184,7 +184,7 @@ git clone -b master https://github.com/sofa-framework/sofa.git sofa/src
 
 4. Keep "Use default native compilers" and press "Done".
 
-5. Fix eventual dependency errors by following CMake messages (see Troubleshooting section below). Do not worry about warnings.
+5. Fix eventual dependency errors by following CMake messages (see Troubleshoot section below). Do not worry about warnings.
 
 6. Customize SOFA via CMake variables
 
@@ -207,7 +207,7 @@ Time for a coffee!
 
 
 
-## Troubleshooting CMake errors
+## Troubleshoot CMake errors
 
 ### Qt detection error
 To solve Qt detection errors, click on **Add Entry** and add
@@ -229,3 +229,16 @@ A further dev warning may appear:
 This is just a typo with Qt5CoreMacros.cmake file. It uses COPY\_ONLY
 instead of COPYONLY. Simply edit your Qt5CoreMacros.cmake, replace
 COPY\_ONLY with COPYONLY and **Configure** again.
+
+
+# Run SOFA
+
+## with the SOFA GUI
+To run SOFA, locate and execute the application called `runSofa`. For more detailed information on how to use the application, you can refer to the [page dedicated to runsofa](../../../using-sofa/runsofa/). This documentation will provide you with further guidance on using SOFA effectively.
+
+
+## within a Python environment
+
+To use SOFA within a Python3 environment, the section "using Python3" details how to [set up your environment on various operating systems](https://sofapython3.readthedocs.io/en/latest/content/Installation.html#using-python3).
+
+
