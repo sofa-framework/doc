@@ -80,8 +80,10 @@ if __name__ == "__main__":
                                    branch='master')
         print("Finished to clone the doc...")
 
+    # Download and include pages as doc pages : GUIDELINES.md, CONTRIBUTING.md, README.md
     download_guidelines_file(cloned_doc_folder)
     download_contributing_file(cloned_doc_folder)
+    download_SofaGLFW_file(cloned_doc_folder)
 
     auto_doc_folder = os.path.join(tmp_folder, "auto_doc")
     print("Generate the doc...")
