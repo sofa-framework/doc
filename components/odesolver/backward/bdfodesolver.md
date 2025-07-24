@@ -284,119 +284,6 @@ BDFOdeSolver.scn
        visual.addObject('BarycentricMapping', input="@..", output="@Visual")
     ```
 
-BDFOdeSolver_spring1d.scn
-
-=== "XML"
-
-    ```xml
-    <Node name="root" gravity="-9.81 0 0" dt="0.01">
-        <RequiredPlugin name="Sofa.Component.Constraint.Projective"/> <!-- Needed to use components [FixedProjectiveConstraint] -->
-        <RequiredPlugin name="Sofa.Component.LinearSolver.Direct"/> <!-- Needed to use components [EigenSimplicialLDLT] -->
-        <RequiredPlugin name="Sofa.Component.Mass"/> <!-- Needed to use components [MeshMatrixMass] -->
-        <RequiredPlugin name="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [NewtonRaphsonSolver] -->
-        <RequiredPlugin name="Sofa.Component.SolidMechanics.Spring"/> <!-- Needed to use components [SpringForceField] -->
-        <RequiredPlugin name="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
-        <RequiredPlugin name="Sofa.Component.Visual"/> <!-- Needed to use components [VisualStyle] -->
-        <RequiredPlugin name="Sofa.GL.Component.Rendering3D"/> <!-- Needed to use components [OglCylinderModel] -->
-        <RequiredPlugin name="Sofa.Component.Topology.Container.Dynamic"/> <!-- Needed to use components [EdgeSetTopologyContainer] -->
-    
-        <VisualStyle displayFlags="showWireframe showVisual showBehaviorModels showForceFields" />
-        <DefaultAnimationLoop/>
-        <VisualGrid size="2"/>
-        <LineAxis size="2"/>
-    
-        <Node name="BDF-1">
-    
-            <BDFOdeSolver order="1" printLog="false" rayleighMass="0.01" rayleighStiffness="0.01"/>
-            <NewtonRaphsonSolver name="newton" printLog="false" maxNbIterationsNewton="4" maxNbIterationsLineSearch="2" absoluteResidualStoppingThreshold="1e-6"/>
-            <EigenSimplicialLDLT template="CompressedRowSparseMatrix"/>
-    
-            <MechanicalObject name="dofs" template="Vec1" position="1 " rest_position="0" showObject="true" showObjectScale="20"/>
-            <PointSetTopologyContainer name="topologyContainer" position="1"/>
-            <UniformMass totalMass="1" topology="@topologyContainer"/>
-            <RestShapeSpringsForceField points="0"/>
-        </Node>
-    
-        <Node name="BDF-2">
-    
-            <BDFOdeSolver order="2" printLog="false" rayleighMass="0.01" rayleighStiffness="0.01"/>
-            <NewtonRaphsonSolver name="newton" printLog="false" maxNbIterationsNewton="4" maxNbIterationsLineSearch="2" absoluteResidualStoppingThreshold="1e-6"/>
-            <EigenSimplicialLDLT template="CompressedRowSparseMatrix"/>
-    
-            <MechanicalObject name="dofs" template="Vec1" position="1 " rest_position="0" showObject="true" showObjectScale="20"/>
-            <PointSetTopologyContainer name="topologyContainer" position="1"/>
-            <UniformMass totalMass="1" topology="@topologyContainer"/>
-            <RestShapeSpringsForceField points="0"/>
-        </Node>
-    
-        <Node name="BDF-3">
-    
-            <BDFOdeSolver order="3" printLog="false" rayleighMass="0.01" rayleighStiffness="0.01"/>
-            <NewtonRaphsonSolver name="newton" printLog="false" maxNbIterationsNewton="4" maxNbIterationsLineSearch="2" absoluteResidualStoppingThreshold="1e-6"/>
-            <EigenSimplicialLDLT template="CompressedRowSparseMatrix"/>
-    
-            <MechanicalObject name="dofs" template="Vec1" position="1 " rest_position="0" showObject="true" showObjectScale="20"/>
-            <PointSetTopologyContainer name="topologyContainer" position="1"/>
-            <UniformMass totalMass="1" topology="@topologyContainer"/>
-            <RestShapeSpringsForceField points="0"/>
-        </Node>
-    
-    </Node>
-
-    ```
-
-=== "Python"
-
-    ```python
-    def createScene(root_node):
-
-       root = root_node.addChild('root', gravity="-9.81 0 0", dt="0.01")
-
-       root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Projective")
-       root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Direct")
-       root.addObject('RequiredPlugin', name="Sofa.Component.Mass")
-       root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
-       root.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.Spring")
-       root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
-       root.addObject('RequiredPlugin', name="Sofa.Component.Visual")
-       root.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
-       root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Dynamic")
-       root.addObject('VisualStyle', displayFlags="showWireframe showVisual showBehaviorModels showForceFields")
-       root.addObject('DefaultAnimationLoop', )
-       root.addObject('VisualGrid', size="2")
-       root.addObject('LineAxis', size="2")
-
-       bdf_1 = root.addChild('BDF-1')
-
-       bdf_1.addObject('BDFOdeSolver', order="1", printLog="false", rayleighMass="0.01", rayleighStiffness="0.01")
-       bdf_1.addObject('NewtonRaphsonSolver', name="newton", printLog="false", maxNbIterationsNewton="4", maxNbIterationsLineSearch="2", absoluteResidualStoppingThreshold="1e-6")
-       bdf_1.addObject('EigenSimplicialLDLT', template="CompressedRowSparseMatrix")
-       bdf_1.addObject('MechanicalObject', name="dofs", template="Vec1", position="1 ", rest_position="0", showObject="true", showObjectScale="20")
-       bdf_1.addObject('PointSetTopologyContainer', name="topologyContainer", position="1")
-       bdf_1.addObject('UniformMass', totalMass="1", topology="@topologyContainer")
-       bdf_1.addObject('RestShapeSpringsForceField', points="0")
-
-       bdf_2 = root.addChild('BDF-2')
-
-       bdf_2.addObject('BDFOdeSolver', order="2", printLog="false", rayleighMass="0.01", rayleighStiffness="0.01")
-       bdf_2.addObject('NewtonRaphsonSolver', name="newton", printLog="false", maxNbIterationsNewton="4", maxNbIterationsLineSearch="2", absoluteResidualStoppingThreshold="1e-6")
-       bdf_2.addObject('EigenSimplicialLDLT', template="CompressedRowSparseMatrix")
-       bdf_2.addObject('MechanicalObject', name="dofs", template="Vec1", position="1 ", rest_position="0", showObject="true", showObjectScale="20")
-       bdf_2.addObject('PointSetTopologyContainer', name="topologyContainer", position="1")
-       bdf_2.addObject('UniformMass', totalMass="1", topology="@topologyContainer")
-       bdf_2.addObject('RestShapeSpringsForceField', points="0")
-
-       bdf_3 = root.addChild('BDF-3')
-
-       bdf_3.addObject('BDFOdeSolver', order="3", printLog="false", rayleighMass="0.01", rayleighStiffness="0.01")
-       bdf_3.addObject('NewtonRaphsonSolver', name="newton", printLog="false", maxNbIterationsNewton="4", maxNbIterationsLineSearch="2", absoluteResidualStoppingThreshold="1e-6")
-       bdf_3.addObject('EigenSimplicialLDLT', template="CompressedRowSparseMatrix")
-       bdf_3.addObject('MechanicalObject', name="dofs", template="Vec1", position="1 ", rest_position="0", showObject="true", showObjectScale="20")
-       bdf_3.addObject('PointSetTopologyContainer', name="topologyContainer", position="1")
-       bdf_3.addObject('UniformMass', totalMass="1", topology="@topologyContainer")
-       bdf_3.addObject('RestShapeSpringsForceField', points="0")
-    ```
-
 BDFOdeSolver_spring3d.scn
 
 === "XML"
@@ -520,6 +407,119 @@ BDFOdeSolver_spring3d.scn
        bdf_3.addObject('UniformMass', totalMass="15", topology="@topologyContainer")
        bdf_3.addObject('SpringForceField', spring="0 1 1000 0 1")
        bdf_3.addObject('FixedProjectiveConstraint', indices="0")
+    ```
+
+BDFOdeSolver_spring1d.scn
+
+=== "XML"
+
+    ```xml
+    <Node name="root" gravity="-9.81 0 0" dt="0.01">
+        <RequiredPlugin name="Sofa.Component.Constraint.Projective"/> <!-- Needed to use components [FixedProjectiveConstraint] -->
+        <RequiredPlugin name="Sofa.Component.LinearSolver.Direct"/> <!-- Needed to use components [EigenSimplicialLDLT] -->
+        <RequiredPlugin name="Sofa.Component.Mass"/> <!-- Needed to use components [MeshMatrixMass] -->
+        <RequiredPlugin name="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [NewtonRaphsonSolver] -->
+        <RequiredPlugin name="Sofa.Component.SolidMechanics.Spring"/> <!-- Needed to use components [SpringForceField] -->
+        <RequiredPlugin name="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
+        <RequiredPlugin name="Sofa.Component.Visual"/> <!-- Needed to use components [VisualStyle] -->
+        <RequiredPlugin name="Sofa.GL.Component.Rendering3D"/> <!-- Needed to use components [OglCylinderModel] -->
+        <RequiredPlugin name="Sofa.Component.Topology.Container.Dynamic"/> <!-- Needed to use components [EdgeSetTopologyContainer] -->
+    
+        <VisualStyle displayFlags="showWireframe showVisual showBehaviorModels showForceFields" />
+        <DefaultAnimationLoop/>
+        <VisualGrid size="2"/>
+        <LineAxis size="2"/>
+    
+        <Node name="BDF-1">
+    
+            <BDFOdeSolver order="1" printLog="false" rayleighMass="0.01" rayleighStiffness="0.01"/>
+            <NewtonRaphsonSolver name="newton" printLog="false" maxNbIterationsNewton="4" maxNbIterationsLineSearch="2" absoluteResidualStoppingThreshold="1e-6"/>
+            <EigenSimplicialLDLT template="CompressedRowSparseMatrix"/>
+    
+            <MechanicalObject name="dofs" template="Vec1" position="1 " rest_position="0" showObject="true" showObjectScale="20"/>
+            <PointSetTopologyContainer name="topologyContainer" position="1"/>
+            <UniformMass totalMass="1" topology="@topologyContainer"/>
+            <RestShapeSpringsForceField points="0"/>
+        </Node>
+    
+        <Node name="BDF-2">
+    
+            <BDFOdeSolver order="2" printLog="false" rayleighMass="0.01" rayleighStiffness="0.01"/>
+            <NewtonRaphsonSolver name="newton" printLog="false" maxNbIterationsNewton="4" maxNbIterationsLineSearch="2" absoluteResidualStoppingThreshold="1e-6"/>
+            <EigenSimplicialLDLT template="CompressedRowSparseMatrix"/>
+    
+            <MechanicalObject name="dofs" template="Vec1" position="1 " rest_position="0" showObject="true" showObjectScale="20"/>
+            <PointSetTopologyContainer name="topologyContainer" position="1"/>
+            <UniformMass totalMass="1" topology="@topologyContainer"/>
+            <RestShapeSpringsForceField points="0"/>
+        </Node>
+    
+        <Node name="BDF-3">
+    
+            <BDFOdeSolver order="3" printLog="false" rayleighMass="0.01" rayleighStiffness="0.01"/>
+            <NewtonRaphsonSolver name="newton" printLog="false" maxNbIterationsNewton="4" maxNbIterationsLineSearch="2" absoluteResidualStoppingThreshold="1e-6"/>
+            <EigenSimplicialLDLT template="CompressedRowSparseMatrix"/>
+    
+            <MechanicalObject name="dofs" template="Vec1" position="1 " rest_position="0" showObject="true" showObjectScale="20"/>
+            <PointSetTopologyContainer name="topologyContainer" position="1"/>
+            <UniformMass totalMass="1" topology="@topologyContainer"/>
+            <RestShapeSpringsForceField points="0"/>
+        </Node>
+    
+    </Node>
+
+    ```
+
+=== "Python"
+
+    ```python
+    def createScene(root_node):
+
+       root = root_node.addChild('root', gravity="-9.81 0 0", dt="0.01")
+
+       root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Projective")
+       root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Direct")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Mass")
+       root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.Spring")
+       root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Visual")
+       root.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Dynamic")
+       root.addObject('VisualStyle', displayFlags="showWireframe showVisual showBehaviorModels showForceFields")
+       root.addObject('DefaultAnimationLoop', )
+       root.addObject('VisualGrid', size="2")
+       root.addObject('LineAxis', size="2")
+
+       bdf_1 = root.addChild('BDF-1')
+
+       bdf_1.addObject('BDFOdeSolver', order="1", printLog="false", rayleighMass="0.01", rayleighStiffness="0.01")
+       bdf_1.addObject('NewtonRaphsonSolver', name="newton", printLog="false", maxNbIterationsNewton="4", maxNbIterationsLineSearch="2", absoluteResidualStoppingThreshold="1e-6")
+       bdf_1.addObject('EigenSimplicialLDLT', template="CompressedRowSparseMatrix")
+       bdf_1.addObject('MechanicalObject', name="dofs", template="Vec1", position="1 ", rest_position="0", showObject="true", showObjectScale="20")
+       bdf_1.addObject('PointSetTopologyContainer', name="topologyContainer", position="1")
+       bdf_1.addObject('UniformMass', totalMass="1", topology="@topologyContainer")
+       bdf_1.addObject('RestShapeSpringsForceField', points="0")
+
+       bdf_2 = root.addChild('BDF-2')
+
+       bdf_2.addObject('BDFOdeSolver', order="2", printLog="false", rayleighMass="0.01", rayleighStiffness="0.01")
+       bdf_2.addObject('NewtonRaphsonSolver', name="newton", printLog="false", maxNbIterationsNewton="4", maxNbIterationsLineSearch="2", absoluteResidualStoppingThreshold="1e-6")
+       bdf_2.addObject('EigenSimplicialLDLT', template="CompressedRowSparseMatrix")
+       bdf_2.addObject('MechanicalObject', name="dofs", template="Vec1", position="1 ", rest_position="0", showObject="true", showObjectScale="20")
+       bdf_2.addObject('PointSetTopologyContainer', name="topologyContainer", position="1")
+       bdf_2.addObject('UniformMass', totalMass="1", topology="@topologyContainer")
+       bdf_2.addObject('RestShapeSpringsForceField', points="0")
+
+       bdf_3 = root.addChild('BDF-3')
+
+       bdf_3.addObject('BDFOdeSolver', order="3", printLog="false", rayleighMass="0.01", rayleighStiffness="0.01")
+       bdf_3.addObject('NewtonRaphsonSolver', name="newton", printLog="false", maxNbIterationsNewton="4", maxNbIterationsLineSearch="2", absoluteResidualStoppingThreshold="1e-6")
+       bdf_3.addObject('EigenSimplicialLDLT', template="CompressedRowSparseMatrix")
+       bdf_3.addObject('MechanicalObject', name="dofs", template="Vec1", position="1 ", rest_position="0", showObject="true", showObjectScale="20")
+       bdf_3.addObject('PointSetTopologyContainer', name="topologyContainer", position="1")
+       bdf_3.addObject('UniformMass', totalMass="1", topology="@topologyContainer")
+       bdf_3.addObject('RestShapeSpringsForceField', points="0")
     ```
 
 

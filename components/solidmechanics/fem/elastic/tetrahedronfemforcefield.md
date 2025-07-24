@@ -1039,164 +1039,6 @@ TetrahedronFEMForceField_plasticity.scn
        surf2.addObject('BarycentricMapping', )
     ```
 
-TetrahedronFEMForceField_beam16x16x76_gpu.scn
-
-=== "XML"
-
-    ```xml
-    <?xml version="1.0" ?>
-    <Node name="root" gravity="0 -9 0" dt="0.04">
-        <RequiredPlugin name="Sofa.Component.Collision.Detection.Algorithm"/> <!-- Needed to use components [BVHNarrowPhase BruteForceBroadPhase CollisionPipeline] -->
-        <RequiredPlugin name="Sofa.Component.Collision.Detection.Intersection"/> <!-- Needed to use components [DiscreteIntersection] -->
-        <RequiredPlugin name="Sofa.Component.Collision.Response.Contact"/> <!-- Needed to use components [CollisionResponse] -->
-        <RequiredPlugin name="Sofa.Component.LinearSolver.Iterative"/> <!-- Needed to use components [CGLinearSolver] -->
-        <RequiredPlugin name="Sofa.Component.Mapping.Linear"/> <!-- Needed to use components [IdentityMapping] -->
-        <RequiredPlugin name="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
-        <RequiredPlugin name="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
-        <RequiredPlugin name="Sofa.Component.Topology.Container.Dynamic"/> <!-- Needed to use components [TetrahedronSetTopologyContainer TetrahedronSetTopologyModifier TriangleSetTopologyContainer TriangleSetTopologyModifier] -->
-        <RequiredPlugin name="Sofa.Component.Topology.Container.Grid"/> <!-- Needed to use components [RegularGridTopology] -->
-        <RequiredPlugin name="Sofa.Component.Topology.Mapping"/> <!-- Needed to use components [Hexa2TetraTopologicalMapping Tetra2TriangleTopologicalMapping] -->
-        <RequiredPlugin name="Sofa.Component.Visual"/> <!-- Needed to use components [VisualStyle] -->
-        <RequiredPlugin name="Sofa.GL.Component.Rendering3D"/> <!-- Needed to use components [OglModel] -->
-        <RequiredPlugin name="SofaCUDA"/> <!-- Needed to use components [BoxROI DiagonalMass FixedProjectiveConstraint IdentityMapping MechanicalObject PlaneForceField TetrahedronFEMForceField TetrahedronSetGeometryAlgorithms TriangleSetGeometryAlgorithms] -->
-      
-        <VisualStyle displayFlags="showBehaviorModels showVisual" />
-    	
-        <DefaultAnimationLoop />
-        <DefaultVisualManagerLoop />
-        <CollisionPipeline name="CollisionPipeline" verbose="0" />
-        <BruteForceBroadPhase/>
-        <BVHNarrowPhase/>
-        <CollisionResponse name="collision response" response="PenalityContactForceField" />
-        <DiscreteIntersection/>
-        
-        <Node name="Beam">
-            <RegularGridTopology name="grid" n="76 16 16" min="0 6 -2" max="19 10 2" />
-            <TetrahedronSetTopologyContainer name="BeamTopo" />
-            <TetrahedronSetTopologyModifier name="Modifier" />
-    
-            <Hexa2TetraTopologicalMapping input="@grid" output="@BeamTopo" />
-        </Node>
-       
-        <Node name="TetrahedronFEMForceField-GPU-Green">
-            <EulerImplicitSolver name="cg_odesolver" rayleighStiffness="0.1" rayleighMass="0.1" />
-            <CGLinearSolver iterations="10" name="linear solver" tolerance="1.0e-6" threshold="1.0e-6" />
-            
-            <MechanicalObject position="@../Beam/grid.position" name="Volume" template="CudaVec3f"/>
-    
-            <TetrahedronSetTopologyContainer name="Container" src="@../Beam/BeamTopo"/>
-            <TetrahedronSetTopologyModifier name="Modifier" />
-            <TetrahedronSetGeometryAlgorithms name="GeomAlgo" template="CudaVec3f" />
-    
-            <DiagonalMass totalMass="50.0" />
-            <BoxROI name="ROI1" box="-0.1 5 -3 0.1 11 3" drawBoxes="1" />
-            
-            <FixedProjectiveConstraint indices="@ROI1.indices" />
-            <TetrahedronFEMForceField template="CudaVec3f" name="FEM" computeGlobalMatrix="false" method="large" poissonRatio="0.3" youngModulus="1000" />
-    		<PlaneForceField normal="0 1 0" d="2" stiffness="10000"  showPlane="1" />
-            
-            <Node name="surface">
-                <TriangleSetTopologyContainer name="Container" />
-                <TriangleSetTopologyModifier name="Modifier" />
-                <TriangleSetGeometryAlgorithms template="CudaVec3f" name="GeomAlgo" />
-                
-                <Tetra2TriangleTopologicalMapping input="@../Container" output="@Container" />
-                <Node name="Visu">
-                    <OglModel name="Visual" color="green" />
-                    <IdentityMapping input="@../../Volume" output="@Visual" />
-                </Node>
-            </Node>
-        </Node>
-        
-        <Node name="Floor">
-    		<RegularGridTopology
-    			nx="4" ny="1" nz="4"
-    			xmin="-10" xmax="30"
-    			ymin="1.9" ymax="1.9"
-    			zmin="-20" zmax="20" />
-    		<MechanicalObject />
-    		<Node name="Visu">
-    			<OglModel name="Visual" color="white"/>
-    			<IdentityMapping input="@.." output="@Visual"/>
-    		</Node>
-    	</Node>
-    </Node>
-
-    ```
-
-=== "Python"
-
-    ```python
-    def createScene(root_node):
-
-       root = root_node.addChild('root', gravity="0 -9 0", dt="0.04")
-
-       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Algorithm")
-       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Intersection")
-       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Response.Contact")
-       root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Iterative")
-       root.addObject('RequiredPlugin', name="Sofa.Component.Mapping.Linear")
-       root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
-       root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
-       root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Dynamic")
-       root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Grid")
-       root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Mapping")
-       root.addObject('RequiredPlugin', name="Sofa.Component.Visual")
-       root.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
-       root.addObject('RequiredPlugin', name="SofaCUDA")
-       root.addObject('VisualStyle', displayFlags="showBehaviorModels showVisual")
-       root.addObject('DefaultAnimationLoop', )
-       root.addObject('DefaultVisualManagerLoop', )
-       root.addObject('CollisionPipeline', name="CollisionPipeline", verbose="0")
-       root.addObject('BruteForceBroadPhase', )
-       root.addObject('BVHNarrowPhase', )
-       root.addObject('CollisionResponse', name="collision response", response="PenalityContactForceField")
-       root.addObject('DiscreteIntersection', )
-
-       beam = root.addChild('Beam')
-
-       beam.addObject('RegularGridTopology', name="grid", n="76 16 16", min="0 6 -2", max="19 10 2")
-       beam.addObject('TetrahedronSetTopologyContainer', name="BeamTopo")
-       beam.addObject('TetrahedronSetTopologyModifier', name="Modifier")
-       beam.addObject('Hexa2TetraTopologicalMapping', input="@grid", output="@BeamTopo")
-
-       tetrahedron_fem_force_field__gpu__green = root.addChild('TetrahedronFEMForceField-GPU-Green')
-
-       tetrahedron_fem_force_field__gpu__green.addObject('EulerImplicitSolver', name="cg_odesolver", rayleighStiffness="0.1", rayleighMass="0.1")
-       tetrahedron_fem_force_field__gpu__green.addObject('CGLinearSolver', iterations="10", name="linear solver", tolerance="1.0e-6", threshold="1.0e-6")
-       tetrahedron_fem_force_field__gpu__green.addObject('MechanicalObject', position="@../Beam/grid.position", name="Volume", template="CudaVec3f")
-       tetrahedron_fem_force_field__gpu__green.addObject('TetrahedronSetTopologyContainer', name="Container", src="@../Beam/BeamTopo")
-       tetrahedron_fem_force_field__gpu__green.addObject('TetrahedronSetTopologyModifier', name="Modifier")
-       tetrahedron_fem_force_field__gpu__green.addObject('TetrahedronSetGeometryAlgorithms', name="GeomAlgo", template="CudaVec3f")
-       tetrahedron_fem_force_field__gpu__green.addObject('DiagonalMass', totalMass="50.0")
-       tetrahedron_fem_force_field__gpu__green.addObject('BoxROI', name="ROI1", box="-0.1 5 -3 0.1 11 3", drawBoxes="1")
-       tetrahedron_fem_force_field__gpu__green.addObject('FixedProjectiveConstraint', indices="@ROI1.indices")
-       tetrahedron_fem_force_field__gpu__green.addObject('TetrahedronFEMForceField', template="CudaVec3f", name="FEM", computeGlobalMatrix="false", method="large", poissonRatio="0.3", youngModulus="1000")
-       tetrahedron_fem_force_field__gpu__green.addObject('PlaneForceField', normal="0 1 0", d="2", stiffness="10000", showPlane="1")
-
-       surface = TetrahedronFEMForceField-GPU-Green.addChild('surface')
-
-       surface.addObject('TriangleSetTopologyContainer', name="Container")
-       surface.addObject('TriangleSetTopologyModifier', name="Modifier")
-       surface.addObject('TriangleSetGeometryAlgorithms', template="CudaVec3f", name="GeomAlgo")
-       surface.addObject('Tetra2TriangleTopologicalMapping', input="@../Container", output="@Container")
-
-       visu = surface.addChild('Visu')
-
-       visu.addObject('OglModel', name="Visual", color="green")
-       visu.addObject('IdentityMapping', input="@../../Volume", output="@Visual")
-
-       floor = root.addChild('Floor')
-
-       floor.addObject('RegularGridTopology', nx="4", ny="1", nz="4", xmin="-10", xmax="30", ymin="1.9", ymax="1.9", zmin="-20", zmax="20")
-       floor.addObject('MechanicalObject', )
-
-       visu = Floor.addChild('Visu')
-
-       visu.addObject('OglModel', name="Visual", color="white")
-       visu.addObject('IdentityMapping', input="@..", output="@Visual")
-    ```
-
 TetrahedronFEMForceField_beam16x16x76_cpu.scn
 
 === "XML"
@@ -1363,6 +1205,294 @@ TetrahedronFEMForceField_beam16x16x76_cpu.scn
        visu.addObject('IdentityMapping', input="@..", output="@Visual")
     ```
 
+TetrahedronFEMForceField_beam10x10x40_gpu.scn
+
+=== "XML"
+
+    ```xml
+    <?xml version="1.0" ?>
+    <Node name="root" gravity="0 -9 0" dt="0.01">
+        <RequiredPlugin name="Sofa.Component.Collision.Detection.Algorithm"/> <!-- Needed to use components [BVHNarrowPhase BruteForceBroadPhase CollisionPipeline] -->
+        <RequiredPlugin name="Sofa.Component.Collision.Detection.Intersection"/> <!-- Needed to use components [DiscreteIntersection] -->
+        <RequiredPlugin name="Sofa.Component.Collision.Response.Contact"/> <!-- Needed to use components [CollisionResponse] -->
+        <RequiredPlugin name="Sofa.Component.LinearSolver.Iterative"/> <!-- Needed to use components [CGLinearSolver] -->
+        <RequiredPlugin name="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+        <RequiredPlugin name="Sofa.Component.Topology.Container.Dynamic"/> <!-- Needed to use components [TetrahedronSetTopologyContainer TetrahedronSetTopologyModifier TriangleSetTopologyContainer TriangleSetTopologyModifier] -->
+        <RequiredPlugin name="Sofa.Component.Topology.Container.Grid"/> <!-- Needed to use components [RegularGridTopology] -->
+        <RequiredPlugin name="Sofa.Component.Topology.Mapping"/> <!-- Needed to use components [Hexa2TetraTopologicalMapping Tetra2TriangleTopologicalMapping] -->
+        <RequiredPlugin name="Sofa.Component.Visual"/> <!-- Needed to use components [VisualStyle] -->
+        <RequiredPlugin name="Sofa.GL.Component.Rendering3D"/> <!-- Needed to use components [OglModel] -->
+        <RequiredPlugin name="SofaCUDA"/> <!-- Needed to use components [BoxROI DiagonalMass FixedProjectiveConstraint IdentityMapping MechanicalObject TetrahedronFEMForceField TetrahedronSetGeometryAlgorithms TriangleSetGeometryAlgorithms] -->
+        
+        <VisualStyle displayFlags="showBehaviorModels showVisual" />
+    	
+        <DefaultAnimationLoop />
+        <DefaultVisualManagerLoop />
+        <CollisionPipeline name="CollisionPipeline" verbose="0" />
+        <BruteForceBroadPhase/>
+        <BVHNarrowPhase/>
+        <CollisionResponse name="collision response" response="PenalityContactForceField" />
+        <DiscreteIntersection/>
+        
+        <Node name="Beam">
+            <RegularGridTopology name="grid" n="40 10 10" min="0 6 -2" max="16 10 2" />
+            <TetrahedronSetTopologyContainer name="BeamTopo" />
+            <TetrahedronSetTopologyModifier name="Modifier" />
+    
+            <Hexa2TetraTopologicalMapping input="@grid" output="@BeamTopo" />
+        </Node>
+        
+        
+        <Node name="TetrahedronFEMForceField-GPU-Green">
+            <EulerImplicitSolver name="cg_odesolver" rayleighStiffness="0.1" rayleighMass="0.1" />
+            <CGLinearSolver iterations="20" name="linear solver" tolerance="1.0e-6" threshold="1.0e-6" />
+            
+            <MechanicalObject position="@../Beam/grid.position" name="Volume" template="CudaVec3f"/>
+    
+            <TetrahedronSetTopologyContainer name="Container" src="@../Beam/BeamTopo"/>
+            <TetrahedronSetTopologyModifier name="Modifier" />
+            <TetrahedronSetGeometryAlgorithms name="GeomAlgo" template="CudaVec3f" />
+    
+            <DiagonalMass totalMass="50.0" />
+            <BoxROI name="ROI1" box="-0.1 5 -3 0.1 11 3" drawBoxes="1" />
+            
+            <FixedProjectiveConstraint indices="@ROI1.indices" />
+            <TetrahedronFEMForceField template="CudaVec3f" name="FEM" computeGlobalMatrix="false" method="large" poissonRatio="0.3" youngModulus="2000" />
+            
+            <Node name="surface">
+                <TriangleSetTopologyContainer name="Container" />
+                <TriangleSetTopologyModifier name="Modifier" />
+                <TriangleSetGeometryAlgorithms template="CudaVec3f" name="GeomAlgo" />
+                
+                <Tetra2TriangleTopologicalMapping input="@../Container" output="@Container" />
+                <Node name="Visu">
+                    <OglModel name="Visual" color="green" />
+                    <IdentityMapping input="@../../Volume" output="@Visual" />
+                </Node>
+            </Node>
+        </Node>   
+    </Node>
+
+    ```
+
+=== "Python"
+
+    ```python
+    def createScene(root_node):
+
+       root = root_node.addChild('root', gravity="0 -9 0", dt="0.01")
+
+       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Algorithm")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Intersection")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Response.Contact")
+       root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Iterative")
+       root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Dynamic")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Grid")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Mapping")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Visual")
+       root.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
+       root.addObject('RequiredPlugin', name="SofaCUDA")
+       root.addObject('VisualStyle', displayFlags="showBehaviorModels showVisual")
+       root.addObject('DefaultAnimationLoop', )
+       root.addObject('DefaultVisualManagerLoop', )
+       root.addObject('CollisionPipeline', name="CollisionPipeline", verbose="0")
+       root.addObject('BruteForceBroadPhase', )
+       root.addObject('BVHNarrowPhase', )
+       root.addObject('CollisionResponse', name="collision response", response="PenalityContactForceField")
+       root.addObject('DiscreteIntersection', )
+
+       beam = root.addChild('Beam')
+
+       beam.addObject('RegularGridTopology', name="grid", n="40 10 10", min="0 6 -2", max="16 10 2")
+       beam.addObject('TetrahedronSetTopologyContainer', name="BeamTopo")
+       beam.addObject('TetrahedronSetTopologyModifier', name="Modifier")
+       beam.addObject('Hexa2TetraTopologicalMapping', input="@grid", output="@BeamTopo")
+
+       tetrahedron_fem_force_field__gpu__green = root.addChild('TetrahedronFEMForceField-GPU-Green')
+
+       tetrahedron_fem_force_field__gpu__green.addObject('EulerImplicitSolver', name="cg_odesolver", rayleighStiffness="0.1", rayleighMass="0.1")
+       tetrahedron_fem_force_field__gpu__green.addObject('CGLinearSolver', iterations="20", name="linear solver", tolerance="1.0e-6", threshold="1.0e-6")
+       tetrahedron_fem_force_field__gpu__green.addObject('MechanicalObject', position="@../Beam/grid.position", name="Volume", template="CudaVec3f")
+       tetrahedron_fem_force_field__gpu__green.addObject('TetrahedronSetTopologyContainer', name="Container", src="@../Beam/BeamTopo")
+       tetrahedron_fem_force_field__gpu__green.addObject('TetrahedronSetTopologyModifier', name="Modifier")
+       tetrahedron_fem_force_field__gpu__green.addObject('TetrahedronSetGeometryAlgorithms', name="GeomAlgo", template="CudaVec3f")
+       tetrahedron_fem_force_field__gpu__green.addObject('DiagonalMass', totalMass="50.0")
+       tetrahedron_fem_force_field__gpu__green.addObject('BoxROI', name="ROI1", box="-0.1 5 -3 0.1 11 3", drawBoxes="1")
+       tetrahedron_fem_force_field__gpu__green.addObject('FixedProjectiveConstraint', indices="@ROI1.indices")
+       tetrahedron_fem_force_field__gpu__green.addObject('TetrahedronFEMForceField', template="CudaVec3f", name="FEM", computeGlobalMatrix="false", method="large", poissonRatio="0.3", youngModulus="2000")
+
+       surface = TetrahedronFEMForceField-GPU-Green.addChild('surface')
+
+       surface.addObject('TriangleSetTopologyContainer', name="Container")
+       surface.addObject('TriangleSetTopologyModifier', name="Modifier")
+       surface.addObject('TriangleSetGeometryAlgorithms', template="CudaVec3f", name="GeomAlgo")
+       surface.addObject('Tetra2TriangleTopologicalMapping', input="@../Container", output="@Container")
+
+       visu = surface.addChild('Visu')
+
+       visu.addObject('OglModel', name="Visual", color="green")
+       visu.addObject('IdentityMapping', input="@../../Volume", output="@Visual")
+    ```
+
+TetrahedronFEMForceField_beam16x16x76_gpu.scn
+
+=== "XML"
+
+    ```xml
+    <?xml version="1.0" ?>
+    <Node name="root" gravity="0 -9 0" dt="0.04">
+        <RequiredPlugin name="Sofa.Component.Collision.Detection.Algorithm"/> <!-- Needed to use components [BVHNarrowPhase BruteForceBroadPhase CollisionPipeline] -->
+        <RequiredPlugin name="Sofa.Component.Collision.Detection.Intersection"/> <!-- Needed to use components [DiscreteIntersection] -->
+        <RequiredPlugin name="Sofa.Component.Collision.Response.Contact"/> <!-- Needed to use components [CollisionResponse] -->
+        <RequiredPlugin name="Sofa.Component.LinearSolver.Iterative"/> <!-- Needed to use components [CGLinearSolver] -->
+        <RequiredPlugin name="Sofa.Component.Mapping.Linear"/> <!-- Needed to use components [IdentityMapping] -->
+        <RequiredPlugin name="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+        <RequiredPlugin name="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
+        <RequiredPlugin name="Sofa.Component.Topology.Container.Dynamic"/> <!-- Needed to use components [TetrahedronSetTopologyContainer TetrahedronSetTopologyModifier TriangleSetTopologyContainer TriangleSetTopologyModifier] -->
+        <RequiredPlugin name="Sofa.Component.Topology.Container.Grid"/> <!-- Needed to use components [RegularGridTopology] -->
+        <RequiredPlugin name="Sofa.Component.Topology.Mapping"/> <!-- Needed to use components [Hexa2TetraTopologicalMapping Tetra2TriangleTopologicalMapping] -->
+        <RequiredPlugin name="Sofa.Component.Visual"/> <!-- Needed to use components [VisualStyle] -->
+        <RequiredPlugin name="Sofa.GL.Component.Rendering3D"/> <!-- Needed to use components [OglModel] -->
+        <RequiredPlugin name="SofaCUDA"/> <!-- Needed to use components [BoxROI DiagonalMass FixedProjectiveConstraint IdentityMapping MechanicalObject PlaneForceField TetrahedronFEMForceField TetrahedronSetGeometryAlgorithms TriangleSetGeometryAlgorithms] -->
+      
+        <VisualStyle displayFlags="showBehaviorModels showVisual" />
+    	
+        <DefaultAnimationLoop />
+        <DefaultVisualManagerLoop />
+        <CollisionPipeline name="CollisionPipeline" verbose="0" />
+        <BruteForceBroadPhase/>
+        <BVHNarrowPhase/>
+        <CollisionResponse name="collision response" response="PenalityContactForceField" />
+        <DiscreteIntersection/>
+        
+        <Node name="Beam">
+            <RegularGridTopology name="grid" n="76 16 16" min="0 6 -2" max="19 10 2" />
+            <TetrahedronSetTopologyContainer name="BeamTopo" />
+            <TetrahedronSetTopologyModifier name="Modifier" />
+    
+            <Hexa2TetraTopologicalMapping input="@grid" output="@BeamTopo" />
+        </Node>
+       
+        <Node name="TetrahedronFEMForceField-GPU-Green">
+            <EulerImplicitSolver name="cg_odesolver" rayleighStiffness="0.1" rayleighMass="0.1" />
+            <CGLinearSolver iterations="10" name="linear solver" tolerance="1.0e-6" threshold="1.0e-6" />
+            
+            <MechanicalObject position="@../Beam/grid.position" name="Volume" template="CudaVec3f"/>
+    
+            <TetrahedronSetTopologyContainer name="Container" src="@../Beam/BeamTopo"/>
+            <TetrahedronSetTopologyModifier name="Modifier" />
+            <TetrahedronSetGeometryAlgorithms name="GeomAlgo" template="CudaVec3f" />
+    
+            <DiagonalMass totalMass="50.0" />
+            <BoxROI name="ROI1" box="-0.1 5 -3 0.1 11 3" drawBoxes="1" />
+            
+            <FixedProjectiveConstraint indices="@ROI1.indices" />
+            <TetrahedronFEMForceField template="CudaVec3f" name="FEM" computeGlobalMatrix="false" method="large" poissonRatio="0.3" youngModulus="1000" />
+    		<PlaneForceField normal="0 1 0" d="2" stiffness="10000"  showPlane="1" />
+            
+            <Node name="surface">
+                <TriangleSetTopologyContainer name="Container" />
+                <TriangleSetTopologyModifier name="Modifier" />
+                <TriangleSetGeometryAlgorithms template="CudaVec3f" name="GeomAlgo" />
+                
+                <Tetra2TriangleTopologicalMapping input="@../Container" output="@Container" />
+                <Node name="Visu">
+                    <OglModel name="Visual" color="green" />
+                    <IdentityMapping input="@../../Volume" output="@Visual" />
+                </Node>
+            </Node>
+        </Node>
+        
+        <Node name="Floor">
+    		<RegularGridTopology
+    			nx="4" ny="1" nz="4"
+    			xmin="-10" xmax="30"
+    			ymin="1.9" ymax="1.9"
+    			zmin="-20" zmax="20" />
+    		<MechanicalObject />
+    		<Node name="Visu">
+    			<OglModel name="Visual" color="white"/>
+    			<IdentityMapping input="@.." output="@Visual"/>
+    		</Node>
+    	</Node>
+    </Node>
+
+    ```
+
+=== "Python"
+
+    ```python
+    def createScene(root_node):
+
+       root = root_node.addChild('root', gravity="0 -9 0", dt="0.04")
+
+       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Algorithm")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Intersection")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Response.Contact")
+       root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Iterative")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Mapping.Linear")
+       root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Dynamic")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Grid")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Mapping")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Visual")
+       root.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
+       root.addObject('RequiredPlugin', name="SofaCUDA")
+       root.addObject('VisualStyle', displayFlags="showBehaviorModels showVisual")
+       root.addObject('DefaultAnimationLoop', )
+       root.addObject('DefaultVisualManagerLoop', )
+       root.addObject('CollisionPipeline', name="CollisionPipeline", verbose="0")
+       root.addObject('BruteForceBroadPhase', )
+       root.addObject('BVHNarrowPhase', )
+       root.addObject('CollisionResponse', name="collision response", response="PenalityContactForceField")
+       root.addObject('DiscreteIntersection', )
+
+       beam = root.addChild('Beam')
+
+       beam.addObject('RegularGridTopology', name="grid", n="76 16 16", min="0 6 -2", max="19 10 2")
+       beam.addObject('TetrahedronSetTopologyContainer', name="BeamTopo")
+       beam.addObject('TetrahedronSetTopologyModifier', name="Modifier")
+       beam.addObject('Hexa2TetraTopologicalMapping', input="@grid", output="@BeamTopo")
+
+       tetrahedron_fem_force_field__gpu__green = root.addChild('TetrahedronFEMForceField-GPU-Green')
+
+       tetrahedron_fem_force_field__gpu__green.addObject('EulerImplicitSolver', name="cg_odesolver", rayleighStiffness="0.1", rayleighMass="0.1")
+       tetrahedron_fem_force_field__gpu__green.addObject('CGLinearSolver', iterations="10", name="linear solver", tolerance="1.0e-6", threshold="1.0e-6")
+       tetrahedron_fem_force_field__gpu__green.addObject('MechanicalObject', position="@../Beam/grid.position", name="Volume", template="CudaVec3f")
+       tetrahedron_fem_force_field__gpu__green.addObject('TetrahedronSetTopologyContainer', name="Container", src="@../Beam/BeamTopo")
+       tetrahedron_fem_force_field__gpu__green.addObject('TetrahedronSetTopologyModifier', name="Modifier")
+       tetrahedron_fem_force_field__gpu__green.addObject('TetrahedronSetGeometryAlgorithms', name="GeomAlgo", template="CudaVec3f")
+       tetrahedron_fem_force_field__gpu__green.addObject('DiagonalMass', totalMass="50.0")
+       tetrahedron_fem_force_field__gpu__green.addObject('BoxROI', name="ROI1", box="-0.1 5 -3 0.1 11 3", drawBoxes="1")
+       tetrahedron_fem_force_field__gpu__green.addObject('FixedProjectiveConstraint', indices="@ROI1.indices")
+       tetrahedron_fem_force_field__gpu__green.addObject('TetrahedronFEMForceField', template="CudaVec3f", name="FEM", computeGlobalMatrix="false", method="large", poissonRatio="0.3", youngModulus="1000")
+       tetrahedron_fem_force_field__gpu__green.addObject('PlaneForceField', normal="0 1 0", d="2", stiffness="10000", showPlane="1")
+
+       surface = TetrahedronFEMForceField-GPU-Green.addChild('surface')
+
+       surface.addObject('TriangleSetTopologyContainer', name="Container")
+       surface.addObject('TriangleSetTopologyModifier', name="Modifier")
+       surface.addObject('TriangleSetGeometryAlgorithms', template="CudaVec3f", name="GeomAlgo")
+       surface.addObject('Tetra2TriangleTopologicalMapping', input="@../Container", output="@Container")
+
+       visu = surface.addChild('Visu')
+
+       visu.addObject('OglModel', name="Visual", color="green")
+       visu.addObject('IdentityMapping', input="@../../Volume", output="@Visual")
+
+       floor = root.addChild('Floor')
+
+       floor.addObject('RegularGridTopology', nx="4", ny="1", nz="4", xmin="-10", xmax="30", ymin="1.9", ymax="1.9", zmin="-20", zmax="20")
+       floor.addObject('MechanicalObject', )
+
+       visu = Floor.addChild('Visu')
+
+       visu.addObject('OglModel', name="Visual", color="white")
+       visu.addObject('IdentityMapping', input="@..", output="@Visual")
+    ```
+
 TetrahedronFEMForceField_beam10x10x40_cpu.scn
 
 === "XML"
@@ -1499,136 +1629,6 @@ TetrahedronFEMForceField_beam10x10x40_cpu.scn
        visu = surface.addChild('Visu')
 
        visu.addObject('OglModel', name="Visual", color="red")
-       visu.addObject('IdentityMapping', input="@../../Volume", output="@Visual")
-    ```
-
-TetrahedronFEMForceField_beam10x10x40_gpu.scn
-
-=== "XML"
-
-    ```xml
-    <?xml version="1.0" ?>
-    <Node name="root" gravity="0 -9 0" dt="0.01">
-        <RequiredPlugin name="Sofa.Component.Collision.Detection.Algorithm"/> <!-- Needed to use components [BVHNarrowPhase BruteForceBroadPhase CollisionPipeline] -->
-        <RequiredPlugin name="Sofa.Component.Collision.Detection.Intersection"/> <!-- Needed to use components [DiscreteIntersection] -->
-        <RequiredPlugin name="Sofa.Component.Collision.Response.Contact"/> <!-- Needed to use components [CollisionResponse] -->
-        <RequiredPlugin name="Sofa.Component.LinearSolver.Iterative"/> <!-- Needed to use components [CGLinearSolver] -->
-        <RequiredPlugin name="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
-        <RequiredPlugin name="Sofa.Component.Topology.Container.Dynamic"/> <!-- Needed to use components [TetrahedronSetTopologyContainer TetrahedronSetTopologyModifier TriangleSetTopologyContainer TriangleSetTopologyModifier] -->
-        <RequiredPlugin name="Sofa.Component.Topology.Container.Grid"/> <!-- Needed to use components [RegularGridTopology] -->
-        <RequiredPlugin name="Sofa.Component.Topology.Mapping"/> <!-- Needed to use components [Hexa2TetraTopologicalMapping Tetra2TriangleTopologicalMapping] -->
-        <RequiredPlugin name="Sofa.Component.Visual"/> <!-- Needed to use components [VisualStyle] -->
-        <RequiredPlugin name="Sofa.GL.Component.Rendering3D"/> <!-- Needed to use components [OglModel] -->
-        <RequiredPlugin name="SofaCUDA"/> <!-- Needed to use components [BoxROI DiagonalMass FixedProjectiveConstraint IdentityMapping MechanicalObject TetrahedronFEMForceField TetrahedronSetGeometryAlgorithms TriangleSetGeometryAlgorithms] -->
-        
-        <VisualStyle displayFlags="showBehaviorModels showVisual" />
-    	
-        <DefaultAnimationLoop />
-        <DefaultVisualManagerLoop />
-        <CollisionPipeline name="CollisionPipeline" verbose="0" />
-        <BruteForceBroadPhase/>
-        <BVHNarrowPhase/>
-        <CollisionResponse name="collision response" response="PenalityContactForceField" />
-        <DiscreteIntersection/>
-        
-        <Node name="Beam">
-            <RegularGridTopology name="grid" n="40 10 10" min="0 6 -2" max="16 10 2" />
-            <TetrahedronSetTopologyContainer name="BeamTopo" />
-            <TetrahedronSetTopologyModifier name="Modifier" />
-    
-            <Hexa2TetraTopologicalMapping input="@grid" output="@BeamTopo" />
-        </Node>
-        
-        
-        <Node name="TetrahedronFEMForceField-GPU-Green">
-            <EulerImplicitSolver name="cg_odesolver" rayleighStiffness="0.1" rayleighMass="0.1" />
-            <CGLinearSolver iterations="20" name="linear solver" tolerance="1.0e-6" threshold="1.0e-6" />
-            
-            <MechanicalObject position="@../Beam/grid.position" name="Volume" template="CudaVec3f"/>
-    
-            <TetrahedronSetTopologyContainer name="Container" src="@../Beam/BeamTopo"/>
-            <TetrahedronSetTopologyModifier name="Modifier" />
-            <TetrahedronSetGeometryAlgorithms name="GeomAlgo" template="CudaVec3f" />
-    
-            <DiagonalMass totalMass="50.0" />
-            <BoxROI name="ROI1" box="-0.1 5 -3 0.1 11 3" drawBoxes="1" />
-            
-            <FixedProjectiveConstraint indices="@ROI1.indices" />
-            <TetrahedronFEMForceField template="CudaVec3f" name="FEM" computeGlobalMatrix="false" method="large" poissonRatio="0.3" youngModulus="2000" />
-            
-            <Node name="surface">
-                <TriangleSetTopologyContainer name="Container" />
-                <TriangleSetTopologyModifier name="Modifier" />
-                <TriangleSetGeometryAlgorithms template="CudaVec3f" name="GeomAlgo" />
-                
-                <Tetra2TriangleTopologicalMapping input="@../Container" output="@Container" />
-                <Node name="Visu">
-                    <OglModel name="Visual" color="green" />
-                    <IdentityMapping input="@../../Volume" output="@Visual" />
-                </Node>
-            </Node>
-        </Node>   
-    </Node>
-
-    ```
-
-=== "Python"
-
-    ```python
-    def createScene(root_node):
-
-       root = root_node.addChild('root', gravity="0 -9 0", dt="0.01")
-
-       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Algorithm")
-       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Intersection")
-       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Response.Contact")
-       root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Iterative")
-       root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
-       root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Dynamic")
-       root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Grid")
-       root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Mapping")
-       root.addObject('RequiredPlugin', name="Sofa.Component.Visual")
-       root.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
-       root.addObject('RequiredPlugin', name="SofaCUDA")
-       root.addObject('VisualStyle', displayFlags="showBehaviorModels showVisual")
-       root.addObject('DefaultAnimationLoop', )
-       root.addObject('DefaultVisualManagerLoop', )
-       root.addObject('CollisionPipeline', name="CollisionPipeline", verbose="0")
-       root.addObject('BruteForceBroadPhase', )
-       root.addObject('BVHNarrowPhase', )
-       root.addObject('CollisionResponse', name="collision response", response="PenalityContactForceField")
-       root.addObject('DiscreteIntersection', )
-
-       beam = root.addChild('Beam')
-
-       beam.addObject('RegularGridTopology', name="grid", n="40 10 10", min="0 6 -2", max="16 10 2")
-       beam.addObject('TetrahedronSetTopologyContainer', name="BeamTopo")
-       beam.addObject('TetrahedronSetTopologyModifier', name="Modifier")
-       beam.addObject('Hexa2TetraTopologicalMapping', input="@grid", output="@BeamTopo")
-
-       tetrahedron_fem_force_field__gpu__green = root.addChild('TetrahedronFEMForceField-GPU-Green')
-
-       tetrahedron_fem_force_field__gpu__green.addObject('EulerImplicitSolver', name="cg_odesolver", rayleighStiffness="0.1", rayleighMass="0.1")
-       tetrahedron_fem_force_field__gpu__green.addObject('CGLinearSolver', iterations="20", name="linear solver", tolerance="1.0e-6", threshold="1.0e-6")
-       tetrahedron_fem_force_field__gpu__green.addObject('MechanicalObject', position="@../Beam/grid.position", name="Volume", template="CudaVec3f")
-       tetrahedron_fem_force_field__gpu__green.addObject('TetrahedronSetTopologyContainer', name="Container", src="@../Beam/BeamTopo")
-       tetrahedron_fem_force_field__gpu__green.addObject('TetrahedronSetTopologyModifier', name="Modifier")
-       tetrahedron_fem_force_field__gpu__green.addObject('TetrahedronSetGeometryAlgorithms', name="GeomAlgo", template="CudaVec3f")
-       tetrahedron_fem_force_field__gpu__green.addObject('DiagonalMass', totalMass="50.0")
-       tetrahedron_fem_force_field__gpu__green.addObject('BoxROI', name="ROI1", box="-0.1 5 -3 0.1 11 3", drawBoxes="1")
-       tetrahedron_fem_force_field__gpu__green.addObject('FixedProjectiveConstraint', indices="@ROI1.indices")
-       tetrahedron_fem_force_field__gpu__green.addObject('TetrahedronFEMForceField', template="CudaVec3f", name="FEM", computeGlobalMatrix="false", method="large", poissonRatio="0.3", youngModulus="2000")
-
-       surface = TetrahedronFEMForceField-GPU-Green.addChild('surface')
-
-       surface.addObject('TriangleSetTopologyContainer', name="Container")
-       surface.addObject('TriangleSetTopologyModifier', name="Modifier")
-       surface.addObject('TriangleSetGeometryAlgorithms', template="CudaVec3f", name="GeomAlgo")
-       surface.addObject('Tetra2TriangleTopologicalMapping', input="@../Container", output="@Container")
-
-       visu = surface.addChild('Visu')
-
-       visu.addObject('OglModel', name="Visual", color="green")
        visu.addObject('IdentityMapping', input="@../../Volume", output="@Visual")
     ```
 
