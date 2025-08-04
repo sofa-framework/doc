@@ -72,7 +72,7 @@ if true, handle the events, otherwise ignore the events
 		<td>0</td>
 	</tr>
 	<tr>
-		<td>positions</td>
+		<td>position</td>
 		<td>
 If not set by user, find the context mechanical.
 		</td>
@@ -95,7 +95,7 @@ If not set by user, find the context topology.
 	<tr>
 		<td>volume</td>
 		<td>
-
+The computed volume.
 		</td>
 		<td>0</td>
 	</tr>
@@ -118,6 +118,8 @@ If true, will update the volume at each time step of the simulation.
 |context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
 |slaves|Sub-objects used internally by this object|BaseObject|
 |master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
+|topology|link to the topology|BaseMeshTopology|
+|mechanical|link to the mechanical|MechanicalState&lt;Vec3d&gt;|
 
 ## Examples 
 
@@ -131,14 +133,21 @@ VolumeFromTetrahedrons.scn
         <RequiredPlugin name="Sofa.Component.Engine.Generate"/> <!-- Needed to use components [VolumeFromTetrahedrons] -->
         <RequiredPlugin name="Sofa.Component.IO.Mesh"/> <!-- Needed to use components [MeshVTKLoader] -->
         <RequiredPlugin name="Sofa.Component.Setting"/> <!-- Needed to use components [BackgroundSetting] -->
+        <RequiredPlugin name="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->  
+        <RequiredPlugin name="Sofa.Component.Topology.Container.Constant"/> <!-- Needed to use components [MeshTopology] -->  
+        <RequiredPlugin name="Sofa.GL.Component.Rendering3D"/> <!-- Needed to use components [OglModel] -->  
+    
     
         <DefaultAnimationLoop/>
         <BackgroundSetting color="1 1 1" />
         <Node name="Volume" >
             <MeshVTKLoader name="mesh" filename="mesh/Bunny.vtk"/>
-            <MeshTopology src="@mesh" name="topology" drawTetrahedra="1"/>
+            <MeshTopology src="@mesh" name="topology"/>
             <MechanicalObject />
             <VolumeFromTetrahedrons/>
+            <Node name="Visual" >
+                <OglModel src="@../topology" color="0.5 0.5 0.5 0.1"/>
+            </Node>
         </Node>
     </Node>
 
@@ -154,14 +163,21 @@ VolumeFromTetrahedrons.scn
        root.addObject('RequiredPlugin', name="Sofa.Component.Engine.Generate")
        root.addObject('RequiredPlugin', name="Sofa.Component.IO.Mesh")
        root.addObject('RequiredPlugin', name="Sofa.Component.Setting")
+       root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Constant")
+       root.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
        root.addObject('DefaultAnimationLoop', )
        root.addObject('BackgroundSetting', color="1 1 1")
 
        volume = root.addChild('Volume')
 
        volume.addObject('MeshVTKLoader', name="mesh", filename="mesh/Bunny.vtk")
-       volume.addObject('MeshTopology', src="@mesh", name="topology", drawTetrahedra="1")
+       volume.addObject('MeshTopology', src="@mesh", name="topology")
        volume.addObject('MechanicalObject', )
        volume.addObject('VolumeFromTetrahedrons', )
+
+       visual = Volume.addChild('Visual')
+
+       visual.addObject('OglModel', src="@../topology", color="0.5 0.5 0.5 0.1")
     ```
 
