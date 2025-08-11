@@ -342,222 +342,6 @@ Apply this factor to the constraint force to enable incremental loading. This va
 
 ## Examples 
 
-BilateralLagrangianConstraint_with_regularization_solvable.scn
-
-=== "XML"
-
-    ```xml
-    <?xml version="1.0"?>
-    <!-- BilateralLagrangianConstraint example -->
-    <Node name="root" dt="0.001" gravity="0 0 -9.81">
-        <RequiredPlugin name="Sofa.Component.AnimationLoop"/> <!-- Needed to use components [FreeMotionAnimationLoop] -->
-        <RequiredPlugin name="Sofa.Component.Constraint.Lagrangian.Correction"/> <!-- Needed to use components [LinearSolverConstraintCorrection] -->
-        <RequiredPlugin name="Sofa.Component.Constraint.Lagrangian.Model"/> <!-- Needed to use components [BilateralLagrangianConstraint] -->
-        <RequiredPlugin name="Sofa.Component.Constraint.Lagrangian.Solver"/> <!-- Needed to use components [GenericConstraintSolver] -->
-        <RequiredPlugin name="Sofa.Component.Engine.Select"/> <!-- Needed to use components [BoxROI] -->
-        <RequiredPlugin name="Sofa.Component.LinearSolver.Direct"/> <!-- Needed to use components [SparseLDLSolver] -->
-        <RequiredPlugin name="Sofa.Component.Mass"/> <!-- Needed to use components [UniformMass] -->
-        <RequiredPlugin name="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
-        <RequiredPlugin name="Sofa.Component.SolidMechanics.FEM.Elastic"/> <!-- Needed to use components [HexahedronFEMForceField] -->
-        <RequiredPlugin name="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
-        <RequiredPlugin name="Sofa.Component.Topology.Container.Grid"/> <!-- Needed to use components [RegularGridTopology] -->
-        <RequiredPlugin name="Sofa.Component.Visual"/> <!-- Needed to use components [VisualStyle] -->
-        
-        <VisualStyle displayFlags="showForceFields" />
-        <DefaultVisualManagerLoop />
-        <FreeMotionAnimationLoop />
-        <GenericConstraintSolver tolerance="0.0001" maxIterations="1000" resolutionMethod="ProjectedGaussSeidel" regularizationTerm="0.0"/>
-    
-    
-        <Node name="TargetCube0">
-            <RegularGridTopology name="grid" nx="4" ny="4" nz="2" xmin="-1" xmax="1" ymin="-1" ymax="1" zmin="-0.5" zmax="0.5" />
-            <MechanicalObject name="mstate" template="Vec3"/>
-            <BoxROI name="bottom" box="-1.1 -1.1 -1.1  1.1 1.1 -0.4" />
-            <BoxROI name="top" box="-1.1 -1.1 0.4  1.1 1.1 1.1" />
-        </Node>
-    
-        <Node name="DeformableCube0">
-    
-            <VisualStyle displayFlags="showForceFields" />
-            <EulerImplicitSolver name="odesolver" printLog="false" />
-            <SparseLDLSolver name="linearSolver" template="CompressedRowSparseMatrixMat3x3d" />
-    
-            <RegularGridTopology name="grid" nx="4" ny="4" nz="4" xmin="-1" xmax="1" ymin="-1" ymax="1" zmin="-1" zmax="1" />
-            <MechanicalObject name="mstate" template="Vec3" />
-            <HexahedronFEMForceField poissonRatio="0.49" youngModulus="700000"/>
-            <UniformMass totalMass="10" />
-            <BoxROI name="bottom" box="-1.1 -1.1 -1.1  1.1 1.1 -0.9" />
-            <BoxROI name="top" box="-1.1 -1.1 0.9  1.1 1.1 1.1" />
-            <LinearSolverConstraintCorrection linearSolver="@linearSolver"/>
-        </Node>
-    
-        <BilateralLagrangianConstraint template="Vec3"
-                                       object1="@DeformableCube0/mstate" first_point="@DeformableCube0/bottom.indices"
-                                       object2="@TargetCube0/mstate" second_point="@TargetCube0/bottom.indices" />
-    
-        <BilateralLagrangianConstraint template="Vec3"
-                                       object1="@DeformableCube0/mstate" first_point="@DeformableCube0/top.indices"
-                                       object2="@TargetCube0/mstate" second_point="@TargetCube0/top.indices" />
-    
-        <!-- With regularization -->
-        <Node name="TargetCube1">
-            <RegularGridTopology name="grid" nx="4" ny="4" nz="2" xmin="2" xmax="4" ymin="-1" ymax="1" zmin="-0.5" zmax="0.5" />
-            <MechanicalObject name="mstate" template="Vec3"/>
-            <BoxROI name="bottom" box="1.9 -1.1 -1.1  4.1 1.1 -0.4" />
-            <BoxROI name="top" box="1.9 -1.1 0.4  4.1 1.1 1.1" />
-        </Node>
-    
-        <Node name="DeformableCube1">
-    
-            <VisualStyle displayFlags="showForceFields" />
-            <EulerImplicitSolver name="odesolver" printLog="false" />
-            <SparseLDLSolver name="linearSolver" template="CompressedRowSparseMatrixMat3x3d" />
-    
-            <RegularGridTopology name="grid" nx="4" ny="4" nz="4" xmin="2" xmax="4" ymin="-1" ymax="1" zmin="-1" zmax="1" />
-            <MechanicalObject name="mstate" template="Vec3" />
-            <HexahedronFEMForceField poissonRatio="0.49" youngModulus="700000"/>
-            <UniformMass totalMass="10" />
-            <BoxROI name="bottom" box="1.9 -1.1 -1.1  4.1 1.1 -0.9" />
-            <BoxROI name="top" box="1.9 -1.1 0.9  4.1 1.1 1.1" />
-            <LinearSolverConstraintCorrection linearSolver="@linearSolver" regularizationTerm="0.002"/>
-        </Node>
-    
-        <BilateralLagrangianConstraint template="Vec3"
-                                       object1="@DeformableCube1/mstate" first_point="@DeformableCube1/bottom.indices"
-                                       object2="@TargetCube1/mstate" second_point="@TargetCube1/bottom.indices" />
-    
-        <BilateralLagrangianConstraint template="Vec3"
-                                       object1="@DeformableCube1/mstate" first_point="@DeformableCube1/top.indices"
-                                       object2="@TargetCube1/mstate" second_point="@TargetCube1/top.indices" />
-    
-        <!-- With more regularization -->
-        <Node name="TargetCube2">
-            <RegularGridTopology name="grid" nx="4" ny="4" nz="2" xmin="5" xmax="7" ymin="-1" ymax="1" zmin="-0.5" zmax="0.5" />
-            <MechanicalObject name="mstate" template="Vec3"/>
-            <BoxROI name="bottom" box="4.9 -1.1 -1.1  7.1 1.1 -0.4" />
-            <BoxROI name="top" box="4.9 -1.1 0.4  7.1 1.1 1.1" />
-        </Node>
-    
-        <Node name="DeformableCube2">
-    
-            <VisualStyle displayFlags="showForceFields" />
-            <EulerImplicitSolver name="odesolver" printLog="false" />
-            <SparseLDLSolver name="linearSolver" template="CompressedRowSparseMatrixMat3x3d" />
-    
-            <RegularGridTopology name="grid" nx="4" ny="4" nz="4" xmin="5" xmax="7" ymin="-1" ymax="1" zmin="-1" zmax="1" />
-            <MechanicalObject name="mstate" template="Vec3" />
-            <HexahedronFEMForceField poissonRatio="0.49" youngModulus="700000"/>
-            <UniformMass totalMass="10" />
-            <BoxROI name="bottom" box="4.9 -1.1 -1.1  7.1 1.1 -0.9" />
-            <BoxROI name="top" box="4.9 -1.1 0.9  7.1 1.1 1.1" />
-            <LinearSolverConstraintCorrection linearSolver="@linearSolver" regularizationTerm="0.005"/>
-        </Node>
-    
-        <BilateralLagrangianConstraint template="Vec3"
-                                       object1="@DeformableCube2/mstate" first_point="@DeformableCube2/bottom.indices"
-                                       object2="@TargetCube2/mstate" second_point="@TargetCube2/bottom.indices" />
-    
-        <BilateralLagrangianConstraint template="Vec3"
-                                       object1="@DeformableCube2/mstate" first_point="@DeformableCube2/top.indices"
-                                       object2="@TargetCube2/mstate" second_point="@TargetCube2/top.indices" />
-    </Node>
-
-    ```
-
-=== "Python"
-
-    ```python
-    def createScene(root_node):
-
-       root = root_node.addChild('root', dt="0.001", gravity="0 0 -9.81")
-
-       root.addObject('RequiredPlugin', name="Sofa.Component.AnimationLoop")
-       root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Lagrangian.Correction")
-       root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Lagrangian.Model")
-       root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Lagrangian.Solver")
-       root.addObject('RequiredPlugin', name="Sofa.Component.Engine.Select")
-       root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Direct")
-       root.addObject('RequiredPlugin', name="Sofa.Component.Mass")
-       root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
-       root.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.FEM.Elastic")
-       root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
-       root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Grid")
-       root.addObject('RequiredPlugin', name="Sofa.Component.Visual")
-       root.addObject('VisualStyle', displayFlags="showForceFields")
-       root.addObject('DefaultVisualManagerLoop', )
-       root.addObject('FreeMotionAnimationLoop', )
-       root.addObject('GenericConstraintSolver', tolerance="0.0001", maxIterations="1000", resolutionMethod="ProjectedGaussSeidel", regularizationTerm="0.0")
-
-       target_cube0 = root.addChild('TargetCube0')
-
-       target_cube0.addObject('RegularGridTopology', name="grid", nx="4", ny="4", nz="2", xmin="-1", xmax="1", ymin="-1", ymax="1", zmin="-0.5", zmax="0.5")
-       target_cube0.addObject('MechanicalObject', name="mstate", template="Vec3")
-       target_cube0.addObject('BoxROI', name="bottom", box="-1.1 -1.1 -1.1  1.1 1.1 -0.4")
-       target_cube0.addObject('BoxROI', name="top", box="-1.1 -1.1 0.4  1.1 1.1 1.1")
-
-       deformable_cube0 = root.addChild('DeformableCube0')
-
-       deformable_cube0.addObject('VisualStyle', displayFlags="showForceFields")
-       deformable_cube0.addObject('EulerImplicitSolver', name="odesolver", printLog="false")
-       deformable_cube0.addObject('SparseLDLSolver', name="linearSolver", template="CompressedRowSparseMatrixMat3x3d")
-       deformable_cube0.addObject('RegularGridTopology', name="grid", nx="4", ny="4", nz="4", xmin="-1", xmax="1", ymin="-1", ymax="1", zmin="-1", zmax="1")
-       deformable_cube0.addObject('MechanicalObject', name="mstate", template="Vec3")
-       deformable_cube0.addObject('HexahedronFEMForceField', poissonRatio="0.49", youngModulus="700000")
-       deformable_cube0.addObject('UniformMass', totalMass="10")
-       deformable_cube0.addObject('BoxROI', name="bottom", box="-1.1 -1.1 -1.1  1.1 1.1 -0.9")
-       deformable_cube0.addObject('BoxROI', name="top", box="-1.1 -1.1 0.9  1.1 1.1 1.1")
-       deformable_cube0.addObject('LinearSolverConstraintCorrection', linearSolver="@linearSolver")
-
-       root.addObject('BilateralLagrangianConstraint', template="Vec3", object1="@DeformableCube0/mstate", first_point="@DeformableCube0/bottom.indices", object2="@TargetCube0/mstate", second_point="@TargetCube0/bottom.indices")
-       root.addObject('BilateralLagrangianConstraint', template="Vec3", object1="@DeformableCube0/mstate", first_point="@DeformableCube0/top.indices", object2="@TargetCube0/mstate", second_point="@TargetCube0/top.indices")
-
-       target_cube1 = root.addChild('TargetCube1')
-
-       target_cube1.addObject('RegularGridTopology', name="grid", nx="4", ny="4", nz="2", xmin="2", xmax="4", ymin="-1", ymax="1", zmin="-0.5", zmax="0.5")
-       target_cube1.addObject('MechanicalObject', name="mstate", template="Vec3")
-       target_cube1.addObject('BoxROI', name="bottom", box="1.9 -1.1 -1.1  4.1 1.1 -0.4")
-       target_cube1.addObject('BoxROI', name="top", box="1.9 -1.1 0.4  4.1 1.1 1.1")
-
-       deformable_cube1 = root.addChild('DeformableCube1')
-
-       deformable_cube1.addObject('VisualStyle', displayFlags="showForceFields")
-       deformable_cube1.addObject('EulerImplicitSolver', name="odesolver", printLog="false")
-       deformable_cube1.addObject('SparseLDLSolver', name="linearSolver", template="CompressedRowSparseMatrixMat3x3d")
-       deformable_cube1.addObject('RegularGridTopology', name="grid", nx="4", ny="4", nz="4", xmin="2", xmax="4", ymin="-1", ymax="1", zmin="-1", zmax="1")
-       deformable_cube1.addObject('MechanicalObject', name="mstate", template="Vec3")
-       deformable_cube1.addObject('HexahedronFEMForceField', poissonRatio="0.49", youngModulus="700000")
-       deformable_cube1.addObject('UniformMass', totalMass="10")
-       deformable_cube1.addObject('BoxROI', name="bottom", box="1.9 -1.1 -1.1  4.1 1.1 -0.9")
-       deformable_cube1.addObject('BoxROI', name="top", box="1.9 -1.1 0.9  4.1 1.1 1.1")
-       deformable_cube1.addObject('LinearSolverConstraintCorrection', linearSolver="@linearSolver", regularizationTerm="0.002")
-
-       root.addObject('BilateralLagrangianConstraint', template="Vec3", object1="@DeformableCube1/mstate", first_point="@DeformableCube1/bottom.indices", object2="@TargetCube1/mstate", second_point="@TargetCube1/bottom.indices")
-       root.addObject('BilateralLagrangianConstraint', template="Vec3", object1="@DeformableCube1/mstate", first_point="@DeformableCube1/top.indices", object2="@TargetCube1/mstate", second_point="@TargetCube1/top.indices")
-
-       target_cube2 = root.addChild('TargetCube2')
-
-       target_cube2.addObject('RegularGridTopology', name="grid", nx="4", ny="4", nz="2", xmin="5", xmax="7", ymin="-1", ymax="1", zmin="-0.5", zmax="0.5")
-       target_cube2.addObject('MechanicalObject', name="mstate", template="Vec3")
-       target_cube2.addObject('BoxROI', name="bottom", box="4.9 -1.1 -1.1  7.1 1.1 -0.4")
-       target_cube2.addObject('BoxROI', name="top", box="4.9 -1.1 0.4  7.1 1.1 1.1")
-
-       deformable_cube2 = root.addChild('DeformableCube2')
-
-       deformable_cube2.addObject('VisualStyle', displayFlags="showForceFields")
-       deformable_cube2.addObject('EulerImplicitSolver', name="odesolver", printLog="false")
-       deformable_cube2.addObject('SparseLDLSolver', name="linearSolver", template="CompressedRowSparseMatrixMat3x3d")
-       deformable_cube2.addObject('RegularGridTopology', name="grid", nx="4", ny="4", nz="4", xmin="5", xmax="7", ymin="-1", ymax="1", zmin="-1", zmax="1")
-       deformable_cube2.addObject('MechanicalObject', name="mstate", template="Vec3")
-       deformable_cube2.addObject('HexahedronFEMForceField', poissonRatio="0.49", youngModulus="700000")
-       deformable_cube2.addObject('UniformMass', totalMass="10")
-       deformable_cube2.addObject('BoxROI', name="bottom", box="4.9 -1.1 -1.1  7.1 1.1 -0.9")
-       deformable_cube2.addObject('BoxROI', name="top", box="4.9 -1.1 0.9  7.1 1.1 1.1")
-       deformable_cube2.addObject('LinearSolverConstraintCorrection', linearSolver="@linearSolver", regularizationTerm="0.005")
-
-       root.addObject('BilateralLagrangianConstraint', template="Vec3", object1="@DeformableCube2/mstate", first_point="@DeformableCube2/bottom.indices", object2="@TargetCube2/mstate", second_point="@TargetCube2/bottom.indices")
-       root.addObject('BilateralLagrangianConstraint', template="Vec3", object1="@DeformableCube2/mstate", first_point="@DeformableCube2/top.indices", object2="@TargetCube2/mstate", second_point="@TargetCube2/top.indices")
-    ```
-
 BilateralLagrangianConstraint_UGS.scn
 
 === "XML"
@@ -901,6 +685,222 @@ BilateralLagrangianConstraint_UGS.scn
        root.addObject('BilateralLagrangianConstraint', template="Vec3", object1="@CUBE_2/Constraints/points", object2="@CUBE_4/Constraints/points", first_point="1", second_point="0")
     ```
 
+BilateralLagrangianConstraint_with_regularization_solvable.scn
+
+=== "XML"
+
+    ```xml
+    <?xml version="1.0"?>
+    <!-- BilateralLagrangianConstraint example -->
+    <Node name="root" dt="0.001" gravity="0 0 -9.81">
+        <RequiredPlugin name="Sofa.Component.AnimationLoop"/> <!-- Needed to use components [FreeMotionAnimationLoop] -->
+        <RequiredPlugin name="Sofa.Component.Constraint.Lagrangian.Correction"/> <!-- Needed to use components [LinearSolverConstraintCorrection] -->
+        <RequiredPlugin name="Sofa.Component.Constraint.Lagrangian.Model"/> <!-- Needed to use components [BilateralLagrangianConstraint] -->
+        <RequiredPlugin name="Sofa.Component.Constraint.Lagrangian.Solver"/> <!-- Needed to use components [GenericConstraintSolver] -->
+        <RequiredPlugin name="Sofa.Component.Engine.Select"/> <!-- Needed to use components [BoxROI] -->
+        <RequiredPlugin name="Sofa.Component.LinearSolver.Direct"/> <!-- Needed to use components [SparseLDLSolver] -->
+        <RequiredPlugin name="Sofa.Component.Mass"/> <!-- Needed to use components [UniformMass] -->
+        <RequiredPlugin name="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+        <RequiredPlugin name="Sofa.Component.SolidMechanics.FEM.Elastic"/> <!-- Needed to use components [HexahedronFEMForceField] -->
+        <RequiredPlugin name="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
+        <RequiredPlugin name="Sofa.Component.Topology.Container.Grid"/> <!-- Needed to use components [RegularGridTopology] -->
+        <RequiredPlugin name="Sofa.Component.Visual"/> <!-- Needed to use components [VisualStyle] -->
+        
+        <VisualStyle displayFlags="showForceFields" />
+        <DefaultVisualManagerLoop />
+        <FreeMotionAnimationLoop />
+        <GenericConstraintSolver tolerance="0.0001" maxIterations="1000" resolutionMethod="ProjectedGaussSeidel" regularizationTerm="0.0"/>
+    
+    
+        <Node name="TargetCube0">
+            <RegularGridTopology name="grid" nx="4" ny="4" nz="2" xmin="-1" xmax="1" ymin="-1" ymax="1" zmin="-0.5" zmax="0.5" />
+            <MechanicalObject name="mstate" template="Vec3"/>
+            <BoxROI name="bottom" box="-1.1 -1.1 -1.1  1.1 1.1 -0.4" />
+            <BoxROI name="top" box="-1.1 -1.1 0.4  1.1 1.1 1.1" />
+        </Node>
+    
+        <Node name="DeformableCube0">
+    
+            <VisualStyle displayFlags="showForceFields" />
+            <EulerImplicitSolver name="odesolver" printLog="false" />
+            <SparseLDLSolver name="linearSolver" template="CompressedRowSparseMatrixMat3x3d" />
+    
+            <RegularGridTopology name="grid" nx="4" ny="4" nz="4" xmin="-1" xmax="1" ymin="-1" ymax="1" zmin="-1" zmax="1" />
+            <MechanicalObject name="mstate" template="Vec3" />
+            <HexahedronFEMForceField poissonRatio="0.49" youngModulus="700000"/>
+            <UniformMass totalMass="10" />
+            <BoxROI name="bottom" box="-1.1 -1.1 -1.1  1.1 1.1 -0.9" />
+            <BoxROI name="top" box="-1.1 -1.1 0.9  1.1 1.1 1.1" />
+            <LinearSolverConstraintCorrection linearSolver="@linearSolver"/>
+        </Node>
+    
+        <BilateralLagrangianConstraint template="Vec3"
+                                       object1="@DeformableCube0/mstate" first_point="@DeformableCube0/bottom.indices"
+                                       object2="@TargetCube0/mstate" second_point="@TargetCube0/bottom.indices" />
+    
+        <BilateralLagrangianConstraint template="Vec3"
+                                       object1="@DeformableCube0/mstate" first_point="@DeformableCube0/top.indices"
+                                       object2="@TargetCube0/mstate" second_point="@TargetCube0/top.indices" />
+    
+        <!-- With regularization -->
+        <Node name="TargetCube1">
+            <RegularGridTopology name="grid" nx="4" ny="4" nz="2" xmin="2" xmax="4" ymin="-1" ymax="1" zmin="-0.5" zmax="0.5" />
+            <MechanicalObject name="mstate" template="Vec3"/>
+            <BoxROI name="bottom" box="1.9 -1.1 -1.1  4.1 1.1 -0.4" />
+            <BoxROI name="top" box="1.9 -1.1 0.4  4.1 1.1 1.1" />
+        </Node>
+    
+        <Node name="DeformableCube1">
+    
+            <VisualStyle displayFlags="showForceFields" />
+            <EulerImplicitSolver name="odesolver" printLog="false" />
+            <SparseLDLSolver name="linearSolver" template="CompressedRowSparseMatrixMat3x3d" />
+    
+            <RegularGridTopology name="grid" nx="4" ny="4" nz="4" xmin="2" xmax="4" ymin="-1" ymax="1" zmin="-1" zmax="1" />
+            <MechanicalObject name="mstate" template="Vec3" />
+            <HexahedronFEMForceField poissonRatio="0.49" youngModulus="700000"/>
+            <UniformMass totalMass="10" />
+            <BoxROI name="bottom" box="1.9 -1.1 -1.1  4.1 1.1 -0.9" />
+            <BoxROI name="top" box="1.9 -1.1 0.9  4.1 1.1 1.1" />
+            <LinearSolverConstraintCorrection linearSolver="@linearSolver" regularizationTerm="0.002"/>
+        </Node>
+    
+        <BilateralLagrangianConstraint template="Vec3"
+                                       object1="@DeformableCube1/mstate" first_point="@DeformableCube1/bottom.indices"
+                                       object2="@TargetCube1/mstate" second_point="@TargetCube1/bottom.indices" />
+    
+        <BilateralLagrangianConstraint template="Vec3"
+                                       object1="@DeformableCube1/mstate" first_point="@DeformableCube1/top.indices"
+                                       object2="@TargetCube1/mstate" second_point="@TargetCube1/top.indices" />
+    
+        <!-- With more regularization -->
+        <Node name="TargetCube2">
+            <RegularGridTopology name="grid" nx="4" ny="4" nz="2" xmin="5" xmax="7" ymin="-1" ymax="1" zmin="-0.5" zmax="0.5" />
+            <MechanicalObject name="mstate" template="Vec3"/>
+            <BoxROI name="bottom" box="4.9 -1.1 -1.1  7.1 1.1 -0.4" />
+            <BoxROI name="top" box="4.9 -1.1 0.4  7.1 1.1 1.1" />
+        </Node>
+    
+        <Node name="DeformableCube2">
+    
+            <VisualStyle displayFlags="showForceFields" />
+            <EulerImplicitSolver name="odesolver" printLog="false" />
+            <SparseLDLSolver name="linearSolver" template="CompressedRowSparseMatrixMat3x3d" />
+    
+            <RegularGridTopology name="grid" nx="4" ny="4" nz="4" xmin="5" xmax="7" ymin="-1" ymax="1" zmin="-1" zmax="1" />
+            <MechanicalObject name="mstate" template="Vec3" />
+            <HexahedronFEMForceField poissonRatio="0.49" youngModulus="700000"/>
+            <UniformMass totalMass="10" />
+            <BoxROI name="bottom" box="4.9 -1.1 -1.1  7.1 1.1 -0.9" />
+            <BoxROI name="top" box="4.9 -1.1 0.9  7.1 1.1 1.1" />
+            <LinearSolverConstraintCorrection linearSolver="@linearSolver" regularizationTerm="0.005"/>
+        </Node>
+    
+        <BilateralLagrangianConstraint template="Vec3"
+                                       object1="@DeformableCube2/mstate" first_point="@DeformableCube2/bottom.indices"
+                                       object2="@TargetCube2/mstate" second_point="@TargetCube2/bottom.indices" />
+    
+        <BilateralLagrangianConstraint template="Vec3"
+                                       object1="@DeformableCube2/mstate" first_point="@DeformableCube2/top.indices"
+                                       object2="@TargetCube2/mstate" second_point="@TargetCube2/top.indices" />
+    </Node>
+
+    ```
+
+=== "Python"
+
+    ```python
+    def createScene(root_node):
+
+       root = root_node.addChild('root', dt="0.001", gravity="0 0 -9.81")
+
+       root.addObject('RequiredPlugin', name="Sofa.Component.AnimationLoop")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Lagrangian.Correction")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Lagrangian.Model")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Lagrangian.Solver")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Engine.Select")
+       root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Direct")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Mass")
+       root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.FEM.Elastic")
+       root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Grid")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Visual")
+       root.addObject('VisualStyle', displayFlags="showForceFields")
+       root.addObject('DefaultVisualManagerLoop', )
+       root.addObject('FreeMotionAnimationLoop', )
+       root.addObject('GenericConstraintSolver', tolerance="0.0001", maxIterations="1000", resolutionMethod="ProjectedGaussSeidel", regularizationTerm="0.0")
+
+       target_cube0 = root.addChild('TargetCube0')
+
+       target_cube0.addObject('RegularGridTopology', name="grid", nx="4", ny="4", nz="2", xmin="-1", xmax="1", ymin="-1", ymax="1", zmin="-0.5", zmax="0.5")
+       target_cube0.addObject('MechanicalObject', name="mstate", template="Vec3")
+       target_cube0.addObject('BoxROI', name="bottom", box="-1.1 -1.1 -1.1  1.1 1.1 -0.4")
+       target_cube0.addObject('BoxROI', name="top", box="-1.1 -1.1 0.4  1.1 1.1 1.1")
+
+       deformable_cube0 = root.addChild('DeformableCube0')
+
+       deformable_cube0.addObject('VisualStyle', displayFlags="showForceFields")
+       deformable_cube0.addObject('EulerImplicitSolver', name="odesolver", printLog="false")
+       deformable_cube0.addObject('SparseLDLSolver', name="linearSolver", template="CompressedRowSparseMatrixMat3x3d")
+       deformable_cube0.addObject('RegularGridTopology', name="grid", nx="4", ny="4", nz="4", xmin="-1", xmax="1", ymin="-1", ymax="1", zmin="-1", zmax="1")
+       deformable_cube0.addObject('MechanicalObject', name="mstate", template="Vec3")
+       deformable_cube0.addObject('HexahedronFEMForceField', poissonRatio="0.49", youngModulus="700000")
+       deformable_cube0.addObject('UniformMass', totalMass="10")
+       deformable_cube0.addObject('BoxROI', name="bottom", box="-1.1 -1.1 -1.1  1.1 1.1 -0.9")
+       deformable_cube0.addObject('BoxROI', name="top", box="-1.1 -1.1 0.9  1.1 1.1 1.1")
+       deformable_cube0.addObject('LinearSolverConstraintCorrection', linearSolver="@linearSolver")
+
+       root.addObject('BilateralLagrangianConstraint', template="Vec3", object1="@DeformableCube0/mstate", first_point="@DeformableCube0/bottom.indices", object2="@TargetCube0/mstate", second_point="@TargetCube0/bottom.indices")
+       root.addObject('BilateralLagrangianConstraint', template="Vec3", object1="@DeformableCube0/mstate", first_point="@DeformableCube0/top.indices", object2="@TargetCube0/mstate", second_point="@TargetCube0/top.indices")
+
+       target_cube1 = root.addChild('TargetCube1')
+
+       target_cube1.addObject('RegularGridTopology', name="grid", nx="4", ny="4", nz="2", xmin="2", xmax="4", ymin="-1", ymax="1", zmin="-0.5", zmax="0.5")
+       target_cube1.addObject('MechanicalObject', name="mstate", template="Vec3")
+       target_cube1.addObject('BoxROI', name="bottom", box="1.9 -1.1 -1.1  4.1 1.1 -0.4")
+       target_cube1.addObject('BoxROI', name="top", box="1.9 -1.1 0.4  4.1 1.1 1.1")
+
+       deformable_cube1 = root.addChild('DeformableCube1')
+
+       deformable_cube1.addObject('VisualStyle', displayFlags="showForceFields")
+       deformable_cube1.addObject('EulerImplicitSolver', name="odesolver", printLog="false")
+       deformable_cube1.addObject('SparseLDLSolver', name="linearSolver", template="CompressedRowSparseMatrixMat3x3d")
+       deformable_cube1.addObject('RegularGridTopology', name="grid", nx="4", ny="4", nz="4", xmin="2", xmax="4", ymin="-1", ymax="1", zmin="-1", zmax="1")
+       deformable_cube1.addObject('MechanicalObject', name="mstate", template="Vec3")
+       deformable_cube1.addObject('HexahedronFEMForceField', poissonRatio="0.49", youngModulus="700000")
+       deformable_cube1.addObject('UniformMass', totalMass="10")
+       deformable_cube1.addObject('BoxROI', name="bottom", box="1.9 -1.1 -1.1  4.1 1.1 -0.9")
+       deformable_cube1.addObject('BoxROI', name="top", box="1.9 -1.1 0.9  4.1 1.1 1.1")
+       deformable_cube1.addObject('LinearSolverConstraintCorrection', linearSolver="@linearSolver", regularizationTerm="0.002")
+
+       root.addObject('BilateralLagrangianConstraint', template="Vec3", object1="@DeformableCube1/mstate", first_point="@DeformableCube1/bottom.indices", object2="@TargetCube1/mstate", second_point="@TargetCube1/bottom.indices")
+       root.addObject('BilateralLagrangianConstraint', template="Vec3", object1="@DeformableCube1/mstate", first_point="@DeformableCube1/top.indices", object2="@TargetCube1/mstate", second_point="@TargetCube1/top.indices")
+
+       target_cube2 = root.addChild('TargetCube2')
+
+       target_cube2.addObject('RegularGridTopology', name="grid", nx="4", ny="4", nz="2", xmin="5", xmax="7", ymin="-1", ymax="1", zmin="-0.5", zmax="0.5")
+       target_cube2.addObject('MechanicalObject', name="mstate", template="Vec3")
+       target_cube2.addObject('BoxROI', name="bottom", box="4.9 -1.1 -1.1  7.1 1.1 -0.4")
+       target_cube2.addObject('BoxROI', name="top", box="4.9 -1.1 0.4  7.1 1.1 1.1")
+
+       deformable_cube2 = root.addChild('DeformableCube2')
+
+       deformable_cube2.addObject('VisualStyle', displayFlags="showForceFields")
+       deformable_cube2.addObject('EulerImplicitSolver', name="odesolver", printLog="false")
+       deformable_cube2.addObject('SparseLDLSolver', name="linearSolver", template="CompressedRowSparseMatrixMat3x3d")
+       deformable_cube2.addObject('RegularGridTopology', name="grid", nx="4", ny="4", nz="4", xmin="5", xmax="7", ymin="-1", ymax="1", zmin="-1", zmax="1")
+       deformable_cube2.addObject('MechanicalObject', name="mstate", template="Vec3")
+       deformable_cube2.addObject('HexahedronFEMForceField', poissonRatio="0.49", youngModulus="700000")
+       deformable_cube2.addObject('UniformMass', totalMass="10")
+       deformable_cube2.addObject('BoxROI', name="bottom", box="4.9 -1.1 -1.1  7.1 1.1 -0.9")
+       deformable_cube2.addObject('BoxROI', name="top", box="4.9 -1.1 0.9  7.1 1.1 1.1")
+       deformable_cube2.addObject('LinearSolverConstraintCorrection', linearSolver="@linearSolver", regularizationTerm="0.005")
+
+       root.addObject('BilateralLagrangianConstraint', template="Vec3", object1="@DeformableCube2/mstate", first_point="@DeformableCube2/bottom.indices", object2="@TargetCube2/mstate", second_point="@TargetCube2/bottom.indices")
+       root.addObject('BilateralLagrangianConstraint', template="Vec3", object1="@DeformableCube2/mstate", first_point="@DeformableCube2/top.indices", object2="@TargetCube2/mstate", second_point="@TargetCube2/top.indices")
+    ```
+
 BilateralLagrangianConstraint_with_regularization_unsolvable.scn
 
 === "XML"
@@ -1081,118 +1081,6 @@ BilateralLagrangianConstraint_with_regularization_unsolvable.scn
 
        root.addObject('BilateralLagrangianConstraint', template="Vec3", object1="@DeformableCube1/mstate", first_point="@DeformableCube1/bottom.indices", object2="@TargetCube01/mstate", second_point="@TargetCube01/bottom.indices")
        root.addObject('BilateralLagrangianConstraint', template="Vec3", object1="@DeformableCube1/mstate", first_point="@DeformableCube1/bottom.indices", object2="@TargetCube11/mstate", second_point="@TargetCube11/bottom.indices")
-    ```
-
-BilateralLagrangianConstraint_Rigid.scn
-
-=== "XML"
-
-    ```xml
-    <?xml version="1.0"?>
-    <!-- BilateralLagrangianConstraint example using rigid-->
-    <Node name="root" dt="0.1" gravity="0 -0.981 0">
-        <RequiredPlugin name="Sofa.Component.AnimationLoop"/> <!-- Needed to use components [FreeMotionAnimationLoop] -->
-        <RequiredPlugin name="Sofa.Component.Collision.Geometry"/> <!-- Needed to use components [SphereCollisionModel] -->
-        <RequiredPlugin name="Sofa.Component.Constraint.Lagrangian.Correction"/> <!-- Needed to use components [LinearSolverConstraintCorrection] -->
-        <RequiredPlugin name="Sofa.Component.Constraint.Lagrangian.Model"/> <!-- Needed to use components [BilateralLagrangianConstraint] -->
-        <RequiredPlugin name="Sofa.Component.Constraint.Lagrangian.Solver"/> <!-- Needed to use components [GenericConstraintSolver] -->
-        <RequiredPlugin name="Sofa.Component.Constraint.Projective"/> <!-- Needed to use components [FixedProjectiveConstraint] -->
-        <RequiredPlugin name="Sofa.Component.LinearSolver.Direct"/> <!-- Needed to use components [BTDLinearSolver] -->
-        <RequiredPlugin name="Sofa.Component.Mapping.NonLinear"/> <!-- Needed to use components [RigidMapping] -->
-        <RequiredPlugin name="Sofa.Component.Mass"/> <!-- Needed to use components [UniformMass] -->
-        <RequiredPlugin name="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
-        <RequiredPlugin name="Sofa.Component.SolidMechanics.FEM.Elastic"/> <!-- Needed to use components [BeamFEMForceField] -->
-        <RequiredPlugin name="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
-        <RequiredPlugin name="Sofa.Component.Topology.Container.Constant"/> <!-- Needed to use components [MeshTopology] -->
-        <RequiredPlugin name="Sofa.Component.Visual"/> <!-- Needed to use components [VisualStyle] -->
-    
-        <VisualStyle displayFlags="showBehaviorModels showForceFields" />
-        <FreeMotionAnimationLoop />
-        <GenericConstraintSolver tolerance="0.001" maxIterations="1000"/>
-        <Node name="Beam1">
-            <EulerImplicitSolver name="odesolver" printLog="false"  rayleighStiffness="0.1" rayleighMass="0.1" />
-            <BTDLinearSolver printLog="false" verbose="false" />
-            <MechanicalObject template="Rigid3" name="DOFs1" position="0 0 0 0 0 0 1  1 0 0 0 0 0 1  2 0 0 0 0 0 1  3 0 0 0 0 0 1  4 0 0 0 0 0 1  5 0 0 0 0 0 1  6 0 0 0 0 0 1  7 0 0 0 0 0 1" />
-            <MeshTopology name="lines" lines="0 1 1 2 2 3 3 4 4 5 5 6 6 7" />
-            <UniformMass vertexMass="1 1 0.01 0 0 0 0.1 0 0 0 0.1 0" printLog="false" />
-            <BeamFEMForceField name="FEM" poissonRatio="0.49" radius="0.1" youngModulus="2000000" />
-            <FixedProjectiveConstraint name="FixedProjectiveConstraint" indices="7" />
-            <LinearSolverConstraintCorrection />
-             <SphereCollisionModel radius="0.1" group="1"/>
-            <Node name="ConstraintPoint">
-                <MechanicalObject template="Rigid3" name="dof1" position="0 0 0 0 0 -0.707107 0.707107 " />
-                <RigidMapping index="0" />
-            </Node>
-        </Node>
-        <Node name="Beam2">
-            <EulerImplicitSolver name="odesolver" printLog="false" />
-            <BTDLinearSolver printLog="false" verbose="false" />
-            <MechanicalObject template="Rigid3" name="DOFs2" position="0 0 0 0 0 -0.707107 0.707107 0 -1 0 0 0-0.707107 0.707107  0 -2 0 0 0 -0.707107 0.707107  0 -3 0 0 0 -0.707107 0.707107  0 -4 0 0 0 -0.707107 0.707107  0 -5 0 0 0 -0.707107 0.707107  0 -6 0 0 0 -0.707107 0.707107  0 -7 0 0 0 -0.707107 0.707107" />
-            <MeshTopology name="lines" lines="0 1 1 2 2 3 3 4 4 5 5 6 6 7" />
-            <UniformMass vertexMass="1 1 0.01 0 0 0 0.1 0 0 0 0.1 0" printLog="false" />
-            <BeamFEMForceField name="FEM" poissonRatio="0.49" radius="0.1" youngModulus="20000000" />
-            <LinearSolverConstraintCorrection />
-            <SphereCollisionModel radius="0.1" group="1"/>
-        </Node>
-        <BilateralLagrangianConstraint template="Rigid3" object1="@Beam1/ConstraintPoint/dof1" object2="@Beam2/DOFs2" first_point="0" second_point="0" />
-    </Node>
-
-    ```
-
-=== "Python"
-
-    ```python
-    def createScene(root_node):
-
-       root = root_node.addChild('root', dt="0.1", gravity="0 -0.981 0")
-
-       root.addObject('RequiredPlugin', name="Sofa.Component.AnimationLoop")
-       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Geometry")
-       root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Lagrangian.Correction")
-       root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Lagrangian.Model")
-       root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Lagrangian.Solver")
-       root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Projective")
-       root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Direct")
-       root.addObject('RequiredPlugin', name="Sofa.Component.Mapping.NonLinear")
-       root.addObject('RequiredPlugin', name="Sofa.Component.Mass")
-       root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
-       root.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.FEM.Elastic")
-       root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
-       root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Constant")
-       root.addObject('RequiredPlugin', name="Sofa.Component.Visual")
-       root.addObject('VisualStyle', displayFlags="showBehaviorModels showForceFields")
-       root.addObject('FreeMotionAnimationLoop', )
-       root.addObject('GenericConstraintSolver', tolerance="0.001", maxIterations="1000")
-
-       beam1 = root.addChild('Beam1')
-
-       beam1.addObject('EulerImplicitSolver', name="odesolver", printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
-       beam1.addObject('BTDLinearSolver', printLog="false", verbose="false")
-       beam1.addObject('MechanicalObject', template="Rigid3", name="DOFs1", position="0 0 0 0 0 0 1  1 0 0 0 0 0 1  2 0 0 0 0 0 1  3 0 0 0 0 0 1  4 0 0 0 0 0 1  5 0 0 0 0 0 1  6 0 0 0 0 0 1  7 0 0 0 0 0 1")
-       beam1.addObject('MeshTopology', name="lines", lines="0 1 1 2 2 3 3 4 4 5 5 6 6 7")
-       beam1.addObject('UniformMass', vertexMass="1 1 0.01 0 0 0 0.1 0 0 0 0.1 0", printLog="false")
-       beam1.addObject('BeamFEMForceField', name="FEM", poissonRatio="0.49", radius="0.1", youngModulus="2000000")
-       beam1.addObject('FixedProjectiveConstraint', name="FixedProjectiveConstraint", indices="7")
-       beam1.addObject('LinearSolverConstraintCorrection', )
-       beam1.addObject('SphereCollisionModel', radius="0.1", group="1")
-
-       constraint_point = Beam1.addChild('ConstraintPoint')
-
-       constraint_point.addObject('MechanicalObject', template="Rigid3", name="dof1", position="0 0 0 0 0 -0.707107 0.707107 ")
-       constraint_point.addObject('RigidMapping', index="0")
-
-       beam2 = root.addChild('Beam2')
-
-       beam2.addObject('EulerImplicitSolver', name="odesolver", printLog="false")
-       beam2.addObject('BTDLinearSolver', printLog="false", verbose="false")
-       beam2.addObject('MechanicalObject', template="Rigid3", name="DOFs2", position="0 0 0 0 0 -0.707107 0.707107 0 -1 0 0 0-0.707107 0.707107  0 -2 0 0 0 -0.707107 0.707107  0 -3 0 0 0 -0.707107 0.707107  0 -4 0 0 0 -0.707107 0.707107  0 -5 0 0 0 -0.707107 0.707107  0 -6 0 0 0 -0.707107 0.707107  0 -7 0 0 0 -0.707107 0.707107")
-       beam2.addObject('MeshTopology', name="lines", lines="0 1 1 2 2 3 3 4 4 5 5 6 6 7")
-       beam2.addObject('UniformMass', vertexMass="1 1 0.01 0 0 0 0.1 0 0 0 0.1 0", printLog="false")
-       beam2.addObject('BeamFEMForceField', name="FEM", poissonRatio="0.49", radius="0.1", youngModulus="20000000")
-       beam2.addObject('LinearSolverConstraintCorrection', )
-       beam2.addObject('SphereCollisionModel', radius="0.1", group="1")
-
-       root.addObject('BilateralLagrangianConstraint', template="Rigid3", object1="@Beam1/ConstraintPoint/dof1", object2="@Beam2/DOFs2", first_point="0", second_point="0")
     ```
 
 BilateralLagrangianConstraint_NNCG.scn
@@ -1746,6 +1634,118 @@ BilateralLagrangianConstraint_Soft_Rigid_Bodies.scn
        mapped_rigid_interface.addObject('RigidMapping', input="@../rigidDofs", output="@MappedDoFs", globalToLocalCoords="1")
 
        root.addObject('BilateralLagrangianConstraint', template="Vec3d", name="Attachment", object1="@DeformableGrid/DeformableCube/MappedInterface", object2="@RigidBody/MappedRigidInterface", first_point="0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35", second_point="0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35")
+    ```
+
+BilateralLagrangianConstraint_Rigid.scn
+
+=== "XML"
+
+    ```xml
+    <?xml version="1.0"?>
+    <!-- BilateralLagrangianConstraint example using rigid-->
+    <Node name="root" dt="0.1" gravity="0 -0.981 0">
+        <RequiredPlugin name="Sofa.Component.AnimationLoop"/> <!-- Needed to use components [FreeMotionAnimationLoop] -->
+        <RequiredPlugin name="Sofa.Component.Collision.Geometry"/> <!-- Needed to use components [SphereCollisionModel] -->
+        <RequiredPlugin name="Sofa.Component.Constraint.Lagrangian.Correction"/> <!-- Needed to use components [LinearSolverConstraintCorrection] -->
+        <RequiredPlugin name="Sofa.Component.Constraint.Lagrangian.Model"/> <!-- Needed to use components [BilateralLagrangianConstraint] -->
+        <RequiredPlugin name="Sofa.Component.Constraint.Lagrangian.Solver"/> <!-- Needed to use components [GenericConstraintSolver] -->
+        <RequiredPlugin name="Sofa.Component.Constraint.Projective"/> <!-- Needed to use components [FixedProjectiveConstraint] -->
+        <RequiredPlugin name="Sofa.Component.LinearSolver.Direct"/> <!-- Needed to use components [BTDLinearSolver] -->
+        <RequiredPlugin name="Sofa.Component.Mapping.NonLinear"/> <!-- Needed to use components [RigidMapping] -->
+        <RequiredPlugin name="Sofa.Component.Mass"/> <!-- Needed to use components [UniformMass] -->
+        <RequiredPlugin name="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+        <RequiredPlugin name="Sofa.Component.SolidMechanics.FEM.Elastic"/> <!-- Needed to use components [BeamFEMForceField] -->
+        <RequiredPlugin name="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
+        <RequiredPlugin name="Sofa.Component.Topology.Container.Constant"/> <!-- Needed to use components [MeshTopology] -->
+        <RequiredPlugin name="Sofa.Component.Visual"/> <!-- Needed to use components [VisualStyle] -->
+    
+        <VisualStyle displayFlags="showBehaviorModels showForceFields" />
+        <FreeMotionAnimationLoop />
+        <GenericConstraintSolver tolerance="0.001" maxIterations="1000"/>
+        <Node name="Beam1">
+            <EulerImplicitSolver name="odesolver" printLog="false"  rayleighStiffness="0.1" rayleighMass="0.1" />
+            <BTDLinearSolver printLog="false" verbose="false" />
+            <MechanicalObject template="Rigid3" name="DOFs1" position="0 0 0 0 0 0 1  1 0 0 0 0 0 1  2 0 0 0 0 0 1  3 0 0 0 0 0 1  4 0 0 0 0 0 1  5 0 0 0 0 0 1  6 0 0 0 0 0 1  7 0 0 0 0 0 1" />
+            <MeshTopology name="lines" lines="0 1 1 2 2 3 3 4 4 5 5 6 6 7" />
+            <UniformMass vertexMass="1 1 0.01 0 0 0 0.1 0 0 0 0.1 0" printLog="false" />
+            <BeamFEMForceField name="FEM" poissonRatio="0.49" radius="0.1" youngModulus="2000000" />
+            <FixedProjectiveConstraint name="FixedProjectiveConstraint" indices="7" />
+            <LinearSolverConstraintCorrection />
+             <SphereCollisionModel radius="0.1" group="1"/>
+            <Node name="ConstraintPoint">
+                <MechanicalObject template="Rigid3" name="dof1" position="0 0 0 0 0 -0.707107 0.707107 " />
+                <RigidMapping index="0" />
+            </Node>
+        </Node>
+        <Node name="Beam2">
+            <EulerImplicitSolver name="odesolver" printLog="false" />
+            <BTDLinearSolver printLog="false" verbose="false" />
+            <MechanicalObject template="Rigid3" name="DOFs2" position="0 0 0 0 0 -0.707107 0.707107 0 -1 0 0 0-0.707107 0.707107  0 -2 0 0 0 -0.707107 0.707107  0 -3 0 0 0 -0.707107 0.707107  0 -4 0 0 0 -0.707107 0.707107  0 -5 0 0 0 -0.707107 0.707107  0 -6 0 0 0 -0.707107 0.707107  0 -7 0 0 0 -0.707107 0.707107" />
+            <MeshTopology name="lines" lines="0 1 1 2 2 3 3 4 4 5 5 6 6 7" />
+            <UniformMass vertexMass="1 1 0.01 0 0 0 0.1 0 0 0 0.1 0" printLog="false" />
+            <BeamFEMForceField name="FEM" poissonRatio="0.49" radius="0.1" youngModulus="20000000" />
+            <LinearSolverConstraintCorrection />
+            <SphereCollisionModel radius="0.1" group="1"/>
+        </Node>
+        <BilateralLagrangianConstraint template="Rigid3" object1="@Beam1/ConstraintPoint/dof1" object2="@Beam2/DOFs2" first_point="0" second_point="0" />
+    </Node>
+
+    ```
+
+=== "Python"
+
+    ```python
+    def createScene(root_node):
+
+       root = root_node.addChild('root', dt="0.1", gravity="0 -0.981 0")
+
+       root.addObject('RequiredPlugin', name="Sofa.Component.AnimationLoop")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Geometry")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Lagrangian.Correction")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Lagrangian.Model")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Lagrangian.Solver")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Projective")
+       root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Direct")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Mapping.NonLinear")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Mass")
+       root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.FEM.Elastic")
+       root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Constant")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Visual")
+       root.addObject('VisualStyle', displayFlags="showBehaviorModels showForceFields")
+       root.addObject('FreeMotionAnimationLoop', )
+       root.addObject('GenericConstraintSolver', tolerance="0.001", maxIterations="1000")
+
+       beam1 = root.addChild('Beam1')
+
+       beam1.addObject('EulerImplicitSolver', name="odesolver", printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
+       beam1.addObject('BTDLinearSolver', printLog="false", verbose="false")
+       beam1.addObject('MechanicalObject', template="Rigid3", name="DOFs1", position="0 0 0 0 0 0 1  1 0 0 0 0 0 1  2 0 0 0 0 0 1  3 0 0 0 0 0 1  4 0 0 0 0 0 1  5 0 0 0 0 0 1  6 0 0 0 0 0 1  7 0 0 0 0 0 1")
+       beam1.addObject('MeshTopology', name="lines", lines="0 1 1 2 2 3 3 4 4 5 5 6 6 7")
+       beam1.addObject('UniformMass', vertexMass="1 1 0.01 0 0 0 0.1 0 0 0 0.1 0", printLog="false")
+       beam1.addObject('BeamFEMForceField', name="FEM", poissonRatio="0.49", radius="0.1", youngModulus="2000000")
+       beam1.addObject('FixedProjectiveConstraint', name="FixedProjectiveConstraint", indices="7")
+       beam1.addObject('LinearSolverConstraintCorrection', )
+       beam1.addObject('SphereCollisionModel', radius="0.1", group="1")
+
+       constraint_point = Beam1.addChild('ConstraintPoint')
+
+       constraint_point.addObject('MechanicalObject', template="Rigid3", name="dof1", position="0 0 0 0 0 -0.707107 0.707107 ")
+       constraint_point.addObject('RigidMapping', index="0")
+
+       beam2 = root.addChild('Beam2')
+
+       beam2.addObject('EulerImplicitSolver', name="odesolver", printLog="false")
+       beam2.addObject('BTDLinearSolver', printLog="false", verbose="false")
+       beam2.addObject('MechanicalObject', template="Rigid3", name="DOFs2", position="0 0 0 0 0 -0.707107 0.707107 0 -1 0 0 0-0.707107 0.707107  0 -2 0 0 0 -0.707107 0.707107  0 -3 0 0 0 -0.707107 0.707107  0 -4 0 0 0 -0.707107 0.707107  0 -5 0 0 0 -0.707107 0.707107  0 -6 0 0 0 -0.707107 0.707107  0 -7 0 0 0 -0.707107 0.707107")
+       beam2.addObject('MeshTopology', name="lines", lines="0 1 1 2 2 3 3 4 4 5 5 6 6 7")
+       beam2.addObject('UniformMass', vertexMass="1 1 0.01 0 0 0 0.1 0 0 0 0.1 0", printLog="false")
+       beam2.addObject('BeamFEMForceField', name="FEM", poissonRatio="0.49", radius="0.1", youngModulus="20000000")
+       beam2.addObject('LinearSolverConstraintCorrection', )
+       beam2.addObject('SphereCollisionModel', radius="0.1", group="1")
+
+       root.addObject('BilateralLagrangianConstraint', template="Rigid3", object1="@Beam1/ConstraintPoint/dof1", object2="@Beam2/DOFs2", first_point="0", second_point="0")
     ```
 
 BilateralLagrangianConstraint_PGS.scn

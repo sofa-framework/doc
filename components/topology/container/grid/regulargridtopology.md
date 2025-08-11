@@ -258,120 +258,6 @@ if true, draw the topology hexahedra
 
 ## Examples 
 
-RegularGridTopology_TrianglesMesh.scn
-
-=== "XML"
-
-    ```xml
-    <?xml version="1.0" ?>
-    <Node name="root" dt="0.05" showBoundingTree="0" gravity="0 -9 5">
-        <RequiredPlugin name="Sofa.Component.Collision.Detection.Algorithm"/> <!-- Needed to use components [BVHNarrowPhase BruteForceBroadPhase CollisionPipeline] -->
-        <RequiredPlugin name="Sofa.Component.Collision.Detection.Intersection"/> <!-- Needed to use components [MinProximityIntersection] -->
-        <RequiredPlugin name="Sofa.Component.Collision.Geometry"/> <!-- Needed to use components [TriangleCollisionModel] -->
-        <RequiredPlugin name="Sofa.Component.Collision.Response.Contact"/> <!-- Needed to use components [CollisionResponse] -->
-        <RequiredPlugin name="Sofa.Component.Constraint.Projective"/> <!-- Needed to use components [FixedProjectiveConstraint] -->
-        <RequiredPlugin name="Sofa.Component.LinearSolver.Iterative"/> <!-- Needed to use components [CGLinearSolver] -->
-        <RequiredPlugin name="Sofa.Component.Mapping.Linear"/> <!-- Needed to use components [IdentityMapping] -->
-        <RequiredPlugin name="Sofa.Component.Mass"/> <!-- Needed to use components [DiagonalMass] -->
-        <RequiredPlugin name="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
-        <RequiredPlugin name="Sofa.Component.SolidMechanics.FEM.Elastic"/> <!-- Needed to use components [TriangularFEMForceField] -->
-        <RequiredPlugin name="Sofa.Component.SolidMechanics.Spring"/> <!-- Needed to use components [TriangularBendingSprings] -->
-        <RequiredPlugin name="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
-        <RequiredPlugin name="Sofa.Component.Topology.Container.Dynamic"/> <!-- Needed to use components [TriangleSetGeometryAlgorithms TriangleSetTopologyContainer TriangleSetTopologyModifier] -->
-        <RequiredPlugin name="Sofa.Component.Topology.Container.Grid"/> <!-- Needed to use components [RegularGridTopology] -->
-        <RequiredPlugin name="Sofa.Component.Visual"/> <!-- Needed to use components [VisualStyle] -->
-        <RequiredPlugin name="Sofa.GL.Component.Rendering3D"/> <!-- Needed to use components [OglModel] -->
-        <VisualStyle displayFlags="showBehaviorModels showVisual" />
-        <CollisionPipeline />
-        <BruteForceBroadPhase/>
-        <BVHNarrowPhase/>
-        <CollisionResponse response="PenalityContactForceField" />
-        <MinProximityIntersection name="Proximity" alarmDistance="0.8" contactDistance="0.5" />
-        <DefaultAnimationLoop/>
-    
-        <Node name="SquareGravity">
-            <EulerImplicitSolver name="cg_odesolver"/>
-            <CGImplicit iterations="40" tolerance="1e-6" threshold="1e-10" />
-                   
-            <RegularGridTopology name="grid" nx="10" ny="10" nz="1" xmin="-5" xmax="5" ymin="-5" ymax="5" zmin="0" zmax="0"/>
-            
-            <MechanicalObject src="@grid" scale="10" />
-            
-            <TriangleSetTopologyContainer  name="Container" src="@grid"/>
-            <TriangleSetTopologyModifier   name="Modifier" />
-            <TriangleSetGeometryAlgorithms name="GeomAlgo" drawEdges="1"/>
-            
-            <DiagonalMass massDensity="0.15" />
-            <FixedProjectiveConstraint indices="0 1 8 9 10 19" />
-           
-           
-            <TriangularFEMForceField name="FEM" youngModulus="60" poissonRatio="0.3" method="large" />
-            <TriangularBendingSprings name="FEM-Bend" stiffness="300" damping="1.0" />
-            
-            <TriangleCollisionModel />
-            
-            <Node >
-              <OglModel name="Visual" color="red" />
-              <IdentityMapping input="@.." output="@Visual" />
-            </Node>
-    
-        </Node>
-    </Node>
-
-    ```
-
-=== "Python"
-
-    ```python
-    def createScene(root_node):
-
-       root = root_node.addChild('root', dt="0.05", showBoundingTree="0", gravity="0 -9 5")
-
-       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Algorithm")
-       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Intersection")
-       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Geometry")
-       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Response.Contact")
-       root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Projective")
-       root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Iterative")
-       root.addObject('RequiredPlugin', name="Sofa.Component.Mapping.Linear")
-       root.addObject('RequiredPlugin', name="Sofa.Component.Mass")
-       root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
-       root.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.FEM.Elastic")
-       root.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.Spring")
-       root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
-       root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Dynamic")
-       root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Grid")
-       root.addObject('RequiredPlugin', name="Sofa.Component.Visual")
-       root.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
-       root.addObject('VisualStyle', displayFlags="showBehaviorModels showVisual")
-       root.addObject('CollisionPipeline', )
-       root.addObject('BruteForceBroadPhase', )
-       root.addObject('BVHNarrowPhase', )
-       root.addObject('CollisionResponse', response="PenalityContactForceField")
-       root.addObject('MinProximityIntersection', name="Proximity", alarmDistance="0.8", contactDistance="0.5")
-       root.addObject('DefaultAnimationLoop', )
-
-       square_gravity = root.addChild('SquareGravity')
-
-       square_gravity.addObject('EulerImplicitSolver', name="cg_odesolver")
-       square_gravity.addObject('CGImplicit', iterations="40", tolerance="1e-6", threshold="1e-10")
-       square_gravity.addObject('RegularGridTopology', name="grid", nx="10", ny="10", nz="1", xmin="-5", xmax="5", ymin="-5", ymax="5", zmin="0", zmax="0")
-       square_gravity.addObject('MechanicalObject', src="@grid", scale="10")
-       square_gravity.addObject('TriangleSetTopologyContainer', name="Container", src="@grid")
-       square_gravity.addObject('TriangleSetTopologyModifier', name="Modifier")
-       square_gravity.addObject('TriangleSetGeometryAlgorithms', name="GeomAlgo", drawEdges="1")
-       square_gravity.addObject('DiagonalMass', massDensity="0.15")
-       square_gravity.addObject('FixedProjectiveConstraint', indices="0 1 8 9 10 19")
-       square_gravity.addObject('TriangularFEMForceField', name="FEM", youngModulus="60", poissonRatio="0.3", method="large")
-       square_gravity.addObject('TriangularBendingSprings', name="FEM-Bend", stiffness="300", damping="1.0")
-       square_gravity.addObject('TriangleCollisionModel', )
-
-       node = SquareGravity.addChild('node')
-
-       node.addObject('OglModel', name="Visual", color="red")
-       node.addObject('IdentityMapping', input="@..", output="@Visual")
-    ```
-
 RegularGridTopology.scn
 
 === "XML"
@@ -523,6 +409,120 @@ RegularGridTopology.scn
        collision__surface.addObject('MechanicalObject', position="@[-1].position", translation="5 0 0")
        collision__surface.addObject('SphereCollisionModel', name="Surf", listRadius="@[-2].listRadius")
        collision__surface.addObject('BarycentricMapping', input="@..", output="@.")
+    ```
+
+RegularGridTopology_TrianglesMesh.scn
+
+=== "XML"
+
+    ```xml
+    <?xml version="1.0" ?>
+    <Node name="root" dt="0.05" showBoundingTree="0" gravity="0 -9 5">
+        <RequiredPlugin name="Sofa.Component.Collision.Detection.Algorithm"/> <!-- Needed to use components [BVHNarrowPhase BruteForceBroadPhase CollisionPipeline] -->
+        <RequiredPlugin name="Sofa.Component.Collision.Detection.Intersection"/> <!-- Needed to use components [MinProximityIntersection] -->
+        <RequiredPlugin name="Sofa.Component.Collision.Geometry"/> <!-- Needed to use components [TriangleCollisionModel] -->
+        <RequiredPlugin name="Sofa.Component.Collision.Response.Contact"/> <!-- Needed to use components [CollisionResponse] -->
+        <RequiredPlugin name="Sofa.Component.Constraint.Projective"/> <!-- Needed to use components [FixedProjectiveConstraint] -->
+        <RequiredPlugin name="Sofa.Component.LinearSolver.Iterative"/> <!-- Needed to use components [CGLinearSolver] -->
+        <RequiredPlugin name="Sofa.Component.Mapping.Linear"/> <!-- Needed to use components [IdentityMapping] -->
+        <RequiredPlugin name="Sofa.Component.Mass"/> <!-- Needed to use components [DiagonalMass] -->
+        <RequiredPlugin name="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+        <RequiredPlugin name="Sofa.Component.SolidMechanics.FEM.Elastic"/> <!-- Needed to use components [TriangularFEMForceField] -->
+        <RequiredPlugin name="Sofa.Component.SolidMechanics.Spring"/> <!-- Needed to use components [TriangularBendingSprings] -->
+        <RequiredPlugin name="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
+        <RequiredPlugin name="Sofa.Component.Topology.Container.Dynamic"/> <!-- Needed to use components [TriangleSetGeometryAlgorithms TriangleSetTopologyContainer TriangleSetTopologyModifier] -->
+        <RequiredPlugin name="Sofa.Component.Topology.Container.Grid"/> <!-- Needed to use components [RegularGridTopology] -->
+        <RequiredPlugin name="Sofa.Component.Visual"/> <!-- Needed to use components [VisualStyle] -->
+        <RequiredPlugin name="Sofa.GL.Component.Rendering3D"/> <!-- Needed to use components [OglModel] -->
+        <VisualStyle displayFlags="showBehaviorModels showVisual" />
+        <CollisionPipeline />
+        <BruteForceBroadPhase/>
+        <BVHNarrowPhase/>
+        <CollisionResponse response="PenalityContactForceField" />
+        <MinProximityIntersection name="Proximity" alarmDistance="0.8" contactDistance="0.5" />
+        <DefaultAnimationLoop/>
+    
+        <Node name="SquareGravity">
+            <EulerImplicitSolver name="cg_odesolver"/>
+            <CGImplicit iterations="40" tolerance="1e-6" threshold="1e-10" />
+                   
+            <RegularGridTopology name="grid" nx="10" ny="10" nz="1" xmin="-5" xmax="5" ymin="-5" ymax="5" zmin="0" zmax="0"/>
+            
+            <MechanicalObject src="@grid" scale="10" />
+            
+            <TriangleSetTopologyContainer  name="Container" src="@grid"/>
+            <TriangleSetTopologyModifier   name="Modifier" />
+            <TriangleSetGeometryAlgorithms name="GeomAlgo" drawEdges="1"/>
+            
+            <DiagonalMass massDensity="0.15" />
+            <FixedProjectiveConstraint indices="0 1 8 9 10 19" />
+           
+           
+            <TriangularFEMForceField name="FEM" youngModulus="60" poissonRatio="0.3" method="large" />
+            <TriangularBendingSprings name="FEM-Bend" stiffness="300" damping="1.0" />
+            
+            <TriangleCollisionModel />
+            
+            <Node >
+              <OglModel name="Visual" color="red" />
+              <IdentityMapping input="@.." output="@Visual" />
+            </Node>
+    
+        </Node>
+    </Node>
+
+    ```
+
+=== "Python"
+
+    ```python
+    def createScene(root_node):
+
+       root = root_node.addChild('root', dt="0.05", showBoundingTree="0", gravity="0 -9 5")
+
+       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Algorithm")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Intersection")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Geometry")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Response.Contact")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Projective")
+       root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Iterative")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Mapping.Linear")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Mass")
+       root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.FEM.Elastic")
+       root.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.Spring")
+       root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Dynamic")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Grid")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Visual")
+       root.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
+       root.addObject('VisualStyle', displayFlags="showBehaviorModels showVisual")
+       root.addObject('CollisionPipeline', )
+       root.addObject('BruteForceBroadPhase', )
+       root.addObject('BVHNarrowPhase', )
+       root.addObject('CollisionResponse', response="PenalityContactForceField")
+       root.addObject('MinProximityIntersection', name="Proximity", alarmDistance="0.8", contactDistance="0.5")
+       root.addObject('DefaultAnimationLoop', )
+
+       square_gravity = root.addChild('SquareGravity')
+
+       square_gravity.addObject('EulerImplicitSolver', name="cg_odesolver")
+       square_gravity.addObject('CGImplicit', iterations="40", tolerance="1e-6", threshold="1e-10")
+       square_gravity.addObject('RegularGridTopology', name="grid", nx="10", ny="10", nz="1", xmin="-5", xmax="5", ymin="-5", ymax="5", zmin="0", zmax="0")
+       square_gravity.addObject('MechanicalObject', src="@grid", scale="10")
+       square_gravity.addObject('TriangleSetTopologyContainer', name="Container", src="@grid")
+       square_gravity.addObject('TriangleSetTopologyModifier', name="Modifier")
+       square_gravity.addObject('TriangleSetGeometryAlgorithms', name="GeomAlgo", drawEdges="1")
+       square_gravity.addObject('DiagonalMass', massDensity="0.15")
+       square_gravity.addObject('FixedProjectiveConstraint', indices="0 1 8 9 10 19")
+       square_gravity.addObject('TriangularFEMForceField', name="FEM", youngModulus="60", poissonRatio="0.3", method="large")
+       square_gravity.addObject('TriangularBendingSprings', name="FEM-Bend", stiffness="300", damping="1.0")
+       square_gravity.addObject('TriangleCollisionModel', )
+
+       node = SquareGravity.addChild('node')
+
+       node.addObject('OglModel', name="Visual", color="red")
+       node.addObject('IdentityMapping', input="@..", output="@Visual")
     ```
 
 RegularGridTopology_dimension.scn

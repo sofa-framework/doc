@@ -138,160 +138,6 @@ Plane strain or plane stress assumption
 
 ## Examples 
 
-TriangleFEMForceField.scn
-
-=== "XML"
-
-    ```xml
-    <?xml version="1.0" ?>
-    <!-- Mechanical MassSpring Group Basic Example -->
-    <Node name="root" gravity="0 0 1" dt="0.05">
-        <RequiredPlugin name="Sofa.Component.Collision.Detection.Algorithm"/> <!-- Needed to use components [BVHNarrowPhase BruteForceBroadPhase CollisionPipeline] -->
-        <RequiredPlugin name="Sofa.Component.Collision.Detection.Intersection"/> <!-- Needed to use components [DiscreteIntersection] -->
-        <RequiredPlugin name="Sofa.Component.Collision.Geometry"/> <!-- Needed to use components [TriangleCollisionModel] -->
-        <RequiredPlugin name="Sofa.Component.Collision.Response.Contact"/> <!-- Needed to use components [CollisionResponse] -->
-        <RequiredPlugin name="Sofa.Component.Constraint.Projective"/> <!-- Needed to use components [FixedProjectiveConstraint] -->
-        <RequiredPlugin name="Sofa.Component.LinearSolver.Iterative"/> <!-- Needed to use components [CGLinearSolver] -->
-        <RequiredPlugin name="Sofa.Component.Mapping.Linear"/> <!-- Needed to use components [IdentityMapping] -->
-        <RequiredPlugin name="Sofa.Component.Mass"/> <!-- Needed to use components [UniformMass] -->
-        <RequiredPlugin name="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
-        <RequiredPlugin name="Sofa.Component.SolidMechanics.FEM.Elastic"/> <!-- Needed to use components [TriangleFEMForceField] -->
-        <RequiredPlugin name="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
-        <RequiredPlugin name="Sofa.Component.Topology.Container.Grid"/> <!-- Needed to use components [RegularGridTopology] -->
-        <RequiredPlugin name="Sofa.Component.Visual"/> <!-- Needed to use components [VisualStyle] -->
-        <RequiredPlugin name="Sofa.GL.Component.Rendering3D"/> <!-- Needed to use components [OglModel] -->
-        <VisualStyle displayFlags="showBehaviorModels showForceFields showCollisionModels showMappings showVisual" />
-        <CollisionPipeline verbose="0" name="CollisionPipeline" />
-        <BruteForceBroadPhase/>
-        <BVHNarrowPhase/>
-        <CollisionResponse response="PenalityContactForceField" name="collision response" />
-        <DiscreteIntersection />
-        <DefaultAnimationLoop/>
-        
-        <Node name="M1">
-            <EulerImplicitSolver name="cg_odesolver" printLog="false"  rayleighStiffness="0.1" rayleighMass="0.1" />
-            <CGLinearSolver iterations="25" name="linear solver" tolerance="1.0e-9" threshold="1.0e-9" />
-            <MechanicalObject />
-            <UniformMass vertexMass="0.1" />
-            <RegularGridTopology nx="3" ny="3" nz="1" xmin="10" xmax="19" ymin="0" ymax="9" zmin="4" zmax="5" />
-            <FixedProjectiveConstraint indices="0 8" />
-            <TriangleFEMForceField name="FEM1" youngModulus="5000" poissonRatio="0.3" method="large" />
-            <TriangleCollisionModel />
-            <Node name="Visu">
-                <OglModel name="Visual" color="green" />
-                <IdentityMapping input="@.." output="@Visual" />
-            </Node>
-        </Node>
-        <Node name="M2">
-            <EulerImplicitSolver name="cg_odesolver" printLog="false" />
-            <CGLinearSolver iterations="25" name="linear solver" tolerance="1.0e-9" threshold="1.0e-9" />
-            <MechanicalObject />
-            <UniformMass vertexMass="0.1" />
-            <RegularGridTopology nx="4" ny="4" nz="1" xmin="20" xmax="29" ymin="0" ymax="9" zmin="8" zmax="9" />
-            <FixedProjectiveConstraint indices="0 15" />
-            <TriangleFEMForceField name="FEM2" youngModulus="5000" poissonRatio="0.3" method="large" />
-            <TriangleCollisionModel />
-            <Node name="Visu">
-                <OglModel name="Visual" color="blue" />
-                <IdentityMapping input="@.." output="@Visual" />
-            </Node>
-        </Node>
-        <Node name="M3">
-            <EulerImplicitSolver name="cg_odesolver" printLog="false" />
-            <CGLinearSolver iterations="25" name="linear solver" tolerance="1.0e-9" threshold="1.0e-9" />
-            <MechanicalObject />
-            <UniformMass vertexMass="0.1" />
-            <RegularGridTopology nx="10" ny="10" nz="1" xmin="30" xmax="39" ymin="0" ymax="9" zmin="12" zmax="13" />
-            <FixedProjectiveConstraint indices="0 9 99" />
-            <TriangleFEMForceField name="FEM3" youngModulus="50000" poissonRatio="0.3" method="large" />
-            <TriangleCollisionModel />
-            <Node name="Visu">
-                <OglModel name="Visual" color="yellow" />
-                <IdentityMapping input="@.." output="@Visual" />
-            </Node>
-        </Node>
-    </Node>
-
-    ```
-
-=== "Python"
-
-    ```python
-    def createScene(root_node):
-
-       root = root_node.addChild('root', gravity="0 0 1", dt="0.05")
-
-       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Algorithm")
-       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Intersection")
-       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Geometry")
-       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Response.Contact")
-       root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Projective")
-       root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Iterative")
-       root.addObject('RequiredPlugin', name="Sofa.Component.Mapping.Linear")
-       root.addObject('RequiredPlugin', name="Sofa.Component.Mass")
-       root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
-       root.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.FEM.Elastic")
-       root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
-       root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Grid")
-       root.addObject('RequiredPlugin', name="Sofa.Component.Visual")
-       root.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
-       root.addObject('VisualStyle', displayFlags="showBehaviorModels showForceFields showCollisionModels showMappings showVisual")
-       root.addObject('CollisionPipeline', verbose="0", name="CollisionPipeline")
-       root.addObject('BruteForceBroadPhase', )
-       root.addObject('BVHNarrowPhase', )
-       root.addObject('CollisionResponse', response="PenalityContactForceField", name="collision response")
-       root.addObject('DiscreteIntersection', )
-       root.addObject('DefaultAnimationLoop', )
-
-       m1 = root.addChild('M1')
-
-       m1.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
-       m1.addObject('CGLinearSolver', iterations="25", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
-       m1.addObject('MechanicalObject', )
-       m1.addObject('UniformMass', vertexMass="0.1")
-       m1.addObject('RegularGridTopology', nx="3", ny="3", nz="1", xmin="10", xmax="19", ymin="0", ymax="9", zmin="4", zmax="5")
-       m1.addObject('FixedProjectiveConstraint', indices="0 8")
-       m1.addObject('TriangleFEMForceField', name="FEM1", youngModulus="5000", poissonRatio="0.3", method="large")
-       m1.addObject('TriangleCollisionModel', )
-
-       visu = M1.addChild('Visu')
-
-       visu.addObject('OglModel', name="Visual", color="green")
-       visu.addObject('IdentityMapping', input="@..", output="@Visual")
-
-       m2 = root.addChild('M2')
-
-       m2.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="false")
-       m2.addObject('CGLinearSolver', iterations="25", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
-       m2.addObject('MechanicalObject', )
-       m2.addObject('UniformMass', vertexMass="0.1")
-       m2.addObject('RegularGridTopology', nx="4", ny="4", nz="1", xmin="20", xmax="29", ymin="0", ymax="9", zmin="8", zmax="9")
-       m2.addObject('FixedProjectiveConstraint', indices="0 15")
-       m2.addObject('TriangleFEMForceField', name="FEM2", youngModulus="5000", poissonRatio="0.3", method="large")
-       m2.addObject('TriangleCollisionModel', )
-
-       visu = M2.addChild('Visu')
-
-       visu.addObject('OglModel', name="Visual", color="blue")
-       visu.addObject('IdentityMapping', input="@..", output="@Visual")
-
-       m3 = root.addChild('M3')
-
-       m3.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="false")
-       m3.addObject('CGLinearSolver', iterations="25", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
-       m3.addObject('MechanicalObject', )
-       m3.addObject('UniformMass', vertexMass="0.1")
-       m3.addObject('RegularGridTopology', nx="10", ny="10", nz="1", xmin="30", xmax="39", ymin="0", ymax="9", zmin="12", zmax="13")
-       m3.addObject('FixedProjectiveConstraint', indices="0 9 99")
-       m3.addObject('TriangleFEMForceField', name="FEM3", youngModulus="50000", poissonRatio="0.3", method="large")
-       m3.addObject('TriangleCollisionModel', )
-
-       visu = M3.addChild('Visu')
-
-       visu.addObject('OglModel', name="Visual", color="yellow")
-       visu.addObject('IdentityMapping', input="@..", output="@Visual")
-    ```
-
 TriangleFEMForceField_compare.scn
 
 === "XML"
@@ -502,5 +348,159 @@ TriangleFEMForceField_compare.scn
 
        visu.addObject('OglModel', name="TriangleFEMForceField_visu", color="green")
        visu.addObject('IdentityMapping', name="TriangleFEMForceField_mapping", input="@../..", output="@.")
+    ```
+
+TriangleFEMForceField.scn
+
+=== "XML"
+
+    ```xml
+    <?xml version="1.0" ?>
+    <!-- Mechanical MassSpring Group Basic Example -->
+    <Node name="root" gravity="0 0 1" dt="0.05">
+        <RequiredPlugin name="Sofa.Component.Collision.Detection.Algorithm"/> <!-- Needed to use components [BVHNarrowPhase BruteForceBroadPhase CollisionPipeline] -->
+        <RequiredPlugin name="Sofa.Component.Collision.Detection.Intersection"/> <!-- Needed to use components [DiscreteIntersection] -->
+        <RequiredPlugin name="Sofa.Component.Collision.Geometry"/> <!-- Needed to use components [TriangleCollisionModel] -->
+        <RequiredPlugin name="Sofa.Component.Collision.Response.Contact"/> <!-- Needed to use components [CollisionResponse] -->
+        <RequiredPlugin name="Sofa.Component.Constraint.Projective"/> <!-- Needed to use components [FixedProjectiveConstraint] -->
+        <RequiredPlugin name="Sofa.Component.LinearSolver.Iterative"/> <!-- Needed to use components [CGLinearSolver] -->
+        <RequiredPlugin name="Sofa.Component.Mapping.Linear"/> <!-- Needed to use components [IdentityMapping] -->
+        <RequiredPlugin name="Sofa.Component.Mass"/> <!-- Needed to use components [UniformMass] -->
+        <RequiredPlugin name="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+        <RequiredPlugin name="Sofa.Component.SolidMechanics.FEM.Elastic"/> <!-- Needed to use components [TriangleFEMForceField] -->
+        <RequiredPlugin name="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
+        <RequiredPlugin name="Sofa.Component.Topology.Container.Grid"/> <!-- Needed to use components [RegularGridTopology] -->
+        <RequiredPlugin name="Sofa.Component.Visual"/> <!-- Needed to use components [VisualStyle] -->
+        <RequiredPlugin name="Sofa.GL.Component.Rendering3D"/> <!-- Needed to use components [OglModel] -->
+        <VisualStyle displayFlags="showBehaviorModels showForceFields showCollisionModels showMappings showVisual" />
+        <CollisionPipeline verbose="0" name="CollisionPipeline" />
+        <BruteForceBroadPhase/>
+        <BVHNarrowPhase/>
+        <CollisionResponse response="PenalityContactForceField" name="collision response" />
+        <DiscreteIntersection />
+        <DefaultAnimationLoop/>
+        
+        <Node name="M1">
+            <EulerImplicitSolver name="cg_odesolver" printLog="false"  rayleighStiffness="0.1" rayleighMass="0.1" />
+            <CGLinearSolver iterations="25" name="linear solver" tolerance="1.0e-9" threshold="1.0e-9" />
+            <MechanicalObject />
+            <UniformMass vertexMass="0.1" />
+            <RegularGridTopology nx="3" ny="3" nz="1" xmin="10" xmax="19" ymin="0" ymax="9" zmin="4" zmax="5" />
+            <FixedProjectiveConstraint indices="0 8" />
+            <TriangleFEMForceField name="FEM1" youngModulus="5000" poissonRatio="0.3" method="large" />
+            <TriangleCollisionModel />
+            <Node name="Visu">
+                <OglModel name="Visual" color="green" />
+                <IdentityMapping input="@.." output="@Visual" />
+            </Node>
+        </Node>
+        <Node name="M2">
+            <EulerImplicitSolver name="cg_odesolver" printLog="false" />
+            <CGLinearSolver iterations="25" name="linear solver" tolerance="1.0e-9" threshold="1.0e-9" />
+            <MechanicalObject />
+            <UniformMass vertexMass="0.1" />
+            <RegularGridTopology nx="4" ny="4" nz="1" xmin="20" xmax="29" ymin="0" ymax="9" zmin="8" zmax="9" />
+            <FixedProjectiveConstraint indices="0 15" />
+            <TriangleFEMForceField name="FEM2" youngModulus="5000" poissonRatio="0.3" method="large" />
+            <TriangleCollisionModel />
+            <Node name="Visu">
+                <OglModel name="Visual" color="blue" />
+                <IdentityMapping input="@.." output="@Visual" />
+            </Node>
+        </Node>
+        <Node name="M3">
+            <EulerImplicitSolver name="cg_odesolver" printLog="false" />
+            <CGLinearSolver iterations="25" name="linear solver" tolerance="1.0e-9" threshold="1.0e-9" />
+            <MechanicalObject />
+            <UniformMass vertexMass="0.1" />
+            <RegularGridTopology nx="10" ny="10" nz="1" xmin="30" xmax="39" ymin="0" ymax="9" zmin="12" zmax="13" />
+            <FixedProjectiveConstraint indices="0 9 99" />
+            <TriangleFEMForceField name="FEM3" youngModulus="50000" poissonRatio="0.3" method="large" />
+            <TriangleCollisionModel />
+            <Node name="Visu">
+                <OglModel name="Visual" color="yellow" />
+                <IdentityMapping input="@.." output="@Visual" />
+            </Node>
+        </Node>
+    </Node>
+
+    ```
+
+=== "Python"
+
+    ```python
+    def createScene(root_node):
+
+       root = root_node.addChild('root', gravity="0 0 1", dt="0.05")
+
+       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Algorithm")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Intersection")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Geometry")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Response.Contact")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Projective")
+       root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Iterative")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Mapping.Linear")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Mass")
+       root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.FEM.Elastic")
+       root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Grid")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Visual")
+       root.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
+       root.addObject('VisualStyle', displayFlags="showBehaviorModels showForceFields showCollisionModels showMappings showVisual")
+       root.addObject('CollisionPipeline', verbose="0", name="CollisionPipeline")
+       root.addObject('BruteForceBroadPhase', )
+       root.addObject('BVHNarrowPhase', )
+       root.addObject('CollisionResponse', response="PenalityContactForceField", name="collision response")
+       root.addObject('DiscreteIntersection', )
+       root.addObject('DefaultAnimationLoop', )
+
+       m1 = root.addChild('M1')
+
+       m1.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
+       m1.addObject('CGLinearSolver', iterations="25", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
+       m1.addObject('MechanicalObject', )
+       m1.addObject('UniformMass', vertexMass="0.1")
+       m1.addObject('RegularGridTopology', nx="3", ny="3", nz="1", xmin="10", xmax="19", ymin="0", ymax="9", zmin="4", zmax="5")
+       m1.addObject('FixedProjectiveConstraint', indices="0 8")
+       m1.addObject('TriangleFEMForceField', name="FEM1", youngModulus="5000", poissonRatio="0.3", method="large")
+       m1.addObject('TriangleCollisionModel', )
+
+       visu = M1.addChild('Visu')
+
+       visu.addObject('OglModel', name="Visual", color="green")
+       visu.addObject('IdentityMapping', input="@..", output="@Visual")
+
+       m2 = root.addChild('M2')
+
+       m2.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="false")
+       m2.addObject('CGLinearSolver', iterations="25", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
+       m2.addObject('MechanicalObject', )
+       m2.addObject('UniformMass', vertexMass="0.1")
+       m2.addObject('RegularGridTopology', nx="4", ny="4", nz="1", xmin="20", xmax="29", ymin="0", ymax="9", zmin="8", zmax="9")
+       m2.addObject('FixedProjectiveConstraint', indices="0 15")
+       m2.addObject('TriangleFEMForceField', name="FEM2", youngModulus="5000", poissonRatio="0.3", method="large")
+       m2.addObject('TriangleCollisionModel', )
+
+       visu = M2.addChild('Visu')
+
+       visu.addObject('OglModel', name="Visual", color="blue")
+       visu.addObject('IdentityMapping', input="@..", output="@Visual")
+
+       m3 = root.addChild('M3')
+
+       m3.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="false")
+       m3.addObject('CGLinearSolver', iterations="25", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
+       m3.addObject('MechanicalObject', )
+       m3.addObject('UniformMass', vertexMass="0.1")
+       m3.addObject('RegularGridTopology', nx="10", ny="10", nz="1", xmin="30", xmax="39", ymin="0", ymax="9", zmin="12", zmax="13")
+       m3.addObject('FixedProjectiveConstraint', indices="0 9 99")
+       m3.addObject('TriangleFEMForceField', name="FEM3", youngModulus="50000", poissonRatio="0.3", method="large")
+       m3.addObject('TriangleCollisionModel', )
+
+       visu = M3.addChild('Visu')
+
+       visu.addObject('OglModel', name="Visual", color="yellow")
+       visu.addObject('IdentityMapping', input="@..", output="@Visual")
     ```
 
