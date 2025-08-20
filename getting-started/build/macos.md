@@ -88,14 +88,19 @@ SOFA requires some libraries:
     brew install boost
     ```
 
--   **Python 3.10** + pip + numpy + scipy
-    ```bash
-    brew install python@3.10
-    brew link --force python@3.10
-    python3 -m pip install --upgrade pip
-    python3 -m pip install numpy scipy
-    brew install pybind11
+-   **Python 3.12** + pip + numpy + scipy
     ```
+    brew install python@3.12
+    brew link --force python@3.10
+    ```
+    Python 3.12 now favor the use of venv. We highly recommend it too. To bootstrap it type `python3.12 -m venv sofa-venv` in the folder you want to keep this venv. We recommend creating it either in your home directory, in the folder containing both your sources and the build directory. Once created, you can activate it by calling `source /path/to/sofa-venv/bin/activate`. Now you can install all dependency through the following commands:
+    ```
+    python3.12 -m pip install --upgrade pip \
+    && python3.12 -m pip install numpy scipy pybind11==2.12.0
+    ```
+    Now, each time you want to build or use SOFA, you first need to call `source /path/to/sofa-venv/bin/activate` to activate this virtual environment and get access to the dependencies. 
+
+   
     
 -   **Additional libraries**: libPNG, libJPEG, libTIFF, Glew   
     ```bash
@@ -177,6 +182,8 @@ git clone -b master https://github.com/sofa-framework/sofa.git sofa/src
 
 ## Generate a Makefile with CMake
 
+0. Activate your venv `source /path/to/sofa-venv/bin/activate` and tell CMake to look there to find pybind11 `export CMAKE_PREFIX_PATH=/path/to/sofa-venv/lib/python3.12/site-packages`
+
 1. Create build directories respecting the arrangement above.
 
 2. Run CMake.app and set source folder and build folder.
@@ -218,7 +225,9 @@ To solve Qt detection errors, click on **Add Entry** and add
 `CMAKE_PREFIX_PATH` with path `/home/YOUR_USERNAME/Qt/QT_VERSION/COMPILER` matching your
 Qt architecture.  
 Example: `CMAKE_PREFIX_PATH=/home/bob/Qt/5.7/gcc_64`  
-**Configure** again.
+Note that this is a list, in which you can provide multiple paths by separating them with a semicolon ';'.
+
+Then, **Configure** again.
 
 A further dev warning may appear:
 
