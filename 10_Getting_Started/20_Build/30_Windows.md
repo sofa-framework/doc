@@ -65,8 +65,7 @@ SOFA requires some libraries:
     ```
     
 -   **Additional libraries**: libPNG, libJPEG, libTIFF, Glew, Zlib, TinyXML2
-    Download the [Windows dependency pack](https://www.sofa-framework.org/download/WinDepPack/VS-2017/latest).  
-    You will need to unzip it directly in SOFA sources (later in this tutorial).
+    It will be fetch automatically from https://github.com/sofa-framework/WinDepPack.git directly by SOFA CMake generation. For advanced dev, you can provide you own by modfying teh variables WINDEPPACK_GIT_REPOSITORY and WINDEPPACK_GIT_TAG.
 
 -   **Eigen** (>= 3.2.10)  
     Download and extract the [latest Eigen sources](https://gitlab.com/libeigen/eigen/-/releases).
@@ -115,13 +114,6 @@ git clone -b v25.06 https://github.com/sofa-framework/sofa.git sofa/src
 ``` {.bash .unstable}
 git clone -b master https://github.com/sofa-framework/sofa.git sofa/src
 ```
-
-**Next**, unzip the **SOFA dependencies for Windows** (downloaded before) directly in the sources `sofa/src/`.
-
-**Finally**, you should have something like this:
-
-![](https://www.sofa-framework.org/wp-content/uploads/2015/11/sofa_files.png)
-
 
 ## Generate a VS project (.sln) or a Makefile with CMake
 
