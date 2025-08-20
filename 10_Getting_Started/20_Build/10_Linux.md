@@ -94,18 +94,16 @@ SOFA requires some libraries:
     sudo apt install libboost-all-dev
     ```
     
--   **Python 3.10** + pip + numpy + scipy
+-   **Python 3.12** + pip + numpy + scipy
     ```
-    sudo apt install python3.10-dev pybind11-dev
+    sudo apt install python3.12-dev python3.12-venv
     ```
-    
+    Python 3.12 now favor the use of venv. We highly recommend it too. To bootstrap it type `python3.12 -m venv sofa-venv` in the folder you want to keep this venv. We recommend creating it either in your home directory, in the folder containing both your sources and the build directory. Once created, you can activate it by calling `source /path/to/sofa-venv/bin/activate`. Now you can install all dependency through the following commands:
     ```
-    sudo apt-get install python3.10-distutils \
-    && curl -L https://bootstrap.pypa.io/pip/get-pip.py --output /tmp/get-pip3.py \
-    && python3.10 /tmp/get-pip3.py \
-    && python3.10 -m pip install --upgrade pip \
-    && python3.10 -m pip install numpy scipy pybind11==2.9.1
+    python3.12 -m pip install --upgrade pip \
+    && python3.12 -m pip install numpy scipy pybind11==2.12.0
     ```
+    Now, each time you want to build or use SOFA, you first need to call `source /path/to/sofa-venv/bin/activate` to activate this virtual environment and get access to the dependencies. 
 
 -   **Additional libraries**: libPNG, libJPEG, libTIFF, Glew, Zlib   
     ```
@@ -207,6 +205,8 @@ git clone -b master https://github.com/sofa-framework/sofa.git sofa/src
 
 ## Generate a Makefile with CMake
 
+0. Activate your venv `source /path/to/sofa-venv/bin/activate` and tell CMake to look there to find pybind11 `export CMAKE_PREFIX_PATH=/path/to/sofa-venv/lib/python3.12/site-packages`
+
 1. Create build directories respecting the arrangement above.
 
 2. Run CMake-GUI and set source folder and build folder.
@@ -256,7 +256,8 @@ Time for a coffee!
 To solve Qt detection errors, click on **Add Entry** and add
 `CMAKE_PREFIX_PATH` with path `/home/YOUR_USERNAME/Qt/QT_VERSION/COMPILER` matching your
 Qt installation.  
-Example: `CMAKE_PREFIX_PATH=/home/bob/Qt/5.15/gcc_64`  
+Example: `CMAKE_PREFIX_PATH=/home/bob/Qt/5.15/gcc_64`.
+Note that this is a list, in which you can provide multiple paths by separating them with a semicolon ';'.
 
 Then, **Configure** again.
 
