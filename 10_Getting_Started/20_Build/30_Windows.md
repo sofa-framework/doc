@@ -58,13 +58,13 @@ SOFA requires some libraries:
     
 -   **Python** (= 3.12.x)  
     Download and install the latest [**Python 3.12 (amd64)**](https://www.python.org/ftp/python/3.12.10/python-3.12.10-amd64.exe).
-    Python 3.12 now favor the use of venv. We highly recommand it to. To bootsstrap it type ``C:\path\to\python3.12 -m venv sofa-venv`` in the folder you want to keep this venv. We recommand creating it either in your home dir, in the folder containing both your sources and the build dir. Once created, you can activate it by calling ``C:\path\to\sofa-venv\bin\Scripts\activate.bat``. Now you can install all dependency through the following commands.
-    Then install the python dependencies. Run the following commands in cmd by replacing `path\to\Python312\ ` by the path to you venv bin directory.
+    Python 3.12 now favor the use of venv. We highly recommend it too. To bootstrap it type `C:\path\to\python3.12 -m venv sofa-venv` in the folder you want to keep this venv. We recommend creating it either in your home directory, in the folder containing both your sources and the build directory. Once created, you can activate it by calling `C:\path\to\sofa-venv\bin\Scripts\activate.bat`. Now you can install all dependency through the following commands.
+    Then, install the Python dependencies. Run the following commands in cmd by replacing `path\to\Python312\` by the path to you venv bin directory.
     ```
     path\to\Python312\python.exe -m pip install --upgrade pip
     path\to\Python312\python.exe -m pip install numpy scipy pybind11==2.12.0
     ```
-    Now, each time you'll want to build or use SOFA, you'll first need to call ``C:\path\to\sofa-venv\bin\Scripts\activate.bat`` to activate this virtual environement and get access to the dependencies. 
+    Now, each time you want to build or use SOFA, you first need to call `C:\path\to\sofa-venv\bin\Scripts\activate.bat` to activate this virtual environment and get access to the dependencies. 
     
 -   **Additional libraries**: libPNG, libJPEG, libTIFF, Glew, Zlib, TinyXML2
     Download the [Windows dependency pack](https://www.sofa-framework.org/download/WinDepPack/VS-2017/latest).  
@@ -132,25 +132,25 @@ git clone -b master https://github.com/sofa-framework/sofa.git sofa/src
 2. In Windows Start menu, search for `Native Tools Command Prompt` and run the one corresponding to your Windows architecture (x64 for 64-bit, x86 for 32-bit).  
 ![](https://www.sofa-framework.org/wp-content/uploads/2020/04/SearchCommandPrompt2.png)
 
-3. Call ``C:\path\to\sofa-venv\bin\Scripts\activate.bat`` to activate the virtual environement. 
+3. Call ``C:\path\to\sofa-venv\bin\Scripts\activate.bat`` to activate the virtual environment. 
 
 4. In the command prompt, type `cmake-gui` and press Enter.  
    If you get the error `'cmake-gui' is not recognized as an internal or external command`, it means that your system PATH does not correctly include the path to cmake-gui. In this case, you need to provide the full path to your cmake-gui.
 
-5. In CMake-GUI, set source folder and build folder. 
+5. In CMake-GUI, set source folder and build folder.
 
 6. Run **Configure**.
    
-7. A popup will ask you to specify the generator for the project.
+7. A pop-up will ask you to specify the generator for the project.
 
    - If you want use **Visual Studio IDE**, select "Visual Studio 15 2017 Win64" or "Visual Studio 16 2019 Win64" (or without the "Win64" if you are on Windows 32-bit).
    - If you want to use **another IDE like QtCreator**, select "CodeBlocks - Ninja" (recommended, needs [Ninja](#optional-ninja-build-system)) or "CodeBlocks - NMake".
    Keep "Use default native compilers" and press "Finish".
 
-8. Fix eventual dependency errors by following CMake messages (see Troubleshoot section below). Do not worry about warnings.
+8. Fix eventual dependency errors by following CMake messages (see Troubleshoot section below). You may ignore warnings.
 
    - e.g. define the `Eigen3_DIR` with the path where you installed Eigen
-   - Add the path to your venv site-packages to CMake by setting a path variable called ``CMAKE_PREFIX_PATH=C:\path\to\sofa-venv\Lib\site-packages``
+   - Add the path to your venv site-packages to CMake by setting a path variable called `CMAKE_PREFIX_PATH=C:\path\to\sofa-venv\Lib\site-packages`
 
 9. (optional) Customize SOFA via CMake variables
 
@@ -186,7 +186,7 @@ Time for a coffee!
 To solve Qt detection errors, click on **Add Entry** and add
 `CMAKE_PREFIX_PATH` with path to your Qt directory (navigate until msvcXXXX_XX directory).  
 Example: `CMAKE_PREFIX_PATH=C:/dev/Qt/5.11.3/msvc2017_64`
-This is a list, you can provide multiple path by separating them with a semicolon ';'.
+Note that this is a list, in which you can provide multiple paths by separating them with a semicolon ';'.
 
 Then, **Configure** again.
 
