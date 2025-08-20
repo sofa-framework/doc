@@ -65,7 +65,7 @@ SOFA requires some libraries:
     ```
     
 -   **Additional libraries**: libPNG, libJPEG, libTIFF, Glew, Zlib, TinyXML2
-    It will be fetch automatically from https://github.com/sofa-framework/WinDepPack.git directly by SOFA CMake generation. For advanced dev, you can provide you own by modfying teh variables WINDEPPACK_GIT_REPOSITORY and WINDEPPACK_GIT_TAG.
+    It will be fetch automatically from https://github.com/sofa-framework/WinDepPack.git directly by SOFA CMake generation. For advanced dev, you can provide you own by modfying the CMake variables WINDEPPACK_GIT_REPOSITORY and WINDEPPACK_GIT_TAG.
 
 -   **Eigen** (>= 3.2.10)  
     Download and extract the [latest Eigen sources](https://gitlab.com/libeigen/eigen/-/releases).
