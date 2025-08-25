@@ -1,5 +1,10 @@
-<!-- generate_doc -->
 # ParallelBruteForceBroadPhase
+
+This component is a parallel implementation of [BruteForceBroadPhase](../../../../components/collision/detection/algorithm/bruteforcebroadphase/) using a global thread pool.
+It means the result of a simulation with [BruteForceBroadPhase](../../../../components/collision/detection/algorithm/bruteforcebroadphase/) or with ParallelBruteForceBroadPhase is expected to be equal.
+ParallelBruteForceBroadPhase is the most efficient compared to [BruteForceBroadPhase](../../../../components/collision/detection/algorithm/bruteforcebroadphase/) when there is a lot of objects in the scene.
+<!-- automatically generated doc START -->
+<!-- generate_doc -->
 
 Parallel version of the collision detection using extensive pair-wise tests performed concurrently.
 
@@ -99,3 +104,5 @@ Type of task scheduler to use.
 |slaves|Sub-objects used internally by this object|BaseObject|
 |master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
 
+
+<!-- automatically generated doc END -->

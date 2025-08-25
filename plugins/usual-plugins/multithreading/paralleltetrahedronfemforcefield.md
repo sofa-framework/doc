@@ -1,5 +1,14 @@
-<!-- generate_doc -->
 # ParallelTetrahedronFEMForceField
+
+ParallelTetrahedronFEMForceField is the multi-threaded equivalent of [TetrahedronFEMForceField](../../../../components/solidmechanics/fem/elastic/tetrahedronfemforcefield).
+
+This implementation is the most efficient when the number of tetrahedron is large (> 1000).
+
+The following methods are executed in parallel:
+- `addDForce`
+- `addKToMatrix`
+<!-- automatically generated doc START -->
+<!-- generate_doc -->
 
 Parallel implementation of a linear elastic material using tetrahedral finite elements..
 
@@ -362,3 +371,5 @@ ParallelTetrahedronFEMForceField.scn
        beam_fem__large.addObject('FixedProjectiveConstraint', template="Vec3d", indices="@box_roi.indices")
     ```
 
+
+<!-- automatically generated doc END -->

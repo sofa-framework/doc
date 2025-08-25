@@ -1,5 +1,8 @@
-<!-- generate_doc -->
 # ParallelMeshSpringForceField
+
+ParallelMeshSpringForceField is the multi-threaded equivalent of MeshSpringForceField.
+<!-- automatically generated doc START -->
+<!-- generate_doc -->
 
 Parallel stiff springs acting along the edges of a mesh.
 
@@ -987,3 +990,5 @@ ParallelMeshSpringForceField.scn
        floor_visual.addObject('OglModel', src="@meshLoader", rx="90", dy="2")
     ```
 
+
+<!-- automatically generated doc END -->
