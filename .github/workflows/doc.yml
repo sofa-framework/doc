@@ -68,8 +68,10 @@ jobs:
           pip install gitpython
           pip install requests
           python ${{ github.workspace }}/SofaDocGenerator/script/pipeline.py ${{ github.workspace }}/SofaDocGenerator/doc ${{ github.workspace }}/sofa/share/sofa/examples ${{ github.workspace }}/sofa/plugins
-          
+
           python ${{ github.workspace }}/SofaDocGenerator/script/title_metadata.py ${{ github.workspace }}/SofaDocGenerator/doc
+          
+          python ${{ github.workspace }}/SofaDocGenerator/script/scene_check.py ${{ github.workspace }}/SofaDocGenerator/doc/15_Using_SOFA/10_SceneChecking.md
 
           echo "Starting the export of plugin lists"
           # Export plugin lists into the merged doc
