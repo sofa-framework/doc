@@ -225,7 +225,7 @@ def generate_component_documentation(destination_directory, example_directories)
     SofaRuntime.importPlugin("SoftRobots")
     SofaRuntime.importPlugin("ShapeMatchingPlugin")
     SofaRuntime.importPlugin("CSparseSolvers")
-    # SofaRuntime.importPlugin("ModelOrderReduction")
+    SofaRuntime.importPlugin("ModelOrderReduction")
     SofaRuntime.importPlugin("VolumetricRendering")
     # if "auto_load_plugins" in dir(SofaRuntime):
     #     SofaRuntime.auto_load_plugins()
