@@ -274,13 +274,13 @@ ArticulatedSystemMapping.scn
         <RequiredPlugin name="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
         <RequiredPlugin name="Sofa.Component.Topology.Container.Constant"/> <!-- Needed to use components [MeshTopology] -->
         <RequiredPlugin name="Sofa.GL.Component.Rendering3D"/> <!-- Needed to use components [OglModel] -->
-        <BruteForceBroadPhase/>
-        <BVHNarrowPhase/>
-        <CollisionResponse />
-        <CollisionPipeline />
-        <MinProximityIntersection alarmDistance="1" contactDistance="0.5"/>
         <DefaultAnimationLoop />
         <DefaultVisualManagerLoop />
+        <CollisionPipeline />
+        <BruteForceBroadPhase/>
+        <BVHNarrowPhase/>
+        <CollisionResponse response="PenalityContactForceField"/>
+        <MinProximityIntersection alarmDistance="1" contactDistance="0.5"/>
         <Node>
             <EulerImplicitSolver name="cg odesolver" printLog="false"  rayleighStiffness="0.1" rayleighMass="0.1" />
             <CGLinearSolver iterations="100" name="linear solver" threshold="1e-20" tolerance="1e-20" />
@@ -365,13 +365,13 @@ ArticulatedSystemMapping.scn
        root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
        root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Constant")
        root.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
-       root.addObject('BruteForceBroadPhase', )
-       root.addObject('BVHNarrowPhase', )
-       root.addObject('CollisionResponse', )
-       root.addObject('CollisionPipeline', )
-       root.addObject('MinProximityIntersection', alarmDistance="1", contactDistance="0.5")
        root.addObject('DefaultAnimationLoop', )
        root.addObject('DefaultVisualManagerLoop', )
+       root.addObject('CollisionPipeline', )
+       root.addObject('BruteForceBroadPhase', )
+       root.addObject('BVHNarrowPhase', )
+       root.addObject('CollisionResponse', response="PenalityContactForceField")
+       root.addObject('MinProximityIntersection', alarmDistance="1", contactDistance="0.5")
 
        node = root.addChild('node')
 

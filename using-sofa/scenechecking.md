@@ -14,5 +14,6 @@ Using a SOFA built from sources, you can activate or de-activate these checks us
 | SceneCheckDeprecatedComponents | Check there is not deprecated components in the scenegraph |
 | SceneCheckDuplicatedName | Check there is not duplicated name in the scenegraph |
 | SceneCheckEmptyNodeName | Check if a Node has an empty name. |
+| SceneCheckMapping | Check if the mappings and states inside a Node are consistent regarding the visitor logic. |
 | SceneCheckMissingRequiredPlugin | Check for each component provided by a plugin that the corresponding <RequiredPlugin> directive is present in the scene |
 | SceneCheckUsingAlias | Check if a Component has been created using an Alias. |

@@ -378,7 +378,7 @@ QuadBendingSprings.scn
         <CollisionPipeline verbose="0" />
         <BruteForceBroadPhase/>
         <BVHNarrowPhase/>
-        <CollisionResponse name="Response" />
+        <CollisionResponse name="Response" response="PenalityContactForceField"/>
         <DefaultAnimationLoop/>
         <NewProximityIntersection alarmDistance="0.002" contactDistance="0.001" />
         <Node name="SquareCloth1">
@@ -428,7 +428,7 @@ QuadBendingSprings.scn
        root.addObject('CollisionPipeline', verbose="0")
        root.addObject('BruteForceBroadPhase', )
        root.addObject('BVHNarrowPhase', )
-       root.addObject('CollisionResponse', name="Response")
+       root.addObject('CollisionResponse', name="Response", response="PenalityContactForceField")
        root.addObject('DefaultAnimationLoop', )
        root.addObject('NewProximityIntersection', alarmDistance="0.002", contactDistance="0.001")
 

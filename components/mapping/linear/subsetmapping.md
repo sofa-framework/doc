@@ -540,7 +540,7 @@ SubsetMapping.scn
     	<BruteForceBroadPhase/>
         <BVHNarrowPhase/>
     	<LocalMinDistance name="Proximity"  alarmDistance="0.006" contactDistance="0.001" coneFactor="0.3" angleCone="0.01" filterIntersection="true"/>
-    	<CollisionResponse name="Response" response="NeedleContact"/>
+    	<CollisionResponse name="Response" response="PenalityContactForceField"/>
     	<DefaultAnimationLoop/>
     
     	<Node name="sutureSoftCubes">
@@ -691,7 +691,7 @@ SubsetMapping.scn
        root.addObject('BruteForceBroadPhase', )
        root.addObject('BVHNarrowPhase', )
        root.addObject('LocalMinDistance', name="Proximity", alarmDistance="0.006", contactDistance="0.001", coneFactor="0.3", angleCone="0.01", filterIntersection="true")
-       root.addObject('CollisionResponse', name="Response", response="NeedleContact")
+       root.addObject('CollisionResponse', name="Response", response="PenalityContactForceField")
        root.addObject('DefaultAnimationLoop', )
 
        suture_soft_cubes = root.addChild('sutureSoftCubes')

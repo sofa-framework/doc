@@ -264,7 +264,7 @@ RegularGridTopology.scn
 
     ```xml
     <!-- RegularGrid examples -->
-    <Node name="root" dt="0.02">
+    <Node name="root" dt="0.002">
         <RequiredPlugin name="Sofa.Component.Collision.Detection.Algorithm"/> <!-- Needed to use components [BVHNarrowPhase BruteForceBroadPhase CollisionPipeline] -->
         <RequiredPlugin name="Sofa.Component.Collision.Detection.Intersection"/> <!-- Needed to use components [DiscreteIntersection] -->
         <RequiredPlugin name="Sofa.Component.Collision.Geometry"/> <!-- Needed to use components [SphereCollisionModel] -->
@@ -290,7 +290,7 @@ RegularGridTopology.scn
         <DefaultAnimationLoop/>
         
         <Node name="LiverFFD-lowres">
-            <EulerImplicitSolver  rayleighStiffness="0.1" rayleighMass="0.1" />
+            <EulerImplicitSolver  />
             <CGLinearSolver iterations="100" tolerance="1e-7" threshold="1e-7"/>
             <MechanicalObject />
             <UniformMass totalMass="100.0" />
@@ -338,7 +338,7 @@ RegularGridTopology.scn
     ```python
     def createScene(root_node):
 
-       root = root_node.addChild('root', dt="0.02")
+       root = root_node.addChild('root', dt="0.002")
 
        root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Algorithm")
        root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Intersection")
@@ -366,7 +366,7 @@ RegularGridTopology.scn
 
        liver_ffd_lowres = root.addChild('LiverFFD-lowres')
 
-       liver_ffd_lowres.addObject('EulerImplicitSolver', rayleighStiffness="0.1", rayleighMass="0.1")
+       liver_ffd_lowres.addObject('EulerImplicitSolver', )
        liver_ffd_lowres.addObject('CGLinearSolver', iterations="100", tolerance="1e-7", threshold="1e-7")
        liver_ffd_lowres.addObject('MechanicalObject', )
        liver_ffd_lowres.addObject('UniformMass', totalMass="100.0")

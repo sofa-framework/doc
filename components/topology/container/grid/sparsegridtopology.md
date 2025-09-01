@@ -295,7 +295,7 @@ SparseGridTopology.scn
         <CollisionPipeline verbose="0" />
         <BruteForceBroadPhase/>
         <BVHNarrowPhase/>
-        <CollisionResponse name="Response"/>
+        <CollisionResponse name="Response" response="PenalityContactForceField"/>
         <DiscreteIntersection/>
         
         <MeshOBJLoader name="loader" filename="mesh/dragon.obj" />
@@ -389,7 +389,7 @@ SparseGridTopology.scn
        root.addObject('CollisionPipeline', verbose="0")
        root.addObject('BruteForceBroadPhase', )
        root.addObject('BVHNarrowPhase', )
-       root.addObject('CollisionResponse', name="Response")
+       root.addObject('CollisionResponse', name="Response", response="PenalityContactForceField")
        root.addObject('DiscreteIntersection', )
        root.addObject('MeshOBJLoader', name="loader", filename="mesh/dragon.obj")
 

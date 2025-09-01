@@ -264,7 +264,7 @@ CenterOfMassMapping.scn
         <VisualStyle displayFlags="showVisual showForceFields showCollisionModels showMechanicalMappings showWireframe" />
         <BruteForceBroadPhase/>
         <BVHNarrowPhase/>
-        <CollisionResponse name="default1" />
+        <CollisionResponse name="default1" response="PenalityContactForceField"/>
         <CollisionPipeline name="default2" />
         <MinProximityIntersection name="default3" alarmDistance="1" contactDistance="0.5"/>
         <DefaultAnimationLoop/>
@@ -332,7 +332,7 @@ CenterOfMassMapping.scn
        root.addObject('VisualStyle', displayFlags="showVisual showForceFields showCollisionModels showMechanicalMappings showWireframe")
        root.addObject('BruteForceBroadPhase', )
        root.addObject('BVHNarrowPhase', )
-       root.addObject('CollisionResponse', name="default1")
+       root.addObject('CollisionResponse', name="default1", response="PenalityContactForceField")
        root.addObject('CollisionPipeline', name="default2")
        root.addObject('MinProximityIntersection', name="default3", alarmDistance="1", contactDistance="0.5")
        root.addObject('DefaultAnimationLoop', )
