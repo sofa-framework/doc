@@ -28,7 +28,7 @@ As stated before, some plugins have their own repository and thus need to be fet
 
 The repository from which to fetch and the tag to checkout can be changed by using the respective flags `XXX_GIT_REPOSITORY` and `XXX_GIT_TAG`. The tag can be either a tag, a branch name or a commit hash. 
 
-It should be noted that you can use a local clone of the repository, instead of relying on the fetching mechanism. This can be useful when you have a version of the plugin on your disk on which you are currently working. To do this, you'll need to make sure `SOFA_FETCH_XXX` is `OFF` and then you can specify the flag `XXX_LOCAL_DIRECTORY` with an absolute path to the local clone of the plugin. 
+It should be noted that you can use a local clone of the repository, instead of relying on the fetching mechanism. This can be useful when you have a version of the plugin on your disk on which you are currently working. To do this, you will need to specify the flag `XXX_LOCAL_DIRECTORY` with an absolute path to the local clone of the plugin. If this flag is set, it will be used in priority over the fetching mechanism (`SOFA_FETCH_XXX`).
 
 No matter what mechanism you use (fetch or local clone), you will still need to activate it by setting to ON the following CMake flag `{TYPE}_XXX` where TYPE corresponds to one of the following keywords: `{"APPLICATION", "PLUGIN", "DIRECTORY"}`.
 
