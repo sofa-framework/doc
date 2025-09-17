@@ -18,6 +18,8 @@ If you require a specific version of SOFA, you can also find previous releases o
 If you downloaded an installer file, simply run the file, and follow the installation process as you would for any other software application. This will ensure that SOFA is properly installed on your system. 
 If not just run this from a location where you want SOFA to be installed (replace the version by the one you want to use):
 ``` {.bash .optional}
+mkdir build
+cd build
 curl -O https://github.com/sofa-framework/sofa/releases/download/v25.06.00/SOFA_v25.06.00_Linux-Python_3.12.run
 chmod u+x SOFA_v25.06.00_Linux-Python_3.12.run
 ./SOFA_v25.06.00_Linux-Python_3.12.run
