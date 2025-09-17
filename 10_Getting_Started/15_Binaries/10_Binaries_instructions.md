@@ -15,7 +15,11 @@ If you require a specific version of SOFA, you can also find previous releases o
 
 ## Install
 
-If you downloaded an installer file, simply run the file, and follow the installation process as you would for any other software application. This will ensure that SOFA is properly installed on your system.
+If you downloaded an installer file, simply run the file, and follow the installation process as you would for any other software application. This will ensure that SOFA is properly installed on your system.  
+If you see this message during the installation for a Linux distribution don't worry it will be explained later on:
+```
+qt.qpa.plugin: Could not find the Qt platform plugin "wayland"
+```
 
 
 ## Run SOFA
