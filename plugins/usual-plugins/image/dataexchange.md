@@ -7,21 +7,19 @@ DataExchange
 
 Templates:
 
-- Vec3d
-- Vec3f
-- bool
-- d
-- f
-- vector<I>
-- vector<Vec2d>
-- vector<Vec2f>
-- vector<Vec3d>
-- vector<Vec3f>
-- vector<d>
-- vector<f>
-- vector<i>
+- ImageB
+- ImageC
+- ImageD
+- ImageF
+- ImageI
+- ImageL
+- ImageS
+- ImageUC
+- ImageUI
+- ImageUL
+- ImageUS
 
-__Target__: MultiThreading
+__Target__: image
 
 __namespace__: sofa::core
 

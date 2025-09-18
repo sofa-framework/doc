@@ -1,33 +1,22 @@
 <!-- generate_doc -->
-# DataExchange
+# DepthMapToMeshEngine
 
-Component for data memory sharing in the context of multi-threading applications
-DataExchange
+Compute a mesh from a depth map image 
 
 
 Templates:
 
-- Vec3d
-- Vec3f
-- bool
-- d
-- f
-- vector<I>
-- vector<Vec2d>
-- vector<Vec2f>
-- vector<Vec3d>
-- vector<Vec3f>
-- vector<d>
-- vector<f>
-- vector<i>
+- ImageB
+- ImageD
+- ImageUC
 
-__Target__: MultiThreading
+__Target__: image
 
-__namespace__: sofa::core
+__namespace__: sofa::component::engine
 
 __parents__:
 
-- BaseObject
+- DataEngine
 
 ### Data
 
@@ -83,16 +72,72 @@ if true, handle the events, otherwise ignore the events
 		<td>0</td>
 	</tr>
 	<tr>
-		<td>from</td>
+		<td>depthFactor</td>
 		<td>
-source object to copy
+Intensity to depth factor
+		</td>
+		<td>1</td>
+	</tr>
+	<tr>
+		<td>minThreshold</td>
+		<td>
+minimal depth for point creation
+		</td>
+		<td>0.1</td>
+	</tr>
+	<tr>
+		<td>diffThreshold</td>
+		<td>
+maximal depth variation for triangle creation
+		</td>
+		<td>1</td>
+	</tr>
+	<tr>
+		<td>image</td>
+		<td>
+
+		</td>
+		<td>0 0 0 0 0</td>
+	</tr>
+	<tr>
+		<td>transform</td>
+		<td>
+
+		</td>
+		<td>0 0 0 0 0 0 1 1 1 0 1 0</td>
+	</tr>
+	<tr>
+		<td>texImage</td>
+		<td>
+
+		</td>
+		<td>0 0 0 0 0</td>
+	</tr>
+	<tr>
+		<td>position</td>
+		<td>
+output positions
 		</td>
 		<td></td>
 	</tr>
 	<tr>
-		<td>to</td>
+		<td>texCoord</td>
 		<td>
-destination object to copy
+output texture coordinates
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>texOffset</td>
+		<td>
+texture offsets (in [0,1])
+		</td>
+		<td>0 0</td>
+	</tr>
+	<tr>
+		<td>triangles</td>
+		<td>
+output triangles
 		</td>
 		<td></td>
 	</tr>

@@ -1,33 +1,16 @@
 <!-- generate_doc -->
-# DataExchange
+# ImageTransformEngine
 
-Component for data memory sharing in the context of multi-threading applications
-DataExchange
+Apply a transform to the data 'transform'
 
 
-Templates:
+__Target__: image
 
-- Vec3d
-- Vec3f
-- bool
-- d
-- f
-- vector<I>
-- vector<Vec2d>
-- vector<Vec2f>
-- vector<Vec3d>
-- vector<Vec3f>
-- vector<d>
-- vector<f>
-- vector<i>
-
-__Target__: MultiThreading
-
-__namespace__: sofa::core
+__namespace__: sofa::component::engine
 
 __parents__:
 
-- BaseObject
+- DataEngine
 
 ### Data
 
@@ -83,18 +66,46 @@ if true, handle the events, otherwise ignore the events
 		<td>0</td>
 	</tr>
 	<tr>
-		<td>from</td>
+		<td>inputTransform</td>
 		<td>
-source object to copy
+
 		</td>
-		<td></td>
+		<td>0 0 0 0 0 0 1 1 1 0 1 0</td>
 	</tr>
 	<tr>
-		<td>to</td>
+		<td>outputTransform</td>
 		<td>
-destination object to copy
+
 		</td>
-		<td></td>
+		<td>0 0 0 0 0 0 1 1 1 0 1 0</td>
+	</tr>
+	<tr>
+		<td>translation</td>
+		<td>
+translation vector 
+		</td>
+		<td>0 0 0</td>
+	</tr>
+	<tr>
+		<td>rotation</td>
+		<td>
+rotation vector 
+		</td>
+		<td>0 0 0</td>
+	</tr>
+	<tr>
+		<td>scale</td>
+		<td>
+scale factor
+		</td>
+		<td>1</td>
+	</tr>
+	<tr>
+		<td>inverse</td>
+		<td>
+true to apply inverse transformation
+		</td>
+		<td>0</td>
 	</tr>
 
 </tbody>

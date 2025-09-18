@@ -1,33 +1,22 @@
 <!-- generate_doc -->
-# DataExchange
+# ImageAccumulator
 
-Component for data memory sharing in the context of multi-threading applications
-DataExchange
+Wraps images from a video stream into a single image
 
 
 Templates:
 
-- Vec3d
-- Vec3f
-- bool
-- d
-- f
-- vector<I>
-- vector<Vec2d>
-- vector<Vec2f>
-- vector<Vec3d>
-- vector<Vec3f>
-- vector<d>
-- vector<f>
-- vector<i>
+- ImageB
+- ImageD
+- ImageUC
 
-__Target__: MultiThreading
+__Target__: image
 
-__namespace__: sofa::core
+__namespace__: sofa::component::engine
 
 __parents__:
 
-- BaseObject
+- DataEngine
 
 ### Data
 
@@ -83,18 +72,39 @@ if true, handle the events, otherwise ignore the events
 		<td>0</td>
 	</tr>
 	<tr>
-		<td>from</td>
+		<td>accumulate</td>
 		<td>
-source object to copy
+accumulate ?
 		</td>
-		<td></td>
+		<td>0</td>
 	</tr>
 	<tr>
-		<td>to</td>
+		<td>inputImage</td>
 		<td>
-destination object to copy
+
 		</td>
-		<td></td>
+		<td>0 0 0 0 0</td>
+	</tr>
+	<tr>
+		<td>inputTransform</td>
+		<td>
+
+		</td>
+		<td>0 0 0 0 0 0 1 1 1 0 1 0</td>
+	</tr>
+	<tr>
+		<td>outputImage</td>
+		<td>
+
+		</td>
+		<td>0 0 0 0 0</td>
+	</tr>
+	<tr>
+		<td>outputTransform</td>
+		<td>
+
+		</td>
+		<td>0 0 0 0 0 0 1 1 1 0 1 0</td>
 	</tr>
 
 </tbody>

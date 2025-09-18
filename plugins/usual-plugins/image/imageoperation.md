@@ -1,33 +1,22 @@
 <!-- generate_doc -->
-# DataExchange
+# ImageOperation
 
-Component for data memory sharing in the context of multi-threading applications
-DataExchange
+This class computes an image as an operation between two images
 
 
 Templates:
 
-- Vec3d
-- Vec3f
-- bool
-- d
-- f
-- vector<I>
-- vector<Vec2d>
-- vector<Vec2f>
-- vector<Vec3d>
-- vector<Vec3f>
-- vector<d>
-- vector<f>
-- vector<i>
+- ImageB
+- ImageD
+- ImageUC
 
-__Target__: MultiThreading
+__Target__: image
 
-__namespace__: sofa::core
+__namespace__: sofa::component::engine
 
 __parents__:
 
-- BaseObject
+- DataEngine
 
 ### Data
 
@@ -83,18 +72,32 @@ if true, handle the events, otherwise ignore the events
 		<td>0</td>
 	</tr>
 	<tr>
-		<td>from</td>
+		<td>operation</td>
 		<td>
-source object to copy
+operation
 		</td>
 		<td></td>
 	</tr>
 	<tr>
-		<td>to</td>
+		<td>inputImage1</td>
 		<td>
-destination object to copy
+
 		</td>
-		<td></td>
+		<td>0 0 0 0 0</td>
+	</tr>
+	<tr>
+		<td>inputImage2</td>
+		<td>
+
+		</td>
+		<td>0 0 0 0 0</td>
+	</tr>
+	<tr>
+		<td>outputImage</td>
+		<td>
+
+		</td>
+		<td>0 0 0 0 0</td>
 	</tr>
 
 </tbody>

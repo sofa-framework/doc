@@ -1,33 +1,28 @@
 <!-- generate_doc -->
-# DataExchange
+# TransferFunction
 
-Component for data memory sharing in the context of multi-threading applications
-DataExchange
+Transforms pixel intensities
 
 
 Templates:
 
-- Vec3d
-- Vec3f
-- bool
-- d
-- f
-- vector<I>
-- vector<Vec2d>
-- vector<Vec2f>
-- vector<Vec3d>
-- vector<Vec3f>
-- vector<d>
-- vector<f>
-- vector<i>
+- ImageD,ImageD
+- ImageD,ImageUC
+- ImageUC,ImageB
+- ImageUC,ImageD
+- ImageUC,ImageF
+- ImageUC,ImageUC
+- ImageUC,ImageUI
+- ImageUC,ImageUS
+- ImageUS,ImageUC
 
-__Target__: MultiThreading
+__Target__: image
 
-__namespace__: sofa::core
+__namespace__: sofa::component::engine
 
 __parents__:
 
-- BaseObject
+- DataEngine
 
 ### Data
 
@@ -83,18 +78,32 @@ if true, handle the events, otherwise ignore the events
 		<td>0</td>
 	</tr>
 	<tr>
-		<td>from</td>
+		<td>filter</td>
 		<td>
-source object to copy
+Filter
+		</td>
+		<td>0 - Piecewise Linear ( i1, o1, i2, o2 ...)</td>
+	</tr>
+	<tr>
+		<td>param</td>
+		<td>
+Parameters
 		</td>
 		<td></td>
 	</tr>
 	<tr>
-		<td>to</td>
+		<td>inputImage</td>
 		<td>
-destination object to copy
+
 		</td>
-		<td></td>
+		<td>0 0 0 0 0</td>
+	</tr>
+	<tr>
+		<td>outputImage</td>
+		<td>
+
+		</td>
+		<td>0 0 0 0 0</td>
 	</tr>
 
 </tbody>

@@ -1,33 +1,22 @@
 <!-- generate_doc -->
-# DataExchange
+# ImageToRigidMassEngine
 
-Component for data memory sharing in the context of multi-threading applications
-DataExchange
+Compute rigid mass from a density image
 
 
 Templates:
 
-- Vec3d
-- Vec3f
-- bool
-- d
-- f
-- vector<I>
-- vector<Vec2d>
-- vector<Vec2f>
-- vector<Vec3d>
-- vector<Vec3f>
-- vector<d>
-- vector<f>
-- vector<i>
+- ImageB
+- ImageD
+- ImageUC
 
-__Target__: MultiThreading
+__Target__: image
 
-__namespace__: sofa::core
+__namespace__: sofa::component::engine
 
 __parents__:
 
-- BaseObject
+- DataEngine
 
 ### Data
 
@@ -83,18 +72,60 @@ if true, handle the events, otherwise ignore the events
 		<td>0</td>
 	</tr>
 	<tr>
-		<td>from</td>
+		<td>image</td>
 		<td>
-source object to copy
+
 		</td>
-		<td></td>
+		<td>0 0 0 0 0</td>
 	</tr>
 	<tr>
-		<td>to</td>
+		<td>transform</td>
 		<td>
-destination object to copy
+
 		</td>
-		<td></td>
+		<td>0 0 0 0 0 0 1 1 1 0 1 0</td>
+	</tr>
+	<tr>
+		<td>position</td>
+		<td>
+position
+		</td>
+		<td>0 0 0 0 0 0 1</td>
+	</tr>
+	<tr>
+		<td>mass</td>
+		<td>
+mass
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>inertia</td>
+		<td>
+axis-aligned inertia tensor
+		</td>
+		<td>0 0 0</td>
+	</tr>
+	<tr>
+		<td>rigidMass</td>
+		<td>
+rigidMass
+		</td>
+		<td>1 1 [1 0 0,0 1 0,0 0 1]</td>
+	</tr>
+	<tr>
+		<td>density</td>
+		<td>
+density (in kg/m^3)
+		</td>
+		<td>1000</td>
+	</tr>
+	<tr>
+		<td>multiply</td>
+		<td>
+multiply density by image intensity?
+		</td>
+		<td>0</td>
 	</tr>
 
 </tbody>

@@ -1,29 +1,18 @@
 <!-- generate_doc -->
-# DataExchange
+# ImageExporter
 
-Component for data memory sharing in the context of multi-threading applications
-DataExchange
+Save an image
 
 
 Templates:
 
-- Vec3d
-- Vec3f
-- bool
-- d
-- f
-- vector<I>
-- vector<Vec2d>
-- vector<Vec2f>
-- vector<Vec3d>
-- vector<Vec3f>
-- vector<d>
-- vector<f>
-- vector<i>
+- ImageB
+- ImageD
+- ImageUC
 
-__Target__: MultiThreading
+__Target__: image
 
-__namespace__: sofa::core
+__namespace__: sofa::component::misc
 
 __parents__:
 
@@ -83,18 +72,46 @@ if true, handle the events, otherwise ignore the events
 		<td>0</td>
 	</tr>
 	<tr>
-		<td>from</td>
+		<td>image</td>
 		<td>
-source object to copy
+image
+		</td>
+		<td>0 0 0 0 0</td>
+	</tr>
+	<tr>
+		<td>transform</td>
+		<td>
+
+		</td>
+		<td>0 0 0 0 0 0 1 1 1 0 1 0</td>
+	</tr>
+	<tr>
+		<td>filename</td>
+		<td>
+output file
 		</td>
 		<td></td>
 	</tr>
 	<tr>
-		<td>to</td>
+		<td>exportEveryNumberOfSteps</td>
 		<td>
-destination object to copy
+export file only at specified number of steps (0=disable)
 		</td>
-		<td></td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>exportAtBegin</td>
+		<td>
+export file at the initialization
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>exportAtEnd</td>
+		<td>
+export file when the simulation is finished
+		</td>
+		<td>0</td>
 	</tr>
 
 </tbody>

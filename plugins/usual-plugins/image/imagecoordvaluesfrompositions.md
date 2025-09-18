@@ -1,33 +1,21 @@
 <!-- generate_doc -->
-# DataExchange
+# ImageCoordValuesFromPositions
 
-Component for data memory sharing in the context of multi-threading applications
-DataExchange
+Get interpolated coordinates at sample locations in an image with 3 channels
 
 
 Templates:
 
-- Vec3d
-- Vec3f
-- bool
-- d
-- f
-- vector<I>
-- vector<Vec2d>
-- vector<Vec2f>
-- vector<Vec3d>
-- vector<Vec3f>
-- vector<d>
-- vector<f>
-- vector<i>
+- ImageD
+- ImageF
 
-__Target__: MultiThreading
+__Target__: image
 
-__namespace__: sofa::core
+__namespace__: sofa::component::engine
 
 __parents__:
 
-- BaseObject
+- DataEngine
 
 ### Data
 
@@ -83,18 +71,53 @@ if true, handle the events, otherwise ignore the events
 		<td>0</td>
 	</tr>
 	<tr>
-		<td>from</td>
+		<td>image</td>
 		<td>
-source object to copy
+
+		</td>
+		<td>0 0 0 0 0</td>
+	</tr>
+	<tr>
+		<td>transform</td>
+		<td>
+
+		</td>
+		<td>0 0 0 0 0 0 1 1 1 0 1 0</td>
+	</tr>
+	<tr>
+		<td>position</td>
+		<td>
+input positions
 		</td>
 		<td></td>
 	</tr>
 	<tr>
-		<td>to</td>
+		<td>interpolation</td>
 		<td>
-destination object to copy
+Interpolation method.
 		</td>
 		<td></td>
+	</tr>
+	<tr>
+		<td>values</td>
+		<td>
+Interpolated values.
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>outValue</td>
+		<td>
+default value outside image
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>addPosition</td>
+		<td>
+add positions to interpolated values (to get translated positions)
+		</td>
+		<td>1</td>
 	</tr>
 
 </tbody>

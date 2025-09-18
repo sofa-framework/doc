@@ -1,33 +1,24 @@
 <!-- generate_doc -->
-# DataExchange
+# CollisionToCarvingEngine
 
-Component for data memory sharing in the context of multi-threading applications
-DataExchange
+Filter an image
 
 
 Templates:
 
-- Vec3d
-- Vec3f
-- bool
-- d
-- f
-- vector<I>
-- vector<Vec2d>
-- vector<Vec2f>
-- vector<Vec3d>
-- vector<Vec3f>
-- vector<d>
-- vector<f>
-- vector<i>
+- ImageD,ImageB
+- ImageD,ImageD
+- ImageD,ImageUC
+- ImageUC,ImageD
+- ImageUC,ImageUC
 
-__Target__: MultiThreading
+__Target__: image
 
-__namespace__: sofa::core
+__namespace__: sofa::component::engine
 
 __parents__:
 
-- BaseObject
+- DataEngine
 
 ### Data
 
@@ -83,18 +74,39 @@ if true, handle the events, otherwise ignore the events
 		<td>0</td>
 	</tr>
 	<tr>
-		<td>from</td>
+		<td>inputImage</td>
 		<td>
-source object to copy
+
 		</td>
-		<td></td>
+		<td>0 0 0 0 0</td>
 	</tr>
 	<tr>
-		<td>to</td>
+		<td>inputTransform</td>
 		<td>
-destination object to copy
+
 		</td>
-		<td></td>
+		<td>0 0 0 0 0 0 1 1 1 0 1 0</td>
+	</tr>
+	<tr>
+		<td>outputImage</td>
+		<td>
+
+		</td>
+		<td>0 0 0 0 0</td>
+	</tr>
+	<tr>
+		<td>outputTransform</td>
+		<td>
+
+		</td>
+		<td>0 0 0 0 0 0 1 1 1 0 1 0</td>
+	</tr>
+	<tr>
+		<td>trackedPosition</td>
+		<td>
+Position de test pour la collision
+		</td>
+		<td>0 0 0</td>
 	</tr>
 
 </tbody>

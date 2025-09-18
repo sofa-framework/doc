@@ -1,33 +1,22 @@
 <!-- generate_doc -->
-# DataExchange
+# GenerateImage
 
-Component for data memory sharing in the context of multi-threading applications
-DataExchange
+Create an image with custom dimensions
 
 
 Templates:
 
-- Vec3d
-- Vec3f
-- bool
-- d
-- f
-- vector<I>
-- vector<Vec2d>
-- vector<Vec2f>
-- vector<Vec3d>
-- vector<Vec3f>
-- vector<d>
-- vector<f>
-- vector<i>
+- ImageB
+- ImageD
+- ImageUC
 
-__Target__: MultiThreading
+__Target__: image
 
-__namespace__: sofa::core
+__namespace__: sofa::component::engine
 
 __parents__:
 
-- BaseObject
+- DataEngine
 
 ### Data
 
@@ -83,18 +72,18 @@ if true, handle the events, otherwise ignore the events
 		<td>0</td>
 	</tr>
 	<tr>
-		<td>from</td>
+		<td>dim</td>
 		<td>
-source object to copy
+dimensions (x,y,z,c,t)
 		</td>
 		<td></td>
 	</tr>
 	<tr>
-		<td>to</td>
+		<td>image</td>
 		<td>
-destination object to copy
+
 		</td>
-		<td></td>
+		<td>0 0 0 0 0</td>
 	</tr>
 
 </tbody>

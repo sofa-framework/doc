@@ -1,33 +1,22 @@
 <!-- generate_doc -->
-# DataExchange
+# ImageDataDisplay
 
-Component for data memory sharing in the context of multi-threading applications
-DataExchange
+Store custom data in an image. A template input image with non zero voxels (where data will be stored) has to be provided
 
 
 Templates:
 
-- Vec3d
-- Vec3f
-- bool
-- d
-- f
-- vector<I>
-- vector<Vec2d>
-- vector<Vec2f>
-- vector<Vec3d>
-- vector<Vec3f>
-- vector<d>
-- vector<f>
-- vector<i>
+- ImageB,ImageD
+- ImageD,ImageD
+- ImageUC,ImageD
 
-__Target__: MultiThreading
+__Target__: image
 
-__namespace__: sofa::core
+__namespace__: sofa::component::engine
 
 __parents__:
 
-- BaseObject
+- DataEngine
 
 ### Data
 
@@ -83,16 +72,23 @@ if true, handle the events, otherwise ignore the events
 		<td>0</td>
 	</tr>
 	<tr>
-		<td>from</td>
+		<td>inputImage</td>
 		<td>
-source object to copy
+
 		</td>
-		<td></td>
+		<td>0 0 0 0 0</td>
 	</tr>
 	<tr>
-		<td>to</td>
+		<td>outputImage</td>
 		<td>
-destination object to copy
+
+		</td>
+		<td>0 0 0 0 0</td>
+	</tr>
+	<tr>
+		<td>VoxelData</td>
+		<td>
+Data associed to each non null input voxel
 		</td>
 		<td></td>
 	</tr>

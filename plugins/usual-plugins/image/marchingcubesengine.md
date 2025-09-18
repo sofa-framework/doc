@@ -1,33 +1,22 @@
 <!-- generate_doc -->
-# DataExchange
+# MarchingCubesEngine
 
-Component for data memory sharing in the context of multi-threading applications
-DataExchange
+Compute an isosurface from an image using marching cubes algorithm
 
 
 Templates:
 
-- Vec3d
-- Vec3f
-- bool
-- d
-- f
-- vector<I>
-- vector<Vec2d>
-- vector<Vec2f>
-- vector<Vec3d>
-- vector<Vec3f>
-- vector<d>
-- vector<f>
-- vector<i>
+- ImageB
+- ImageD
+- ImageUC
 
-__Target__: MultiThreading
+__Target__: image
 
-__namespace__: sofa::core
+__namespace__: sofa::component::engine
 
 __parents__:
 
-- BaseObject
+- DataEngine
 
 ### Data
 
@@ -83,18 +72,63 @@ if true, handle the events, otherwise ignore the events
 		<td>0</td>
 	</tr>
 	<tr>
-		<td>from</td>
+		<td>isoValue</td>
 		<td>
-source object to copy
+pixel value to extract isosurface
+		</td>
+		<td>1</td>
+	</tr>
+	<tr>
+		<td>subdiv</td>
+		<td>
+number of subdividions in x,y,z directions (use image dimension if =0)
+		</td>
+		<td>0 0 0</td>
+	</tr>
+	<tr>
+		<td>invertNormals</td>
+		<td>
+invert triangle vertex order
+		</td>
+		<td>1</td>
+	</tr>
+	<tr>
+		<td>image</td>
+		<td>
+
+		</td>
+		<td>0 0 0 0 0</td>
+	</tr>
+	<tr>
+		<td>transform</td>
+		<td>
+
+		</td>
+		<td>0 0 0 0 0 0 1 1 1 0 1 0</td>
+	</tr>
+	<tr>
+		<td>position</td>
+		<td>
+output positions
 		</td>
 		<td></td>
 	</tr>
 	<tr>
-		<td>to</td>
+		<td>triangles</td>
 		<td>
-destination object to copy
+output triangles
 		</td>
 		<td></td>
+	</tr>
+	<tr>
+		<td colspan="3">Visualization</td>
+	</tr>
+	<tr>
+		<td>showMesh</td>
+		<td>
+show reconstructed mesh
+		</td>
+		<td>0</td>
 	</tr>
 
 </tbody>

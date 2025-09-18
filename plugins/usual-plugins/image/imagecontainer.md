@@ -1,29 +1,18 @@
 <!-- generate_doc -->
-# DataExchange
+# ImageContainer
 
-Component for data memory sharing in the context of multi-threading applications
-DataExchange
+Image Container
 
 
 Templates:
 
-- Vec3d
-- Vec3f
-- bool
-- d
-- f
-- vector<I>
-- vector<Vec2d>
-- vector<Vec2f>
-- vector<Vec3d>
-- vector<Vec3f>
-- vector<d>
-- vector<f>
-- vector<i>
+- ImageB
+- ImageD
+- ImageUC
 
-__Target__: MultiThreading
+__Target__: image
 
-__namespace__: sofa::core
+__namespace__: sofa::component::container
 
 __parents__:
 
@@ -83,18 +72,52 @@ if true, handle the events, otherwise ignore the events
 		<td>0</td>
 	</tr>
 	<tr>
-		<td>from</td>
+		<td>image</td>
 		<td>
-source object to copy
+image
+		</td>
+		<td>0 0 0 0 0</td>
+	</tr>
+	<tr>
+		<td>filename</td>
+		<td>
+Image file
 		</td>
 		<td></td>
 	</tr>
 	<tr>
-		<td>to</td>
+		<td>sequence</td>
 		<td>
-destination object to copy
+load a sequence of images
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>numberOfFrames</td>
+		<td>
+The number of frames of the sequence to be loaded. Default is the entire sequence.
 		</td>
 		<td></td>
+	</tr>
+	<tr>
+		<td colspan="3">Transform</td>
+	</tr>
+	<tr>
+		<td>transform</td>
+		<td>
+12-param vector for trans, rot, scale, ...
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td colspan="3">Visualization</td>
+	</tr>
+	<tr>
+		<td>drawBB</td>
+		<td>
+draw bounding box
+		</td>
+		<td>0</td>
 	</tr>
 
 </tbody>
