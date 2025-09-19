@@ -24,7 +24,7 @@ curl -O https://github.com/sofa-framework/sofa/releases/download/v25.06.00/SOFA_
 chmod u+x SOFA_v25.06.00_Linux-Python_3.12.run
 ./SOFA_v25.06.00_Linux-Python_3.12.run
 ``` 
-If you see this message during the installation for a Linux distribution don't worry it will be explained later on:
+For Linux distributions, you might see the warning below due to Qt on wayland, you can ignore it:
 ```
 qt.qpa.plugin: Could not find the Qt platform plugin "wayland"
 ```
