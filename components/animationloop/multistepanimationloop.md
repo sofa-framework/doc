@@ -148,7 +148,7 @@ MultiStepAnimationLoop.scn
         <BVHNarrowPhase/>
         <NewProximityIntersection name="Proximity" alarmDistance="0.3" contactDistance="0.2" />
         <CollisionResponse name="Response" response="PenalityContactForceField" />
-        <MultiStepAnimationLoop collisionSteps="10" integrationSteps="2" />
+        <MultiStepAnimationLoop collisionSteps="20" integrationSteps="4" />
         <Node name="ChainRigid">
             <Node name="TorusFixed">
                 <MeshOBJLoader name="loader" filename="mesh/torus2_for_collision.obj" />
@@ -260,7 +260,7 @@ MultiStepAnimationLoop.scn
        root.addObject('BVHNarrowPhase', )
        root.addObject('NewProximityIntersection', name="Proximity", alarmDistance="0.3", contactDistance="0.2")
        root.addObject('CollisionResponse', name="Response", response="PenalityContactForceField")
-       root.addObject('MultiStepAnimationLoop', collisionSteps="10", integrationSteps="2")
+       root.addObject('MultiStepAnimationLoop', collisionSteps="20", integrationSteps="4")
 
        chain_rigid = root.addChild('ChainRigid')
 
