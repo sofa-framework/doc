@@ -66,6 +66,9 @@ if true, handle the events, otherwise ignore the events
 		<td>0</td>
 	</tr>
 	<tr>
+		<td colspan="3">Viewport</td>
+	</tr>
+	<tr>
 		<td>resolution</td>
 		<td>
 resolution of the Viewer
@@ -80,6 +83,9 @@ Fullscreen mode
 		<td>0</td>
 	</tr>
 	<tr>
+		<td colspan="3">Camera</td>
+	</tr>
+	<tr>
 		<td>cameraMode</td>
 		<td>
 Camera mode
@@ -87,11 +93,63 @@ Camera mode
 		<td>Perspective</td>
 	</tr>
 	<tr>
+		<td colspan="3">Selection</td>
+	</tr>
+	<tr>
 		<td>objectPickingMethod</td>
 		<td>
 The method used to pick objects
 		</td>
 		<td>Ray casting</td>
+	</tr>
+	<tr>
+		<td>showSelectedNodeBoundingBox</td>
+		<td>
+Show the bounding box of selected nodes
+		</td>
+		<td>1</td>
+	</tr>
+	<tr>
+		<td>showSelectedObjectBoundingBox</td>
+		<td>
+Show the bounding box when components selected
+		</td>
+		<td>1</td>
+	</tr>
+	<tr>
+		<td>showSelectedObjectPositions</td>
+		<td>
+Show the positions when a components with 'position' are selected
+		</td>
+		<td>1</td>
+	</tr>
+	<tr>
+		<td>showSelectedObjectSurfaces</td>
+		<td>
+Show the surfaces when components with surface topology are selected
+		</td>
+		<td>1</td>
+	</tr>
+	<tr>
+		<td>showSelectedObjectVolumes</td>
+		<td>
+Show the volumes when components with volume topology are selected
+		</td>
+		<td>1</td>
+	</tr>
+	<tr>
+		<td>showSelectedObjectIndices</td>
+		<td>
+Show the position's indices for components with positions are selected
+		</td>
+		<td>1</td>
+	</tr>
+	<tr>
+		<td>showSelectedVisualScaling</td>
+		<td>
+Scale factor for the rendering of selected object
+		</td>
+		<td>0.02</td>
 	</tr>
 
 </tbody>
