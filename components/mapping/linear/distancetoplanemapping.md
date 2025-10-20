@@ -686,7 +686,7 @@ DistanceToPlaneMapping.scn
     
         <FreeMotionAnimationLoop/>
         <VisualStyle displayFlags="showBehaviorModels showMappings" />
-        <GenericConstraintSolver/>
+        <ProjectedGaussSeidelConstraintSolver/>
     
     
         <Node name="Langrangian-Bileateral">
@@ -737,7 +737,7 @@ DistanceToPlaneMapping.scn
        root.addObject('RequiredPlugin', name="Sofa.Component.Visual")
        root.addObject('FreeMotionAnimationLoop', )
        root.addObject('VisualStyle', displayFlags="showBehaviorModels showMappings")
-       root.addObject('GenericConstraintSolver', )
+       root.addObject('ProjectedGaussSeidelConstraintSolver', )
 
        langrangian__bileateral = root.addChild('Langrangian-Bileateral')
 

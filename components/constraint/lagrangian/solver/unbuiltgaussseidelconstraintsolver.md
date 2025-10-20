@@ -1,7 +1,7 @@
 <!-- generate_doc -->
-# GenericConstraintSolver
+# UnbuiltGaussSeidelConstraintSolver
 
-A Generic Constraint Solver using the Linear Complementarity Problem formulation to solve Constraint based components
+A Constraint Solver using the Linear Complementarity Problem formulation to solve Constraint based components using an Unbuilt version of the Gauss-Seidel iterative method
 
 
 __Target__: Sofa.Component.Constraint.Lagrangian.Solver
@@ -10,7 +10,7 @@ __namespace__: sofa::component::constraint::lagrangian::solver
 
 __parents__:
 
-- ConstraintSolverImpl
+- UnbuiltConstraintSolver
 
 ### Data
 
@@ -66,19 +66,9 @@ if true, handle the events, otherwise ignore the events
 		<td>0</td>
 	</tr>
 	<tr>
-		<td>resolutionMethod</td>
-		<td>
-Method used to solve the constraint problem
-- ProjectedGaussSeidel: Projected Gauss-Seidel
-- UnbuiltGaussSeidel: Gauss-Seidel where the matrix is not assembled
-- NonsmoothNonlinearConjugateGradient: Non-smooth non-linear conjugate gradient
-		</td>
-		<td>ProjectedGaussSeidel</td>
-	</tr>
-	<tr>
 		<td>maxIterations</td>
 		<td>
-maximal number of iterations of the Gauss-Seidel algorithm
+maximal number of iterations of iterative algorithm
 		</td>
 		<td>1000</td>
 	</tr>
@@ -118,30 +108,9 @@ All constraints must be verified (each constraint's error < tolerance)
 		<td>0</td>
 	</tr>
 	<tr>
-		<td>newtonIterations</td>
-		<td>
-Maximum iteration number of Newton (for the NonsmoothNonlinearConjugateGradient solver only)
-		</td>
-		<td>100</td>
-	</tr>
-	<tr>
-		<td>multithreading</td>
-		<td>
-Build compliances concurrently
-		</td>
-		<td>0</td>
-	</tr>
-	<tr>
 		<td>computeGraphs</td>
 		<td>
 Compute graphs of errors and forces during resolution
-		</td>
-		<td>0</td>
-	</tr>
-	<tr>
-		<td>reverseAccumulateOrder</td>
-		<td>
-True to accumulate constraints from nodes in reversed order (can be necessary when using multi-mappings or interaction constraints not following the node hierarchy)
 		</td>
 		<td>0</td>
 	</tr>

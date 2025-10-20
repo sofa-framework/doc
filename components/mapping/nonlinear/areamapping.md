@@ -257,7 +257,7 @@ AreaMapping.scn
         </Node>
     
         <FreeMotionAnimationLoop solveVelocityConstraintFirst="true" computeBoundingBox="false" parallelODESolving="true"/>
-        <GenericConstraintSolver tolerance="1e-9" maxIterations="1000"/>
+        <ProjectedGaussSeidelConstraintSolver tolerance="1e-9" maxIterations="1000"/>
         <VisualStyle displayFlags="showWireframe showBehaviorModels"/>
     
         <RegularGridTopology name="grid" nx="10" ny="10" nz="1" xmin="0" xmax="10" ymin="0" ymax="10" zmin="0" zmax="0" />
@@ -347,7 +347,7 @@ AreaMapping.scn
        plugins.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
 
        root.addObject('FreeMotionAnimationLoop', solveVelocityConstraintFirst="true", computeBoundingBox="false", parallelODESolving="true")
-       root.addObject('GenericConstraintSolver', tolerance="1e-9", maxIterations="1000")
+       root.addObject('ProjectedGaussSeidelConstraintSolver', tolerance="1e-9", maxIterations="1000")
        root.addObject('VisualStyle', displayFlags="showWireframe showBehaviorModels")
        root.addObject('RegularGridTopology', name="grid", nx="10", ny="10", nz="1", xmin="0", xmax="10", ymin="0", ymax="10", zmin="0", zmax="0")
 

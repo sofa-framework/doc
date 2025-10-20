@@ -999,7 +999,7 @@ NearestPointROI.scn
         <VisualStyle displayFlags="showBehaviorModels showForceFields showInteractionForceFields" />
     
         <FreeMotionAnimationLoop parallelODESolving="true"/>
-        <GenericConstraintSolver tolerance="0.001" maxIterations="1000" resolutionMethod="UnbuildGaussSeidel" multithreading="true"/>
+        <UnbuiltGaussSeidelConstraintSolver tolerance="0.001" maxIterations="1000" multithreading="true"/>
     
         <!--
             This Node shows how NearestPointROI is used to create constraints to link close vertices
@@ -1131,7 +1131,7 @@ NearestPointROI.scn
 
        root.addObject('VisualStyle', displayFlags="showBehaviorModels showForceFields showInteractionForceFields")
        root.addObject('FreeMotionAnimationLoop', parallelODESolving="true")
-       root.addObject('GenericConstraintSolver', tolerance="0.001", maxIterations="1000", resolutionMethod="UnbuildGaussSeidel", multithreading="true")
+       root.addObject('UnbuiltGaussSeidelConstraintSolver', tolerance="0.001", maxIterations="1000", multithreading="true")
 
        objects_attached_with_constraints = root.addChild('ObjectsAttachedWithConstraints')
 

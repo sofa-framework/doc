@@ -139,7 +139,7 @@ RuleBasedContactManager.scn
         
         <VisualStyle displayFlags="showBehaviorModels showVisual" />
         <FreeMotionAnimationLoop />
-    	<GenericConstraintSolver maxIterations="1000" tolerance="0.001"/>
+    	<ProjectedGaussSeidelConstraintSolver maxIterations="1000" tolerance="0.001"/>
         <CollisionPipeline depth="6" verbose="0" draw="0" />
         <BruteForceBroadPhase/>
         <BVHNarrowPhase/>
@@ -251,7 +251,7 @@ RuleBasedContactManager.scn
        root.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
        root.addObject('VisualStyle', displayFlags="showBehaviorModels showVisual")
        root.addObject('FreeMotionAnimationLoop', )
-       root.addObject('GenericConstraintSolver', maxIterations="1000", tolerance="0.001")
+       root.addObject('ProjectedGaussSeidelConstraintSolver', maxIterations="1000", tolerance="0.001")
        root.addObject('CollisionPipeline', depth="6", verbose="0", draw="0")
        root.addObject('BruteForceBroadPhase', )
        root.addObject('BVHNarrowPhase', )

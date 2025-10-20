@@ -154,7 +154,7 @@ ComplianceMatrixExporter.scn
     
         <VisualStyle displayFlags="hideVisualModels showBehaviorModels showMappings showForceFields" />
         <FreeMotionAnimationLoop solveVelocityConstraintFirst="true" />
-        <GenericConstraintSolver tolerance="1e-9" maxIterations="1000"/>
+        <ProjectedGaussSeidelConstraintSolver tolerance="1e-9" maxIterations="1000"/>
         <ComplianceMatrixExporter exportEveryNumberOfSteps="1" filename="compliance" printLog="true" format="csv" precision="12"/>
     
         <StringMeshCreator name="loader" resolution="20" scale3d="1 1 1" />
@@ -203,7 +203,7 @@ ComplianceMatrixExporter.scn
        root.addObject('RequiredPlugin', name="SofaMatrix")
        root.addObject('VisualStyle', displayFlags="hideVisualModels showBehaviorModels showMappings showForceFields")
        root.addObject('FreeMotionAnimationLoop', solveVelocityConstraintFirst="true")
-       root.addObject('GenericConstraintSolver', tolerance="1e-9", maxIterations="1000")
+       root.addObject('ProjectedGaussSeidelConstraintSolver', tolerance="1e-9", maxIterations="1000")
        root.addObject('ComplianceMatrixExporter', exportEveryNumberOfSteps="1", filename="compliance", printLog="true", format="csv", precision="12")
        root.addObject('StringMeshCreator', name="loader", resolution="20", scale3d="1 1 1")
        root.addObject('TransformEngine', name="translate", input_position="@loader.position", translation="0 0 0")

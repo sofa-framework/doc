@@ -262,68 +262,87 @@ Use the rest position of the input and output models to initialize the mapping
 
 ## Examples 
 
-BarycentricMapping_topologycontainer.scn
+BarycentricMappingTrussBeam.scn
 
 === "XML"
 
     ```xml
-    <?xml version="1.0"?>
-    <Node name="root" gravity="0 -10 0" dt="0.01">
+    <Node name="root" dt="0.01" showBoundingTree="0" gravity="0 0 0">
+        <RequiredPlugin name="Sofa.Component.Collision.Detection.Algorithm"/> <!-- Needed to use components [BVHNarrowPhase BruteForceBroadPhase CollisionPipeline] -->
+        <RequiredPlugin name="Sofa.Component.Collision.Detection.Intersection"/> <!-- Needed to use components [LocalMinDistance] -->
+        <RequiredPlugin name="Sofa.Component.Collision.Geometry"/> <!-- Needed to use components [TriangleCollisionModel] -->
+        <RequiredPlugin name="Sofa.Component.Collision.Response.Contact"/> <!-- Needed to use components [CollisionResponse] -->
+        <RequiredPlugin name="Sofa.Component.Constraint.Projective"/> <!-- Needed to use components [FixedProjectiveConstraint] -->
+        <RequiredPlugin name="Sofa.Component.Engine.Select"/> <!-- Needed to use components [BoxROI] -->
+        <RequiredPlugin name="Sofa.Component.IO.Mesh"/> <!-- Needed to use components [MeshGmshLoader] -->
+        <RequiredPlugin name="Sofa.Component.LinearSolver.Iterative"/> <!-- Needed to use components [CGLinearSolver] -->
+        <RequiredPlugin name="Sofa.Component.Mapping.Linear"/> <!-- Needed to use components [BarycentricMapping IdentityMapping TubularMapping] -->
+        <RequiredPlugin name="Sofa.Component.Mass"/> <!-- Needed to use components [UniformMass] -->
+        <RequiredPlugin name="Sofa.Component.MechanicalLoad"/> <!-- Needed to use components [ConstantForceField] -->
+        <RequiredPlugin name="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+        <RequiredPlugin name="Sofa.Component.SolidMechanics.FEM.Elastic"/> <!-- Needed to use components [BeamFEMForceField TetrahedronFEMForceField] -->
+        <RequiredPlugin name="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
+        <RequiredPlugin name="Sofa.Component.Topology.Container.Constant"/> <!-- Needed to use components [MeshTopology] -->
+        <RequiredPlugin name="Sofa.Component.Topology.Container.Dynamic"/> <!-- Needed to use components [QuadSetTopologyContainer QuadSetTopologyModifier TetrahedronSetGeometryAlgorithms TetrahedronSetTopologyContainer TetrahedronSetTopologyModifier TriangleSetTopologyContainer TriangleSetTopologyModifier] -->
+        <RequiredPlugin name="Sofa.Component.Topology.Mapping"/> <!-- Needed to use components [Edge2QuadTopologicalMapping Tetra2TriangleTopologicalMapping] -->
+        <RequiredPlugin name="Sofa.Component.Visual"/> <!-- Needed to use components [VisualStyle] -->
+        <RequiredPlugin name="Sofa.GL.Component.Rendering3D"/> <!-- Needed to use components [OglModel] -->
+        <VisualStyle displayFlags="showVisual showBehaviorModels showCollisionModels" />
+        <CollisionPipeline verbose="0" />
+        <BruteForceBroadPhase/>
+        <BVHNarrowPhase/>
+        <LocalMinDistance name="Proximity" alarmDistance="0.5" contactDistance="0.05" />
+        <CollisionResponse response="PenalityContactForceField" />
+        <DefaultAnimationLoop/>
+        
+        <!-- A deformable square mesh -->
+        <Node name="Truss" activated="true" gravity="0 0 0">
+            <EulerImplicitSolver  rayleighStiffness="0.1" rayleighMass="0.1" />
+            <CGLinearSolver iterations="125" tolerance="1e-16" threshold="1e-16" />
+            <MeshGmshLoader name="meshLoader0" filename="mesh/truss_tetra.msh" />
+            <TetrahedronSetTopologyContainer name="Container" src="@meshLoader0" />
+            <TetrahedronSetTopologyModifier name="Modifier" />
+            <TetrahedronSetGeometryAlgorithms template="Vec3" name="GeomAlgo" />
+            <MechanicalObject template="Vec3" name="TrussMO" />
+            <UniformMass totalMass="0.05" />
+            <BoxConstraint box="-0.001 -0.001 -0.001 0.001 0.011 0.011" />
+            <TetrahedronFEMForceField name="FEM" youngModulus="300000" poissonRatio="0.45" method="large" />
+            <BoxROI box="0.099 -0.001 -0.001 0.11 0.011 0.011"/>
+            <ConstantForceField forces="0 -0.1 0" />
     
-        <Node name="plugins">
-            <RequiredPlugin name="Sofa.Component.IO.Mesh"/> <!-- Needed to use components [MeshOBJLoader] -->
-            <RequiredPlugin name="Sofa.GL.Component.Rendering3D"/> <!-- Needed to use components [OglModel] -->
-            <RequiredPlugin name="Sofa.Component.Constraint.Lagrangian.Correction"/> <!-- Needed to use components [LinearSolverConstraintCorrection] -->
-            <RequiredPlugin name="Sofa.Component.Constraint.Lagrangian.Model"/> <!-- Needed to use components [FixedLagrangianConstraint] -->
-            <RequiredPlugin name="Sofa.Component.Engine.Select"/> <!-- Needed to use components [BoxROI] -->
-            <RequiredPlugin name="Sofa.Component.LinearSolver.Direct"/> <!-- Needed to use components [SparseLDLSolver] -->
-            <RequiredPlugin name="Sofa.Component.Mapping.Linear"/> <!-- Needed to use components [BarycentricMapping] -->
-            <RequiredPlugin name="Sofa.Component.Mass"/> <!-- Needed to use components [UniformMass] -->
-            <RequiredPlugin name="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
-            <RequiredPlugin name="Sofa.Component.SolidMechanics.FEM.Elastic"/> <!-- Needed to use components [TetrahedronFEMForceField] -->
-            <RequiredPlugin name="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
-            <RequiredPlugin name="Sofa.Component.Topology.Container.Dynamic"/> <!-- Needed to use components [TriangleSetTopologyContainer] -->
-            <RequiredPlugin name="Sofa.Component.Topology.Container.Grid"/> <!-- Needed to use components [SparseGridTopology] -->
-            <RequiredPlugin name="Sofa.Component.Collision.Geometry"/> <!-- Needed to use components [TriangleCollisionModel] -->
-            <RequiredPlugin name="Sofa.Component.Constraint.Projective"/> <!-- Needed to use components [FixedProjectiveConstraint] -->
-        </Node>
-    
-        <DefaultAnimationLoop computeBoundingBox="false" />
-        <MeshOBJLoader name="meshLoader" triangulate="true" filename="mesh/raptor_35kp.obj" />
-    
-        <Node name="data">
-            <SparseGridTopology n="10 5 10" name="topology" fileTopology="@../meshLoader.filename" />
-            <MechanicalObject name="DOFs" template="Vec3" />
-        </Node>
-    
-        <Node name="raptor">
-            <EulerImplicitSolver rayleighStiffness="0.2" rayleighMass="0.2" />
-            <SparseLDLSolver template="CompressedRowSparseMatrixd"/>
-            <HexahedronSetTopologyContainer hexahedra="@../data/topology.hexahedra" />
-            <MechanicalObject name="DOFs" template="Vec3" position="@../data/DOFs.position"/>
-            <UniformMass totalMass="1.005"/>
-            <TetrahedronFEMForceField name="FEM" youngModulus="500" poissonRatio='0.3' />
-    
-            <BoxROI name='ROI1' box='-5 -1 -3  5 1 3' drawBoxes='true'/>
-            <FixedProjectiveConstraint indices="@ROI1.indices" />
-    
-            <Node name="Collision">
-                <MechanicalObject name="collisMecha" src="@../../meshLoader" />
-                <TriangleSetTopologyContainer src="@../../meshLoader" />
+            <Node name="Triangle">
+                <TriangleSetTopologyContainer name="Container"/>
+                <TriangleSetTopologyModifier />
+                <Tetra2TriangleTopologicalMapping input="@/Truss/Container" output="@Container" />
                 <TriangleCollisionModel />
-                <LineCollisionModel />
-                <PointCollisionModel />
-                <BarycentricMapping />
+                <Node name="TriangleVisual">
+                    <OglModel template="Vec3" name="Visual" material="Default Diffuse 1 1 0 0 1 Ambient 1 0.2 0 0 1 Specular 0 1 0 0 1 Emissive 0 1 0 0 1 Shininess 0 45" />
+                    <IdentityMapping template="Vec3,Vec3" name="default12" input="@.." output="@Visual" />
+                </Node>
             </Node>
-    
-            <Node name="Visualization">
-                <OglModel name="VisualModel1" src="@../../meshLoader" useNormals="0" />
-                <TriangleSetTopologyContainer src="@../../meshLoader" />
-                <BarycentricMapping />
+            <Node name="Beam">
+                <MechanicalObject template="Rigid3" name="BeamMO" position="0 0 0  0 0 0 1  0.02 0 0  0 0 0 1  0.04 0 0  0 0 0 1   0.06 0 0  0 0 0 1  0.08 0 0  0 0 0 1   0.1 0 0  0 0 0 1" />
+                <MeshTopology name="BeamMesh" lines="0 1 1 2 2 3 3 4 4 5" />
+                <FixedProjectiveConstraint name="BeamFixedProjectiveConstraint" indices="0" />
+                <UniformMass vertexMass="0.001 0.001 [0.0001 0 0 0 0.0001 0 0 0 0.0001]" />
+                <BeamFEMForceField name="BeamFEM" radius="0.005" youngModulus="3000000000" poissonRatio="0.45" />
+                <ConstantForceField indices="5" forces="0 0 0 -10 0 0" />
+                <BarycentricMapping isMechanical="true" input="@TrussMO" output="@BeamMO" />
+                <Node name="VisuThread">
+                    <QuadSetTopologyContainer name="Container"/>
+                    <QuadSetTopologyModifier />
+                    <Edge2QuadTopologicalMapping nbPointsOnEachCircle="10" radius="0.005" input="@BeamMesh" output="@Container" />
+                    <MechanicalObject name="Quads" />
+                    <TubularMapping nbPointsOnEachCircle="10" radius="0.005" input="@BeamMO" output="@Quads" />
+                    <Node name="VisuOgl">
+                        <OglModel name="Visual" color="0.5 0.5 1.0" />
+                        <IdentityMapping input="@Quads" output="@Visual" />
+                    </Node>
+                </Node>
             </Node>
         </Node>
-    
     </Node>
+    
 
     ```
 
@@ -332,299 +351,84 @@ BarycentricMapping_topologycontainer.scn
     ```python
     def createScene(root_node):
 
-       root = root_node.addChild('root', gravity="0 -10 0", dt="0.01")
+       root = root_node.addChild('root', dt="0.01", showBoundingTree="0", gravity="0 0 0")
 
-       plugins = root.addChild('plugins')
+       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Algorithm")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Intersection")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Geometry")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Response.Contact")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Projective")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Engine.Select")
+       root.addObject('RequiredPlugin', name="Sofa.Component.IO.Mesh")
+       root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Iterative")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Mapping.Linear")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Mass")
+       root.addObject('RequiredPlugin', name="Sofa.Component.MechanicalLoad")
+       root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.FEM.Elastic")
+       root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Constant")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Dynamic")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Mapping")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Visual")
+       root.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
+       root.addObject('VisualStyle', displayFlags="showVisual showBehaviorModels showCollisionModels")
+       root.addObject('CollisionPipeline', verbose="0")
+       root.addObject('BruteForceBroadPhase', )
+       root.addObject('BVHNarrowPhase', )
+       root.addObject('LocalMinDistance', name="Proximity", alarmDistance="0.5", contactDistance="0.05")
+       root.addObject('CollisionResponse', response="PenalityContactForceField")
+       root.addObject('DefaultAnimationLoop', )
 
-       plugins.addObject('RequiredPlugin', name="Sofa.Component.IO.Mesh")
-       plugins.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
-       plugins.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Lagrangian.Correction")
-       plugins.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Lagrangian.Model")
-       plugins.addObject('RequiredPlugin', name="Sofa.Component.Engine.Select")
-       plugins.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Direct")
-       plugins.addObject('RequiredPlugin', name="Sofa.Component.Mapping.Linear")
-       plugins.addObject('RequiredPlugin', name="Sofa.Component.Mass")
-       plugins.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
-       plugins.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.FEM.Elastic")
-       plugins.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
-       plugins.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Dynamic")
-       plugins.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Grid")
-       plugins.addObject('RequiredPlugin', name="Sofa.Component.Collision.Geometry")
-       plugins.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Projective")
+       truss = root.addChild('Truss', activated="true", gravity="0 0 0")
 
-       root.addObject('DefaultAnimationLoop', computeBoundingBox="false")
-       root.addObject('MeshOBJLoader', name="meshLoader", triangulate="true", filename="mesh/raptor_35kp.obj")
+       truss.addObject('EulerImplicitSolver', rayleighStiffness="0.1", rayleighMass="0.1")
+       truss.addObject('CGLinearSolver', iterations="125", tolerance="1e-16", threshold="1e-16")
+       truss.addObject('MeshGmshLoader', name="meshLoader0", filename="mesh/truss_tetra.msh")
+       truss.addObject('TetrahedronSetTopologyContainer', name="Container", src="@meshLoader0")
+       truss.addObject('TetrahedronSetTopologyModifier', name="Modifier")
+       truss.addObject('TetrahedronSetGeometryAlgorithms', template="Vec3", name="GeomAlgo")
+       truss.addObject('MechanicalObject', template="Vec3", name="TrussMO")
+       truss.addObject('UniformMass', totalMass="0.05")
+       truss.addObject('BoxConstraint', box="-0.001 -0.001 -0.001 0.001 0.011 0.011")
+       truss.addObject('TetrahedronFEMForceField', name="FEM", youngModulus="300000", poissonRatio="0.45", method="large")
+       truss.addObject('BoxROI', box="0.099 -0.001 -0.001 0.11 0.011 0.011")
+       truss.addObject('ConstantForceField', forces="0 -0.1 0")
 
-       data = root.addChild('data')
+       triangle = Truss.addChild('Triangle')
 
-       data.addObject('SparseGridTopology', n="10 5 10", name="topology", fileTopology="@../meshLoader.filename")
-       data.addObject('MechanicalObject', name="DOFs", template="Vec3")
+       triangle.addObject('TriangleSetTopologyContainer', name="Container")
+       triangle.addObject('TriangleSetTopologyModifier', )
+       triangle.addObject('Tetra2TriangleTopologicalMapping', input="@/Truss/Container", output="@Container")
+       triangle.addObject('TriangleCollisionModel', )
 
-       raptor = root.addChild('raptor')
+       triangle_visual = Triangle.addChild('TriangleVisual')
 
-       raptor.addObject('EulerImplicitSolver', rayleighStiffness="0.2", rayleighMass="0.2")
-       raptor.addObject('SparseLDLSolver', template="CompressedRowSparseMatrixd")
-       raptor.addObject('HexahedronSetTopologyContainer', hexahedra="@../data/topology.hexahedra")
-       raptor.addObject('MechanicalObject', name="DOFs", template="Vec3", position="@../data/DOFs.position")
-       raptor.addObject('UniformMass', totalMass="1.005")
-       raptor.addObject('TetrahedronFEMForceField', name="FEM", youngModulus="500", poissonRatio="0.3")
-       raptor.addObject('BoxROI', name="ROI1", box="-5 -1 -3  5 1 3", drawBoxes="true")
-       raptor.addObject('FixedProjectiveConstraint', indices="@ROI1.indices")
+       triangle_visual.addObject('OglModel', template="Vec3", name="Visual", material="Default Diffuse 1 1 0 0 1 Ambient 1 0.2 0 0 1 Specular 0 1 0 0 1 Emissive 0 1 0 0 1 Shininess 0 45")
+       triangle_visual.addObject('IdentityMapping', template="Vec3,Vec3", name="default12", input="@..", output="@Visual")
 
-       collision = raptor.addChild('Collision')
+       beam = Truss.addChild('Beam')
 
-       collision.addObject('MechanicalObject', name="collisMecha", src="@../../meshLoader")
-       collision.addObject('TriangleSetTopologyContainer', src="@../../meshLoader")
-       collision.addObject('TriangleCollisionModel', )
-       collision.addObject('LineCollisionModel', )
-       collision.addObject('PointCollisionModel', )
-       collision.addObject('BarycentricMapping', )
+       beam.addObject('MechanicalObject', template="Rigid3", name="BeamMO", position="0 0 0  0 0 0 1  0.02 0 0  0 0 0 1  0.04 0 0  0 0 0 1   0.06 0 0  0 0 0 1  0.08 0 0  0 0 0 1   0.1 0 0  0 0 0 1")
+       beam.addObject('MeshTopology', name="BeamMesh", lines="0 1 1 2 2 3 3 4 4 5")
+       beam.addObject('FixedProjectiveConstraint', name="BeamFixedProjectiveConstraint", indices="0")
+       beam.addObject('UniformMass', vertexMass="0.001 0.001 [0.0001 0 0 0 0.0001 0 0 0 0.0001]")
+       beam.addObject('BeamFEMForceField', name="BeamFEM", radius="0.005", youngModulus="3000000000", poissonRatio="0.45")
+       beam.addObject('ConstantForceField', indices="5", forces="0 0 0 -10 0 0")
+       beam.addObject('BarycentricMapping', isMechanical="true", input="@TrussMO", output="@BeamMO")
 
-       visualization = raptor.addChild('Visualization')
+       visu_thread = Beam.addChild('VisuThread')
 
-       visualization.addObject('OglModel', name="VisualModel1", src="@../../meshLoader", useNormals="0")
-       visualization.addObject('TriangleSetTopologyContainer', src="@../../meshLoader")
-       visualization.addObject('BarycentricMapping', )
-    ```
+       visu_thread.addObject('QuadSetTopologyContainer', name="Container")
+       visu_thread.addObject('QuadSetTopologyModifier', )
+       visu_thread.addObject('Edge2QuadTopologicalMapping', nbPointsOnEachCircle="10", radius="0.005", input="@BeamMesh", output="@Container")
+       visu_thread.addObject('MechanicalObject', name="Quads")
+       visu_thread.addObject('TubularMapping', nbPointsOnEachCircle="10", radius="0.005", input="@BeamMO", output="@Quads")
 
-BarycentricMapping_meshtopology.scn
+       visu_ogl = VisuThread.addChild('VisuOgl')
 
-=== "XML"
-
-    ```xml
-    <?xml version="1.0"?>
-    <Node name="root" gravity="0 -10 0" dt="0.01">
-    
-        <Node name="plugins">
-            <RequiredPlugin name="Sofa.Component.IO.Mesh"/> <!-- Needed to use components [MeshOBJLoader] -->
-            <RequiredPlugin name="Sofa.GL.Component.Rendering3D"/> <!-- Needed to use components [OglModel] -->
-            <RequiredPlugin name="Sofa.Component.Constraint.Lagrangian.Correction"/> <!-- Needed to use components [LinearSolverConstraintCorrection] -->
-            <RequiredPlugin name="Sofa.Component.Constraint.Lagrangian.Model"/> <!-- Needed to use components [FixedLagrangianConstraint] -->
-            <RequiredPlugin name="Sofa.Component.Engine.Select"/> <!-- Needed to use components [BoxROI] -->
-            <RequiredPlugin name="Sofa.Component.LinearSolver.Direct"/> <!-- Needed to use components [SparseLDLSolver] -->
-            <RequiredPlugin name="Sofa.Component.Mapping.Linear"/> <!-- Needed to use components [BarycentricMapping] -->
-            <RequiredPlugin name="Sofa.Component.Mass"/> <!-- Needed to use components [UniformMass] -->
-            <RequiredPlugin name="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
-            <RequiredPlugin name="Sofa.Component.SolidMechanics.FEM.Elastic"/> <!-- Needed to use components [TetrahedronFEMForceField] -->
-            <RequiredPlugin name="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
-            <RequiredPlugin name="Sofa.Component.Topology.Container.Dynamic"/> <!-- Needed to use components [TriangleSetTopologyContainer] -->
-            <RequiredPlugin name="Sofa.Component.Topology.Container.Grid"/> <!-- Needed to use components [SparseGridTopology] -->
-            <RequiredPlugin name="Sofa.Component.Collision.Geometry"/> <!-- Needed to use components [TriangleCollisionModel] -->
-            <RequiredPlugin name="Sofa.Component.Constraint.Projective"/> <!-- Needed to use components [FixedProjectiveConstraint] -->
-        </Node>
-    
-        <DefaultAnimationLoop computeBoundingBox="false" />
-        <MeshOBJLoader name="meshLoader" triangulate="true" filename="mesh/raptor_35kp.obj" />
-    
-        <Node name="data">
-            <SparseGridTopology n="10 5 10" name="topology" fileTopology="@../meshLoader.filename" />
-            <MechanicalObject name="DOFs" template="Vec3" />
-        </Node>
-    
-        <Node name="raptor">
-            <EulerImplicitSolver rayleighStiffness="0.2" rayleighMass="0.2" />
-            <SparseLDLSolver template="CompressedRowSparseMatrixd"/>
-            <MeshTopology hexahedra="@../data/topology.hexahedra" />
-            <MechanicalObject name="DOFs" template="Vec3" position="@../data/DOFs.position"/>
-            <UniformMass totalMass="1.005"/>
-            <TetrahedronFEMForceField name="FEM" youngModulus="500" poissonRatio='0.3' />
-    
-            <BoxROI name='ROI1' box='-5 -1 -3  5 1 3' drawBoxes='true'/>
-            <FixedProjectiveConstraint indices="@ROI1.indices" />
-    
-            <Node name="Collision">
-                <MechanicalObject name="collisMecha" src="@../../meshLoader" />
-                <TriangleSetTopologyContainer src="@../../meshLoader" />
-                <TriangleCollisionModel />
-                <LineCollisionModel />
-                <PointCollisionModel />
-                <BarycentricMapping />
-            </Node>
-    
-            <Node name="Visualization">
-                <OglModel name="VisualModel1" src="@../../meshLoader" useNormals="0" />
-                <TriangleSetTopologyContainer src="@../../meshLoader" />
-                <BarycentricMapping />
-            </Node>
-        </Node>
-    
-    </Node>
-
-    ```
-
-=== "Python"
-
-    ```python
-    def createScene(root_node):
-
-       root = root_node.addChild('root', gravity="0 -10 0", dt="0.01")
-
-       plugins = root.addChild('plugins')
-
-       plugins.addObject('RequiredPlugin', name="Sofa.Component.IO.Mesh")
-       plugins.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
-       plugins.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Lagrangian.Correction")
-       plugins.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Lagrangian.Model")
-       plugins.addObject('RequiredPlugin', name="Sofa.Component.Engine.Select")
-       plugins.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Direct")
-       plugins.addObject('RequiredPlugin', name="Sofa.Component.Mapping.Linear")
-       plugins.addObject('RequiredPlugin', name="Sofa.Component.Mass")
-       plugins.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
-       plugins.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.FEM.Elastic")
-       plugins.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
-       plugins.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Dynamic")
-       plugins.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Grid")
-       plugins.addObject('RequiredPlugin', name="Sofa.Component.Collision.Geometry")
-       plugins.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Projective")
-
-       root.addObject('DefaultAnimationLoop', computeBoundingBox="false")
-       root.addObject('MeshOBJLoader', name="meshLoader", triangulate="true", filename="mesh/raptor_35kp.obj")
-
-       data = root.addChild('data')
-
-       data.addObject('SparseGridTopology', n="10 5 10", name="topology", fileTopology="@../meshLoader.filename")
-       data.addObject('MechanicalObject', name="DOFs", template="Vec3")
-
-       raptor = root.addChild('raptor')
-
-       raptor.addObject('EulerImplicitSolver', rayleighStiffness="0.2", rayleighMass="0.2")
-       raptor.addObject('SparseLDLSolver', template="CompressedRowSparseMatrixd")
-       raptor.addObject('MeshTopology', hexahedra="@../data/topology.hexahedra")
-       raptor.addObject('MechanicalObject', name="DOFs", template="Vec3", position="@../data/DOFs.position")
-       raptor.addObject('UniformMass', totalMass="1.005")
-       raptor.addObject('TetrahedronFEMForceField', name="FEM", youngModulus="500", poissonRatio="0.3")
-       raptor.addObject('BoxROI', name="ROI1", box="-5 -1 -3  5 1 3", drawBoxes="true")
-       raptor.addObject('FixedProjectiveConstraint', indices="@ROI1.indices")
-
-       collision = raptor.addChild('Collision')
-
-       collision.addObject('MechanicalObject', name="collisMecha", src="@../../meshLoader")
-       collision.addObject('TriangleSetTopologyContainer', src="@../../meshLoader")
-       collision.addObject('TriangleCollisionModel', )
-       collision.addObject('LineCollisionModel', )
-       collision.addObject('PointCollisionModel', )
-       collision.addObject('BarycentricMapping', )
-
-       visualization = raptor.addChild('Visualization')
-
-       visualization.addObject('OglModel', name="VisualModel1", src="@../../meshLoader", useNormals="0")
-       visualization.addObject('TriangleSetTopologyContainer', src="@../../meshLoader")
-       visualization.addObject('BarycentricMapping', )
-    ```
-
-BarycentricMapping_sparsegrid.scn
-
-=== "XML"
-
-    ```xml
-    <?xml version="1.0"?>
-    <Node name="root" gravity="0 -10 0" dt="0.01">
-    
-        <Node name="plugins">
-            <RequiredPlugin name="Sofa.Component.IO.Mesh"/> <!-- Needed to use components [MeshOBJLoader] -->
-            <RequiredPlugin name="Sofa.GL.Component.Rendering3D"/> <!-- Needed to use components [OglModel] -->
-            <RequiredPlugin name="Sofa.Component.Constraint.Lagrangian.Correction"/> <!-- Needed to use components [LinearSolverConstraintCorrection] -->
-            <RequiredPlugin name="Sofa.Component.Constraint.Lagrangian.Model"/> <!-- Needed to use components [FixedLagrangianConstraint] -->
-            <RequiredPlugin name="Sofa.Component.Engine.Select"/> <!-- Needed to use components [BoxROI] -->
-            <RequiredPlugin name="Sofa.Component.LinearSolver.Direct"/> <!-- Needed to use components [SparseLDLSolver] -->
-            <RequiredPlugin name="Sofa.Component.Mapping.Linear"/> <!-- Needed to use components [BarycentricMapping] -->
-            <RequiredPlugin name="Sofa.Component.Mass"/> <!-- Needed to use components [UniformMass] -->
-            <RequiredPlugin name="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
-            <RequiredPlugin name="Sofa.Component.SolidMechanics.FEM.Elastic"/> <!-- Needed to use components [TetrahedronFEMForceField] -->
-            <RequiredPlugin name="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
-            <RequiredPlugin name="Sofa.Component.Topology.Container.Dynamic"/> <!-- Needed to use components [TriangleSetTopologyContainer] -->
-            <RequiredPlugin name="Sofa.Component.Topology.Container.Grid"/> <!-- Needed to use components [SparseGridTopology] -->
-            <RequiredPlugin name="Sofa.Component.Collision.Geometry"/> <!-- Needed to use components [TriangleCollisionModel] -->
-            <RequiredPlugin name="Sofa.Component.Constraint.Projective"/> <!-- Needed to use components [FixedProjectiveConstraint] -->
-        </Node>
-    
-        <DefaultAnimationLoop computeBoundingBox="false" />
-        <MeshOBJLoader name="meshLoader" triangulate="true" filename="mesh/raptor_35kp.obj" />
-    
-        <Node name="raptor">
-            <EulerImplicitSolver rayleighStiffness="0.2" rayleighMass="0.2" />
-            <SparseLDLSolver template="CompressedRowSparseMatrixd"/>
-            <SparseGridTopology n="10 5 10" name="topology" fileTopology="@../meshLoader.filename" />
-            <MechanicalObject name="DOFs" template="Vec3" position="@../data/DOFs.position"/>
-            <UniformMass totalMass="1.005"/>
-            <TetrahedronFEMForceField name="FEM" youngModulus="500" poissonRatio='0.3' />
-    
-            <BoxROI name='ROI1' box='-5 -1 -3  5 1 3' drawBoxes='true'/>
-            <FixedProjectiveConstraint indices="@ROI1.indices" />
-    
-              <Node name="Collision">
-                <MechanicalObject name="collisMecha" src="@../../meshLoader" />
-                <TriangleSetTopologyContainer src="@../../meshLoader" />
-                <TriangleCollisionModel />
-                <LineCollisionModel />
-                <PointCollisionModel />
-                <BarycentricMapping />
-            </Node>
-    
-            <Node name="Visualization">
-                <OglModel name="VisualModel1" src="@../../meshLoader" useNormals="0" />
-                <TriangleSetTopologyContainer src="@../../meshLoader" />
-                <BarycentricMapping />
-            </Node>
-        </Node>
-    
-    </Node>
-
-    ```
-
-=== "Python"
-
-    ```python
-    def createScene(root_node):
-
-       root = root_node.addChild('root', gravity="0 -10 0", dt="0.01")
-
-       plugins = root.addChild('plugins')
-
-       plugins.addObject('RequiredPlugin', name="Sofa.Component.IO.Mesh")
-       plugins.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
-       plugins.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Lagrangian.Correction")
-       plugins.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Lagrangian.Model")
-       plugins.addObject('RequiredPlugin', name="Sofa.Component.Engine.Select")
-       plugins.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Direct")
-       plugins.addObject('RequiredPlugin', name="Sofa.Component.Mapping.Linear")
-       plugins.addObject('RequiredPlugin', name="Sofa.Component.Mass")
-       plugins.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
-       plugins.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.FEM.Elastic")
-       plugins.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
-       plugins.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Dynamic")
-       plugins.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Grid")
-       plugins.addObject('RequiredPlugin', name="Sofa.Component.Collision.Geometry")
-       plugins.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Projective")
-
-       root.addObject('DefaultAnimationLoop', computeBoundingBox="false")
-       root.addObject('MeshOBJLoader', name="meshLoader", triangulate="true", filename="mesh/raptor_35kp.obj")
-
-       raptor = root.addChild('raptor')
-
-       raptor.addObject('EulerImplicitSolver', rayleighStiffness="0.2", rayleighMass="0.2")
-       raptor.addObject('SparseLDLSolver', template="CompressedRowSparseMatrixd")
-       raptor.addObject('SparseGridTopology', n="10 5 10", name="topology", fileTopology="@../meshLoader.filename")
-       raptor.addObject('MechanicalObject', name="DOFs", template="Vec3", position="@../data/DOFs.position")
-       raptor.addObject('UniformMass', totalMass="1.005")
-       raptor.addObject('TetrahedronFEMForceField', name="FEM", youngModulus="500", poissonRatio="0.3")
-       raptor.addObject('BoxROI', name="ROI1", box="-5 -1 -3  5 1 3", drawBoxes="true")
-       raptor.addObject('FixedProjectiveConstraint', indices="@ROI1.indices")
-
-       collision = raptor.addChild('Collision')
-
-       collision.addObject('MechanicalObject', name="collisMecha", src="@../../meshLoader")
-       collision.addObject('TriangleSetTopologyContainer', src="@../../meshLoader")
-       collision.addObject('TriangleCollisionModel', )
-       collision.addObject('LineCollisionModel', )
-       collision.addObject('PointCollisionModel', )
-       collision.addObject('BarycentricMapping', )
-
-       visualization = raptor.addChild('Visualization')
-
-       visualization.addObject('OglModel', name="VisualModel1", src="@../../meshLoader", useNormals="0")
-       visualization.addObject('TriangleSetTopologyContainer', src="@../../meshLoader")
-       visualization.addObject('BarycentricMapping', )
+       visu_ogl.addObject('OglModel', name="Visual", color="0.5 0.5 1.0")
+       visu_ogl.addObject('IdentityMapping', input="@Quads", output="@Visual")
     ```
 
 BarycentricMapping.scn
@@ -1761,87 +1565,68 @@ BarycentricMapping.scn
        surf2.addObject('RigidMapping', )
     ```
 
-BarycentricMappingTrussBeam.scn
+BarycentricMapping_topologycontainer.scn
 
 === "XML"
 
     ```xml
-    <Node name="root" dt="0.01" showBoundingTree="0" gravity="0 0 0">
-        <RequiredPlugin name="Sofa.Component.Collision.Detection.Algorithm"/> <!-- Needed to use components [BVHNarrowPhase BruteForceBroadPhase CollisionPipeline] -->
-        <RequiredPlugin name="Sofa.Component.Collision.Detection.Intersection"/> <!-- Needed to use components [LocalMinDistance] -->
-        <RequiredPlugin name="Sofa.Component.Collision.Geometry"/> <!-- Needed to use components [TriangleCollisionModel] -->
-        <RequiredPlugin name="Sofa.Component.Collision.Response.Contact"/> <!-- Needed to use components [CollisionResponse] -->
-        <RequiredPlugin name="Sofa.Component.Constraint.Projective"/> <!-- Needed to use components [FixedProjectiveConstraint] -->
-        <RequiredPlugin name="Sofa.Component.Engine.Select"/> <!-- Needed to use components [BoxROI] -->
-        <RequiredPlugin name="Sofa.Component.IO.Mesh"/> <!-- Needed to use components [MeshGmshLoader] -->
-        <RequiredPlugin name="Sofa.Component.LinearSolver.Iterative"/> <!-- Needed to use components [CGLinearSolver] -->
-        <RequiredPlugin name="Sofa.Component.Mapping.Linear"/> <!-- Needed to use components [BarycentricMapping IdentityMapping TubularMapping] -->
-        <RequiredPlugin name="Sofa.Component.Mass"/> <!-- Needed to use components [UniformMass] -->
-        <RequiredPlugin name="Sofa.Component.MechanicalLoad"/> <!-- Needed to use components [ConstantForceField] -->
-        <RequiredPlugin name="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
-        <RequiredPlugin name="Sofa.Component.SolidMechanics.FEM.Elastic"/> <!-- Needed to use components [BeamFEMForceField TetrahedronFEMForceField] -->
-        <RequiredPlugin name="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
-        <RequiredPlugin name="Sofa.Component.Topology.Container.Constant"/> <!-- Needed to use components [MeshTopology] -->
-        <RequiredPlugin name="Sofa.Component.Topology.Container.Dynamic"/> <!-- Needed to use components [QuadSetTopologyContainer QuadSetTopologyModifier TetrahedronSetGeometryAlgorithms TetrahedronSetTopologyContainer TetrahedronSetTopologyModifier TriangleSetTopologyContainer TriangleSetTopologyModifier] -->
-        <RequiredPlugin name="Sofa.Component.Topology.Mapping"/> <!-- Needed to use components [Edge2QuadTopologicalMapping Tetra2TriangleTopologicalMapping] -->
-        <RequiredPlugin name="Sofa.Component.Visual"/> <!-- Needed to use components [VisualStyle] -->
-        <RequiredPlugin name="Sofa.GL.Component.Rendering3D"/> <!-- Needed to use components [OglModel] -->
-        <VisualStyle displayFlags="showVisual showBehaviorModels showCollisionModels" />
-        <CollisionPipeline verbose="0" />
-        <BruteForceBroadPhase/>
-        <BVHNarrowPhase/>
-        <LocalMinDistance name="Proximity" alarmDistance="0.5" contactDistance="0.05" />
-        <CollisionResponse response="PenalityContactForceField" />
-        <DefaultAnimationLoop/>
-        
-        <!-- A deformable square mesh -->
-        <Node name="Truss" activated="true" gravity="0 0 0">
-            <EulerImplicitSolver  rayleighStiffness="0.1" rayleighMass="0.1" />
-            <CGLinearSolver iterations="125" tolerance="1e-16" threshold="1e-16" />
-            <MeshGmshLoader name="meshLoader0" filename="mesh/truss_tetra.msh" />
-            <TetrahedronSetTopologyContainer name="Container" src="@meshLoader0" />
-            <TetrahedronSetTopologyModifier name="Modifier" />
-            <TetrahedronSetGeometryAlgorithms template="Vec3" name="GeomAlgo" />
-            <MechanicalObject template="Vec3" name="TrussMO" />
-            <UniformMass totalMass="0.05" />
-            <BoxConstraint box="-0.001 -0.001 -0.001 0.001 0.011 0.011" />
-            <TetrahedronFEMForceField name="FEM" youngModulus="300000" poissonRatio="0.45" method="large" />
-            <BoxROI box="0.099 -0.001 -0.001 0.11 0.011 0.011"/>
-            <ConstantForceField forces="0 -0.1 0" />
+    <?xml version="1.0"?>
+    <Node name="root" gravity="0 -10 0" dt="0.01">
     
-            <Node name="Triangle">
-                <TriangleSetTopologyContainer name="Container"/>
-                <TriangleSetTopologyModifier />
-                <Tetra2TriangleTopologicalMapping input="@/Truss/Container" output="@Container" />
+        <Node name="plugins">
+            <RequiredPlugin name="Sofa.Component.IO.Mesh"/> <!-- Needed to use components [MeshOBJLoader] -->
+            <RequiredPlugin name="Sofa.GL.Component.Rendering3D"/> <!-- Needed to use components [OglModel] -->
+            <RequiredPlugin name="Sofa.Component.Constraint.Lagrangian.Correction"/> <!-- Needed to use components [LinearSolverConstraintCorrection] -->
+            <RequiredPlugin name="Sofa.Component.Constraint.Lagrangian.Model"/> <!-- Needed to use components [FixedLagrangianConstraint] -->
+            <RequiredPlugin name="Sofa.Component.Engine.Select"/> <!-- Needed to use components [BoxROI] -->
+            <RequiredPlugin name="Sofa.Component.LinearSolver.Direct"/> <!-- Needed to use components [SparseLDLSolver] -->
+            <RequiredPlugin name="Sofa.Component.Mapping.Linear"/> <!-- Needed to use components [BarycentricMapping] -->
+            <RequiredPlugin name="Sofa.Component.Mass"/> <!-- Needed to use components [UniformMass] -->
+            <RequiredPlugin name="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+            <RequiredPlugin name="Sofa.Component.SolidMechanics.FEM.Elastic"/> <!-- Needed to use components [TetrahedronFEMForceField] -->
+            <RequiredPlugin name="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
+            <RequiredPlugin name="Sofa.Component.Topology.Container.Dynamic"/> <!-- Needed to use components [TriangleSetTopologyContainer] -->
+            <RequiredPlugin name="Sofa.Component.Topology.Container.Grid"/> <!-- Needed to use components [SparseGridTopology] -->
+            <RequiredPlugin name="Sofa.Component.Collision.Geometry"/> <!-- Needed to use components [TriangleCollisionModel] -->
+            <RequiredPlugin name="Sofa.Component.Constraint.Projective"/> <!-- Needed to use components [FixedProjectiveConstraint] -->
+        </Node>
+    
+        <DefaultAnimationLoop computeBoundingBox="false" />
+        <MeshOBJLoader name="meshLoader" triangulate="true" filename="mesh/raptor_35kp.obj" />
+    
+        <Node name="data">
+            <SparseGridTopology n="10 5 10" name="topology" fileTopology="@../meshLoader.filename" />
+            <MechanicalObject name="DOFs" template="Vec3" />
+        </Node>
+    
+        <Node name="raptor">
+            <EulerImplicitSolver rayleighStiffness="0.2" rayleighMass="0.2" />
+            <SparseLDLSolver template="CompressedRowSparseMatrixd"/>
+            <HexahedronSetTopologyContainer hexahedra="@../data/topology.hexahedra" />
+            <MechanicalObject name="DOFs" template="Vec3" position="@../data/DOFs.position"/>
+            <UniformMass totalMass="1.005"/>
+            <TetrahedronFEMForceField name="FEM" youngModulus="500" poissonRatio='0.3' />
+    
+            <BoxROI name='ROI1' box='-5 -1 -3  5 1 3' drawBoxes='true'/>
+            <FixedProjectiveConstraint indices="@ROI1.indices" />
+    
+            <Node name="Collision">
+                <MechanicalObject name="collisMecha" src="@../../meshLoader" />
+                <TriangleSetTopologyContainer src="@../../meshLoader" />
                 <TriangleCollisionModel />
-                <Node name="TriangleVisual">
-                    <OglModel template="Vec3" name="Visual" material="Default Diffuse 1 1 0 0 1 Ambient 1 0.2 0 0 1 Specular 0 1 0 0 1 Emissive 0 1 0 0 1 Shininess 0 45" />
-                    <IdentityMapping template="Vec3,Vec3" name="default12" input="@.." output="@Visual" />
-                </Node>
+                <LineCollisionModel />
+                <PointCollisionModel />
+                <BarycentricMapping />
             </Node>
-            <Node name="Beam">
-                <MechanicalObject template="Rigid3" name="BeamMO" position="0 0 0  0 0 0 1  0.02 0 0  0 0 0 1  0.04 0 0  0 0 0 1   0.06 0 0  0 0 0 1  0.08 0 0  0 0 0 1   0.1 0 0  0 0 0 1" />
-                <MeshTopology name="BeamMesh" lines="0 1 1 2 2 3 3 4 4 5" />
-                <FixedProjectiveConstraint name="BeamFixedProjectiveConstraint" indices="0" />
-                <UniformMass vertexMass="0.001 0.001 [0.0001 0 0 0 0.0001 0 0 0 0.0001]" />
-                <BeamFEMForceField name="BeamFEM" radius="0.005" youngModulus="3000000000" poissonRatio="0.45" />
-                <ConstantForceField indices="5" forces="0 0 0 -10 0 0" />
-                <BarycentricMapping isMechanical="true" input="@TrussMO" output="@BeamMO" />
-                <Node name="VisuThread">
-                    <QuadSetTopologyContainer name="Container"/>
-                    <QuadSetTopologyModifier />
-                    <Edge2QuadTopologicalMapping nbPointsOnEachCircle="10" radius="0.005" input="@BeamMesh" output="@Container" />
-                    <MechanicalObject name="Quads" />
-                    <TubularMapping nbPointsOnEachCircle="10" radius="0.005" input="@BeamMO" output="@Quads" />
-                    <Node name="VisuOgl">
-                        <OglModel name="Visual" color="0.5 0.5 1.0" />
-                        <IdentityMapping input="@Quads" output="@Visual" />
-                    </Node>
-                </Node>
+    
+            <Node name="Visualization">
+                <OglModel name="VisualModel1" src="@../../meshLoader" useNormals="0" />
+                <TriangleSetTopologyContainer src="@../../meshLoader" />
+                <BarycentricMapping />
             </Node>
         </Node>
-    </Node>
     
+    </Node>
 
     ```
 
@@ -1850,83 +1635,298 @@ BarycentricMappingTrussBeam.scn
     ```python
     def createScene(root_node):
 
-       root = root_node.addChild('root', dt="0.01", showBoundingTree="0", gravity="0 0 0")
+       root = root_node.addChild('root', gravity="0 -10 0", dt="0.01")
 
-       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Algorithm")
-       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Intersection")
-       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Geometry")
-       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Response.Contact")
-       root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Projective")
-       root.addObject('RequiredPlugin', name="Sofa.Component.Engine.Select")
-       root.addObject('RequiredPlugin', name="Sofa.Component.IO.Mesh")
-       root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Iterative")
-       root.addObject('RequiredPlugin', name="Sofa.Component.Mapping.Linear")
-       root.addObject('RequiredPlugin', name="Sofa.Component.Mass")
-       root.addObject('RequiredPlugin', name="Sofa.Component.MechanicalLoad")
-       root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
-       root.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.FEM.Elastic")
-       root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
-       root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Constant")
-       root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Dynamic")
-       root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Mapping")
-       root.addObject('RequiredPlugin', name="Sofa.Component.Visual")
-       root.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
-       root.addObject('VisualStyle', displayFlags="showVisual showBehaviorModels showCollisionModels")
-       root.addObject('CollisionPipeline', verbose="0")
-       root.addObject('BruteForceBroadPhase', )
-       root.addObject('BVHNarrowPhase', )
-       root.addObject('LocalMinDistance', name="Proximity", alarmDistance="0.5", contactDistance="0.05")
-       root.addObject('CollisionResponse', response="PenalityContactForceField")
-       root.addObject('DefaultAnimationLoop', )
+       plugins = root.addChild('plugins')
 
-       truss = root.addChild('Truss', activated="true", gravity="0 0 0")
+       plugins.addObject('RequiredPlugin', name="Sofa.Component.IO.Mesh")
+       plugins.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
+       plugins.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Lagrangian.Correction")
+       plugins.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Lagrangian.Model")
+       plugins.addObject('RequiredPlugin', name="Sofa.Component.Engine.Select")
+       plugins.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Direct")
+       plugins.addObject('RequiredPlugin', name="Sofa.Component.Mapping.Linear")
+       plugins.addObject('RequiredPlugin', name="Sofa.Component.Mass")
+       plugins.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
+       plugins.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.FEM.Elastic")
+       plugins.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
+       plugins.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Dynamic")
+       plugins.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Grid")
+       plugins.addObject('RequiredPlugin', name="Sofa.Component.Collision.Geometry")
+       plugins.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Projective")
 
-       truss.addObject('EulerImplicitSolver', rayleighStiffness="0.1", rayleighMass="0.1")
-       truss.addObject('CGLinearSolver', iterations="125", tolerance="1e-16", threshold="1e-16")
-       truss.addObject('MeshGmshLoader', name="meshLoader0", filename="mesh/truss_tetra.msh")
-       truss.addObject('TetrahedronSetTopologyContainer', name="Container", src="@meshLoader0")
-       truss.addObject('TetrahedronSetTopologyModifier', name="Modifier")
-       truss.addObject('TetrahedronSetGeometryAlgorithms', template="Vec3", name="GeomAlgo")
-       truss.addObject('MechanicalObject', template="Vec3", name="TrussMO")
-       truss.addObject('UniformMass', totalMass="0.05")
-       truss.addObject('BoxConstraint', box="-0.001 -0.001 -0.001 0.001 0.011 0.011")
-       truss.addObject('TetrahedronFEMForceField', name="FEM", youngModulus="300000", poissonRatio="0.45", method="large")
-       truss.addObject('BoxROI', box="0.099 -0.001 -0.001 0.11 0.011 0.011")
-       truss.addObject('ConstantForceField', forces="0 -0.1 0")
+       root.addObject('DefaultAnimationLoop', computeBoundingBox="false")
+       root.addObject('MeshOBJLoader', name="meshLoader", triangulate="true", filename="mesh/raptor_35kp.obj")
 
-       triangle = Truss.addChild('Triangle')
+       data = root.addChild('data')
 
-       triangle.addObject('TriangleSetTopologyContainer', name="Container")
-       triangle.addObject('TriangleSetTopologyModifier', )
-       triangle.addObject('Tetra2TriangleTopologicalMapping', input="@/Truss/Container", output="@Container")
-       triangle.addObject('TriangleCollisionModel', )
+       data.addObject('SparseGridTopology', n="10 5 10", name="topology", fileTopology="@../meshLoader.filename")
+       data.addObject('MechanicalObject', name="DOFs", template="Vec3")
 
-       triangle_visual = Triangle.addChild('TriangleVisual')
+       raptor = root.addChild('raptor')
 
-       triangle_visual.addObject('OglModel', template="Vec3", name="Visual", material="Default Diffuse 1 1 0 0 1 Ambient 1 0.2 0 0 1 Specular 0 1 0 0 1 Emissive 0 1 0 0 1 Shininess 0 45")
-       triangle_visual.addObject('IdentityMapping', template="Vec3,Vec3", name="default12", input="@..", output="@Visual")
+       raptor.addObject('EulerImplicitSolver', rayleighStiffness="0.2", rayleighMass="0.2")
+       raptor.addObject('SparseLDLSolver', template="CompressedRowSparseMatrixd")
+       raptor.addObject('HexahedronSetTopologyContainer', hexahedra="@../data/topology.hexahedra")
+       raptor.addObject('MechanicalObject', name="DOFs", template="Vec3", position="@../data/DOFs.position")
+       raptor.addObject('UniformMass', totalMass="1.005")
+       raptor.addObject('TetrahedronFEMForceField', name="FEM", youngModulus="500", poissonRatio="0.3")
+       raptor.addObject('BoxROI', name="ROI1", box="-5 -1 -3  5 1 3", drawBoxes="true")
+       raptor.addObject('FixedProjectiveConstraint', indices="@ROI1.indices")
 
-       beam = Truss.addChild('Beam')
+       collision = raptor.addChild('Collision')
 
-       beam.addObject('MechanicalObject', template="Rigid3", name="BeamMO", position="0 0 0  0 0 0 1  0.02 0 0  0 0 0 1  0.04 0 0  0 0 0 1   0.06 0 0  0 0 0 1  0.08 0 0  0 0 0 1   0.1 0 0  0 0 0 1")
-       beam.addObject('MeshTopology', name="BeamMesh", lines="0 1 1 2 2 3 3 4 4 5")
-       beam.addObject('FixedProjectiveConstraint', name="BeamFixedProjectiveConstraint", indices="0")
-       beam.addObject('UniformMass', vertexMass="0.001 0.001 [0.0001 0 0 0 0.0001 0 0 0 0.0001]")
-       beam.addObject('BeamFEMForceField', name="BeamFEM", radius="0.005", youngModulus="3000000000", poissonRatio="0.45")
-       beam.addObject('ConstantForceField', indices="5", forces="0 0 0 -10 0 0")
-       beam.addObject('BarycentricMapping', isMechanical="true", input="@TrussMO", output="@BeamMO")
+       collision.addObject('MechanicalObject', name="collisMecha", src="@../../meshLoader")
+       collision.addObject('TriangleSetTopologyContainer', src="@../../meshLoader")
+       collision.addObject('TriangleCollisionModel', )
+       collision.addObject('LineCollisionModel', )
+       collision.addObject('PointCollisionModel', )
+       collision.addObject('BarycentricMapping', )
 
-       visu_thread = Beam.addChild('VisuThread')
+       visualization = raptor.addChild('Visualization')
 
-       visu_thread.addObject('QuadSetTopologyContainer', name="Container")
-       visu_thread.addObject('QuadSetTopologyModifier', )
-       visu_thread.addObject('Edge2QuadTopologicalMapping', nbPointsOnEachCircle="10", radius="0.005", input="@BeamMesh", output="@Container")
-       visu_thread.addObject('MechanicalObject', name="Quads")
-       visu_thread.addObject('TubularMapping', nbPointsOnEachCircle="10", radius="0.005", input="@BeamMO", output="@Quads")
+       visualization.addObject('OglModel', name="VisualModel1", src="@../../meshLoader", useNormals="0")
+       visualization.addObject('TriangleSetTopologyContainer', src="@../../meshLoader")
+       visualization.addObject('BarycentricMapping', )
+    ```
 
-       visu_ogl = VisuThread.addChild('VisuOgl')
+BarycentricMapping_meshtopology.scn
 
-       visu_ogl.addObject('OglModel', name="Visual", color="0.5 0.5 1.0")
-       visu_ogl.addObject('IdentityMapping', input="@Quads", output="@Visual")
+=== "XML"
+
+    ```xml
+    <?xml version="1.0"?>
+    <Node name="root" gravity="0 -10 0" dt="0.01">
+    
+        <Node name="plugins">
+            <RequiredPlugin name="Sofa.Component.IO.Mesh"/> <!-- Needed to use components [MeshOBJLoader] -->
+            <RequiredPlugin name="Sofa.GL.Component.Rendering3D"/> <!-- Needed to use components [OglModel] -->
+            <RequiredPlugin name="Sofa.Component.Constraint.Lagrangian.Correction"/> <!-- Needed to use components [LinearSolverConstraintCorrection] -->
+            <RequiredPlugin name="Sofa.Component.Constraint.Lagrangian.Model"/> <!-- Needed to use components [FixedLagrangianConstraint] -->
+            <RequiredPlugin name="Sofa.Component.Engine.Select"/> <!-- Needed to use components [BoxROI] -->
+            <RequiredPlugin name="Sofa.Component.LinearSolver.Direct"/> <!-- Needed to use components [SparseLDLSolver] -->
+            <RequiredPlugin name="Sofa.Component.Mapping.Linear"/> <!-- Needed to use components [BarycentricMapping] -->
+            <RequiredPlugin name="Sofa.Component.Mass"/> <!-- Needed to use components [UniformMass] -->
+            <RequiredPlugin name="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+            <RequiredPlugin name="Sofa.Component.SolidMechanics.FEM.Elastic"/> <!-- Needed to use components [TetrahedronFEMForceField] -->
+            <RequiredPlugin name="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
+            <RequiredPlugin name="Sofa.Component.Topology.Container.Dynamic"/> <!-- Needed to use components [TriangleSetTopologyContainer] -->
+            <RequiredPlugin name="Sofa.Component.Topology.Container.Grid"/> <!-- Needed to use components [SparseGridTopology] -->
+            <RequiredPlugin name="Sofa.Component.Collision.Geometry"/> <!-- Needed to use components [TriangleCollisionModel] -->
+            <RequiredPlugin name="Sofa.Component.Constraint.Projective"/> <!-- Needed to use components [FixedProjectiveConstraint] -->
+        </Node>
+    
+        <DefaultAnimationLoop computeBoundingBox="false" />
+        <MeshOBJLoader name="meshLoader" triangulate="true" filename="mesh/raptor_35kp.obj" />
+    
+        <Node name="data">
+            <SparseGridTopology n="10 5 10" name="topology" fileTopology="@../meshLoader.filename" />
+            <MechanicalObject name="DOFs" template="Vec3" />
+        </Node>
+    
+        <Node name="raptor">
+            <EulerImplicitSolver rayleighStiffness="0.2" rayleighMass="0.2" />
+            <SparseLDLSolver template="CompressedRowSparseMatrixd"/>
+            <MeshTopology hexahedra="@../data/topology.hexahedra" />
+            <MechanicalObject name="DOFs" template="Vec3" position="@../data/DOFs.position"/>
+            <UniformMass totalMass="1.005"/>
+            <TetrahedronFEMForceField name="FEM" youngModulus="500" poissonRatio='0.3' />
+    
+            <BoxROI name='ROI1' box='-5 -1 -3  5 1 3' drawBoxes='true'/>
+            <FixedProjectiveConstraint indices="@ROI1.indices" />
+    
+            <Node name="Collision">
+                <MechanicalObject name="collisMecha" src="@../../meshLoader" />
+                <TriangleSetTopologyContainer src="@../../meshLoader" />
+                <TriangleCollisionModel />
+                <LineCollisionModel />
+                <PointCollisionModel />
+                <BarycentricMapping />
+            </Node>
+    
+            <Node name="Visualization">
+                <OglModel name="VisualModel1" src="@../../meshLoader" useNormals="0" />
+                <TriangleSetTopologyContainer src="@../../meshLoader" />
+                <BarycentricMapping />
+            </Node>
+        </Node>
+    
+    </Node>
+
+    ```
+
+=== "Python"
+
+    ```python
+    def createScene(root_node):
+
+       root = root_node.addChild('root', gravity="0 -10 0", dt="0.01")
+
+       plugins = root.addChild('plugins')
+
+       plugins.addObject('RequiredPlugin', name="Sofa.Component.IO.Mesh")
+       plugins.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
+       plugins.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Lagrangian.Correction")
+       plugins.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Lagrangian.Model")
+       plugins.addObject('RequiredPlugin', name="Sofa.Component.Engine.Select")
+       plugins.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Direct")
+       plugins.addObject('RequiredPlugin', name="Sofa.Component.Mapping.Linear")
+       plugins.addObject('RequiredPlugin', name="Sofa.Component.Mass")
+       plugins.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
+       plugins.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.FEM.Elastic")
+       plugins.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
+       plugins.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Dynamic")
+       plugins.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Grid")
+       plugins.addObject('RequiredPlugin', name="Sofa.Component.Collision.Geometry")
+       plugins.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Projective")
+
+       root.addObject('DefaultAnimationLoop', computeBoundingBox="false")
+       root.addObject('MeshOBJLoader', name="meshLoader", triangulate="true", filename="mesh/raptor_35kp.obj")
+
+       data = root.addChild('data')
+
+       data.addObject('SparseGridTopology', n="10 5 10", name="topology", fileTopology="@../meshLoader.filename")
+       data.addObject('MechanicalObject', name="DOFs", template="Vec3")
+
+       raptor = root.addChild('raptor')
+
+       raptor.addObject('EulerImplicitSolver', rayleighStiffness="0.2", rayleighMass="0.2")
+       raptor.addObject('SparseLDLSolver', template="CompressedRowSparseMatrixd")
+       raptor.addObject('MeshTopology', hexahedra="@../data/topology.hexahedra")
+       raptor.addObject('MechanicalObject', name="DOFs", template="Vec3", position="@../data/DOFs.position")
+       raptor.addObject('UniformMass', totalMass="1.005")
+       raptor.addObject('TetrahedronFEMForceField', name="FEM", youngModulus="500", poissonRatio="0.3")
+       raptor.addObject('BoxROI', name="ROI1", box="-5 -1 -3  5 1 3", drawBoxes="true")
+       raptor.addObject('FixedProjectiveConstraint', indices="@ROI1.indices")
+
+       collision = raptor.addChild('Collision')
+
+       collision.addObject('MechanicalObject', name="collisMecha", src="@../../meshLoader")
+       collision.addObject('TriangleSetTopologyContainer', src="@../../meshLoader")
+       collision.addObject('TriangleCollisionModel', )
+       collision.addObject('LineCollisionModel', )
+       collision.addObject('PointCollisionModel', )
+       collision.addObject('BarycentricMapping', )
+
+       visualization = raptor.addChild('Visualization')
+
+       visualization.addObject('OglModel', name="VisualModel1", src="@../../meshLoader", useNormals="0")
+       visualization.addObject('TriangleSetTopologyContainer', src="@../../meshLoader")
+       visualization.addObject('BarycentricMapping', )
+    ```
+
+BarycentricMapping_sparsegrid.scn
+
+=== "XML"
+
+    ```xml
+    <?xml version="1.0"?>
+    <Node name="root" gravity="0 -10 0" dt="0.01">
+    
+        <Node name="plugins">
+            <RequiredPlugin name="Sofa.Component.IO.Mesh"/> <!-- Needed to use components [MeshOBJLoader] -->
+            <RequiredPlugin name="Sofa.GL.Component.Rendering3D"/> <!-- Needed to use components [OglModel] -->
+            <RequiredPlugin name="Sofa.Component.Constraint.Lagrangian.Correction"/> <!-- Needed to use components [LinearSolverConstraintCorrection] -->
+            <RequiredPlugin name="Sofa.Component.Constraint.Lagrangian.Model"/> <!-- Needed to use components [FixedLagrangianConstraint] -->
+            <RequiredPlugin name="Sofa.Component.Engine.Select"/> <!-- Needed to use components [BoxROI] -->
+            <RequiredPlugin name="Sofa.Component.LinearSolver.Direct"/> <!-- Needed to use components [SparseLDLSolver] -->
+            <RequiredPlugin name="Sofa.Component.Mapping.Linear"/> <!-- Needed to use components [BarycentricMapping] -->
+            <RequiredPlugin name="Sofa.Component.Mass"/> <!-- Needed to use components [UniformMass] -->
+            <RequiredPlugin name="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+            <RequiredPlugin name="Sofa.Component.SolidMechanics.FEM.Elastic"/> <!-- Needed to use components [TetrahedronFEMForceField] -->
+            <RequiredPlugin name="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
+            <RequiredPlugin name="Sofa.Component.Topology.Container.Dynamic"/> <!-- Needed to use components [TriangleSetTopologyContainer] -->
+            <RequiredPlugin name="Sofa.Component.Topology.Container.Grid"/> <!-- Needed to use components [SparseGridTopology] -->
+            <RequiredPlugin name="Sofa.Component.Collision.Geometry"/> <!-- Needed to use components [TriangleCollisionModel] -->
+            <RequiredPlugin name="Sofa.Component.Constraint.Projective"/> <!-- Needed to use components [FixedProjectiveConstraint] -->
+        </Node>
+    
+        <DefaultAnimationLoop computeBoundingBox="false" />
+        <MeshOBJLoader name="meshLoader" triangulate="true" filename="mesh/raptor_35kp.obj" />
+    
+        <Node name="raptor">
+            <EulerImplicitSolver rayleighStiffness="0.2" rayleighMass="0.2" />
+            <SparseLDLSolver template="CompressedRowSparseMatrixd"/>
+            <SparseGridTopology n="10 5 10" name="topology" fileTopology="@../meshLoader.filename" />
+            <MechanicalObject name="DOFs" template="Vec3" position="@../data/DOFs.position"/>
+            <UniformMass totalMass="1.005"/>
+            <TetrahedronFEMForceField name="FEM" youngModulus="500" poissonRatio='0.3' />
+    
+            <BoxROI name='ROI1' box='-5 -1 -3  5 1 3' drawBoxes='true'/>
+            <FixedProjectiveConstraint indices="@ROI1.indices" />
+    
+              <Node name="Collision">
+                <MechanicalObject name="collisMecha" src="@../../meshLoader" />
+                <TriangleSetTopologyContainer src="@../../meshLoader" />
+                <TriangleCollisionModel />
+                <LineCollisionModel />
+                <PointCollisionModel />
+                <BarycentricMapping />
+            </Node>
+    
+            <Node name="Visualization">
+                <OglModel name="VisualModel1" src="@../../meshLoader" useNormals="0" />
+                <TriangleSetTopologyContainer src="@../../meshLoader" />
+                <BarycentricMapping />
+            </Node>
+        </Node>
+    
+    </Node>
+
+    ```
+
+=== "Python"
+
+    ```python
+    def createScene(root_node):
+
+       root = root_node.addChild('root', gravity="0 -10 0", dt="0.01")
+
+       plugins = root.addChild('plugins')
+
+       plugins.addObject('RequiredPlugin', name="Sofa.Component.IO.Mesh")
+       plugins.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
+       plugins.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Lagrangian.Correction")
+       plugins.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Lagrangian.Model")
+       plugins.addObject('RequiredPlugin', name="Sofa.Component.Engine.Select")
+       plugins.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Direct")
+       plugins.addObject('RequiredPlugin', name="Sofa.Component.Mapping.Linear")
+       plugins.addObject('RequiredPlugin', name="Sofa.Component.Mass")
+       plugins.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
+       plugins.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.FEM.Elastic")
+       plugins.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
+       plugins.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Dynamic")
+       plugins.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Grid")
+       plugins.addObject('RequiredPlugin', name="Sofa.Component.Collision.Geometry")
+       plugins.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Projective")
+
+       root.addObject('DefaultAnimationLoop', computeBoundingBox="false")
+       root.addObject('MeshOBJLoader', name="meshLoader", triangulate="true", filename="mesh/raptor_35kp.obj")
+
+       raptor = root.addChild('raptor')
+
+       raptor.addObject('EulerImplicitSolver', rayleighStiffness="0.2", rayleighMass="0.2")
+       raptor.addObject('SparseLDLSolver', template="CompressedRowSparseMatrixd")
+       raptor.addObject('SparseGridTopology', n="10 5 10", name="topology", fileTopology="@../meshLoader.filename")
+       raptor.addObject('MechanicalObject', name="DOFs", template="Vec3", position="@../data/DOFs.position")
+       raptor.addObject('UniformMass', totalMass="1.005")
+       raptor.addObject('TetrahedronFEMForceField', name="FEM", youngModulus="500", poissonRatio="0.3")
+       raptor.addObject('BoxROI', name="ROI1", box="-5 -1 -3  5 1 3", drawBoxes="true")
+       raptor.addObject('FixedProjectiveConstraint', indices="@ROI1.indices")
+
+       collision = raptor.addChild('Collision')
+
+       collision.addObject('MechanicalObject', name="collisMecha", src="@../../meshLoader")
+       collision.addObject('TriangleSetTopologyContainer', src="@../../meshLoader")
+       collision.addObject('TriangleCollisionModel', )
+       collision.addObject('LineCollisionModel', )
+       collision.addObject('PointCollisionModel', )
+       collision.addObject('BarycentricMapping', )
+
+       visualization = raptor.addChild('Visualization')
+
+       visualization.addObject('OglModel', name="VisualModel1", src="@../../meshLoader", useNormals="0")
+       visualization.addObject('TriangleSetTopologyContainer', src="@../../meshLoader")
+       visualization.addObject('BarycentricMapping', )
     ```
 
