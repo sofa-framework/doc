@@ -192,82 +192,6 @@ clamp the vertex color between 0 and 1
 
 ## Examples 
 
-OglShadowShader_SpotLight2.scn
-
-=== "XML"
-
-    ```xml
-    <?xml version="1.0"?>
-    <Node 	 name="root"  dt="0.02"  >
-        <RequiredPlugin name="Sofa.Component.IO.Mesh"/> <!-- Needed to use components [MeshOBJLoader] -->
-        <RequiredPlugin name="Sofa.Component.Setting"/> <!-- Needed to use components [BackgroundSetting] -->
-        <RequiredPlugin name="Sofa.GL.Component.Rendering3D"/> <!-- Needed to use components [OglModel] -->
-        <RequiredPlugin name="Sofa.GL.Component.Shader"/> <!-- Needed to use components [LightManager OglShaderDefineMacro OglShadowShader OglTexture SpotLight] -->
-        
-        <DefaultAnimationLoop/>
-    	<BackgroundSetting color="0.8 0.8 0.8" />
-    	<LightManager name="lightManager1"  listening="1"  shadows="1"  softShadows="1" />
-    	
-    	<SpotLight name="spotLight1"  shadowTextureSize="2048"  position="0 5 -15"  direction="0 -0.2 1"  cutoff="45" />
-    	<SpotLight name="spotLight2"  shadowTextureSize="128"  position="0 5 10"  direction="0 -0.2 -1"  cutoff="45"  />
-    	
-    	<Node name="shader1">
-    		<OglShadowShader name="oglShadowShader1" />
-    
-    		<MeshOBJLoader name="meshLoader_0" filename="mesh/dragon.obj"  translation="0 0 -5"  scale3d="0.3 0.3 0.3" handleSeams="1" />
-    		<OglModel template="Vec3" name="VisualModel" src="@meshLoader_0"  material="Default Diffuse 1 0 1 0 1 Ambient 1 0 0.2 0 1 Specular 0 0 1 0 1 Emissive 0 0 1 0 1 Shininess 0 45 No texture linked to the material No bump texture linked to the material "  blendEquation="GL_FUNC_ADD"  sfactor="GL_SRC_ALPHA"  dfactor="GL_ONE_MINUS_SRC_ALPHA" />
-    	</Node>
-    	<Node name="shader2">
-    		<OglShadowShader name="oglShadowShader1" />
-     		<OglTexture textureFilename="textures/ice_chess.bmp" indexShader="0" id="colorTexture" textureUnit="0"  repeat="true" />
-    		<OglTexture textureFilename="textures/ice_chess.bmp" indexShader="1" id="colorTexture" textureUnit="1"  repeat="true" />
-    		
-    		<OglShaderDefineMacro id="USE_TEXTURE" indexShader="0" />
-    		<OglShaderDefineMacro id="USE_TEXTURE" indexShader="1" />
-    
-    		<MeshOBJLoader name="meshLoader_1" filename="mesh/floor2.obj"  translation="0 -2.5 0"  scale3d="1 1 1" handleSeams="1" />
-    		<OglModel template="Vec3"  putOnlyTexCoords="true" name="FloorV" src="@meshLoader_1"  material="Default Diffuse 1 0.5 0.5 0.5 1 Ambient 1 0.1 0.1 0.1 1 Specular 0 0.5 0.5 0.5 1 Emissive 0 0.5 0.5 0.5 1 Shininess 0 45 No texture linked to the material No bump texture linked to the material "  blendEquation="GL_FUNC_ADD"  sfactor="GL_SRC_ALPHA"  dfactor="GL_ONE_MINUS_SRC_ALPHA" />	
-    	</Node>
-    
-    
-    </Node>
-
-    ```
-
-=== "Python"
-
-    ```python
-    def createScene(root_node):
-
-       root = root_node.addChild('root', dt="0.02")
-
-       root.addObject('RequiredPlugin', name="Sofa.Component.IO.Mesh")
-       root.addObject('RequiredPlugin', name="Sofa.Component.Setting")
-       root.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
-       root.addObject('RequiredPlugin', name="Sofa.GL.Component.Shader")
-       root.addObject('DefaultAnimationLoop', )
-       root.addObject('BackgroundSetting', color="0.8 0.8 0.8")
-       root.addObject('LightManager', name="lightManager1", listening="1", shadows="1", softShadows="1")
-       root.addObject('SpotLight', name="spotLight1", shadowTextureSize="2048", position="0 5 -15", direction="0 -0.2 1", cutoff="45")
-       root.addObject('SpotLight', name="spotLight2", shadowTextureSize="128", position="0 5 10", direction="0 -0.2 -1", cutoff="45")
-
-       shader1 = root.addChild('shader1')
-
-       shader1.addObject('OglShadowShader', name="oglShadowShader1")
-       shader1.addObject('MeshOBJLoader', name="meshLoader_0", filename="mesh/dragon.obj", translation="0 0 -5", scale3d="0.3 0.3 0.3", handleSeams="1")
-       shader1.addObject('OglModel', template="Vec3", name="VisualModel", src="@meshLoader_0", material="Default Diffuse 1 0 1 0 1 Ambient 1 0 0.2 0 1 Specular 0 0 1 0 1 Emissive 0 0 1 0 1 Shininess 0 45 No texture linked to the material No bump texture linked to the material ", blendEquation="GL_FUNC_ADD", sfactor="GL_SRC_ALPHA", dfactor="GL_ONE_MINUS_SRC_ALPHA")
-
-       shader2 = root.addChild('shader2')
-
-       shader2.addObject('OglShadowShader', name="oglShadowShader1")
-       shader2.addObject('OglTexture', textureFilename="textures/ice_chess.bmp", indexShader="0", id="colorTexture", textureUnit="0", repeat="true")
-       shader2.addObject('OglTexture', textureFilename="textures/ice_chess.bmp", indexShader="1", id="colorTexture", textureUnit="1", repeat="true")
-       shader2.addObject('OglShaderDefineMacro', id="USE_TEXTURE", indexShader="0")
-       shader2.addObject('OglShaderDefineMacro', id="USE_TEXTURE", indexShader="1")
-       shader2.addObject('MeshOBJLoader', name="meshLoader_1", filename="mesh/floor2.obj", translation="0 -2.5 0", scale3d="1 1 1", handleSeams="1")
-       shader2.addObject('OglModel', template="Vec3", putOnlyTexCoords="true", name="FloorV", src="@meshLoader_1", material="Default Diffuse 1 0.5 0.5 0.5 1 Ambient 1 0.1 0.1 0.1 1 Specular 0 0.5 0.5 0.5 1 Emissive 0 0.5 0.5 0.5 1 Shininess 0 45 No texture linked to the material No bump texture linked to the material ", blendEquation="GL_FUNC_ADD", sfactor="GL_SRC_ALPHA", dfactor="GL_ONE_MINUS_SRC_ALPHA")
-    ```
-
 OglShadowShader_Directional.scn
 
 === "XML"
@@ -365,5 +289,81 @@ OglShadowShader_SpotLight.scn
        root.addObject('SpotLight', name="spotLight2", shadowTextureSize="128", position="0 5 10", direction="0 -0.2 -1", cutoff="45")
        root.addObject('SpotLight', name="spotLight3", shadowTextureSize="512", position="-15 5 0", direction="1 -0.2 0", cutoff="45")
        root.addObject('SpotLight', name="spotLight4", shadowTextureSize="256", position="10 5 0", direction="-1 -0.2 0", cutoff="45")
+    ```
+
+OglShadowShader_SpotLight2.scn
+
+=== "XML"
+
+    ```xml
+    <?xml version="1.0"?>
+    <Node 	 name="root"  dt="0.02"  >
+        <RequiredPlugin name="Sofa.Component.IO.Mesh"/> <!-- Needed to use components [MeshOBJLoader] -->
+        <RequiredPlugin name="Sofa.Component.Setting"/> <!-- Needed to use components [BackgroundSetting] -->
+        <RequiredPlugin name="Sofa.GL.Component.Rendering3D"/> <!-- Needed to use components [OglModel] -->
+        <RequiredPlugin name="Sofa.GL.Component.Shader"/> <!-- Needed to use components [LightManager OglShaderDefineMacro OglShadowShader OglTexture SpotLight] -->
+        
+        <DefaultAnimationLoop/>
+    	<BackgroundSetting color="0.8 0.8 0.8" />
+    	<LightManager name="lightManager1"  listening="1"  shadows="1"  softShadows="1" />
+    	
+    	<SpotLight name="spotLight1"  shadowTextureSize="2048"  position="0 5 -15"  direction="0 -0.2 1"  cutoff="45" />
+    	<SpotLight name="spotLight2"  shadowTextureSize="128"  position="0 5 10"  direction="0 -0.2 -1"  cutoff="45"  />
+    	
+    	<Node name="shader1">
+    		<OglShadowShader name="oglShadowShader1" />
+    
+    		<MeshOBJLoader name="meshLoader_0" filename="mesh/dragon.obj"  translation="0 0 -5"  scale3d="0.3 0.3 0.3" handleSeams="1" />
+    		<OglModel template="Vec3" name="VisualModel" src="@meshLoader_0"  material="Default Diffuse 1 0 1 0 1 Ambient 1 0 0.2 0 1 Specular 0 0 1 0 1 Emissive 0 0 1 0 1 Shininess 0 45 No texture linked to the material No bump texture linked to the material "  blendEquation="GL_FUNC_ADD"  sfactor="GL_SRC_ALPHA"  dfactor="GL_ONE_MINUS_SRC_ALPHA" />
+    	</Node>
+    	<Node name="shader2">
+    		<OglShadowShader name="oglShadowShader1" />
+     		<OglTexture textureFilename="textures/ice_chess.bmp" indexShader="0" id="colorTexture" textureUnit="0"  repeat="true" />
+    		<OglTexture textureFilename="textures/ice_chess.bmp" indexShader="1" id="colorTexture" textureUnit="1"  repeat="true" />
+    		
+    		<OglShaderDefineMacro id="USE_TEXTURE" indexShader="0" />
+    		<OglShaderDefineMacro id="USE_TEXTURE" indexShader="1" />
+    
+    		<MeshOBJLoader name="meshLoader_1" filename="mesh/floor2.obj"  translation="0 -2.5 0"  scale3d="1 1 1" handleSeams="1" />
+    		<OglModel template="Vec3"  putOnlyTexCoords="true" name="FloorV" src="@meshLoader_1"  material="Default Diffuse 1 0.5 0.5 0.5 1 Ambient 1 0.1 0.1 0.1 1 Specular 0 0.5 0.5 0.5 1 Emissive 0 0.5 0.5 0.5 1 Shininess 0 45 No texture linked to the material No bump texture linked to the material "  blendEquation="GL_FUNC_ADD"  sfactor="GL_SRC_ALPHA"  dfactor="GL_ONE_MINUS_SRC_ALPHA" />	
+    	</Node>
+    
+    
+    </Node>
+
+    ```
+
+=== "Python"
+
+    ```python
+    def createScene(root_node):
+
+       root = root_node.addChild('root', dt="0.02")
+
+       root.addObject('RequiredPlugin', name="Sofa.Component.IO.Mesh")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Setting")
+       root.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
+       root.addObject('RequiredPlugin', name="Sofa.GL.Component.Shader")
+       root.addObject('DefaultAnimationLoop', )
+       root.addObject('BackgroundSetting', color="0.8 0.8 0.8")
+       root.addObject('LightManager', name="lightManager1", listening="1", shadows="1", softShadows="1")
+       root.addObject('SpotLight', name="spotLight1", shadowTextureSize="2048", position="0 5 -15", direction="0 -0.2 1", cutoff="45")
+       root.addObject('SpotLight', name="spotLight2", shadowTextureSize="128", position="0 5 10", direction="0 -0.2 -1", cutoff="45")
+
+       shader1 = root.addChild('shader1')
+
+       shader1.addObject('OglShadowShader', name="oglShadowShader1")
+       shader1.addObject('MeshOBJLoader', name="meshLoader_0", filename="mesh/dragon.obj", translation="0 0 -5", scale3d="0.3 0.3 0.3", handleSeams="1")
+       shader1.addObject('OglModel', template="Vec3", name="VisualModel", src="@meshLoader_0", material="Default Diffuse 1 0 1 0 1 Ambient 1 0 0.2 0 1 Specular 0 0 1 0 1 Emissive 0 0 1 0 1 Shininess 0 45 No texture linked to the material No bump texture linked to the material ", blendEquation="GL_FUNC_ADD", sfactor="GL_SRC_ALPHA", dfactor="GL_ONE_MINUS_SRC_ALPHA")
+
+       shader2 = root.addChild('shader2')
+
+       shader2.addObject('OglShadowShader', name="oglShadowShader1")
+       shader2.addObject('OglTexture', textureFilename="textures/ice_chess.bmp", indexShader="0", id="colorTexture", textureUnit="0", repeat="true")
+       shader2.addObject('OglTexture', textureFilename="textures/ice_chess.bmp", indexShader="1", id="colorTexture", textureUnit="1", repeat="true")
+       shader2.addObject('OglShaderDefineMacro', id="USE_TEXTURE", indexShader="0")
+       shader2.addObject('OglShaderDefineMacro', id="USE_TEXTURE", indexShader="1")
+       shader2.addObject('MeshOBJLoader', name="meshLoader_1", filename="mesh/floor2.obj", translation="0 -2.5 0", scale3d="1 1 1", handleSeams="1")
+       shader2.addObject('OglModel', template="Vec3", putOnlyTexCoords="true", name="FloorV", src="@meshLoader_1", material="Default Diffuse 1 0.5 0.5 0.5 1 Ambient 1 0.1 0.1 0.1 1 Specular 0 0.5 0.5 0.5 1 Emissive 0 0.5 0.5 0.5 1 Shininess 0 45 No texture linked to the material No bump texture linked to the material ", blendEquation="GL_FUNC_ADD", sfactor="GL_SRC_ALPHA", dfactor="GL_ONE_MINUS_SRC_ALPHA")
     ```
 

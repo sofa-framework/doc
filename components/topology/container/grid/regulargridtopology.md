@@ -372,6 +372,159 @@ RegularGridTopology_TrianglesMesh.scn
        node.addObject('IdentityMapping', input="@..", output="@Visual")
     ```
 
+RegularGridTopology.scn
+
+=== "XML"
+
+    ```xml
+    <!-- RegularGrid examples -->
+    <Node name="root" dt="0.002">
+        <RequiredPlugin name="Sofa.Component.Collision.Detection.Algorithm"/> <!-- Needed to use components [BVHNarrowPhase BruteForceBroadPhase CollisionPipeline] -->
+        <RequiredPlugin name="Sofa.Component.Collision.Detection.Intersection"/> <!-- Needed to use components [DiscreteIntersection] -->
+        <RequiredPlugin name="Sofa.Component.Collision.Geometry"/> <!-- Needed to use components [SphereCollisionModel] -->
+        <RequiredPlugin name="Sofa.Component.Collision.Response.Contact"/> <!-- Needed to use components [CollisionResponse] -->
+        <RequiredPlugin name="Sofa.Component.Constraint.Projective"/> <!-- Needed to use components [FixedProjectiveConstraint] -->
+        <RequiredPlugin name="Sofa.Component.Engine.Select"/> <!-- Needed to use components [BoxROI] -->
+        <RequiredPlugin name="Sofa.Component.IO.Mesh"/> <!-- Needed to use components [MeshOBJLoader SphereLoader] -->
+        <RequiredPlugin name="Sofa.Component.LinearSolver.Iterative"/> <!-- Needed to use components [CGLinearSolver] -->
+        <RequiredPlugin name="Sofa.Component.Mapping.Linear"/> <!-- Needed to use components [BarycentricMapping] -->
+        <RequiredPlugin name="Sofa.Component.Mass"/> <!-- Needed to use components [UniformMass] -->
+        <RequiredPlugin name="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+        <RequiredPlugin name="Sofa.Component.SolidMechanics.Spring"/> <!-- Needed to use components [RegularGridSpringForceField] -->
+        <RequiredPlugin name="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
+        <RequiredPlugin name="Sofa.Component.Topology.Container.Grid"/> <!-- Needed to use components [RegularGridTopology] -->
+        <RequiredPlugin name="Sofa.Component.Visual"/> <!-- Needed to use components [VisualStyle] -->
+        <RequiredPlugin name="Sofa.GL.Component.Rendering3D"/> <!-- Needed to use components [OglModel] -->
+        <VisualStyle displayFlags="showBehaviorModels showForceFields showVisual" />
+        <CollisionPipeline verbose="0" />
+        <BruteForceBroadPhase/>
+        <BVHNarrowPhase/>
+        <CollisionResponse response="PenalityContactForceField" />
+        <DiscreteIntersection/>
+        <DefaultAnimationLoop/>
+        
+        <Node name="LiverFFD-lowres">
+            <EulerImplicitSolver  />
+            <CGLinearSolver iterations="100" tolerance="1e-7" threshold="1e-7"/>
+            <MechanicalObject />
+            <UniformMass totalMass="100.0" />
+            <RegularGridTopology nx="4" ny="3" nz="3" xmin="-10.25" xmax="-3.25" ymin="0.25" ymax="5.25" zmin="-2" zmax="3" />
+            <BoxConstraint box="-8.5 0 -2.5 -5 3 2" />
+            <RegularGridSpringForceField name="Springs" stiffness="400" damping="4" />
+            <Node name="Visu">
+                <MeshOBJLoader name="meshLoader_0" filename="mesh/liver-smooth.obj" translation="-5 0 0" handleSeams="1" />
+                <OglModel name="Visual" src="@meshLoader_0" color="red" />
+                <BarycentricMapping input="@.." output="@Visual" />
+            </Node>
+            <Node name="Collision Surface">
+    	    <SphereLoader filename="mesh/liver.sph" />
+                <MechanicalObject position="@[-1].position" translation="-5 0 0" />
+                <SphereCollisionModel name="Surf" listRadius="@[-2].listRadius" />
+                <BarycentricMapping input="@.." output="@." />
+            </Node>
+        </Node>
+        <Node name="LiverFFD-hires">
+            <EulerImplicitSolver />
+            <CGLinearSolver iterations="100" tolerance="1e-7" threshold="1e-7"/>
+            <MechanicalObject />
+            <UniformMass totalMass="100.0" />
+            <RegularGridTopology nx="8" ny="6" nz="6" xmin="-0.25" xmax="7.25" ymin="0.25" ymax="5.25" zmin="-2" zmax="3" />
+            <BoxConstraint box="2.5 0 -2.5 5 3 2" />
+            <RegularGridSpringForceField name="Springs" stiffness="100" damping="4" />
+            <Node name="Visu">
+                <MeshOBJLoader name="meshLoader_1" filename="mesh/liver-smooth.obj" translation="5 0 0" handleSeams="1" />
+                <OglModel name="Visual" src="@meshLoader_1" color="red" />
+                <BarycentricMapping input="@.." output="@Visual" />
+            </Node>
+            <Node name="Collision Surface">
+    	    <SphereLoader filename="mesh/liver.sph" />
+                <MechanicalObject position="@[-1].position" translation="5 0 0" />
+                <SphereCollisionModel name="Surf" listRadius="@[-2].listRadius" />
+                <BarycentricMapping input="@.." output="@." />
+           </Node>
+        </Node>
+    </Node>
+
+    ```
+
+=== "Python"
+
+    ```python
+    def createScene(root_node):
+
+       root = root_node.addChild('root', dt="0.002")
+
+       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Algorithm")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Intersection")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Geometry")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Response.Contact")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Projective")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Engine.Select")
+       root.addObject('RequiredPlugin', name="Sofa.Component.IO.Mesh")
+       root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Iterative")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Mapping.Linear")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Mass")
+       root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.Spring")
+       root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Grid")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Visual")
+       root.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
+       root.addObject('VisualStyle', displayFlags="showBehaviorModels showForceFields showVisual")
+       root.addObject('CollisionPipeline', verbose="0")
+       root.addObject('BruteForceBroadPhase', )
+       root.addObject('BVHNarrowPhase', )
+       root.addObject('CollisionResponse', response="PenalityContactForceField")
+       root.addObject('DiscreteIntersection', )
+       root.addObject('DefaultAnimationLoop', )
+
+       liver_ffd_lowres = root.addChild('LiverFFD-lowres')
+
+       liver_ffd_lowres.addObject('EulerImplicitSolver', )
+       liver_ffd_lowres.addObject('CGLinearSolver', iterations="100", tolerance="1e-7", threshold="1e-7")
+       liver_ffd_lowres.addObject('MechanicalObject', )
+       liver_ffd_lowres.addObject('UniformMass', totalMass="100.0")
+       liver_ffd_lowres.addObject('RegularGridTopology', nx="4", ny="3", nz="3", xmin="-10.25", xmax="-3.25", ymin="0.25", ymax="5.25", zmin="-2", zmax="3")
+       liver_ffd_lowres.addObject('BoxConstraint', box="-8.5 0 -2.5 -5 3 2")
+       liver_ffd_lowres.addObject('RegularGridSpringForceField', name="Springs", stiffness="400", damping="4")
+
+       visu = LiverFFD-lowres.addChild('Visu')
+
+       visu.addObject('MeshOBJLoader', name="meshLoader_0", filename="mesh/liver-smooth.obj", translation="-5 0 0", handleSeams="1")
+       visu.addObject('OglModel', name="Visual", src="@meshLoader_0", color="red")
+       visu.addObject('BarycentricMapping', input="@..", output="@Visual")
+
+       collision__surface = LiverFFD-lowres.addChild('Collision Surface')
+
+       collision__surface.addObject('SphereLoader', filename="mesh/liver.sph")
+       collision__surface.addObject('MechanicalObject', position="@[-1].position", translation="-5 0 0")
+       collision__surface.addObject('SphereCollisionModel', name="Surf", listRadius="@[-2].listRadius")
+       collision__surface.addObject('BarycentricMapping', input="@..", output="@.")
+
+       liver_ffd_hires = root.addChild('LiverFFD-hires')
+
+       liver_ffd_hires.addObject('EulerImplicitSolver', )
+       liver_ffd_hires.addObject('CGLinearSolver', iterations="100", tolerance="1e-7", threshold="1e-7")
+       liver_ffd_hires.addObject('MechanicalObject', )
+       liver_ffd_hires.addObject('UniformMass', totalMass="100.0")
+       liver_ffd_hires.addObject('RegularGridTopology', nx="8", ny="6", nz="6", xmin="-0.25", xmax="7.25", ymin="0.25", ymax="5.25", zmin="-2", zmax="3")
+       liver_ffd_hires.addObject('BoxConstraint', box="2.5 0 -2.5 5 3 2")
+       liver_ffd_hires.addObject('RegularGridSpringForceField', name="Springs", stiffness="100", damping="4")
+
+       visu = LiverFFD-hires.addChild('Visu')
+
+       visu.addObject('MeshOBJLoader', name="meshLoader_1", filename="mesh/liver-smooth.obj", translation="5 0 0", handleSeams="1")
+       visu.addObject('OglModel', name="Visual", src="@meshLoader_1", color="red")
+       visu.addObject('BarycentricMapping', input="@..", output="@Visual")
+
+       collision__surface = LiverFFD-hires.addChild('Collision Surface')
+
+       collision__surface.addObject('SphereLoader', filename="mesh/liver.sph")
+       collision__surface.addObject('MechanicalObject', position="@[-1].position", translation="5 0 0")
+       collision__surface.addObject('SphereCollisionModel', name="Surf", listRadius="@[-2].listRadius")
+       collision__surface.addObject('BarycentricMapping', input="@..", output="@.")
+    ```
+
 RegularGridTopology_dimension.scn
 
 === "XML"
@@ -562,158 +715,5 @@ RegularGridTopology_dimension.scn
 
        visu.addObject('OglModel', name="Visual", color="white", edges="@../grid.edges")
        visu.addObject('IdentityMapping', input="@../Edge", output="@Visual")
-    ```
-
-RegularGridTopology.scn
-
-=== "XML"
-
-    ```xml
-    <!-- RegularGrid examples -->
-    <Node name="root" dt="0.002">
-        <RequiredPlugin name="Sofa.Component.Collision.Detection.Algorithm"/> <!-- Needed to use components [BVHNarrowPhase BruteForceBroadPhase CollisionPipeline] -->
-        <RequiredPlugin name="Sofa.Component.Collision.Detection.Intersection"/> <!-- Needed to use components [DiscreteIntersection] -->
-        <RequiredPlugin name="Sofa.Component.Collision.Geometry"/> <!-- Needed to use components [SphereCollisionModel] -->
-        <RequiredPlugin name="Sofa.Component.Collision.Response.Contact"/> <!-- Needed to use components [CollisionResponse] -->
-        <RequiredPlugin name="Sofa.Component.Constraint.Projective"/> <!-- Needed to use components [FixedProjectiveConstraint] -->
-        <RequiredPlugin name="Sofa.Component.Engine.Select"/> <!-- Needed to use components [BoxROI] -->
-        <RequiredPlugin name="Sofa.Component.IO.Mesh"/> <!-- Needed to use components [MeshOBJLoader SphereLoader] -->
-        <RequiredPlugin name="Sofa.Component.LinearSolver.Iterative"/> <!-- Needed to use components [CGLinearSolver] -->
-        <RequiredPlugin name="Sofa.Component.Mapping.Linear"/> <!-- Needed to use components [BarycentricMapping] -->
-        <RequiredPlugin name="Sofa.Component.Mass"/> <!-- Needed to use components [UniformMass] -->
-        <RequiredPlugin name="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
-        <RequiredPlugin name="Sofa.Component.SolidMechanics.Spring"/> <!-- Needed to use components [RegularGridSpringForceField] -->
-        <RequiredPlugin name="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
-        <RequiredPlugin name="Sofa.Component.Topology.Container.Grid"/> <!-- Needed to use components [RegularGridTopology] -->
-        <RequiredPlugin name="Sofa.Component.Visual"/> <!-- Needed to use components [VisualStyle] -->
-        <RequiredPlugin name="Sofa.GL.Component.Rendering3D"/> <!-- Needed to use components [OglModel] -->
-        <VisualStyle displayFlags="showBehaviorModels showForceFields showVisual" />
-        <CollisionPipeline verbose="0" />
-        <BruteForceBroadPhase/>
-        <BVHNarrowPhase/>
-        <CollisionResponse response="PenalityContactForceField" />
-        <DiscreteIntersection/>
-        <DefaultAnimationLoop/>
-        
-        <Node name="LiverFFD-lowres">
-            <EulerImplicitSolver  />
-            <CGLinearSolver iterations="100" tolerance="1e-7" threshold="1e-7"/>
-            <MechanicalObject />
-            <UniformMass totalMass="100.0" />
-            <RegularGridTopology nx="4" ny="3" nz="3" xmin="-10.25" xmax="-3.25" ymin="0.25" ymax="5.25" zmin="-2" zmax="3" />
-            <BoxConstraint box="-8.5 0 -2.5 -5 3 2" />
-            <RegularGridSpringForceField name="Springs" stiffness="400" damping="4" />
-            <Node name="Visu">
-                <MeshOBJLoader name="meshLoader_0" filename="mesh/liver-smooth.obj" translation="-5 0 0" handleSeams="1" />
-                <OglModel name="Visual" src="@meshLoader_0" color="red" />
-                <BarycentricMapping input="@.." output="@Visual" />
-            </Node>
-            <Node name="Collision Surface">
-    	    <SphereLoader filename="mesh/liver.sph" />
-                <MechanicalObject position="@[-1].position" translation="-5 0 0" />
-                <SphereCollisionModel name="Surf" listRadius="@[-2].listRadius" />
-                <BarycentricMapping input="@.." output="@." />
-            </Node>
-        </Node>
-        <Node name="LiverFFD-hires">
-            <EulerImplicitSolver />
-            <CGLinearSolver iterations="100" tolerance="1e-7" threshold="1e-7"/>
-            <MechanicalObject />
-            <UniformMass totalMass="100.0" />
-            <RegularGridTopology nx="8" ny="6" nz="6" xmin="-0.25" xmax="7.25" ymin="0.25" ymax="5.25" zmin="-2" zmax="3" />
-            <BoxConstraint box="2.5 0 -2.5 5 3 2" />
-            <RegularGridSpringForceField name="Springs" stiffness="100" damping="4" />
-            <Node name="Visu">
-                <MeshOBJLoader name="meshLoader_1" filename="mesh/liver-smooth.obj" translation="5 0 0" handleSeams="1" />
-                <OglModel name="Visual" src="@meshLoader_1" color="red" />
-                <BarycentricMapping input="@.." output="@Visual" />
-            </Node>
-            <Node name="Collision Surface">
-    	    <SphereLoader filename="mesh/liver.sph" />
-                <MechanicalObject position="@[-1].position" translation="5 0 0" />
-                <SphereCollisionModel name="Surf" listRadius="@[-2].listRadius" />
-                <BarycentricMapping input="@.." output="@." />
-           </Node>
-        </Node>
-    </Node>
-
-    ```
-
-=== "Python"
-
-    ```python
-    def createScene(root_node):
-
-       root = root_node.addChild('root', dt="0.002")
-
-       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Algorithm")
-       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Intersection")
-       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Geometry")
-       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Response.Contact")
-       root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Projective")
-       root.addObject('RequiredPlugin', name="Sofa.Component.Engine.Select")
-       root.addObject('RequiredPlugin', name="Sofa.Component.IO.Mesh")
-       root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Iterative")
-       root.addObject('RequiredPlugin', name="Sofa.Component.Mapping.Linear")
-       root.addObject('RequiredPlugin', name="Sofa.Component.Mass")
-       root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
-       root.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.Spring")
-       root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
-       root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Grid")
-       root.addObject('RequiredPlugin', name="Sofa.Component.Visual")
-       root.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
-       root.addObject('VisualStyle', displayFlags="showBehaviorModels showForceFields showVisual")
-       root.addObject('CollisionPipeline', verbose="0")
-       root.addObject('BruteForceBroadPhase', )
-       root.addObject('BVHNarrowPhase', )
-       root.addObject('CollisionResponse', response="PenalityContactForceField")
-       root.addObject('DiscreteIntersection', )
-       root.addObject('DefaultAnimationLoop', )
-
-       liver_ffd_lowres = root.addChild('LiverFFD-lowres')
-
-       liver_ffd_lowres.addObject('EulerImplicitSolver', )
-       liver_ffd_lowres.addObject('CGLinearSolver', iterations="100", tolerance="1e-7", threshold="1e-7")
-       liver_ffd_lowres.addObject('MechanicalObject', )
-       liver_ffd_lowres.addObject('UniformMass', totalMass="100.0")
-       liver_ffd_lowres.addObject('RegularGridTopology', nx="4", ny="3", nz="3", xmin="-10.25", xmax="-3.25", ymin="0.25", ymax="5.25", zmin="-2", zmax="3")
-       liver_ffd_lowres.addObject('BoxConstraint', box="-8.5 0 -2.5 -5 3 2")
-       liver_ffd_lowres.addObject('RegularGridSpringForceField', name="Springs", stiffness="400", damping="4")
-
-       visu = LiverFFD-lowres.addChild('Visu')
-
-       visu.addObject('MeshOBJLoader', name="meshLoader_0", filename="mesh/liver-smooth.obj", translation="-5 0 0", handleSeams="1")
-       visu.addObject('OglModel', name="Visual", src="@meshLoader_0", color="red")
-       visu.addObject('BarycentricMapping', input="@..", output="@Visual")
-
-       collision__surface = LiverFFD-lowres.addChild('Collision Surface')
-
-       collision__surface.addObject('SphereLoader', filename="mesh/liver.sph")
-       collision__surface.addObject('MechanicalObject', position="@[-1].position", translation="-5 0 0")
-       collision__surface.addObject('SphereCollisionModel', name="Surf", listRadius="@[-2].listRadius")
-       collision__surface.addObject('BarycentricMapping', input="@..", output="@.")
-
-       liver_ffd_hires = root.addChild('LiverFFD-hires')
-
-       liver_ffd_hires.addObject('EulerImplicitSolver', )
-       liver_ffd_hires.addObject('CGLinearSolver', iterations="100", tolerance="1e-7", threshold="1e-7")
-       liver_ffd_hires.addObject('MechanicalObject', )
-       liver_ffd_hires.addObject('UniformMass', totalMass="100.0")
-       liver_ffd_hires.addObject('RegularGridTopology', nx="8", ny="6", nz="6", xmin="-0.25", xmax="7.25", ymin="0.25", ymax="5.25", zmin="-2", zmax="3")
-       liver_ffd_hires.addObject('BoxConstraint', box="2.5 0 -2.5 5 3 2")
-       liver_ffd_hires.addObject('RegularGridSpringForceField', name="Springs", stiffness="100", damping="4")
-
-       visu = LiverFFD-hires.addChild('Visu')
-
-       visu.addObject('MeshOBJLoader', name="meshLoader_1", filename="mesh/liver-smooth.obj", translation="5 0 0", handleSeams="1")
-       visu.addObject('OglModel', name="Visual", src="@meshLoader_1", color="red")
-       visu.addObject('BarycentricMapping', input="@..", output="@Visual")
-
-       collision__surface = LiverFFD-hires.addChild('Collision Surface')
-
-       collision__surface.addObject('SphereLoader', filename="mesh/liver.sph")
-       collision__surface.addObject('MechanicalObject', position="@[-1].position", translation="5 0 0")
-       collision__surface.addObject('SphereCollisionModel', name="Surf", listRadius="@[-2].listRadius")
-       collision__surface.addObject('BarycentricMapping', input="@..", output="@.")
     ```
 
