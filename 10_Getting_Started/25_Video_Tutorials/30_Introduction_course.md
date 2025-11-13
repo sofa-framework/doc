@@ -2,7 +2,7 @@ In order to help you starting with SOFA, we recorded a video of the SOFA days. T
 
 2023 Tutorial (using SOFA v23.06):
 
-<iframe width="560" height="315" src="https://www.youtube.com/embed/GKH1lTvO_YM" frameborder="0" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/GKH1lTvO_YM" frameborder="0" allowfullscreen referrerPolicy="strict-origin-when-cross-origin"></iframe>
 
 
 All SOFA tutorials are available here on our YouTube channel: [Tutorial playlist](https://www.youtube.com/playlist?list=PLL2-UDGHPj0iLCieVkrv3OvAme0jsWl91).
