@@ -12,7 +12,7 @@ Templates:
 
 __Target__: SofaImplicitField
 
-__namespace__: sofa::component::mapping
+__namespace__: sofaimplicitfield::mapping
 
 __parents__:
 
@@ -157,6 +157,20 @@ List of hexahedron indices
 		<td></td>
 	</tr>
 	<tr>
+		<td>prisms</td>
+		<td>
+List of prisms indices
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>pyramids</td>
+		<td>
+List of pyramids indices
+		</td>
+		<td></td>
+	</tr>
+	<tr>
 		<td>uv</td>
 		<td>
 List of uv coordinates
@@ -279,11 +293,14 @@ ImplicitSurfaceMapping.scn
             <EulerImplicitSolver name="cg_odesolver" printLog="false"  rayleighStiffness="0.1" rayleighMass="0.1" />
             <CGLinearSolver iterations="25" name="linear solver" tolerance="1.0e-9" threshold="1.0e-9" />
             <MeshGmshLoader name="loader" filename="mesh/liver.msh" />
-            <MechanicalObject src="@loader" name="dofs" />
+            <MechanicalObject src="@loader" name="dofs" showObject="1" showObjectScale="10.0"/>
             <UniformMass name="M1" vertexMass="1" />
             <Node id="Visual">
                 <OglModel name="VModel" color="blue" />
-                <ImplicitSurfaceMapping name="MarchingCube" input="@../dofs" output="@VModel" isoValue="0.5" radius="0.75" step="0.25" />
+                <ImplicitSurfaceMapping name="MarchingCube" input="@../dofs" output="@VModel"
+                                        isoValue="0.1" radius="0.5" step="0.25"
+                                        min="-10 -10 -10" max="10 10 10"
+                />
             </Node>
         </Node>
     </Node>
@@ -312,12 +329,12 @@ ImplicitSurfaceMapping.scn
        liver.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
        liver.addObject('CGLinearSolver', iterations="25", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
        liver.addObject('MeshGmshLoader', name="loader", filename="mesh/liver.msh")
-       liver.addObject('MechanicalObject', src="@loader", name="dofs")
+       liver.addObject('MechanicalObject', src="@loader", name="dofs", showObject="1", showObjectScale="10.0")
        liver.addObject('UniformMass', name="M1", vertexMass="1")
 
        node = Liver.addChild('node', id="Visual")
 
        node.addObject('OglModel', name="VModel", color="blue")
-       node.addObject('ImplicitSurfaceMapping', name="MarchingCube", input="@../dofs", output="@VModel", isoValue="0.5", radius="0.75", step="0.25")
+       node.addObject('ImplicitSurfaceMapping', name="MarchingCube", input="@../dofs", output="@VModel", isoValue="0.1", radius="0.5", step="0.25", min="-10 -10 -10", max="10 10 10")
     ```
 

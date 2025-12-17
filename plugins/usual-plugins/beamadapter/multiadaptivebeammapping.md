@@ -114,13 +114,6 @@ true if the curvilinear abscissa of the points remains the same during the simul
 		<td>1</td>
 	</tr>
 	<tr>
-		<td>ircontroller</td>
-		<td>
-Path to the ircontroller component on scene
-		</td>
-		<td></td>
-	</tr>
-	<tr>
 		<td>parallelMapping</td>
 		<td>
 flag to enable parallel internal computation in all the submappings
@@ -141,4 +134,5 @@ flag to enable parallel internal computation in all the submappings
 |master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
 |input|Input object to map|State&lt;Rigid3d&gt;|
 |output|Output object to map|State&lt;Vec3d&gt;|
+|controller|Link to the ircontroller component on scene|InterventionalRadiologyController&lt;Rigid3d&gt;|
 

@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # ImageTransformEngine
 
-Apply a transform to the data 'transform'
+Apply a transform to the data 'transform
 
 
 __Target__: image

@@ -31,6 +31,11 @@ Unix-like systems such as Linux need a few extra packages for GLFW. Read the doc
 sudo apt install xorg-dev
 ```
 
+In case you want the video recording feature, make sure to also have installed the following dependencies:
+
+```
+sudo apt install libavcodec-dev libavformat-dev libavutil-dev libswresample-dev libswscale-dev
+```
 
 #### Others
 
@@ -43,9 +48,19 @@ As any plugin, to compile SofaGLFW, follow the instructions on the [SOFA documen
 
 ### Keyboard Shortcuts
 
-* CTRL+F: switch to fullscreen
+Several shortcuts are related to the window:
+* F11: switch to fullscreen
 * Escape: close the app
 * Space: play/pause the simulation
+* Any letter on your keyboard would result in a search in the scene graph
+
+Using the control (CTRL) key, you activate GUI shortcuts such as:
+* Ctrl+A: show the scene axis
+* Ctrl+B: switch the background
+* Ctrl+R: reload the current scene
+* Ctrl+O: open a scene file
+
+Using the SHIFT key, you activate the scene interactions such as the mouse interaction.
 
 ### Command Line Options
 

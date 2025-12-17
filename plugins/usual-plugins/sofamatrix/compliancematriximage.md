@@ -115,7 +115,7 @@ ComplianceMatrixImage.scn
     
         <VisualStyle displayFlags="hideVisualModels showBehaviorModels showMappings showForceFields" />
         <FreeMotionAnimationLoop solveVelocityConstraintFirst="true" />
-        <ProjectedGaussSeidelConstraintSolver tolerance="1e-9" maxIterations="1000"/>
+        <BlockGaussSeidelConstraintSolver tolerance="1e-9" maxIterations="1000"/>
         <ComplianceMatrixImage/>
     
         <StringMeshCreator name="loader" resolution="20" scale3d="1 1 1" />
@@ -164,7 +164,7 @@ ComplianceMatrixImage.scn
        root.addObject('RequiredPlugin', name="SofaMatrix.Qt")
        root.addObject('VisualStyle', displayFlags="hideVisualModels showBehaviorModels showMappings showForceFields")
        root.addObject('FreeMotionAnimationLoop', solveVelocityConstraintFirst="true")
-       root.addObject('ProjectedGaussSeidelConstraintSolver', tolerance="1e-9", maxIterations="1000")
+       root.addObject('BlockGaussSeidelConstraintSolver', tolerance="1e-9", maxIterations="1000")
        root.addObject('ComplianceMatrixImage', )
        root.addObject('StringMeshCreator', name="loader", resolution="20", scale3d="1 1 1")
        root.addObject('TransformEngine', name="translate", input_position="@loader.position", translation="0 0 0")

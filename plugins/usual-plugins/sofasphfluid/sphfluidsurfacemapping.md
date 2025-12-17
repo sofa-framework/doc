@@ -157,6 +157,20 @@ List of hexahedron indices
 		<td></td>
 	</tr>
 	<tr>
+		<td>prisms</td>
+		<td>
+List of prisms indices
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>pyramids</td>
+		<td>
+List of pyramids indices
+		</td>
+		<td></td>
+	</tr>
+	<tr>
 		<td>uv</td>
 		<td>
 List of uv coordinates

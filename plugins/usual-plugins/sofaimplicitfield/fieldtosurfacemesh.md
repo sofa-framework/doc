@@ -1,16 +1,16 @@
 <!-- generate_doc -->
-# QuadSetTopologyModifier
+# FieldToSurfaceMesh
 
-Topology modifier dedicated to a quad topology.
+Generates a surface mesh from a field function.
 
 
-__Target__: Sofa.Component.Topology.Container.Dynamic
+__Target__: SofaImplicitField
 
-__namespace__: sofa::component::topology::container::dynamic
+__namespace__: sofaimplicitfield::component::engine
 
 __parents__:
 
-- EdgeSetTopologyModifier
+- BaseObject
 
 ### Data
 
@@ -66,11 +66,56 @@ if true, handle the events, otherwise ignore the events
 		<td>0</td>
 	</tr>
 	<tr>
-		<td>propagateToDOF</td>
+		<td>step</td>
 		<td>
-Propagate changes to Mechanical object DOFs
+Step
 		</td>
-		<td>1</td>
+		<td>0.1</td>
+	</tr>
+	<tr>
+		<td>isoValue</td>
+		<td>
+Iso Value
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>min</td>
+		<td>
+Grid Min
+		</td>
+		<td>-1 -1 -1</td>
+	</tr>
+	<tr>
+		<td>max</td>
+		<td>
+Grid Max
+		</td>
+		<td>1 1 1</td>
+	</tr>
+	<tr>
+		<td>debugDraw</td>
+		<td>
+Display the extracted surface
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td colspan="3">Output</td>
+	</tr>
+	<tr>
+		<td>points</td>
+		<td>
+position of the tiangles vertex
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>triangles</td>
+		<td>
+list of triangles
+		</td>
+		<td></td>
 	</tr>
 
 </tbody>
@@ -84,4 +129,5 @@ Propagate changes to Mechanical object DOFs
 |context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
 |slaves|Sub-objects used internally by this object|BaseObject|
 |master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
+|field|The scalar field to generate a mesh from.|ScalarField|
 

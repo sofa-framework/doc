@@ -78,6 +78,13 @@ Parallelize the computation of the product J*M^{-1}*J^T where M is the matrix of
 		</td>
 		<td>0</td>
 	</tr>
+	<tr>
+		<td>factorizationInvalidation</td>
+		<td>
+Internal data for the detection of cache invalidation of the matrix factorization
+		</td>
+		<td>0</td>
+	</tr>
 
 </tbody>
 </table>

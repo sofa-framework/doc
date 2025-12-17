@@ -2,7 +2,6 @@
 # DataExchange
 
 Component for data memory sharing in the context of multi-threading applications
-DataExchange
 
 
 Templates:

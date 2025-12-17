@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # InertiaAlign
 
-An engine computing inertia matrix and the principal direction of a mesh.
+An engine computing inertia matrix and the principal direction of a mesh
 
 
 __Target__: Registration

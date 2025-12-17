@@ -80,6 +80,13 @@ Parallelize the computation of the product J*M^{-1}*J^T where M is the matrix of
 		<td>0</td>
 	</tr>
 	<tr>
+		<td>factorizationInvalidation</td>
+		<td>
+Internal data for the detection of cache invalidation of the matrix factorization
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
 		<td>iterations</td>
 		<td>
 Maximum number of iterations after which the iterative descent of the Conjugate Gradient must stop
@@ -215,6 +222,13 @@ if true, handle the events, otherwise ignore the events
 		<td>parallelInverseProduct</td>
 		<td>
 Parallelize the computation of the product J*M^{-1}*J^T where M is the matrix of the linear system and J is any matrix with compatible dimensions
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>factorizationInvalidation</td>
+		<td>
+Internal data for the detection of cache invalidation of the matrix factorization
 		</td>
 		<td>0</td>
 	</tr>

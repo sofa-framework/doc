@@ -32,7 +32,8 @@ This means that the SOFA consortium commits to:
 | [SofaMatrix](https://github.com/sofa-framework/sofa/tree/master/applications/plugins/SofaMatrix)* | Plugin containing components used to provide insights on linear system matrices by exporting them of drawing them.  |
 | [SofaPhysicsAPI](https://github.com/sofa-framework/sofa/tree/master/applications/projects/SofaPhysicsAPI)* | Application named SofaPhysicsAPI. |
 | [SofaPython3](https://www.github.com/sofa-framework/SofaPython3.git) | Plugin enabling to write SOFA scenes in Python that also introduce several Python modules that exposes different C++ components used in SOFA.  |
-| [SofaViscoElastic](https://www.github.com/SofaDefrost/SofaViscoElastic.git) | External Plugin named SofaViscoElastic that needs to be fetched. |
+| [SofaViscoElastic](https://www.github.com/SofaDefrost/SofaViscoElastic.git) | Plugin implementing the fundamental linear viscoelastic and visco-hyperelastic constitutive laws applied to tetrahedral meshes.
+  |
 | [SoftRobots](https://www.github.com/SofaDefrost/SoftRobots.git) | Plugin containing components dedicated to forward simulation of soft robots.  |
 | [SoftRobots.Inverse](https://www.github.com/SofaDefrost/SoftRobots.Inverse.git) | External Plugin named SoftRobots.Inverse that needs to be fetched. |
 | [VolumetricRendering](https://github.com/sofa-framework/sofa/tree/master/applications/plugins/VolumetricRendering)* | Plugin named VolumetricRendering. |

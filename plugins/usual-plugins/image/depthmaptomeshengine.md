@@ -1,7 +1,7 @@
 <!-- generate_doc -->
 # DepthMapToMeshEngine
 
-Compute a mesh from a depth map image 
+Compute a mesh from a depth map image
 
 
 Templates:
