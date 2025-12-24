@@ -297,8 +297,23 @@ def write_examples(destination_directory, example_directories, object_factory):
                         file.write(python + '\n')
                         file.write('    ```\n\n')
 
+def print_help():
+    print(f"Usage: {sys.argv[0]} [destination_directory] [example_directories...]")
+    print("Description:")
+    print("  This script generates markdown documentation for Sofa components from the Sofa object factory.")
+    print("\nArguments:")
+    print("  destination_directory: The directory where the generated markdown files will be written (default: the markdown directory in the parent of the parent of the current script)")
+    print("  example_directories: Directories containing example XML files (optional)")
+    print("\nExample:")
+    print(f"  python3 {sys.argv[0]} /path/to/markdown")
+    print(f"  python3 {sys.argv[0]} /path/to/markdown /path/to/examples1 /path/to/examples2")
+    print("\nNote: The default destination directory is set to the 'markdown' directory in the parent of the parent of the current script.")
 
 if __name__ == "__main__":
+    if sys.argv[1] in ['-h', '--help']:
+        print_help()
+        sys.exit(0)
+
     default_dest_dir = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "markdown")
     destination_directory = sys.argv[1] if len(sys.argv) >= 2 else default_dest_dir
 
