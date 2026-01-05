@@ -91,3 +91,313 @@ $$
 $$
 
 $\otimes$ is the outer product, and $s = [(1,1,1)]_\times$
+<!-- automatically generated doc START -->
+<!-- generate_doc -->
+
+Mapping each triangle in a topology to a scalar value representing its area.
+
+
+## Vec3d,Vec1d
+
+Templates:
+
+- Vec3d,Vec1d
+
+__Target__: Sofa.Component.Mapping.NonLinear
+
+__namespace__: sofa::component::mapping::nonlinear
+
+__parents__:
+
+- BaseNonLinearMapping
+
+### Data
+
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Default value</th>
+        </tr>
+    </thead>
+    <tbody>
+	<tr>
+		<td>name</td>
+		<td>
+object name
+		</td>
+		<td>unnamed</td>
+	</tr>
+	<tr>
+		<td>printLog</td>
+		<td>
+if true, emits extra messages at runtime.
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>tags</td>
+		<td>
+list of the subsets the object belongs to
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>bbox</td>
+		<td>
+this object bounding box
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>componentState</td>
+		<td>
+The state of the component among (Dirty, Valid, Undefined, Loading, Invalid).
+		</td>
+		<td>Undefined</td>
+	</tr>
+	<tr>
+		<td>listening</td>
+		<td>
+if true, handle the events, otherwise ignore the events
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>mapForces</td>
+		<td>
+Are forces mapped ?
+		</td>
+		<td>1</td>
+	</tr>
+	<tr>
+		<td>mapConstraints</td>
+		<td>
+Are constraints mapped ?
+		</td>
+		<td>1</td>
+	</tr>
+	<tr>
+		<td>mapMasses</td>
+		<td>
+Are masses mapped ?
+		</td>
+		<td>1</td>
+	</tr>
+	<tr>
+		<td>mapMatrices</td>
+		<td>
+Are matrix explicit mapped?
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>applyRestPosition</td>
+		<td>
+set to true to apply this mapping to restPosition at init
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>geometricStiffness</td>
+		<td>
+Method used to compute the geometric stiffness:
+-None: geometric stiffness is not computed
+-Exact: the exact geometric stiffness is computed
+-Stabilized: the exact geometric stiffness is approximated in order to improve stability
+		</td>
+		<td>Stabilized</td>
+	</tr>
+
+</tbody>
+</table>
+
+### Links
+
+
+| Name | Description | Destination type name |
+| ---- | ----------- | --------------------- |
+|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
+|slaves|Sub-objects used internally by this object|BaseObject|
+|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
+|input|Input object to map|State&lt;Vec3d&gt;|
+|output|Output object to map|State&lt;Vec1d&gt;|
+|topology|link to the topology container|BaseMeshTopology|
+
+## Examples 
+
+AreaMapping.scn
+
+=== "XML"
+
+    ```xml
+    <?xml version="1.0" ?>
+    <Node name="root" gravity="0 -9.81 0" dt="0.05">
+    
+        <Node name="plugins">
+            <RequiredPlugin name="Sofa.Component.AnimationLoop"/> <!-- Needed to use components [FreeMotionAnimationLoop] -->
+            <RequiredPlugin name="Sofa.Component.Constraint.Lagrangian.Correction"/> <!-- Needed to use components [GenericConstraintCorrection] -->
+            <RequiredPlugin name="Sofa.Component.Constraint.Lagrangian.Solver"/> <!-- Needed to use components [GenericConstraintSolver] -->
+            <RequiredPlugin name="Sofa.Component.Constraint.Projective"/> <!-- Needed to use components [FixedProjectiveConstraint] -->
+            <RequiredPlugin name="Sofa.Component.Engine.Select"/> <!-- Needed to use components [BoxROI] -->
+            <RequiredPlugin name="Sofa.Component.LinearSolver.Direct"/> <!-- Needed to use components [EigenSimplicialLDLT] -->
+            <RequiredPlugin name="Sofa.Component.Mapping.Linear"/> <!-- Needed to use components [IdentityMapping] -->
+            <RequiredPlugin name="Sofa.Component.Mapping.NonLinear"/> <!-- Needed to use components [AreaMapping] -->
+            <RequiredPlugin name="Sofa.Component.Mass"/> <!-- Needed to use components [MeshMatrixMass] -->
+            <RequiredPlugin name="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+            <RequiredPlugin name="Sofa.Component.SolidMechanics.FEM.Elastic"/> <!-- Needed to use components [TriangleFEMForceField] -->
+            <RequiredPlugin name="Sofa.Component.SolidMechanics.Spring"/> <!-- Needed to use components [RestShapeSpringsForceField] -->
+            <RequiredPlugin name="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
+            <RequiredPlugin name="Sofa.Component.Topology.Container.Dynamic"/> <!-- Needed to use components [TriangleSetTopologyContainer] -->
+            <RequiredPlugin name="Sofa.Component.Topology.Container.Grid"/> <!-- Needed to use components [RegularGridTopology] -->
+            <RequiredPlugin name="Sofa.Component.Visual"/> <!-- Needed to use components [VisualStyle] -->
+            <RequiredPlugin name="Sofa.GL.Component.Rendering2D"/> <!-- Needed to use components [OglColorMap] -->
+            <RequiredPlugin name="Sofa.GL.Component.Rendering3D"/> <!-- Needed to use components [DataDisplay OglModel] -->
+        </Node>
+    
+        <FreeMotionAnimationLoop solveVelocityConstraintFirst="true" computeBoundingBox="false" parallelODESolving="true"/>
+        <BlockGaussSeidelConstraintSolver tolerance="1e-9" maxIterations="1000"/>
+        <VisualStyle displayFlags="showWireframe showBehaviorModels"/>
+    
+        <RegularGridTopology name="grid" nx="10" ny="10" nz="1" xmin="0" xmax="10" ymin="0" ymax="10" zmin="0" zmax="0" />
+        
+        <Node name="withAreaConstraints">
+            <EulerImplicitSolver name="odeSolver" rayleighStiffness="0.1" rayleighMass="0.1" />
+            <EigenSimplicialLDLT name="linearSolver" template="CompressedRowSparseMatrixMat3x3d"/>
+    
+            <TriangleSetTopologyContainer src="@../grid" name="topology"/>
+            <MechanicalObject template="Vec3" name="DoFs"/>
+            <GenericConstraintCorrection />
+    
+            <MeshMatrixMass totalMass="1000" />
+    
+            <BoxROI box="-1 9.9 -1 11 10.1 1" name="roi"/>
+            <FixedProjectiveConstraint indices="@roi.indices" />
+            <TriangleFEMForceField name="FEM1" youngModulus="5000" poissonRatio="0.3" method="large" topology="@topology"/>
+    
+            <Node name="constraintSpace">
+                <MechanicalObject template="Vec1" name="areaDoFs"/>
+                <AreaMapping name="areaMapping" topology="@../topology" geometricStiffness="Exact" applyRestPosition="true"/>
+                <RestShapeSpringsForceField template="Vec1" stiffness="15000"/>
+            </Node>
+    
+            <Node name="Visu">
+                <VisualStyle displayFlags="hideWireframe"/>
+                <DataDisplay name="Visual" triangleData="@../constraintSpace/areaDoFs.position"/>
+                <OglColorMap colorScheme="HSV" showLegend="true" legendTitle="Triangle area" min="@Visual.currentMin" max="@Visual.currentMax"/>
+                <IdentityMapping input="@.." output="@Visual" />
+            </Node>
+        </Node>
+    
+        <Node name="noConstraints">
+            <EulerImplicitSolver name="odeSolver" rayleighStiffness="0.1" rayleighMass="0.1" />
+            <EigenSimplicialLDLT name="linearSolver" template="CompressedRowSparseMatrixMat3x3d"/>
+    
+            <TriangleSetTopologyContainer src="@../grid" name="topology"/>
+            <MechanicalObject template="Vec3" name="DoFs"/>
+            <GenericConstraintCorrection />
+    
+            <MeshMatrixMass totalMass="1000" />
+    
+            <BoxROI box="-1 9.9 -1 11 10.1 1" name="roi"/>
+            <FixedProjectiveConstraint indices="@roi.indices" />
+            <TriangleFEMForceField name="FEM1" youngModulus="5000" poissonRatio="0.3" method="large" topology="@topology"/>
+    
+            <Node name="constraintSpace">
+                <MechanicalObject template="Vec1" name="areaDoFs"/>
+                <AreaMapping name="areaMapping" topology="@../topology"/>
+            </Node>
+    
+            <Node name="Visu">
+                <OglModel name="Visual" color="darkgray" />
+                <IdentityMapping input="@.." output="@Visual" />
+            </Node>
+        </Node>
+    </Node>
+
+    ```
+
+=== "Python"
+
+    ```python
+    def createScene(root_node):
+
+       root = root_node.addChild('root', gravity="0 -9.81 0", dt="0.05")
+
+       plugins = root.addChild('plugins')
+
+       plugins.addObject('RequiredPlugin', name="Sofa.Component.AnimationLoop")
+       plugins.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Lagrangian.Correction")
+       plugins.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Lagrangian.Solver")
+       plugins.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Projective")
+       plugins.addObject('RequiredPlugin', name="Sofa.Component.Engine.Select")
+       plugins.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Direct")
+       plugins.addObject('RequiredPlugin', name="Sofa.Component.Mapping.Linear")
+       plugins.addObject('RequiredPlugin', name="Sofa.Component.Mapping.NonLinear")
+       plugins.addObject('RequiredPlugin', name="Sofa.Component.Mass")
+       plugins.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
+       plugins.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.FEM.Elastic")
+       plugins.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.Spring")
+       plugins.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
+       plugins.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Dynamic")
+       plugins.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Grid")
+       plugins.addObject('RequiredPlugin', name="Sofa.Component.Visual")
+       plugins.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering2D")
+       plugins.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
+
+       root.addObject('FreeMotionAnimationLoop', solveVelocityConstraintFirst="true", computeBoundingBox="false", parallelODESolving="true")
+       root.addObject('BlockGaussSeidelConstraintSolver', tolerance="1e-9", maxIterations="1000")
+       root.addObject('VisualStyle', displayFlags="showWireframe showBehaviorModels")
+       root.addObject('RegularGridTopology', name="grid", nx="10", ny="10", nz="1", xmin="0", xmax="10", ymin="0", ymax="10", zmin="0", zmax="0")
+
+       with_area_constraints = root.addChild('withAreaConstraints')
+
+       with_area_constraints.addObject('EulerImplicitSolver', name="odeSolver", rayleighStiffness="0.1", rayleighMass="0.1")
+       with_area_constraints.addObject('EigenSimplicialLDLT', name="linearSolver", template="CompressedRowSparseMatrixMat3x3d")
+       with_area_constraints.addObject('TriangleSetTopologyContainer', src="@../grid", name="topology")
+       with_area_constraints.addObject('MechanicalObject', template="Vec3", name="DoFs")
+       with_area_constraints.addObject('GenericConstraintCorrection', )
+       with_area_constraints.addObject('MeshMatrixMass', totalMass="1000")
+       with_area_constraints.addObject('BoxROI', box="-1 9.9 -1 11 10.1 1", name="roi")
+       with_area_constraints.addObject('FixedProjectiveConstraint', indices="@roi.indices")
+       with_area_constraints.addObject('TriangleFEMForceField', name="FEM1", youngModulus="5000", poissonRatio="0.3", method="large", topology="@topology")
+
+       constraint_space = withAreaConstraints.addChild('constraintSpace')
+
+       constraint_space.addObject('MechanicalObject', template="Vec1", name="areaDoFs")
+       constraint_space.addObject('AreaMapping', name="areaMapping", topology="@../topology", geometricStiffness="Exact", applyRestPosition="true")
+       constraint_space.addObject('RestShapeSpringsForceField', template="Vec1", stiffness="15000")
+
+       visu = withAreaConstraints.addChild('Visu')
+
+       visu.addObject('VisualStyle', displayFlags="hideWireframe")
+       visu.addObject('DataDisplay', name="Visual", triangleData="@../constraintSpace/areaDoFs.position")
+       visu.addObject('OglColorMap', colorScheme="HSV", showLegend="true", legendTitle="Triangle area", min="@Visual.currentMin", max="@Visual.currentMax")
+       visu.addObject('IdentityMapping', input="@..", output="@Visual")
+
+       no_constraints = root.addChild('noConstraints')
+
+       no_constraints.addObject('EulerImplicitSolver', name="odeSolver", rayleighStiffness="0.1", rayleighMass="0.1")
+       no_constraints.addObject('EigenSimplicialLDLT', name="linearSolver", template="CompressedRowSparseMatrixMat3x3d")
+       no_constraints.addObject('TriangleSetTopologyContainer', src="@../grid", name="topology")
+       no_constraints.addObject('MechanicalObject', template="Vec3", name="DoFs")
+       no_constraints.addObject('GenericConstraintCorrection', )
+       no_constraints.addObject('MeshMatrixMass', totalMass="1000")
+       no_constraints.addObject('BoxROI', box="-1 9.9 -1 11 10.1 1", name="roi")
+       no_constraints.addObject('FixedProjectiveConstraint', indices="@roi.indices")
+       no_constraints.addObject('TriangleFEMForceField', name="FEM1", youngModulus="5000", poissonRatio="0.3", method="large", topology="@topology")
+
+       constraint_space = noConstraints.addChild('constraintSpace')
+
+       constraint_space.addObject('MechanicalObject', template="Vec1", name="areaDoFs")
+       constraint_space.addObject('AreaMapping', name="areaMapping", topology="@../topology")
+
+       visu = noConstraints.addChild('Visu')
+
+       visu.addObject('OglModel', name="Visual", color="darkgray")
+       visu.addObject('IdentityMapping', input="@..", output="@Visual")
+    ```
+
+
+<!-- automatically generated doc END -->
