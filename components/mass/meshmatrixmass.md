@@ -168,6 +168,7 @@ __namespace__: sofa::component::mass
 __parents__:
 
 - Mass
+- TopologyAccessor
 
 ### Data
 
@@ -332,7 +333,7 @@ factor length of the axis displayed (only used for rigids)
 |master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
 |mechanicalStates|List of mechanical states to which this component is associated|BaseMechanicalState|
 |mstate|MechanicalState used by this component|MechanicalState&lt;Vec1d&gt;|
-|topology|link to the topology container|BaseMeshTopology|
+|topology|Link to a topology|BaseMeshTopology|
 |geometryState|link to the MechanicalObject associated with the geometry|MechanicalState&lt;Vec1d&gt;|
 
 <!-- generate_doc -->
@@ -349,6 +350,7 @@ __namespace__: sofa::component::mass
 __parents__:
 
 - Mass
+- TopologyAccessor
 
 ### Data
 
@@ -513,7 +515,7 @@ factor length of the axis displayed (only used for rigids)
 |master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
 |mechanicalStates|List of mechanical states to which this component is associated|BaseMechanicalState|
 |mstate|MechanicalState used by this component|MechanicalState&lt;Vec1d&gt;|
-|topology|link to the topology container|BaseMeshTopology|
+|topology|Link to a topology|BaseMeshTopology|
 |geometryState|link to the MechanicalObject associated with the geometry|MechanicalState&lt;Vec2d&gt;|
 
 <!-- generate_doc -->
@@ -530,6 +532,7 @@ __namespace__: sofa::component::mass
 __parents__:
 
 - Mass
+- TopologyAccessor
 
 ### Data
 
@@ -694,7 +697,7 @@ factor length of the axis displayed (only used for rigids)
 |master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
 |mechanicalStates|List of mechanical states to which this component is associated|BaseMechanicalState|
 |mstate|MechanicalState used by this component|MechanicalState&lt;Vec1d&gt;|
-|topology|link to the topology container|BaseMeshTopology|
+|topology|Link to a topology|BaseMeshTopology|
 |geometryState|link to the MechanicalObject associated with the geometry|MechanicalState&lt;Vec3d&gt;|
 
 <!-- generate_doc -->
@@ -711,6 +714,7 @@ __namespace__: sofa::component::mass
 __parents__:
 
 - Mass
+- TopologyAccessor
 
 ### Data
 
@@ -875,7 +879,7 @@ factor length of the axis displayed (only used for rigids)
 |master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
 |mechanicalStates|List of mechanical states to which this component is associated|BaseMechanicalState|
 |mstate|MechanicalState used by this component|MechanicalState&lt;Vec2d&gt;|
-|topology|link to the topology container|BaseMeshTopology|
+|topology|Link to a topology|BaseMeshTopology|
 |geometryState|link to the MechanicalObject associated with the geometry|MechanicalState&lt;Vec2d&gt;|
 
 <!-- generate_doc -->
@@ -892,6 +896,7 @@ __namespace__: sofa::component::mass
 __parents__:
 
 - Mass
+- TopologyAccessor
 
 ### Data
 
@@ -1056,7 +1061,7 @@ factor length of the axis displayed (only used for rigids)
 |master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
 |mechanicalStates|List of mechanical states to which this component is associated|BaseMechanicalState|
 |mstate|MechanicalState used by this component|MechanicalState&lt;Vec2d&gt;|
-|topology|link to the topology container|BaseMeshTopology|
+|topology|Link to a topology|BaseMeshTopology|
 |geometryState|link to the MechanicalObject associated with the geometry|MechanicalState&lt;Vec3d&gt;|
 
 <!-- generate_doc -->
@@ -1073,6 +1078,7 @@ __namespace__: sofa::component::mass
 __parents__:
 
 - Mass
+- TopologyAccessor
 
 ### Data
 
@@ -1237,7 +1243,7 @@ factor length of the axis displayed (only used for rigids)
 |master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
 |mechanicalStates|List of mechanical states to which this component is associated|BaseMechanicalState|
 |mstate|MechanicalState used by this component|MechanicalState&lt;Vec3d&gt;|
-|topology|link to the topology container|BaseMeshTopology|
+|topology|Link to a topology|BaseMeshTopology|
 |geometryState|link to the MechanicalObject associated with the geometry|MechanicalState&lt;Vec3d&gt;|
 
 ## Examples 

@@ -10,6 +10,7 @@ Using a SOFA built from sources, you can activate or de-activate these checks us
 
 | Name | Description |
 | ---- | ----------- |
+| SceneCheckCollisionPipelineAndModels | Ensure the consistency of the existence of a collision pipeline, and collision models in the scene. |
 | SceneCheckCollisionResponse | Check that the appropriate components are in the scene to compute the desired collision response |
 | SceneCheckDeprecatedComponents | Check there is not deprecated components in the scenegraph |
 | SceneCheckDuplicatedName | Check there is not duplicated name in the scenegraph |

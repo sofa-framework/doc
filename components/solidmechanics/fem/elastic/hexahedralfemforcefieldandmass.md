@@ -177,7 +177,7 @@ Lumped masses
 |master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
 |mechanicalStates|List of mechanical states to which this component is associated|BaseMechanicalState|
 |mstate|MechanicalState used by this component|MechanicalState&lt;Vec3d&gt;|
-|topology|link to the topology container|BaseMeshTopology|
+|topology|Link to a topology|BaseMeshTopology|
 
 ## Examples 
 
