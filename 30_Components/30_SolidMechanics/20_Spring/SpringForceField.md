@@ -13,9 +13,9 @@ The `SpringForceField` component creates a physics-based spring system that:
 ## Physics Model
 The component implements a linear spring model where each connection (spring) provides the force model:
 
-$
-F = k_s (l - l_0) \; u + k_d (v · u) \; u
-$
+$$
+\mathbf{F} = k_s (l - l_0) \; \mathbf{u} + k_d (\mathbf{v} ·\mathbf{u}) \; \mathbf{u}
+$$
 
 where:
 - `k_s` = Spring stiffness
