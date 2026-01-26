@@ -15,7 +15,6 @@ This means that the SOFA consortium commits to:
 | ----------- | ----------- |
 | [ArticulatedSystemPlugin](https://github.com/sofa-framework/sofa/tree/master/applications/plugins/ArticulatedSystemPlugin)* | Plugin that allow the simulation of rigid kinematic chains.  |
 | [BeamAdapter](https://www.github.com/sofa-framework/BeamAdapter.git) | Plugin implementing a 1-dimensional Finite Element Method (FEM) based on the Kirchhoff rod theory and allows to simulate any 1D flexible structure.  |
-| [CGALPlugin](https://www.github.com/sofa-framework/CGALPlugin.git) | Plugins offering SOFA bindings to the [CGAL library](https://www.cgal.org/) for meshing purposes.  |
 | [CSparseSolvers](https://www.github.com/sofa-framework/CSparseSolvers.git) | Plugin containing a collection of linear solver components that are built on top of the [CSparse library](https://people.math.sc.edu/Burkardt/c_src/csparse/csparse.html).  |
 | [Geomagic](https://github.com/sofa-framework/sofa/tree/master/applications/plugins/Geomagic)* | Plugin enabling the use of the [Touch haptic device from 3D Systems](https://www.3dsystems.com/haptics-devices/touch).  |
 | [ModelOrderReduction](https://www.github.com/SofaDefrost/ModelOrderReduction.git) | Plugin containing C++ components with python utilities allowing to perform model reduction and use these reduced model easily in a SOFA scene.  |
