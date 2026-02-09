@@ -353,41 +353,6 @@ Groups of Pyramids
 
 ## Examples 
 
-MeshSTLLoader.scn
-
-=== "XML"
-
-    ```xml
-    <!-- For more details see: https://wiki.sofa-framework.org/tdev/wiki/Notes/NewLoaderArchitecture -->
-    <Node>
-        <RequiredPlugin name="Sofa.Component.IO.Mesh"/> <!-- Needed to use components [MeshSTLLoader] -->
-        <RequiredPlugin name="Sofa.Component.Visual"/> <!-- Needed to use components [VisualStyle] -->
-        <RequiredPlugin name="Sofa.GL.Component.Rendering3D"/> <!-- Needed to use components [OglModel] -->
-        <VisualStyle displayFlags="showVisual" />
-    
-        <DefaultAnimationLoop/>
-        <MeshSTLLoader name="STLLoader" filename="mesh/circle_knot_ascii.stl" printLog="true" flipNormals="0" />
-        <OglModel src="@STLLoader" name="VisualModel" color="red" />
-    </Node>
-
-    ```
-
-=== "Python"
-
-    ```python
-    def createScene(root_node):
-
-       node = root_node.addChild('node')
-
-       node.addObject('RequiredPlugin', name="Sofa.Component.IO.Mesh")
-       node.addObject('RequiredPlugin', name="Sofa.Component.Visual")
-       node.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
-       node.addObject('VisualStyle', displayFlags="showVisual")
-       node.addObject('DefaultAnimationLoop', )
-       node.addObject('MeshSTLLoader', name="STLLoader", filename="mesh/circle_knot_ascii.stl", printLog="true", flipNormals="0")
-       node.addObject('OglModel', src="@STLLoader", name="VisualModel", color="red")
-    ```
-
 MeshSTLLoader_binary.scn
 
 === "XML"
@@ -420,6 +385,41 @@ MeshSTLLoader_binary.scn
        node.addObject('VisualStyle', displayFlags="showVisual")
        node.addObject('DefaultAnimationLoop', )
        node.addObject('MeshSTLLoader', name="STLLoader", filename="mesh/pliers_binary.stl", printLog="true")
+       node.addObject('OglModel', src="@STLLoader", name="VisualModel", color="red")
+    ```
+
+MeshSTLLoader.scn
+
+=== "XML"
+
+    ```xml
+    <!-- For more details see: https://wiki.sofa-framework.org/tdev/wiki/Notes/NewLoaderArchitecture -->
+    <Node>
+        <RequiredPlugin name="Sofa.Component.IO.Mesh"/> <!-- Needed to use components [MeshSTLLoader] -->
+        <RequiredPlugin name="Sofa.Component.Visual"/> <!-- Needed to use components [VisualStyle] -->
+        <RequiredPlugin name="Sofa.GL.Component.Rendering3D"/> <!-- Needed to use components [OglModel] -->
+        <VisualStyle displayFlags="showVisual" />
+    
+        <DefaultAnimationLoop/>
+        <MeshSTLLoader name="STLLoader" filename="mesh/circle_knot_ascii.stl" printLog="true" flipNormals="0" />
+        <OglModel src="@STLLoader" name="VisualModel" color="red" />
+    </Node>
+
+    ```
+
+=== "Python"
+
+    ```python
+    def createScene(root_node):
+
+       node = root_node.addChild('node')
+
+       node.addObject('RequiredPlugin', name="Sofa.Component.IO.Mesh")
+       node.addObject('RequiredPlugin', name="Sofa.Component.Visual")
+       node.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
+       node.addObject('VisualStyle', displayFlags="showVisual")
+       node.addObject('DefaultAnimationLoop', )
+       node.addObject('MeshSTLLoader', name="STLLoader", filename="mesh/circle_knot_ascii.stl", printLog="true", flipNormals="0")
        node.addObject('OglModel', src="@STLLoader", name="VisualModel", color="red")
     ```
 

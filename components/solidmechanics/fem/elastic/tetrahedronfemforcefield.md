@@ -268,253 +268,6 @@ draw gap between elements (when showWireFrame is disabled) [0,1]: 0: no gap, 1: 
 
 ## Examples 
 
-TetrahedronFEMForceField_plasticity.scn
-
-=== "XML"
-
-    ```xml
-    <Node name="root" dt="0.01">
-        <RequiredPlugin name="Sofa.Component.Collision.Detection.Algorithm"/> <!-- Needed to use components [BVHNarrowPhase BruteForceBroadPhase CollisionPipeline] -->
-        <RequiredPlugin name="Sofa.Component.Collision.Detection.Intersection"/> <!-- Needed to use components [NewProximityIntersection] -->
-        <RequiredPlugin name="Sofa.Component.Collision.Geometry"/> <!-- Needed to use components [TriangleCollisionModel] -->
-        <RequiredPlugin name="Sofa.Component.Collision.Response.Contact"/> <!-- Needed to use components [CollisionResponse] -->
-        <RequiredPlugin name="Sofa.Component.IO.Mesh"/> <!-- Needed to use components [MeshGmshLoader MeshOBJLoader] -->
-        <RequiredPlugin name="Sofa.Component.LinearSolver.Iterative"/> <!-- Needed to use components [CGLinearSolver] -->
-        <RequiredPlugin name="Sofa.Component.Mapping.Linear"/> <!-- Needed to use components [BarycentricMapping] -->
-        <RequiredPlugin name="Sofa.Component.Mass"/> <!-- Needed to use components [UniformMass] -->
-        <RequiredPlugin name="Sofa.Component.MechanicalLoad"/> <!-- Needed to use components [PlaneForceField] -->
-        <RequiredPlugin name="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
-        <RequiredPlugin name="Sofa.Component.SolidMechanics.FEM.Elastic"/> <!-- Needed to use components [TetrahedronFEMForceField] -->
-        <RequiredPlugin name="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
-        <RequiredPlugin name="Sofa.Component.Topology.Container.Constant"/> <!-- Needed to use components [MeshTopology] -->
-        <RequiredPlugin name="Sofa.Component.Visual"/> <!-- Needed to use components [VisualStyle] -->
-        <RequiredPlugin name="Sofa.GL.Component.Rendering3D"/> <!-- Needed to use components [OglModel] -->
-    
-        <VisualStyle displayFlags="showForceFields" />
-        <CollisionPipeline depth="6" verbose="0" draw="0" />
-        <BruteForceBroadPhase/>
-        <BVHNarrowPhase/>
-        <NewProximityIntersection name="Proximity" alarmDistance="0.3" contactDistance="0.2" />
-        <CollisionResponse name="Response" response="PenalityContactForceField" />
-        <DefaultAnimationLoop/>
-    
-        <EulerImplicitSolver name="cg_odesolver" printLog="false"  rayleighStiffness="0.1" rayleighMass="0.1" />
-        <CGLinearSolver iterations="25" name="linear solver" tolerance="1.0e-9" threshold="1.0e-9" />
-    
-        <Node name="Plastic1">
-            <MeshGmshLoader name="loader" filename="mesh/torus_low_res.msh" rotation="90 0 0" />
-            <MeshTopology src="@loader" />
-            <MechanicalObject src="@loader"  />
-            <UniformMass totalMass="5" />
-            <TetrahedronFEMForceField name="FEM" youngModulus="1000" poissonRatio="0.4" computeGlobalMatrix="false" method="large" plasticYieldThreshold="0.01" plasticMaxThreshold="0.025" plasticCreep="1"/>
-            <PlaneForceField normal="0 1 0" d="-3" stiffness="100000" />
-            <Node name="Visu">
-                <MeshOBJLoader name="meshLoader_2" filename="mesh/torus.obj" rotation="90 0 0" handleSeams="1" />
-                <OglModel name="Visual" src="@meshLoader_2" color="red"/>
-                <BarycentricMapping input="@.." output="@Visual" />
-            </Node>
-            <Node name="Surf2">
-                <MeshOBJLoader name="loader" filename="mesh/torus_for_collision.obj" rotation="90 0 0"/>
-                <MeshTopology src="@loader" />
-                <MechanicalObject src="@loader"  />
-                <TriangleCollisionModel />
-                <BarycentricMapping />
-            </Node>
-        </Node>
-    
-    
-        <Node name="Plastic2">
-            <MeshGmshLoader name="loader" filename="mesh/torus_low_res.msh" rotation="90 0 0" translation="-6 0 0"/>
-            <MeshTopology src="@loader" />
-            <MechanicalObject src="@loader"  />
-            <UniformMass totalMass="5" />
-            <TetrahedronFEMForceField name="FEM" youngModulus="1000" poissonRatio="0.4" computeGlobalMatrix="false" method="large" plasticYieldThreshold="0.005" plasticMaxThreshold="0.5" plasticCreep="1"/>
-            <PlaneForceField normal="0 1 0" d="-3" stiffness="100000" />
-            <Node name="Visu">
-                <MeshOBJLoader name="meshLoader_0" filename="mesh/torus.obj" rotation="90 0 0" translation="-6 0 0" handleSeams="1" />
-                <OglModel name="Visual" src="@meshLoader_0" color="blue"/>
-                <BarycentricMapping input="@.." output="@Visual" />
-            </Node>
-            <Node name="Surf2">
-                <MeshOBJLoader name="loader" filename="mesh/torus_for_collision.obj" rotation="90 0 0" translation="-6 0 0"/>
-                <MeshTopology src="@loader" />
-                <MechanicalObject src="@loader"  />
-                <TriangleCollisionModel />
-                <BarycentricMapping />
-            </Node>
-        </Node>
-    
-    
-        <Node name="Plastic3">
-            <MeshGmshLoader name="loader" filename="mesh/torus_low_res.msh" rotation="90 0 0" translation="-12 0 0"/>
-            <MeshTopology src="@loader" />
-            <MechanicalObject src="@loader"  />
-            <UniformMass totalMass="5" />
-            <TetrahedronFEMForceField name="FEM" youngModulus="1000" poissonRatio="0.4" computeGlobalMatrix="false" method="large" plasticYieldThreshold="0.005" plasticMaxThreshold="0.5" plasticCreep=".1"/>
-            <PlaneForceField normal="0 1 0" d="-3" stiffness="100000" />
-            <Node name="Visu">
-                <MeshOBJLoader name="meshLoader_3" filename="mesh/torus.obj" rotation="90 0 0" translation="-12 0 0" handleSeams="1" />
-                <OglModel name="Visual" src="@meshLoader_3" color="yellow"/>
-                <BarycentricMapping input="@.." output="@Visual" />
-            </Node>
-            <Node name="Surf2">
-                <MeshOBJLoader name="loader" filename="mesh/torus_for_collision.obj" rotation="90 0 0" translation="-12 0 0"/>
-                <MeshTopology src="@loader" />
-                <MechanicalObject src="@loader"  />
-                <TriangleCollisionModel />
-                <BarycentricMapping />
-            </Node>
-        </Node>
-    
-        <Node name="Elastic">
-        <MeshGmshLoader name="loader" filename="mesh/torus_low_res.msh" rotation="90 0 0" translation="6 0 0" />
-        <MeshTopology src="@loader" />
-        <MechanicalObject src="@loader"  />
-        <UniformMass totalMass="5" />
-        <TetrahedronFEMForceField name="FEM" youngModulus="1000" poissonRatio="0.4" computeGlobalMatrix="false" method="large" />
-        <PlaneForceField normal="0 1 0" d="-3" stiffness="100000" />
-        <Node name="Visu">
-        <MeshOBJLoader name="meshLoader_1" filename="mesh/torus.obj" rotation="90 0 0" translation="6 0 0" handleSeams="1" />
-        <OglModel name="Visual" src="@meshLoader_1" color="green"/>
-        <BarycentricMapping input="@.." output="@Visual" />
-        </Node>
-            <Node name="Surf2">
-                <MeshOBJLoader name="loader" filename="mesh/torus_for_collision.obj" rotation="90 0 0" translation="6 0 0"/>
-                <MeshTopology src="@loader" />
-                <MechanicalObject src="@loader"  />
-                <TriangleCollisionModel />
-                <BarycentricMapping />
-            </Node>
-        </Node>
-    </Node>
-
-    ```
-
-=== "Python"
-
-    ```python
-    def createScene(root_node):
-
-       root = root_node.addChild('root', dt="0.01")
-
-       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Algorithm")
-       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Intersection")
-       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Geometry")
-       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Response.Contact")
-       root.addObject('RequiredPlugin', name="Sofa.Component.IO.Mesh")
-       root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Iterative")
-       root.addObject('RequiredPlugin', name="Sofa.Component.Mapping.Linear")
-       root.addObject('RequiredPlugin', name="Sofa.Component.Mass")
-       root.addObject('RequiredPlugin', name="Sofa.Component.MechanicalLoad")
-       root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
-       root.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.FEM.Elastic")
-       root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
-       root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Constant")
-       root.addObject('RequiredPlugin', name="Sofa.Component.Visual")
-       root.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
-       root.addObject('VisualStyle', displayFlags="showForceFields")
-       root.addObject('CollisionPipeline', depth="6", verbose="0", draw="0")
-       root.addObject('BruteForceBroadPhase', )
-       root.addObject('BVHNarrowPhase', )
-       root.addObject('NewProximityIntersection', name="Proximity", alarmDistance="0.3", contactDistance="0.2")
-       root.addObject('CollisionResponse', name="Response", response="PenalityContactForceField")
-       root.addObject('DefaultAnimationLoop', )
-       root.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
-       root.addObject('CGLinearSolver', iterations="25", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
-
-       plastic1 = root.addChild('Plastic1')
-
-       plastic1.addObject('MeshGmshLoader', name="loader", filename="mesh/torus_low_res.msh", rotation="90 0 0")
-       plastic1.addObject('MeshTopology', src="@loader")
-       plastic1.addObject('MechanicalObject', src="@loader")
-       plastic1.addObject('UniformMass', totalMass="5")
-       plastic1.addObject('TetrahedronFEMForceField', name="FEM", youngModulus="1000", poissonRatio="0.4", computeGlobalMatrix="false", method="large", plasticYieldThreshold="0.01", plasticMaxThreshold="0.025", plasticCreep="1")
-       plastic1.addObject('PlaneForceField', normal="0 1 0", d="-3", stiffness="100000")
-
-       visu = Plastic1.addChild('Visu')
-
-       visu.addObject('MeshOBJLoader', name="meshLoader_2", filename="mesh/torus.obj", rotation="90 0 0", handleSeams="1")
-       visu.addObject('OglModel', name="Visual", src="@meshLoader_2", color="red")
-       visu.addObject('BarycentricMapping', input="@..", output="@Visual")
-
-       surf2 = Plastic1.addChild('Surf2')
-
-       surf2.addObject('MeshOBJLoader', name="loader", filename="mesh/torus_for_collision.obj", rotation="90 0 0")
-       surf2.addObject('MeshTopology', src="@loader")
-       surf2.addObject('MechanicalObject', src="@loader")
-       surf2.addObject('TriangleCollisionModel', )
-       surf2.addObject('BarycentricMapping', )
-
-       plastic2 = root.addChild('Plastic2')
-
-       plastic2.addObject('MeshGmshLoader', name="loader", filename="mesh/torus_low_res.msh", rotation="90 0 0", translation="-6 0 0")
-       plastic2.addObject('MeshTopology', src="@loader")
-       plastic2.addObject('MechanicalObject', src="@loader")
-       plastic2.addObject('UniformMass', totalMass="5")
-       plastic2.addObject('TetrahedronFEMForceField', name="FEM", youngModulus="1000", poissonRatio="0.4", computeGlobalMatrix="false", method="large", plasticYieldThreshold="0.005", plasticMaxThreshold="0.5", plasticCreep="1")
-       plastic2.addObject('PlaneForceField', normal="0 1 0", d="-3", stiffness="100000")
-
-       visu = Plastic2.addChild('Visu')
-
-       visu.addObject('MeshOBJLoader', name="meshLoader_0", filename="mesh/torus.obj", rotation="90 0 0", translation="-6 0 0", handleSeams="1")
-       visu.addObject('OglModel', name="Visual", src="@meshLoader_0", color="blue")
-       visu.addObject('BarycentricMapping', input="@..", output="@Visual")
-
-       surf2 = Plastic2.addChild('Surf2')
-
-       surf2.addObject('MeshOBJLoader', name="loader", filename="mesh/torus_for_collision.obj", rotation="90 0 0", translation="-6 0 0")
-       surf2.addObject('MeshTopology', src="@loader")
-       surf2.addObject('MechanicalObject', src="@loader")
-       surf2.addObject('TriangleCollisionModel', )
-       surf2.addObject('BarycentricMapping', )
-
-       plastic3 = root.addChild('Plastic3')
-
-       plastic3.addObject('MeshGmshLoader', name="loader", filename="mesh/torus_low_res.msh", rotation="90 0 0", translation="-12 0 0")
-       plastic3.addObject('MeshTopology', src="@loader")
-       plastic3.addObject('MechanicalObject', src="@loader")
-       plastic3.addObject('UniformMass', totalMass="5")
-       plastic3.addObject('TetrahedronFEMForceField', name="FEM", youngModulus="1000", poissonRatio="0.4", computeGlobalMatrix="false", method="large", plasticYieldThreshold="0.005", plasticMaxThreshold="0.5", plasticCreep=".1")
-       plastic3.addObject('PlaneForceField', normal="0 1 0", d="-3", stiffness="100000")
-
-       visu = Plastic3.addChild('Visu')
-
-       visu.addObject('MeshOBJLoader', name="meshLoader_3", filename="mesh/torus.obj", rotation="90 0 0", translation="-12 0 0", handleSeams="1")
-       visu.addObject('OglModel', name="Visual", src="@meshLoader_3", color="yellow")
-       visu.addObject('BarycentricMapping', input="@..", output="@Visual")
-
-       surf2 = Plastic3.addChild('Surf2')
-
-       surf2.addObject('MeshOBJLoader', name="loader", filename="mesh/torus_for_collision.obj", rotation="90 0 0", translation="-12 0 0")
-       surf2.addObject('MeshTopology', src="@loader")
-       surf2.addObject('MechanicalObject', src="@loader")
-       surf2.addObject('TriangleCollisionModel', )
-       surf2.addObject('BarycentricMapping', )
-
-       elastic = root.addChild('Elastic')
-
-       elastic.addObject('MeshGmshLoader', name="loader", filename="mesh/torus_low_res.msh", rotation="90 0 0", translation="6 0 0")
-       elastic.addObject('MeshTopology', src="@loader")
-       elastic.addObject('MechanicalObject', src="@loader")
-       elastic.addObject('UniformMass', totalMass="5")
-       elastic.addObject('TetrahedronFEMForceField', name="FEM", youngModulus="1000", poissonRatio="0.4", computeGlobalMatrix="false", method="large")
-       elastic.addObject('PlaneForceField', normal="0 1 0", d="-3", stiffness="100000")
-
-       visu = Elastic.addChild('Visu')
-
-       visu.addObject('MeshOBJLoader', name="meshLoader_1", filename="mesh/torus.obj", rotation="90 0 0", translation="6 0 0", handleSeams="1")
-       visu.addObject('OglModel', name="Visual", src="@meshLoader_1", color="green")
-       visu.addObject('BarycentricMapping', input="@..", output="@Visual")
-
-       surf2 = Elastic.addChild('Surf2')
-
-       surf2.addObject('MeshOBJLoader', name="loader", filename="mesh/torus_for_collision.obj", rotation="90 0 0", translation="6 0 0")
-       surf2.addObject('MeshTopology', src="@loader")
-       surf2.addObject('MechanicalObject', src="@loader")
-       surf2.addObject('TriangleCollisionModel', )
-       surf2.addObject('BarycentricMapping', )
-    ```
-
 TetrahedronFEMForceField_Chain.scn
 
 === "XML"
@@ -1039,91 +792,124 @@ TetrahedronFEMForceField.scn
        beam_fem__svd.addObject('FixedProjectiveConstraint', template="Vec3", indices="@box_roi.indices")
     ```
 
-TetrahedronFEMForceField_beam16x16x76_cpu.scn
+TetrahedronFEMForceField_plasticity.scn
 
 === "XML"
 
     ```xml
-    <?xml version="1.0" ?>
-    <Node name="root" gravity="0 -9 0" dt="0.04">
+    <Node name="root" dt="0.01">
         <RequiredPlugin name="Sofa.Component.Collision.Detection.Algorithm"/> <!-- Needed to use components [BVHNarrowPhase BruteForceBroadPhase CollisionPipeline] -->
-        <RequiredPlugin name="Sofa.Component.Collision.Detection.Intersection"/> <!-- Needed to use components [DiscreteIntersection] -->
+        <RequiredPlugin name="Sofa.Component.Collision.Detection.Intersection"/> <!-- Needed to use components [NewProximityIntersection] -->
+        <RequiredPlugin name="Sofa.Component.Collision.Geometry"/> <!-- Needed to use components [TriangleCollisionModel] -->
         <RequiredPlugin name="Sofa.Component.Collision.Response.Contact"/> <!-- Needed to use components [CollisionResponse] -->
-        <RequiredPlugin name="Sofa.Component.Constraint.Projective"/> <!-- Needed to use components [FixedProjectiveConstraint] -->
-        <RequiredPlugin name="Sofa.Component.Engine.Select"/> <!-- Needed to use components [BoxROI] -->
+        <RequiredPlugin name="Sofa.Component.IO.Mesh"/> <!-- Needed to use components [MeshGmshLoader MeshOBJLoader] -->
         <RequiredPlugin name="Sofa.Component.LinearSolver.Iterative"/> <!-- Needed to use components [CGLinearSolver] -->
-        <RequiredPlugin name="Sofa.Component.Mapping.Linear"/> <!-- Needed to use components [IdentityMapping] -->
-        <RequiredPlugin name="Sofa.Component.Mass"/> <!-- Needed to use components [DiagonalMass] -->
+        <RequiredPlugin name="Sofa.Component.Mapping.Linear"/> <!-- Needed to use components [BarycentricMapping] -->
+        <RequiredPlugin name="Sofa.Component.Mass"/> <!-- Needed to use components [UniformMass] -->
         <RequiredPlugin name="Sofa.Component.MechanicalLoad"/> <!-- Needed to use components [PlaneForceField] -->
         <RequiredPlugin name="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
         <RequiredPlugin name="Sofa.Component.SolidMechanics.FEM.Elastic"/> <!-- Needed to use components [TetrahedronFEMForceField] -->
         <RequiredPlugin name="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
-        <RequiredPlugin name="Sofa.Component.Topology.Container.Dynamic"/> <!-- Needed to use components [TetrahedronSetGeometryAlgorithms TetrahedronSetTopologyContainer TetrahedronSetTopologyModifier TriangleSetGeometryAlgorithms TriangleSetTopologyContainer TriangleSetTopologyModifier] -->
-        <RequiredPlugin name="Sofa.Component.Topology.Container.Grid"/> <!-- Needed to use components [RegularGridTopology] -->
-        <RequiredPlugin name="Sofa.Component.Topology.Mapping"/> <!-- Needed to use components [Hexa2TetraTopologicalMapping Tetra2TriangleTopologicalMapping] -->
+        <RequiredPlugin name="Sofa.Component.Topology.Container.Constant"/> <!-- Needed to use components [MeshTopology] -->
         <RequiredPlugin name="Sofa.Component.Visual"/> <!-- Needed to use components [VisualStyle] -->
         <RequiredPlugin name="Sofa.GL.Component.Rendering3D"/> <!-- Needed to use components [OglModel] -->
-      
-        <VisualStyle displayFlags="showBehaviorModels showVisual" />
-    	
-        <DefaultAnimationLoop />
-        <DefaultVisualManagerLoop />
-        <CollisionPipeline name="CollisionPipeline" verbose="0" />
+    
+        <VisualStyle displayFlags="showForceFields" />
+        <CollisionPipeline depth="6" verbose="0" draw="0" />
         <BruteForceBroadPhase/>
         <BVHNarrowPhase/>
-        <CollisionResponse name="collision response" response="PenalityContactForceField" />
-        <DiscreteIntersection/>
-        
-        <Node name="Beam">
-            <RegularGridTopology name="grid" n="76 16 16" min="0 6 -2" max="19 10 2" />
-            <TetrahedronSetTopologyContainer name="BeamTopo" />
-            <TetrahedronSetTopologyModifier name="Modifier" />
+        <NewProximityIntersection name="Proximity" alarmDistance="0.3" contactDistance="0.2" />
+        <CollisionResponse name="Response" response="PenalityContactForceField" />
+        <DefaultAnimationLoop/>
     
-            <Hexa2TetraTopologicalMapping input="@grid" output="@BeamTopo" />
-        </Node>
-       
-        <Node name="TetrahedronFEMForceField-CPU-red">
-            <EulerImplicitSolver name="cg_odesolver" rayleighStiffness="0.1" rayleighMass="0.1" />
-            <CGLinearSolver iterations="10" name="linear solver" tolerance="1.0e-6" threshold="1.0e-6" />
-            
-            <MechanicalObject position="@../Beam/grid.position" name="Volume" template="Vec3"/>
+        <EulerImplicitSolver name="cg_odesolver" printLog="false"  rayleighStiffness="0.1" rayleighMass="0.1" />
+        <CGLinearSolver iterations="25" name="linear solver" tolerance="1.0e-9" threshold="1.0e-9" />
     
-            <TetrahedronSetTopologyContainer name="Container" src="@../Beam/BeamTopo"/>
-            <TetrahedronSetTopologyModifier name="Modifier" />
-            <TetrahedronSetGeometryAlgorithms name="GeomAlgo" template="Vec3" />
-    
-            <DiagonalMass totalMass="50.0" />
-            <BoxROI name="ROI1" box="-0.1 5 -3 0.1 11 3" drawBoxes="1" />
-            
-            <FixedProjectiveConstraint indices="@ROI1.indices" />
-            <TetrahedronFEMForceField template="Vec3" name="FEM" computeGlobalMatrix="false" method="large" poissonRatio="0.3" youngModulus="1000" />
-    		<PlaneForceField normal="0 1 0" d="2" stiffness="10000"  showPlane="1" />
-            
-            <Node name="surface">
-                <TriangleSetTopologyContainer name="Container" />
-                <TriangleSetTopologyModifier name="Modifier" />
-                <TriangleSetGeometryAlgorithms template="Vec3" name="GeomAlgo" />
-                
-                <Tetra2TriangleTopologicalMapping input="@../Container" output="@Container" />
-                <Node name="Visu">
-                    <OglModel name="Visual" color="red" />
-                    <IdentityMapping input="@../../Volume" output="@Visual" />
-                </Node>
+        <Node name="Plastic1">
+            <MeshGmshLoader name="loader" filename="mesh/torus_low_res.msh" rotation="90 0 0" />
+            <MeshTopology src="@loader" />
+            <MechanicalObject src="@loader"  />
+            <UniformMass totalMass="5" />
+            <TetrahedronFEMForceField name="FEM" youngModulus="1000" poissonRatio="0.4" computeGlobalMatrix="false" method="large" plasticYieldThreshold="0.01" plasticMaxThreshold="0.025" plasticCreep="1"/>
+            <PlaneForceField normal="0 1 0" d="-3" stiffness="100000" />
+            <Node name="Visu">
+                <MeshOBJLoader name="meshLoader_2" filename="mesh/torus.obj" rotation="90 0 0" handleSeams="1" />
+                <OglModel name="Visual" src="@meshLoader_2" color="red"/>
+                <BarycentricMapping input="@.." output="@Visual" />
+            </Node>
+            <Node name="Surf2">
+                <MeshOBJLoader name="loader" filename="mesh/torus_for_collision.obj" rotation="90 0 0"/>
+                <MeshTopology src="@loader" />
+                <MechanicalObject src="@loader"  />
+                <TriangleCollisionModel />
+                <BarycentricMapping />
             </Node>
         </Node>
-        
-        <Node name="Floor">
-    		<RegularGridTopology
-    			nx="4" ny="1" nz="4"
-    			xmin="-10" xmax="30"
-    			ymin="1.9" ymax="1.9"
-    			zmin="-20" zmax="20" />
-    		<MechanicalObject />
-    		<Node name="Visu">
-    			<OglModel name="Visual" color="white"/>
-    			<IdentityMapping input="@.." output="@Visual"/>
-    		</Node>
-    	</Node>
+    
+    
+        <Node name="Plastic2">
+            <MeshGmshLoader name="loader" filename="mesh/torus_low_res.msh" rotation="90 0 0" translation="-6 0 0"/>
+            <MeshTopology src="@loader" />
+            <MechanicalObject src="@loader"  />
+            <UniformMass totalMass="5" />
+            <TetrahedronFEMForceField name="FEM" youngModulus="1000" poissonRatio="0.4" computeGlobalMatrix="false" method="large" plasticYieldThreshold="0.005" plasticMaxThreshold="0.5" plasticCreep="1"/>
+            <PlaneForceField normal="0 1 0" d="-3" stiffness="100000" />
+            <Node name="Visu">
+                <MeshOBJLoader name="meshLoader_0" filename="mesh/torus.obj" rotation="90 0 0" translation="-6 0 0" handleSeams="1" />
+                <OglModel name="Visual" src="@meshLoader_0" color="blue"/>
+                <BarycentricMapping input="@.." output="@Visual" />
+            </Node>
+            <Node name="Surf2">
+                <MeshOBJLoader name="loader" filename="mesh/torus_for_collision.obj" rotation="90 0 0" translation="-6 0 0"/>
+                <MeshTopology src="@loader" />
+                <MechanicalObject src="@loader"  />
+                <TriangleCollisionModel />
+                <BarycentricMapping />
+            </Node>
+        </Node>
+    
+    
+        <Node name="Plastic3">
+            <MeshGmshLoader name="loader" filename="mesh/torus_low_res.msh" rotation="90 0 0" translation="-12 0 0"/>
+            <MeshTopology src="@loader" />
+            <MechanicalObject src="@loader"  />
+            <UniformMass totalMass="5" />
+            <TetrahedronFEMForceField name="FEM" youngModulus="1000" poissonRatio="0.4" computeGlobalMatrix="false" method="large" plasticYieldThreshold="0.005" plasticMaxThreshold="0.5" plasticCreep=".1"/>
+            <PlaneForceField normal="0 1 0" d="-3" stiffness="100000" />
+            <Node name="Visu">
+                <MeshOBJLoader name="meshLoader_3" filename="mesh/torus.obj" rotation="90 0 0" translation="-12 0 0" handleSeams="1" />
+                <OglModel name="Visual" src="@meshLoader_3" color="yellow"/>
+                <BarycentricMapping input="@.." output="@Visual" />
+            </Node>
+            <Node name="Surf2">
+                <MeshOBJLoader name="loader" filename="mesh/torus_for_collision.obj" rotation="90 0 0" translation="-12 0 0"/>
+                <MeshTopology src="@loader" />
+                <MechanicalObject src="@loader"  />
+                <TriangleCollisionModel />
+                <BarycentricMapping />
+            </Node>
+        </Node>
+    
+        <Node name="Elastic">
+        <MeshGmshLoader name="loader" filename="mesh/torus_low_res.msh" rotation="90 0 0" translation="6 0 0" />
+        <MeshTopology src="@loader" />
+        <MechanicalObject src="@loader"  />
+        <UniformMass totalMass="5" />
+        <TetrahedronFEMForceField name="FEM" youngModulus="1000" poissonRatio="0.4" computeGlobalMatrix="false" method="large" />
+        <PlaneForceField normal="0 1 0" d="-3" stiffness="100000" />
+        <Node name="Visu">
+        <MeshOBJLoader name="meshLoader_1" filename="mesh/torus.obj" rotation="90 0 0" translation="6 0 0" handleSeams="1" />
+        <OglModel name="Visual" src="@meshLoader_1" color="green"/>
+        <BarycentricMapping input="@.." output="@Visual" />
+        </Node>
+            <Node name="Surf2">
+                <MeshOBJLoader name="loader" filename="mesh/torus_for_collision.obj" rotation="90 0 0" translation="6 0 0"/>
+                <MeshTopology src="@loader" />
+                <MechanicalObject src="@loader"  />
+                <TriangleCollisionModel />
+                <BarycentricMapping />
+            </Node>
+        </Node>
     </Node>
 
     ```
@@ -1133,13 +919,13 @@ TetrahedronFEMForceField_beam16x16x76_cpu.scn
     ```python
     def createScene(root_node):
 
-       root = root_node.addChild('root', gravity="0 -9 0", dt="0.04")
+       root = root_node.addChild('root', dt="0.01")
 
        root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Algorithm")
        root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Intersection")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Geometry")
        root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Response.Contact")
-       root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Projective")
-       root.addObject('RequiredPlugin', name="Sofa.Component.Engine.Select")
+       root.addObject('RequiredPlugin', name="Sofa.Component.IO.Mesh")
        root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Iterative")
        root.addObject('RequiredPlugin', name="Sofa.Component.Mapping.Linear")
        root.addObject('RequiredPlugin', name="Sofa.Component.Mass")
@@ -1147,62 +933,110 @@ TetrahedronFEMForceField_beam16x16x76_cpu.scn
        root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
        root.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.FEM.Elastic")
        root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
-       root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Dynamic")
-       root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Grid")
-       root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Mapping")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Constant")
        root.addObject('RequiredPlugin', name="Sofa.Component.Visual")
        root.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
-       root.addObject('VisualStyle', displayFlags="showBehaviorModels showVisual")
-       root.addObject('DefaultAnimationLoop', )
-       root.addObject('DefaultVisualManagerLoop', )
-       root.addObject('CollisionPipeline', name="CollisionPipeline", verbose="0")
+       root.addObject('VisualStyle', displayFlags="showForceFields")
+       root.addObject('CollisionPipeline', depth="6", verbose="0", draw="0")
        root.addObject('BruteForceBroadPhase', )
        root.addObject('BVHNarrowPhase', )
-       root.addObject('CollisionResponse', name="collision response", response="PenalityContactForceField")
-       root.addObject('DiscreteIntersection', )
+       root.addObject('NewProximityIntersection', name="Proximity", alarmDistance="0.3", contactDistance="0.2")
+       root.addObject('CollisionResponse', name="Response", response="PenalityContactForceField")
+       root.addObject('DefaultAnimationLoop', )
+       root.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
+       root.addObject('CGLinearSolver', iterations="25", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
 
-       beam = root.addChild('Beam')
+       plastic1 = root.addChild('Plastic1')
 
-       beam.addObject('RegularGridTopology', name="grid", n="76 16 16", min="0 6 -2", max="19 10 2")
-       beam.addObject('TetrahedronSetTopologyContainer', name="BeamTopo")
-       beam.addObject('TetrahedronSetTopologyModifier', name="Modifier")
-       beam.addObject('Hexa2TetraTopologicalMapping', input="@grid", output="@BeamTopo")
+       plastic1.addObject('MeshGmshLoader', name="loader", filename="mesh/torus_low_res.msh", rotation="90 0 0")
+       plastic1.addObject('MeshTopology', src="@loader")
+       plastic1.addObject('MechanicalObject', src="@loader")
+       plastic1.addObject('UniformMass', totalMass="5")
+       plastic1.addObject('TetrahedronFEMForceField', name="FEM", youngModulus="1000", poissonRatio="0.4", computeGlobalMatrix="false", method="large", plasticYieldThreshold="0.01", plasticMaxThreshold="0.025", plasticCreep="1")
+       plastic1.addObject('PlaneForceField', normal="0 1 0", d="-3", stiffness="100000")
 
-       tetrahedron_fem_force_field__cpu_red = root.addChild('TetrahedronFEMForceField-CPU-red')
+       visu = Plastic1.addChild('Visu')
 
-       tetrahedron_fem_force_field__cpu_red.addObject('EulerImplicitSolver', name="cg_odesolver", rayleighStiffness="0.1", rayleighMass="0.1")
-       tetrahedron_fem_force_field__cpu_red.addObject('CGLinearSolver', iterations="10", name="linear solver", tolerance="1.0e-6", threshold="1.0e-6")
-       tetrahedron_fem_force_field__cpu_red.addObject('MechanicalObject', position="@../Beam/grid.position", name="Volume", template="Vec3")
-       tetrahedron_fem_force_field__cpu_red.addObject('TetrahedronSetTopologyContainer', name="Container", src="@../Beam/BeamTopo")
-       tetrahedron_fem_force_field__cpu_red.addObject('TetrahedronSetTopologyModifier', name="Modifier")
-       tetrahedron_fem_force_field__cpu_red.addObject('TetrahedronSetGeometryAlgorithms', name="GeomAlgo", template="Vec3")
-       tetrahedron_fem_force_field__cpu_red.addObject('DiagonalMass', totalMass="50.0")
-       tetrahedron_fem_force_field__cpu_red.addObject('BoxROI', name="ROI1", box="-0.1 5 -3 0.1 11 3", drawBoxes="1")
-       tetrahedron_fem_force_field__cpu_red.addObject('FixedProjectiveConstraint', indices="@ROI1.indices")
-       tetrahedron_fem_force_field__cpu_red.addObject('TetrahedronFEMForceField', template="Vec3", name="FEM", computeGlobalMatrix="false", method="large", poissonRatio="0.3", youngModulus="1000")
-       tetrahedron_fem_force_field__cpu_red.addObject('PlaneForceField', normal="0 1 0", d="2", stiffness="10000", showPlane="1")
+       visu.addObject('MeshOBJLoader', name="meshLoader_2", filename="mesh/torus.obj", rotation="90 0 0", handleSeams="1")
+       visu.addObject('OglModel', name="Visual", src="@meshLoader_2", color="red")
+       visu.addObject('BarycentricMapping', input="@..", output="@Visual")
 
-       surface = TetrahedronFEMForceField-CPU-red.addChild('surface')
+       surf2 = Plastic1.addChild('Surf2')
 
-       surface.addObject('TriangleSetTopologyContainer', name="Container")
-       surface.addObject('TriangleSetTopologyModifier', name="Modifier")
-       surface.addObject('TriangleSetGeometryAlgorithms', template="Vec3", name="GeomAlgo")
-       surface.addObject('Tetra2TriangleTopologicalMapping', input="@../Container", output="@Container")
+       surf2.addObject('MeshOBJLoader', name="loader", filename="mesh/torus_for_collision.obj", rotation="90 0 0")
+       surf2.addObject('MeshTopology', src="@loader")
+       surf2.addObject('MechanicalObject', src="@loader")
+       surf2.addObject('TriangleCollisionModel', )
+       surf2.addObject('BarycentricMapping', )
 
-       visu = surface.addChild('Visu')
+       plastic2 = root.addChild('Plastic2')
 
-       visu.addObject('OglModel', name="Visual", color="red")
-       visu.addObject('IdentityMapping', input="@../../Volume", output="@Visual")
+       plastic2.addObject('MeshGmshLoader', name="loader", filename="mesh/torus_low_res.msh", rotation="90 0 0", translation="-6 0 0")
+       plastic2.addObject('MeshTopology', src="@loader")
+       plastic2.addObject('MechanicalObject', src="@loader")
+       plastic2.addObject('UniformMass', totalMass="5")
+       plastic2.addObject('TetrahedronFEMForceField', name="FEM", youngModulus="1000", poissonRatio="0.4", computeGlobalMatrix="false", method="large", plasticYieldThreshold="0.005", plasticMaxThreshold="0.5", plasticCreep="1")
+       plastic2.addObject('PlaneForceField', normal="0 1 0", d="-3", stiffness="100000")
 
-       floor = root.addChild('Floor')
+       visu = Plastic2.addChild('Visu')
 
-       floor.addObject('RegularGridTopology', nx="4", ny="1", nz="4", xmin="-10", xmax="30", ymin="1.9", ymax="1.9", zmin="-20", zmax="20")
-       floor.addObject('MechanicalObject', )
+       visu.addObject('MeshOBJLoader', name="meshLoader_0", filename="mesh/torus.obj", rotation="90 0 0", translation="-6 0 0", handleSeams="1")
+       visu.addObject('OglModel', name="Visual", src="@meshLoader_0", color="blue")
+       visu.addObject('BarycentricMapping', input="@..", output="@Visual")
 
-       visu = Floor.addChild('Visu')
+       surf2 = Plastic2.addChild('Surf2')
 
-       visu.addObject('OglModel', name="Visual", color="white")
-       visu.addObject('IdentityMapping', input="@..", output="@Visual")
+       surf2.addObject('MeshOBJLoader', name="loader", filename="mesh/torus_for_collision.obj", rotation="90 0 0", translation="-6 0 0")
+       surf2.addObject('MeshTopology', src="@loader")
+       surf2.addObject('MechanicalObject', src="@loader")
+       surf2.addObject('TriangleCollisionModel', )
+       surf2.addObject('BarycentricMapping', )
+
+       plastic3 = root.addChild('Plastic3')
+
+       plastic3.addObject('MeshGmshLoader', name="loader", filename="mesh/torus_low_res.msh", rotation="90 0 0", translation="-12 0 0")
+       plastic3.addObject('MeshTopology', src="@loader")
+       plastic3.addObject('MechanicalObject', src="@loader")
+       plastic3.addObject('UniformMass', totalMass="5")
+       plastic3.addObject('TetrahedronFEMForceField', name="FEM", youngModulus="1000", poissonRatio="0.4", computeGlobalMatrix="false", method="large", plasticYieldThreshold="0.005", plasticMaxThreshold="0.5", plasticCreep=".1")
+       plastic3.addObject('PlaneForceField', normal="0 1 0", d="-3", stiffness="100000")
+
+       visu = Plastic3.addChild('Visu')
+
+       visu.addObject('MeshOBJLoader', name="meshLoader_3", filename="mesh/torus.obj", rotation="90 0 0", translation="-12 0 0", handleSeams="1")
+       visu.addObject('OglModel', name="Visual", src="@meshLoader_3", color="yellow")
+       visu.addObject('BarycentricMapping', input="@..", output="@Visual")
+
+       surf2 = Plastic3.addChild('Surf2')
+
+       surf2.addObject('MeshOBJLoader', name="loader", filename="mesh/torus_for_collision.obj", rotation="90 0 0", translation="-12 0 0")
+       surf2.addObject('MeshTopology', src="@loader")
+       surf2.addObject('MechanicalObject', src="@loader")
+       surf2.addObject('TriangleCollisionModel', )
+       surf2.addObject('BarycentricMapping', )
+
+       elastic = root.addChild('Elastic')
+
+       elastic.addObject('MeshGmshLoader', name="loader", filename="mesh/torus_low_res.msh", rotation="90 0 0", translation="6 0 0")
+       elastic.addObject('MeshTopology', src="@loader")
+       elastic.addObject('MechanicalObject', src="@loader")
+       elastic.addObject('UniformMass', totalMass="5")
+       elastic.addObject('TetrahedronFEMForceField', name="FEM", youngModulus="1000", poissonRatio="0.4", computeGlobalMatrix="false", method="large")
+       elastic.addObject('PlaneForceField', normal="0 1 0", d="-3", stiffness="100000")
+
+       visu = Elastic.addChild('Visu')
+
+       visu.addObject('MeshOBJLoader', name="meshLoader_1", filename="mesh/torus.obj", rotation="90 0 0", translation="6 0 0", handleSeams="1")
+       visu.addObject('OglModel', name="Visual", src="@meshLoader_1", color="green")
+       visu.addObject('BarycentricMapping', input="@..", output="@Visual")
+
+       surf2 = Elastic.addChild('Surf2')
+
+       surf2.addObject('MeshOBJLoader', name="loader", filename="mesh/torus_for_collision.obj", rotation="90 0 0", translation="6 0 0")
+       surf2.addObject('MeshTopology', src="@loader")
+       surf2.addObject('MechanicalObject', src="@loader")
+       surf2.addObject('TriangleCollisionModel', )
+       surf2.addObject('BarycentricMapping', )
     ```
 
 TetrahedronFEMForceField_beam16x16x76_gpu.scn
@@ -1491,6 +1325,172 @@ TetrahedronFEMForceField_beam10x10x40_gpu.scn
 
        visu.addObject('OglModel', name="Visual", color="green")
        visu.addObject('IdentityMapping', input="@../../Volume", output="@Visual")
+    ```
+
+TetrahedronFEMForceField_beam16x16x76_cpu.scn
+
+=== "XML"
+
+    ```xml
+    <?xml version="1.0" ?>
+    <Node name="root" gravity="0 -9 0" dt="0.04">
+        <RequiredPlugin name="Sofa.Component.Collision.Detection.Algorithm"/> <!-- Needed to use components [BVHNarrowPhase BruteForceBroadPhase CollisionPipeline] -->
+        <RequiredPlugin name="Sofa.Component.Collision.Detection.Intersection"/> <!-- Needed to use components [DiscreteIntersection] -->
+        <RequiredPlugin name="Sofa.Component.Collision.Response.Contact"/> <!-- Needed to use components [CollisionResponse] -->
+        <RequiredPlugin name="Sofa.Component.Constraint.Projective"/> <!-- Needed to use components [FixedProjectiveConstraint] -->
+        <RequiredPlugin name="Sofa.Component.Engine.Select"/> <!-- Needed to use components [BoxROI] -->
+        <RequiredPlugin name="Sofa.Component.LinearSolver.Iterative"/> <!-- Needed to use components [CGLinearSolver] -->
+        <RequiredPlugin name="Sofa.Component.Mapping.Linear"/> <!-- Needed to use components [IdentityMapping] -->
+        <RequiredPlugin name="Sofa.Component.Mass"/> <!-- Needed to use components [DiagonalMass] -->
+        <RequiredPlugin name="Sofa.Component.MechanicalLoad"/> <!-- Needed to use components [PlaneForceField] -->
+        <RequiredPlugin name="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+        <RequiredPlugin name="Sofa.Component.SolidMechanics.FEM.Elastic"/> <!-- Needed to use components [TetrahedronFEMForceField] -->
+        <RequiredPlugin name="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
+        <RequiredPlugin name="Sofa.Component.Topology.Container.Dynamic"/> <!-- Needed to use components [TetrahedronSetGeometryAlgorithms TetrahedronSetTopologyContainer TetrahedronSetTopologyModifier TriangleSetGeometryAlgorithms TriangleSetTopologyContainer TriangleSetTopologyModifier] -->
+        <RequiredPlugin name="Sofa.Component.Topology.Container.Grid"/> <!-- Needed to use components [RegularGridTopology] -->
+        <RequiredPlugin name="Sofa.Component.Topology.Mapping"/> <!-- Needed to use components [Hexa2TetraTopologicalMapping Tetra2TriangleTopologicalMapping] -->
+        <RequiredPlugin name="Sofa.Component.Visual"/> <!-- Needed to use components [VisualStyle] -->
+        <RequiredPlugin name="Sofa.GL.Component.Rendering3D"/> <!-- Needed to use components [OglModel] -->
+      
+        <VisualStyle displayFlags="showBehaviorModels showVisual" />
+    	
+        <DefaultAnimationLoop />
+        <DefaultVisualManagerLoop />
+        <CollisionPipeline name="CollisionPipeline" verbose="0" />
+        <BruteForceBroadPhase/>
+        <BVHNarrowPhase/>
+        <CollisionResponse name="collision response" response="PenalityContactForceField" />
+        <DiscreteIntersection/>
+        
+        <Node name="Beam">
+            <RegularGridTopology name="grid" n="76 16 16" min="0 6 -2" max="19 10 2" />
+            <TetrahedronSetTopologyContainer name="BeamTopo" />
+            <TetrahedronSetTopologyModifier name="Modifier" />
+    
+            <Hexa2TetraTopologicalMapping input="@grid" output="@BeamTopo" />
+        </Node>
+       
+        <Node name="TetrahedronFEMForceField-CPU-red">
+            <EulerImplicitSolver name="cg_odesolver" rayleighStiffness="0.1" rayleighMass="0.1" />
+            <CGLinearSolver iterations="10" name="linear solver" tolerance="1.0e-6" threshold="1.0e-6" />
+            
+            <MechanicalObject position="@../Beam/grid.position" name="Volume" template="Vec3"/>
+    
+            <TetrahedronSetTopologyContainer name="Container" src="@../Beam/BeamTopo"/>
+            <TetrahedronSetTopologyModifier name="Modifier" />
+            <TetrahedronSetGeometryAlgorithms name="GeomAlgo" template="Vec3" />
+    
+            <DiagonalMass totalMass="50.0" />
+            <BoxROI name="ROI1" box="-0.1 5 -3 0.1 11 3" drawBoxes="1" />
+            
+            <FixedProjectiveConstraint indices="@ROI1.indices" />
+            <TetrahedronFEMForceField template="Vec3" name="FEM" computeGlobalMatrix="false" method="large" poissonRatio="0.3" youngModulus="1000" />
+    		<PlaneForceField normal="0 1 0" d="2" stiffness="10000"  showPlane="1" />
+            
+            <Node name="surface">
+                <TriangleSetTopologyContainer name="Container" />
+                <TriangleSetTopologyModifier name="Modifier" />
+                <TriangleSetGeometryAlgorithms template="Vec3" name="GeomAlgo" />
+                
+                <Tetra2TriangleTopologicalMapping input="@../Container" output="@Container" />
+                <Node name="Visu">
+                    <OglModel name="Visual" color="red" />
+                    <IdentityMapping input="@../../Volume" output="@Visual" />
+                </Node>
+            </Node>
+        </Node>
+        
+        <Node name="Floor">
+    		<RegularGridTopology
+    			nx="4" ny="1" nz="4"
+    			xmin="-10" xmax="30"
+    			ymin="1.9" ymax="1.9"
+    			zmin="-20" zmax="20" />
+    		<MechanicalObject />
+    		<Node name="Visu">
+    			<OglModel name="Visual" color="white"/>
+    			<IdentityMapping input="@.." output="@Visual"/>
+    		</Node>
+    	</Node>
+    </Node>
+
+    ```
+
+=== "Python"
+
+    ```python
+    def createScene(root_node):
+
+       root = root_node.addChild('root', gravity="0 -9 0", dt="0.04")
+
+       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Algorithm")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Intersection")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Collision.Response.Contact")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Projective")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Engine.Select")
+       root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Iterative")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Mapping.Linear")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Mass")
+       root.addObject('RequiredPlugin', name="Sofa.Component.MechanicalLoad")
+       root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.FEM.Elastic")
+       root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Dynamic")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Grid")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Mapping")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Visual")
+       root.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
+       root.addObject('VisualStyle', displayFlags="showBehaviorModels showVisual")
+       root.addObject('DefaultAnimationLoop', )
+       root.addObject('DefaultVisualManagerLoop', )
+       root.addObject('CollisionPipeline', name="CollisionPipeline", verbose="0")
+       root.addObject('BruteForceBroadPhase', )
+       root.addObject('BVHNarrowPhase', )
+       root.addObject('CollisionResponse', name="collision response", response="PenalityContactForceField")
+       root.addObject('DiscreteIntersection', )
+
+       beam = root.addChild('Beam')
+
+       beam.addObject('RegularGridTopology', name="grid", n="76 16 16", min="0 6 -2", max="19 10 2")
+       beam.addObject('TetrahedronSetTopologyContainer', name="BeamTopo")
+       beam.addObject('TetrahedronSetTopologyModifier', name="Modifier")
+       beam.addObject('Hexa2TetraTopologicalMapping', input="@grid", output="@BeamTopo")
+
+       tetrahedron_fem_force_field__cpu_red = root.addChild('TetrahedronFEMForceField-CPU-red')
+
+       tetrahedron_fem_force_field__cpu_red.addObject('EulerImplicitSolver', name="cg_odesolver", rayleighStiffness="0.1", rayleighMass="0.1")
+       tetrahedron_fem_force_field__cpu_red.addObject('CGLinearSolver', iterations="10", name="linear solver", tolerance="1.0e-6", threshold="1.0e-6")
+       tetrahedron_fem_force_field__cpu_red.addObject('MechanicalObject', position="@../Beam/grid.position", name="Volume", template="Vec3")
+       tetrahedron_fem_force_field__cpu_red.addObject('TetrahedronSetTopologyContainer', name="Container", src="@../Beam/BeamTopo")
+       tetrahedron_fem_force_field__cpu_red.addObject('TetrahedronSetTopologyModifier', name="Modifier")
+       tetrahedron_fem_force_field__cpu_red.addObject('TetrahedronSetGeometryAlgorithms', name="GeomAlgo", template="Vec3")
+       tetrahedron_fem_force_field__cpu_red.addObject('DiagonalMass', totalMass="50.0")
+       tetrahedron_fem_force_field__cpu_red.addObject('BoxROI', name="ROI1", box="-0.1 5 -3 0.1 11 3", drawBoxes="1")
+       tetrahedron_fem_force_field__cpu_red.addObject('FixedProjectiveConstraint', indices="@ROI1.indices")
+       tetrahedron_fem_force_field__cpu_red.addObject('TetrahedronFEMForceField', template="Vec3", name="FEM", computeGlobalMatrix="false", method="large", poissonRatio="0.3", youngModulus="1000")
+       tetrahedron_fem_force_field__cpu_red.addObject('PlaneForceField', normal="0 1 0", d="2", stiffness="10000", showPlane="1")
+
+       surface = TetrahedronFEMForceField-CPU-red.addChild('surface')
+
+       surface.addObject('TriangleSetTopologyContainer', name="Container")
+       surface.addObject('TriangleSetTopologyModifier', name="Modifier")
+       surface.addObject('TriangleSetGeometryAlgorithms', template="Vec3", name="GeomAlgo")
+       surface.addObject('Tetra2TriangleTopologicalMapping', input="@../Container", output="@Container")
+
+       visu = surface.addChild('Visu')
+
+       visu.addObject('OglModel', name="Visual", color="red")
+       visu.addObject('IdentityMapping', input="@../../Volume", output="@Visual")
+
+       floor = root.addChild('Floor')
+
+       floor.addObject('RegularGridTopology', nx="4", ny="1", nz="4", xmin="-10", xmax="30", ymin="1.9", ymax="1.9", zmin="-20", zmax="20")
+       floor.addObject('MechanicalObject', )
+
+       visu = Floor.addChild('Visu')
+
+       visu.addObject('OglModel', name="Visual", color="white")
+       visu.addObject('IdentityMapping', input="@..", output="@Visual")
     ```
 
 TetrahedronFEMForceField_beam10x10x40_cpu.scn

@@ -81,7 +81,7 @@ __namespace__: sofa::component::collision::detection::algorithm
 
 __parents__:
 
-- Pipeline
+- CompositeCollisionPipeline
 
 ### Data
 
@@ -137,6 +137,27 @@ if true, handle the events, otherwise ignore the events
 		<td>0</td>
 	</tr>
 	<tr>
+		<td>nbThreads</td>
+		<td>
+If not yet initialized, the main task scheduler is initialized with this number of threads. 0 corresponds to the number of available cores on the CPU. -n (minus) corresponds to the number of available cores on the CPU minus the provided number.
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>taskSchedulerType</td>
+		<td>
+Type of task scheduler to use.
+		</td>
+		<td>_default</td>
+	</tr>
+	<tr>
+		<td>parallelDetection</td>
+		<td>
+Parallelize collision detection.
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
 		<td>verbose</td>
 		<td>
 Display extra information at each computation step. (default=false)
@@ -172,6 +193,7 @@ Draw the detected collisions. (default=false)
 |context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
 |slaves|Sub-objects used internally by this object|BaseObject|
 |master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
+|subCollisionPipelines|List of sub collision pipelines to handle.|BaseSubCollisionPipeline|
 
 
 <!-- automatically generated doc END -->

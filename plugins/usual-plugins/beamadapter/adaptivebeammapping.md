@@ -369,6 +369,8 @@ AdaptiveBeamMapping.scn
      	<RequiredPlugin name="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
      	<RequiredPlugin name="Sofa.Component.Topology.Container.Constant"/> <!-- Needed to use components [CubeTopology MeshTopology] -->
      	<RequiredPlugin name="Sofa.Component.Visual"/> <!-- Needed to use components [VisualStyle] -->
+    	<RequiredPlugin name="BeamAdapter"/> <!-- Needed to use components [AdaptiveBeamMapping,AdaptiveBeamForceFieldAndMass,BeamInterpolation] -->
+    
     	<VisualStyle displayFlags="showBehaviorModels showCollisionModels hideBoundingCollisionModels showForceFields" />
     
     	<DefaultAnimationLoop />
@@ -408,6 +410,7 @@ AdaptiveBeamMapping.scn
        root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
        root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Constant")
        root.addObject('RequiredPlugin', name="Sofa.Component.Visual")
+       root.addObject('RequiredPlugin', name="BeamAdapter")
        root.addObject('VisualStyle', displayFlags="showBehaviorModels showCollisionModels hideBoundingCollisionModels showForceFields")
        root.addObject('DefaultAnimationLoop', )
        root.addObject('DefaultVisualManagerLoop', )
