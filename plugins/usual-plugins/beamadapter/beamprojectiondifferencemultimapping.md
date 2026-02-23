@@ -135,6 +135,20 @@ Update the projection on the beam at each time step even when direction[0]=1.
 		<td>0</td>
 	</tr>
 	<tr>
+		<td>projections</td>
+		<td>
+Computed projection points.
+		</td>
+		<td></td>
+	</tr>
+	<tr>
+		<td>filter</td>
+		<td>
+When updating the projection at each time step, use this parameter to filter small changes: If the projection is on the same edge as the previous step, and the weight (in [0, 1]) is smaller than the value of 'filter', skip.
+		</td>
+		<td>0.01</td>
+	</tr>
+	<tr>
 		<td colspan="3">Visualization</td>
 	</tr>
 	<tr>
