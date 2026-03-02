@@ -72,6 +72,20 @@ if true, handle the events, otherwise ignore the events
 		<td>0</td>
 	</tr>
 	<tr>
+		<td>nbThreads</td>
+		<td>
+If not yet initialized, the main task scheduler is initialized with this number of threads. 0 corresponds to the number of available cores on the CPU. -n (minus) corresponds to the number of available cores on the CPU minus the provided number.
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>taskSchedulerType</td>
+		<td>
+Type of task scheduler to use.
+		</td>
+		<td>_default</td>
+	</tr>
+	<tr>
 		<td>parallelInverseProduct</td>
 		<td>
 Parallelize the computation of the product J*M^{-1}*J^T where M is the matrix of the linear system and J is any matrix with compatible dimensions
@@ -187,6 +201,20 @@ The state of the component among (Dirty, Valid, Undefined, Loading, Invalid).
 if true, handle the events, otherwise ignore the events
 		</td>
 		<td>0</td>
+	</tr>
+	<tr>
+		<td>nbThreads</td>
+		<td>
+If not yet initialized, the main task scheduler is initialized with this number of threads. 0 corresponds to the number of available cores on the CPU. -n (minus) corresponds to the number of available cores on the CPU minus the provided number.
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>taskSchedulerType</td>
+		<td>
+Type of task scheduler to use.
+		</td>
+		<td>_default</td>
 	</tr>
 	<tr>
 		<td>parallelInverseProduct</td>
@@ -306,6 +334,20 @@ if true, handle the events, otherwise ignore the events
 		<td>0</td>
 	</tr>
 	<tr>
+		<td>nbThreads</td>
+		<td>
+If not yet initialized, the main task scheduler is initialized with this number of threads. 0 corresponds to the number of available cores on the CPU. -n (minus) corresponds to the number of available cores on the CPU minus the provided number.
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>taskSchedulerType</td>
+		<td>
+Type of task scheduler to use.
+		</td>
+		<td>_default</td>
+	</tr>
+	<tr>
 		<td>parallelInverseProduct</td>
 		<td>
 Parallelize the computation of the product J*M^{-1}*J^T where M is the matrix of the linear system and J is any matrix with compatible dimensions
@@ -421,6 +463,20 @@ The state of the component among (Dirty, Valid, Undefined, Loading, Invalid).
 if true, handle the events, otherwise ignore the events
 		</td>
 		<td>0</td>
+	</tr>
+	<tr>
+		<td>nbThreads</td>
+		<td>
+If not yet initialized, the main task scheduler is initialized with this number of threads. 0 corresponds to the number of available cores on the CPU. -n (minus) corresponds to the number of available cores on the CPU minus the provided number.
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>taskSchedulerType</td>
+		<td>
+Type of task scheduler to use.
+		</td>
+		<td>_default</td>
 	</tr>
 	<tr>
 		<td>parallelInverseProduct</td>
@@ -540,6 +596,20 @@ if true, handle the events, otherwise ignore the events
 		<td>0</td>
 	</tr>
 	<tr>
+		<td>nbThreads</td>
+		<td>
+If not yet initialized, the main task scheduler is initialized with this number of threads. 0 corresponds to the number of available cores on the CPU. -n (minus) corresponds to the number of available cores on the CPU minus the provided number.
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>taskSchedulerType</td>
+		<td>
+Type of task scheduler to use.
+		</td>
+		<td>_default</td>
+	</tr>
+	<tr>
 		<td>parallelInverseProduct</td>
 		<td>
 Parallelize the computation of the product J*M^{-1}*J^T where M is the matrix of the linear system and J is any matrix with compatible dimensions
@@ -655,6 +725,20 @@ The state of the component among (Dirty, Valid, Undefined, Loading, Invalid).
 if true, handle the events, otherwise ignore the events
 		</td>
 		<td>0</td>
+	</tr>
+	<tr>
+		<td>nbThreads</td>
+		<td>
+If not yet initialized, the main task scheduler is initialized with this number of threads. 0 corresponds to the number of available cores on the CPU. -n (minus) corresponds to the number of available cores on the CPU minus the provided number.
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>taskSchedulerType</td>
+		<td>
+Type of task scheduler to use.
+		</td>
+		<td>_default</td>
 	</tr>
 	<tr>
 		<td>parallelInverseProduct</td>
@@ -774,6 +858,20 @@ if true, handle the events, otherwise ignore the events
 		<td>0</td>
 	</tr>
 	<tr>
+		<td>nbThreads</td>
+		<td>
+If not yet initialized, the main task scheduler is initialized with this number of threads. 0 corresponds to the number of available cores on the CPU. -n (minus) corresponds to the number of available cores on the CPU minus the provided number.
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>taskSchedulerType</td>
+		<td>
+Type of task scheduler to use.
+		</td>
+		<td>_default</td>
+	</tr>
+	<tr>
 		<td>parallelInverseProduct</td>
 		<td>
 Parallelize the computation of the product J*M^{-1}*J^T where M is the matrix of the linear system and J is any matrix with compatible dimensions
@@ -891,6 +989,20 @@ if true, handle the events, otherwise ignore the events
 		<td>0</td>
 	</tr>
 	<tr>
+		<td>nbThreads</td>
+		<td>
+If not yet initialized, the main task scheduler is initialized with this number of threads. 0 corresponds to the number of available cores on the CPU. -n (minus) corresponds to the number of available cores on the CPU minus the provided number.
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>taskSchedulerType</td>
+		<td>
+Type of task scheduler to use.
+		</td>
+		<td>_default</td>
+	</tr>
+	<tr>
 		<td>parallelInverseProduct</td>
 		<td>
 Parallelize the computation of the product J*M^{-1}*J^T where M is the matrix of the linear system and J is any matrix with compatible dimensions
@@ -1006,6 +1118,20 @@ The state of the component among (Dirty, Valid, Undefined, Loading, Invalid).
 if true, handle the events, otherwise ignore the events
 		</td>
 		<td>0</td>
+	</tr>
+	<tr>
+		<td>nbThreads</td>
+		<td>
+If not yet initialized, the main task scheduler is initialized with this number of threads. 0 corresponds to the number of available cores on the CPU. -n (minus) corresponds to the number of available cores on the CPU minus the provided number.
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>taskSchedulerType</td>
+		<td>
+Type of task scheduler to use.
+		</td>
+		<td>_default</td>
 	</tr>
 	<tr>
 		<td>parallelInverseProduct</td>

@@ -129,6 +129,20 @@ enable the storage of the constraintForces.
 		<td>0</td>
 	</tr>
 	<tr>
+		<td>nbThreads</td>
+		<td>
+If not yet initialized, the main task scheduler is initialized with this number of threads. 0 corresponds to the number of available cores on the CPU. -n (minus) corresponds to the number of available cores on the CPU minus the provided number.
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>taskSchedulerType</td>
+		<td>
+Type of task scheduler to use.
+		</td>
+		<td>_default</td>
+	</tr>
+	<tr>
 		<td>multithreading</td>
 		<td>
 Build compliances concurrently

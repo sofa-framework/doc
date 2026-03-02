@@ -49,12 +49,14 @@ As any plugin, to compile SofaGLFW, follow the instructions on the [SOFA documen
 ### Keyboard Shortcuts
 
 Several shortcuts are related to the window:
+
 * F11: switch to fullscreen
 * Escape: close the app
 * Space: play/pause the simulation
 * Any letter on your keyboard would result in a search in the scene graph
 
 Using the control (CTRL) key, you activate GUI shortcuts such as:
+
 * Ctrl+A: show the scene axis
 * Ctrl+B: switch the background
 * Ctrl+R: reload the current scene
@@ -62,9 +64,13 @@ Using the control (CTRL) key, you activate GUI shortcuts such as:
 
 Using the SHIFT key, you activate the scene interactions such as the mouse interaction.
 
+Using the SHIFT + CTRL keys, you will trigger events on key pressed/released.
+
+
 ### Command Line Options
 
 `runSofaGLFW` accepts the following command line options:
+
 * `-f` or `--file` to specify the scene file to load. If not defined, the default scene file `Demos/caduceus.scn` is loaded.
 * `-a` or `--start`: if true, starts the simulation just after opening. True by default.
 * `-s` or `--fullscreen`: set full screen at startup. False by default.
