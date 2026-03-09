@@ -116,8 +116,8 @@ If true, will update the volume at each time step of the simulation.
 | Name | Description | Destination type name |
 | ---- | ----------- | --------------------- |
 |context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
-|slaves|Sub-objects used internally by this object|BaseObject|
-|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
+|slaves|Sub-objects used internally by this object|BaseComponent|
+|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseComponent|
 |topology|link to the topology|BaseMeshTopology|
 |mechanical|link to the mechanical|MechanicalState&lt;Rigid3d&gt;|
 
@@ -234,8 +234,8 @@ If true, will update the volume at each time step of the simulation.
 | Name | Description | Destination type name |
 | ---- | ----------- | --------------------- |
 |context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
-|slaves|Sub-objects used internally by this object|BaseObject|
-|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
+|slaves|Sub-objects used internally by this object|BaseComponent|
+|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseComponent|
 |topology|link to the topology|BaseMeshTopology|
 |mechanical|link to the mechanical|MechanicalState&lt;Vec3d&gt;|
 

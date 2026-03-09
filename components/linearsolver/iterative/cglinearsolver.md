@@ -174,8 +174,8 @@ Graph of residuals at each iteration
 | Name | Description | Destination type name |
 | ---- | ----------- | --------------------- |
 |context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
-|slaves|Sub-objects used internally by this object|BaseObject|
-|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
+|slaves|Sub-objects used internally by this object|BaseComponent|
+|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseComponent|
 |linearSystem|The linear system to solve|TypedMatrixLinearSystem&lt;CompressedRowSparseMatrixMat2x2d&gt;|
 
 <!-- generate_doc -->
@@ -319,8 +319,8 @@ Graph of residuals at each iteration
 | Name | Description | Destination type name |
 | ---- | ----------- | --------------------- |
 |context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
-|slaves|Sub-objects used internally by this object|BaseObject|
-|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
+|slaves|Sub-objects used internally by this object|BaseComponent|
+|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseComponent|
 |linearSystem|The linear system to solve|TypedMatrixLinearSystem&lt;CompressedRowSparseMatrixMat3x3d&gt;|
 
 <!-- generate_doc -->
@@ -464,8 +464,8 @@ Graph of residuals at each iteration
 | Name | Description | Destination type name |
 | ---- | ----------- | --------------------- |
 |context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
-|slaves|Sub-objects used internally by this object|BaseObject|
-|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
+|slaves|Sub-objects used internally by this object|BaseComponent|
+|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseComponent|
 |linearSystem|The linear system to solve|TypedMatrixLinearSystem&lt;CompressedRowSparseMatrixMat4x4d&gt;|
 
 <!-- generate_doc -->
@@ -609,8 +609,8 @@ Graph of residuals at each iteration
 | Name | Description | Destination type name |
 | ---- | ----------- | --------------------- |
 |context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
-|slaves|Sub-objects used internally by this object|BaseObject|
-|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
+|slaves|Sub-objects used internally by this object|BaseComponent|
+|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseComponent|
 |linearSystem|The linear system to solve|TypedMatrixLinearSystem&lt;CompressedRowSparseMatrixMat6x6d&gt;|
 
 <!-- generate_doc -->
@@ -754,8 +754,8 @@ Graph of residuals at each iteration
 | Name | Description | Destination type name |
 | ---- | ----------- | --------------------- |
 |context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
-|slaves|Sub-objects used internally by this object|BaseObject|
-|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
+|slaves|Sub-objects used internally by this object|BaseComponent|
+|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseComponent|
 |linearSystem|The linear system to solve|TypedMatrixLinearSystem&lt;CompressedRowSparseMatrixMat8x8d&gt;|
 
 <!-- generate_doc -->
@@ -899,8 +899,8 @@ Graph of residuals at each iteration
 | Name | Description | Destination type name |
 | ---- | ----------- | --------------------- |
 |context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
-|slaves|Sub-objects used internally by this object|BaseObject|
-|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
+|slaves|Sub-objects used internally by this object|BaseComponent|
+|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseComponent|
 |linearSystem|The linear system to solve|TypedMatrixLinearSystem&lt;CompressedRowSparseMatrixd&gt;|
 
 <!-- generate_doc -->
@@ -1044,8 +1044,8 @@ Graph of residuals at each iteration
 | Name | Description | Destination type name |
 | ---- | ----------- | --------------------- |
 |context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
-|slaves|Sub-objects used internally by this object|BaseObject|
-|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
+|slaves|Sub-objects used internally by this object|BaseComponent|
+|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseComponent|
 |linearSystem|The linear system to solve|TypedMatrixLinearSystem&lt;FullMatrix&gt;|
 
 <!-- generate_doc -->
@@ -1189,8 +1189,8 @@ Graph of residuals at each iteration
 | Name | Description | Destination type name |
 | ---- | ----------- | --------------------- |
 |context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
-|slaves|Sub-objects used internally by this object|BaseObject|
-|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
+|slaves|Sub-objects used internally by this object|BaseComponent|
+|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseComponent|
 |linearSystem|The linear system to solve|TypedMatrixLinearSystem&lt;GraphScattered&gt;|
 
 <!-- generate_doc -->
@@ -1334,8 +1334,8 @@ Graph of residuals at each iteration
 | Name | Description | Destination type name |
 | ---- | ----------- | --------------------- |
 |context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
-|slaves|Sub-objects used internally by this object|BaseObject|
-|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
+|slaves|Sub-objects used internally by this object|BaseComponent|
+|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseComponent|
 |linearSystem|The linear system to solve|TypedMatrixLinearSystem&lt;SparseMatrix&gt;|
 
 ## Examples 

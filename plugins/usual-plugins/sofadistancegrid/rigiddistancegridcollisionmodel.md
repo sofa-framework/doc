@@ -276,12 +276,12 @@ Max distance to render gradients
 | Name | Description | Destination type name |
 | ---- | ----------- | --------------------- |
 |context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
-|slaves|Sub-objects used internally by this object|BaseObject|
-|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
+|slaves|Sub-objects used internally by this object|BaseComponent|
+|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseComponent|
 |mechanicalStates|List of mechanical states to which this component is associated|BaseMechanicalState|
 |previous|Previous (coarser / upper / parent level) CollisionModel in the hierarchy.|CollisionModel|
 |next|Next (finer / lower / child level) CollisionModel in the hierarchy.|CollisionModel|
-|collisionElementActiver|CollisionElementActiver component that activates or deactivates collision element(s) during execution|BaseObject|
+|collisionElementActiver|CollisionElementActiver component that activates or deactivates collision element(s) during execution|BaseComponent|
 |mstate|MechanicalState used by this component|MechanicalState&lt;Rigid3d&gt;|
 
 ## Examples 

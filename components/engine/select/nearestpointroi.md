@@ -158,8 +158,8 @@ Option to draw the positions pairs computed
 | Name | Description | Destination type name |
 | ---- | ----------- | --------------------- |
 |context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
-|slaves|Sub-objects used internally by this object|BaseObject|
-|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
+|slaves|Sub-objects used internally by this object|BaseComponent|
+|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseComponent|
 |mechanicalStates|List of mechanical states to which this component is associated|BaseMechanicalState|
 |object1|First object associated to this component|MechanicalState&lt;Rigid2d&gt;|
 |object2|Second object associated to this component|MechanicalState&lt;Rigid2d&gt;|
@@ -319,8 +319,8 @@ Option to draw the positions pairs computed
 | Name | Description | Destination type name |
 | ---- | ----------- | --------------------- |
 |context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
-|slaves|Sub-objects used internally by this object|BaseObject|
-|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
+|slaves|Sub-objects used internally by this object|BaseComponent|
+|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseComponent|
 |mechanicalStates|List of mechanical states to which this component is associated|BaseMechanicalState|
 |object1|First object associated to this component|MechanicalState&lt;Rigid3d&gt;|
 |object2|Second object associated to this component|MechanicalState&lt;Rigid3d&gt;|
@@ -480,8 +480,8 @@ Option to draw the positions pairs computed
 | Name | Description | Destination type name |
 | ---- | ----------- | --------------------- |
 |context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
-|slaves|Sub-objects used internally by this object|BaseObject|
-|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
+|slaves|Sub-objects used internally by this object|BaseComponent|
+|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseComponent|
 |mechanicalStates|List of mechanical states to which this component is associated|BaseMechanicalState|
 |object1|First object associated to this component|MechanicalState&lt;Vec1d&gt;|
 |object2|Second object associated to this component|MechanicalState&lt;Vec1d&gt;|
@@ -641,8 +641,8 @@ Option to draw the positions pairs computed
 | Name | Description | Destination type name |
 | ---- | ----------- | --------------------- |
 |context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
-|slaves|Sub-objects used internally by this object|BaseObject|
-|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
+|slaves|Sub-objects used internally by this object|BaseComponent|
+|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseComponent|
 |mechanicalStates|List of mechanical states to which this component is associated|BaseMechanicalState|
 |object1|First object associated to this component|MechanicalState&lt;Vec2d&gt;|
 |object2|Second object associated to this component|MechanicalState&lt;Vec2d&gt;|
@@ -802,8 +802,8 @@ Option to draw the positions pairs computed
 | Name | Description | Destination type name |
 | ---- | ----------- | --------------------- |
 |context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
-|slaves|Sub-objects used internally by this object|BaseObject|
-|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
+|slaves|Sub-objects used internally by this object|BaseComponent|
+|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseComponent|
 |mechanicalStates|List of mechanical states to which this component is associated|BaseMechanicalState|
 |object1|First object associated to this component|MechanicalState&lt;Vec3d&gt;|
 |object2|Second object associated to this component|MechanicalState&lt;Vec3d&gt;|
@@ -963,8 +963,8 @@ Option to draw the positions pairs computed
 | Name | Description | Destination type name |
 | ---- | ----------- | --------------------- |
 |context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
-|slaves|Sub-objects used internally by this object|BaseObject|
-|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
+|slaves|Sub-objects used internally by this object|BaseComponent|
+|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseComponent|
 |mechanicalStates|List of mechanical states to which this component is associated|BaseMechanicalState|
 |object1|First object associated to this component|MechanicalState&lt;Vec6d&gt;|
 |object2|Second object associated to this component|MechanicalState&lt;Vec6d&gt;|

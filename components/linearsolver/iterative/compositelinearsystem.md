@@ -103,8 +103,8 @@ Internal Data indicating a change in the matrix
 | Name | Description | Destination type name |
 | ---- | ----------- | --------------------- |
 |context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
-|slaves|Sub-objects used internally by this object|BaseObject|
-|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
+|slaves|Sub-objects used internally by this object|BaseComponent|
+|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseComponent|
 |linearSystems|List of linear systems to assemble|BaseMatrixLinearSystem|
 |solverLinearSystem|Among the list of linear systems, which one is to be used by the linear solver|TypedMatrixLinearSystem&lt;GraphScattered&gt;|
 

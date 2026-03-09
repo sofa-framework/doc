@@ -175,8 +175,8 @@ are the output DOFs initially expressed in global coordinates
 | Name | Description | Destination type name |
 | ---- | ----------- | --------------------- |
 |context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
-|slaves|Sub-objects used internally by this object|BaseObject|
-|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
+|slaves|Sub-objects used internally by this object|BaseComponent|
+|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseComponent|
 |input|Input object to map|State&lt;Rigid2d&gt;|
 |output|Output object to map|State&lt;Vec2d&gt;|
 
@@ -352,8 +352,8 @@ are the output DOFs initially expressed in global coordinates
 | Name | Description | Destination type name |
 | ---- | ----------- | --------------------- |
 |context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
-|slaves|Sub-objects used internally by this object|BaseObject|
-|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
+|slaves|Sub-objects used internally by this object|BaseComponent|
+|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseComponent|
 |input|Input object to map|State&lt;Rigid3d&gt;|
 |output|Output object to map|State&lt;Rigid3d&gt;|
 
@@ -529,8 +529,8 @@ are the output DOFs initially expressed in global coordinates
 | Name | Description | Destination type name |
 | ---- | ----------- | --------------------- |
 |context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
-|slaves|Sub-objects used internally by this object|BaseObject|
-|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
+|slaves|Sub-objects used internally by this object|BaseComponent|
+|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseComponent|
 |input|Input object to map|State&lt;Rigid3d&gt;|
 |output|Output object to map|State&lt;Vec3d&gt;|
 

@@ -16,7 +16,7 @@ __namespace__: sofa::component::misc
 
 __parents__:
 
-- BaseObject
+- BaseComponent
 
 ### Data
 
@@ -153,8 +153,8 @@ input image
 | Name | Description | Destination type name |
 | ---- | ----------- | --------------------- |
 |context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
-|slaves|Sub-objects used internally by this object|BaseObject|
-|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
+|slaves|Sub-objects used internally by this object|BaseComponent|
+|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseComponent|
 
 <!-- generate_doc -->
 ## ImageD
@@ -169,7 +169,7 @@ __namespace__: sofa::component::misc
 
 __parents__:
 
-- BaseObject
+- BaseComponent
 
 ### Data
 
@@ -306,8 +306,8 @@ input image
 | Name | Description | Destination type name |
 | ---- | ----------- | --------------------- |
 |context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
-|slaves|Sub-objects used internally by this object|BaseObject|
-|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
+|slaves|Sub-objects used internally by this object|BaseComponent|
+|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseComponent|
 
 <!-- generate_doc -->
 ## ImageUC
@@ -322,7 +322,7 @@ __namespace__: sofa::component::misc
 
 __parents__:
 
-- BaseObject
+- BaseComponent
 
 ### Data
 
@@ -459,6 +459,6 @@ input image
 | Name | Description | Destination type name |
 | ---- | ----------- | --------------------- |
 |context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
-|slaves|Sub-objects used internally by this object|BaseObject|
-|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
+|slaves|Sub-objects used internally by this object|BaseComponent|
+|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseComponent|
 

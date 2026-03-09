@@ -166,8 +166,8 @@ Internal edge data
 | Name | Description | Destination type name |
 | ---- | ----------- | --------------------- |
 |context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
-|slaves|Sub-objects used internally by this object|BaseObject|
-|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
+|slaves|Sub-objects used internally by this object|BaseComponent|
+|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseComponent|
 |mechanicalStates|List of mechanical states to which this component is associated|BaseMechanicalState|
 |mstate|MechanicalState used by this component|MechanicalState&lt;Vec3d&gt;|
 |topology|link to the topology container|BaseMeshTopology|
@@ -232,9 +232,7 @@ TetrahedronHyperelasticityFEMForceField.scn
                     <MeshMatrixMass totalMass="1.0"/>
     
                     <Node name="tetras">
-                            <TetrahedronSetTopologyContainer name="Container"/>
-                            <TetrahedronSetTopologyModifier name="Modifier" />
-                            <TetrahedronSetGeometryAlgorithms template="Vec3" name="GeomAlgo" />
+                            <MeshTopology name="Container"/>
                             <Hexa2TetraTopologicalMapping name="default28" input="@../" output="@Container" printLog="0" />
     
                             <TetrahedronHyperelasticityFEMForceField name="FEM" ParameterSet="3448.2759 31034.483"/>
@@ -256,9 +254,7 @@ TetrahedronHyperelasticityFEMForceField.scn
                     <MeshMatrixMass totalMass="1.0"/>
     
                     <Node name="tetras">
-                            <TetrahedronSetTopologyContainer name="Container"/>
-                            <TetrahedronSetTopologyModifier name="Modifier" />
-                            <TetrahedronSetGeometryAlgorithms template="Vec3" name="GeomAlgo" />
+                            <MeshTopology name="Container"/>
                             <Hexa2TetraTopologicalMapping name="default28" input="@../" output="@Container" printLog="0" />
     
                             <TetrahedronHyperelasticityFEMForceField name="FEM" ParameterSet="3448.2759 31034.483" materialName="StVenantKirchhoff"/>
@@ -281,9 +277,7 @@ TetrahedronHyperelasticityFEMForceField.scn
                     <MeshMatrixMass totalMass="1.0"/>
     
                     <Node name="tetras">
-                            <TetrahedronSetTopologyContainer name="Container"/>
-                            <TetrahedronSetTopologyModifier name="Modifier" />
-                            <TetrahedronSetGeometryAlgorithms template="Vec3" name="GeomAlgo" />
+                            <MeshTopology name="Container"/>
                             <Hexa2TetraTopologicalMapping name="default28" input="@../" output="@Container" printLog="0" />
     
                             <TetrahedronHyperelasticityFEMForceField name="FEM" ParameterSet="3448.2759 31034.483" materialName="NeoHookean"/>
@@ -306,9 +300,7 @@ TetrahedronHyperelasticityFEMForceField.scn
                     <MeshMatrixMass totalMass="1.0"/>
     
                     <Node name="tetras">
-                            <TetrahedronSetTopologyContainer name="Container"/>
-                            <TetrahedronSetTopologyModifier name="Modifier" />
-                            <TetrahedronSetGeometryAlgorithms template="Vec3" name="GeomAlgo" />
+                            <MeshTopology name="Container"/>
                             <Hexa2TetraTopologicalMapping name="default28" input="@../" output="@Container" printLog="0" />
     
                             <TetrahedronHyperelasticityFEMForceField name="FEM" ParameterSet="5000 7000 10" materialName="MooneyRivlin"/>
@@ -330,9 +322,7 @@ TetrahedronHyperelasticityFEMForceField.scn
                     <MeshMatrixMass totalMass="1.0"/>
     
                     <Node name="tetras">
-                            <TetrahedronSetTopologyContainer name="Container"/>
-                            <TetrahedronSetTopologyModifier name="Modifier" />
-                            <TetrahedronSetGeometryAlgorithms template="Vec3" name="GeomAlgo" />
+                            <MeshTopology name="Container"/>
                             <Hexa2TetraTopologicalMapping name="default28" input="@../" output="@Container" printLog="0" />
     
                             <TetrahedronHyperelasticityFEMForceField name="FEM" ParameterSet="1500 500 5000" materialName="Ogden"/>
@@ -398,9 +388,7 @@ TetrahedronHyperelasticityFEMForceField.scn
 
        tetras = ArrudaBoyce.addChild('tetras')
 
-       tetras.addObject('TetrahedronSetTopologyContainer', name="Container")
-       tetras.addObject('TetrahedronSetTopologyModifier', name="Modifier")
-       tetras.addObject('TetrahedronSetGeometryAlgorithms', template="Vec3", name="GeomAlgo")
+       tetras.addObject('MeshTopology', name="Container")
        tetras.addObject('Hexa2TetraTopologicalMapping', name="default28", input="@../", output="@Container", printLog="0")
        tetras.addObject('TetrahedronHyperelasticityFEMForceField', name="FEM", ParameterSet="3448.2759 31034.483")
 
@@ -418,9 +406,7 @@ TetrahedronHyperelasticityFEMForceField.scn
 
        tetras = StVenantKirchhoff.addChild('tetras')
 
-       tetras.addObject('TetrahedronSetTopologyContainer', name="Container")
-       tetras.addObject('TetrahedronSetTopologyModifier', name="Modifier")
-       tetras.addObject('TetrahedronSetGeometryAlgorithms', template="Vec3", name="GeomAlgo")
+       tetras.addObject('MeshTopology', name="Container")
        tetras.addObject('Hexa2TetraTopologicalMapping', name="default28", input="@../", output="@Container", printLog="0")
        tetras.addObject('TetrahedronHyperelasticityFEMForceField', name="FEM", ParameterSet="3448.2759 31034.483", materialName="StVenantKirchhoff")
 
@@ -438,9 +424,7 @@ TetrahedronHyperelasticityFEMForceField.scn
 
        tetras = NeoHookean.addChild('tetras')
 
-       tetras.addObject('TetrahedronSetTopologyContainer', name="Container")
-       tetras.addObject('TetrahedronSetTopologyModifier', name="Modifier")
-       tetras.addObject('TetrahedronSetGeometryAlgorithms', template="Vec3", name="GeomAlgo")
+       tetras.addObject('MeshTopology', name="Container")
        tetras.addObject('Hexa2TetraTopologicalMapping', name="default28", input="@../", output="@Container", printLog="0")
        tetras.addObject('TetrahedronHyperelasticityFEMForceField', name="FEM", ParameterSet="3448.2759 31034.483", materialName="NeoHookean")
 
@@ -458,9 +442,7 @@ TetrahedronHyperelasticityFEMForceField.scn
 
        tetras = MooneyRivlin.addChild('tetras')
 
-       tetras.addObject('TetrahedronSetTopologyContainer', name="Container")
-       tetras.addObject('TetrahedronSetTopologyModifier', name="Modifier")
-       tetras.addObject('TetrahedronSetGeometryAlgorithms', template="Vec3", name="GeomAlgo")
+       tetras.addObject('MeshTopology', name="Container")
        tetras.addObject('Hexa2TetraTopologicalMapping', name="default28", input="@../", output="@Container", printLog="0")
        tetras.addObject('TetrahedronHyperelasticityFEMForceField', name="FEM", ParameterSet="5000 7000 10", materialName="MooneyRivlin")
 
@@ -478,9 +460,7 @@ TetrahedronHyperelasticityFEMForceField.scn
 
        tetras = Ogden.addChild('tetras')
 
-       tetras.addObject('TetrahedronSetTopologyContainer', name="Container")
-       tetras.addObject('TetrahedronSetTopologyModifier', name="Modifier")
-       tetras.addObject('TetrahedronSetGeometryAlgorithms', template="Vec3", name="GeomAlgo")
+       tetras.addObject('MeshTopology', name="Container")
        tetras.addObject('Hexa2TetraTopologicalMapping', name="default28", input="@../", output="@Container", printLog="0")
        tetras.addObject('TetrahedronHyperelasticityFEMForceField', name="FEM", ParameterSet="1500 500 5000", materialName="Ogden")
 

@@ -243,8 +243,8 @@ Corresponding index if the base of the articulated system is attached to input2.
 | Name | Description | Destination type name |
 | ---- | ----------- | --------------------- |
 |context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
-|slaves|Sub-objects used internally by this object|BaseObject|
-|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
+|slaves|Sub-objects used internally by this object|BaseComponent|
+|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseComponent|
 |input1|Input Object(s) (1st Data type)|State&lt;Vec1d&gt;|
 |input2|Input Object(s) (2nd Data type)|State&lt;Rigid3d&gt;|
 |output|Output Object(s)|State&lt;Rigid3d&gt;|

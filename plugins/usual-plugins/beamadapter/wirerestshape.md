@@ -16,7 +16,7 @@ __namespace__: beamadapter
 
 __parents__:
 
-- BaseObject
+- BaseComponent
 
 ### Data
 
@@ -95,8 +95,8 @@ key points of the shape (curv absc)
 | Name | Description | Destination type name |
 | ---- | ----------- | --------------------- |
 |context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
-|slaves|Sub-objects used internally by this object|BaseObject|
-|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
+|slaves|Sub-objects used internally by this object|BaseComponent|
+|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseComponent|
 |wireMaterials|link to Wire Section Materials (to be ordered according to the instrument, from handle to tip)|BaseRodSectionMaterial&lt;Rigid3d&gt;|
 |topology|link to the topology container|BaseMeshTopology|
 

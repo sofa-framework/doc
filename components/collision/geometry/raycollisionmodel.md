@@ -167,9 +167,9 @@ The default length for all rays in this collision model
 | Name | Description | Destination type name |
 | ---- | ----------- | --------------------- |
 |context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
-|slaves|Sub-objects used internally by this object|BaseObject|
-|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
+|slaves|Sub-objects used internally by this object|BaseComponent|
+|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseComponent|
 |previous|Previous (coarser / upper / parent level) CollisionModel in the hierarchy.|CollisionModel|
 |next|Next (finer / lower / child level) CollisionModel in the hierarchy.|CollisionModel|
-|collisionElementActiver|CollisionElementActiver component that activates or deactivates collision element(s) during execution|BaseObject|
+|collisionElementActiver|CollisionElementActiver component that activates or deactivates collision element(s) during execution|BaseComponent|
 

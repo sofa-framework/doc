@@ -103,8 +103,8 @@ Internal Data indicating a change in the matrix
 | Name | Description | Destination type name |
 | ---- | ----------- | --------------------- |
 |context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
-|slaves|Sub-objects used internally by this object|BaseObject|
-|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
+|slaves|Sub-objects used internally by this object|BaseComponent|
+|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseComponent|
 |linearSystems|List of linear systems to assemble|BaseMatrixLinearSystem|
 |solverLinearSystem|Among the list of linear systems, which one is to be used by the linear solver|TypedMatrixLinearSystem&lt;BlockDiagonalMatrixMat3x3d&gt;|
 
@@ -207,8 +207,8 @@ Internal Data indicating a change in the matrix
 | Name | Description | Destination type name |
 | ---- | ----------- | --------------------- |
 |context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
-|slaves|Sub-objects used internally by this object|BaseObject|
-|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
+|slaves|Sub-objects used internally by this object|BaseComponent|
+|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseComponent|
 |linearSystems|List of linear systems to assemble|BaseMatrixLinearSystem|
 |solverLinearSystem|Among the list of linear systems, which one is to be used by the linear solver|TypedMatrixLinearSystem&lt;CompressedRowSparseMatrixMat2x2d&gt;|
 
@@ -311,8 +311,8 @@ Internal Data indicating a change in the matrix
 | Name | Description | Destination type name |
 | ---- | ----------- | --------------------- |
 |context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
-|slaves|Sub-objects used internally by this object|BaseObject|
-|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
+|slaves|Sub-objects used internally by this object|BaseComponent|
+|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseComponent|
 |linearSystems|List of linear systems to assemble|BaseMatrixLinearSystem|
 |solverLinearSystem|Among the list of linear systems, which one is to be used by the linear solver|TypedMatrixLinearSystem&lt;CompressedRowSparseMatrixMat3x3d&gt;|
 
@@ -415,8 +415,8 @@ Internal Data indicating a change in the matrix
 | Name | Description | Destination type name |
 | ---- | ----------- | --------------------- |
 |context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
-|slaves|Sub-objects used internally by this object|BaseObject|
-|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
+|slaves|Sub-objects used internally by this object|BaseComponent|
+|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseComponent|
 |linearSystems|List of linear systems to assemble|BaseMatrixLinearSystem|
 |solverLinearSystem|Among the list of linear systems, which one is to be used by the linear solver|TypedMatrixLinearSystem&lt;CompressedRowSparseMatrixMat4x4d&gt;|
 
@@ -519,8 +519,8 @@ Internal Data indicating a change in the matrix
 | Name | Description | Destination type name |
 | ---- | ----------- | --------------------- |
 |context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
-|slaves|Sub-objects used internally by this object|BaseObject|
-|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
+|slaves|Sub-objects used internally by this object|BaseComponent|
+|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseComponent|
 |linearSystems|List of linear systems to assemble|BaseMatrixLinearSystem|
 |solverLinearSystem|Among the list of linear systems, which one is to be used by the linear solver|TypedMatrixLinearSystem&lt;CompressedRowSparseMatrixMat6x6d&gt;|
 
@@ -623,8 +623,8 @@ Internal Data indicating a change in the matrix
 | Name | Description | Destination type name |
 | ---- | ----------- | --------------------- |
 |context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
-|slaves|Sub-objects used internally by this object|BaseObject|
-|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
+|slaves|Sub-objects used internally by this object|BaseComponent|
+|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseComponent|
 |linearSystems|List of linear systems to assemble|BaseMatrixLinearSystem|
 |solverLinearSystem|Among the list of linear systems, which one is to be used by the linear solver|TypedMatrixLinearSystem&lt;CompressedRowSparseMatrixMat8x8d&gt;|
 
@@ -727,8 +727,8 @@ Internal Data indicating a change in the matrix
 | Name | Description | Destination type name |
 | ---- | ----------- | --------------------- |
 |context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
-|slaves|Sub-objects used internally by this object|BaseObject|
-|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
+|slaves|Sub-objects used internally by this object|BaseComponent|
+|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseComponent|
 |linearSystems|List of linear systems to assemble|BaseMatrixLinearSystem|
 |solverLinearSystem|Among the list of linear systems, which one is to be used by the linear solver|TypedMatrixLinearSystem&lt;CompressedRowSparseMatrixd&gt;|
 
@@ -831,8 +831,8 @@ Internal Data indicating a change in the matrix
 | Name | Description | Destination type name |
 | ---- | ----------- | --------------------- |
 |context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
-|slaves|Sub-objects used internally by this object|BaseObject|
-|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
+|slaves|Sub-objects used internally by this object|BaseComponent|
+|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseComponent|
 |linearSystems|List of linear systems to assemble|BaseMatrixLinearSystem|
 |solverLinearSystem|Among the list of linear systems, which one is to be used by the linear solver|TypedMatrixLinearSystem&lt;DiagonalMatrix&gt;|
 
@@ -935,8 +935,8 @@ Internal Data indicating a change in the matrix
 | Name | Description | Destination type name |
 | ---- | ----------- | --------------------- |
 |context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
-|slaves|Sub-objects used internally by this object|BaseObject|
-|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
+|slaves|Sub-objects used internally by this object|BaseComponent|
+|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseComponent|
 |linearSystems|List of linear systems to assemble|BaseMatrixLinearSystem|
 |solverLinearSystem|Among the list of linear systems, which one is to be used by the linear solver|TypedMatrixLinearSystem&lt;FullMatrix&gt;|
 
@@ -1039,8 +1039,8 @@ Internal Data indicating a change in the matrix
 | Name | Description | Destination type name |
 | ---- | ----------- | --------------------- |
 |context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
-|slaves|Sub-objects used internally by this object|BaseObject|
-|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
+|slaves|Sub-objects used internally by this object|BaseComponent|
+|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseComponent|
 |linearSystems|List of linear systems to assemble|BaseMatrixLinearSystem|
 |solverLinearSystem|Among the list of linear systems, which one is to be used by the linear solver|TypedMatrixLinearSystem&lt;RotationMatrixd&gt;|
 
@@ -1143,8 +1143,8 @@ Internal Data indicating a change in the matrix
 | Name | Description | Destination type name |
 | ---- | ----------- | --------------------- |
 |context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
-|slaves|Sub-objects used internally by this object|BaseObject|
-|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseObject|
+|slaves|Sub-objects used internally by this object|BaseComponent|
+|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseComponent|
 |linearSystems|List of linear systems to assemble|BaseMatrixLinearSystem|
 |solverLinearSystem|Among the list of linear systems, which one is to be used by the linear solver|TypedMatrixLinearSystem&lt;SparseMatrix&gt;|
 
