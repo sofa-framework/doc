@@ -516,7 +516,7 @@ TetrahedronFEMForceField_assemble.scn
             <TetrahedronSetTopologyContainer name="Tetra_topo"/>
             <TetrahedronSetTopologyModifier name="Modifier" />
             <TetrahedronSetGeometryAlgorithms template="Vec3" name="GeomAlgo" />
-            <Hexa2TetraTopologicalMapping input="@grid" output="@Tetra_topo" />
+            <Hexa2TetraTopologicalMapping input="@grid" output="@Tetra_topo" swapping="true"/>
             
             <DiagonalMass massDensity="0.2" />
             <TetrahedronFEMForceField name="FEM" youngModulus="1000" poissonRatio="0.4" computeGlobalMatrix="true"
@@ -537,7 +537,7 @@ TetrahedronFEMForceField_assemble.scn
             <TetrahedronSetTopologyContainer name="Tetra_topo"/>
             <TetrahedronSetTopologyModifier name="Modifier" />
             <TetrahedronSetGeometryAlgorithms template="Vec3" name="GeomAlgo" />
-            <Hexa2TetraTopologicalMapping input="@grid" output="@Tetra_topo" />
+            <Hexa2TetraTopologicalMapping input="@grid" output="@Tetra_topo" swapping="true"/>
             
             <DiagonalMass massDensity="0.2" />
             <TetrahedronFEMForceField name="FEM" youngModulus="1000" poissonRatio="0.4" computeGlobalMatrix="true"
@@ -581,7 +581,7 @@ TetrahedronFEMForceField_assemble.scn
        beam_fem__small.addObject('TetrahedronSetTopologyContainer', name="Tetra_topo")
        beam_fem__small.addObject('TetrahedronSetTopologyModifier', name="Modifier")
        beam_fem__small.addObject('TetrahedronSetGeometryAlgorithms', template="Vec3", name="GeomAlgo")
-       beam_fem__small.addObject('Hexa2TetraTopologicalMapping', input="@grid", output="@Tetra_topo")
+       beam_fem__small.addObject('Hexa2TetraTopologicalMapping', input="@grid", output="@Tetra_topo", swapping="true")
        beam_fem__small.addObject('DiagonalMass', massDensity="0.2")
        beam_fem__small.addObject('TetrahedronFEMForceField', name="FEM", youngModulus="1000", poissonRatio="0.4", computeGlobalMatrix="true", method="small", computeVonMisesStress="2", showVonMisesStressPerElement="true")
        beam_fem__small.addObject('BoxROI', template="Vec3", name="box_roi", box="-6 -6 -1 50 6 0.1", drawBoxes="1")
@@ -596,7 +596,7 @@ TetrahedronFEMForceField_assemble.scn
        beam_fem__large.addObject('TetrahedronSetTopologyContainer', name="Tetra_topo")
        beam_fem__large.addObject('TetrahedronSetTopologyModifier', name="Modifier")
        beam_fem__large.addObject('TetrahedronSetGeometryAlgorithms', template="Vec3", name="GeomAlgo")
-       beam_fem__large.addObject('Hexa2TetraTopologicalMapping', input="@grid", output="@Tetra_topo")
+       beam_fem__large.addObject('Hexa2TetraTopologicalMapping', input="@grid", output="@Tetra_topo", swapping="true")
        beam_fem__large.addObject('DiagonalMass', massDensity="0.2")
        beam_fem__large.addObject('TetrahedronFEMForceField', name="FEM", youngModulus="1000", poissonRatio="0.4", computeGlobalMatrix="true", method="large", computeVonMisesStress="1", showVonMisesStressPerElement="true")
        beam_fem__large.addObject('BoxROI', template="Vec3", name="box_roi", box="-6 -6 -1 50 6 0.1", drawBoxes="1")
@@ -622,7 +622,7 @@ TetrahedronFEMForceField.scn
         <RequiredPlugin name="Sofa.Component.Topology.Mapping"/> <!-- Needed to use components [Hexa2TetraTopologicalMapping] -->
         <RequiredPlugin name="Sofa.Component.Visual"/> <!-- Needed to use components [VisualStyle] -->
     
-        <DefaultAnimationLoop/>
+        <DefaultAnimationLoop parallelODESolving="true"/>
         <VisualStyle displayFlags="showBehaviorModels showForceFields" />
     
         <Node name="BeamFEM_SMALL">
@@ -635,7 +635,7 @@ TetrahedronFEMForceField.scn
             <TetrahedronSetTopologyContainer name="Tetra_topo"/>
             <TetrahedronSetTopologyModifier name="Modifier" />
             <TetrahedronSetGeometryAlgorithms template="Vec3" name="GeomAlgo" />
-            <Hexa2TetraTopologicalMapping input="@grid" output="@Tetra_topo" />
+            <Hexa2TetraTopologicalMapping input="@grid" output="@Tetra_topo" swapping="true"/>
     
             <DiagonalMass massDensity="0.2" />
             <TetrahedronFEMForceField name="FEM" youngModulus="1000" poissonRatio="0.4" computeGlobalMatrix="false"
@@ -656,7 +656,7 @@ TetrahedronFEMForceField.scn
             <TetrahedronSetTopologyContainer name="Tetra_topo"/>
             <TetrahedronSetTopologyModifier name="Modifier" />
             <TetrahedronSetGeometryAlgorithms template="Vec3" name="GeomAlgo" />
-            <Hexa2TetraTopologicalMapping input="@grid" output="@Tetra_topo" />
+            <Hexa2TetraTopologicalMapping input="@grid" output="@Tetra_topo" swapping="true"/>
     
             <DiagonalMass massDensity="0.2" />
             <TetrahedronFEMForceField name="FEM" youngModulus="1000" poissonRatio="0.4" computeGlobalMatrix="false"
@@ -676,7 +676,7 @@ TetrahedronFEMForceField.scn
             <TetrahedronSetTopologyContainer name="Tetra_topo" />
             <TetrahedronSetTopologyModifier name="Modifier" />
             <TetrahedronSetGeometryAlgorithms template="Vec3" name="GeomAlgo" />
-            <Hexa2TetraTopologicalMapping input="@grid" output="@Tetra_topo" />
+            <Hexa2TetraTopologicalMapping input="@grid" output="@Tetra_topo" swapping="true"/>
     
             <DiagonalMass massDensity="0.2" />
             <TetrahedronFEMForceField name="FEM" youngModulus="1000" poissonRatio="0.4" computeGlobalMatrix="false"
@@ -696,7 +696,7 @@ TetrahedronFEMForceField.scn
             <TetrahedronSetTopologyContainer name="Tetra_topo"/>
             <TetrahedronSetTopologyModifier name="Modifier" />
             <TetrahedronSetGeometryAlgorithms template="Vec3" name="GeomAlgo" />
-            <Hexa2TetraTopologicalMapping input="@grid" output="@Tetra_topo" />
+            <Hexa2TetraTopologicalMapping input="@grid" output="@Tetra_topo" swapping="true"/>
     
             <DiagonalMass massDensity="0.2" />
             <TetrahedronFEMForceField name="FEM" youngModulus="1000" poissonRatio="0.4" computeGlobalMatrix="false"
@@ -728,7 +728,7 @@ TetrahedronFEMForceField.scn
        root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Grid")
        root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Mapping")
        root.addObject('RequiredPlugin', name="Sofa.Component.Visual")
-       root.addObject('DefaultAnimationLoop', )
+       root.addObject('DefaultAnimationLoop', parallelODESolving="true")
        root.addObject('VisualStyle', displayFlags="showBehaviorModels showForceFields")
 
        beam_fem__small = root.addChild('BeamFEM_SMALL')
@@ -740,7 +740,7 @@ TetrahedronFEMForceField.scn
        beam_fem__small.addObject('TetrahedronSetTopologyContainer', name="Tetra_topo")
        beam_fem__small.addObject('TetrahedronSetTopologyModifier', name="Modifier")
        beam_fem__small.addObject('TetrahedronSetGeometryAlgorithms', template="Vec3", name="GeomAlgo")
-       beam_fem__small.addObject('Hexa2TetraTopologicalMapping', input="@grid", output="@Tetra_topo")
+       beam_fem__small.addObject('Hexa2TetraTopologicalMapping', input="@grid", output="@Tetra_topo", swapping="true")
        beam_fem__small.addObject('DiagonalMass', massDensity="0.2")
        beam_fem__small.addObject('TetrahedronFEMForceField', name="FEM", youngModulus="1000", poissonRatio="0.4", computeGlobalMatrix="false", method="small", computeVonMisesStress="2", showVonMisesStressPerNodeColorMap="true")
        beam_fem__small.addObject('BoxROI', template="Vec3", name="box_roi", box="-6 -6 -1 50 6 0.1", drawBoxes="1")
@@ -755,7 +755,7 @@ TetrahedronFEMForceField.scn
        beam_fem__large.addObject('TetrahedronSetTopologyContainer', name="Tetra_topo")
        beam_fem__large.addObject('TetrahedronSetTopologyModifier', name="Modifier")
        beam_fem__large.addObject('TetrahedronSetGeometryAlgorithms', template="Vec3", name="GeomAlgo")
-       beam_fem__large.addObject('Hexa2TetraTopologicalMapping', input="@grid", output="@Tetra_topo")
+       beam_fem__large.addObject('Hexa2TetraTopologicalMapping', input="@grid", output="@Tetra_topo", swapping="true")
        beam_fem__large.addObject('DiagonalMass', massDensity="0.2")
        beam_fem__large.addObject('TetrahedronFEMForceField', name="FEM", youngModulus="1000", poissonRatio="0.4", computeGlobalMatrix="false", method="large", computeVonMisesStress="1", showVonMisesStressPerNodeColorMap="true")
        beam_fem__large.addObject('BoxROI', template="Vec3", name="box_roi", box="-6 -6 -1 50 6 0.1", drawBoxes="1")
@@ -770,7 +770,7 @@ TetrahedronFEMForceField.scn
        beam_fem__polar.addObject('TetrahedronSetTopologyContainer', name="Tetra_topo")
        beam_fem__polar.addObject('TetrahedronSetTopologyModifier', name="Modifier")
        beam_fem__polar.addObject('TetrahedronSetGeometryAlgorithms', template="Vec3", name="GeomAlgo")
-       beam_fem__polar.addObject('Hexa2TetraTopologicalMapping', input="@grid", output="@Tetra_topo")
+       beam_fem__polar.addObject('Hexa2TetraTopologicalMapping', input="@grid", output="@Tetra_topo", swapping="true")
        beam_fem__polar.addObject('DiagonalMass', massDensity="0.2")
        beam_fem__polar.addObject('TetrahedronFEMForceField', name="FEM", youngModulus="1000", poissonRatio="0.4", computeGlobalMatrix="false", method="polar", computeVonMisesStress="1", showVonMisesStressPerNodeColorMap="true")
        beam_fem__polar.addObject('BoxROI', template="Vec3", name="box_roi", box="-6 -6 -1 50 6 0.1", drawBoxes="1")
@@ -785,7 +785,7 @@ TetrahedronFEMForceField.scn
        beam_fem__svd.addObject('TetrahedronSetTopologyContainer', name="Tetra_topo")
        beam_fem__svd.addObject('TetrahedronSetTopologyModifier', name="Modifier")
        beam_fem__svd.addObject('TetrahedronSetGeometryAlgorithms', template="Vec3", name="GeomAlgo")
-       beam_fem__svd.addObject('Hexa2TetraTopologicalMapping', input="@grid", output="@Tetra_topo")
+       beam_fem__svd.addObject('Hexa2TetraTopologicalMapping', input="@grid", output="@Tetra_topo", swapping="true")
        beam_fem__svd.addObject('DiagonalMass', massDensity="0.2")
        beam_fem__svd.addObject('TetrahedronFEMForceField', name="FEM", youngModulus="1000", poissonRatio="0.4", computeGlobalMatrix="false", method="svd", computeVonMisesStress="1", showVonMisesStressPerNodeColorMap="true")
        beam_fem__svd.addObject('BoxROI', template="Vec3", name="box_roi", box="-6 -6 -1 50 6 0.1", drawBoxes="1")

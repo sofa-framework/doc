@@ -120,7 +120,7 @@ VisualMesh.scn
             <TetrahedronSetTopologyContainer name="Tetra_topo" position="@grid.position"/>
             <TetrahedronSetTopologyModifier name="Modifier" />
             <TetrahedronSetGeometryAlgorithms template="Vec3" name="GeomAlgo" />
-            <Hexa2TetraTopologicalMapping input="@grid" output="@Tetra_topo" />
+            <Hexa2TetraTopologicalMapping input="@grid" output="@Tetra_topo" swapping="true"/>
     
             <DiagonalMass massDensity="0.2" />
             <TetrahedronFEMForceField name="FEM" youngModulus="1000" poissonRatio="0.4" computeGlobalMatrix="false"/>
@@ -178,7 +178,7 @@ VisualMesh.scn
        tetra.addObject('TetrahedronSetTopologyContainer', name="Tetra_topo", position="@grid.position")
        tetra.addObject('TetrahedronSetTopologyModifier', name="Modifier")
        tetra.addObject('TetrahedronSetGeometryAlgorithms', template="Vec3", name="GeomAlgo")
-       tetra.addObject('Hexa2TetraTopologicalMapping', input="@grid", output="@Tetra_topo")
+       tetra.addObject('Hexa2TetraTopologicalMapping', input="@grid", output="@Tetra_topo", swapping="true")
        tetra.addObject('DiagonalMass', massDensity="0.2")
        tetra.addObject('TetrahedronFEMForceField', name="FEM", youngModulus="1000", poissonRatio="0.4", computeGlobalMatrix="false")
        tetra.addObject('BoxROI', template="Vec3", name="box_roi", box="-6 -6 -1 50 6 0.1", drawBoxes="1")

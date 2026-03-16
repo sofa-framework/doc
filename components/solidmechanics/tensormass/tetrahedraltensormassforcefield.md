@@ -155,7 +155,7 @@ TetrahedralTensorMassForceField.scn
         <TetrahedronSetTopologyContainer name="Tetra_topo"/>
         <TetrahedronSetTopologyModifier name="Modifier" />
         <TetrahedronSetGeometryAlgorithms template="Vec3" name="GeomAlgo" />
-        <Hexa2TetraTopologicalMapping input="@grid" output="@Tetra_topo" />
+        <Hexa2TetraTopologicalMapping input="@grid" output="@Tetra_topo" swapping="true"/>
         <TetrahedralTensorMassForceField name="deformable" youngModulus="100000" poissonRatio="0.4" />
     
         <Node name="quads">
@@ -208,7 +208,7 @@ TetrahedralTensorMassForceField.scn
        root.addObject('TetrahedronSetTopologyContainer', name="Tetra_topo")
        root.addObject('TetrahedronSetTopologyModifier', name="Modifier")
        root.addObject('TetrahedronSetGeometryAlgorithms', template="Vec3", name="GeomAlgo")
-       root.addObject('Hexa2TetraTopologicalMapping', input="@grid", output="@Tetra_topo")
+       root.addObject('Hexa2TetraTopologicalMapping', input="@grid", output="@Tetra_topo", swapping="true")
        root.addObject('TetrahedralTensorMassForceField', name="deformable", youngModulus="100000", poissonRatio="0.4")
 
        quads = root.addChild('quads')

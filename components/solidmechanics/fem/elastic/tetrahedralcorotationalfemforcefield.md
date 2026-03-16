@@ -237,7 +237,7 @@ TetrahedralCorotationalFEMForceField.scn
             <TetrahedronSetTopologyContainer name="Tetra_topo"/>
             <TetrahedronSetTopologyModifier name="Modifier" />
             <TetrahedronSetGeometryAlgorithms template="Vec3" name="GeomAlgo" />
-            <Hexa2TetraTopologicalMapping input="@grid" output="@Tetra_topo" />
+            <Hexa2TetraTopologicalMapping input="@grid" output="@Tetra_topo" swapping="true"/>
             
             <DiagonalMass massDensity="0.2" />
             <TetrahedralCorotationalFEMForceField name="CFEM" youngModulus="1000" poissonRatio="0.3" method="small" />
@@ -256,7 +256,7 @@ TetrahedralCorotationalFEMForceField.scn
             <TetrahedronSetTopologyContainer name="Tetra_topo" />
             <TetrahedronSetTopologyModifier name="Modifier" />
             <TetrahedronSetGeometryAlgorithms template="Vec3" name="GeomAlgo" />
-            <Hexa2TetraTopologicalMapping input="@grid" output="@Tetra_topo" />
+            <Hexa2TetraTopologicalMapping input="@grid" output="@Tetra_topo" swapping="true"/>
             
             <DiagonalMass massDensity="0.2" />
             <TetrahedralCorotationalFEMForceField name="CFEM" youngModulus="1000" poissonRatio="0.3" method="large" computeVonMisesStress="1"/>
@@ -275,7 +275,7 @@ TetrahedralCorotationalFEMForceField.scn
             <TetrahedronSetTopologyContainer name="Tetra_topo"/>
             <TetrahedronSetTopologyModifier name="Modifier" />
             <TetrahedronSetGeometryAlgorithms template="Vec3" name="GeomAlgo" />
-            <Hexa2TetraTopologicalMapping input="@grid" output="@Tetra_topo" />
+            <Hexa2TetraTopologicalMapping input="@grid" output="@Tetra_topo" swapping="true"/>
             
             <DiagonalMass massDensity="0.2" />
             <TetrahedralCorotationalFEMForceField name="CFEM" youngModulus="1000" poissonRatio="0.3" method="polar" computeVonMisesStress="1"/>
@@ -319,7 +319,7 @@ TetrahedralCorotationalFEMForceField.scn
        beam_fem__small.addObject('TetrahedronSetTopologyContainer', name="Tetra_topo")
        beam_fem__small.addObject('TetrahedronSetTopologyModifier', name="Modifier")
        beam_fem__small.addObject('TetrahedronSetGeometryAlgorithms', template="Vec3", name="GeomAlgo")
-       beam_fem__small.addObject('Hexa2TetraTopologicalMapping', input="@grid", output="@Tetra_topo")
+       beam_fem__small.addObject('Hexa2TetraTopologicalMapping', input="@grid", output="@Tetra_topo", swapping="true")
        beam_fem__small.addObject('DiagonalMass', massDensity="0.2")
        beam_fem__small.addObject('TetrahedralCorotationalFEMForceField', name="CFEM", youngModulus="1000", poissonRatio="0.3", method="small")
        beam_fem__small.addObject('BoxROI', template="Vec3", name="box_roi", box="-6 -6 -1 30 6 0.1", drawBoxes="1")
@@ -334,7 +334,7 @@ TetrahedralCorotationalFEMForceField.scn
        beam_fem__large.addObject('TetrahedronSetTopologyContainer', name="Tetra_topo")
        beam_fem__large.addObject('TetrahedronSetTopologyModifier', name="Modifier")
        beam_fem__large.addObject('TetrahedronSetGeometryAlgorithms', template="Vec3", name="GeomAlgo")
-       beam_fem__large.addObject('Hexa2TetraTopologicalMapping', input="@grid", output="@Tetra_topo")
+       beam_fem__large.addObject('Hexa2TetraTopologicalMapping', input="@grid", output="@Tetra_topo", swapping="true")
        beam_fem__large.addObject('DiagonalMass', massDensity="0.2")
        beam_fem__large.addObject('TetrahedralCorotationalFEMForceField', name="CFEM", youngModulus="1000", poissonRatio="0.3", method="large", computeVonMisesStress="1")
        beam_fem__large.addObject('BoxROI', template="Vec3", name="box_roi", box="-6 -6 -1 30 6 0.1", drawBoxes="1")
@@ -349,7 +349,7 @@ TetrahedralCorotationalFEMForceField.scn
        beam_fem__polar.addObject('TetrahedronSetTopologyContainer', name="Tetra_topo")
        beam_fem__polar.addObject('TetrahedronSetTopologyModifier', name="Modifier")
        beam_fem__polar.addObject('TetrahedronSetGeometryAlgorithms', template="Vec3", name="GeomAlgo")
-       beam_fem__polar.addObject('Hexa2TetraTopologicalMapping', input="@grid", output="@Tetra_topo")
+       beam_fem__polar.addObject('Hexa2TetraTopologicalMapping', input="@grid", output="@Tetra_topo", swapping="true")
        beam_fem__polar.addObject('DiagonalMass', massDensity="0.2")
        beam_fem__polar.addObject('TetrahedralCorotationalFEMForceField', name="CFEM", youngModulus="1000", poissonRatio="0.3", method="polar", computeVonMisesStress="1")
        beam_fem__polar.addObject('BoxROI', template="Vec3", name="box_roi", box="-6 -6 -1 30 6 0.1", drawBoxes="1")

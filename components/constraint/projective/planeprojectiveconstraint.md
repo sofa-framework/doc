@@ -298,7 +298,7 @@ PlaneProjectiveConstraint.scn
             
             <TetrahedronSetTopologyContainer name="Container" />
             <TetrahedronSetTopologyModifier name="Modifier" />
-            <TetrahedronSetGeometryAlgorithms template="Vec3" name="GeomAlgo" />
+            <TetrahedronSetGeometryAlgorithms template="Vec3" name="GeomAlgo" swapping="true"/>
             
             <Hexa2TetraTopologicalMapping name="Mapping"  input="@../grid"  output="@Container" />
             
@@ -350,7 +350,7 @@ PlaneProjectiveConstraint.scn
        square.addObject('MechanicalObject', template="Vec3", name="mObject1", position="@../grid.position")
        square.addObject('TetrahedronSetTopologyContainer', name="Container")
        square.addObject('TetrahedronSetTopologyModifier', name="Modifier")
-       square.addObject('TetrahedronSetGeometryAlgorithms', template="Vec3", name="GeomAlgo")
+       square.addObject('TetrahedronSetGeometryAlgorithms', template="Vec3", name="GeomAlgo", swapping="true")
        square.addObject('Hexa2TetraTopologicalMapping', name="Mapping", input="@../grid", output="@Container")
        square.addObject('TetrahedronFEMForceField', template="Vec3", name="FEM", method="large", poissonRatio="0.3", youngModulus="500")
        square.addObject('UniformMass', totalMass="1")

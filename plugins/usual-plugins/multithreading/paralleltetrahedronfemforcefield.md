@@ -321,7 +321,7 @@ ParallelTetrahedronFEMForceField.scn
             <TetrahedronSetTopologyContainer name="Tetra_topo"/>
             <TetrahedronSetTopologyModifier name="Modifier" />
             <TetrahedronSetGeometryAlgorithms template="Vec3d" name="GeomAlgo" />
-            <Hexa2TetraTopologicalMapping input="@grid" output="@Tetra_topo" />
+            <Hexa2TetraTopologicalMapping input="@grid" output="@Tetra_topo" swapping="true"/>
     
             <DiagonalMass massDensity="0.2" />
             <ParallelTetrahedronFEMForceField name="FEM" youngModulus="1000" poissonRatio="0.4" computeGlobalMatrix="false"
@@ -364,7 +364,7 @@ ParallelTetrahedronFEMForceField.scn
        beam_fem__large.addObject('TetrahedronSetTopologyContainer', name="Tetra_topo")
        beam_fem__large.addObject('TetrahedronSetTopologyModifier', name="Modifier")
        beam_fem__large.addObject('TetrahedronSetGeometryAlgorithms', template="Vec3d", name="GeomAlgo")
-       beam_fem__large.addObject('Hexa2TetraTopologicalMapping', input="@grid", output="@Tetra_topo")
+       beam_fem__large.addObject('Hexa2TetraTopologicalMapping', input="@grid", output="@Tetra_topo", swapping="true")
        beam_fem__large.addObject('DiagonalMass', massDensity="0.2")
        beam_fem__large.addObject('ParallelTetrahedronFEMForceField', name="FEM", youngModulus="1000", poissonRatio="0.4", computeGlobalMatrix="false", method="large", computeVonMisesStress="1", showVonMisesStressPerElement="true")
        beam_fem__large.addObject('BoxROI', template="Vec3d", name="box_roi", box="-6 -6 -1 50 6 0.1", drawBoxes="1")

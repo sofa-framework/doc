@@ -7,6 +7,8 @@ Render a trail behind particles.
 Templates:
 
 - Rigid3d
+- Vec1d
+- Vec2d
 - Vec3d
 
 __Target__: Sofa.Component.Visual
