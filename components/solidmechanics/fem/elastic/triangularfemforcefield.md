@@ -277,195 +277,6 @@ TriangularFEMForceField_RemovingMeshTest.scn
        square_gravity.addObject('TopologicalChangeProcessor', listening="1", filename="RemovingTrianglesProcess_constraint.txt")
     ```
 
-TriangularFEMForceField.scn
-
-=== "XML"
-
-    ```xml
-    <!-- Mechanical TriangularFEMForceField Example -->
-    <Node name="root" dt="0.05" gravity="0 -9.8 10" showBoundingTree="0">
-    
-        <Node name="plugins">
-            <RequiredPlugin name="Sofa.Component.Constraint.Projective"/> <!-- Needed to use components [FixedProjectiveConstraint] -->
-            <RequiredPlugin name="Sofa.Component.IO.Mesh"/> <!-- Needed to use components [MeshGmshLoader] -->
-            <RequiredPlugin name="Sofa.Component.LinearSolver.Iterative"/> <!-- Needed to use components [CGLinearSolver] -->
-            <RequiredPlugin name="Sofa.Component.Mapping.Linear"/> <!-- Needed to use components [IdentityMapping] -->
-            <RequiredPlugin name="Sofa.Component.Mass"/> <!-- Needed to use components [DiagonalMass] -->
-            <RequiredPlugin name="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
-            <RequiredPlugin name="Sofa.Component.SolidMechanics.FEM.Elastic"/> <!-- Needed to use components [TriangularFEMForceField] -->
-            <RequiredPlugin name="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
-            <RequiredPlugin name="Sofa.Component.Topology.Container.Dynamic"/> <!-- Needed to use components [TriangleSetGeometryAlgorithms TriangleSetTopologyContainer TriangleSetTopologyModifier] -->
-            <RequiredPlugin name="Sofa.Component.Visual"/> <!-- Needed to use components [VisualStyle] -->
-            <RequiredPlugin name="Sofa.GL.Component.Rendering3D"/> <!-- Needed to use components [OglModel] -->
-        </Node>
-    
-        <VisualStyle displayFlags="showBehaviorModels showVisual" />
-        <DefaultAnimationLoop/>
-        
-        <Node name="SquareGravity">
-            <EulerImplicitSolver name="cg_odesolver" printLog="false"  rayleighStiffness="0.1" rayleighMass="0.1" />
-            <CGLinearSolver iterations="25" name="linear solver" tolerance="1.0e-9" threshold="1.0e-9" />
-            <MeshGmshLoader filename="mesh/square3.msh" name="loader" />
-            <MechanicalObject src="@loader" name="DOFs" scale3d="100 100 0" />
-            <TriangleSetTopologyContainer src="@loader" name="Container" />
-            <TriangleSetTopologyModifier name="Modifier" />
-            <TriangleSetGeometryAlgorithms name="GeomAlgo" template="Vec3" />
-            <DiagonalMass massDensity="0.005" />
-            <FixedProjectiveConstraint indices="0 1 2" />
-            <TriangularFEMForceField name="FEM" youngModulus="600" poissonRatio="0.3" method="large" />
-            <Node name="VisuA">
-                <OglModel name="Visual" color="yellow" />
-                <IdentityMapping template="Vec3,Vec3" name="visualMapping" input="@../DOFs" output="@Visual" />
-            </Node>
-        </Node>
-    </Node>
-
-    ```
-
-=== "Python"
-
-    ```python
-    def createScene(root_node):
-
-       root = root_node.addChild('root', dt="0.05", gravity="0 -9.8 10", showBoundingTree="0")
-
-       plugins = root.addChild('plugins')
-
-       plugins.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Projective")
-       plugins.addObject('RequiredPlugin', name="Sofa.Component.IO.Mesh")
-       plugins.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Iterative")
-       plugins.addObject('RequiredPlugin', name="Sofa.Component.Mapping.Linear")
-       plugins.addObject('RequiredPlugin', name="Sofa.Component.Mass")
-       plugins.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
-       plugins.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.FEM.Elastic")
-       plugins.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
-       plugins.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Dynamic")
-       plugins.addObject('RequiredPlugin', name="Sofa.Component.Visual")
-       plugins.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
-
-       root.addObject('VisualStyle', displayFlags="showBehaviorModels showVisual")
-       root.addObject('DefaultAnimationLoop', )
-
-       square_gravity = root.addChild('SquareGravity')
-
-       square_gravity.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
-       square_gravity.addObject('CGLinearSolver', iterations="25", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
-       square_gravity.addObject('MeshGmshLoader', filename="mesh/square3.msh", name="loader")
-       square_gravity.addObject('MechanicalObject', src="@loader", name="DOFs", scale3d="100 100 0")
-       square_gravity.addObject('TriangleSetTopologyContainer', src="@loader", name="Container")
-       square_gravity.addObject('TriangleSetTopologyModifier', name="Modifier")
-       square_gravity.addObject('TriangleSetGeometryAlgorithms', name="GeomAlgo", template="Vec3")
-       square_gravity.addObject('DiagonalMass', massDensity="0.005")
-       square_gravity.addObject('FixedProjectiveConstraint', indices="0 1 2")
-       square_gravity.addObject('TriangularFEMForceField', name="FEM", youngModulus="600", poissonRatio="0.3", method="large")
-
-       visu_a = SquareGravity.addChild('VisuA')
-
-       visu_a.addObject('OglModel', name="Visual", color="yellow")
-       visu_a.addObject('IdentityMapping', template="Vec3,Vec3", name="visualMapping", input="@../DOFs", output="@Visual")
-    ```
-
-TriangularFEMForceFieldOptim.scn
-
-=== "XML"
-
-    ```xml
-    <!-- Mechanical TriangularFEMForceFieldOptim Example -->
-    <Node name="root" dt="0.05" gravity="0 10 10" showBoundingTree="0">
-        <RequiredPlugin name="Sofa.Component.Constraint.Projective"/> <!-- Needed to use components [FixedProjectiveConstraint] -->
-        <RequiredPlugin name="Sofa.Component.IO.Mesh"/> <!-- Needed to use components [MeshGmshLoader] -->
-        <RequiredPlugin name="Sofa.Component.LinearSolver.Iterative"/> <!-- Needed to use components [CGLinearSolver] -->
-        <RequiredPlugin name="Sofa.Component.Mapping.Linear"/> <!-- Needed to use components [IdentityMapping] -->
-        <RequiredPlugin name="Sofa.Component.Mass"/> <!-- Needed to use components [DiagonalMass] -->
-        <RequiredPlugin name="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
-        <RequiredPlugin name="Sofa.Component.SolidMechanics.FEM.Elastic"/> <!-- Needed to use components [TriangularFEMForceFieldOptim] -->
-        <RequiredPlugin name="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
-        <RequiredPlugin name="Sofa.Component.Topology.Container.Dynamic"/> <!-- Needed to use components [TriangleSetGeometryAlgorithms TriangleSetTopologyContainer TriangleSetTopologyModifier] -->
-        <RequiredPlugin name="Sofa.Component.Visual"/> <!-- Needed to use components [VisualStyle] -->
-        <RequiredPlugin name="Sofa.GL.Component.Rendering3D"/> <!-- Needed to use components [OglModel] -->
-        
-        <VisualStyle displayFlags="showVisual showBehaviorModels showForceFields showWireframe" />
-        <DefaultAnimationLoop/>
-        <!-- Activate this loader to use a square mesh with only two triangles (useful to debug base equations) -->
-        <!--<MeshGmshLoader name="loaderSquare" triangles="0 1 3  1 2 3" position="0 0 0  1 0 0  1 1 0  0 1 0" />-->
-        <!-- Activate this loader to load a square mesh with many triangles -->
-        <MeshGmshLoader filename="mesh/square3.msh" name="loaderSquare" />
-        <Node name="SquareGravity1">
-            <EulerImplicitSolver name="odesolver1" printLog="0"  rayleighStiffness="0.1" rayleighMass="0.1" />
-            <CGLinearSolver printLog="0" iterations="25" name="linearsolver1" tolerance="1.0e-9" threshold="1.0e-9" />
-            <TriangleSetTopologyContainer name="Container" src="@../loaderSquare" />
-            <MechanicalObject name="DOFs" src="@../loaderSquare" scale="100"  />
-            <TriangleSetTopologyModifier name="Modifier" />
-            <TriangleSetGeometryAlgorithms name="GeomAlgo" template="Vec3" />
-            <DiagonalMass massDensity="0.005" />
-            <FixedProjectiveConstraint indices="0 1 2" />
-            <TriangularFEMForceFieldOptim name="FEM" youngModulus="600" poissonRatio="0.3" method="large" printLog="1"/>
-            <Node name="VisuA">
-                <OglModel name="Visual" color="yellow" />
-                <IdentityMapping name="visualMapping" input="@../DOFs" output="@Visual" />
-            </Node>
-        </Node>
-        <!-- Activate this version to compare computed stiffness matrix (addKToMatrix) with addDForce -->
-        <!--<Node name="SquareGravityTestMatrixConstruction">
-            <EulerImplicitSolver name="odesolver2" printLog="0" />
-            <CGLinearSolver template="SparseMatrix" verbose="0" printLog="1" iterations="25" name="linearsolver2" tolerance="1.0e-9" threshold="1.0e-9" />
-            <TriangleSetTopologyContainer name="Container" src="@../loaderSquare" />
-            <MechanicalObject name="DOFs" src="@../loaderSquare" scale="100"  />
-            <TriangleSetTopologyModifier name="Modifier" />
-            <TriangleSetGeometryAlgorithms name="GeomAlgo" template="Vec3" />
-            <DiagonalMass massDensity="0.005" />
-            <FixedProjectiveConstraint indices="0 1 2" />
-            <TriangularFEMForceFieldOptim name="FEM" youngModulus="600" poissonRatio="0.3" method="large" printLog="1"/>
-            <Node name="VisuA">
-                <OglModel name="Visual" color="yellow" />
-                <IdentityMapping name="visualMapping" input="@../DOFs" output="@Visual" />
-            </Node>
-        </Node>-->
-    
-    </Node>
-
-    ```
-
-=== "Python"
-
-    ```python
-    def createScene(root_node):
-
-       root = root_node.addChild('root', dt="0.05", gravity="0 10 10", showBoundingTree="0")
-
-       root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Projective")
-       root.addObject('RequiredPlugin', name="Sofa.Component.IO.Mesh")
-       root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Iterative")
-       root.addObject('RequiredPlugin', name="Sofa.Component.Mapping.Linear")
-       root.addObject('RequiredPlugin', name="Sofa.Component.Mass")
-       root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
-       root.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.FEM.Elastic")
-       root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
-       root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Dynamic")
-       root.addObject('RequiredPlugin', name="Sofa.Component.Visual")
-       root.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
-       root.addObject('VisualStyle', displayFlags="showVisual showBehaviorModels showForceFields showWireframe")
-       root.addObject('DefaultAnimationLoop', )
-       root.addObject('MeshGmshLoader', filename="mesh/square3.msh", name="loaderSquare")
-
-       square_gravity1 = root.addChild('SquareGravity1')
-
-       square_gravity1.addObject('EulerImplicitSolver', name="odesolver1", printLog="0", rayleighStiffness="0.1", rayleighMass="0.1")
-       square_gravity1.addObject('CGLinearSolver', printLog="0", iterations="25", name="linearsolver1", tolerance="1.0e-9", threshold="1.0e-9")
-       square_gravity1.addObject('TriangleSetTopologyContainer', name="Container", src="@../loaderSquare")
-       square_gravity1.addObject('MechanicalObject', name="DOFs", src="@../loaderSquare", scale="100")
-       square_gravity1.addObject('TriangleSetTopologyModifier', name="Modifier")
-       square_gravity1.addObject('TriangleSetGeometryAlgorithms', name="GeomAlgo", template="Vec3")
-       square_gravity1.addObject('DiagonalMass', massDensity="0.005")
-       square_gravity1.addObject('FixedProjectiveConstraint', indices="0 1 2")
-       square_gravity1.addObject('TriangularFEMForceFieldOptim', name="FEM", youngModulus="600", poissonRatio="0.3", method="large", printLog="1")
-
-       visu_a = SquareGravity1.addChild('VisuA')
-
-       visu_a.addObject('OglModel', name="Visual", color="yellow")
-       visu_a.addObject('IdentityMapping', name="visualMapping", input="@../DOFs", output="@Visual")
-    ```
-
 TriangularFEMForceFieldOptim_tissue100x100_cpu.scn
 
 === "XML"
@@ -667,5 +478,194 @@ TriangularFEMForceFieldOptim_tissue100x100_gpu.scn
 
        visu.addObject('OglModel', name="Visual", color="green")
        visu.addObject('IdentityMapping', input="@../dofs", output="@Visual")
+    ```
+
+TriangularFEMForceField.scn
+
+=== "XML"
+
+    ```xml
+    <!-- Mechanical TriangularFEMForceField Example -->
+    <Node name="root" dt="0.05" gravity="0 -9.8 10" showBoundingTree="0">
+    
+        <Node name="plugins">
+            <RequiredPlugin name="Sofa.Component.Constraint.Projective"/> <!-- Needed to use components [FixedProjectiveConstraint] -->
+            <RequiredPlugin name="Sofa.Component.IO.Mesh"/> <!-- Needed to use components [MeshGmshLoader] -->
+            <RequiredPlugin name="Sofa.Component.LinearSolver.Iterative"/> <!-- Needed to use components [CGLinearSolver] -->
+            <RequiredPlugin name="Sofa.Component.Mapping.Linear"/> <!-- Needed to use components [IdentityMapping] -->
+            <RequiredPlugin name="Sofa.Component.Mass"/> <!-- Needed to use components [DiagonalMass] -->
+            <RequiredPlugin name="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+            <RequiredPlugin name="Sofa.Component.SolidMechanics.FEM.Elastic"/> <!-- Needed to use components [TriangularFEMForceField] -->
+            <RequiredPlugin name="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
+            <RequiredPlugin name="Sofa.Component.Topology.Container.Dynamic"/> <!-- Needed to use components [TriangleSetGeometryAlgorithms TriangleSetTopologyContainer TriangleSetTopologyModifier] -->
+            <RequiredPlugin name="Sofa.Component.Visual"/> <!-- Needed to use components [VisualStyle] -->
+            <RequiredPlugin name="Sofa.GL.Component.Rendering3D"/> <!-- Needed to use components [OglModel] -->
+        </Node>
+    
+        <VisualStyle displayFlags="showBehaviorModels showVisual" />
+        <DefaultAnimationLoop/>
+        
+        <Node name="SquareGravity">
+            <EulerImplicitSolver name="cg_odesolver" printLog="false"  rayleighStiffness="0.1" rayleighMass="0.1" />
+            <CGLinearSolver iterations="25" name="linear solver" tolerance="1.0e-9" threshold="1.0e-9" />
+            <MeshGmshLoader filename="mesh/square3.msh" name="loader" />
+            <MechanicalObject src="@loader" name="DOFs" scale3d="100 100 0" />
+            <TriangleSetTopologyContainer src="@loader" name="Container" />
+            <TriangleSetTopologyModifier name="Modifier" />
+            <TriangleSetGeometryAlgorithms name="GeomAlgo" template="Vec3" />
+            <DiagonalMass massDensity="0.005" />
+            <FixedProjectiveConstraint indices="0 1 2" />
+            <TriangularFEMForceField name="FEM" youngModulus="600" poissonRatio="0.3" method="large" />
+            <Node name="VisuA">
+                <OglModel name="Visual" color="yellow" />
+                <IdentityMapping template="Vec3,Vec3" name="visualMapping" input="@../DOFs" output="@Visual" />
+            </Node>
+        </Node>
+    </Node>
+
+    ```
+
+=== "Python"
+
+    ```python
+    def createScene(root_node):
+
+       root = root_node.addChild('root', dt="0.05", gravity="0 -9.8 10", showBoundingTree="0")
+
+       plugins = root.addChild('plugins')
+
+       plugins.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Projective")
+       plugins.addObject('RequiredPlugin', name="Sofa.Component.IO.Mesh")
+       plugins.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Iterative")
+       plugins.addObject('RequiredPlugin', name="Sofa.Component.Mapping.Linear")
+       plugins.addObject('RequiredPlugin', name="Sofa.Component.Mass")
+       plugins.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
+       plugins.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.FEM.Elastic")
+       plugins.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
+       plugins.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Dynamic")
+       plugins.addObject('RequiredPlugin', name="Sofa.Component.Visual")
+       plugins.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
+
+       root.addObject('VisualStyle', displayFlags="showBehaviorModels showVisual")
+       root.addObject('DefaultAnimationLoop', )
+
+       square_gravity = root.addChild('SquareGravity')
+
+       square_gravity.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
+       square_gravity.addObject('CGLinearSolver', iterations="25", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
+       square_gravity.addObject('MeshGmshLoader', filename="mesh/square3.msh", name="loader")
+       square_gravity.addObject('MechanicalObject', src="@loader", name="DOFs", scale3d="100 100 0")
+       square_gravity.addObject('TriangleSetTopologyContainer', src="@loader", name="Container")
+       square_gravity.addObject('TriangleSetTopologyModifier', name="Modifier")
+       square_gravity.addObject('TriangleSetGeometryAlgorithms', name="GeomAlgo", template="Vec3")
+       square_gravity.addObject('DiagonalMass', massDensity="0.005")
+       square_gravity.addObject('FixedProjectiveConstraint', indices="0 1 2")
+       square_gravity.addObject('TriangularFEMForceField', name="FEM", youngModulus="600", poissonRatio="0.3", method="large")
+
+       visu_a = SquareGravity.addChild('VisuA')
+
+       visu_a.addObject('OglModel', name="Visual", color="yellow")
+       visu_a.addObject('IdentityMapping', template="Vec3,Vec3", name="visualMapping", input="@../DOFs", output="@Visual")
+    ```
+
+TriangularFEMForceFieldOptim.scn
+
+=== "XML"
+
+    ```xml
+    <!-- Mechanical TriangularFEMForceFieldOptim Example -->
+    <Node name="root" dt="0.05" gravity="0 10 10" showBoundingTree="0">
+        <RequiredPlugin name="Sofa.Component.Constraint.Projective"/> <!-- Needed to use components [FixedProjectiveConstraint] -->
+        <RequiredPlugin name="Sofa.Component.IO.Mesh"/> <!-- Needed to use components [MeshGmshLoader] -->
+        <RequiredPlugin name="Sofa.Component.LinearSolver.Iterative"/> <!-- Needed to use components [CGLinearSolver] -->
+        <RequiredPlugin name="Sofa.Component.Mapping.Linear"/> <!-- Needed to use components [IdentityMapping] -->
+        <RequiredPlugin name="Sofa.Component.Mass"/> <!-- Needed to use components [DiagonalMass] -->
+        <RequiredPlugin name="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+        <RequiredPlugin name="Sofa.Component.SolidMechanics.FEM.Elastic"/> <!-- Needed to use components [TriangularFEMForceFieldOptim] -->
+        <RequiredPlugin name="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
+        <RequiredPlugin name="Sofa.Component.Topology.Container.Dynamic"/> <!-- Needed to use components [TriangleSetGeometryAlgorithms TriangleSetTopologyContainer TriangleSetTopologyModifier] -->
+        <RequiredPlugin name="Sofa.Component.Visual"/> <!-- Needed to use components [VisualStyle] -->
+        <RequiredPlugin name="Sofa.GL.Component.Rendering3D"/> <!-- Needed to use components [OglModel] -->
+        
+        <VisualStyle displayFlags="showVisual showBehaviorModels showForceFields showWireframe" />
+        <DefaultAnimationLoop/>
+        <!-- Activate this loader to use a square mesh with only two triangles (useful to debug base equations) -->
+        <!--<MeshGmshLoader name="loaderSquare" triangles="0 1 3  1 2 3" position="0 0 0  1 0 0  1 1 0  0 1 0" />-->
+        <!-- Activate this loader to load a square mesh with many triangles -->
+        <MeshGmshLoader filename="mesh/square3.msh" name="loaderSquare" />
+        <Node name="SquareGravity1">
+            <EulerImplicitSolver name="odesolver1" printLog="0"  rayleighStiffness="0.1" rayleighMass="0.1" />
+            <CGLinearSolver printLog="0" iterations="25" name="linearsolver1" tolerance="1.0e-9" threshold="1.0e-9" />
+            <TriangleSetTopologyContainer name="Container" src="@../loaderSquare" />
+            <MechanicalObject name="DOFs" src="@../loaderSquare" scale="100"  />
+            <TriangleSetTopologyModifier name="Modifier" />
+            <TriangleSetGeometryAlgorithms name="GeomAlgo" template="Vec3" />
+            <DiagonalMass massDensity="0.005" />
+            <FixedProjectiveConstraint indices="0 1 2" />
+            <TriangularFEMForceFieldOptim name="FEM" youngModulus="600" poissonRatio="0.3" method="large" printLog="1"/>
+            <Node name="VisuA">
+                <OglModel name="Visual" color="yellow" />
+                <IdentityMapping name="visualMapping" input="@../DOFs" output="@Visual" />
+            </Node>
+        </Node>
+        <!-- Activate this version to compare computed stiffness matrix (addKToMatrix) with addDForce -->
+        <!--<Node name="SquareGravityTestMatrixConstruction">
+            <EulerImplicitSolver name="odesolver2" printLog="0" />
+            <CGLinearSolver template="SparseMatrix" verbose="0" printLog="1" iterations="25" name="linearsolver2" tolerance="1.0e-9" threshold="1.0e-9" />
+            <TriangleSetTopologyContainer name="Container" src="@../loaderSquare" />
+            <MechanicalObject name="DOFs" src="@../loaderSquare" scale="100"  />
+            <TriangleSetTopologyModifier name="Modifier" />
+            <TriangleSetGeometryAlgorithms name="GeomAlgo" template="Vec3" />
+            <DiagonalMass massDensity="0.005" />
+            <FixedProjectiveConstraint indices="0 1 2" />
+            <TriangularFEMForceFieldOptim name="FEM" youngModulus="600" poissonRatio="0.3" method="large" printLog="1"/>
+            <Node name="VisuA">
+                <OglModel name="Visual" color="yellow" />
+                <IdentityMapping name="visualMapping" input="@../DOFs" output="@Visual" />
+            </Node>
+        </Node>-->
+    
+    </Node>
+
+    ```
+
+=== "Python"
+
+    ```python
+    def createScene(root_node):
+
+       root = root_node.addChild('root', dt="0.05", gravity="0 10 10", showBoundingTree="0")
+
+       root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Projective")
+       root.addObject('RequiredPlugin', name="Sofa.Component.IO.Mesh")
+       root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Iterative")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Mapping.Linear")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Mass")
+       root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.FEM.Elastic")
+       root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Dynamic")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Visual")
+       root.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
+       root.addObject('VisualStyle', displayFlags="showVisual showBehaviorModels showForceFields showWireframe")
+       root.addObject('DefaultAnimationLoop', )
+       root.addObject('MeshGmshLoader', filename="mesh/square3.msh", name="loaderSquare")
+
+       square_gravity1 = root.addChild('SquareGravity1')
+
+       square_gravity1.addObject('EulerImplicitSolver', name="odesolver1", printLog="0", rayleighStiffness="0.1", rayleighMass="0.1")
+       square_gravity1.addObject('CGLinearSolver', printLog="0", iterations="25", name="linearsolver1", tolerance="1.0e-9", threshold="1.0e-9")
+       square_gravity1.addObject('TriangleSetTopologyContainer', name="Container", src="@../loaderSquare")
+       square_gravity1.addObject('MechanicalObject', name="DOFs", src="@../loaderSquare", scale="100")
+       square_gravity1.addObject('TriangleSetTopologyModifier', name="Modifier")
+       square_gravity1.addObject('TriangleSetGeometryAlgorithms', name="GeomAlgo", template="Vec3")
+       square_gravity1.addObject('DiagonalMass', massDensity="0.005")
+       square_gravity1.addObject('FixedProjectiveConstraint', indices="0 1 2")
+       square_gravity1.addObject('TriangularFEMForceFieldOptim', name="FEM", youngModulus="600", poissonRatio="0.3", method="large", printLog="1")
+
+       visu_a = SquareGravity1.addChild('VisuA')
+
+       visu_a.addObject('OglModel', name="Visual", color="yellow")
+       visu_a.addObject('IdentityMapping', name="visualMapping", input="@../DOFs", output="@Visual")
     ```
 
