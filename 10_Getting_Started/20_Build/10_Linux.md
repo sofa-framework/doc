@@ -1,14 +1,31 @@
-**It is STRONGLY advised to read through this entire doc page before getting started.**
-
-## Supported Linux version
-
 SOFA policy is to support only the latest Ubuntu LTS.
 
-----------------------------
+# Installation with Pixi
 
-# Build tools
+You can download and build SOFA in only three steps without any environment installation.
 
-## Compiler
+## Prerequisites
+
+- [Install Git](https://git-scm.com/install/linux)
+- [Install Pixi](https://pixi.prefix.dev/latest/installation/)
+
+
+## Installation steps
+
+- Clone SOFA : `git clone https://github.com/sofa-framework/sofa` :inbox_tray: 
+- Trigger the build : run `pixi run -e supported-plugins build` in the sofa source folder :desktop_computer: 
+- Launch SOFA : run `pixi run -e supported-plugins runSofa` :rocket: 
+
+
+# Manual installation (for developpers)
+
+<details>
+
+<summary>This installation method is advised for developers. It is STRONGLY advised to read through this entire doc page before getting started.</summary>
+
+## Build tools
+
+### Compiler
 
 SOFA requires a [C++17 compatible compiler](https://en.cppreference.com/w/cpp/compiler_support#C.2B.2B17_features).  
 On Linux, we officially support **GCC >= 7** and **Clang >= 5**.  
@@ -19,7 +36,7 @@ First, install the standard compilation toolkit with this command:
 sudo apt install build-essential software-properties-common
 ```
     
-### GCC
+#### GCC
 
 To know which GCC versions are available for your distribution, run this command:
 ```bash
@@ -31,7 +48,7 @@ Then, install the latest one with the usual command (example with gcc-11):
 sudo apt install gcc-11
 ```
 
-### Clang
+#### Clang
 Clang is an **alternative to GCC**. It compiles approximately two times faster!  
 We recommend to install **Clang 5 or newer**.
 
@@ -46,14 +63,14 @@ sudo apt install clang-12
 ```
 
 
-## CMake: Makefile generator
+### CMake: Makefile generator
 
 CMake will be required to configure the SOFA project before compiling it. Note that SOFA requires at least **CMake 3.22**.
 ```bash
 sudo apt install cmake cmake-gui
 ```
 
-## [optional] Ninja: build system
+### [optional] Ninja: build system
 
 Ninja is an alternative to Make. It has a better handling of incremental builds.
 
@@ -62,7 +79,7 @@ sudo apt install ninja-build
 ```
 
 
-## [optional] CCache: caching system
+### [optional] CCache: caching system
 
 We advise you to use [ccache](https://ccache.dev/). It is by no means
 mandatory, but it will dramatically improve the compilation time if you
@@ -73,9 +90,9 @@ sudo apt install ccache
 ```
 
 
-# Dependencies
+## Dependencies
 
-## Core (required)
+### Core (required)
 
 SOFA requires some libraries:
 
@@ -115,7 +132,7 @@ SOFA requires some libraries:
     sudo apt install libeigen3-dev
     ```
 
-## Graphical User Interfaces
+### Graphical User Interfaces
 
 -   The [SOFAGLFW](https://github.com/sofa-framework/SofaGLFW) project is based on both **GLFW** and **ImGui** libraries. It required the following dependencies to be installed:
    ``` {.bash .optional}
@@ -139,7 +156,7 @@ SOFA requires some libraries:
             and set the environment variable `export QT_QPA_PLATFORM=wayland`
 
 
-## Plugins (optional)
+### Plugins (optional)
 
 SOFA **plugins** depend on libraries that are available in the official repositories.  
 You probably don't need them all, but you might find it convenient to
@@ -173,10 +190,10 @@ This list does not cover all available SOFA plugins, only the ones that are buil
    ```
 
 
-# Build SOFA
+## Build SOFA
 
 
-## Setup your source and build directories
+### Setup your source and build directories
 
 To set up clean repositories, we recommend to arrange the SOFA directories
 as follows:
@@ -203,7 +220,7 @@ git clone -b master https://github.com/sofa-framework/sofa.git sofa/src
 ```
 
 
-## Generate a Makefile with CMake
+### Generate a Makefile with CMake
 
 0. Activate your venv `source /path/to/sofa-venv/bin/activate` and tell CMake to look there to find pybind11 `export CMAKE_PREFIX_PATH=/path/to/sofa-venv/lib/python3.12/site-packages`
 
@@ -240,7 +257,7 @@ git clone -b master https://github.com/sofa-framework/sofa.git sofa/src
 
 
 
-## Compile
+### Compile
 
 To compile, open a terminal in your build directory and run `make` or `ninja` depending on the generator you chose during CMake configuration.
 If you chose "Unix Makefile" as generator, you can enable parallel compilation by specifying the number of parallel build you want by adding the `-j n` option with `n` being the number of desired parallel jobs. 
@@ -250,9 +267,9 @@ Time for a coffee!
 
 
 
-## Troubleshoot CMake errors
+### Troubleshoot CMake errors
 
-### Qt detection error
+#### Qt detection error
 To solve Qt detection errors, click on **Add Entry** and add
 `CMAKE_PREFIX_PATH` with path `/home/YOUR_USERNAME/Qt/QT_VERSION/COMPILER` matching your
 Qt installation.  
@@ -277,22 +294,23 @@ COPY\_ONLY with COPYONLY and **Configure** again.
 
 
 
-## Compilation tutorial
+### Compilation tutorial
 
 See our page presenting [video tutorial for compilation on Linux](../../video-tutorials/how-to-compile-sofa/#linux).
 
 
 
-# Run SOFA
+## Run SOFA
 
-## with the SOFA GUI
+### with the SOFA GUI
 To run SOFA, locate and execute the application called `runSofa`. For more detailed information on how to use the application, you can refer to the [page dedicated to runsofa](../../../using-sofa/runsofa/). This documentation will provide you with further guidance on using SOFA effectively.
 
 
-## within a Python environment
+### within a Python environment
 
 To use SOFA within a Python3 environment, the section "using Python3" details how to [set up your environment on various operating systems](https://sofapython3.readthedocs.io/en/latest/content/Installation.html#using-python3).
 
+</details>
 
 
 
