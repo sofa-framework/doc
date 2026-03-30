@@ -68,8 +68,7 @@ if true, handle the events, otherwise ignore the events
 	<tr>
 		<td>swapping</td>
 		<td>
-Boolean enabling to swapp hexa-edges
- in order to avoid bias effect
+Boolean enabling to swap edges to hexahedrons based on their grid position in order to avoid numerical bias effect
 		</td>
 		<td>0</td>
 	</tr>

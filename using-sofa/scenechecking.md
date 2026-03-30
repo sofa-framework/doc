@@ -17,4 +17,5 @@ Using a SOFA built from sources, you can activate or de-activate these checks us
 | SceneCheckEmptyNodeName | Check if a Node has an empty name. |
 | SceneCheckMapping | Check if the mappings and states inside a Node are consistent regarding the visitor logic. |
 | SceneCheckMissingRequiredPlugin | Check for each component provided by a plugin that the corresponding <RequiredPlugin> directive is present in the scene |
+| SceneCheckSpecialCharacters | Check if nodes and components have special characters that may lead to undefined behavior. |
 | SceneCheckUsingAlias | Check if a Component has been created using an Alias. |
