@@ -140,11 +140,11 @@ ReadState.scn
     <?xml version="1.0"?>
     <Node name="root" dt="0.01" gravity="0 0 -9.81">
         <Node name="plugins">
-            <RequiredPlugin name="Sofa.Component.Playback"/> <!-- Needed to use components [ReadState] -->
-            <RequiredPlugin name="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
-            <RequiredPlugin name="Sofa.Component.Topology.Container.Dynamic"/> <!-- Needed to use components [EdgeSetGeometryAlgorithms EdgeSetTopologyContainer EdgeSetTopologyModifier] -->
-            <RequiredPlugin name="Sofa.Component.Topology.Container.Grid"/> <!-- Needed to use components [RegularGridTopology] -->
-            <RequiredPlugin name="Sofa.Component.Visual"/> <!-- Needed to use components [VisualStyle] -->
+            <RequiredPlugin pluginName="Sofa.Component.Playback"/> <!-- Needed to use components [ReadState] -->
+            <RequiredPlugin pluginName="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
+            <RequiredPlugin pluginName="Sofa.Component.Topology.Container.Dynamic"/> <!-- Needed to use components [EdgeSetGeometryAlgorithms EdgeSetTopologyContainer EdgeSetTopologyModifier] -->
+            <RequiredPlugin pluginName="Sofa.Component.Topology.Container.Grid"/> <!-- Needed to use components [RegularGridTopology] -->
+            <RequiredPlugin pluginName="Sofa.Component.Visual"/> <!-- Needed to use components [VisualStyle] -->
         </Node>
         <VisualStyle displayFlags="showForceFields showBehaviorModels showVisual showInteractionForceFields" />
         <DefaultAnimationLoop/>
@@ -164,6 +164,7 @@ ReadState.scn
             </Node>
         </Node>
     </Node>
+
     ```
 
 === "Python"
@@ -175,11 +176,11 @@ ReadState.scn
 
        plugins = root.addChild('plugins')
 
-       plugins.addObject('RequiredPlugin', name="Sofa.Component.Playback")
-       plugins.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
-       plugins.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Dynamic")
-       plugins.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Grid")
-       plugins.addObject('RequiredPlugin', name="Sofa.Component.Visual")
+       plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.Playback")
+       plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.StateContainer")
+       plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.Topology.Container.Dynamic")
+       plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.Topology.Container.Grid")
+       plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.Visual")
 
        root.addObject('VisualStyle', displayFlags="showForceFields showBehaviorModels showVisual showInteractionForceFields")
        root.addObject('DefaultAnimationLoop', )

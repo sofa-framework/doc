@@ -360,9 +360,9 @@ MeshSTLLoader_binary.scn
     ```xml
     <!-- For more details see: https://wiki.sofa-framework.org/tdev/wiki/Notes/NewLoaderArchitecture -->
     <Node>
-        <RequiredPlugin name="Sofa.Component.IO.Mesh"/> <!-- Needed to use components [MeshSTLLoader] -->
-        <RequiredPlugin name="Sofa.Component.Visual"/> <!-- Needed to use components [VisualStyle] -->
-        <RequiredPlugin name="Sofa.GL.Component.Rendering3D"/> <!-- Needed to use components [OglModel] -->
+        <RequiredPlugin pluginName="Sofa.Component.IO.Mesh"/> <!-- Needed to use components [MeshSTLLoader] -->
+        <RequiredPlugin pluginName="Sofa.Component.Visual"/> <!-- Needed to use components [VisualStyle] -->
+        <RequiredPlugin pluginName="Sofa.GL.Component.Rendering3D"/> <!-- Needed to use components [OglModel] -->
         <VisualStyle displayFlags="showVisual" />
         <DefaultAnimationLoop/>
     
@@ -379,9 +379,9 @@ MeshSTLLoader_binary.scn
 
        node = root_node.addChild('node')
 
-       node.addObject('RequiredPlugin', name="Sofa.Component.IO.Mesh")
-       node.addObject('RequiredPlugin', name="Sofa.Component.Visual")
-       node.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
+       node.addObject('RequiredPlugin', pluginName="Sofa.Component.IO.Mesh")
+       node.addObject('RequiredPlugin', pluginName="Sofa.Component.Visual")
+       node.addObject('RequiredPlugin', pluginName="Sofa.GL.Component.Rendering3D")
        node.addObject('VisualStyle', displayFlags="showVisual")
        node.addObject('DefaultAnimationLoop', )
        node.addObject('MeshSTLLoader', name="STLLoader", filename="mesh/pliers_binary.stl", printLog="true")
@@ -395,9 +395,9 @@ MeshSTLLoader.scn
     ```xml
     <!-- For more details see: https://wiki.sofa-framework.org/tdev/wiki/Notes/NewLoaderArchitecture -->
     <Node>
-        <RequiredPlugin name="Sofa.Component.IO.Mesh"/> <!-- Needed to use components [MeshSTLLoader] -->
-        <RequiredPlugin name="Sofa.Component.Visual"/> <!-- Needed to use components [VisualStyle] -->
-        <RequiredPlugin name="Sofa.GL.Component.Rendering3D"/> <!-- Needed to use components [OglModel] -->
+        <RequiredPlugin pluginName="Sofa.Component.IO.Mesh"/> <!-- Needed to use components [MeshSTLLoader] -->
+        <RequiredPlugin pluginName="Sofa.Component.Visual"/> <!-- Needed to use components [VisualStyle] -->
+        <RequiredPlugin pluginName="Sofa.GL.Component.Rendering3D"/> <!-- Needed to use components [OglModel] -->
         <VisualStyle displayFlags="showVisual" />
     
         <DefaultAnimationLoop/>
@@ -414,9 +414,9 @@ MeshSTLLoader.scn
 
        node = root_node.addChild('node')
 
-       node.addObject('RequiredPlugin', name="Sofa.Component.IO.Mesh")
-       node.addObject('RequiredPlugin', name="Sofa.Component.Visual")
-       node.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
+       node.addObject('RequiredPlugin', pluginName="Sofa.Component.IO.Mesh")
+       node.addObject('RequiredPlugin', pluginName="Sofa.Component.Visual")
+       node.addObject('RequiredPlugin', pluginName="Sofa.GL.Component.Rendering3D")
        node.addObject('VisualStyle', displayFlags="showVisual")
        node.addObject('DefaultAnimationLoop', )
        node.addObject('MeshSTLLoader', name="STLLoader", filename="mesh/circle_knot_ascii.stl", printLog="true", flipNormals="0")

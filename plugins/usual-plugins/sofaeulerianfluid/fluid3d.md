@@ -150,8 +150,8 @@ Fluid3D.scn
     ```xml
     <Node dt="0.04" gravity="0 -10 0">
         <VisualStyle displayFlags="showForceFields showCollisionModels showMappings" />
-        <RequiredPlugin name="Sofa.Component.Visual"/> <!-- Needed to use components [VisualStyle] -->
-        <RequiredPlugin name="SofaEulerianFluid"/> <!-- Needed to use components [Fluid3D] -->
+        <RequiredPlugin pluginName="Sofa.Component.Visual"/> <!-- Needed to use components [VisualStyle] -->
+        <RequiredPlugin pluginName="SofaEulerianFluid"/> <!-- Needed to use components [Fluid3D] -->
     
         <Fluid3D nx="32" ny="32" nz="32" tstart="0" tstop="0" height="20.5" dir="0.5 0 1" />
     </Node>
@@ -166,8 +166,8 @@ Fluid3D.scn
        node = root_node.addChild('node', dt="0.04", gravity="0 -10 0")
 
        node.addObject('VisualStyle', displayFlags="showForceFields showCollisionModels showMappings")
-       node.addObject('RequiredPlugin', name="Sofa.Component.Visual")
-       node.addObject('RequiredPlugin', name="SofaEulerianFluid")
+       node.addObject('RequiredPlugin', pluginName="Sofa.Component.Visual")
+       node.addObject('RequiredPlugin', pluginName="SofaEulerianFluid")
        node.addObject('Fluid3D', nx="32", ny="32", nz="32", tstart="0", tstop="0", height="20.5", dir="0.5 0 1")
     ```
 

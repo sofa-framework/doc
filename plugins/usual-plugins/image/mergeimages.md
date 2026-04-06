@@ -129,10 +129,10 @@ MergeImages.scn
     <?xml version="1.0"?>
     <Node name="root" gravity="0 0 0" dt=".1"  >
         <Node name="plugins">
-            <RequiredPlugin name="Sofa.Component.IO.Mesh"/> <!-- Needed to use components [MeshOBJLoader] -->
-            <RequiredPlugin name="Sofa.Component.Visual"/> <!-- Needed to use components [LineAxis VisualGrid VisualStyle] -->
-            <RequiredPlugin name="Sofa.GL.Component.Rendering3D"/> <!-- Needed to use components [OglSceneFrame] -->
-            <RequiredPlugin name="image"/> <!-- Needed to use components [ImageContainer ImageViewer MergeImages MeshToImageEngine] -->
+            <RequiredPlugin pluginName="Sofa.Component.IO.Mesh"/> <!-- Needed to use components [MeshOBJLoader] -->
+            <RequiredPlugin pluginName="Sofa.Component.Visual"/> <!-- Needed to use components [LineAxis VisualGrid VisualStyle] -->
+            <RequiredPlugin pluginName="Sofa.GL.Component.Rendering3D"/> <!-- Needed to use components [OglSceneFrame] -->
+            <RequiredPlugin pluginName="image"/> <!-- Needed to use components [ImageContainer ImageViewer MergeImages MeshToImageEngine] -->
         </Node>
     
         <VisualStyle displayFlags="showVisual showBehaviorModels" />
@@ -266,10 +266,10 @@ MergeImages.scn
 
        plugins = root.addChild('plugins')
 
-       plugins.addObject('RequiredPlugin', name="Sofa.Component.IO.Mesh")
-       plugins.addObject('RequiredPlugin', name="Sofa.Component.Visual")
-       plugins.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
-       plugins.addObject('RequiredPlugin', name="image")
+       plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.IO.Mesh")
+       plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.Visual")
+       plugins.addObject('RequiredPlugin', pluginName="Sofa.GL.Component.Rendering3D")
+       plugins.addObject('RequiredPlugin', pluginName="image")
 
        root.addObject('VisualStyle', displayFlags="showVisual showBehaviorModels")
        root.addObject('VisualGrid', size="50")

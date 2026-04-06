@@ -280,14 +280,14 @@ ImplicitSurfaceMapping.scn
 
     ```xml
     <Node dt="0.005" gravity="0 -10 0">
-        <RequiredPlugin name="Sofa.Component.IO.Mesh"/> <!-- Needed to use components [MeshGmshLoader] -->
-        <RequiredPlugin name="Sofa.Component.LinearSolver.Iterative"/> <!-- Needed to use components [CGLinearSolver] -->
-        <RequiredPlugin name="Sofa.Component.Mass"/> <!-- Needed to use components [UniformMass] -->
-        <RequiredPlugin name="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
-        <RequiredPlugin name="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
-        <RequiredPlugin name="Sofa.Component.Visual"/> <!-- Needed to use components [VisualStyle] -->
-        <RequiredPlugin name="Sofa.GL.Component.Rendering3D"/> <!-- Needed to use components [OglModel] -->
-        <RequiredPlugin name="SofaImplicitField"/> <!-- Needed to use components [ImplicitSurfaceMapping] -->
+        <RequiredPlugin pluginName="Sofa.Component.IO.Mesh"/> <!-- Needed to use components [MeshGmshLoader] -->
+        <RequiredPlugin pluginName="Sofa.Component.LinearSolver.Iterative"/> <!-- Needed to use components [CGLinearSolver] -->
+        <RequiredPlugin pluginName="Sofa.Component.Mass"/> <!-- Needed to use components [UniformMass] -->
+        <RequiredPlugin pluginName="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+        <RequiredPlugin pluginName="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
+        <RequiredPlugin pluginName="Sofa.Component.Visual"/> <!-- Needed to use components [VisualStyle] -->
+        <RequiredPlugin pluginName="Sofa.GL.Component.Rendering3D"/> <!-- Needed to use components [OglModel] -->
+        <RequiredPlugin pluginName="SofaImplicitField"/> <!-- Needed to use components [ImplicitSurfaceMapping] -->
         <VisualStyle displayFlags="showBehaviorModels showForceFields" />
         <Node name="Liver">
             <EulerImplicitSolver name="cg_odesolver" printLog="false"  rayleighStiffness="0.1" rayleighMass="0.1" />
@@ -314,14 +314,14 @@ ImplicitSurfaceMapping.scn
 
        node = root_node.addChild('node', dt="0.005", gravity="0 -10 0")
 
-       node.addObject('RequiredPlugin', name="Sofa.Component.IO.Mesh")
-       node.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Iterative")
-       node.addObject('RequiredPlugin', name="Sofa.Component.Mass")
-       node.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
-       node.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
-       node.addObject('RequiredPlugin', name="Sofa.Component.Visual")
-       node.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
-       node.addObject('RequiredPlugin', name="SofaImplicitField")
+       node.addObject('RequiredPlugin', pluginName="Sofa.Component.IO.Mesh")
+       node.addObject('RequiredPlugin', pluginName="Sofa.Component.LinearSolver.Iterative")
+       node.addObject('RequiredPlugin', pluginName="Sofa.Component.Mass")
+       node.addObject('RequiredPlugin', pluginName="Sofa.Component.ODESolver.Backward")
+       node.addObject('RequiredPlugin', pluginName="Sofa.Component.StateContainer")
+       node.addObject('RequiredPlugin', pluginName="Sofa.Component.Visual")
+       node.addObject('RequiredPlugin', pluginName="Sofa.GL.Component.Rendering3D")
+       node.addObject('RequiredPlugin', pluginName="SofaImplicitField")
        node.addObject('VisualStyle', displayFlags="showBehaviorModels showForceFields")
 
        liver = node.addChild('Liver')

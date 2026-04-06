@@ -145,11 +145,11 @@ SmoothMeshEngine.scn
     ```xml
     <?xml version="1.0"?>
     <Node name="root" >
-        <RequiredPlugin name="Sofa.Component.Engine.Transform"/> <!-- Needed to use components [SmoothMeshEngine] -->
-        <RequiredPlugin name="Sofa.Component.IO.Mesh"/> <!-- Needed to use components [MeshOBJLoader] -->
-        <RequiredPlugin name="Sofa.Component.Topology.Container.Constant"/> <!-- Needed to use components [MeshTopology] -->
-        <RequiredPlugin name="Sofa.Component.Visual"/> <!-- Needed to use components [VisualStyle] -->
-        <RequiredPlugin name="Sofa.GL.Component.Rendering3D"/> <!-- Needed to use components [OglModel] -->
+        <RequiredPlugin pluginName="Sofa.Component.Engine.Transform"/> <!-- Needed to use components [SmoothMeshEngine] -->
+        <RequiredPlugin pluginName="Sofa.Component.IO.Mesh"/> <!-- Needed to use components [MeshOBJLoader] -->
+        <RequiredPlugin pluginName="Sofa.Component.Topology.Container.Constant"/> <!-- Needed to use components [MeshTopology] -->
+        <RequiredPlugin pluginName="Sofa.Component.Visual"/> <!-- Needed to use components [VisualStyle] -->
+        <RequiredPlugin pluginName="Sofa.GL.Component.Rendering3D"/> <!-- Needed to use components [OglModel] -->
     
         <DefaultAnimationLoop/>
         <Node name="origin" >
@@ -163,6 +163,7 @@ SmoothMeshEngine.scn
             <SmoothMeshEngine template="Vec3" name="smoother" input_position="@/origin/loader.position" nb_iterations="1" showOutput="true"/>
         </Node>
     </Node>
+
     ```
 
 === "Python"
@@ -172,11 +173,11 @@ SmoothMeshEngine.scn
 
        root = root_node.addChild('root')
 
-       root.addObject('RequiredPlugin', name="Sofa.Component.Engine.Transform")
-       root.addObject('RequiredPlugin', name="Sofa.Component.IO.Mesh")
-       root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Constant")
-       root.addObject('RequiredPlugin', name="Sofa.Component.Visual")
-       root.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
+       root.addObject('RequiredPlugin', pluginName="Sofa.Component.Engine.Transform")
+       root.addObject('RequiredPlugin', pluginName="Sofa.Component.IO.Mesh")
+       root.addObject('RequiredPlugin', pluginName="Sofa.Component.Topology.Container.Constant")
+       root.addObject('RequiredPlugin', pluginName="Sofa.Component.Visual")
+       root.addObject('RequiredPlugin', pluginName="Sofa.GL.Component.Rendering3D")
        root.addObject('DefaultAnimationLoop', )
 
        origin = root.addChild('origin')

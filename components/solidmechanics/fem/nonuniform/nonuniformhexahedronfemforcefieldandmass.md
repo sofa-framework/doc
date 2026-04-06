@@ -231,21 +231,21 @@ NonUniformHexahedronFEMForceFieldAndMass.scn
 
     ```xml
     <Node name="SandBox" animate="0" dt="0.06" gravity="0 0 -9.81" multiThreadSimulation="0" time="0.0">
-        <RequiredPlugin name="Sofa.Component.Collision.Detection.Algorithm"/> <!-- Needed to use components [BVHNarrowPhase BruteForceBroadPhase CollisionPipeline] -->
-        <RequiredPlugin name="Sofa.Component.Collision.Detection.Intersection"/> <!-- Needed to use components [MinProximityIntersection] -->
-        <RequiredPlugin name="Sofa.Component.Collision.Geometry"/> <!-- Needed to use components [LineCollisionModel PointCollisionModel TriangleCollisionModel] -->
-        <RequiredPlugin name="Sofa.Component.Collision.Response.Contact"/> <!-- Needed to use components [CollisionResponse] -->
-        <RequiredPlugin name="Sofa.Component.IO.Mesh"/> <!-- Needed to use components [MeshOBJLoader] -->
-        <RequiredPlugin name="Sofa.Component.LinearSolver.Iterative"/> <!-- Needed to use components [CGLinearSolver] -->
-        <RequiredPlugin name="Sofa.Component.Mapping.Linear"/> <!-- Needed to use components [BarycentricMapping] -->
-        <RequiredPlugin name="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
-        <RequiredPlugin name="Sofa.Component.SolidMechanics.FEM.Elastic"/> <!-- Needed to use components [HexahedronFEMForceFieldAndMass] -->
-        <RequiredPlugin name="Sofa.Component.SolidMechanics.FEM.NonUniform"/> <!-- Needed to use components [NonUniformHexahedronFEMForceFieldAndMass] -->
-        <RequiredPlugin name="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
-        <RequiredPlugin name="Sofa.Component.Topology.Container.Constant"/> <!-- Needed to use components [MeshTopology] -->
-        <RequiredPlugin name="Sofa.Component.Topology.Container.Grid"/> <!-- Needed to use components [SparseGridTopology] -->
-        <RequiredPlugin name="Sofa.Component.Visual"/> <!-- Needed to use components [VisualStyle] -->
-        <RequiredPlugin name="Sofa.GL.Component.Rendering3D"/> <!-- Needed to use components [OglModel] -->
+        <RequiredPlugin pluginName="Sofa.Component.Collision.Detection.Algorithm"/> <!-- Needed to use components [BVHNarrowPhase BruteForceBroadPhase CollisionPipeline] -->
+        <RequiredPlugin pluginName="Sofa.Component.Collision.Detection.Intersection"/> <!-- Needed to use components [MinProximityIntersection] -->
+        <RequiredPlugin pluginName="Sofa.Component.Collision.Geometry"/> <!-- Needed to use components [LineCollisionModel PointCollisionModel TriangleCollisionModel] -->
+        <RequiredPlugin pluginName="Sofa.Component.Collision.Response.Contact"/> <!-- Needed to use components [CollisionResponse] -->
+        <RequiredPlugin pluginName="Sofa.Component.IO.Mesh"/> <!-- Needed to use components [MeshOBJLoader] -->
+        <RequiredPlugin pluginName="Sofa.Component.LinearSolver.Iterative"/> <!-- Needed to use components [CGLinearSolver] -->
+        <RequiredPlugin pluginName="Sofa.Component.Mapping.Linear"/> <!-- Needed to use components [BarycentricMapping] -->
+        <RequiredPlugin pluginName="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+        <RequiredPlugin pluginName="Sofa.Component.SolidMechanics.FEM.Elastic"/> <!-- Needed to use components [HexahedronFEMForceFieldAndMass] -->
+        <RequiredPlugin pluginName="Sofa.Component.SolidMechanics.FEM.NonUniform"/> <!-- Needed to use components [NonUniformHexahedronFEMForceFieldAndMass] -->
+        <RequiredPlugin pluginName="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
+        <RequiredPlugin pluginName="Sofa.Component.Topology.Container.Constant"/> <!-- Needed to use components [MeshTopology] -->
+        <RequiredPlugin pluginName="Sofa.Component.Topology.Container.Grid"/> <!-- Needed to use components [SparseGridTopology] -->
+        <RequiredPlugin pluginName="Sofa.Component.Visual"/> <!-- Needed to use components [VisualStyle] -->
+        <RequiredPlugin pluginName="Sofa.GL.Component.Rendering3D"/> <!-- Needed to use components [OglModel] -->
     
         <DefaultAnimationLoop/>
         <VisualStyle displayFlags="showVisual" />
@@ -309,21 +309,21 @@ NonUniformHexahedronFEMForceFieldAndMass.scn
 
        sand_box = root_node.addChild('SandBox', animate="0", dt="0.06", gravity="0 0 -9.81", multiThreadSimulation="0", time="0.0")
 
-       sand_box.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Algorithm")
-       sand_box.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Intersection")
-       sand_box.addObject('RequiredPlugin', name="Sofa.Component.Collision.Geometry")
-       sand_box.addObject('RequiredPlugin', name="Sofa.Component.Collision.Response.Contact")
-       sand_box.addObject('RequiredPlugin', name="Sofa.Component.IO.Mesh")
-       sand_box.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Iterative")
-       sand_box.addObject('RequiredPlugin', name="Sofa.Component.Mapping.Linear")
-       sand_box.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
-       sand_box.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.FEM.Elastic")
-       sand_box.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.FEM.NonUniform")
-       sand_box.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
-       sand_box.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Constant")
-       sand_box.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Grid")
-       sand_box.addObject('RequiredPlugin', name="Sofa.Component.Visual")
-       sand_box.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
+       sand_box.addObject('RequiredPlugin', pluginName="Sofa.Component.Collision.Detection.Algorithm")
+       sand_box.addObject('RequiredPlugin', pluginName="Sofa.Component.Collision.Detection.Intersection")
+       sand_box.addObject('RequiredPlugin', pluginName="Sofa.Component.Collision.Geometry")
+       sand_box.addObject('RequiredPlugin', pluginName="Sofa.Component.Collision.Response.Contact")
+       sand_box.addObject('RequiredPlugin', pluginName="Sofa.Component.IO.Mesh")
+       sand_box.addObject('RequiredPlugin', pluginName="Sofa.Component.LinearSolver.Iterative")
+       sand_box.addObject('RequiredPlugin', pluginName="Sofa.Component.Mapping.Linear")
+       sand_box.addObject('RequiredPlugin', pluginName="Sofa.Component.ODESolver.Backward")
+       sand_box.addObject('RequiredPlugin', pluginName="Sofa.Component.SolidMechanics.FEM.Elastic")
+       sand_box.addObject('RequiredPlugin', pluginName="Sofa.Component.SolidMechanics.FEM.NonUniform")
+       sand_box.addObject('RequiredPlugin', pluginName="Sofa.Component.StateContainer")
+       sand_box.addObject('RequiredPlugin', pluginName="Sofa.Component.Topology.Container.Constant")
+       sand_box.addObject('RequiredPlugin', pluginName="Sofa.Component.Topology.Container.Grid")
+       sand_box.addObject('RequiredPlugin', pluginName="Sofa.Component.Visual")
+       sand_box.addObject('RequiredPlugin', pluginName="Sofa.GL.Component.Rendering3D")
        sand_box.addObject('DefaultAnimationLoop', )
        sand_box.addObject('VisualStyle', displayFlags="showVisual")
        sand_box.addObject('CollisionPipeline', verbose="0", draw="0")

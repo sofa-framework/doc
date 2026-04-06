@@ -161,11 +161,11 @@ OglVolumetricModel_hexa.scn
     ```xml
     <?xml version="1.0"?>
     <Node name="root" dt="0.02">
-        <RequiredPlugin name="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
-        <RequiredPlugin name="Sofa.Component.Topology.Container.Dynamic"/> <!-- Needed to use components [HexahedronSetTopologyContainer] -->
-        <RequiredPlugin name="Sofa.Component.Topology.Container.Grid"/> <!-- Needed to use components [SparseGridTopology] -->
-        <RequiredPlugin name="Sofa.GL.Component.Shader"/> <!-- Needed to use components [OglFloatVariable,OglShader] -->
-        <RequiredPlugin name="VolumetricRendering" />
+        <RequiredPlugin pluginName="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
+        <RequiredPlugin pluginName="Sofa.Component.Topology.Container.Dynamic"/> <!-- Needed to use components [HexahedronSetTopologyContainer] -->
+        <RequiredPlugin pluginName="Sofa.Component.Topology.Container.Grid"/> <!-- Needed to use components [SparseGridTopology] -->
+        <RequiredPlugin pluginName="Sofa.GL.Component.Shader"/> <!-- Needed to use components [OglFloatVariable,OglShader] -->
+        <RequiredPlugin pluginName="VolumetricRendering" />
     
         <DefaultAnimationLoop/>
         <SparseGridTopology name="grid" n="51 51 51" fileTopology="mesh/raptor_8kp.obj" />
@@ -192,11 +192,11 @@ OglVolumetricModel_hexa.scn
 
        root = root_node.addChild('root', dt="0.02")
 
-       root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
-       root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Dynamic")
-       root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Grid")
-       root.addObject('RequiredPlugin', name="Sofa.GL.Component.Shader")
-       root.addObject('RequiredPlugin', name="VolumetricRendering")
+       root.addObject('RequiredPlugin', pluginName="Sofa.Component.StateContainer")
+       root.addObject('RequiredPlugin', pluginName="Sofa.Component.Topology.Container.Dynamic")
+       root.addObject('RequiredPlugin', pluginName="Sofa.Component.Topology.Container.Grid")
+       root.addObject('RequiredPlugin', pluginName="Sofa.GL.Component.Shader")
+       root.addObject('RequiredPlugin', pluginName="VolumetricRendering")
        root.addObject('DefaultAnimationLoop', )
        root.addObject('SparseGridTopology', name="grid", n="51 51 51", fileTopology="mesh/raptor_8kp.obj")
        root.addObject('MechanicalObject', template="Vec3d")
@@ -217,7 +217,7 @@ OglVolumetricModel_tetra.scn
     ```xml
     <?xml version="1.0"?>
     <Node name="root" dt="0.02">
-        <RequiredPlugin name="VolumetricRendering" />
+        <RequiredPlugin pluginName="VolumetricRendering" />
     
     	<MeshVTKLoader name="loader" filename="mesh/raptorTetra_8418.vtu" />
     	<MechanicalObject src="@loader" template="Vec3d" />
@@ -233,6 +233,7 @@ OglVolumetricModel_tetra.scn
     	</Node>
     
     </Node>
+
     ```
 
 === "Python"
@@ -242,7 +243,7 @@ OglVolumetricModel_tetra.scn
 
        root = root_node.addChild('root', dt="0.02")
 
-       root.addObject('RequiredPlugin', name="VolumetricRendering")
+       root.addObject('RequiredPlugin', pluginName="VolumetricRendering")
        root.addObject('MeshVTKLoader', name="loader", filename="mesh/raptorTetra_8418.vtu")
        root.addObject('MechanicalObject', src="@loader", template="Vec3d")
        root.addObject('include', href="Objects/TetrahedronSetTopology.xml", src="@loader")
@@ -263,7 +264,7 @@ OglVolumetricModel_tetra_physics.scn
     ```xml
     <?xml version="1.0"?>
     <Node name="root" dt="0.02">
-        <RequiredPlugin name="VolumetricRendering" />
+        <RequiredPlugin pluginName="VolumetricRendering" />
     
         <Node name="HexaRaptor" >
             <EulerImplicitSolver  rayleighStiffness="0.1" rayleighMass="0.1" />
@@ -290,6 +291,7 @@ OglVolumetricModel_tetra_physics.scn
     	</Node>
     
     </Node>
+
     ```
 
 === "Python"
@@ -299,7 +301,7 @@ OglVolumetricModel_tetra_physics.scn
 
        root = root_node.addChild('root', dt="0.02")
 
-       root.addObject('RequiredPlugin', name="VolumetricRendering")
+       root.addObject('RequiredPlugin', pluginName="VolumetricRendering")
 
        hexa_raptor = root.addChild('HexaRaptor')
 
@@ -327,7 +329,7 @@ OglVolumetricModel_hexa_link.scn
     ```xml
     <?xml version="1.0"?>
     <Node name="root" dt="0.02">
-        <RequiredPlugin name="VolumetricRendering" />
+        <RequiredPlugin pluginName="VolumetricRendering" />
     
         <Node name="Input">
             <SparseGridTopology name="grid" n="51 51 51" fileTopology="mesh/raptor_8kp.obj" />
@@ -355,7 +357,7 @@ OglVolumetricModel_hexa_link.scn
 
        root = root_node.addChild('root', dt="0.02")
 
-       root.addObject('RequiredPlugin', name="VolumetricRendering")
+       root.addObject('RequiredPlugin', pluginName="VolumetricRendering")
 
        input = root.addChild('Input')
 
@@ -378,7 +380,7 @@ OglVolumetricModel_physics.scn
     ```xml
     <?xml version="1.0"?>
     <Node name="root" dt="0.02">
-        <RequiredPlugin name="VolumetricRendering" />
+        <RequiredPlugin pluginName="VolumetricRendering" />
     
         <Node name="HexaRaptor" >
             <EulerImplicitSolver  rayleighStiffness="0.1" rayleighMass="0.1" />
@@ -405,6 +407,7 @@ OglVolumetricModel_physics.scn
     	</Node>
     
     </Node>
+
     ```
 
 === "Python"
@@ -414,7 +417,7 @@ OglVolumetricModel_physics.scn
 
        root = root_node.addChild('root', dt="0.02")
 
-       root.addObject('RequiredPlugin', name="VolumetricRendering")
+       root.addObject('RequiredPlugin', pluginName="VolumetricRendering")
 
        hexa_raptor = root.addChild('HexaRaptor')
 
@@ -443,7 +446,7 @@ OglVolumetricModel_hexa_physics.scn
     ```xml
     <?xml version="1.0"?>
     <Node name="root" dt="0.02">
-        <RequiredPlugin name="VolumetricRendering" />
+        <RequiredPlugin pluginName="VolumetricRendering" />
     
         <Node name="HexaRaptor" >
             <EulerImplicitSolver  rayleighStiffness="0.1" rayleighMass="0.1" />
@@ -470,6 +473,7 @@ OglVolumetricModel_hexa_physics.scn
     	</Node>
     
     </Node>
+
     ```
 
 === "Python"
@@ -479,7 +483,7 @@ OglVolumetricModel_hexa_physics.scn
 
        root = root_node.addChild('root', dt="0.02")
 
-       root.addObject('RequiredPlugin', name="VolumetricRendering")
+       root.addObject('RequiredPlugin', pluginName="VolumetricRendering")
 
        hexa_raptor = root.addChild('HexaRaptor')
 
@@ -508,7 +512,7 @@ OglVolumetricModel_tetra_clipped_physics.scn
     ```xml
     <?xml version="1.0"?>
     <Node name="root" dt="0.02">
-        <RequiredPlugin name="VolumetricRendering" />
+        <RequiredPlugin pluginName="VolumetricRendering" />
     
         <Node name="HexaRaptor" >
             <EulerImplicitSolver  rayleighStiffness="0.1" rayleighMass="0.1" />
@@ -536,6 +540,7 @@ OglVolumetricModel_tetra_clipped_physics.scn
     	</Node>
     
     </Node>
+
     ```
 
 === "Python"
@@ -545,7 +550,7 @@ OglVolumetricModel_tetra_clipped_physics.scn
 
        root = root_node.addChild('root', dt="0.02")
 
-       root.addObject('RequiredPlugin', name="VolumetricRendering")
+       root.addObject('RequiredPlugin', pluginName="VolumetricRendering")
 
        hexa_raptor = root.addChild('HexaRaptor')
 

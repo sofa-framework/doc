@@ -199,9 +199,9 @@ OglShadowShader_SpotLight.scn
     ```xml
     <?xml version="1.0"?>
     <Node 	 name="root"  dt="0.02"  >
-        <RequiredPlugin name="Sofa.Component.IO.Mesh"/> <!-- Needed to use components [MeshOBJLoader] -->
-        <RequiredPlugin name="Sofa.GL.Component.Rendering3D"/> <!-- Needed to use components [OglModel] -->
-        <RequiredPlugin name="Sofa.GL.Component.Shader"/> <!-- Needed to use components [LightManager OglShadowShader SpotLight] -->
+        <RequiredPlugin pluginName="Sofa.Component.IO.Mesh"/> <!-- Needed to use components [MeshOBJLoader] -->
+        <RequiredPlugin pluginName="Sofa.GL.Component.Rendering3D"/> <!-- Needed to use components [OglModel] -->
+        <RequiredPlugin pluginName="Sofa.GL.Component.Shader"/> <!-- Needed to use components [LightManager OglShadowShader SpotLight] -->
         <DefaultAnimationLoop/>
         
     	<MeshOBJLoader name="meshLoader_0" filename="mesh/dragon.obj"  translation="0 0 -5"  scale3d="0.3 0.3 0.3" handleSeams="1" />
@@ -225,9 +225,9 @@ OglShadowShader_SpotLight.scn
 
        root = root_node.addChild('root', dt="0.02")
 
-       root.addObject('RequiredPlugin', name="Sofa.Component.IO.Mesh")
-       root.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
-       root.addObject('RequiredPlugin', name="Sofa.GL.Component.Shader")
+       root.addObject('RequiredPlugin', pluginName="Sofa.Component.IO.Mesh")
+       root.addObject('RequiredPlugin', pluginName="Sofa.GL.Component.Rendering3D")
+       root.addObject('RequiredPlugin', pluginName="Sofa.GL.Component.Shader")
        root.addObject('DefaultAnimationLoop', )
        root.addObject('MeshOBJLoader', name="meshLoader_0", filename="mesh/dragon.obj", translation="0 0 -5", scale3d="0.3 0.3 0.3", handleSeams="1")
        root.addObject('OglModel', template="Vec3", name="VisualModel", src="@meshLoader_0", material="Default Diffuse 1 0 1 0 1 Ambient 1 0 0.2 0 1 Specular 0 0 1 0 1 Emissive 0 0 1 0 1 Shininess 0 45 No texture linked to the material No bump texture linked to the material ", blendEquation="GL_FUNC_ADD", sfactor="GL_SRC_ALPHA", dfactor="GL_ONE_MINUS_SRC_ALPHA")
@@ -248,10 +248,10 @@ OglShadowShader_SpotLight2.scn
     ```xml
     <?xml version="1.0"?>
     <Node 	 name="root"  dt="0.02"  >
-        <RequiredPlugin name="Sofa.Component.IO.Mesh"/> <!-- Needed to use components [MeshOBJLoader] -->
-        <RequiredPlugin name="Sofa.Component.Setting"/> <!-- Needed to use components [BackgroundSetting] -->
-        <RequiredPlugin name="Sofa.GL.Component.Rendering3D"/> <!-- Needed to use components [OglModel] -->
-        <RequiredPlugin name="Sofa.GL.Component.Shader"/> <!-- Needed to use components [LightManager OglShaderDefineMacro OglShadowShader OglTexture SpotLight] -->
+        <RequiredPlugin pluginName="Sofa.Component.IO.Mesh"/> <!-- Needed to use components [MeshOBJLoader] -->
+        <RequiredPlugin pluginName="Sofa.Component.Setting"/> <!-- Needed to use components [BackgroundSetting] -->
+        <RequiredPlugin pluginName="Sofa.GL.Component.Rendering3D"/> <!-- Needed to use components [OglModel] -->
+        <RequiredPlugin pluginName="Sofa.GL.Component.Shader"/> <!-- Needed to use components [LightManager OglShaderDefineMacro OglShadowShader OglTexture SpotLight] -->
         
         <DefaultAnimationLoop/>
     	<BackgroundSetting color="0.8 0.8 0.8" />
@@ -290,10 +290,10 @@ OglShadowShader_SpotLight2.scn
 
        root = root_node.addChild('root', dt="0.02")
 
-       root.addObject('RequiredPlugin', name="Sofa.Component.IO.Mesh")
-       root.addObject('RequiredPlugin', name="Sofa.Component.Setting")
-       root.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
-       root.addObject('RequiredPlugin', name="Sofa.GL.Component.Shader")
+       root.addObject('RequiredPlugin', pluginName="Sofa.Component.IO.Mesh")
+       root.addObject('RequiredPlugin', pluginName="Sofa.Component.Setting")
+       root.addObject('RequiredPlugin', pluginName="Sofa.GL.Component.Rendering3D")
+       root.addObject('RequiredPlugin', pluginName="Sofa.GL.Component.Shader")
        root.addObject('DefaultAnimationLoop', )
        root.addObject('BackgroundSetting', color="0.8 0.8 0.8")
        root.addObject('LightManager', name="lightManager1", listening="1", shadows="1", softShadows="1")
@@ -324,10 +324,10 @@ OglShadowShader_Directional.scn
     ```xml
     <?xml version="1.0"?>
     <Node 	 name="root"  dt="0.02"  >
-        <RequiredPlugin name="Sofa.Component.IO.Mesh"/> <!-- Needed to use components [MeshOBJLoader] -->
-        <RequiredPlugin name="Sofa.Component.Setting"/> <!-- Needed to use components [BackgroundSetting] -->
-        <RequiredPlugin name="Sofa.GL.Component.Rendering3D"/> <!-- Needed to use components [OglModel] -->
-        <RequiredPlugin name="Sofa.GL.Component.Shader"/> <!-- Needed to use components [DirectionalLight LightManager OglShadowShader] -->
+        <RequiredPlugin pluginName="Sofa.Component.IO.Mesh"/> <!-- Needed to use components [MeshOBJLoader] -->
+        <RequiredPlugin pluginName="Sofa.Component.Setting"/> <!-- Needed to use components [BackgroundSetting] -->
+        <RequiredPlugin pluginName="Sofa.GL.Component.Rendering3D"/> <!-- Needed to use components [OglModel] -->
+        <RequiredPlugin pluginName="Sofa.GL.Component.Shader"/> <!-- Needed to use components [DirectionalLight LightManager OglShadowShader] -->
     
         <DefaultAnimationLoop/>
     	<BackgroundSetting color="0.5 0.5 0.5" />
@@ -352,10 +352,10 @@ OglShadowShader_Directional.scn
 
        root = root_node.addChild('root', dt="0.02")
 
-       root.addObject('RequiredPlugin', name="Sofa.Component.IO.Mesh")
-       root.addObject('RequiredPlugin', name="Sofa.Component.Setting")
-       root.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
-       root.addObject('RequiredPlugin', name="Sofa.GL.Component.Shader")
+       root.addObject('RequiredPlugin', pluginName="Sofa.Component.IO.Mesh")
+       root.addObject('RequiredPlugin', pluginName="Sofa.Component.Setting")
+       root.addObject('RequiredPlugin', pluginName="Sofa.GL.Component.Rendering3D")
+       root.addObject('RequiredPlugin', pluginName="Sofa.GL.Component.Shader")
        root.addObject('DefaultAnimationLoop', )
        root.addObject('BackgroundSetting', color="0.5 0.5 0.5")
        root.addObject('MeshOBJLoader', name="meshLoader_0", filename="mesh/dragon.obj", translation="0 0 -5", scale3d="0.3 0.3 0.3", handleSeams="1")

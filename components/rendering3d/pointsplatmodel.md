@@ -130,17 +130,17 @@ PointSplatModel.scn
     <?xml version="1.0" ?>
     <!-- Mechanical PointSplatModel Example -->
     <Node dt="0.005" gravity="0 -10 0">
-        <RequiredPlugin name="Sofa.Component.Collision.Detection.Algorithm"/> <!-- Needed to use components [BVHNarrowPhase BruteForceBroadPhase CollisionPipeline] -->
-        <RequiredPlugin name="Sofa.Component.Collision.Detection.Intersection"/> <!-- Needed to use components [NewProximityIntersection] -->
-        <RequiredPlugin name="Sofa.Component.Collision.Geometry"/> <!-- Needed to use components [LineCollisionModel PointCollisionModel TriangleCollisionModel] -->
-        <RequiredPlugin name="Sofa.Component.Collision.Response.Contact"/> <!-- Needed to use components [CollisionResponse] -->
-        <RequiredPlugin name="Sofa.Component.IO.Mesh"/> <!-- Needed to use components [MeshOBJLoader] -->
-        <RequiredPlugin name="Sofa.Component.Mass"/> <!-- Needed to use components [UniformMass] -->
-        <RequiredPlugin name="Sofa.Component.ODESolver.Forward"/> <!-- Needed to use components [RungeKutta4Solver] -->
-        <RequiredPlugin name="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
-        <RequiredPlugin name="Sofa.Component.Topology.Container.Constant"/> <!-- Needed to use components [MeshTopology] -->
-        <RequiredPlugin name="Sofa.Component.Topology.Container.Dynamic"/> <!-- Needed to use components [PointSetTopologyContainer PointSetTopologyModifier] -->
-        <RequiredPlugin name="Sofa.GL.Component.Rendering3D"/> <!-- Needed to use components [OglModel PointSplatModel] -->
+        <RequiredPlugin pluginName="Sofa.Component.Collision.Detection.Algorithm"/> <!-- Needed to use components [BVHNarrowPhase BruteForceBroadPhase CollisionPipeline] -->
+        <RequiredPlugin pluginName="Sofa.Component.Collision.Detection.Intersection"/> <!-- Needed to use components [NewProximityIntersection] -->
+        <RequiredPlugin pluginName="Sofa.Component.Collision.Geometry"/> <!-- Needed to use components [LineCollisionModel PointCollisionModel TriangleCollisionModel] -->
+        <RequiredPlugin pluginName="Sofa.Component.Collision.Response.Contact"/> <!-- Needed to use components [CollisionResponse] -->
+        <RequiredPlugin pluginName="Sofa.Component.IO.Mesh"/> <!-- Needed to use components [MeshOBJLoader] -->
+        <RequiredPlugin pluginName="Sofa.Component.Mass"/> <!-- Needed to use components [UniformMass] -->
+        <RequiredPlugin pluginName="Sofa.Component.ODESolver.Forward"/> <!-- Needed to use components [RungeKutta4Solver] -->
+        <RequiredPlugin pluginName="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
+        <RequiredPlugin pluginName="Sofa.Component.Topology.Container.Constant"/> <!-- Needed to use components [MeshTopology] -->
+        <RequiredPlugin pluginName="Sofa.Component.Topology.Container.Dynamic"/> <!-- Needed to use components [PointSetTopologyContainer PointSetTopologyModifier] -->
+        <RequiredPlugin pluginName="Sofa.GL.Component.Rendering3D"/> <!-- Needed to use components [OglModel PointSplatModel] -->
     
         <DefaultAnimationLoop/>
         <CollisionPipeline verbose="0" />
@@ -181,17 +181,17 @@ PointSplatModel.scn
 
        node = root_node.addChild('node', dt="0.005", gravity="0 -10 0")
 
-       node.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Algorithm")
-       node.addObject('RequiredPlugin', name="Sofa.Component.Collision.Detection.Intersection")
-       node.addObject('RequiredPlugin', name="Sofa.Component.Collision.Geometry")
-       node.addObject('RequiredPlugin', name="Sofa.Component.Collision.Response.Contact")
-       node.addObject('RequiredPlugin', name="Sofa.Component.IO.Mesh")
-       node.addObject('RequiredPlugin', name="Sofa.Component.Mass")
-       node.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Forward")
-       node.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
-       node.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Constant")
-       node.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Dynamic")
-       node.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
+       node.addObject('RequiredPlugin', pluginName="Sofa.Component.Collision.Detection.Algorithm")
+       node.addObject('RequiredPlugin', pluginName="Sofa.Component.Collision.Detection.Intersection")
+       node.addObject('RequiredPlugin', pluginName="Sofa.Component.Collision.Geometry")
+       node.addObject('RequiredPlugin', pluginName="Sofa.Component.Collision.Response.Contact")
+       node.addObject('RequiredPlugin', pluginName="Sofa.Component.IO.Mesh")
+       node.addObject('RequiredPlugin', pluginName="Sofa.Component.Mass")
+       node.addObject('RequiredPlugin', pluginName="Sofa.Component.ODESolver.Forward")
+       node.addObject('RequiredPlugin', pluginName="Sofa.Component.StateContainer")
+       node.addObject('RequiredPlugin', pluginName="Sofa.Component.Topology.Container.Constant")
+       node.addObject('RequiredPlugin', pluginName="Sofa.Component.Topology.Container.Dynamic")
+       node.addObject('RequiredPlugin', pluginName="Sofa.GL.Component.Rendering3D")
        node.addObject('DefaultAnimationLoop', )
        node.addObject('CollisionPipeline', verbose="0")
        node.addObject('NewProximityIntersection', alarmDistance="0.5", contactDistance="0.3")

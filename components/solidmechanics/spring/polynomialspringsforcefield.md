@@ -247,18 +247,18 @@ PolynomialSpringsForceField.scn
     ```xml
     <?xml version="1.0" ?>
     <Node name="lroot" gravity="0 0 0" dt="0.02">
-        <RequiredPlugin name="Sofa.Component.Constraint.Projective"/> <!-- Needed to use components [FixedProjectiveConstraint] -->
-        <RequiredPlugin name="Sofa.Component.IO.Mesh"/> <!-- Needed to use components [MeshGmshLoader MeshOBJLoader] -->
-        <RequiredPlugin name="Sofa.Component.LinearSolver.Iterative"/> <!-- Needed to use components [CGLinearSolver] -->
-        <RequiredPlugin name="Sofa.Component.Mapping.Linear"/> <!-- Needed to use components [BarycentricMapping] -->
-        <RequiredPlugin name="Sofa.Component.Mass"/> <!-- Needed to use components [DiagonalMass UniformMass] -->
-        <RequiredPlugin name="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
-        <RequiredPlugin name="Sofa.Component.SolidMechanics.FEM.Elastic"/> <!-- Needed to use components [TetrahedralCorotationalFEMForceField] -->
-        <RequiredPlugin name="Sofa.Component.SolidMechanics.Spring"/> <!-- Needed to use components [PolynomialSpringsForceField] -->
-        <RequiredPlugin name="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
-        <RequiredPlugin name="Sofa.Component.Topology.Container.Dynamic"/> <!-- Needed to use components [TetrahedronSetGeometryAlgorithms TetrahedronSetTopologyContainer] -->
-        <RequiredPlugin name="Sofa.Component.Visual"/> <!-- Needed to use components [VisualStyle] -->
-        <RequiredPlugin name="Sofa.GL.Component.Rendering3D"/> <!-- Needed to use components [OglModel] -->
+        <RequiredPlugin pluginName="Sofa.Component.Constraint.Projective"/> <!-- Needed to use components [FixedProjectiveConstraint] -->
+        <RequiredPlugin pluginName="Sofa.Component.IO.Mesh"/> <!-- Needed to use components [MeshGmshLoader MeshOBJLoader] -->
+        <RequiredPlugin pluginName="Sofa.Component.LinearSolver.Iterative"/> <!-- Needed to use components [CGLinearSolver] -->
+        <RequiredPlugin pluginName="Sofa.Component.Mapping.Linear"/> <!-- Needed to use components [BarycentricMapping] -->
+        <RequiredPlugin pluginName="Sofa.Component.Mass"/> <!-- Needed to use components [DiagonalMass UniformMass] -->
+        <RequiredPlugin pluginName="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+        <RequiredPlugin pluginName="Sofa.Component.SolidMechanics.FEM.Elastic"/> <!-- Needed to use components [TetrahedralCorotationalFEMForceField] -->
+        <RequiredPlugin pluginName="Sofa.Component.SolidMechanics.Spring"/> <!-- Needed to use components [PolynomialSpringsForceField] -->
+        <RequiredPlugin pluginName="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
+        <RequiredPlugin pluginName="Sofa.Component.Topology.Container.Dynamic"/> <!-- Needed to use components [TetrahedronSetGeometryAlgorithms TetrahedronSetTopologyContainer] -->
+        <RequiredPlugin pluginName="Sofa.Component.Visual"/> <!-- Needed to use components [VisualStyle] -->
+        <RequiredPlugin pluginName="Sofa.GL.Component.Rendering3D"/> <!-- Needed to use components [OglModel] -->
     
         <VisualStyle displayFlags="showInteractionForceFields"/>
         <DefaultAnimationLoop/>
@@ -297,18 +297,18 @@ PolynomialSpringsForceField.scn
 
        lroot = root_node.addChild('lroot', gravity="0 0 0", dt="0.02")
 
-       lroot.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Projective")
-       lroot.addObject('RequiredPlugin', name="Sofa.Component.IO.Mesh")
-       lroot.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Iterative")
-       lroot.addObject('RequiredPlugin', name="Sofa.Component.Mapping.Linear")
-       lroot.addObject('RequiredPlugin', name="Sofa.Component.Mass")
-       lroot.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
-       lroot.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.FEM.Elastic")
-       lroot.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.Spring")
-       lroot.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
-       lroot.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Dynamic")
-       lroot.addObject('RequiredPlugin', name="Sofa.Component.Visual")
-       lroot.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
+       lroot.addObject('RequiredPlugin', pluginName="Sofa.Component.Constraint.Projective")
+       lroot.addObject('RequiredPlugin', pluginName="Sofa.Component.IO.Mesh")
+       lroot.addObject('RequiredPlugin', pluginName="Sofa.Component.LinearSolver.Iterative")
+       lroot.addObject('RequiredPlugin', pluginName="Sofa.Component.Mapping.Linear")
+       lroot.addObject('RequiredPlugin', pluginName="Sofa.Component.Mass")
+       lroot.addObject('RequiredPlugin', pluginName="Sofa.Component.ODESolver.Backward")
+       lroot.addObject('RequiredPlugin', pluginName="Sofa.Component.SolidMechanics.FEM.Elastic")
+       lroot.addObject('RequiredPlugin', pluginName="Sofa.Component.SolidMechanics.Spring")
+       lroot.addObject('RequiredPlugin', pluginName="Sofa.Component.StateContainer")
+       lroot.addObject('RequiredPlugin', pluginName="Sofa.Component.Topology.Container.Dynamic")
+       lroot.addObject('RequiredPlugin', pluginName="Sofa.Component.Visual")
+       lroot.addObject('RequiredPlugin', pluginName="Sofa.GL.Component.Rendering3D")
        lroot.addObject('VisualStyle', displayFlags="showInteractionForceFields")
        lroot.addObject('DefaultAnimationLoop', )
        lroot.addObject('MeshOBJLoader', name="LiverSurface", filename="mesh/liver-smooth.obj")

@@ -132,10 +132,10 @@ TrailRenderer.scn
     <Node name="root" gravity="0 -9.81 0" dt="0.01">
         <DefaultAnimationLoop/>
         <Node name="plugins">
-            <RequiredPlugin name="Sofa.Component.Mass"/> <!-- Needed to use components [UniformMass] -->
-            <RequiredPlugin name="Sofa.Component.ODESolver.Forward"/> <!-- Needed to use components [EulerExplicitSolver] -->
-            <RequiredPlugin name="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
-            <RequiredPlugin name="Sofa.Component.Visual"/> <!-- Needed to use components [TrailRenderer VisualGrid] -->
+            <RequiredPlugin pluginName="Sofa.Component.Mass"/> <!-- Needed to use components [UniformMass] -->
+            <RequiredPlugin pluginName="Sofa.Component.ODESolver.Forward"/> <!-- Needed to use components [EulerExplicitSolver] -->
+            <RequiredPlugin pluginName="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
+            <RequiredPlugin pluginName="Sofa.Component.Visual"/> <!-- Needed to use components [TrailRenderer VisualGrid] -->
         </Node>
     
         <VisualGrid size="20"/>
@@ -163,10 +163,10 @@ TrailRenderer.scn
 
        plugins = root.addChild('plugins')
 
-       plugins.addObject('RequiredPlugin', name="Sofa.Component.Mass")
-       plugins.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Forward")
-       plugins.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
-       plugins.addObject('RequiredPlugin', name="Sofa.Component.Visual")
+       plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.Mass")
+       plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.ODESolver.Forward")
+       plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.StateContainer")
+       plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.Visual")
 
        root.addObject('VisualGrid', size="20")
        root.addObject('DefaultAnimationLoop', )

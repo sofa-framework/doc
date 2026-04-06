@@ -136,8 +136,8 @@ Fluid2D.scn
     ```xml
     <Node dt="0.04" gravity="0 -10 0">
         <VisualStyle displayFlags="showForceFields showCollisionModels showMappings" />
-        <RequiredPlugin name="Sofa.Component.Visual"/> <!-- Needed to use components [VisualStyle] -->
-        <RequiredPlugin name="SofaEulerianFluid"/> <!-- Needed to use components [Fluid2D] -->
+        <RequiredPlugin pluginName="Sofa.Component.Visual"/> <!-- Needed to use components [VisualStyle] -->
+        <RequiredPlugin pluginName="SofaEulerianFluid"/> <!-- Needed to use components [Fluid2D] -->
     
         <Fluid2D nx="32" ny="32" tstart="30" tstop="60" height="15.5" dir="1 0" />
     </Node>
@@ -152,8 +152,8 @@ Fluid2D.scn
        node = root_node.addChild('node', dt="0.04", gravity="0 -10 0")
 
        node.addObject('VisualStyle', displayFlags="showForceFields showCollisionModels showMappings")
-       node.addObject('RequiredPlugin', name="Sofa.Component.Visual")
-       node.addObject('RequiredPlugin', name="SofaEulerianFluid")
+       node.addObject('RequiredPlugin', pluginName="Sofa.Component.Visual")
+       node.addObject('RequiredPlugin', pluginName="SofaEulerianFluid")
        node.addObject('Fluid2D', nx="32", ny="32", tstart="30", tstop="60", height="15.5", dir="1 0")
     ```
 

@@ -244,14 +244,14 @@ MergeMeshes.scn
 
     ```xml
     <Node name="Scene" gravity="0 0 0" dt="0.1" >
-        <RequiredPlugin name="Sofa.Component.Engine.Generate"/> <!-- Needed to use components [MergeMeshes] -->
-        <RequiredPlugin name="Sofa.Component.IO.Mesh"/> <!-- Needed to use components [MeshOBJLoader] -->
-        <RequiredPlugin name="Sofa.Component.LinearSolver.Iterative"/> <!-- Needed to use components [CGLinearSolver] -->
-        <RequiredPlugin name="Sofa.Component.Mass"/> <!-- Needed to use components [UniformMass] -->
-        <RequiredPlugin name="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
-        <RequiredPlugin name="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
-        <RequiredPlugin name="Sofa.Component.Topology.Container.Constant"/> <!-- Needed to use components [MeshTopology] -->
-        <RequiredPlugin name="Sofa.Component.Visual"/> <!-- Needed to use components [VisualStyle] -->
+        <RequiredPlugin pluginName="Sofa.Component.Engine.Generate"/> <!-- Needed to use components [MergeMeshes] -->
+        <RequiredPlugin pluginName="Sofa.Component.IO.Mesh"/> <!-- Needed to use components [MeshOBJLoader] -->
+        <RequiredPlugin pluginName="Sofa.Component.LinearSolver.Iterative"/> <!-- Needed to use components [CGLinearSolver] -->
+        <RequiredPlugin pluginName="Sofa.Component.Mass"/> <!-- Needed to use components [UniformMass] -->
+        <RequiredPlugin pluginName="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+        <RequiredPlugin pluginName="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
+        <RequiredPlugin pluginName="Sofa.Component.Topology.Container.Constant"/> <!-- Needed to use components [MeshTopology] -->
+        <RequiredPlugin pluginName="Sofa.Component.Visual"/> <!-- Needed to use components [VisualStyle] -->
     
         <DefaultAnimationLoop/>
     	<VisualStyle displayFlags="showBehavior" />
@@ -283,14 +283,14 @@ MergeMeshes.scn
 
        scene = root_node.addChild('Scene', gravity="0 0 0", dt="0.1")
 
-       scene.addObject('RequiredPlugin', name="Sofa.Component.Engine.Generate")
-       scene.addObject('RequiredPlugin', name="Sofa.Component.IO.Mesh")
-       scene.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Iterative")
-       scene.addObject('RequiredPlugin', name="Sofa.Component.Mass")
-       scene.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
-       scene.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
-       scene.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Constant")
-       scene.addObject('RequiredPlugin', name="Sofa.Component.Visual")
+       scene.addObject('RequiredPlugin', pluginName="Sofa.Component.Engine.Generate")
+       scene.addObject('RequiredPlugin', pluginName="Sofa.Component.IO.Mesh")
+       scene.addObject('RequiredPlugin', pluginName="Sofa.Component.LinearSolver.Iterative")
+       scene.addObject('RequiredPlugin', pluginName="Sofa.Component.Mass")
+       scene.addObject('RequiredPlugin', pluginName="Sofa.Component.ODESolver.Backward")
+       scene.addObject('RequiredPlugin', pluginName="Sofa.Component.StateContainer")
+       scene.addObject('RequiredPlugin', pluginName="Sofa.Component.Topology.Container.Constant")
+       scene.addObject('RequiredPlugin', pluginName="Sofa.Component.Visual")
        scene.addObject('DefaultAnimationLoop', )
        scene.addObject('VisualStyle', displayFlags="showBehavior")
        scene.addObject('EulerImplicitSolver', rayleighStiffness="0.1", rayleighMass="0.1")

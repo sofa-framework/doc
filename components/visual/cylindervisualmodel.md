@@ -140,7 +140,7 @@ CylinderVisualModel.scn
     ```xml
     <?xml version="1.0"?>
     <Node name="root" dt="0.02">
-        <RequiredPlugin name="Sofa.Component.Visual"/> <!-- Needed to use components [CylinderVisualModel VisualStyle] -->
+        <RequiredPlugin pluginName="Sofa.Component.Visual"/> <!-- Needed to use components [CylinderVisualModel VisualStyle] -->
         <DefaultAnimationLoop/>
         <VisualStyle displayFlags="showVisual" />
         <CylinderVisualModel  position="0 0 0   10 0 0 "  edges="0 1" color="yellow" />
@@ -156,7 +156,7 @@ CylinderVisualModel.scn
 
        root = root_node.addChild('root', dt="0.02")
 
-       root.addObject('RequiredPlugin', name="Sofa.Component.Visual")
+       root.addObject('RequiredPlugin', pluginName="Sofa.Component.Visual")
        root.addObject('DefaultAnimationLoop', )
        root.addObject('VisualStyle', displayFlags="showVisual")
        root.addObject('CylinderVisualModel', position="0 0 0   10 0 0 ", edges="0 1", color="yellow")

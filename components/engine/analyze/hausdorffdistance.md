@@ -142,11 +142,11 @@ HausdorffDistance.scn
 
     ```xml
     <Node name="Scene" gravity="0 0 0" dt="0.1" >
-        <RequiredPlugin name="Sofa.Component.Engine.Analyze"/> <!-- Needed to use components [HausdorffDistance] -->
-        <RequiredPlugin name="Sofa.Component.IO.Mesh"/> <!-- Needed to use components [MeshOBJLoader] -->
-        <RequiredPlugin name="Sofa.Component.Setting"/> <!-- Needed to use components [BackgroundSetting] -->
-        <RequiredPlugin name="Sofa.Component.Visual"/> <!-- Needed to use components [VisualStyle] -->
-        <RequiredPlugin name="Sofa.GL.Component.Rendering3D"/> <!-- Needed to use components [OglModel] -->
+        <RequiredPlugin pluginName="Sofa.Component.Engine.Analyze"/> <!-- Needed to use components [HausdorffDistance] -->
+        <RequiredPlugin pluginName="Sofa.Component.IO.Mesh"/> <!-- Needed to use components [MeshOBJLoader] -->
+        <RequiredPlugin pluginName="Sofa.Component.Setting"/> <!-- Needed to use components [BackgroundSetting] -->
+        <RequiredPlugin pluginName="Sofa.Component.Visual"/> <!-- Needed to use components [VisualStyle] -->
+        <RequiredPlugin pluginName="Sofa.GL.Component.Rendering3D"/> <!-- Needed to use components [OglModel] -->
     
         <VisualStyle displayFlags="showBehavior" />
         <BackgroundSetting color="1 1 1"/>
@@ -224,11 +224,11 @@ HausdorffDistance.scn
 
        scene = root_node.addChild('Scene', gravity="0 0 0", dt="0.1")
 
-       scene.addObject('RequiredPlugin', name="Sofa.Component.Engine.Analyze")
-       scene.addObject('RequiredPlugin', name="Sofa.Component.IO.Mesh")
-       scene.addObject('RequiredPlugin', name="Sofa.Component.Setting")
-       scene.addObject('RequiredPlugin', name="Sofa.Component.Visual")
-       scene.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
+       scene.addObject('RequiredPlugin', pluginName="Sofa.Component.Engine.Analyze")
+       scene.addObject('RequiredPlugin', pluginName="Sofa.Component.IO.Mesh")
+       scene.addObject('RequiredPlugin', pluginName="Sofa.Component.Setting")
+       scene.addObject('RequiredPlugin', pluginName="Sofa.Component.Visual")
+       scene.addObject('RequiredPlugin', pluginName="Sofa.GL.Component.Rendering3D")
        scene.addObject('VisualStyle', displayFlags="showBehavior")
        scene.addObject('BackgroundSetting', color="1 1 1")
        scene.addObject('DefaultAnimationLoop', )

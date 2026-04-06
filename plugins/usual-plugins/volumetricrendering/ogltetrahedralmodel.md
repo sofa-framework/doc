@@ -122,11 +122,11 @@ OglTetrahedralModel.scn
     <?xml version="1.0"?>
     <Node name="root" dt="0.02">
     
-        <RequiredPlugin name="Sofa.Component.IO.Mesh"/> <!-- Needed to use components [MeshVTKLoader] -->
-        <RequiredPlugin name="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
-        <RequiredPlugin name="Sofa.Component.Topology.Container.Dynamic"/> <!-- Needed to use components [TetrahedronSetGeometryAlgorithms,TetrahedronSetTopologyContainer,TetrahedronSetTopologyModifier] -->
-        <RequiredPlugin name="Sofa.GL.Component.Shader"/> <!-- Needed to use components [OglFloat4Variable,OglFloatVariable,OglShader] -->
-        <RequiredPlugin name="VolumetricRendering"/>
+        <RequiredPlugin pluginName="Sofa.Component.IO.Mesh"/> <!-- Needed to use components [MeshVTKLoader] -->
+        <RequiredPlugin pluginName="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
+        <RequiredPlugin pluginName="Sofa.Component.Topology.Container.Dynamic"/> <!-- Needed to use components [TetrahedronSetGeometryAlgorithms,TetrahedronSetTopologyContainer,TetrahedronSetTopologyModifier] -->
+        <RequiredPlugin pluginName="Sofa.GL.Component.Shader"/> <!-- Needed to use components [OglFloat4Variable,OglFloatVariable,OglShader] -->
+        <RequiredPlugin pluginName="VolumetricRendering"/>
     
         <DefaultAnimationLoop/>
         <MeshVTKLoader name="loader" filename="mesh/raptorTetra_8418.vtu" />
@@ -152,11 +152,11 @@ OglTetrahedralModel.scn
 
        root = root_node.addChild('root', dt="0.02")
 
-       root.addObject('RequiredPlugin', name="Sofa.Component.IO.Mesh")
-       root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
-       root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Dynamic")
-       root.addObject('RequiredPlugin', name="Sofa.GL.Component.Shader")
-       root.addObject('RequiredPlugin', name="VolumetricRendering")
+       root.addObject('RequiredPlugin', pluginName="Sofa.Component.IO.Mesh")
+       root.addObject('RequiredPlugin', pluginName="Sofa.Component.StateContainer")
+       root.addObject('RequiredPlugin', pluginName="Sofa.Component.Topology.Container.Dynamic")
+       root.addObject('RequiredPlugin', pluginName="Sofa.GL.Component.Shader")
+       root.addObject('RequiredPlugin', pluginName="VolumetricRendering")
        root.addObject('DefaultAnimationLoop', )
        root.addObject('MeshVTKLoader', name="loader", filename="mesh/raptorTetra_8418.vtu")
        root.addObject('MechanicalObject', src="@loader", template="Vec3d")

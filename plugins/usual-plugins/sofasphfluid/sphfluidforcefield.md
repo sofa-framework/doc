@@ -178,7 +178,7 @@ SPHFluidForceFieldCUDA.scn
 
     ```xml
     <Node dt="0.005" showBehaviorModels="1" showCollisionModels="1" showMappings="0" showForceFields="1" gravity="0 -10 0" >
-        <RequiredPlugin name="SofaOpenglVisual"/>
+        <RequiredPlugin pluginName="SofaOpenglVisual"/>
         <RequiredPlugin name="CUDA computing" pluginName="SofaCUDA" />
     	<Node>
     		<RungeKutta4Solver/>
@@ -220,7 +220,7 @@ SPHFluidForceFieldCUDA.scn
 
        node = root_node.addChild('node', dt="0.005", showBehaviorModels="1", showCollisionModels="1", showMappings="0", showForceFields="1", gravity="0 -10 0")
 
-       node.addObject('RequiredPlugin', name="SofaOpenglVisual")
+       node.addObject('RequiredPlugin', pluginName="SofaOpenglVisual")
        node.addObject('RequiredPlugin', name="CUDA computing", pluginName="SofaCUDA")
 
        node = node.addChild('node')

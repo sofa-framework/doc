@@ -437,9 +437,9 @@ MergeVisualModels.scn
     ```xml
     <?xml version="1.0"?>
     <Node name="root" dt="0.01">
-        <RequiredPlugin name="Sofa.Component.IO.Mesh"/> <!-- Needed to use components [MeshOBJLoader] -->
-        <RequiredPlugin name="Sofa.Component.Topology.Container.Constant"/> <!-- Needed to use components [MeshTopology] -->
-        <RequiredPlugin name="Sofa.GL.Component.Rendering3D"/> <!-- Needed to use components [MergeVisualModels OglModel] -->
+        <RequiredPlugin pluginName="Sofa.Component.IO.Mesh"/> <!-- Needed to use components [MeshOBJLoader] -->
+        <RequiredPlugin pluginName="Sofa.Component.Topology.Container.Constant"/> <!-- Needed to use components [MeshTopology] -->
+        <RequiredPlugin pluginName="Sofa.GL.Component.Rendering3D"/> <!-- Needed to use components [MergeVisualModels OglModel] -->
         <DefaultAnimationLoop/>
     
         <MeshOBJLoader name="meshLoader" filename="mesh/snake_body.obj" handleSeams="1"/>
@@ -463,9 +463,9 @@ MergeVisualModels.scn
 
        root = root_node.addChild('root', dt="0.01")
 
-       root.addObject('RequiredPlugin', name="Sofa.Component.IO.Mesh")
-       root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Constant")
-       root.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
+       root.addObject('RequiredPlugin', pluginName="Sofa.Component.IO.Mesh")
+       root.addObject('RequiredPlugin', pluginName="Sofa.Component.Topology.Container.Constant")
+       root.addObject('RequiredPlugin', pluginName="Sofa.GL.Component.Rendering3D")
        root.addObject('DefaultAnimationLoop', )
        root.addObject('MeshOBJLoader', name="meshLoader", filename="mesh/snake_body.obj", handleSeams="1")
        root.addObject('MeshTopology', src="@meshLoader")
