@@ -128,6 +128,13 @@ parent indices for each child.
 		<td></td>
 	</tr>
 	<tr>
+		<td>computeWeightsFromPosition</td>
+		<td>
+By default, the weights are computed w.r.t the rest positions of the input model. Set to true to compute them from the position instead.
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
 		<td>weight</td>
 		<td>
 influence weights of the Dofs.
