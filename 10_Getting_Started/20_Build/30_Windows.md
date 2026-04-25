@@ -6,7 +6,7 @@ You can download and build SOFA in only three steps without any environment inst
 
 ## Prerequisites
 
-- [Install Git](https://git-scm.com/install/linux)
+- [Install Git](https://git-scm.com/install/windows)
 - [Install Pixi](https://pixi.prefix.dev/latest/installation/)
 
 
@@ -24,6 +24,8 @@ You can download and build SOFA in only three steps without any environment inst
 <details>
 
 <summary>This installation method is advised for developers. It is STRONGLY advised to read through this entire doc page before getting started.</summary>
+## Build tools
+
 ## Build tools
 
 ### Compiler
