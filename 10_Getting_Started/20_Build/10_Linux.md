@@ -17,19 +17,6 @@ You can download and build SOFA in only three steps without any environment inst
 - Launch SOFA : run `pixi run -e supported-plugins runSofa` :rocket: 
 
 
-## Run SOFA
-
-### with the SOFA GUI
-To run SOFA, locate and execute the application called `runSofa`. For more detailed information on how to use the application, you can refer to the [page dedicated to runsofa](../../../using-sofa/runsofa/). This documentation will provide you with further guidance on using SOFA effectively.
-
-
-### within a Python environment
-
-To use SOFA within a Python3 environment, the section "using Python3" details how to [set up your environment on various operating systems](https://sofapython3.readthedocs.io/en/latest/content/Installation.html#using-python3).
-
-
-
-
 
 
 # Alternative build methods
@@ -295,3 +282,15 @@ A Nix package for SOFA is available and can be used as follows:
 - From the SOFA sources, build using the command `nix build --extra-experimental-features nix-command --extra-experimental-features flakes` (for master). Note that you can point towards any commit hash: `nix build github:sofa-framework/sofa/COMMIT_HASH_HERE`
 - Command `nix develop` provides a shell with an environment containing all required dependencies to build the project in the usual CMake way
 - Finally, starts SOFA `nix run --impure .#nixgl --extra-experimental-features nix-command --extra-experimental-features flakes`
+
+
+# Run SOFA
+
+## with the SOFA GUI
+To run SOFA, locate and execute the application called `runSofa`. For more detailed information on how to use the application, you can refer to the [page dedicated to runsofa](../../../using-sofa/runsofa/). This documentation will provide you with further guidance on using SOFA effectively.
+
+
+## within a Python environment
+
+To use SOFA within a Python3 environment, the section "using Python3" details how to [set up your environment on various operating systems](https://sofapython3.readthedocs.io/en/latest/content/Installation.html#using-python3).
+
