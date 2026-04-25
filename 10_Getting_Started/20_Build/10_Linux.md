@@ -137,29 +137,12 @@ SOFA requires some libraries:
     sudo apt install libeigen3-dev
     ```
 
-#### Graphical User Interfaces
+#### Graphical User Interface
 
--   The [SOFAGLFW](https://github.com/sofa-framework/SofaGLFW) project is based on both **GLFW** and **ImGui** libraries. It required the following dependencies to be installed:
-   ``` {.bash .optional}
-   sudo apt install xorg-dev libgtk-3-dev
-   ```
--   The [Sofa.Qt](https://github.com/sofa-framework/Sofa.Qt) project relies on **Qt** (>= 5.12.0) with **Charts** and **WebEngine**.  
-    We recommend to install Qt **in your user directory** with [the unified installer](http://download.qt.io/official_releases/online_installers).  
-    Make sure to enable **Charts** and **WebEngine** components.  
-    ![](https://www.sofa-framework.org/wp-content/uploads/2020/04/install_qt_linux.png)
-    -   Qt Wayland:
-    X11 is known as an old display protocol. Recently, some Linux distributions switched to a new display protocol/server named Wayland.
-    If you are using Wayland, or to check whether you are using it:
-        -   Run this command to check your protocol:
-            ```bash
-            echo $XDG_SESSION_TYPE
-            ```
-        -   If you are using Wayland, install the associated qtwayland running this command (here for Qt5):
-            ```bash
-            sudo apt install qtwayland5
-            ```
-            and set the environment variable `export QT_QPA_PLATFORM=wayland`
-
+The [SOFAGLFW](https://github.com/sofa-framework/SofaGLFW) project is based on both **GLFW** and **ImGui** libraries. It required the following dependencies to be installed:
+``` {.bash .optional}
+sudo apt install xorg-dev libgtk-3-dev
+```
 
 #### Plugins (optional)
 
@@ -170,7 +153,7 @@ This list does not cover all available SOFA plugins, only the ones that are buil
 
 -  CGALPlugin  
    ``` {.bash .optional}
-   sudo apt install libcgal-dev libcgal-qt5-dev
+   sudo apt install libcgal-dev
    ```
 -  SofaCUDA  
    The currently supported cuda version is 12.2
