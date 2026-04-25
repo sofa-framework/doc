@@ -17,15 +17,33 @@ You can download and build SOFA in only three steps without any environment inst
 - Launch SOFA : run `pixi run -e supported-plugins runSofa` :rocket: 
 
 
-# Manual installation (for developpers)
+## Run SOFA
+
+### with the SOFA GUI
+To run SOFA, locate and execute the application called `runSofa`. For more detailed information on how to use the application, you can refer to the [page dedicated to runsofa](../../../using-sofa/runsofa/). This documentation will provide you with further guidance on using SOFA effectively.
+
+
+### within a Python environment
+
+To use SOFA within a Python3 environment, the section "using Python3" details how to [set up your environment on various operating systems](https://sofapython3.readthedocs.io/en/latest/content/Installation.html#using-python3).
+
+
+
+
+
+
+# Alternative build methods
+
+
+## Manual installation (for developpers)
 
 <details>
 
 <summary>This installation method is advised for developers. It is STRONGLY advised to read through this entire doc page before getting started.</summary>
 
-## Build tools
+### Build tools
 
-### Compiler
+#### Compiler
 
 SOFA requires a [C++17 compatible compiler](https://en.cppreference.com/w/cpp/compiler_support#C.2B.2B17_features).  
 On Linux, we officially support **GCC >= 7** and **Clang >= 5**.  
@@ -36,7 +54,7 @@ First, install the standard compilation toolkit with this command:
 sudo apt install build-essential software-properties-common
 ```
     
-#### GCC
+##### GCC
 
 To know which GCC versions are available for your distribution, run this command:
 ```bash
@@ -48,7 +66,7 @@ Then, install the latest one with the usual command (example with gcc-11):
 sudo apt install gcc-11
 ```
 
-#### Clang
+##### Clang
 Clang is an **alternative to GCC**. It compiles approximately two times faster!  
 We recommend to install **Clang 5 or newer**.
 
@@ -63,14 +81,14 @@ sudo apt install clang-12
 ```
 
 
-### CMake: Makefile generator
+#### CMake: Makefile generator
 
 CMake will be required to configure the SOFA project before compiling it. Note that SOFA requires at least **CMake 3.22**.
 ```bash
 sudo apt install cmake cmake-gui
 ```
 
-### [optional] Ninja: build system
+#### [optional] Ninja: build system
 
 Ninja is an alternative to Make. It has a better handling of incremental builds.
 
@@ -79,7 +97,7 @@ sudo apt install ninja-build
 ```
 
 
-### [optional] CCache: caching system
+#### [optional] CCache: caching system
 
 We advise you to use [ccache](https://ccache.dev/). It is by no means
 mandatory, but it will dramatically improve the compilation time if you
@@ -90,9 +108,9 @@ sudo apt install ccache
 ```
 
 
-## Dependencies
+### Dependencies
 
-### Core (required)
+#### Core (required)
 
 SOFA requires some libraries:
 
@@ -132,7 +150,7 @@ SOFA requires some libraries:
     sudo apt install libeigen3-dev
     ```
 
-### Graphical User Interfaces
+#### Graphical User Interfaces
 
 -   The [SOFAGLFW](https://github.com/sofa-framework/SofaGLFW) project is based on both **GLFW** and **ImGui** libraries. It required the following dependencies to be installed:
    ``` {.bash .optional}
@@ -156,7 +174,7 @@ SOFA requires some libraries:
             and set the environment variable `export QT_QPA_PLATFORM=wayland`
 
 
-### Plugins (optional)
+#### Plugins (optional)
 
 SOFA **plugins** depend on libraries that are available in the official repositories.  
 You probably don't need them all, but you might find it convenient to
@@ -167,33 +185,17 @@ This list does not cover all available SOFA plugins, only the ones that are buil
    ``` {.bash .optional}
    sudo apt install libcgal-dev libcgal-qt5-dev
    ```
--  MeshSTEPLoader  
-   ``` {.bash .optional}
-   sudo apt install liboce-ocaf-dev
-   ```
--  SofaAssimp  
-   ``` {.bash .optional}
-   sudo apt install libassimp-dev
-   ```
 -  SofaCUDA  
    The currently supported cuda version is 12.2
    ``` {.bash .optional}
    sudo apt install nvidia-cuda-toolkit
    ```
--  SofaHeadlessRecorder  
-   ``` {.bash .optional}
-   sudo apt install libavcodec-dev libavformat-dev libavutil-dev libswscale-dev
-   ```
--  SofaPardisoSolver  
-   ``` {.bash .optional}
-   sudo apt install libblas-dev liblapack-dev
-   ```
 
 
-## Build SOFA
+### Build SOFA
 
 
-### Setup your source and build directories
+#### Setup your source and build directories
 
 To set up clean repositories, we recommend to arrange the SOFA directories
 as follows:
@@ -220,7 +222,7 @@ git clone -b master https://github.com/sofa-framework/sofa.git sofa/src
 ```
 
 
-### Generate a Makefile with CMake
+#### Generate a Makefile with CMake
 
 0. Activate your venv `source /path/to/sofa-venv/bin/activate` and tell CMake to look there to find pybind11 `export CMAKE_PREFIX_PATH=/path/to/sofa-venv/lib/python3.12/site-packages`
 
@@ -257,7 +259,7 @@ git clone -b master https://github.com/sofa-framework/sofa.git sofa/src
 
 
 
-### Compile
+#### Compile
 
 To compile, open a terminal in your build directory and run `make` or `ninja` depending on the generator you chose during CMake configuration.
 If you chose "Unix Makefile" as generator, you can enable parallel compilation by specifying the number of parallel build you want by adding the `-j n` option with `n` being the number of desired parallel jobs. 
@@ -266,55 +268,10 @@ This is set automatically to the highest possible by `ninja`, but this can be mo
 Time for a coffee!
 
 
+To get assistance, see our page presenting [video tutorial for compilation on Linux](../../video-tutorials/how-to-compile-sofa/#linux) or use our [GitHub Discussion forum](https://github.com/sofa-framework/sofa/discussions/categories/build-config-environment).
 
-### Troubleshoot CMake errors
-
-#### Qt detection error
-To solve Qt detection errors, click on **Add Entry** and add
-`CMAKE_PREFIX_PATH` with path `/home/YOUR_USERNAME/Qt/QT_VERSION/COMPILER` matching your
-Qt installation.  
-Example: `CMAKE_PREFIX_PATH=/home/bob/Qt/5.15/gcc_64`.
-Note that this is a list, in which you can provide multiple paths by separating them with a semicolon ';'.
-
-Then, **Configure** again.
-
-A further dev warning may appear:
-
-    CMake Warning (dev) at YOUR_QT_PATH/lib/cmake/Qt5Core/Qt5CoreMacros.cmake:224 (configure_file):
-    configure_file called with unknown argument(s):
-
-    COPY_ONLY
-
-    Call Stack (most recent call first):
-    applications/projects/Modeler/exec/CMakeLists.txt:14 (qt5_add_resources)
-
-This is just a typo with Qt5CoreMacros.cmake file. It uses COPY\_ONLY
-instead of COPYONLY. Simply edit your Qt5CoreMacros.cmake, replace
-COPY\_ONLY with COPYONLY and **Configure** again.
-
-
-
-### Compilation tutorial
-
-See our page presenting [video tutorial for compilation on Linux](../../video-tutorials/how-to-compile-sofa/#linux).
-
-
-
-## Run SOFA
-
-### with the SOFA GUI
-To run SOFA, locate and execute the application called `runSofa`. For more detailed information on how to use the application, you can refer to the [page dedicated to runsofa](../../../using-sofa/runsofa/). This documentation will provide you with further guidance on using SOFA effectively.
-
-
-### within a Python environment
-
-To use SOFA within a Python3 environment, the section "using Python3" details how to [set up your environment on various operating systems](https://sofapython3.readthedocs.io/en/latest/content/Installation.html#using-python3).
 
 </details>
-
-
-
-# Alternative build methods
 
 
 ## Preconfigured Docker image
@@ -330,7 +287,9 @@ Fedora image: [https://hub.docker.com/r/sofaframework/sofabuilder_fedora](https:
 
 ## Nix package
 
-[Nix](https://nix.dev/) is a package manager which stores all packages into a common place called the Nix store, usually located at /nix/store. Each package is stored in a unique subdirectory in the store, and each package has its own tree structure. A Nix package for SOFA is available and can be used as follows:
+[Nix](https://nix.dev/) is a package manager which stores all packages into a common place called the Nix store, usually located at /nix/store. Each package is stored in a unique subdirectory in the store, and each package has its own tree structure.
+
+A Nix package for SOFA is available and can be used as follows:
 
 - Install [Nix](https://nix.dev/install-nix), you can run `sh <(curl -L https://nixos.org/nix/install) --daemon`, restart your terminal or check the installation using `nix --version`
 - From the SOFA sources, build using the command `nix build --extra-experimental-features nix-command --extra-experimental-features flakes` (for master). Note that you can point towards any commit hash: `nix build github:sofa-framework/sofa/COMMIT_HASH_HERE`
