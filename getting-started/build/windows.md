@@ -2,13 +2,37 @@
 title: Windows
 ---
 
-**It is STRONGLY advised to read through this entire doc page before getting started.**
+SOFA policy is to support only the latest Windows version.
 
-----------------------------
+# Installation with Pixi
 
-# Build tools
+You can download and build SOFA in only three steps without any environment installation.
 
-## Compiler
+## Prerequisites
+
+- [Install Git](https://git-scm.com/install/windows)
+- [Install Pixi](https://pixi.prefix.dev/latest/installation/)
+
+
+## Installation steps
+
+- Clone SOFA : `git clone https://github.com/sofa-framework/sofa` :inbox_tray: 
+- Trigger the build : run `pixi run -e supported-plugins build` in the sofa source folder :desktop_computer: 
+- Launch SOFA : run `pixi run -e supported-plugins runSofa` :rocket: 
+
+
+
+
+# Manual installation (for developpers)
+
+<details>
+
+<summary>This installation method is advised for developers. It is STRONGLY advised to read through this entire doc page before getting started.</summary>
+## Build tools
+
+## Build tools
+
+### Compiler
 
 SOFA requires a [C++17 compatible compiler](https://en.cppreference.com/w/cpp/compiler_support#C.2B.2B17_features).  
 On Windows, we officially support **Microsoft Visual Studio >= 2017** (version 15.7).  
@@ -28,7 +52,7 @@ In the installer, you must enable:
 
 ![](https://www.sofa-framework.org/wp-content/uploads/2020/03/install_vs_ide.png)
 
-## CMake: Makefile generator
+### CMake: Makefile generator
 
 SOFA requires at least **CMake 3.22.1**.  
 Install CMake with [the latest official installer](https://github.com/Kitware/CMake/releases/latest).
@@ -38,7 +62,7 @@ Install CMake with [the latest official installer](https://github.com/Kitware/CM
 ![](https://www.sofa-framework.org/wp-content/uploads/2019/03/install-cmake.png)
 
 
-## [optional] Ninja: build system
+### [optional] Ninja: build system
 
 We strongly advise you to use Ninja if you chose to install the Build Tools only (no IDE).
 
@@ -47,9 +71,9 @@ You can download the latest release from [their GitHub repository](https://githu
 
 **IMPORTANT**: do not forget to **add ninja to your system PATH**.
 
-# Dependencies
+## Dependencies
 
-## Core (required)
+### Core (required)
 
 SOFA requires some libraries:
 
@@ -76,26 +100,17 @@ SOFA requires some libraries:
 -   **Eigen** (>= 3.2.10)  
     Download and extract the [latest Eigen sources](https://gitlab.com/libeigen/eigen/-/releases).
 
-## Graphical User Interfaces
 
--   The [Sofa.Qt](https://github.com/sofa-framework/Sofa.Qt) project relies on **Qt** (>= 5.12.0) with **Charts** and **WebEngine**.
-    We recommend to install Qt **in your user directory** with [the unified installer](http://download.qt.io/official_releases/online_installers).  
-    ![](https://github.com/sofa-framework/doc/blob/master/images/gettingstarted/install_qt_windows_1.png?raw=true")
-    Make sure to enable **Charts** and **WebEngine** components.  
-    ![](https://github.com/sofa-framework/doc/blob/master/images/gettingstarted/install_qt_windows_2.png?raw=true")
+#### [optional] PATH modification
 
-
-### [optional] PATH modification
-
-You can add Boost and Qt to your PATH to ease their detection by CMake.  
+You can add Boost to your PATH to ease their detection by CMake.  
 **Boost**: add `your/Boost/path` and `your/Boost/path/libXX-msvc-XX`  
-**Qt**: add `your/Qt/path/msvcXXXX_XX/bin` and `your/Qt/path/msvcXXXX_XX/lib`
 
 
-# Build SOFA
+## Build SOFA
 
 
-## Setup your source and build directories
+### Setup your source and build directories
 
 To set up clean repositories, we recommend to arrange the SOFA directories
 as follows:
@@ -121,7 +136,7 @@ git clone -b v25.12 https://github.com/sofa-framework/sofa.git sofa/src
 git clone -b master https://github.com/sofa-framework/sofa.git sofa/src
 ```
 
-## Generate a VS project (.sln) or a Makefile with CMake
+### Generate a VS project (.sln) or a Makefile with CMake
 
 1. Create build directories respecting the arrangement above.
 
@@ -159,7 +174,7 @@ git clone -b master https://github.com/sofa-framework/sofa.git sofa/src
 10. When you are ready, run **Generate**. In the build directory, this will create a Visual Studio project (.sln) or a Makefile depending on the generator you chose at step 4.
 
 
-## Compile
+### Compile
 
 To build SOFA in Visual Studio, simply **open the generated Sofa.sln**. Finally, **build the solution** using the Visual Studio interface as shown in the image below:
 
@@ -176,32 +191,8 @@ Example with Ninja:
 Time for a coffee!
 
 
-## Troubleshoot CMake errors
 
-### Qt detection error
-To solve Qt detection errors, click on **Add Entry** and add
-`CMAKE_PREFIX_PATH` with path to your Qt directory (navigate until msvcXXXX_XX directory).  
-Example: `CMAKE_PREFIX_PATH=C:/dev/Qt/5.11.3/msvc2017_64`
-Note that this is a list, in which you can provide multiple paths by separating them with a semicolon ';'.
-
-Then, **Configure** again.
-
-A further dev warning may appear:
-
-    CMake Warning (dev) at YOUR_QT_PATH/lib/cmake/Qt5Core/Qt5CoreMacros.cmake:224 (configure_file):
-    configure_file called with unknown argument(s):
-
-    COPY_ONLY
-
-    Call Stack (most recent call first):
-    applications/projects/Modeler/exec/CMakeLists.txt:14 (qt5_add_resources)
-
-This is just a typo with Qt5CoreMacros.cmake file. It uses COPY\_ONLY
-instead of COPYONLY. Simply edit your Qt5CoreMacros.cmake, replace
-COPY\_ONLY with COPYONLY and **Configure** again.
-
-
-## Setup script
+### Setup script
 
 To simplify the configuration of our continuous integration machines, we created a complete set of setup scripts.
 
@@ -216,10 +207,11 @@ The two scripts `setup-windows_1.bat` and `setup-windows_2.bat` install the mini
 
 
 
-## Compilation tutorial
+### Compilation tutorial
 
 See our page presenting [video tutorial for compilation on Windows](../../video-tutorials/how-to-compile-sofa/#windows).
 
+</details>
 
 
 # Run SOFA

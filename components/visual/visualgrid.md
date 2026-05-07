@@ -110,6 +110,13 @@ Thickness of the lines in the grid
 		</td>
 		<td>1</td>
 	</tr>
+	<tr>
+		<td>nbLineSegments</td>
+		<td>
+Number of line segments used to draw each grid line. Higher values reduce rendering artifacts, especially when using vertex-based OpenGL effects
+		</td>
+		<td>1</td>
+	</tr>
 
 </tbody>
 </table>

@@ -107,6 +107,13 @@ In case of infinite lines, should the lines gradually vanish.
 		</td>
 		<td>0</td>
 	</tr>
+	<tr>
+		<td>nbLineSegments</td>
+		<td>
+Number of line segments used to draw each axis line. Higher values reduce rendering artifacts, especially when using vertex-based OpenGL effects.
+		</td>
+		<td>1</td>
+	</tr>
 
 </tbody>
 </table>
