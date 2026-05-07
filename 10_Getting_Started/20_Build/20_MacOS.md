@@ -16,7 +16,7 @@ You can download and build SOFA in only three steps without any environment inst
 - Trigger the build : run `pixi run -e supported-plugins build` in the sofa source folder :desktop_computer: 
 - Launch SOFA : run `pixi run -e supported-plugins runSofa` :rocket: 
 
-⚠️ A known issue under macOS has been hotfixed in the pixi build using a patch. _You don't need to do anything while using pixi, it is applied for you_. The issue appeared through the use of Python from runSofa with SofaPython3 and caused a segmentation fault due to symbol duplication (the Python package from Conda Forge statically linked with libpython, conflicting with runSofa’s own linking). The patch (proposed in PR [#394](https://github.com/sofa-framework/SofaPython3/pull/394)) is currently used in our Conda packages.
+⚠️ A known issue under macOS has been hotfixed in the pixi build using a patch. _You don't need to do anything while using pixi, it is applied for you_. FYI, the issue appeared through the use of Python from runSofa with SofaPython3 and caused a segmentation fault due to symbol duplication (the Python package from Conda Forge statically linked with libpython, conflicting with runSofa’s own linking). The patch (proposed in PR [#394](https://github.com/sofa-framework/SofaPython3/pull/394)) is currently used in our Conda packages.
 
 
 # Manual installation (for developpers)
