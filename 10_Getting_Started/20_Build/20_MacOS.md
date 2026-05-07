@@ -1,10 +1,34 @@
-**It is STRONGLY advised to read through this entire doc page before getting started.**
+SOFA policy is to support only the latest MacOS version.
 
-----------------------------
+# Installation with Pixi
 
-# Build tools
+You can download and build SOFA in only three steps without any environment installation.
 
-## Compiler
+## Prerequisites
+
+- [Install Git](https://git-scm.com/install/mac)
+- [Install Pixi](https://pixi.prefix.dev/latest/installation/)
+
+
+## Installation steps
+
+- Clone SOFA : `git clone https://github.com/sofa-framework/sofa` :inbox_tray: 
+- Trigger the build : run `pixi run -e supported-plugins build` in the sofa source folder :desktop_computer: 
+- Launch SOFA : run `pixi run -e supported-plugins runSofa` :rocket: 
+
+⚠️ A known issue under macOS has been hotfixed in the pixi build using a patch. _You don't need to do anything while using pixi, it is applied for you_. FYI, the issue appeared through the use of Python from runSofa with SofaPython3 and caused a segmentation fault due to symbol duplication (the Python package from Conda Forge statically linked with libpython, conflicting with runSofa’s own linking). The patch (proposed in PR [#394](https://github.com/sofa-framework/SofaPython3/pull/394)) is currently used in our Conda packages.
+
+
+# Manual installation (for developpers)
+
+<details>
+
+<summary>This installation method is advised for developers. It is STRONGLY advised to read through this entire doc page before getting started.</summary>
+## Build tools
+
+## Build tools
+
+### Compiler
 
 SOFA requires a [C++17 compatible compiler](https://en.cppreference.com/w/cpp/compiler_support#C.2B.2B17_features).  
 On MacOS, we officially support **MacOS >= 10.13.2 (High Sierra)** and **AppleClang >= 9.1.0**.  
@@ -40,7 +64,7 @@ If your AppleClang version is too low:
 5. Reboot
 
 
-## CMake: Makefile generator
+### CMake: Makefile generator
 
 SOFA requires at least **CMake 3.22**.
 
@@ -49,7 +73,7 @@ brew install --cask cmake
 ```
 
 
-## [optional] Ninja: build system
+### [optional] Ninja: build system
 
 Ninja is an alternative to Make. It has a better handling of incremental builds.
 
@@ -58,7 +82,7 @@ brew install ninja
 ```
 
 
-## [optional] CCache: caching system
+### [optional] CCache: caching system
 
 We advise you to use [ccache](https://ccache.dev/). It is by no means
 mandatory, but it will dramatically improve the compilation time if you
@@ -69,9 +93,9 @@ brew install ccache
 ```
 
 
-# Dependencies
+## Dependencies
 
-## Core (required)
+### Core (required)
 
 SOFA requires some libraries:
 -  **tinyXML2**
@@ -109,15 +133,7 @@ SOFA requires some libraries:
     ```
 
 
-## Graphical User Interfaces
-
--   The [Sofa.Qt](https://github.com/sofa-framework/Sofa.Qt) project relies on **Qt** (>= 5.12.0) with **Charts** and **WebEngine**    
-    We recommend to install Qt **in your user directory** with [the unified installer](http://download.qt.io/official_releases/online_installers).  
-    Make sure to enable **Charts** and **WebEngine** components.  
-    ![](https://www.sofa-framework.org/wp-content/uploads/2020/04/install_qt_macos.png)
-
-
-## Plugins (optional)
+### Plugins (optional)
 
 SOFA **plugins** depend on libraries that are available in the official repositories.  
 You probably don't need them all, but you might find it convenient to
@@ -128,28 +144,16 @@ This list does not cover all available SOFA plugins, only the ones that are buil
    ``` {.bash .optional}
    brew install cgal
    ```
--  MeshSTEPLoader  
-   ``` {.bash .optional}
-   brew install opencascade
-   ```
--  SofaAssimp  
-   ``` {.bash .optional}
-   brew install assimp
-   ```    
 -  SofaCUDA  
    ``` {.bash .optional}
    brew install homebrew/cask-drivers/nvidia-cuda
    ```
--  SofaPardisoSolver  
-   ``` {.bash .optional}
-   brew install lapack
-   ```
 
 
-# Build SOFA
+## Build SOFA
 
 
-## Setup your source and build directories
+### Setup your source and build directories
 
 To set up clean repositories, we recommend to arrange the SOFA directories
 as follows:
@@ -176,7 +180,7 @@ git clone -b master https://github.com/sofa-framework/sofa.git sofa/src
 ```
 
 
-## Generate a Makefile with CMake
+### Generate a Makefile with CMake
 
 0. Activate your venv `source /path/to/sofa-venv/bin/activate` and tell CMake to look there to find pybind11 `export CMAKE_PREFIX_PATH=/path/to/sofa-venv/lib/python3.12/site-packages`
 
@@ -205,39 +209,15 @@ git clone -b master https://github.com/sofa-framework/sofa.git sofa/src
 7. When you are ready, run **Generate**.
 
 
-## Compile
+### Compile
 
 To compile, open a terminal in your build directory and run `make` or `ninja` depending on the generator you chose during CMake configuration.  
 Do not forget the `-j` option to use all your CPU cores.
 
 Time for a coffee!
 
+</details>
 
-
-## Troubleshoot CMake errors
-
-### Qt detection error
-To solve Qt detection errors, click on **Add Entry** and add
-`CMAKE_PREFIX_PATH` with path `/home/YOUR_USERNAME/Qt/QT_VERSION/COMPILER` matching your
-Qt architecture.  
-Example: `CMAKE_PREFIX_PATH=/home/bob/Qt/5.7/gcc_64`  
-Note that this is a list, in which you can provide multiple paths by separating them with a semicolon ';'.
-
-Then, **Configure** again.
-
-A further dev warning may appear:
-
-    CMake Warning (dev) at YOUR_QT_PATH/lib/cmake/Qt5Core/Qt5CoreMacros.cmake:224 (configure_file):
-    configure_file called with unknown argument(s):
-
-    COPY_ONLY
-
-    Call Stack (most recent call first):
-    applications/projects/Modeler/exec/CMakeLists.txt:14 (qt5_add_resources)
-
-This is just a typo with Qt5CoreMacros.cmake file. It uses COPY\_ONLY
-instead of COPYONLY. Simply edit your Qt5CoreMacros.cmake, replace
-COPY\_ONLY with COPYONLY and **Configure** again.
 
 
 # Run SOFA
