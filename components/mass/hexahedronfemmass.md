@@ -1,16 +1,23 @@
 <!-- generate_doc -->
-# RayTraceDetection
+# HexahedronFEMMass
 
-Collision detection using TriangleOctreeCollisionModel.
+Finite-element mass (inertia and body force) defined on hexahedra
 
 
-__Target__: Sofa.Component.Collision.Detection.Algorithm
+## Vec3d
 
-__namespace__: sofa::component::collision::detection::algorithm
+Templates:
+
+- Vec3d
+
+__Target__: Sofa.Component.Mass
+
+__namespace__: sofa::component::mass
 
 __parents__:
 
-- BaseComponent
+- Mass
+- TopologyAccessor
 
 ### Data
 
@@ -65,6 +72,27 @@ if true, handle the events, otherwise ignore the events
 		</td>
 		<td>0</td>
 	</tr>
+	<tr>
+		<td>rayleighStiffness</td>
+		<td>
+Rayleigh damping - stiffness matrix coefficient
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>separateGravity</td>
+		<td>
+add separately gravity to velocity computation
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>rayleighMass</td>
+		<td>
+Rayleigh damping - mass matrix coefficient
+		</td>
+		<td>0</td>
+	</tr>
 
 </tbody>
 </table>
@@ -77,4 +105,8 @@ if true, handle the events, otherwise ignore the events
 |context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
 |slaves|Sub-objects used internally by this object|BaseComponent|
 |master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseComponent|
+|mechanicalStates|List of mechanical states to which this component is associated|BaseMechanicalState|
+|mstate|MechanicalState used by this component|MechanicalState&lt;Vec3d&gt;|
+|topology|Link to a topology|BaseMeshTopology|
+|nodalMassDensity|Link to nodal mass density|NodalMassDensity&lt;d&gt;|
 

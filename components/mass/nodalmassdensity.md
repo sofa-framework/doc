@@ -1,16 +1,22 @@
 <!-- generate_doc -->
-# RayTraceDetection
+# NodalMassDensity
 
-Collision detection using TriangleOctreeCollisionModel.
+Definition of a nodal mass density (one value per dof).
 
 
-__Target__: Sofa.Component.Collision.Detection.Algorithm
+## d
 
-__namespace__: sofa::component::collision::detection::algorithm
+Templates:
+
+- d
+
+__Target__: Sofa.Component.Mass
+
+__namespace__: sofa::component::mass
 
 __parents__:
 
-- BaseComponent
+- BaseNodalProperty
 
 ### Data
 
@@ -64,6 +70,13 @@ The state of the component among (Dirty, Valid, Undefined, Loading, Invalid).
 if true, handle the events, otherwise ignore the events
 		</td>
 		<td>0</td>
+	</tr>
+	<tr>
+		<td>property</td>
+		<td>
+Nodal property
+		</td>
+		<td>1</td>
 	</tr>
 
 </tbody>
