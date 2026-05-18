@@ -172,10 +172,44 @@ HexahedronLinearSmallStrainFEMForceField.scn
     <Node name="root" dt="0.01" gravity="0 -9.81 0">
         <include href="../../../../CantileverBeam_ElementFEMForceField.xml"/>
     
+        <ConstantSparsityPatternSystem template="CompressedRowSparseMatrix" name="A" checkIndices="false"/>
+        <NaturalOrderingMethod/>
+        <SparseLDLSolver name="linear_solver" template="CompressedRowSparseMatrix"/>
+    
+        <HexahedronLinearSmallStrainFEMForceField name="FEM" youngModulus="2e6" poissonRatio="0.45" topology="@grid"
+                                             computeForceStrategy="parallel" computeForceDerivStrategy="parallel"/>
+    
+    </Node>
+
+    ```
+
+=== "Python"
+
+    ```python
+    def createScene(root_node):
+
+       root = root_node.addChild('root', dt="0.01", gravity="0 -9.81 0")
+
+       root.addObject('include', href="../../../../CantileverBeam_ElementFEMForceField.xml")
+       root.addObject('ConstantSparsityPatternSystem', template="CompressedRowSparseMatrix", name="A", checkIndices="false")
+       root.addObject('NaturalOrderingMethod', )
+       root.addObject('SparseLDLSolver', name="linear_solver", template="CompressedRowSparseMatrix")
+       root.addObject('HexahedronLinearSmallStrainFEMForceField', name="FEM", youngModulus="2e6", poissonRatio="0.45", topology="@grid", computeForceStrategy="parallel", computeForceDerivStrategy="parallel")
+    ```
+
+HexahedronLinearSmallStrainFEMForceField.scn
+
+=== "XML"
+
+    ```xml
+    <?xml version="1.0"?>
+    <Node name="root" dt="0.01" gravity="0 -9.81 0">
+        <include href="../../../../CantileverBeam_ElementFEMForceField.xml"/>
+    
         <CGLinearSolver iterations="250" name="linear_solver" tolerance="1.0e-12" threshold="1.0e-12" />
     
         <HexahedronLinearSmallStrainFEMForceField name="FEM" youngModulus="2e6" poissonRatio="0.45" topology="@grid"
-                                             computeForceStrategy="sequenced" computeForceDerivStrategy="sequenced"/>
+                                             computeForceStrategy="parallel" computeForceDerivStrategy="parallel"/>
     
     </Node>
 
@@ -190,7 +224,7 @@ HexahedronLinearSmallStrainFEMForceField.scn
 
        root.addObject('include', href="../../../../CantileverBeam_ElementFEMForceField.xml")
        root.addObject('CGLinearSolver', iterations="250", name="linear_solver", tolerance="1.0e-12", threshold="1.0e-12")
-       root.addObject('HexahedronLinearSmallStrainFEMForceField', name="FEM", youngModulus="2e6", poissonRatio="0.45", topology="@grid", computeForceStrategy="sequenced", computeForceDerivStrategy="sequenced")
+       root.addObject('HexahedronLinearSmallStrainFEMForceField', name="FEM", youngModulus="2e6", poissonRatio="0.45", topology="@grid", computeForceStrategy="parallel", computeForceDerivStrategy="parallel")
     ```
 
 HexahedronLinearSmallStrainFEMForceField.scn
@@ -239,7 +273,7 @@ HexahedronLinearSmallStrainFEMForceField.scn
         <CGLinearSolver iterations="250" name="linear_solver" tolerance="1.0e-12" threshold="1.0e-12" />
     
         <HexahedronLinearSmallStrainFEMForceField name="FEM" youngModulus="2e6" poissonRatio="0.45" topology="@grid"
-                                             computeForceStrategy="parallel" computeForceDerivStrategy="parallel"/>
+                                             computeForceStrategy="sequenced" computeForceDerivStrategy="sequenced"/>
     
     </Node>
 
@@ -254,40 +288,6 @@ HexahedronLinearSmallStrainFEMForceField.scn
 
        root.addObject('include', href="../../../../CantileverBeam_ElementFEMForceField.xml")
        root.addObject('CGLinearSolver', iterations="250", name="linear_solver", tolerance="1.0e-12", threshold="1.0e-12")
-       root.addObject('HexahedronLinearSmallStrainFEMForceField', name="FEM", youngModulus="2e6", poissonRatio="0.45", topology="@grid", computeForceStrategy="parallel", computeForceDerivStrategy="parallel")
-    ```
-
-HexahedronLinearSmallStrainFEMForceField.scn
-
-=== "XML"
-
-    ```xml
-    <?xml version="1.0"?>
-    <Node name="root" dt="0.01" gravity="0 -9.81 0">
-        <include href="../../../../CantileverBeam_ElementFEMForceField.xml"/>
-    
-        <ConstantSparsityPatternSystem template="CompressedRowSparseMatrix" name="A" checkIndices="false"/>
-        <NaturalOrderingMethod/>
-        <SparseLDLSolver name="linear_solver" template="CompressedRowSparseMatrix"/>
-    
-        <HexahedronLinearSmallStrainFEMForceField name="FEM" youngModulus="2e6" poissonRatio="0.45" topology="@grid"
-                                             computeForceStrategy="parallel" computeForceDerivStrategy="parallel"/>
-    
-    </Node>
-
-    ```
-
-=== "Python"
-
-    ```python
-    def createScene(root_node):
-
-       root = root_node.addChild('root', dt="0.01", gravity="0 -9.81 0")
-
-       root.addObject('include', href="../../../../CantileverBeam_ElementFEMForceField.xml")
-       root.addObject('ConstantSparsityPatternSystem', template="CompressedRowSparseMatrix", name="A", checkIndices="false")
-       root.addObject('NaturalOrderingMethod', )
-       root.addObject('SparseLDLSolver', name="linear_solver", template="CompressedRowSparseMatrix")
-       root.addObject('HexahedronLinearSmallStrainFEMForceField', name="FEM", youngModulus="2e6", poissonRatio="0.45", topology="@grid", computeForceStrategy="parallel", computeForceDerivStrategy="parallel")
+       root.addObject('HexahedronLinearSmallStrainFEMForceField', name="FEM", youngModulus="2e6", poissonRatio="0.45", topology="@grid", computeForceStrategy="sequenced", computeForceDerivStrategy="sequenced")
     ```
 

@@ -183,6 +183,54 @@ TetrahedronCorotationalFEMForceField.scn
     <Node name="root" dt="0.01" gravity="0 -9.81 0">
         <include href="../../../../CantileverBeam_ElementFEMForceField.xml"/>
     
+        <ConstantSparsityPatternSystem template="CompressedRowSparseMatrix" name="A" checkIndices="false"/>
+        <NaturalOrderingMethod/>
+        <SparseLDLSolver name="linear_solver" template="CompressedRowSparseMatrix"/>
+    
+        <Node name="fem">
+            <TetrahedronSetTopologyContainer name="Tetra_topo"/>
+            <TetrahedronSetTopologyModifier name="Modifier" />
+            <TetrahedronSetGeometryAlgorithms template="Vec3" name="GeomAlgo" drawTetrahedra="false"/>
+            <Hexa2TetraTopologicalMapping input="@grid" output="@Tetra_topo" swapping="true"/>
+    
+            <TetrahedronCorotationalFEMForceField name="FEM" youngModulus="2e6" poissonRatio="0.45" topology="@Tetra_topo"
+                                                  computeForceStrategy="parallel" computeForceDerivStrategy="parallel"/>
+        </Node>
+    
+    </Node>
+
+    ```
+
+=== "Python"
+
+    ```python
+    def createScene(root_node):
+
+       root = root_node.addChild('root', dt="0.01", gravity="0 -9.81 0")
+
+       root.addObject('include', href="../../../../CantileverBeam_ElementFEMForceField.xml")
+       root.addObject('ConstantSparsityPatternSystem', template="CompressedRowSparseMatrix", name="A", checkIndices="false")
+       root.addObject('NaturalOrderingMethod', )
+       root.addObject('SparseLDLSolver', name="linear_solver", template="CompressedRowSparseMatrix")
+
+       fem = root.addChild('fem')
+
+       fem.addObject('TetrahedronSetTopologyContainer', name="Tetra_topo")
+       fem.addObject('TetrahedronSetTopologyModifier', name="Modifier")
+       fem.addObject('TetrahedronSetGeometryAlgorithms', template="Vec3", name="GeomAlgo", drawTetrahedra="false")
+       fem.addObject('Hexa2TetraTopologicalMapping', input="@grid", output="@Tetra_topo", swapping="true")
+       fem.addObject('TetrahedronCorotationalFEMForceField', name="FEM", youngModulus="2e6", poissonRatio="0.45", topology="@Tetra_topo", computeForceStrategy="parallel", computeForceDerivStrategy="parallel")
+    ```
+
+TetrahedronCorotationalFEMForceField.scn
+
+=== "XML"
+
+    ```xml
+    <?xml version="1.0"?>
+    <Node name="root" dt="0.01" gravity="0 -9.81 0">
+        <include href="../../../../CantileverBeam_ElementFEMForceField.xml"/>
+    
         <CGLinearSolver iterations="250" name="linear_solver" tolerance="1.0e-12" threshold="1.0e-12" />
     
         <Node name="fem">
@@ -192,7 +240,7 @@ TetrahedronCorotationalFEMForceField.scn
             <Hexa2TetraTopologicalMapping input="@grid" output="@Tetra_topo" swapping="true"/>
     
             <TetrahedronCorotationalFEMForceField name="FEM" youngModulus="2e6" poissonRatio="0.45" topology="@Tetra_topo"
-                                                  computeForceStrategy="sequenced" computeForceDerivStrategy="sequenced"/>
+                                                  computeForceStrategy="parallel" computeForceDerivStrategy="parallel"/>
         </Node>
     
     </Node>
@@ -215,7 +263,7 @@ TetrahedronCorotationalFEMForceField.scn
        fem.addObject('TetrahedronSetTopologyModifier', name="Modifier")
        fem.addObject('TetrahedronSetGeometryAlgorithms', template="Vec3", name="GeomAlgo", drawTetrahedra="false")
        fem.addObject('Hexa2TetraTopologicalMapping', input="@grid", output="@Tetra_topo", swapping="true")
-       fem.addObject('TetrahedronCorotationalFEMForceField', name="FEM", youngModulus="2e6", poissonRatio="0.45", topology="@Tetra_topo", computeForceStrategy="sequenced", computeForceDerivStrategy="sequenced")
+       fem.addObject('TetrahedronCorotationalFEMForceField', name="FEM", youngModulus="2e6", poissonRatio="0.45", topology="@Tetra_topo", computeForceStrategy="parallel", computeForceDerivStrategy="parallel")
     ```
 
 TetrahedronCorotationalFEMForceField.scn
@@ -285,7 +333,7 @@ TetrahedronCorotationalFEMForceField.scn
             <Hexa2TetraTopologicalMapping input="@grid" output="@Tetra_topo" swapping="true"/>
     
             <TetrahedronCorotationalFEMForceField name="FEM" youngModulus="2e6" poissonRatio="0.45" topology="@Tetra_topo"
-                                                  computeForceStrategy="parallel" computeForceDerivStrategy="parallel"/>
+                                                  computeForceStrategy="sequenced" computeForceDerivStrategy="sequenced"/>
         </Node>
     
     </Node>
@@ -308,54 +356,6 @@ TetrahedronCorotationalFEMForceField.scn
        fem.addObject('TetrahedronSetTopologyModifier', name="Modifier")
        fem.addObject('TetrahedronSetGeometryAlgorithms', template="Vec3", name="GeomAlgo", drawTetrahedra="false")
        fem.addObject('Hexa2TetraTopologicalMapping', input="@grid", output="@Tetra_topo", swapping="true")
-       fem.addObject('TetrahedronCorotationalFEMForceField', name="FEM", youngModulus="2e6", poissonRatio="0.45", topology="@Tetra_topo", computeForceStrategy="parallel", computeForceDerivStrategy="parallel")
-    ```
-
-TetrahedronCorotationalFEMForceField.scn
-
-=== "XML"
-
-    ```xml
-    <?xml version="1.0"?>
-    <Node name="root" dt="0.01" gravity="0 -9.81 0">
-        <include href="../../../../CantileverBeam_ElementFEMForceField.xml"/>
-    
-        <ConstantSparsityPatternSystem template="CompressedRowSparseMatrix" name="A" checkIndices="false"/>
-        <NaturalOrderingMethod/>
-        <SparseLDLSolver name="linear_solver" template="CompressedRowSparseMatrix"/>
-    
-        <Node name="fem">
-            <TetrahedronSetTopologyContainer name="Tetra_topo"/>
-            <TetrahedronSetTopologyModifier name="Modifier" />
-            <TetrahedronSetGeometryAlgorithms template="Vec3" name="GeomAlgo" drawTetrahedra="false"/>
-            <Hexa2TetraTopologicalMapping input="@grid" output="@Tetra_topo" swapping="true"/>
-    
-            <TetrahedronCorotationalFEMForceField name="FEM" youngModulus="2e6" poissonRatio="0.45" topology="@Tetra_topo"
-                                                  computeForceStrategy="parallel" computeForceDerivStrategy="parallel"/>
-        </Node>
-    
-    </Node>
-
-    ```
-
-=== "Python"
-
-    ```python
-    def createScene(root_node):
-
-       root = root_node.addChild('root', dt="0.01", gravity="0 -9.81 0")
-
-       root.addObject('include', href="../../../../CantileverBeam_ElementFEMForceField.xml")
-       root.addObject('ConstantSparsityPatternSystem', template="CompressedRowSparseMatrix", name="A", checkIndices="false")
-       root.addObject('NaturalOrderingMethod', )
-       root.addObject('SparseLDLSolver', name="linear_solver", template="CompressedRowSparseMatrix")
-
-       fem = root.addChild('fem')
-
-       fem.addObject('TetrahedronSetTopologyContainer', name="Tetra_topo")
-       fem.addObject('TetrahedronSetTopologyModifier', name="Modifier")
-       fem.addObject('TetrahedronSetGeometryAlgorithms', template="Vec3", name="GeomAlgo", drawTetrahedra="false")
-       fem.addObject('Hexa2TetraTopologicalMapping', input="@grid", output="@Tetra_topo", swapping="true")
-       fem.addObject('TetrahedronCorotationalFEMForceField', name="FEM", youngModulus="2e6", poissonRatio="0.45", topology="@Tetra_topo", computeForceStrategy="parallel", computeForceDerivStrategy="parallel")
+       fem.addObject('TetrahedronCorotationalFEMForceField', name="FEM", youngModulus="2e6", poissonRatio="0.45", topology="@Tetra_topo", computeForceStrategy="sequenced", computeForceDerivStrategy="sequenced")
     ```
 
