@@ -2,12 +2,14 @@ name: DocGenerateAndPublish
 
 on:
   workflow_dispatch:
+    inputs:
+      doc-version:
+        description: 'Specify the branch used to generate the documentation (ex: v26.06)'
+        default: 'master'
+        type: string
   push:
     branches:
       - gen
-      - master
-  schedule:
-    - cron: '0 0 * * *'    # every day at midnight
 
 permissions:
   id-token: write
@@ -16,13 +18,12 @@ permissions:
 
 jobs:
   build:
-    name: Run on ${{ matrix.os }} with SOFA ${{ matrix.sofa_branch }}
+    name: Run on ${{ matrix.os }} with SOFA ${{ inputs.doc-version }}
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
       matrix:
         os: [ubuntu-22.04]
-        sofa_branch: [master]
 
     permissions:
       # Give the default GITHUB_TOKEN write permission to commit and push the
@@ -36,7 +37,7 @@ jobs:
         uses: sofa-framework/sofa-setup-action@v5
         with:
           sofa_root: ${{ github.workspace }}/sofa
-          sofa_version: ${{ matrix.sofa_branch }}
+          sofa_version: ${{ inputs.doc-version }}
           sofa_scope: 'full'
           sofa_with_sofapython3: 'true'
 
@@ -44,6 +45,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           path: 'SofaDocGenerator'
+          ref: ${{ inputs.doc-version }}
 
       - name: Checkout merged doc branch
         uses: actions/checkout@v4
