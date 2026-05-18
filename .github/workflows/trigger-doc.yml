@@ -3,15 +3,11 @@ name: Trigger DocGenerateAndPublish Workflow
 on:
   workflow_dispatch:
     inputs:
-      script-branch:
-        description: 'Specify the branch on which the DocGenerateAndPublish action should run'
-        default: 'gen'
+      doc-branch-to-publish:
+        description: 'Specify the branch used to generate the documentation (ex: v26.06)'
+        default: 'master'
         type: string
-  schedule:
-    - cron: '0 6 * * 1'  # Every Monday morning
-  push:
-    branches:
-      - master
+
 
 jobs:
   trigger_workflow:
@@ -20,11 +16,6 @@ jobs:
       - uses: actions/checkout@v3
       - name: Run on dispatch
         if: ${{ github.event_name == 'workflow_dispatch' }}
-        run: gh workflow run DocGenerateAndPublish --ref ${{ inputs.script-branch }}
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: Run on push and nightly
-        if: ${{ github.event_name != 'workflow_dispatch' }}
-        run: gh workflow run DocGenerateAndPublish --ref gen
+        run: gh workflow run DocGenerateAndPublish --ref gen -f doc-version=${{ inputs.doc-branch-to-publish }}
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
