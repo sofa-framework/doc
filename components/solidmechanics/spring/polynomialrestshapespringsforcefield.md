@@ -154,9 +154,9 @@ draw Spring
 	<tr>
 		<td>showIndicesScale</td>
 		<td>
-Scale for indices display. (default=0.02)
+Scaling factor for indices display size. Indices are auto-scaled to maintain a constant screen size.
 		</td>
-		<td>0.02</td>
+		<td>1</td>
 	</tr>
 
 </tbody>

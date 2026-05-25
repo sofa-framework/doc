@@ -101,27 +101,6 @@ key to activate this object until the key is pressed again
 		</td>
 		<td>4</td>
 	</tr>
-	<tr>
-		<td>mouseEvent</td>
-		<td>
-Activate carving with middle mouse button
-		</td>
-		<td>1</td>
-	</tr>
-	<tr>
-		<td>omniEvent</td>
-		<td>
-Activate carving with omni button
-		</td>
-		<td>1</td>
-	</tr>
-	<tr>
-		<td>button1</td>
-		<td>
-activatorName
-		</td>
-		<td></td>
-	</tr>
 
 </tbody>
 </table>

@@ -111,9 +111,9 @@ If true, optimize the mesh only by swapping edges
 	<tr>
 		<td>showIndicesScale</td>
 		<td>
-Debug : scale for view topology indices
+Debug : scaling factor for view topology indices size. Indices are auto-scaled to maintain a constant screen size.
 		</td>
-		<td>0.02</td>
+		<td>1</td>
 	</tr>
 	<tr>
 		<td>showPointIndices</td>

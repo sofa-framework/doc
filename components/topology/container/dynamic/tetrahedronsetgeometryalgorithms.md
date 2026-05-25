@@ -97,9 +97,9 @@ if true, will flip normal of the first triangle used to recompute triangle orien
 	<tr>
 		<td>showIndicesScale</td>
 		<td>
-Debug : scale for view topology indices
+Debug : scaling factor for view topology indices size. Indices are auto-scaled to maintain a constant screen size.
 		</td>
-		<td>0.02</td>
+		<td>1</td>
 	</tr>
 	<tr>
 		<td>showPointIndices</td>
