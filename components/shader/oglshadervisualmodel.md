@@ -158,7 +158,7 @@ If vertices have multiple normals/texcoords stores vertices normal indices
 	<tr>
 		<td>texturename</td>
 		<td>
-Name of the Texture
+Full path of the texture file
 		</td>
 		<td></td>
 	</tr>
