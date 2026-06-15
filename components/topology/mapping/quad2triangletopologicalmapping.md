@@ -65,6 +65,13 @@ if true, handle the events, otherwise ignore the events
 		</td>
 		<td>0</td>
 	</tr>
+	<tr>
+		<td>swapping</td>
+		<td>
+If true (default), alternate the diagonal orientation per quad in a checkerboard pattern to avoid numerical bias
+		</td>
+		<td>1</td>
+	</tr>
 
 </tbody>
 </table>

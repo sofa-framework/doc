@@ -114,6 +114,13 @@ True if tangents should be updated at each iteration
 		<td>1</td>
 	</tr>
 	<tr>
+		<td>computeTextureCoordinates</td>
+		<td>
+True if texture coordinates should be computed at startup, using UV sphere projection
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
 		<td>handleDynamicTopology</td>
 		<td>
 True if topological changes should be handled
