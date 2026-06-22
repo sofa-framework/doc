@@ -4,10 +4,9 @@
 Render a point cloud.
 
 
-## Rigid3d
-
 Templates:
 
+- Rigid2d
 - Rigid3d
 
 __Target__: Sofa.Component.Visual
@@ -154,10 +153,12 @@ Show the indices of the points
 |master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseComponent|
 
 <!-- generate_doc -->
-## Vec3d
+## Vec1d...
 
 Templates:
 
+- Vec1d
+- Vec2d
 - Vec3d
 
 __Target__: Sofa.Component.Visual
