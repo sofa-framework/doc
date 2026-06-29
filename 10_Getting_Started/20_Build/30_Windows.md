@@ -26,9 +26,9 @@ You can download and build SOFA in only three steps without any environment inst
 <summary>This installation method is advised for developers. It is STRONGLY advised to read through this entire doc page before getting started.</summary>
 ## Build tools
 
-## Build tools
+<h2>Build tools</h2>
 
-### Compiler
+<h3>Compiler</h3>
 
 SOFA requires a [C++17 compatible compiler](https://en.cppreference.com/w/cpp/compiler_support#C.2B.2B17_features).  
 On Windows, we officially support **Microsoft Visual Studio >= 2017** (version 15.7).  
@@ -48,7 +48,7 @@ In the installer, you must enable:
 
 ![](https://www.sofa-framework.org/wp-content/uploads/2020/03/install_vs_ide.png)
 
-### CMake: Makefile generator
+<h3>CMake: Makefile generator</h3>
 
 SOFA requires at least **CMake 3.22.1**.  
 Install CMake with [the latest official installer](https://github.com/Kitware/CMake/releases/latest).
@@ -58,7 +58,7 @@ Install CMake with [the latest official installer](https://github.com/Kitware/CM
 ![](https://www.sofa-framework.org/wp-content/uploads/2019/03/install-cmake.png)
 
 
-### [optional] Ninja: build system
+<h3>[optional] Ninja: build system</h3>
 
 We strongly advise you to use Ninja if you chose to install the Build Tools only (no IDE).
 
@@ -67,9 +67,9 @@ You can download the latest release from [their GitHub repository](https://githu
 
 **IMPORTANT**: do not forget to **add ninja to your system PATH**.
 
-## Dependencies
+<h2>Dependencies</h2>
 
-### Core (required)
+<h3>Core (required)</h3>
 
 SOFA requires some libraries:
 
@@ -97,16 +97,16 @@ SOFA requires some libraries:
     Download and extract the [latest Eigen sources](https://gitlab.com/libeigen/eigen/-/releases).
 
 
-#### [optional] PATH modification
+<h4>[optional] PATH modification</h4>
 
 You can add Boost to your PATH to ease their detection by CMake.  
 **Boost**: add `your/Boost/path` and `your/Boost/path/libXX-msvc-XX`  
 
 
-## Build SOFA
+<h2>Build SOFA</h2>
 
 
-### Setup your source and build directories
+<h3>Setup your source and build directories</h3>
 
 To set up clean repositories, we recommend to arrange the SOFA directories
 as follows:
@@ -132,7 +132,7 @@ git clone -b v25.12 https://github.com/sofa-framework/sofa.git sofa/src
 git clone -b master https://github.com/sofa-framework/sofa.git sofa/src
 ```
 
-### Generate a VS project (.sln) or a Makefile with CMake
+<h3>Generate a VS project (.sln) or a Makefile with CMake</h3>
 
 1. Create build directories respecting the arrangement above.
 
@@ -170,7 +170,7 @@ git clone -b master https://github.com/sofa-framework/sofa.git sofa/src
 10. When you are ready, run **Generate**. In the build directory, this will create a Visual Studio project (.sln) or a Makefile depending on the generator you chose at step 4.
 
 
-### Compile
+<h3>Compile</h3>
 
 To build SOFA in Visual Studio, simply **open the generated Sofa.sln**. Finally, **build the solution** using the Visual Studio interface as shown in the image below:
 
@@ -188,7 +188,7 @@ Time for a coffee!
 
 
 
-### Setup script
+<h3>Setup script</h3>
 
 To simplify the configuration of our continuous integration machines, we created a complete set of setup scripts.
 
@@ -203,7 +203,7 @@ The two scripts `setup-windows_1.bat` and `setup-windows_2.bat` install the mini
 
 
 
-### Compilation tutorial
+<h3>Compilation tutorial</h3>
 
 See our page presenting [video tutorial for compilation on Windows](../../video-tutorials/how-to-compile-sofa/#windows).
 
