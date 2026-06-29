@@ -1,23 +1,23 @@
 <!-- generate_doc -->
-# QuadCorotationalFEMForceField
+# FEMMass
 
-Hooke's law on linear quads using the corotational approach
+Finite-element mass (inertia and body force)
 
 
-## Vec2d
+## Vec1d,Edge
 
 Templates:
 
-- Vec2d
+- Vec1d,Edge
 
-__Target__: Sofa.Component.SolidMechanics.FEM.Elastic
+__Target__: Sofa.Component.Mass
 
-__namespace__: sofa::component::solidmechanics::fem::elastic
+__namespace__: sofa::component::mass
 
 __parents__:
 
-- BaseElementLinearFEMForceField
-- FEMForceField
+- Mass
+- TopologyAccessor
 
 ### Data
 
@@ -80,80 +80,127 @@ Rayleigh damping - stiffness matrix coefficient
 		<td>0</td>
 	</tr>
 	<tr>
-		<td>nbThreads</td>
+		<td>separateGravity</td>
 		<td>
-If not yet initialized, the main task scheduler is initialized with this number of threads. 0 corresponds to the number of available cores on the CPU. -n (minus) corresponds to the number of available cores on the CPU minus the provided number.
+add separately gravity to velocity computation
 		</td>
 		<td>0</td>
 	</tr>
 	<tr>
-		<td>taskSchedulerType</td>
+		<td>rayleighMass</td>
 		<td>
-Type of task scheduler to use.
+Rayleigh damping - mass matrix coefficient
 		</td>
-		<td>_default</td>
+		<td>0</td>
+	</tr>
+
+</tbody>
+</table>
+
+### Links
+
+
+| Name | Description | Destination type name |
+| ---- | ----------- | --------------------- |
+|context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
+|slaves|Sub-objects used internally by this object|BaseComponent|
+|master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseComponent|
+|mechanicalStates|List of mechanical states to which this component is associated|BaseMechanicalState|
+|mstate|MechanicalState used by this component|MechanicalState&lt;Vec1d&gt;|
+|topology|Link to a topology|BaseMeshTopology|
+|nodalMassDensity|Link to nodal mass density|NodalMassDensity&lt;d&gt;|
+
+<!-- generate_doc -->
+## Vec2d,Edge...
+
+Templates:
+
+- Vec2d,Edge
+- Vec2d,Quad
+- Vec2d,Triangle
+
+__Target__: Sofa.Component.Mass
+
+__namespace__: sofa::component::mass
+
+__parents__:
+
+- Mass
+- TopologyAccessor
+
+### Data
+
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Default value</th>
+        </tr>
+    </thead>
+    <tbody>
+	<tr>
+		<td>name</td>
+		<td>
+object name
+		</td>
+		<td>unnamed</td>
 	</tr>
 	<tr>
-		<td>poissonRatio</td>
+		<td>printLog</td>
 		<td>
-FEM Poisson Ratio in Hooke's law [0,0.5[
+if true, emits extra messages at runtime.
 		</td>
-		<td>0.45</td>
+		<td>0</td>
 	</tr>
 	<tr>
-		<td>youngModulus</td>
+		<td>tags</td>
 		<td>
-FEM Young's Modulus in Hooke's law
-		</td>
-		<td>5000</td>
-	</tr>
-	<tr>
-		<td>elementStiffness</td>
-		<td>
-List of stiffness matrices per element
+list of the subsets the object belongs to
 		</td>
 		<td></td>
 	</tr>
 	<tr>
-		<td>rotationMethod</td>
+		<td>bbox</td>
 		<td>
-The method used to compute the element rotations.
-- stable_polar: Stable polar decomposition
-- polar: Polar decomposition
-- identity: Identity rotation. Equivalent to the linear small strain FEM.
+this object bounding box
 		</td>
 		<td></td>
 	</tr>
 	<tr>
-		<td colspan="3">Multithreading</td>
-	</tr>
-	<tr>
-		<td>computeForceStrategy</td>
+		<td>componentState</td>
 		<td>
-The compute strategy used to compute the forces.
-- parallel: The algorithm is executed in parallel
-- sequenced: The algorithm is executed sequentially
+The state of the component among (Dirty, Valid, Undefined, Loading, Invalid).
 		</td>
-		<td></td>
+		<td>Undefined</td>
 	</tr>
 	<tr>
-		<td>computeForceDerivStrategy</td>
+		<td>listening</td>
 		<td>
-The compute strategy used to compute the forces derivatives.
-- parallel: The algorithm is executed in parallel
-- sequenced: The algorithm is executed sequentially
+if true, handle the events, otherwise ignore the events
 		</td>
-		<td></td>
+		<td>0</td>
 	</tr>
 	<tr>
-		<td colspan="3">Visualization</td>
-	</tr>
-	<tr>
-		<td>elementSpace</td>
+		<td>rayleighStiffness</td>
 		<td>
-When rendering, the space between elements
+Rayleigh damping - stiffness matrix coefficient
 		</td>
-		<td>0.125</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>separateGravity</td>
+		<td>
+add separately gravity to velocity computation
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>rayleighMass</td>
+		<td>
+Rayleigh damping - mass matrix coefficient
+		</td>
+		<td>0</td>
 	</tr>
 
 </tbody>
@@ -170,22 +217,28 @@ When rendering, the space between elements
 |mechanicalStates|List of mechanical states to which this component is associated|BaseMechanicalState|
 |mstate|MechanicalState used by this component|MechanicalState&lt;Vec2d&gt;|
 |topology|Link to a topology|BaseMeshTopology|
+|nodalMassDensity|Link to nodal mass density|NodalMassDensity&lt;d&gt;|
 
 <!-- generate_doc -->
-## Vec3d
+## Vec3d,Edge...
 
 Templates:
 
-- Vec3d
+- Vec3d,Edge
+- Vec3d,Hexahedron
+- Vec3d,Prism
+- Vec3d,Quad
+- Vec3d,Tetrahedron
+- Vec3d,Triangle
 
-__Target__: Sofa.Component.SolidMechanics.FEM.Elastic
+__Target__: Sofa.Component.Mass
 
-__namespace__: sofa::component::solidmechanics::fem::elastic
+__namespace__: sofa::component::mass
 
 __parents__:
 
-- BaseElementLinearFEMForceField
-- FEMForceField
+- Mass
+- TopologyAccessor
 
 ### Data
 
@@ -248,80 +301,18 @@ Rayleigh damping - stiffness matrix coefficient
 		<td>0</td>
 	</tr>
 	<tr>
-		<td>nbThreads</td>
+		<td>separateGravity</td>
 		<td>
-If not yet initialized, the main task scheduler is initialized with this number of threads. 0 corresponds to the number of available cores on the CPU. -n (minus) corresponds to the number of available cores on the CPU minus the provided number.
+add separately gravity to velocity computation
 		</td>
 		<td>0</td>
 	</tr>
 	<tr>
-		<td>taskSchedulerType</td>
+		<td>rayleighMass</td>
 		<td>
-Type of task scheduler to use.
+Rayleigh damping - mass matrix coefficient
 		</td>
-		<td>_default</td>
-	</tr>
-	<tr>
-		<td>poissonRatio</td>
-		<td>
-FEM Poisson Ratio in Hooke's law [0,0.5[
-		</td>
-		<td>0.45</td>
-	</tr>
-	<tr>
-		<td>youngModulus</td>
-		<td>
-FEM Young's Modulus in Hooke's law
-		</td>
-		<td>5000</td>
-	</tr>
-	<tr>
-		<td>elementStiffness</td>
-		<td>
-List of stiffness matrices per element
-		</td>
-		<td></td>
-	</tr>
-	<tr>
-		<td>rotationMethod</td>
-		<td>
-The method used to compute the element rotations.
-- stable_polar: Stable polar decomposition
-- polar: Polar decomposition
-- identity: Identity rotation. Equivalent to the linear small strain FEM.
-		</td>
-		<td></td>
-	</tr>
-	<tr>
-		<td colspan="3">Multithreading</td>
-	</tr>
-	<tr>
-		<td>computeForceStrategy</td>
-		<td>
-The compute strategy used to compute the forces.
-- parallel: The algorithm is executed in parallel
-- sequenced: The algorithm is executed sequentially
-		</td>
-		<td></td>
-	</tr>
-	<tr>
-		<td>computeForceDerivStrategy</td>
-		<td>
-The compute strategy used to compute the forces derivatives.
-- parallel: The algorithm is executed in parallel
-- sequenced: The algorithm is executed sequentially
-		</td>
-		<td></td>
-	</tr>
-	<tr>
-		<td colspan="3">Visualization</td>
-	</tr>
-	<tr>
-		<td>elementSpace</td>
-		<td>
-When rendering, the space between elements
-		</td>
-		<td>0.125</td>
+		<td>0</td>
 	</tr>
 
 </tbody>
@@ -338,4 +329,5 @@ When rendering, the space between elements
 |mechanicalStates|List of mechanical states to which this component is associated|BaseMechanicalState|
 |mstate|MechanicalState used by this component|MechanicalState&lt;Vec3d&gt;|
 |topology|Link to a topology|BaseMeshTopology|
+|nodalMassDensity|Link to nodal mass density|NodalMassDensity&lt;d&gt;|
 

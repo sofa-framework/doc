@@ -122,11 +122,11 @@ Hexa2PrismTopologicalMapping.scn
             <MeshTopology name="prism_topology"/>
             <Hexa2PrismTopologicalMapping input="@grid" output="@prism_topology" />
     
-            <PrismCorotationalFEMForceField name="FEM" youngModulus="2e6" poissonRatio="0.45" topology="@prism_topology"
+            <CorotationalFEMForceField name="FEM" template="Vec3,Prism" youngModulus="2e6" poissonRatio="0.45" topology="@prism_topology"
                                             rotationMethod="polar" computeForceStrategy="sequenced" computeForceDerivStrategy="sequenced"/>
     
             <NodalMassDensity property="1100"/>
-            <PrismFEMMass/>
+            <FEMMass template="Vec3,Prism"/>
     
             <VisualMesh position="@../state.position" topology="@prism_topology" enable="true"/>
         </Node>
@@ -173,9 +173,9 @@ Hexa2PrismTopologicalMapping.scn
 
        prisms.addObject('MeshTopology', name="prism_topology")
        prisms.addObject('Hexa2PrismTopologicalMapping', input="@grid", output="@prism_topology")
-       prisms.addObject('PrismCorotationalFEMForceField', name="FEM", youngModulus="2e6", poissonRatio="0.45", topology="@prism_topology", rotationMethod="polar", computeForceStrategy="sequenced", computeForceDerivStrategy="sequenced")
+       prisms.addObject('CorotationalFEMForceField', name="FEM", template="Vec3,Prism", youngModulus="2e6", poissonRatio="0.45", topology="@prism_topology", rotationMethod="polar", computeForceStrategy="sequenced", computeForceDerivStrategy="sequenced")
        prisms.addObject('NodalMassDensity', property="1100")
-       prisms.addObject('PrismFEMMass', )
+       prisms.addObject('FEMMass', template="Vec3,Prism")
        prisms.addObject('VisualMesh', position="@../state.position", topology="@prism_topology", enable="true")
 
        root.addObject('BoxROI', template="Vec3", name="box_roi", box="-0.011 -0.011 -0.0001   0.011 0.011 0.0001", drawBoxes="1")
