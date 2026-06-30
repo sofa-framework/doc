@@ -24,7 +24,6 @@ You can download and build SOFA in only three steps without any environment inst
 <details>
 
 <summary>This installation method is advised for developers. It is STRONGLY advised to read through this entire doc page before getting started.</summary>
-## Build tools
 
 <h2>Build tools</h2>
 
