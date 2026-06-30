@@ -28,9 +28,9 @@ You can download and build SOFA in only three steps without any environment inst
 
 <summary>This installation method is advised for developers. It is STRONGLY advised to read through this entire doc page before getting started.</summary>
 
-### Build tools
+<h3>Build tools</h3>
 
-#### Compiler
+<h4>Compiler</h4>
 
 SOFA requires a [C++17 compatible compiler](https://en.cppreference.com/w/cpp/compiler_support#C.2B.2B17_features).  
 On Linux, we officially support **GCC >= 7** and **Clang >= 5**.  
@@ -41,7 +41,7 @@ First, install the standard compilation toolkit with this command:
 sudo apt install build-essential software-properties-common
 ```
     
-##### GCC
+<h5>GCC</h5>
 
 To know which GCC versions are available for your distribution, run this command:
 ```bash
@@ -53,7 +53,7 @@ Then, install the latest one with the usual command (example with gcc-11):
 sudo apt install gcc-11
 ```
 
-##### Clang
+<h5>Clang</h5>
 Clang is an **alternative to GCC**. It compiles approximately two times faster!  
 We recommend to install **Clang 5 or newer**.
 
@@ -68,14 +68,14 @@ sudo apt install clang-12
 ```
 
 
-#### CMake: Makefile generator
+<h4>CMake: Makefile generator</h4>
 
 CMake will be required to configure the SOFA project before compiling it. Note that SOFA requires at least **CMake 3.22**.
 ```bash
 sudo apt install cmake cmake-gui
 ```
 
-#### [optional] Ninja: build system
+<h4>[optional] Ninja: build system</h4>
 
 Ninja is an alternative to Make. It has a better handling of incremental builds.
 
@@ -84,7 +84,7 @@ sudo apt install ninja-build
 ```
 
 
-#### [optional] CCache: caching system
+<h4>[optional] CCache: caching system</h4>
 
 We advise you to use [ccache](https://ccache.dev/). It is by no means
 mandatory, but it will dramatically improve the compilation time if you
@@ -95,9 +95,9 @@ sudo apt install ccache
 ```
 
 
-### Dependencies
+<h3>Dependencies</h3>
 
-#### Core (required)
+<h4>Core (required)</h4>
 
 SOFA requires some libraries:
 
@@ -137,14 +137,14 @@ SOFA requires some libraries:
     sudo apt install libeigen3-dev
     ```
 
-#### Graphical User Interface
+<h4>Graphical User Interface</h4>
 
 The [SOFAGLFW](https://github.com/sofa-framework/SofaGLFW) project is based on both **GLFW** and **ImGui** libraries. It required the following dependencies to be installed:
 ``` {.bash .optional}
 sudo apt install xorg-dev libgtk-3-dev
 ```
 
-#### Plugins (optional)
+<h4>Plugins (optional)</h4>
 
 SOFA **plugins** depend on libraries that are available in the official repositories.  
 You probably don't need them all, but you might find it convenient to
@@ -162,10 +162,10 @@ This list does not cover all available SOFA plugins, only the ones that are buil
    ```
 
 
-### Build SOFA
+<h3>Build SOFA</h3>
 
 
-#### Setup your source and build directories
+<h4>Setup your source and build directories</h4>
 
 To set up clean repositories, we recommend to arrange the SOFA directories
 as follows:
@@ -192,7 +192,7 @@ git clone -b master https://github.com/sofa-framework/sofa.git sofa/src
 ```
 
 
-#### Generate a Makefile with CMake
+<h4>Generate a Makefile with CMake</h4>
 
 0. Activate your venv `source /path/to/sofa-venv/bin/activate` and tell CMake to look there to find pybind11 `export CMAKE_PREFIX_PATH=/path/to/sofa-venv/lib/python3.12/site-packages`
 
@@ -229,7 +229,7 @@ git clone -b master https://github.com/sofa-framework/sofa.git sofa/src
 
 
 
-#### Compile
+<h4>Compile</h4>
 
 To compile, open a terminal in your build directory and run `make` or `ninja` depending on the generator you chose during CMake configuration.
 If you chose "Unix Makefile" as generator, you can enable parallel compilation by specifying the number of parallel build you want by adding the `-j n` option with `n` being the number of desired parallel jobs. 

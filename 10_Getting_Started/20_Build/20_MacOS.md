@@ -24,11 +24,10 @@ You can download and build SOFA in only three steps without any environment inst
 <details>
 
 <summary>This installation method is advised for developers. It is STRONGLY advised to read through this entire doc page before getting started.</summary>
-## Build tools
 
-## Build tools
+<h2>Build tools</h2>
 
-### Compiler
+<h3>Compiler</h3>
 
 SOFA requires a [C++17 compatible compiler](https://en.cppreference.com/w/cpp/compiler_support#C.2B.2B17_features).  
 On MacOS, we officially support **MacOS >= 10.13.2 (High Sierra)** and **AppleClang >= 9.1.0**.  
@@ -64,7 +63,7 @@ If your AppleClang version is too low:
 5. Reboot
 
 
-### CMake: Makefile generator
+<h3>CMake: Makefile generator</h3>
 
 SOFA requires at least **CMake 3.22**.
 
@@ -73,7 +72,7 @@ brew install --cask cmake
 ```
 
 
-### [optional] Ninja: build system
+<h3>[optional] Ninja: build system</h3>
 
 Ninja is an alternative to Make. It has a better handling of incremental builds.
 
@@ -82,7 +81,7 @@ brew install ninja
 ```
 
 
-### [optional] CCache: caching system
+<h3>[optional] CCache: caching system</h3>
 
 We advise you to use [ccache](https://ccache.dev/). It is by no means
 mandatory, but it will dramatically improve the compilation time if you
@@ -93,9 +92,9 @@ brew install ccache
 ```
 
 
-## Dependencies
+<h2>Dependencies</h2>
 
-### Core (required)
+<h3>Core (required)</h3>
 
 SOFA requires some libraries:
 -  **tinyXML2**
@@ -133,7 +132,7 @@ SOFA requires some libraries:
     ```
 
 
-### Plugins (optional)
+<h3>Plugins (optional)</h3>
 
 SOFA **plugins** depend on libraries that are available in the official repositories.  
 You probably don't need them all, but you might find it convenient to
@@ -150,10 +149,10 @@ This list does not cover all available SOFA plugins, only the ones that are buil
    ```
 
 
-## Build SOFA
+<h2>Build SOFA</h2>
 
 
-### Setup your source and build directories
+<h3>Setup your source and build directories</h3>
 
 To set up clean repositories, we recommend to arrange the SOFA directories
 as follows:
@@ -180,7 +179,7 @@ git clone -b master https://github.com/sofa-framework/sofa.git sofa/src
 ```
 
 
-### Generate a Makefile with CMake
+<h3>Generate a Makefile with CMake</h3>
 
 0. Activate your venv `source /path/to/sofa-venv/bin/activate` and tell CMake to look there to find pybind11 `export CMAKE_PREFIX_PATH=/path/to/sofa-venv/lib/python3.12/site-packages`
 
@@ -209,7 +208,7 @@ git clone -b master https://github.com/sofa-framework/sofa.git sofa/src
 7. When you are ready, run **Generate**.
 
 
-### Compile
+<h3>Compile</h3>
 
 To compile, open a terminal in your build directory and run `make` or `ninja` depending on the generator you chose during CMake configuration.  
 Do not forget the `-j` option to use all your CPU cores.
