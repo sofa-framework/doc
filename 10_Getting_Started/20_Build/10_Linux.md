@@ -28,217 +28,171 @@ You can download and build SOFA in only three steps without any environment inst
 
 <summary>This installation method is advised for developers. It is STRONGLY advised to read through this entire doc page before getting started.</summary>
 
+
 <h3>Build tools</h3>
 
 <h4>Compiler</h4>
+SOFA requires a <a href="https://en.cppreference.com/w/cpp/compiler_support#C.2B.2B17_features">C++17 compatible compiler</a>.<br>
+On Linux, we officially support <strong>GCC &gt;= 7</strong> and <strong>Clang &gt;= 5</strong>.
 
-SOFA requires a [C++17 compatible compiler](https://en.cppreference.com/w/cpp/compiler_support#C.2B.2B17_features).  
-On Linux, we officially support **GCC >= 7** and **Clang >= 5**.  
+<h5>First, install the standard compilation toolkit:</h5>
+<pre><code>sudo apt install build-essential software-properties-common</code></pre>
 
-First, install the standard compilation toolkit with this command:
-
-```bash
-sudo apt install build-essential software-properties-common
-```
-    
 <h5>GCC</h5>
-
 To know which GCC versions are available for your distribution, run this command:
-```bash
-apt-cache search '^gcc-[0-9.]+$'
-```
+<pre><code>apt-cache search '^gcc-[0-9.]+$'</code></pre>
 
 Then, install the latest one with the usual command (example with gcc-11):
-```bash
-sudo apt install gcc-11
-```
+<pre><code>sudo apt install gcc-11</code></pre>
 
 <h5>Clang</h5>
-Clang is an **alternative to GCC**. It compiles approximately two times faster!  
-We recommend to install **Clang 5 or newer**.
+Clang is an <strong>alternative to GCC</strong>. It compiles approximately two times faster!<br>
+We recommend to install <strong>Clang 5 or newer</strong>.
 
 To know which Clang versions are available for your distribution, run this command:
-```bash
-apt-cache search '^clang-[0-9.]+$'
-```
+<pre><code>apt-cache search '^clang-[0-9.]+$'</code></pre>
 
 Then, install the latest one with the usual command (example with clang-12):
-```bash
-sudo apt install clang-12
-```
-
+<pre><code>sudo apt install clang-12</code></pre>
 
 <h4>CMake: Makefile generator</h4>
-
-CMake will be required to configure the SOFA project before compiling it. Note that SOFA requires at least **CMake 3.22**.
-```bash
-sudo apt install cmake cmake-gui
-```
+CMake will be required to configure the SOFA project before compiling it. Note that SOFA requires at least <strong>CMake 3.22</strong>.
+<pre><code>sudo apt install cmake cmake-gui</code></pre>
 
 <h4>[optional] Ninja: build system</h4>
-
 Ninja is an alternative to Make. It has a better handling of incremental builds.
-
-``` {.bash .optional}
-sudo apt install ninja-build
-```
-
+<pre><code>sudo apt install ninja-build</code></pre>
 
 <h4>[optional] CCache: caching system</h4>
-
-We advise you to use [ccache](https://ccache.dev/). It is by no means
-mandatory, but it will dramatically improve the compilation time if you
-make changes to SOFA.
-
-``` {.bash .optional}
-sudo apt install ccache
-```
+We advise you to use <a href="https://ccache.dev/">ccache</a>. It is by no means mandatory, but it will dramatically improve the compilation time if you make changes to SOFA.
+<pre><code>sudo apt install ccache</code></pre>
 
 
 <h3>Dependencies</h3>
 
 <h4>Core (required)</h4>
-
 SOFA requires some libraries:
 
--  **tinyXML2**
-    ```
-    sudo apt install libtinyxml2-dev
-    ```
-   
--   **OpenGL**
-    ```
-    sudo apt install libopengl0
-    ```
+<ul>
+  <li><strong>tinyXML2</strong>
+    <pre><code>sudo apt install libtinyxml2-dev</code></pre>
+  </li>
 
--   **Boost** (>= 1.65.1)  
-    ```
-    sudo apt install libboost-all-dev
-    ```
-    
--   **Python 3.12** + pip + numpy + scipy
-    ```
-    sudo apt install python3.12-dev python3.12-venv
-    ```
-    Python 3.12 now favor the use of venv. We highly recommend it too. To bootstrap it type `python3.12 -m venv sofa-venv` in the folder you want to keep this venv. We recommend creating it either in your home directory, in the folder containing both your sources and the build directory. Once created, you can activate it by calling `source /path/to/sofa-venv/bin/activate`. Now you can install all dependency through the following commands:
-    ```
-    python3.12 -m pip install --upgrade pip \
-    && python3.12 -m pip install numpy scipy pybind11==2.12.0
-    ```
-    Now, each time you want to build or use SOFA, you first need to call `source /path/to/sofa-venv/bin/activate` to activate this virtual environment and get access to the dependencies. 
+  <li><strong>OpenGL</strong>
+    <pre><code>sudo apt install libopengl0</code></pre>
+  </li>
 
--   **Additional libraries**: libPNG, libJPEG, libTIFF, Glew, Zlib   
-    ```
-    sudo apt install libpng-dev libjpeg-dev libtiff-dev libglew-dev zlib1g-dev
-    ```
+  <li><strong>Boost</strong> (&gt;= 1.65.1)
+    <pre><code>sudo apt install libboost-all-dev</code></pre>
+  </li>
 
--   **Eigen** (>= 3.2.10)  
-    ```
-    sudo apt install libeigen3-dev
-    ```
+  <li><strong>Python 3.12</strong> + pip + numpy + scipy
+    <pre><code>sudo apt install python3.12-dev python3.12-venv</code></pre>
+    Python 3.12 now favors the use of venv. We highly recommend it too. To bootstrap it, type <code>python3.12 -m venv sofa-venv</code> in the folder you want to keep this venv. We recommend creating it either in your home directory or in the folder containing both your sources and the build directory. Once created, you can activate it by calling <code>source /path/to/sofa-venv/bin/activate</code>. Now you can install all dependencies through the following commands:
+    <pre><code>python3.12 -m pip install --upgrade pip \
+&& python3.12 -m pip install numpy scipy pybind11==2.12.0</code></pre>
+    Now, each time you want to build or use SOFA, you first need to call <code>source /path/to/sofa-venv/bin/activate</code> to activate this virtual environment and get access to the dependencies.
+  </li>
+
+  <li><strong>Additional libraries</strong>: libPNG, libJPEG, libTIFF, Glew, Zlib
+    <pre><code>sudo apt install libpng-dev libjpeg-dev libtiff-dev libglew-dev zlib1g-dev</code></pre>
+  </li>
+
+  <li><strong>Eigen</strong> (&gt;= 3.2.10)
+    <pre><code>sudo apt install libeigen3-dev</code></pre>
+  </li>
+</ul>
 
 <h4>Graphical User Interface</h4>
-
-The [SOFAGLFW](https://github.com/sofa-framework/SofaGLFW) project is based on both **GLFW** and **ImGui** libraries. It required the following dependencies to be installed:
-``` {.bash .optional}
-sudo apt install xorg-dev libgtk-3-dev
-```
+The <a href="https://github.com/sofa-framework/SofaGLFW">SOFAGLFW</a> project is based on both <strong>GLFW</strong> and <strong>ImGui</strong> libraries. It requires the following dependencies to be installed:
+<pre><code>sudo apt install xorg-dev libgtk-3-dev</code></pre>
 
 <h4>Plugins (optional)</h4>
-
-SOFA **plugins** depend on libraries that are available in the official repositories.  
-You probably don't need them all, but you might find it convenient to
-install them all and not worry about it later.  
+SOFA <strong>plugins</strong> depend on libraries that are available in the official repositories.<br>
+You probably don't need them all, but you might find it convenient to install them all and not worry about it later.<br>
 This list does not cover all available SOFA plugins, only the ones that are built by our continuous integration platform.
 
--  CGALPlugin  
-   ``` {.bash .optional}
-   sudo apt install libcgal-dev
-   ```
--  SofaCUDA  
-   The currently supported cuda version is 12.2
-   ``` {.bash .optional}
-   sudo apt install nvidia-cuda-toolkit
-   ```
+<ul>
+  <li><strong>CGALPlugin</strong>
+    <pre><code>sudo apt install libcgal-dev</code></pre>
+  </li>
+  <li><strong>SofaCUDA</strong><br>
+    The currently supported CUDA version is 12.2
+    <pre><code>sudo apt install nvidia-cuda-toolkit</code></pre>
+  </li>
+</ul>
 
 
 <h3>Build SOFA</h3>
 
-
 <h4>Setup your source and build directories</h4>
-
-To set up clean repositories, we recommend to arrange the SOFA directories
-as follows:
-
-```
-sofa/
+To set up clean repositories, we recommend arranging the SOFA directories as follows:
+<pre><code>sofa/
 ├── build/
 │   ├── master/
 │   └── v25.12/
 └── src/
-    └── < SOFA sources here >
-```
+    └── &lt; SOFA sources here &gt;</code></pre>
 
-**First**, checkout the sources from Git repository:
+<strong>First</strong>, checkout the sources from the Git repository:
 
-Get the current **stable** version on the v25.12 branch:
-``` {.bash .stable}
-git clone -b v25.12 https://github.com/sofa-framework/sofa.git sofa/src
-```
+<h5>Get the current <strong>stable</strong> version on the v25.12 branch:</h5>
+<pre><code>git clone -b v25.12 https://github.com/sofa-framework/sofa.git sofa/src</code></pre>
 
-**OR** get the development **unstable** version on the master branch:
-``` {.bash .unstable}
-git clone -b master https://github.com/sofa-framework/sofa.git sofa/src
-```
+<h5><strong>OR</strong> get the development <strong>unstable</strong> version on the master branch:</h5>
+<pre><code>git clone -b master https://github.com/sofa-framework/sofa.git sofa/src</code></pre>
 
 
 <h4>Generate a Makefile with CMake</h4>
+<ol>
+  <li>Activate your venv:
+    <pre><code>source /path/to/sofa-venv/bin/activate</code></pre>
+    and tell CMake to look there to find pybind11:
+    <pre><code>export CMAKE_PREFIX_PATH=/path/to/sofa-venv/lib/python3.12/site-packages</code></pre>
+  </li>
 
-0. Activate your venv `source /path/to/sofa-venv/bin/activate` and tell CMake to look there to find pybind11 `export CMAKE_PREFIX_PATH=/path/to/sofa-venv/lib/python3.12/site-packages`
+  <li>Create build directories respecting the arrangement above.</li>
 
-1. Create build directories respecting the arrangement above.
+  <li>Run CMake-GUI and set source folder and build folder.</li>
 
-2. Run CMake-GUI and set source folder and build folder.
+  <li>Run <strong>Configure</strong>. A popup will ask you to specify the generator for the project.
+    <ul>
+      <li>If you installed <a href="#optional-ninja-build-system">Ninja</a>, select <code>Ninja</code>.</li>
+      <li>Otherwise, select <code>Unix Makefile</code>.</li>
+    </ul>
+  </li>
 
-3. Run **Configure**. A popup will ask you to specify the generator for the project.
+  <li>Choose <code>Specify native compilers</code> and press <code>Next</code></li>
 
-   - If you installed [Ninja](#optional-ninja-build-system), select "Ninja".
-   - Otherwise, select "Unix Makefile".
+  <li>Set the C compiler to <code>/usr/bin/gcc</code> <strong>or</strong> <code>/usr/bin/clang</code><br>
+      Set the C++ compiler to <code>/usr/bin/g++</code> <strong>or</strong> <code>/usr/bin/clang++</code>
+  </li>
 
-4. Choose "Specify native compilers" and press "Next"
+  <li>Run <strong>Configure</strong>.</li>
 
-5. Set the C compiler to `/usr/bin/gcc` **or** `/usr/bin/clang`  
-   Set the C++ compiler to `/usr/bin/g++` **or** `/usr/bin/clang++`
+  <li>Fix eventual dependency errors by following CMake messages (see Troubleshoot section below). Do not worry about warnings.</li>
 
-6. Run **Configure**.
+  <li>(optional) Customize SOFA via CMake variables
+    <ul>
+      <li>choose the build type by setting <code>CMAKE_BUILD_TYPE</code> to <code>Release</code> or <code>RelWithDebInfo</code> (recommended) or <code>Debug</code></li>
+      <li>activate or deactivate plugins: see <code>PLUGIN_XXX</code> variables</li>
+      <li>activate or deactivate functionalities: see <code>SOFA_XXX</code> variables</li>
+    </ul>
+    Do not forget to <strong>Configure</strong> again to check if your changes are valid.<br>
+    <em>NOTE</em>: here is an <a href="../activate-plugins/">exhaustive list of plugins</a> that can be activated for an in-tree compilation.
+  </li>
 
-7. Fix eventual dependency errors by following CMake messages (see Troubleshoot section below). Do not worry about warnings.
-
-8. (optional) Customize SOFA via CMake variables
-
-   - choose the build type by setting CMAKE_BUILD_TYPE to "Release" or "RelWithDebInfo" (recommended) or "Debug"   
-   - activate or deactivate plugins: see PLUGIN_XXX variables
-   - activate or deactivate functionalities: see SOFA_XXX variables
-   Do not forget to **Configure** again to check if your changes are valid.
-   **_NOTE_**: here is an [exhaustive list of plugins](../activate-plugins/) that can be activated for an in-tree compilation.
-
-9. When you are ready, run **Generate**.
-
-
-
-
+  <li>When you are ready, run <strong>Generate</strong>.</li>
+</ol>
 
 
 <h4>Compile</h4>
+To compile, open a terminal in your build directory and run <code>make</code> or <code>ninja</code> depending on the generator you chose during CMake configuration.<br>
+If you chose <code>Unix Makefile</code> as generator, you can enable parallel compilation by specifying the number of parallel builds you want by adding the <code>-j n</code> option with <code>n</code> being the number of desired parallel jobs.<br>
+This is set automatically to the highest possible by <code>ninja</code>, but this can be modified in the same way as for <code>make</code>.
 
-To compile, open a terminal in your build directory and run `make` or `ninja` depending on the generator you chose during CMake configuration.
-If you chose "Unix Makefile" as generator, you can enable parallel compilation by specifying the number of parallel build you want by adding the `-j n` option with `n` being the number of desired parallel jobs. 
-This is set automatically to the highest possible by `ninja`, but this can be modified in the same way as for `make`. 
-
-Time for a coffee!
-
-
-To get assistance, see our page presenting [video tutorial for compilation on Linux](../../video-tutorials/how-to-compile-sofa/#linux) or use our [GitHub Discussion forum](https://github.com/sofa-framework/sofa/discussions/categories/build-config-environment).
+Time for a coffee!<br><br>
+To get assistance, see our page presenting <a href="../../video-tutorials/how-to-compile-sofa/#linux">video tutorial for compilation on Linux</a> or use our <a href="https://github.com/sofa-framework/sofa/discussions/categories/build-config-environment">GitHub Discussion forum</a>.
 
 
 </details>
