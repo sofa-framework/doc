@@ -32,190 +32,161 @@ You can download and build SOFA in only three steps without any environment inst
 <h2>Build tools</h2>
 
 <h3>Compiler</h3>
+SOFA requires a <a href="https://en.cppreference.com/w/cpp/compiler_support#C.2B.2B17_features">C++17 compatible compiler</a>.<br>
+On MacOS, we officially support <strong>MacOS &gt;= 10.13.2 (High Sierra)</strong> and <strong>AppleClang &gt;= 9.1.0</strong>.
 
-SOFA requires a [C++17 compatible compiler](https://en.cppreference.com/w/cpp/compiler_support#C.2B.2B17_features).  
-On MacOS, we officially support **MacOS >= 10.13.2 (High Sierra)** and **AppleClang >= 9.1.0**.  
-
-Check your MacOS version with `system_profiler SPSoftwareDataType`  
-Check your AppleClang version with `clang --version`
+Check your MacOS version with <code>system_profiler SPSoftwareDataType</code><br>
+Check your AppleClang version with <code>clang --version</code>
 
 If your MacOS version is too low, update your Mac from the App Store.
 
 If your AppleClang version is too low:
-
-1. Download and install the highest possible Xcode compatible with your MacOS.  
-   Compatibility list (taken from [Wikipedia](https://en.wikipedia.org/wiki/Xcode#Version_comparison_table)):  
-   ```   
-   MacOS >= 11.3    : Xcode 13.2.1 (with AppleClang 13.0.0)
-   MacOS >= 11.0    : Xcode 12.5.1 (with AppleClang 12.0.5)
-   MacOS >= 10.15.4 : Xcode 12.4   (with AppleClang 12.0.0)   
-   MacOS >= 10.15.2 : Xcode 11.7   (with AppleClang 11.0.3)
-   MacOS >= 10.14.4 : Xcode 11.3.1 (with AppleClang 11.0.0)
-   MacOS >= 10.14.3 : Xcode 10.3   (with AppleClang 10.0.1)
-   MacOS >= 10.13.6 : Xcode 10.1   (with AppleClang 10.0.0)
-   MacOS >= 10.13.2 : Xcode 9.4.1  (with AppleClang  9.1.0)
-   ```  
-   To download any version, go to https://developer.apple.com/download/more/ and search for "Xcode".
-
-2. Open Xcode to automatically finalize installation
-
-3. In Xcode, navigate to "Xcode > Preferences > Locations" and set Command Line Tools to your Xcode version
-
-4. Verify Command Line Tools path: `xcode-select -p`  
-   If it is not pointing to your Xcode, change it: `xcode-select --switch /Applications/Xcode.app`
-
-5. Reboot
+<ol>
+  <li>Download and install the highest possible Xcode compatible with your MacOS.<br>
+    Compatibility list (taken from <a href="https://en.wikipedia.org/wiki/Xcode#Version_comparison_table">Wikipedia</a>):
+    <pre><code>MacOS &gt;= 11.3    : Xcode 13.2.1 (with AppleClang 13.0.0)
+MacOS &gt;= 11.0    : Xcode 12.5.1 (with AppleClang 12.0.5)
+MacOS &gt;= 10.15.4 : Xcode 12.4   (with AppleClang 12.0.0)
+MacOS &gt;= 10.15.2 : Xcode 11.7   (with AppleClang 11.0.3)
+MacOS &gt;= 10.14.4 : Xcode 11.3.1 (with AppleClang 11.0.0)
+MacOS &gt;= 10.14.3 : Xcode 10.3   (with AppleClang 10.0.1)
+MacOS &gt;= 10.13.6 : Xcode 10.1   (with AppleClang 10.0.0)
+MacOS &gt;= 10.13.2 : Xcode 9.4.1  (with AppleClang  9.1.0)</code></pre>
+    To download any version, go to <a href="https://developer.apple.com/download/more/">https://developer.apple.com/download/more/</a> and search for "Xcode".
+  </li>
+  <li>Open Xcode to automatically finalize installation</li>
+  <li>In Xcode, navigate to "Xcode &gt; Preferences &gt; Locations" and set Command Line Tools to your Xcode version</li>
+  <li>Verify Command Line Tools path: <code>xcode-select -p</code><br>
+    If it is not pointing to your Xcode, change it: <code>xcode-select --switch /Applications/Xcode.app</code>
+  </li>
+  <li>Reboot</li>
+</ol>
 
 
 <h3>CMake: Makefile generator</h3>
-
-SOFA requires at least **CMake 3.22**.
-
-``` {.bash}
-brew install --cask cmake
-```
+SOFA requires at least <strong>CMake 3.22</strong>.
+<pre><code>brew install --cask cmake</code></pre>
 
 
 <h3>[optional] Ninja: build system</h3>
-
 Ninja is an alternative to Make. It has a better handling of incremental builds.
-
-``` {.bash .optional}
-brew install ninja
-```
+<pre><code>brew install ninja</code></pre>
 
 
 <h3>[optional] CCache: caching system</h3>
-
-We advise you to use [ccache](https://ccache.dev/). It is by no means
-mandatory, but it will dramatically improve the compilation time if you
-make changes to SOFA.
-
-``` {.bash .optional}
-brew install ccache
-```
+We advise you to use <a href="https://ccache.dev/">ccache</a>. It is by no means mandatory, but it will dramatically improve the compilation time if you make changes to SOFA.
+<pre><code>brew install ccache</code></pre>
 
 
 <h2>Dependencies</h2>
 
 <h3>Core (required)</h3>
-
 SOFA requires some libraries:
--  **tinyXML2**
-    ```bash
-    brew install tinyxml2
-    ```
 
--   **Boost** (>= 1.65.1)  
-    ```bash
-    brew install boost
-    ```
+<ul>
+  <li><strong>tinyXML2</strong>
+    <pre><code>brew install tinyxml2</code></pre>
+  </li>
 
--   **Python 3.12** + pip + numpy + scipy
-    ```
-    brew install python@3.12
-    brew link --force python@3.10
-    ```
-    Python 3.12 now favor the use of venv. We highly recommend it too. To bootstrap it type `python3.12 -m venv sofa-venv` in the folder you want to keep this venv. We recommend creating it either in your home directory, in the folder containing both your sources and the build directory. Once created, you can activate it by calling `source /path/to/sofa-venv/bin/activate`. Now you can install all dependency through the following commands:
-    ```
-    python3.12 -m pip install --upgrade pip \
-    && python3.12 -m pip install numpy scipy pybind11==2.12.0
-    ```
-    Now, each time you want to build or use SOFA, you first need to call `source /path/to/sofa-venv/bin/activate` to activate this virtual environment and get access to the dependencies. 
+  <li><strong>Boost</strong> (&gt;= 1.65.1)
+    <pre><code>brew install boost</code></pre>
+  </li>
 
-   
-    
--   **Additional libraries**: libPNG, libJPEG, libTIFF, Glew   
-    ```bash
-    brew install libpng libjpeg libtiff glew
-    ```
+  <li><strong>Python 3.12</strong> + pip + numpy + scipy
+    <pre><code>brew install python@3.12
+brew link --force python@3.12</code></pre>
+    Python 3.12 now favors the use of venv. We highly recommend it too. To bootstrap it, type <code>python3.12 -m venv sofa-venv</code> in the folder you want to keep this venv. We recommend creating it either in your home directory or in the folder containing both your sources and the build directory. Once created, you can activate it by calling <code>source /path/to/sofa-venv/bin/activate</code>. Now you can install all dependencies through the following commands:
+    <pre><code>python3.12 -m pip install --upgrade pip \
+&& python3.12 -m pip install numpy scipy pybind11==2.12.0</code></pre>
+    Now, each time you want to build or use SOFA, you first need to call <code>source /path/to/sofa-venv/bin/activate</code> to activate this virtual environment and get access to the dependencies.
+  </li>
 
--   **Eigen** (>= 3.2.10)  
-    ```bash
-    brew install eigen
-    ```
+  <li><strong>Additional libraries</strong>: libPNG, libJPEG, libTIFF, Glew
+    <pre><code>brew install libpng libjpeg libtiff glew</code></pre>
+  </li>
+
+  <li><strong>Eigen</strong> (&gt;= 3.2.10)
+    <pre><code>brew install eigen</code></pre>
+  </li>
+</ul>
 
 
 <h3>Plugins (optional)</h3>
-
-SOFA **plugins** depend on libraries that are available in the official repositories.  
-You probably don't need them all, but you might find it convenient to
-install them all and not worry about it later.  
+SOFA <strong>plugins</strong> depend on libraries that are available in the official repositories.<br>
+You probably don't need them all, but you might find it convenient to install them all and not worry about it later.<br>
 This list does not cover all available SOFA plugins, only the ones that are built by our continuous integration platform.
 
--  CGALPlugin  
-   ``` {.bash .optional}
-   brew install cgal
-   ```
--  SofaCUDA  
-   ``` {.bash .optional}
-   brew install homebrew/cask-drivers/nvidia-cuda
-   ```
+<ul>
+  <li><strong>CGALPlugin</strong>
+    <pre><code>brew install cgal</code></pre>
+  </li>
+  <li><strong>SofaCUDA</strong>
+    <pre><code>brew install homebrew/cask-drivers/nvidia-cuda</code></pre>
+  </li>
+</ul>
 
 
 <h2>Build SOFA</h2>
 
-
 <h3>Setup your source and build directories</h3>
-
-To set up clean repositories, we recommend to arrange the SOFA directories
-as follows:
-
-```
-sofa/
+To set up clean repositories, we recommend arranging the SOFA directories as follows:
+<pre><code>sofa/
 ├── build/
 │   ├── master/
 │   └── v25.12/
 └── src/
-    └── < SOFA sources here >
-```
+    └── &lt; SOFA sources here &gt;</code></pre>
 
-**First**, checkout the sources from Git repository:
+<strong>First</strong>, checkout the sources from the Git repository:
 
-Get the current **stable** version on the v25.12 branch:
-``` {.bash .stable}
-git clone -b v25.12 https://github.com/sofa-framework/sofa.git sofa/src
-```
+<h4>Get the current <strong>stable</strong> version on the v25.12 branch:</h4>
+<pre><code>git clone -b v25.12 https://github.com/sofa-framework/sofa.git sofa/src</code></pre>
 
-**OR** get the development **unstable** version on the master branch:
-``` {.bash .unstable}
-git clone -b master https://github.com/sofa-framework/sofa.git sofa/src
-```
+<h4><strong>OR</strong> get the development <strong>unstable</strong> version on the master branch:</h4>
+<pre><code>git clone -b master https://github.com/sofa-framework/sofa.git sofa/src</code></pre>
 
 
 <h3>Generate a Makefile with CMake</h3>
+<ol>
+  <li>Activate your venv:
+    <pre><code>source /path/to/sofa-venv/bin/activate</code></pre>
+    and tell CMake to look there to find pybind11:
+    <pre><code>export CMAKE_PREFIX_PATH=/path/to/sofa-venv/lib/python3.12/site-packages</code></pre>
+  </li>
 
-0. Activate your venv `source /path/to/sofa-venv/bin/activate` and tell CMake to look there to find pybind11 `export CMAKE_PREFIX_PATH=/path/to/sofa-venv/lib/python3.12/site-packages`
+  <li>Create build directories respecting the arrangement above.</li>
 
-1. Create build directories respecting the arrangement above.
+  <li>Run CMake.app and set source folder and build folder.</li>
 
-2. Run CMake.app and set source folder and build folder.
+  <li>Run <strong>Configure</strong>. A popup will ask you to specify the generator for the project.
+    <ul>
+      <li>If you installed <a href="#optional-ninja-build-system">Ninja</a> (recommended), select <code>CodeBlocks - Ninja</code>.</li>
+      <li>Otherwise, select <code>CodeBlocks - Unix Makefile</code>.</li>
+    </ul>
+  </li>
 
-3. Run **Configure**. A popup will ask you to specify the generator for the project.
+  <li>Keep <code>Use default native compilers</code> and press <code>Done</code>.</li>
 
-   - If you installed [Ninja](#optional-ninja-build-system) (recommended), select "CodeBlocks - Ninja".
-   - Otherwise, select "CodeBlocks - Unix Makefile".
+  <li>Fix eventual dependency errors by following CMake messages (see Troubleshoot section below). Do not worry about warnings.</li>
 
-4. Keep "Use default native compilers" and press "Done".
+  <li>Customize SOFA via CMake variables
+    <ul>
+      <li>choose the build type by setting <code>CMAKE_BUILD_TYPE</code> to <code>Release</code> or <code>RelWithDebInfo</code> (recommended) or <code>Debug</code></li>
+      <li>if your Mac has a M1 processor: set <code>CMAKE_OSX_ARCHITECTURES</code> to <code>arm64</code></li>
+      <li>activate or deactivate plugins: see <code>PLUGIN_XXX</code> variables</li>
+      <li>activate or deactivate functionalities: see <code>SOFA_XXX</code> variables</li>
+    </ul>
+    Do not forget to <strong>Configure</strong> again to check if your changes are valid.<br>
+    <em>NOTE</em>: here is an <a href="../activate-plugins/">exhaustive list of plugins</a> that can be activated for an in-tree compilation.
+  </li>
 
-5. Fix eventual dependency errors by following CMake messages (see Troubleshoot section below). Do not worry about warnings.
-
-6. Customize SOFA via CMake variables
-
-   - choose the build type by setting CMAKE_BUILD_TYPE to "Release" or "RelWithDebInfo" (recommended) or "Debug"
-   - if your Mac has a M1 processor: set CMAKE_OSX_ARCHITECTURES to "arm64"
-   - activate or deactivate plugins: see PLUGIN_XXX variables
-   - activate or deactivate functionalities: see SOFA_XXX variables
-   Do not forget to **Configure** again to check if your changes are valid.
-   **_NOTE_**: here is an [exhaustive list of plugins](../activate-plugins/) that can be activated for an in-tree compilation.
-
-7. When you are ready, run **Generate**.
+  <li>When you are ready, run <strong>Generate</strong>.</li>
+</ol>
 
 
 <h3>Compile</h3>
-
-To compile, open a terminal in your build directory and run `make` or `ninja` depending on the generator you chose during CMake configuration.  
-Do not forget the `-j` option to use all your CPU cores.
+To compile, open a terminal in your build directory and run <code>make</code> or <code>ninja</code> depending on the generator you chose during CMake configuration.<br>
+Do not forget the <code>-j</code> option to use all your CPU cores.
 
 Time for a coffee!
 
