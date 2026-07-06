@@ -329,6 +329,7 @@ Templates:
 - Vec3d,Edge
 - Vec3d,Hexahedron
 - Vec3d,Prism
+- Vec3d,Pyramid
 - Vec3d,Quad
 - Vec3d,Tetrahedron
 - Vec3d,Triangle

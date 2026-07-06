@@ -178,6 +178,7 @@ Templates:
 
 - Vec3d,Edge
 - Vec3d,Prism
+- Vec3d,Pyramid
 - Vec3d,Quad
 
 __Target__: Sofa.Component.SolidMechanics.FEM.Elastic
