@@ -1,6 +1,6 @@
 SOFA policy is to support only the latest Windows version.
 
-# Common prerequisits 
+# Common prerequisites 
 
 Two wolutions exist for building SOFA on your own windows environement. Both require to first install a C++17 compatible compiler. Here are the step to install MSVC.
 
