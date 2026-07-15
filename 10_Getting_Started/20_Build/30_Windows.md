@@ -30,7 +30,7 @@ You can download and build SOFA in only three steps without any more environment
 
 ## Prerequisites
 
-- Install build tools for windows (see previous step)
+- Install build tools for windows (see previous section)
 - [Install Git](https://git-scm.com/install/windows)
 - [Install Pixi](https://pixi.prefix.dev/latest/installation/)
 
