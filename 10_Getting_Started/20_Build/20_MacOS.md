@@ -129,14 +129,14 @@ To set up clean repositories, we recommend arranging the SOFA directories as fol
 <pre><code>sofa/
 ├── build/
 │   ├── master/
-│   └── v25.12/
+│   └── v26.06/
 └── src/
     └── &lt; SOFA sources here &gt;</code></pre>
 
 <strong>First</strong>, checkout the sources from the Git repository:
 
-<h4>Get the current <strong>stable</strong> version on the v25.12 branch:</h4>
-<pre><code>git clone -b v25.12 https://github.com/sofa-framework/sofa.git sofa/src</code></pre>
+<h4>Get the current <strong>stable</strong> version on the v26.06 branch:</h4>
+<pre><code>git clone -b v26.06 https://github.com/sofa-framework/sofa.git sofa/src</code></pre>
 
 <h4><strong>OR</strong> get the development <strong>unstable</strong> version on the master branch:</h4>
 <pre><code>git clone -b master https://github.com/sofa-framework/sofa.git sofa/src</code></pre>
