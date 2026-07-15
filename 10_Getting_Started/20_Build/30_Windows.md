@@ -1,20 +1,59 @@
 SOFA policy is to support only the latest Windows version.
 
+# Common prerequisites 
+
+Two wolutions exist for building SOFA on your own windows environement. Both require to first install a C++17 compatible compiler. Here are the step to install MSVC.
+
+## Compiler
+
+SOFA requires a [C++17 compatible compiler](https://en.cppreference.com/w/cpp/compiler_support#C.2B.2B17_features).  
+On Windows, we officially support **Microsoft Visual Studio >= 2017** (version 15.7).  
+If you want to use **Visual Studio IDE**, install the complete Visual Studio solution.  
+If you want to use **another IDE** (like QtCreator), install the Build Tools only.
+
+|                       |                                            **Visual Studio 2017**                                            |                                            **Visual Studio 2019**                                            |                                            **Visual Studio 2022**                                            |
+|-----------------------|:------------------------------------------------------------------------------------------------------------:|:------------------------------------------------------------------------------------------------------------:|:------------------------------------------------------------------------------------------------------------:|
+| **Build Tools only**  | [download](https://visualstudio.microsoft.com/fr/thank-you-downloading-visual-studio/?sku=BuildTools&rel=15) | [download](https://visualstudio.microsoft.com/fr/thank-you-downloading-visual-studio/?sku=BuildTools&rel=16) | [download](https://visualstudio.microsoft.com/fr/thank-you-downloading-visual-studio/?sku=BuildTools&rel=17) |
+| **IDE + Build Tools** | [download](https://visualstudio.microsoft.com/fr/thank-you-downloading-visual-studio/?sku=Community&rel=15)  | [download](https://visualstudio.microsoft.com/fr/thank-you-downloading-visual-studio/?sku=Community&rel=16)  | [download](https://visualstudio.microsoft.com/fr/thank-you-downloading-visual-studio/?sku=Community&rel=17)  |
+
+
+In the installer, you must enable:
+
+1. In the main panel: the **C++ development toolkit**, called "C++ Build Tools" or "Desktop C++".
+2. In the side panel: the **C++ ATL** and **C++ MFC** components.
+
+![](https://www.sofa-framework.org/wp-content/uploads/2020/03/install_vs_ide.png)
+
 # Installation with Pixi
 
-You can download and build SOFA in only three steps without any environment installation.
+You can download and build SOFA in only three steps without any more environment installation.
 
 ## Prerequisites
 
+- Install build tools for windows (see previous section)
 - [Install Git](https://git-scm.com/install/windows)
 - [Install Pixi](https://pixi.prefix.dev/latest/installation/)
 
 
 ## Installation steps
 
+
+
 - Clone SOFA : `git clone https://github.com/sofa-framework/sofa` :inbox_tray: 
 - Trigger the build : run `pixi run -e supported-plugins build` in the sofa source folder :desktop_computer: 
 - Launch SOFA : run `pixi run -e supported-plugins runSofa` :rocket: 
+
+
+## Troubleshoots
+These are some of the possible issue face using pixi for compiling SOFA. Launching `pixi run -e supported-plugins runSofa` will first gonfigure the cmake project, then build and install it. We know that issues can arise at the configure and build step.
+- **Configure step**: During the configure step some plugins are fetched using git. Some plugins (such as Regression) clone migh fail due to long reference names and paths. To fix that:
+  1. Activate pixi shell `pixi shell -e supported-plugins-dev`
+  2. Run the git command to enable long paths `git config --global core.longpaths true`
+  3. Exit the shell `exit` and re run `pixi run -e supported-plugins runSofa`
+- **Compile step**: This long path issue might also break the compilation. If strange errors stating that the artifact produced by compiler cannot be found then certainly this is your issue. To fix this there are multiple solutions
+  1. Enable long path on windows/ In an administrato powershell : `New-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Control\FileSystem" -Name "LongPathsEnabled" -Value 1 -PropertyType DWORD -Force`, then reboot. But this might not be enough. 
+  2. Clone sofa in the root of your volume e.g. under `C:\sofa` reducing all of the path handeled by the compiler.
+  3. If this is still not enough, pixi allow to define the environement path outside of your source dir. By modifying or creating `sofa\.pixi\config.toml` and adding this line `detached-environments = "C:\\pe"`. It will create the environement at the root of your volume, reducing even more the paths used by the compiler. 
 
 
 
@@ -26,46 +65,6 @@ You can download and build SOFA in only three steps without any environment inst
 <summary>This installation method is advised for developers. It is STRONGLY advised to read through this entire doc page before getting started.</summary>
 
 <h2>Build tools</h2>
-
-<h3>Compiler</h3>
-
-SOFA requires a <a href="https://en.cppreference.com/w/cpp/compiler_support#C.2B.2B17_features">C++17 compatible compiler</a>.<br>On Windows, we officially support <strong>Microsoft Visual Studio &gt;= 2017</strong> (version 15.7).<br>If you want to use <strong>Visual Studio IDE</strong>, install the complete Visual Studio solution.<br>If you want to use <strong>another IDE</strong> (like QtCreator), install the Build Tools only.
-
-<table>
-<thead>
-<tr>
-<th></th>
-<th style="text-align:center"><strong>Visual Studio 2017</strong></th>
-<th style="text-align:center"><strong>Visual Studio 2019</strong></th>
-<th style="text-align:center"><strong>Visual Studio 2022</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>Build Tools only</strong></td>
-<td style="text-align:center"><a href="https://visualstudio.microsoft.com/fr/thank-you-downloading-visual-studio/?sku=BuildTools&amp;rel=15">download</a></td>
-<td style="text-align:center"><a href="https://visualstudio.microsoft.com/fr/thank-you-downloading-visual-studio/?sku=BuildTools&amp;rel=16">download</a></td>
-<td style="text-align:center"><a href="https://visualstudio.microsoft.com/fr/thank-you-downloading-visual-studio/?sku=BuildTools&amp;rel=17">download</a></td>
-</tr>
-<tr>
-<td><strong>IDE + Build Tools</strong></td>
-<td style="text-align:center"><a href="https://visualstudio.microsoft.com/fr/thank-you-downloading-visual-studio/?sku=Community&amp;rel=15">download</a></td>
-<td style="text-align:center"><a href="https://visualstudio.microsoft.com/fr/thank-you-downloading-visual-studio/?sku=Community&amp;rel=16">download</a></td>
-<td style="text-align:center"><a href="https://visualstudio.microsoft.com/fr/thank-you-downloading-visual-studio/?sku=Community&amp;rel=17">download</a></td>
-</tr>
-</tbody>
-</table>
-
-
-In the installer, you must enable:
-
-<ol>
-<li>In the main panel: the <strong>C++ development toolkit</strong>, called &quot;C++ Build Tools&quot; or &quot;Desktop C++&quot;.</li>
-<li>In the side panel: the <strong>C++ ATL</strong> and <strong>C++ MFC</strong> components.</li>
-</ol>
-
-<img src="https://www.sofa-framework.org/wp-content/uploads/2020/03/install_vs_ide.png" alt="">
-
 
 <h3>CMake: Makefile generator</h3>
 
