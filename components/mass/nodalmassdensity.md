@@ -4,11 +4,10 @@
 Definition of a nodal mass density (one value per dof).
 
 
-## d
-
 Templates:
 
 - d
+- f
 
 __Target__: Sofa.Component.Mass
 

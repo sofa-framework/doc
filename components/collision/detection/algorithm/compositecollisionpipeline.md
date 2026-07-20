@@ -103,6 +103,168 @@ Parallelize collision detection.
 
 ## Examples 
 
+CompositeCollisionPipeline_none.scn
+
+=== "XML"
+
+    ```xml
+    <?xml version="1.0"?>
+    <Node name="root" dt="0.01">
+        <RequiredPlugin pluginName="Sofa.Component.Collision.Detection.Algorithm"/> <!-- Needed to use components [BruteForceBroadPhase,CollisionPipeline,RayTraceNarrowPhase] -->
+        <RequiredPlugin pluginName="Sofa.Component.Collision.Detection.Intersection"/> <!-- Needed to use components [NewProximityIntersection] -->
+        <RequiredPlugin pluginName="Sofa.Component.Collision.Geometry"/> <!-- Needed to use components [LineCollisionModel,PointCollisionModel,SphereCollisionModel,TriangleCollisionModel] -->
+        <RequiredPlugin pluginName="Sofa.Component.Collision.Response.Contact"/> <!-- Needed to use components [CollisionResponse] -->
+        <RequiredPlugin pluginName="Sofa.Component.IO.Mesh"/> <!-- Needed to use components [MeshOBJLoader] -->
+        <RequiredPlugin pluginName="Sofa.Component.LinearSolver.Iterative"/> <!-- Needed to use components [CGLinearSolver] -->
+        <RequiredPlugin pluginName="Sofa.Component.Mapping.Linear"/> <!-- Needed to use components [IdentityMapping] -->
+        <RequiredPlugin pluginName="Sofa.Component.Mass"/> <!-- Needed to use components [UniformMass] -->
+        <RequiredPlugin pluginName="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+        <RequiredPlugin pluginName="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
+        <RequiredPlugin pluginName="Sofa.Component.Topology.Container.Constant"/> <!-- Needed to use components [MeshTopology] -->
+        <RequiredPlugin pluginName="Sofa.Component.Visual"/> <!-- Needed to use components [VisualStyle] -->
+    
+        <DefaultAnimationLoop/>
+        
+        <CollisionPipeline />
+        <BruteForceBroadPhase/>
+        <BVHNarrowPhase/>
+        <NewProximityIntersection name="Proximity" alarmDistance="5" contactDistance="1" />
+        <CollisionResponse name="Response" response="PenalityContactForceField" />
+    
+        <VisualStyle displayFlags="showVisualModels hideBehaviorModels showCollisionModels hideMappings hideForceFields" />
+    
+        <MeshOBJLoader name="torus_loader" filename="mesh/torus.obj" />
+        <Node name="FixedTorusAndFallingSphere_1" >
+            <Node name="FallingSphere" >
+                <EulerImplicitSolver name="odesolver" />
+                <CGLinearSolver name="linear_solver" iterations="250"  tolerance="1.0e-9" threshold="1.0e-9" />
+    
+                <MechanicalObject name="rigid" template="Rigid3d" position="-5 10 0 0 0 0 1" />
+                <UniformMass totalMass="1.0" />
+                <Node name="Collision" >
+                    <MechanicalObject name="collision_rigid"/>
+                    <SphereCollisionModel name="sphere" radius="1" contactStiffness="1"/>
+                    <IdentityMapping input="@../rigid" output="@collision_rigid" />
+                </Node>
+            </Node>
+            <Node name="FixedTorus" >
+                <Node name="Collision" >
+                    <MechanicalObject name="collision_torus" src="@../../../torus_loader" translation="-5 0 0" scale3d="0.8 0.8 0.8"/>
+                    <MeshTopology name="topology" src="@../../../torus_loader"/>
+                    <TriangleCollisionModel simulated="0" moving="0" contactStiffness="1" />  
+                    <LineCollisionModel simulated="0" moving="0" contactStiffness="1" />
+                    <PointCollisionModel simulated="0" moving="0" contactStiffness="1" />
+                </Node>
+            </Node>
+        </Node>
+    
+        <Node name="FixedTorusAndFallingSphere_2" >
+            <Node name="FallingSphere" >
+                <EulerImplicitSolver name="odesolver" />
+                <CGLinearSolver name="linear_solver" iterations="250"  tolerance="1.0e-9" threshold="1.0e-9" />
+    
+                <MechanicalObject name="rigid" template="Rigid3d" position="5 10 0 0 0 0 1" />
+                <UniformMass totalMass="1.0" />
+                <Node name="Collision" >
+                    <MechanicalObject name="collision_rigid"/>
+                    <SphereCollisionModel name="sphere" radius="0.7" contactStiffness="1" />
+                    <IdentityMapping input="@../rigid" output="@collision_rigid" />
+                </Node>
+            </Node>
+            <Node name="FixedTorus" >
+                <Node name="Collision" >
+                    <MechanicalObject name="collision_torus" src="@../../../torus_loader" translation="5 0 0" scale3d="0.5 0.5 0.5"/>
+                    <MeshTopology name="topology" src="@../../../torus_loader"/>
+                    <TriangleCollisionModel simulated="0" moving="0" contactStiffness="1"/>  
+                    <LineCollisionModel simulated="0" moving="0" contactStiffness="1" />
+                    <PointCollisionModel simulated="0" moving="0" contactStiffness="1" />
+                </Node>
+            </Node>
+        </Node>
+    
+    </Node>
+
+    ```
+
+=== "Python"
+
+    ```python
+    def createScene(root_node):
+
+       root = root_node.addChild('root', dt="0.01")
+
+       root.addObject('RequiredPlugin', pluginName="Sofa.Component.Collision.Detection.Algorithm")
+       root.addObject('RequiredPlugin', pluginName="Sofa.Component.Collision.Detection.Intersection")
+       root.addObject('RequiredPlugin', pluginName="Sofa.Component.Collision.Geometry")
+       root.addObject('RequiredPlugin', pluginName="Sofa.Component.Collision.Response.Contact")
+       root.addObject('RequiredPlugin', pluginName="Sofa.Component.IO.Mesh")
+       root.addObject('RequiredPlugin', pluginName="Sofa.Component.LinearSolver.Iterative")
+       root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mapping.Linear")
+       root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mass")
+       root.addObject('RequiredPlugin', pluginName="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', pluginName="Sofa.Component.StateContainer")
+       root.addObject('RequiredPlugin', pluginName="Sofa.Component.Topology.Container.Constant")
+       root.addObject('RequiredPlugin', pluginName="Sofa.Component.Visual")
+       root.addObject('DefaultAnimationLoop', )
+       root.addObject('CollisionPipeline', )
+       root.addObject('BruteForceBroadPhase', )
+       root.addObject('BVHNarrowPhase', )
+       root.addObject('NewProximityIntersection', name="Proximity", alarmDistance="5", contactDistance="1")
+       root.addObject('CollisionResponse', name="Response", response="PenalityContactForceField")
+       root.addObject('VisualStyle', displayFlags="showVisualModels hideBehaviorModels showCollisionModels hideMappings hideForceFields")
+       root.addObject('MeshOBJLoader', name="torus_loader", filename="mesh/torus.obj")
+
+       fixed_torus_and_falling_sphere_1 = root.addChild('FixedTorusAndFallingSphere_1')
+
+       falling_sphere = FixedTorusAndFallingSphere_1.addChild('FallingSphere')
+
+       falling_sphere.addObject('EulerImplicitSolver', name="odesolver")
+       falling_sphere.addObject('CGLinearSolver', name="linear_solver", iterations="250", tolerance="1.0e-9", threshold="1.0e-9")
+       falling_sphere.addObject('MechanicalObject', name="rigid", template="Rigid3d", position="-5 10 0 0 0 0 1")
+       falling_sphere.addObject('UniformMass', totalMass="1.0")
+
+       collision = FallingSphere.addChild('Collision')
+
+       collision.addObject('MechanicalObject', name="collision_rigid")
+       collision.addObject('SphereCollisionModel', name="sphere", radius="1", contactStiffness="1")
+       collision.addObject('IdentityMapping', input="@../rigid", output="@collision_rigid")
+
+       fixed_torus = FixedTorusAndFallingSphere_1.addChild('FixedTorus')
+
+       collision = FixedTorus.addChild('Collision')
+
+       collision.addObject('MechanicalObject', name="collision_torus", src="@../../../torus_loader", translation="-5 0 0", scale3d="0.8 0.8 0.8")
+       collision.addObject('MeshTopology', name="topology", src="@../../../torus_loader")
+       collision.addObject('TriangleCollisionModel', simulated="0", moving="0", contactStiffness="1")
+       collision.addObject('LineCollisionModel', simulated="0", moving="0", contactStiffness="1")
+       collision.addObject('PointCollisionModel', simulated="0", moving="0", contactStiffness="1")
+
+       fixed_torus_and_falling_sphere_2 = root.addChild('FixedTorusAndFallingSphere_2')
+
+       falling_sphere = FixedTorusAndFallingSphere_2.addChild('FallingSphere')
+
+       falling_sphere.addObject('EulerImplicitSolver', name="odesolver")
+       falling_sphere.addObject('CGLinearSolver', name="linear_solver", iterations="250", tolerance="1.0e-9", threshold="1.0e-9")
+       falling_sphere.addObject('MechanicalObject', name="rigid", template="Rigid3d", position="5 10 0 0 0 0 1")
+       falling_sphere.addObject('UniformMass', totalMass="1.0")
+
+       collision = FallingSphere.addChild('Collision')
+
+       collision.addObject('MechanicalObject', name="collision_rigid")
+       collision.addObject('SphereCollisionModel', name="sphere", radius="0.7", contactStiffness="1")
+       collision.addObject('IdentityMapping', input="@../rigid", output="@collision_rigid")
+
+       fixed_torus = FixedTorusAndFallingSphere_2.addChild('FixedTorus')
+
+       collision = FixedTorus.addChild('Collision')
+
+       collision.addObject('MechanicalObject', name="collision_torus", src="@../../../torus_loader", translation="5 0 0", scale3d="0.5 0.5 0.5")
+       collision.addObject('MeshTopology', name="topology", src="@../../../torus_loader")
+       collision.addObject('TriangleCollisionModel', simulated="0", moving="0", contactStiffness="1")
+       collision.addObject('LineCollisionModel', simulated="0", moving="0", contactStiffness="1")
+       collision.addObject('PointCollisionModel', simulated="0", moving="0", contactStiffness="1")
+    ```
+
 CompositeCollisionPipeline.scn
 
 === "XML"
@@ -291,167 +453,5 @@ CompositeCollisionPipeline.scn
        root.addObject('CollisionResponse', name="response_small", response="PenalityContactForceField")
        root.addObject('SubCollisionPipeline', name="collision_pipeline_small", collisionModels="@FixedTorusAndFallingSphere_2/FallingSphere/Collision/sphere          @FixedTorusAndFallingSphere_2/FixedTorus/Collision/triangle_collision @FixedTorusAndFallingSphere_2/FixedTorus/Collision/line_collision @FixedTorusAndFallingSphere_2/FixedTorus/Collision/point_collision", broadPhaseDetection="@broad_phase_small", narrowPhaseDetection="@narrow_phase_small", intersectionMethod="@intersection_small", contactManager="@response_small")
        root.addObject('CompositeCollisionPipeline', name="composite_pipeline", subCollisionPipelines="@collision_pipeline_large @collision_pipeline_small")
-    ```
-
-CompositeCollisionPipeline_none.scn
-
-=== "XML"
-
-    ```xml
-    <?xml version="1.0"?>
-    <Node name="root" dt="0.01">
-        <RequiredPlugin pluginName="Sofa.Component.Collision.Detection.Algorithm"/> <!-- Needed to use components [BruteForceBroadPhase,CollisionPipeline,RayTraceNarrowPhase] -->
-        <RequiredPlugin pluginName="Sofa.Component.Collision.Detection.Intersection"/> <!-- Needed to use components [NewProximityIntersection] -->
-        <RequiredPlugin pluginName="Sofa.Component.Collision.Geometry"/> <!-- Needed to use components [LineCollisionModel,PointCollisionModel,SphereCollisionModel,TriangleCollisionModel] -->
-        <RequiredPlugin pluginName="Sofa.Component.Collision.Response.Contact"/> <!-- Needed to use components [CollisionResponse] -->
-        <RequiredPlugin pluginName="Sofa.Component.IO.Mesh"/> <!-- Needed to use components [MeshOBJLoader] -->
-        <RequiredPlugin pluginName="Sofa.Component.LinearSolver.Iterative"/> <!-- Needed to use components [CGLinearSolver] -->
-        <RequiredPlugin pluginName="Sofa.Component.Mapping.Linear"/> <!-- Needed to use components [IdentityMapping] -->
-        <RequiredPlugin pluginName="Sofa.Component.Mass"/> <!-- Needed to use components [UniformMass] -->
-        <RequiredPlugin pluginName="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
-        <RequiredPlugin pluginName="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
-        <RequiredPlugin pluginName="Sofa.Component.Topology.Container.Constant"/> <!-- Needed to use components [MeshTopology] -->
-        <RequiredPlugin pluginName="Sofa.Component.Visual"/> <!-- Needed to use components [VisualStyle] -->
-    
-        <DefaultAnimationLoop/>
-        
-        <CollisionPipeline />
-        <BruteForceBroadPhase/>
-        <BVHNarrowPhase/>
-        <NewProximityIntersection name="Proximity" alarmDistance="5" contactDistance="1" />
-        <CollisionResponse name="Response" response="PenalityContactForceField" />
-    
-        <VisualStyle displayFlags="showVisualModels hideBehaviorModels showCollisionModels hideMappings hideForceFields" />
-    
-        <MeshOBJLoader name="torus_loader" filename="mesh/torus.obj" />
-        <Node name="FixedTorusAndFallingSphere_1" >
-            <Node name="FallingSphere" >
-                <EulerImplicitSolver name="odesolver" />
-                <CGLinearSolver name="linear_solver" iterations="250"  tolerance="1.0e-9" threshold="1.0e-9" />
-    
-                <MechanicalObject name="rigid" template="Rigid3d" position="-5 10 0 0 0 0 1" />
-                <UniformMass totalMass="1.0" />
-                <Node name="Collision" >
-                    <MechanicalObject name="collision_rigid"/>
-                    <SphereCollisionModel name="sphere" radius="1" contactStiffness="1"/>
-                    <IdentityMapping input="@../rigid" output="@collision_rigid" />
-                </Node>
-            </Node>
-            <Node name="FixedTorus" >
-                <Node name="Collision" >
-                    <MechanicalObject name="collision_torus" src="@../../../torus_loader" translation="-5 0 0" scale3d="0.8 0.8 0.8"/>
-                    <MeshTopology name="topology" src="@../../../torus_loader"/>
-                    <TriangleCollisionModel simulated="0" moving="0" contactStiffness="1" />  
-                    <LineCollisionModel simulated="0" moving="0" contactStiffness="1" />
-                    <PointCollisionModel simulated="0" moving="0" contactStiffness="1" />
-                </Node>
-            </Node>
-        </Node>
-    
-        <Node name="FixedTorusAndFallingSphere_2" >
-            <Node name="FallingSphere" >
-                <EulerImplicitSolver name="odesolver" />
-                <CGLinearSolver name="linear_solver" iterations="250"  tolerance="1.0e-9" threshold="1.0e-9" />
-    
-                <MechanicalObject name="rigid" template="Rigid3d" position="5 10 0 0 0 0 1" />
-                <UniformMass totalMass="1.0" />
-                <Node name="Collision" >
-                    <MechanicalObject name="collision_rigid"/>
-                    <SphereCollisionModel name="sphere" radius="0.7" contactStiffness="1" />
-                    <IdentityMapping input="@../rigid" output="@collision_rigid" />
-                </Node>
-            </Node>
-            <Node name="FixedTorus" >
-                <Node name="Collision" >
-                    <MechanicalObject name="collision_torus" src="@../../../torus_loader" translation="5 0 0" scale3d="0.5 0.5 0.5"/>
-                    <MeshTopology name="topology" src="@../../../torus_loader"/>
-                    <TriangleCollisionModel simulated="0" moving="0" contactStiffness="1"/>  
-                    <LineCollisionModel simulated="0" moving="0" contactStiffness="1" />
-                    <PointCollisionModel simulated="0" moving="0" contactStiffness="1" />
-                </Node>
-            </Node>
-        </Node>
-    
-    </Node>
-
-    ```
-
-=== "Python"
-
-    ```python
-    def createScene(root_node):
-
-       root = root_node.addChild('root', dt="0.01")
-
-       root.addObject('RequiredPlugin', pluginName="Sofa.Component.Collision.Detection.Algorithm")
-       root.addObject('RequiredPlugin', pluginName="Sofa.Component.Collision.Detection.Intersection")
-       root.addObject('RequiredPlugin', pluginName="Sofa.Component.Collision.Geometry")
-       root.addObject('RequiredPlugin', pluginName="Sofa.Component.Collision.Response.Contact")
-       root.addObject('RequiredPlugin', pluginName="Sofa.Component.IO.Mesh")
-       root.addObject('RequiredPlugin', pluginName="Sofa.Component.LinearSolver.Iterative")
-       root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mapping.Linear")
-       root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mass")
-       root.addObject('RequiredPlugin', pluginName="Sofa.Component.ODESolver.Backward")
-       root.addObject('RequiredPlugin', pluginName="Sofa.Component.StateContainer")
-       root.addObject('RequiredPlugin', pluginName="Sofa.Component.Topology.Container.Constant")
-       root.addObject('RequiredPlugin', pluginName="Sofa.Component.Visual")
-       root.addObject('DefaultAnimationLoop', )
-       root.addObject('CollisionPipeline', )
-       root.addObject('BruteForceBroadPhase', )
-       root.addObject('BVHNarrowPhase', )
-       root.addObject('NewProximityIntersection', name="Proximity", alarmDistance="5", contactDistance="1")
-       root.addObject('CollisionResponse', name="Response", response="PenalityContactForceField")
-       root.addObject('VisualStyle', displayFlags="showVisualModels hideBehaviorModels showCollisionModels hideMappings hideForceFields")
-       root.addObject('MeshOBJLoader', name="torus_loader", filename="mesh/torus.obj")
-
-       fixed_torus_and_falling_sphere_1 = root.addChild('FixedTorusAndFallingSphere_1')
-
-       falling_sphere = FixedTorusAndFallingSphere_1.addChild('FallingSphere')
-
-       falling_sphere.addObject('EulerImplicitSolver', name="odesolver")
-       falling_sphere.addObject('CGLinearSolver', name="linear_solver", iterations="250", tolerance="1.0e-9", threshold="1.0e-9")
-       falling_sphere.addObject('MechanicalObject', name="rigid", template="Rigid3d", position="-5 10 0 0 0 0 1")
-       falling_sphere.addObject('UniformMass', totalMass="1.0")
-
-       collision = FallingSphere.addChild('Collision')
-
-       collision.addObject('MechanicalObject', name="collision_rigid")
-       collision.addObject('SphereCollisionModel', name="sphere", radius="1", contactStiffness="1")
-       collision.addObject('IdentityMapping', input="@../rigid", output="@collision_rigid")
-
-       fixed_torus = FixedTorusAndFallingSphere_1.addChild('FixedTorus')
-
-       collision = FixedTorus.addChild('Collision')
-
-       collision.addObject('MechanicalObject', name="collision_torus", src="@../../../torus_loader", translation="-5 0 0", scale3d="0.8 0.8 0.8")
-       collision.addObject('MeshTopology', name="topology", src="@../../../torus_loader")
-       collision.addObject('TriangleCollisionModel', simulated="0", moving="0", contactStiffness="1")
-       collision.addObject('LineCollisionModel', simulated="0", moving="0", contactStiffness="1")
-       collision.addObject('PointCollisionModel', simulated="0", moving="0", contactStiffness="1")
-
-       fixed_torus_and_falling_sphere_2 = root.addChild('FixedTorusAndFallingSphere_2')
-
-       falling_sphere = FixedTorusAndFallingSphere_2.addChild('FallingSphere')
-
-       falling_sphere.addObject('EulerImplicitSolver', name="odesolver")
-       falling_sphere.addObject('CGLinearSolver', name="linear_solver", iterations="250", tolerance="1.0e-9", threshold="1.0e-9")
-       falling_sphere.addObject('MechanicalObject', name="rigid", template="Rigid3d", position="5 10 0 0 0 0 1")
-       falling_sphere.addObject('UniformMass', totalMass="1.0")
-
-       collision = FallingSphere.addChild('Collision')
-
-       collision.addObject('MechanicalObject', name="collision_rigid")
-       collision.addObject('SphereCollisionModel', name="sphere", radius="0.7", contactStiffness="1")
-       collision.addObject('IdentityMapping', input="@../rigid", output="@collision_rigid")
-
-       fixed_torus = FixedTorusAndFallingSphere_2.addChild('FixedTorus')
-
-       collision = FixedTorus.addChild('Collision')
-
-       collision.addObject('MechanicalObject', name="collision_torus", src="@../../../torus_loader", translation="5 0 0", scale3d="0.5 0.5 0.5")
-       collision.addObject('MeshTopology', name="topology", src="@../../../torus_loader")
-       collision.addObject('TriangleCollisionModel', simulated="0", moving="0", contactStiffness="1")
-       collision.addObject('LineCollisionModel', simulated="0", moving="0", contactStiffness="1")
-       collision.addObject('PointCollisionModel', simulated="0", moving="0", contactStiffness="1")
     ```
 

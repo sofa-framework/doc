@@ -177,13 +177,6 @@ pairs of curv abs for beams we want to rigidify
 		<td></td>
 	</tr>
 	<tr>
-		<td>motionFilename</td>
-		<td>
-text file that includes tracked motion from optical sensor
-		</td>
-		<td></td>
-	</tr>
-	<tr>
 		<td>indexFirstNode</td>
 		<td>
 first node (should be fixed with restshape)
