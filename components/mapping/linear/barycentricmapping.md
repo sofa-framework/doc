@@ -1565,7 +1565,7 @@ BarycentricMapping.scn
        surf2.addObject('RigidMapping', )
     ```
 
-BarycentricMapping_meshtopology.scn
+BarycentricMapping_sparsegrid.scn
 
 === "XML"
 
@@ -1594,15 +1594,10 @@ BarycentricMapping_meshtopology.scn
         <DefaultAnimationLoop computeBoundingBox="false" />
         <MeshOBJLoader name="meshLoader" triangulate="true" filename="mesh/raptor_35kp.obj" />
     
-        <Node name="data">
-            <SparseGridTopology n="10 5 10" name="topology" fileTopology="@../meshLoader.filename" />
-            <MechanicalObject name="DOFs" template="Vec3" />
-        </Node>
-    
         <Node name="raptor">
             <EulerImplicitSolver rayleighStiffness="0.2" rayleighMass="0.2" />
             <SparseLDLSolver template="CompressedRowSparseMatrixd"/>
-            <MeshTopology hexahedra="@../data/topology.hexahedra" />
+            <SparseGridTopology n="10 5 10" name="topology" fileTopology="@../meshLoader.filename" />
             <MechanicalObject name="DOFs" template="Vec3" position="@../data/DOFs.position"/>
             <UniformMass totalMass="1.005"/>
             <TetrahedronFEMForceField name="FEM" youngModulus="500" poissonRatio='0.3' />
@@ -1610,7 +1605,7 @@ BarycentricMapping_meshtopology.scn
             <BoxROI name='ROI1' box='-5 -1 -3  5 1 3' drawBoxes='true'/>
             <FixedProjectiveConstraint indices="@ROI1.indices" />
     
-            <Node name="Collision">
+              <Node name="Collision">
                 <MechanicalObject name="collisMecha" src="@../../meshLoader" />
                 <TriangleSetTopologyContainer src="@../../meshLoader" />
                 <TriangleCollisionModel />
@@ -1658,16 +1653,11 @@ BarycentricMapping_meshtopology.scn
        root.addObject('DefaultAnimationLoop', computeBoundingBox="false")
        root.addObject('MeshOBJLoader', name="meshLoader", triangulate="true", filename="mesh/raptor_35kp.obj")
 
-       data = root.addChild('data')
-
-       data.addObject('SparseGridTopology', n="10 5 10", name="topology", fileTopology="@../meshLoader.filename")
-       data.addObject('MechanicalObject', name="DOFs", template="Vec3")
-
        raptor = root.addChild('raptor')
 
        raptor.addObject('EulerImplicitSolver', rayleighStiffness="0.2", rayleighMass="0.2")
        raptor.addObject('SparseLDLSolver', template="CompressedRowSparseMatrixd")
-       raptor.addObject('MeshTopology', hexahedra="@../data/topology.hexahedra")
+       raptor.addObject('SparseGridTopology', n="10 5 10", name="topology", fileTopology="@../meshLoader.filename")
        raptor.addObject('MechanicalObject', name="DOFs", template="Vec3", position="@../data/DOFs.position")
        raptor.addObject('UniformMass', totalMass="1.005")
        raptor.addObject('TetrahedronFEMForceField', name="FEM", youngModulus="500", poissonRatio="0.3")
@@ -1815,7 +1805,7 @@ BarycentricMapping_topologycontainer.scn
        visualization.addObject('BarycentricMapping', )
     ```
 
-BarycentricMapping_sparsegrid.scn
+BarycentricMapping_meshtopology.scn
 
 === "XML"
 
@@ -1844,10 +1834,15 @@ BarycentricMapping_sparsegrid.scn
         <DefaultAnimationLoop computeBoundingBox="false" />
         <MeshOBJLoader name="meshLoader" triangulate="true" filename="mesh/raptor_35kp.obj" />
     
+        <Node name="data">
+            <SparseGridTopology n="10 5 10" name="topology" fileTopology="@../meshLoader.filename" />
+            <MechanicalObject name="DOFs" template="Vec3" />
+        </Node>
+    
         <Node name="raptor">
             <EulerImplicitSolver rayleighStiffness="0.2" rayleighMass="0.2" />
             <SparseLDLSolver template="CompressedRowSparseMatrixd"/>
-            <SparseGridTopology n="10 5 10" name="topology" fileTopology="@../meshLoader.filename" />
+            <MeshTopology hexahedra="@../data/topology.hexahedra" />
             <MechanicalObject name="DOFs" template="Vec3" position="@../data/DOFs.position"/>
             <UniformMass totalMass="1.005"/>
             <TetrahedronFEMForceField name="FEM" youngModulus="500" poissonRatio='0.3' />
@@ -1855,7 +1850,7 @@ BarycentricMapping_sparsegrid.scn
             <BoxROI name='ROI1' box='-5 -1 -3  5 1 3' drawBoxes='true'/>
             <FixedProjectiveConstraint indices="@ROI1.indices" />
     
-              <Node name="Collision">
+            <Node name="Collision">
                 <MechanicalObject name="collisMecha" src="@../../meshLoader" />
                 <TriangleSetTopologyContainer src="@../../meshLoader" />
                 <TriangleCollisionModel />
@@ -1903,11 +1898,16 @@ BarycentricMapping_sparsegrid.scn
        root.addObject('DefaultAnimationLoop', computeBoundingBox="false")
        root.addObject('MeshOBJLoader', name="meshLoader", triangulate="true", filename="mesh/raptor_35kp.obj")
 
+       data = root.addChild('data')
+
+       data.addObject('SparseGridTopology', n="10 5 10", name="topology", fileTopology="@../meshLoader.filename")
+       data.addObject('MechanicalObject', name="DOFs", template="Vec3")
+
        raptor = root.addChild('raptor')
 
        raptor.addObject('EulerImplicitSolver', rayleighStiffness="0.2", rayleighMass="0.2")
        raptor.addObject('SparseLDLSolver', template="CompressedRowSparseMatrixd")
-       raptor.addObject('SparseGridTopology', n="10 5 10", name="topology", fileTopology="@../meshLoader.filename")
+       raptor.addObject('MeshTopology', hexahedra="@../data/topology.hexahedra")
        raptor.addObject('MechanicalObject', name="DOFs", template="Vec3", position="@../data/DOFs.position")
        raptor.addObject('UniformMass', totalMass="1.005")
        raptor.addObject('TetrahedronFEMForceField', name="FEM", youngModulus="500", poissonRatio="0.3")

@@ -78,6 +78,7 @@ No matter what mechanism you use (fetch or local clone), you will still need to 
 |[Sofa.Metis](https://www.github.com/sofa-framework/Sofa.Metis.git)|Plugin adding METIS-based ordering method for SOFA's linear solvers. |CMake flags `SOFA_FETCH_SOFA_METIS=ON` and `PLUGIN_SOFA_METIS=ON`. Activated in presets ['full', 'supported-plugins']. |
 |[Sofa.Qt](https://www.github.com/sofa-framework/Sofa.Qt.git)|Plugin containing Qt-based GUI for SOFA. |CMake flags `SOFA_FETCH_SOFA_QT=ON` and `PLUGIN_SOFA_QT=ON`. |
 |[SofaAssimp](https://www.github.com/sofa-framework/SofaAssimp.git)|External Plugin named SofaAssimp that needs to be fetched.|CMake flags `SOFA_FETCH_SOFAASSIMP=ON` and `PLUGIN_SOFAASSIMP=ON`. |
+|[SofaCHOLMOD](https://github.com/sofa-framework/sofa/tree/master/applications/plugins/SofaCHOLMOD)|Plugin named SofaCHOLMOD.|CMake flag `PLUGIN_SOFACHOLMOD=ON`. |
 |[SofaCUDA](https://github.com/sofa-framework/sofa/tree/master/applications/plugins/SofaCUDA)|Plugin that provides a number of SOFA components that have been re-implemented using CUDA. |CMake flag `PLUGIN_SOFACUDA=ON`. Activated in presets ['full', 'supported-plugins']. |
 |[SofaCarving](https://github.com/sofa-framework/sofa/tree/master/applications/plugins/SofaCarving)|Plugin named SofaCarving.|CMake flag `PLUGIN_SOFACARVING=ON`. Activated in presets ['full']. |
 |[SofaDistanceGrid](https://github.com/sofa-framework/sofa/tree/master/applications/plugins/SofaDistanceGrid)|Plugin named SofaDistanceGrid.|CMake flag `PLUGIN_SOFADISTANCEGRID=ON`. Activated in presets ['full', 'supported-plugins']. |

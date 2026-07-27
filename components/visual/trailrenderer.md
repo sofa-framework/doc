@@ -96,9 +96,9 @@ Number of time steps to use to render the trail
 	<tr>
 		<td>color</td>
 		<td>
-Color of the trail
+Color map of the trail
 		</td>
-		<td>0 1 0 1</td>
+		<td>#00ff00ff #00ff00ff</td>
 	</tr>
 	<tr>
 		<td>thickness</td>
@@ -147,7 +147,7 @@ TrailRenderer.scn
                           position="0 0 0  0 0 0  0 0 0  0 0 0"
                           velocity="5 5 0  -5 5 0  7 7 0  -7 7 0" showObject="true" showObjectScale="10"/>
         <UniformMass totalMass="1.0"/>
-        <TrailRenderer template="Vec3" position="@particle.position" nbSteps="200"/>
+        <TrailRenderer template="Vec3" position="@particle.position" nbSteps="200" color="HSV" thickness="10"/>
     </Node>
 
     ```
@@ -173,6 +173,6 @@ TrailRenderer.scn
        root.addObject('EulerExplicitSolver', )
        root.addObject('MechanicalObject', template="Vec3", name="particle", position="0 0 0  0 0 0  0 0 0  0 0 0", velocity="5 5 0  -5 5 0  7 7 0  -7 7 0", showObject="true", showObjectScale="10")
        root.addObject('UniformMass', totalMass="1.0")
-       root.addObject('TrailRenderer', template="Vec3", position="@particle.position", nbSteps="200")
+       root.addObject('TrailRenderer', template="Vec3", position="@particle.position", nbSteps="200", color="HSV", thickness="10")
     ```
 

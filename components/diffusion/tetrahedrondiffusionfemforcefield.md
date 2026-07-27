@@ -422,21 +422,23 @@ TetrahedronDiffusionFEMForceField.scn
 
     ```xml
     <Node name="root" dt="0.00001" gravity="0 0 0" >
-        <RequiredPlugin pluginName="Sofa.Component.Constraint.Projective"/> <!-- Needed to use components [LinearMovementProjectiveConstraint] -->
-        <RequiredPlugin pluginName="Sofa.Component.Diffusion"/> <!-- Needed to use components [TetrahedronDiffusionFEMForceField] -->
-        <RequiredPlugin pluginName="Sofa.Component.Engine.Select"/> <!-- Needed to use components [BoxROI] -->
-        <RequiredPlugin pluginName="Sofa.Component.IO.Mesh"/> <!-- Needed to use components [MeshOBJLoader MeshVTKLoader] -->
-        <RequiredPlugin pluginName="Sofa.Component.LinearSolver.Iterative"/> <!-- Needed to use components [CGLinearSolver] -->
-        <RequiredPlugin pluginName="Sofa.Component.Mapping.Linear"/> <!-- Needed to use components [IdentityMapping] -->
-        <RequiredPlugin pluginName="Sofa.Component.Mass"/> <!-- Needed to use components [MeshMatrixMass] -->
-        <RequiredPlugin pluginName="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
-        <RequiredPlugin pluginName="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
-        <RequiredPlugin pluginName="Sofa.Component.Topology.Container.Dynamic"/> <!-- Needed to use components [TetrahedronSetGeometryAlgorithms TetrahedronSetTopologyContainer TetrahedronSetTopologyModifier] -->
-        <RequiredPlugin pluginName="Sofa.Component.Visual"/> <!-- Needed to use components [VisualStyle] -->
-        <RequiredPlugin pluginName="Sofa.GL.Component.Engine"/> <!-- Needed to use components [TextureInterpolation] -->
-        <RequiredPlugin pluginName="Sofa.GL.Component.Rendering3D"/> <!-- Needed to use components [OglModel] -->
+        <Node name="plugins">
+            <RequiredPlugin pluginName="Sofa.Component.Constraint.Projective"/> <!-- Needed to use components [LinearMovementProjectiveConstraint] -->
+            <RequiredPlugin pluginName="Sofa.Component.Diffusion"/> <!-- Needed to use components [TetrahedronDiffusionFEMForceField] -->
+            <RequiredPlugin pluginName="Sofa.Component.Engine.Select"/> <!-- Needed to use components [BoxROI] -->
+            <RequiredPlugin pluginName="Sofa.Component.IO.Mesh"/> <!-- Needed to use components [MeshOBJLoader MeshVTKLoader] -->
+            <RequiredPlugin pluginName="Sofa.Component.LinearSolver.Iterative"/> <!-- Needed to use components [CGLinearSolver] -->
+            <RequiredPlugin pluginName="Sofa.Component.Mapping.Linear"/> <!-- Needed to use components [IdentityMapping] -->
+            <RequiredPlugin pluginName="Sofa.Component.Mass"/> <!-- Needed to use components [MeshMatrixMass] -->
+            <RequiredPlugin pluginName="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+            <RequiredPlugin pluginName="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
+            <RequiredPlugin pluginName="Sofa.Component.Topology.Container.Dynamic"/> <!-- Needed to use components [TetrahedronSetGeometryAlgorithms TetrahedronSetTopologyContainer TetrahedronSetTopologyModifier] -->
+            <RequiredPlugin pluginName="Sofa.Component.Visual"/> <!-- Needed to use components [VisualStyle] -->
+            <RequiredPlugin pluginName="Sofa.GL.Component.Engine"/> <!-- Needed to use components [TextureInterpolation] -->
+            <RequiredPlugin pluginName="Sofa.GL.Component.Rendering3D"/> <!-- Needed to use components [OglModel] -->
+        </Node>
     
-        <VisualStyle displayFlags="showBehaviorModels"/>
+        <VisualStyle displayFlags="showVisualModels"/>
     
         <MeshVTKLoader name="meshLoader" filename="mesh/raptorTetra_8418.vtu" />
         <MeshOBJLoader name="potentialLoader" filename="mesh/raptorTemperature.obj" />
@@ -455,17 +457,24 @@ TetrahedronDiffusionFEMForceField.scn
             <EulerImplicitSolver name="EulerExplicitSolver" firstOrder="1" tags="heat" rayleighStiffness="0.1" rayleighMass="0.1" />
             <CGLinearSolver name="CG" iterations="1000" tolerance="1.0e-10" threshold="1.0e-30" tags="heat"/>
             <MechanicalObject template="Vec1" position="@../potentialLoader.position"  name="gridTemperature" bbox="0 0 0 0 0 0" tags="heat"/>
-            <TetrahedronDiffusionFEMForceField template="Vec1" name="DiffusionForceField" topology="@../topo" constantDiffusionCoefficient="1500" printLog="0" drawConduc="0" tagMechanics="mechanics" tags="heat"/>
+            <TetrahedronDiffusionFEMForceField template="Vec1" name="DiffusionForceField" topology="@../topo"
+                                               constantDiffusionCoefficient="1500" printLog="0" drawConduc="0"
+                                               tagMechanics="mechanics" tags="heat"/>
             <MeshMatrixMass name="Mass" template="Vec1,Vec3" lumping="0" massDensity="1.0" printLog="0" tags="heat" topology="@../topo" geometryState="@../raptorDOFs"/>
     
             <LinearMovementProjectiveConstraint template="Vec1" keyTimes="0 0.005 0.006" movements="0 0 1" indices="@../box-cold.indices" />
             <LinearMovementProjectiveConstraint template="Vec1" keyTimes="0.001 0.002 0.004 0.005 0.006" movements="0 1 0.5 1 0" indices="@../box-hot.indices" />
     
-            <Node name="Visu">
-                <TextureInterpolation template="Vec1" name="EngineInterpolation"  input_states="@../gridTemperature.position"  input_coordinates="@../../raptorDOFs.position"  min_value="0.0"  max_value="1.0"  manual_scale="1"  drawPotentiels="0"  showIndicesScale="5e-05" />
-                <OglModel template="Vec3" name="oglPotentiel" texcoords="@EngineInterpolation.output_coordinates" handleDynamicTopology="0" texturename="textures/heatColor.bmp" scale3d="1 1 1"  material="Default Diffuse 1 1 1 1 0.5 Ambient 1 1 1 1 0.3 Specular 0 0.5 0.5 0.5 1 Emissive 0 0.5 0.5 0.5 1 Shininess 0 45 No texture linked to the material No bump texture linked to the material "/>
-                <IdentityMapping input="@../../raptorDOFs" output="@oglPotentiel" />
-            </Node>
+            <!-- color palette: https://coolors.co/palette/f94144-f3722c-f8961e-f9844a-f9c74f-90be6d-43aa8b-4d908e-577590-277da1 -->
+            <VisualMesh position="@../raptorDOFs.position" elementSpace="0.2" lighting="true"
+                        vertexValues="@gridTemperature.position"
+                        colorMap="#277DA1 #577590 #4D908E #43AA8B #90BE6D #F9C74F #F9844A #F8961E #F3722C #F94144"/>
+    
+    <!--        <Node name="Visu">-->
+    <!--            <TextureInterpolation template="Vec1" name="EngineInterpolation"  input_states="@../gridTemperature.position"  input_coordinates="@../../raptorDOFs.position"  min_value="0.0"  max_value="1.0"  manual_scale="1"  drawPotentiels="0"  showIndicesScale="5e-05" />-->
+    <!--            <OglModel template="Vec3" name="oglPotentiel" texcoords="@EngineInterpolation.output_coordinates" handleDynamicTopology="0" texturename="textures/heatColor.bmp" scale3d="1 1 1"  material="Default Diffuse 1 1 1 1 0.5 Ambient 1 1 1 1 0.3 Specular 0 0.5 0.5 0.5 1 Emissive 0 0.5 0.5 0.5 1 Shininess 0 45 No texture linked to the material No bump texture linked to the material "/>-->
+    <!--            <IdentityMapping input="@../../raptorDOFs" output="@oglPotentiel" />-->
+    <!--        </Node>-->
         </Node>
     </Node>
 
@@ -478,20 +487,23 @@ TetrahedronDiffusionFEMForceField.scn
 
        root = root_node.addChild('root', dt="0.00001", gravity="0 0 0")
 
-       root.addObject('RequiredPlugin', pluginName="Sofa.Component.Constraint.Projective")
-       root.addObject('RequiredPlugin', pluginName="Sofa.Component.Diffusion")
-       root.addObject('RequiredPlugin', pluginName="Sofa.Component.Engine.Select")
-       root.addObject('RequiredPlugin', pluginName="Sofa.Component.IO.Mesh")
-       root.addObject('RequiredPlugin', pluginName="Sofa.Component.LinearSolver.Iterative")
-       root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mapping.Linear")
-       root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mass")
-       root.addObject('RequiredPlugin', pluginName="Sofa.Component.ODESolver.Backward")
-       root.addObject('RequiredPlugin', pluginName="Sofa.Component.StateContainer")
-       root.addObject('RequiredPlugin', pluginName="Sofa.Component.Topology.Container.Dynamic")
-       root.addObject('RequiredPlugin', pluginName="Sofa.Component.Visual")
-       root.addObject('RequiredPlugin', pluginName="Sofa.GL.Component.Engine")
-       root.addObject('RequiredPlugin', pluginName="Sofa.GL.Component.Rendering3D")
-       root.addObject('VisualStyle', displayFlags="showBehaviorModels")
+       plugins = root.addChild('plugins')
+
+       plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.Constraint.Projective")
+       plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.Diffusion")
+       plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.Engine.Select")
+       plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.IO.Mesh")
+       plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.LinearSolver.Iterative")
+       plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.Mapping.Linear")
+       plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.Mass")
+       plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.ODESolver.Backward")
+       plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.StateContainer")
+       plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.Topology.Container.Dynamic")
+       plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.Visual")
+       plugins.addObject('RequiredPlugin', pluginName="Sofa.GL.Component.Engine")
+       plugins.addObject('RequiredPlugin', pluginName="Sofa.GL.Component.Rendering3D")
+
+       root.addObject('VisualStyle', displayFlags="showVisualModels")
        root.addObject('MeshVTKLoader', name="meshLoader", filename="mesh/raptorTetra_8418.vtu")
        root.addObject('MeshOBJLoader', name="potentialLoader", filename="mesh/raptorTemperature.obj")
        root.addObject('TetrahedronSetTopologyContainer', name="topo", src="@meshLoader", tags="mechanics")
@@ -511,11 +523,6 @@ TetrahedronDiffusionFEMForceField.scn
        temperature.addObject('MeshMatrixMass', name="Mass", template="Vec1,Vec3", lumping="0", massDensity="1.0", printLog="0", tags="heat", topology="@../topo", geometryState="@../raptorDOFs")
        temperature.addObject('LinearMovementProjectiveConstraint', template="Vec1", keyTimes="0 0.005 0.006", movements="0 0 1", indices="@../box-cold.indices")
        temperature.addObject('LinearMovementProjectiveConstraint', template="Vec1", keyTimes="0.001 0.002 0.004 0.005 0.006", movements="0 1 0.5 1 0", indices="@../box-hot.indices")
-
-       visu = Temperature.addChild('Visu')
-
-       visu.addObject('TextureInterpolation', template="Vec1", name="EngineInterpolation", input_states="@../gridTemperature.position", input_coordinates="@../../raptorDOFs.position", min_value="0.0", max_value="1.0", manual_scale="1", drawPotentiels="0", showIndicesScale="5e-05")
-       visu.addObject('OglModel', template="Vec3", name="oglPotentiel", texcoords="@EngineInterpolation.output_coordinates", handleDynamicTopology="0", texturename="textures/heatColor.bmp", scale3d="1 1 1", material="Default Diffuse 1 1 1 1 0.5 Ambient 1 1 1 1 0.3 Specular 0 0.5 0.5 0.5 1 Emissive 0 0.5 0.5 0.5 1 Shininess 0 45 No texture linked to the material No bump texture linked to the material ")
-       visu.addObject('IdentityMapping', input="@../../raptorDOFs", output="@oglPotentiel")
+       temperature.addObject('VisualMesh', position="@../raptorDOFs.position", elementSpace="0.2", lighting="true", vertexValues="@gridTemperature.position", colorMap="#277DA1 #577590 #4D908E #43AA8B #90BE6D #F9C74F #F9844A #F8961E #F3722C #F94144")
     ```
 
