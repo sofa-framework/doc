@@ -1,9 +1,9 @@
 Integration Schemes
 ===================
 
-All dynamic simulations assume to discretize the temporal evolution of the system through small time steps. This time step is usually noted *dt*. An integration scheme is the [numerical method](https://en.wikipedia.org/wiki/Numerical_methods_for_ordinary_differential_equations) describing how to find the approximate solution for ordinary differential equations (ODE).
+All dynamic simulations assume to discretize the temporal evolution of the system through small time steps. This time step is usually noted *dt*. An integration scheme is the [numerical method](https://en.wikipedia.org/wiki/Numerical_methods_for_ordinary_differential_equations) describing how to linearly relate the different time derivatives in order to discretize and linearize those ODE.
 
-They are usually called **ODESolver** in SOFA. 
+They are usually called **IntegrationScheme** in SOFA. 
 
 Let's write our ordinary differential equation of a function *y* as follows:
 
@@ -11,7 +11,7 @@ $$
 \frac{dy}{dt}=f\left( t,y(t)\right)
 $$
 
-ODESolver defines how to go from the current time step (t) to the next (t + dt), which will structure the linear system $\mathbf{A}x=b$. The integration scheme therefore defines which forces impact the left hand side matrix $\mathbf{A}$ and which forces contribute to the right hand side vector *b*:
+IntegrationScheme defines how to go from the current time step (t) to the next (t + dt), which will structure the linear system $\mathbf{A}x=b$. The integration scheme therefore defines which forces impact the left hand side matrix $\mathbf{A}$ and which forces contribute to the right hand side vector *b*:
 
 - explicit contributions depending on the degrees of freedom (DOFs) at the current time step $x(t)$ will contribute to the $b$ vector
 - while implicit contributions depending on the degrees of freedom (DOFs) at the next step $x(t+dt)$ (unknown) will contribute to $\mathbf{A}$. 
@@ -38,11 +38,11 @@ $$
 
 Explicit schemes are usually known as being fast to solve (since the created linear system is lighter) but they require very small time steps, unless they may undergo stability issues. They are known to efficiently solve non-stiff problems.
 
-Explicit ODESolvers in SOFA:
+Explicit IntegrationScheme in SOFA:
 
-- [EulerExplicitSolver](../../../components/odesolver/forward/eulerexplicitsolver/)
-- [CentralDifferenceSolver](../../../components/odesolver/forward/centraldifferencesolver/)
-- [RungeKutta2Solver](../../../components/odesolver/forward/rungekutta2solver/)
+- [EulerExplicitIntegrationScheme](../../../components/integrationscheme/forward/eulerexplicitintegrationscheme/)
+- [CentralDifferenceIntegrationScheme](../../../components/integrationscheme/forward/centraldifferenceintegrationscheme/)
+- [RungeKutta2IntegrationScheme](../../../components/integrationscheme/forward/rungekutta2integrationscheme/)
 
 
 ### Implicit scheme
@@ -61,17 +61,32 @@ $$
 
 Implicit schemes are known as being slower to solve (the outcoming linear system is more complex) but they are way more stable than explicit schemes. Stiff differential equations require the use of implicit schemes.
 
-Implicit ODESolvers in SOFA:
+Implicit IntegrationScheme in SOFA:
 
-- [EulerImplicitSolver](../../../components/odesolver/backward/eulerimplicitsolver/)
-- [NewmarkImplicitSolver](../../../components/odesolver/backward/newmarkimplicitsolver/)
-- [VariationalSymplecticSolver](../../../components/odesolver/backward/variationalsymplecticsolver/)
+- [EulerImplicitIntegrationScheme](../../../components/integrationscheme/backward/eulerimplicitintegrationscheme/)
+- [NewmarkImplicitIntegrationScheme](../../../components/integrationscheme/backward/newmarkimplicitintegrationscheme/)
+- [BDFIntegrationScheme](../../../components/integrationscheme/backward/variationalsymplecticintegrationscheme/)
+
+
+Solving for non linearities
+----------------
+
+As it has been seen, integrating through time boils down to building and solving a linear system. What is hidden behind this is that the mechanics needs to be linearized to be summarized in a linear system. While has no effect for linear elasticity, it can result in pretty bad dynamics in the case of hyperelasticity. 
+
+For explicit integration scheme, there is no strategy other than reducing the timestep to try to improve such non-linearities. But, because of the nature of implicit integration scheme, one can take advantage of using a non-linear solver to compute the integration in order to better take into account the non-linearities.
+
+The current design of Implicit integration scheme is based on this finding to enable the use of Newton-Raphson solver at the level of the simulation to compute dynamics. 
+
+
+
+
 
 
 In the SOFA code
 ----------------
+//TODO
 
-The integration scheme is described in the `solve()` function of the ODESolver. This *solve()* function is called by the [AnimationLoop](../../animation-loop/) (through a dedicated visitor) and builds the complete linear system $\mathbf{A}x=b$.
+The integration scheme is described in the `integrate()` function of the IntegrationScheme. This *integrate()* function is called by the [AnimationLoop](../../animation-loop/) (through a dedicated visitor) and builds the complete linear system $\mathbf{A}x=b$.
 
 
 ### Specification of the scheme
@@ -107,9 +122,9 @@ Again, Depending on the scheme (explicit or implicit, see previous paragraph), t
 
 
 
-### State vectors in ODESolver
+### State vectors in IntegrationScheme
 
-In order to build the linear matrix system, the ODESolver uses information contained in [state vectors](../../mechanicalobject/#state-vectors) (like DOFs and their derivatives) within the scope of the ODESolver. The ODESolver does not access the state vectors directly. It accesses the state vectors remotely using visitors, which traverse the graph starting from the node which contains the solver. This keeps the implementation of the solver independent of the simulated objects and their types.
+In order to build the linear matrix system, the IntegrationScheme uses information contained in [state vectors](../../mechanicalobject/#state-vectors) (like DOFs and their derivatives) within the scope of the IntegrationScheme. The IntegrationScheme does not access the state vectors directly. It accesses the state vectors remotely using visitors, which traverse the graph starting from the node which contains the solver. This keeps the implementation of the solver independent of the simulated objects and their types.
 
 Each type of solver may use different auxiliary state vectors to implement their simulation method. State vectors (MultiVec) are allocated and processed in the scope of the solver in a thread-safe way using an instance of _simulation::common::VectorOperations_. For instance, a Runge-Kutta algorithms needs to save the result of previous time steps.
 
@@ -125,7 +140,7 @@ MultiVecCoord previousPos(&vop, previousPosID);         // additional vector
 
 ### Compute the solution
 
-In most cases, the matrix system $\mathbf{A}x=b$ can then be sent to a [LinearSolver](../../system-resolution/linear-solver/) in charge of finally solving the system defined according to the chosen scheme. Within the function *ODESolver::solve()*, the call to the LinearSolver will appear through the function call:
+In most cases, the matrix system $\mathbf{A}x=b$ can then be sent to a [LinearSolver](../../system-resolution/linear-solver/) in charge of finally solving the system defined according to the chosen scheme. Within the function *IntegrationScheme::solve()*, the call to the LinearSolver will appear through the function call:
 
 ``` cpp
 matrix.solve(x, b);
