@@ -75,10 +75,31 @@ As it has been seen, integrating through time boils down to building and solving
 
 For explicit integration scheme, there is no strategy other than reducing the timestep to try to improve such non-linearities. But, because of the nature of implicit integration scheme, one can take advantage of using a non-linear solver to compute the integration in order to better take into account the non-linearities.
 
-The current design of Implicit integration scheme is based on this finding to enable the use of Newton-Raphson solver at the level of the simulation to compute dynamics. 
+The current design of Implicit integration scheme is based on this finding to enable the use of Newton-Raphson solver at the level of the simulation to compute dynamics. But to present it let's first dive into what it takes to use a Newton-Raphson solver : we need to express the time step as a root-finding problem. 
+
+### From Dynamic equations to root finding problem
+
+First let's introduce the dynamic equations we wish to solve. 
+
+$$
+\boldsymbol{M}\boldsymbol{a} = \mathcal{F}(\boldsymbol{x},\boldsymbol{v}) + \boldsymbol{F_{\text{ext}}}
+$$
 
 
+$$
+\begin{aligned}
+g_{\boldsymbol{x}}^{(t,h)} &: (\boldsymbol{v}_{t+h}, \boldsymbol{a}_{t+h}) &\mapsto \boldsymbol{x}_{t+h} \\
+g_{\boldsymbol{v}}^{(t,h)} &: (\boldsymbol{a}_{t+h}) &\mapsto \boldsymbol{v}_{t+h}
+\end{aligned}
+$$
 
+$$
+\begin{cases}
+\boldsymbol{M}\boldsymbol{a}_{t+h} &= \mathcal{F}(\boldsymbol{x}_{t+h},\boldsymbol{v}_{t+h}) + \boldsymbol{F_{\text{ext}}} \\
+\boldsymbol{x}_{t+h} &= g_{\boldsymbol{x}}^{(t,h)}(\boldsymbol{v}_{t+h}, \boldsymbol{a}_{t+h}) \\
+\boldsymbol{v}_{t+h} &= g_{\boldsymbol{v}}^{(t,h)}(\boldsymbol{a}_{t+h})
+\end{cases}
+$$
 
 
 
