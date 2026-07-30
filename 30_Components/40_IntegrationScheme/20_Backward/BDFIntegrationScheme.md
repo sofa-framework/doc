@@ -1,7 +1,7 @@
-BDFOdeSolver
+BDFIntegrationScheme
 ============
 
-This component belongs to the category of [integration schemes or ODE Solver](../../../../simulation-principles/system-resolution/integration-scheme/).
+This component belongs to the category of [integration schemes](../../../../simulation-principles/system-resolution/integration-scheme/).
 It is an implicit method for the numerical integration of the ODE resulting from Newton's second law of motion.
 
 The method relies on [Backward Differentiation Formula](https://en.wikipedia.org/wiki/Backward_differentiation_formula) (BDF).

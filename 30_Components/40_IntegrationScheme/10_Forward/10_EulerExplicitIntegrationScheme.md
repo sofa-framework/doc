@@ -1,7 +1,7 @@
-EulerExplicitSolver  
+EulerExplicitIntegrationScheme  
 ===================
 
-The EulerExplicitSolver component belongs to the category of [integration schemes or ODE Solver](../../../../simulation-principles/system-resolution/integration-scheme/). This scheme allows to solve dynamic systems explicitly: all forces will be computed based on the state information at the current time step $x(t)$.
+The EulerExplicitIntegrationScheme component belongs to the category of [integration schemes](../../../../simulation-principles/system-resolution/integration-scheme/). This scheme allows to solve dynamic systems explicitly: all forces will be computed based on the state information at the current time step $x(t)$.
 
 Looking at continuum mechanics, the linear system $\mathbf{A}x=b$ arises from the dynamic equation. This dynamic is written as follows but other physics (like heat transfer) result in a similar equation:
 
@@ -9,7 +9,7 @@ $$
 \mathbf{M}\Delta v=dt\left(f(x,t)\right)
 $$
 
-where $x$ is the degrees of freedom, $\mathbf{M}$ the mass matrix and $f(x,t)$ a function of $x$ (and possibly its derivatives) acting on our system. In the case of the EulerExplicitSolver, this equation can be written: 
+where $x$ is the degrees of freedom, $\mathbf{M}$ the mass matrix and $f(x,t)$ a function of $x$ (and possibly its derivatives) acting on our system. In the case of the EulerExplicitIntegrationScheme, this equation can be written: 
 
 $$
 \mathbf{M}\Delta v=dt\left(f(x(t))\right)
@@ -26,16 +26,16 @@ Depending on whether the mass matrix is diagonal or not, SOFA supports two cases
 Note that the **symplectic** data allows to modify the scheme to make it [symplectic](https://en.wikipedia.org/wiki/Semi-implicit_Euler_method), i.e. velocities are updated before the positions.
 It allows to update the positions from the newly computed velocities, instead of velocities from the previous time step.
 This option makes the scheme more robust in time.
-EulerExplicitSolver is symplectic by default.
+EulerExplicitIntegrationScheme is symplectic by default.
 
 Sequence diagram
 ----------------
 
-<a href="https://github.com/sofa-framework/doc/blob/master/images/integrationscheme/EulerExplicitSolver.png?raw=true"><img src="https://github.com/sofa-framework/doc/blob/master/images/integrationscheme/EulerExplicitSolver.png?raw=true" title="Flow diagram for a EulerExplicitSolver"/></a>
+<a href="https://github.com/sofa-framework/doc/blob/master/images/integrationscheme/EulerExplicitIntegrationScheme.png?raw=true"><img src="https://github.com/sofa-framework/doc/blob/master/images/integrationscheme/EulerExplicitIntegrationScheme.png?raw=true" title="Flow diagram for a EulerExplicitIntegrationScheme"/></a>
 
 
 
 Usage  
 -----  
 
-The EulerExplicitSolver **requires** a MechanicalObject to store the state vectors. However, as explained above, no LinearSolver is needed and the EulerExplicitSolver is **only working using a [UniformMass](../../../mass/uniformmass/) or [DiagonalMass](../../../mass/diagonalmass/)**, which ensures to have a diagonal system matrix.
+The EulerExplicitIntegrationScheme **requires** a MechanicalObject to store the state vectors. However, as explained above, no LinearSolver is needed and the EulerExplicitIntegrationScheme is **only working using a [UniformMass](../../../mass/uniformmass/) or [DiagonalMass](../../../mass/diagonalmass/)**, which ensures to have a diagonal system matrix.

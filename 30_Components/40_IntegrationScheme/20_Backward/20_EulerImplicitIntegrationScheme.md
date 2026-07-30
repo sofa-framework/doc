@@ -1,7 +1,7 @@
-EulerImplicitSolver  
+EulerImplicitIntegrationScheme  
 ===================
 
-This component belongs to the category of [integration schemes or ODE Solver](../../../../simulation-principles/system-resolution/integration-scheme/). This scheme builds the system following an implicit scheme: forces are considered based on the state information at the next time step $x(t+dt)$, unknown at the current time step.
+This component belongs to the category of [integration schemes](../../../../simulation-principles/system-resolution/integration-scheme/). This scheme builds the system following an implicit scheme: forces are considered based on the state information at the next time step $x(t+dt)$, unknown at the current time step.
 
 Looking at continuum mechanics, the linear system $\mathbf{A}x=b$ arises from the dynamic equation. This dynamic is written as follows but other physics (like heat transfer) result in a similar equation:
 
@@ -9,7 +9,7 @@ $$
 \mathbf{M}\Delta v=dt\left(f(x,t)\right)
 $$
 
-where $x$ is the degrees of freedom, $\mathbf{M}$ the mass matrix and $f(x,t)$ a function of $x$ (and possibly its derivatives) acting on our system. In the case of the EulerImplicitSolver, this equation can be written: 
+where $x$ is the degrees of freedom, $\mathbf{M}$ the mass matrix and $f(x,t)$ a function of $x$ (and possibly its derivatives) acting on our system. In the case of the EulerImplicitIntegrationScheme, this equation can be written: 
 
 $$
 \mathbf{M} \Delta v=dt \cdot f(x(t+dt))
@@ -102,7 +102,7 @@ $$
 Sequence diagram
 ----------------
 
-<a href="https://github.com/sofa-framework/doc/blob/master/images/integrationscheme/EulerImplicitSolver.png?raw=true"><img src="https://github.com/sofa-framework/doc/blob/master/images/integrationscheme/EulerImplicitSolver.png?raw=true" title="Flow diagram for the EulerImplicitSolver"/></a>
+<a href="https://github.com/sofa-framework/doc/blob/master/images/integrationscheme/EulerImplicitIntegrationScheme.png?raw=true"><img src="https://github.com/sofa-framework/doc/blob/master/images/integrationscheme/EulerImplicitIntegrationScheme.png?raw=true" title="Flow diagram for the EulerImplicitIntegrationScheme"/></a>
 
 
 
@@ -110,7 +110,7 @@ Sequence diagram
 Usage  
 -----  
 
-The EulerImplicitSolver **requires**:
+The EulerImplicitIntegrationScheme **requires**:
 
 - a [LinearSolver](../../../../simulation-principles/system-resolution/linear-solver/) to solve the linear system
 - and a MechanicalObject to store the state vectors.

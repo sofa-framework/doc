@@ -1,9 +1,9 @@
-NewmarkImplicitSolver  
+NewmarkIntegrationScheme  
 =====================
 
-This component belongs to the category of [integration schemes or ODE Solver](../../../../simulation-principles/system-resolution/integration-scheme/).  
+This component belongs to the category of [integration schemes](../../../../simulation-principles/system-resolution/integration-scheme/).  
 
-This scheme is an implicit time integrator for dynamic system using the Newmark scheme. To compute the new position or new velocity, the NewmarkImplicitSolver is based on the following equations:
+This scheme is an implicit time integrator for dynamic system using the Newmark scheme. To compute the new position or new velocity, the NewmarkIntegrationScheme is based on the following equations:
 
 $$
 x_{t+h}=x_t+h v_t+\frac{h^2}{2}((1-2\beta)a_t+2\beta a_{t+h})
@@ -42,13 +42,13 @@ $$
 Sequence diagram
 ----------------
 
-<a href="https://github.com/sofa-framework/doc/blob/master/images/integrationscheme/NewmarkImplicitSolver.png?raw=true"><img src="https://github.com/sofa-framework/doc/blob/master/images/integrationscheme/NewmarkImplicitSolver.png?raw=true" title="Flow diagram for the NewmarkImplicitSolver"/></a>
+<a href="https://github.com/sofa-framework/doc/blob/master/images/integrationscheme/NewmarkIntegrationScheme.png?raw=true"><img src="https://github.com/sofa-framework/doc/blob/master/images/integrationscheme/NewmarkIntegrationScheme.png?raw=true" title="Flow diagram for the NewmarkIntegrationScheme"/></a>
  
 
 Usage  
 -----  
 
-At each simulation step and each Newton Raphson iteration, the NewmarkImplicitSolver **requires**:
+At each simulation step and each Newton Raphson iteration, the NewmarkIntegrationScheme **requires**:
 
 - a [LinearSolver](../../../../simulation-principles/system-resolution/linear-solver/) to solve the linear system
 - and a MechanicalObject to store the state vectors.
