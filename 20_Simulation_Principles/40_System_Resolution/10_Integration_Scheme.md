@@ -323,16 +323,52 @@ In the light of the presented Newton-Raphson algorithm and the associated equati
 This base class inherits directly from the class `BaseIntegrationScheme` and proposes the virtual API taht'll be implemented by the different implicit integrations chemes. Here is the list of thoses methods :
 
 ```cpp
+    //This method purpose is to enable the integration scheme to prepare internal state before beginning the solving step. (Not pure virtual)
+    virtual void doSetupIntegrationStep(...) {}
 
+    // Compute the system matrix. The boolean i shere to avoid computin zero-valued vectors after the first iteration (i.e. such as the integration scheme error which is always null after one iteration)
+    virtual void computeLHS(bool firstIteration = false) = 0;
+
+    // compute the current RHS.
+    virtual void computeRHS(bool firstIteration = false) = 0;
+
+    // Returns the evaluation of the residual
+    virtual SReal evaluateResidual() = 0;
+
+    // Solve the linear equation from a Newton iteration, i.e. it computes (x^{i+1}-x^i).
+    virtual void solveLinearEquation() = 0;
+
+    // Use the computed unknown to update state accordingly. The alpha parameter is here to implement line search
+    virtual void updateStatesFromLinearSolution(SReal alpha, bool firstIteration = false) = 0;
+
+    //This method is called after the integration step is completed. (Not pure virutal)
+    virtual void finalizeIntegrationStep() {}
+
+    // This method comes form the BaseIntegrationScheme API, it is a monolithic step integration.
+    virtual void integrate(...) override;
+
+    // This methods returns the factor to put in front of the linear system unknown accumulating it to the velocity.
+    // In the case of acceleration-based integraiton scheme, we can see in (2.3) that this should return $DG_v$
+    virtual SReal getVelocityIntegrationFactor() const = 0;
+
+    // This methods returns the factor to put in front of the linear system unknown accumulating it to the position.
+    // In the case of acceleration-based integraiton scheme, we can see in (2.3) that this should return $DG_x$
+    virtual SReal getPositionIntegrationFactor() const = 0;
+
+    // This method returns the order of the integration scheme in term of number of past timestep needed to compute the next timestep. For instance, if $p_{t+dt} = f(v_{t+dt}, ... , v_{t-k*dt}$, then the order is k+1
+    virtual sofa::Size getIntegrationSchemeTimeOrder() const = 0;
+
+    // Rayleigh damping coefficient related to stiffness > 0
+    Data<SReal> d_rayleighStiffness; /
+    // Rayleigh damping coefficient related to mass > 0
+    Data<SReal> d_rayleighMass; 
 ```
 
-#### AccelerationBasedIntegrationScheme
+
+For the two famillies a lot of this API can be implemented agnostically from the integraiton s cheme expression. Knowing the integration scheme expression is finally only required to compute the residual vector, and some factors of the LHS or RHS computation. Knowing this, we have proposed two specialization of this class, proposing new simplier API entries for both acceleration and velocity based integration scheme.
 
 
-#### VelocityBasedIntegrationScheme
 
-
-#### Special case : StaticEquilibriumIntegrationscheme
 > **Note on Rayleigh damping :**\
 > Most of the integration scheme propose to add _Rayleigh damping_ which is a numerical damping. This damping has therefore no physical meaning and must not be mixed up with physical damping (like _DiagonalVelocityDampingForceField_ in SOFA). The Rayleigh damping corresponds to a damping matrix that is proportional to the mass or/and stiffness matrices using coefficients, respectively Rayleigh stiffness factor $r_K$ or Rayleigh mass factor $r_M$. This numerical damping is usually used to stabilize or ease convergence of the simulation. However, it has to be used carefully.
 > 
@@ -340,3 +376,72 @@ This base class inherits directly from the class `BaseIntegrationScheme` and pro
 > The negative sign in front of $\mathbf{M}$, a positive matrix, represents the fact that viscosity opposes motion. Elasticity also opposes it, however $\mathbf{K}$ is a negative matrix. This formula therefore provides two positive coefficients $r_K$ and $r_M$.
 > 
 > You can see the use of Rayleigh mass and stiffness dampings in the `integrate()` function of the _EulerImplicit_ class (see EulerImplicitSolver.cpp).
+
+
+#### AccelerationBasedIntegrationScheme
+
+For acceleration-based integration scheme, the only parts that are integration dependent are : 
+
+- $\text{DG}^{(i)}_{\boldsymbol{x}} = \left.\frac{\mathrm{d} g_{\boldsymbol{v}}^{(t,h)}}{\mathrm{d} \boldsymbol{a}}\right|_{\boldsymbol{X}^{(i)}} $
+- $\text{DG}^{(i)}_{\boldsymbol{v}} = \left(\left.\frac{\mathrm{d} g_{\boldsymbol{x}}^{(t,h)}}{\mathrm{d} \boldsymbol{v}}\right|_{\boldsymbol{X}^{(i)}} \left.\frac{\mathrm{d} g_{\boldsymbol{v}}^{(t,h)}}{\mathrm{d} \boldsymbol{a}}\right|_{\boldsymbol{X}^{(i)}} + \left.\frac{\mathrm{d} g_{\boldsymbol{x}}^{(t,h)}}{\mathrm{d} \boldsymbol{a}}\right|_{\boldsymbol{X}^{(i)}}\right)$
+- $\mathcal{G}_{t}(\boldsymbol{X}^{(i)})_1$
+- $\mathcal{G}_{t}(\boldsymbol{X}^{(i)})_2$
+
+This enable to completely fulfill the `ImplicitIntegrationScheme` API in this new class by adding new light methods that will need to be specialized for every integration scheme : 
+```cpp
+// This method returns a scalar which is the value of the derivative of the position integration scheme with respect to the acceleration.
+// To build the $DG_x$ and $DG_v$ factor (see equation above)
+virtual SReal getPositionUpdateDerivedFromAcceleration() const = 0;
+
+// This method returns a scalar which is the value of the derivative of the position integration scheme with respect to the velocity.
+// To build the $DG_x$ and $DG_v$ factor (see equation above)
+virtual SReal getPositionUpdateDerivedFromVelocity() const = 0;
+
+// This method returns a scalar which is the value of the derivative of the velocity integration scheme with respect to the acceleration.
+// To build the $DG_x$ and $DG_v$ factor (see equation above)
+virtual SReal getVelocityUpdateDerivedFromAcceleration() const = 0;
+
+// This method compute the error in term of position update given the current state, or $G_t(X)_1$
+virtual void computeCurrentPositionIntegrationError(...) = 0;
+
+// This method compute the error in term of velocity update given the current state, or $G_t(X)_2$
+virtual void computeCurrentVelocityIntegrationError(...) = 0;
+```
+
+The tree first method returning only scalar values, they are the most traightforward method to implement. The two last have to deal with advanced concept of SOFA such as mechanical operation on `VecId`. For an example on how to implement this, see the Newmak implementation [here](//TODO, link to cpp file in the master branch once the PR is merged).
+
+
+#### VelocityBasedIntegrationScheme
+
+
+For velocity-based integration scheme, the only parts that are integration dependent are : 
+
+- $g_{\boldsymbol{v}}^{(t,h)-1}$
+- $\left.\frac{\mathrm{d} \tilde{g}_{\boldsymbol{x}}^{(t,h)}}{\mathrm{d} \boldsymbol{v}}\right|_{\tilde{\boldsymbol{X}}^{(i)}}$
+- $\left.\frac{\mathrm{d} g_{\boldsymbol{v}}^{(t,h)-1}}{\mathrm{d} \boldsymbol{v}}\right|_{\tilde{\boldsymbol{X}}^{(i)}}$
+- $\mathcal{G}_{t}(\boldsymbol{X}^{(i)})_1$
+
+This enable to completely fulfill the `ImplicitIntegrationScheme` API in this new class by adding new light methods that will need to be specialized for every integration scheme :
+
+```cpp
+// This method returns a scalar which is the value of the derivative of the position integration scheme with respect to the velocity.
+// To update the state
+virtual SReal getPositionUpdateDerivedFromVelocity() const = 0;
+
+// This method returns a scalar which is the value of the derivative of the position integration scheme with respect to the velocity.
+// To build the RHS
+virtual SReal getInverseVelocityUpdateDerivedFromVelocity() const = 0;
+
+//This method compute the error in term of position update, or $G_t(X)_1$
+virtual void computeCurrentPositionIntegrationError(...) = 0;
+
+//This method compute the acceleration given the current velocity, or $g_v^{(t,h)-1}$
+virtual void computeAccelerationFromVelocity(...) = 0;
+```
+Again, the two first method returning only scalar values, they are the most traightforward method to implement. The two last have to deal with advanced concept of SOFA such as mechanical operation on `VecId`. For an example on how to implement this, see the Euler implicit implementation [here](//TODO, link to cpp file in the master branch once the PR is merged).
+
+#### Special case : StaticEquilibriumIntegrationscheme
+
+The Static equilibrium integration scheme is a special case as it is not a real integraiton scheme becaus eit does not advance time linearly. 
+
+For more details see its dedicated [documentation page](../../../components/integrationscheme/backward/staticequilibriumintegrationscheme/)
