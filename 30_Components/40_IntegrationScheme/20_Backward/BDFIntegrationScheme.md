@@ -4,67 +4,66 @@ BDFIntegrationScheme
 This component belongs to the category of [integration schemes](../../../../simulation-principles/system-resolution/integration-scheme/).
 It is an implicit method for the numerical integration of the ODE resulting from Newton's second law of motion.
 
-The method relies on [Backward Differentiation Formula](https://en.wikipedia.org/wiki/Backward_differentiation_formula) (BDF).
+It is recommended to read the theoretical part of the [integration schemes](../../../../simulation-principles/system-resolution/integration-scheme/) page to understand the following. 
+
+The method relies on [Backward Differentiation Formula](https://en.wikipedia.org/wiki/Backward_differentiation_formula) (BDF). This is a special case of [linear multistep method](https://en.wikipedia.org/wiki/Linear_multistep_method).  
 To integrate the ODE in time, it uses information from the previous time steps to compute the next step.
 It establishes a linear combination of the unknown states, the previous states and the values of the ODE function when applied on those states.
-This equation leads to a nonlinear function to solve.
-That is why this component requires a [NewtonRaphsonSolver](NewtonRaphsonSolver.md), which the purpose is to solve nonlinear functions.
 
-The coefficients of the linear combination come from the approximation of the function by a Lagrange interpolation polynomial.
+It the specific case of BDF, the coefficients of the linear combination come from the approximation of the function by a Lagrange interpolation polynomial.
 The order of the BDF is the number of previous time steps required to approximate the interpolation polynomial.
 The first-order BDF requires a single time step in the past to compute the next.
 It corresponds to the [backward Euler method](EulerImplicitSolver.md).
 The coefficients are unique for a given order, but can be influenced by a change of time step size.
 The SOFA component supports any order, and any change of time step size.
 
-Details
--------
+In the following we are going to present the generic linear multistep method equations from which BFD derives. It has to be noted that we made the choice to only apply the linear multi step method to the position integration, not on the velocity. Using it to both decreases the stability margin of the integration scheme, leading to big instabilities in the scenes. 
 
-The ODE resulting from Newton's second law of motion is:
-
-$$
-\begin{bmatrix}
-\frac{d q}{d t}\\
-M \frac{d \dot{q}}{d t}
-\end{bmatrix}
-=
-\begin{bmatrix}
-\dot{q}\\
-F(q, \dot{q})
-\end{bmatrix}
-$$
-
-where $q$ and $\dot{q}$ are respectively the position and the velocity, $M$ is the mass matrix, and $F$ is the sum of forces.
-
-We define $y(t)=\begin{bmatrix} q \\ \dot{q} \end{bmatrix}$, and $f(t,y)=\begin{bmatrix} \dot{q} \\ M^{-1} F(q,\dot{q}) \end{bmatrix}$, such that the ODE is $y'=f(t,y)$.
-We are interested in computing $y(t_{n+s})$ and we know the values of $y(t_{n+j})$ for $j \lt s$.
-The Lagrange interpolation polynomial is the linear combination $L(t) = \sum_{j=0}^s y(t_n+j) l_j(t)$, where $l_j$ is the basis polynomials defined as $l_j(t)=\prod_{0 \leq m \leq s, m \neq j} \frac{t-t_{n+m}}{t_{n+j}-t{n+m}}$.
-Then, we approximate $y'$ by $L'$, leading to the equation $\sum_{j=0}^s y_{n+j} l'_j(t_{n+s}) = f(t_{n+s},y_{n+s})$.
-We can now define a nonlinear function $r(q, \dot{q}) = \left[\sum_{j=0}^s y_{n+j} l'_j(t_{n+s})\right] - f(t_{n+s},y_{n+s})$. 
-The roots of this function corresponds to $y_{tn+s}$, i.e. the next values of the state.
-
-To find the root of this function, we use a Newton-Raphson algorithm.
-It means the derivative of the function is necessary.
-At each iteration $i$ of the algorithm, we solve the following linear system:
+The LinearMultistepIntegrationScheme inherits from VelocityBaseIntegrationScheme because its integration scheme in velocity is invertible. Its equations are the following : 
 
 $$
-\begin{bmatrix}
-l'_s(t_{n+s}) I & -dt I \\
--dt \frac{\partial F}{\partial q} & l'_s(t_{n+s}) M - dt \frac{\partial F}{\partial \dot{q}}
-\end{bmatrix}
-\begin{bmatrix}
-q^{i+1} - q^i \\
-\dot{q}^{i+1} - \dot{q}^{i}
-\end{bmatrix}
-= -r(q^i, \dot{q}^i)
+\begin{aligned}
+g_{\boldsymbol{x}}^{(t,h)} &: \boldsymbol{v}, \boldsymbol{a} \mapsto - \sum_{j=1}^{n} \frac{\alpha_j}{\alpha_{n+1}} \boldsymbol{x}_{t-n+j} + h \frac{\beta_{n+1}}{\alpha_{n+1}} \boldsymbol{v} + h \sum_{j=1}^{n} \frac{\beta_j}{\alpha_{n+1}} \boldsymbol{v}_{t-n+j} \\
+g_{\boldsymbol{v}}^{(t,h)} &: \boldsymbol{a} \mapsto \boldsymbol{v}_{t} + h \boldsymbol{a}
+\end{aligned}
 $$
 
-This system is solved by a block Gaussian elimination leading to the velocity-based linear system:
+with $n$ the order of the integration scheme
 
+#### API specialization
+
+As explained in the [IntegrationScheme](../../../../simulation-principles/system-resolution/integration-scheme/) documentation, the specilization consist in implementing 4 methods that requires the knowledge of four terms/expressions. for Euler implicit they are the following : 
 $$
-\left(l'_s(t_{n+s}) M - dt \frac{\partial F}{\partial \dot{q}} - \frac{dt^2}{l'_s(t_{n+s})} \frac{\partial F}{\partial q} \right)
-(\dot{q}^{i+1} - \dot{q}^i)
-= -r_{\dot{q}}(q^i, \dot{q}^i) - \frac{dt}{l'_s(t_{n+s})} \frac{\partial F}{\partial q} r_{q}(q^i, \dot{q}^i)
+\begin{aligned}
+&\tilde{g}_{\boldsymbol{x}}^{(t,h)} \equiv g_{\boldsymbol{x}}^{(t,h)} \\
+&g_{\boldsymbol{v}}^{(t,h)-1} : \boldsymbol{v} \mapsto \frac{\boldsymbol{v} - \boldsymbol{v}_t}{h}
+\end{aligned}
+\qquad \qquad \qquad 
+\begin{aligned}
+&\frac{\mathrm{d} \tilde{g}_{\boldsymbol{x}}^{(t,h)}}{\mathrm{d} \boldsymbol{v}} = h \frac{\beta_{n+1}}{\alpha_{n+1}} \\
+&\frac{\mathrm{d} g_{\boldsymbol{v}}^{(t,h)-1}}{\mathrm{d} \boldsymbol{v}} = \frac{1}{h}
+\end{aligned}
 $$
+
+
+#### BDF implementation
+
+The generic implementation of LinearMultistepIntegrationScheme requires to overide only one virtual funciton being :
+
+```cpp
+// Method that will compute the $\alpha$ and $\beta factors$
+virtual void computeFactors() = 0;
+```
+
+The the implementation of BDFIntegrationScheme only computes those terms using the previously cited Lagrange polynomial interpolation. 
+
+
+-----  
+
+The BDFIntegrationScheme **requires**:
+
+- a [LinearSolver](../../../../simulation-principles/system-resolution/linear-solver/) to solve the linear system
+- and a MechanicalObject to store the state vectors.
+
 
 

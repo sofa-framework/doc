@@ -440,6 +440,10 @@ virtual void computeAccelerationFromVelocity(...) = 0;
 ```
 Again, the two first method returning only scalar values, they are the most traightforward method to implement. The two last have to deal with advanced concept of SOFA such as mechanical operation on `VecId`. For an example on how to implement this, see the Euler implicit implementation [here](//TODO, link to cpp file in the master branch once the PR is merged).
 
+> **Note :**\
+> The velocity-base integration schemes offer a possibility to reduce the integration to a _first order_ integration, meaning the velocity is considered as null at the begining of each time step. This feature can help for quasi-static simulation or simulations where the objects dynamic is by nature subject to numerical noise such as very lightwheight objects. \
+> This feature can be activated using the data `firstOrder=True`
+
 #### Special case : StaticEquilibriumIntegrationScheme
 
 The Static equilibrium integration scheme is a special case as it is not a real integration scheme becaus eit does not advance time linearly. 

@@ -11,7 +11,7 @@ In a static simulation involving elasticity, the linear system that we solve cor
 
 In case of non-linear elasticity, $K_i$ is a linearization which must be updated with regards to the increment of displacement $\delta u_i$. In such cases, several iterations of Newton Raphson are required to find an appropriate approximate solution. In one step of the StaticEquilibriumIntegrationScheme, the number of Newton Raphson iterations is ruled by the data field **newton_iterations**.
 
-_Reminder_: the [Newton Raphson method](https://en.wikipedia.org/wiki/Newton%27s_method) is an iterative algorithm aiming at finding the solution of the system $f(x)=0$ where $f(x)$ is non-linear. At each iteration of Newton Raphson algorithm, we find a new approximate solution:
+_Reminder_: the Newton Raphson method is an iterative algorithm aiming at finding the solution of the system $f(x)=0$ where $f(x)$ is non-linear. At each iteration of Newton Raphson algorithm, we find a new approximate solution:
 
 $x^{n+1}=x^n-\frac{f(x^n)}{f'(x^n)}$ where $f'(x^n) = \frac{df}{dx}(x^n)$
 
@@ -22,12 +22,6 @@ $$
 $$
 
 
-Sequence diagram
-----------------
-
-<a href="https://github.com/sofa-framework/doc/blob/master/images/integrationscheme/StaticEquilibriumIntegrationScheme.png?raw=true"><img src="https://github.com/sofa-framework/doc/blob/master/images/integrationscheme/StaticEquilibriumIntegrationScheme.png?raw=true" title="Flow diagram for the StaticEquilibriumIntegrationScheme"/></a>
-
- 
 Usage  
 -----  
 

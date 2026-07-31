@@ -28,12 +28,6 @@ It allows to update the positions from the newly computed velocities, instead of
 This option makes the scheme more robust in time.
 EulerExplicitIntegrationScheme is symplectic by default.
 
-Sequence diagram
-----------------
-
-<a href="https://github.com/sofa-framework/doc/blob/master/images/integrationscheme/EulerExplicitIntegrationScheme.png?raw=true"><img src="https://github.com/sofa-framework/doc/blob/master/images/integrationscheme/EulerExplicitIntegrationScheme.png?raw=true" title="Flow diagram for a EulerExplicitIntegrationScheme"/></a>
-
-
 
 Usage  
 -----  
