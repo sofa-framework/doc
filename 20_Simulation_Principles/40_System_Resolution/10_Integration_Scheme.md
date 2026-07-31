@@ -313,7 +313,7 @@ $$
 $$
 
 
-In the SOFA code
+The SOFA implementation
 ----------------
 
 ### Design choices
@@ -348,11 +348,11 @@ This base class inherits directly from the class `BaseIntegrationScheme` and pro
     virtual void integrate(...) override;
 
     // This methods returns the factor to put in front of the linear system unknown accumulating it to the velocity.
-    // In the case of acceleration-based integraiton scheme, we can see in (2.3) that this should return $DG_v$
+    // In the case of acceleration-based integration scheme, we can see in (2.3) that this should return $DG_v$
     virtual SReal getVelocityIntegrationFactor() const = 0;
 
     // This methods returns the factor to put in front of the linear system unknown accumulating it to the position.
-    // In the case of acceleration-based integraiton scheme, we can see in (2.3) that this should return $DG_x$
+    // In the case of acceleration-based integration scheme, we can see in (2.3) that this should return $DG_x$
     virtual SReal getPositionIntegrationFactor() const = 0;
 
     // This method returns the order of the integration scheme in term of number of past timestep needed to compute the next timestep. For instance, if $p_{t+dt} = f(v_{t+dt}, ... , v_{t-k*dt}$, then the order is k+1
@@ -365,7 +365,7 @@ This base class inherits directly from the class `BaseIntegrationScheme` and pro
 ```
 
 
-For the two famillies a lot of this API can be implemented agnostically from the integraiton s cheme expression. Knowing the integration scheme expression is finally only required to compute the residual vector, and some factors of the LHS or RHS computation. Knowing this, we have proposed two specialization of this class, proposing new simplier API entries for both acceleration and velocity based integration scheme.
+For the two famillies a lot of this API can be implemented agnostically from the integration s cheme expression. Knowing the integration scheme expression is finally only required to compute the residual vector, and some factors of the LHS or RHS computation. Knowing this, we have proposed two specialization of this class, proposing new simplier API entries for both acceleration and velocity based integration scheme.
 
 
 
@@ -440,8 +440,22 @@ virtual void computeAccelerationFromVelocity(...) = 0;
 ```
 Again, the two first method returning only scalar values, they are the most traightforward method to implement. The two last have to deal with advanced concept of SOFA such as mechanical operation on `VecId`. For an example on how to implement this, see the Euler implicit implementation [here](//TODO, link to cpp file in the master branch once the PR is merged).
 
-#### Special case : StaticEquilibriumIntegrationscheme
+#### Special case : StaticEquilibriumIntegrationScheme
 
-The Static equilibrium integration scheme is a special case as it is not a real integraiton scheme becaus eit does not advance time linearly. 
+The Static equilibrium integration scheme is a special case as it is not a real integration scheme becaus eit does not advance time linearly. 
 
 For more details see its dedicated [documentation page](../../../components/integrationscheme/backward/staticequilibriumintegrationscheme/)
+
+#### Some API details
+
+For all integration scheme, as we have seen in the dynamic equations, the right-hand-side and the left-hand-side are composed of contirbutions coming from the mass and external and internal forces. This means that for building those terms, the intergation schemes will need to access the ForceFields and the Mass objects to either accumulate their _explicit_ part in the right-hand-side or their _implicit_ part in the left-hand-side.
+
+This is performed using a mechanism of visitors that will iterate through the scene graph and call API method of those component so that they can add their contributions. For instance : 
+- `addForce` method of forcefield will contribute to the right-hand-side
+- `buildStiffnessMatrix` method of forcefield will build its implicit part, contributing to the left-hand-side
+- `addMDx` in mass object will be used to add the gravity term in the right-hand-side
+
+This list is not exhausitve, please refer to the [Forcefield](../../multi-model-representation/forcefield/) and [Mass](../../multi-model-representation/mass/) documentation pages.
+
+
+
