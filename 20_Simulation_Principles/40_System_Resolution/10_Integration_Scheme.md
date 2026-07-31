@@ -408,7 +408,7 @@ virtual void computeCurrentPositionIntegrationError(...) = 0;
 virtual void computeCurrentVelocityIntegrationError(...) = 0;
 ```
 
-The tree first method returning only scalar values, they are the most traightforward method to implement. The two last have to deal with advanced concept of SOFA such as mechanical operation on `VecId`. For an example on how to implement this, see the Newmak implementation [here](//TODO, link to cpp file in the master branch once the PR is merged).
+The tree first method returning only scalar values, they are the most traightforward method to implement. The two last have to deal with advanced concept of SOFA such as mechanical operation on `VecId`. For an example on how to implement this, see the Newmak implementation [here](https://github.com/sofa-framework/sofa/blob/master/Sofa/Component/IntegrationScheme/Backward/src/sofa/component/integrationscheme/backward/NewmarkIntegrationScheme.cpp).
 
 
 #### VelocityBasedIntegrationScheme
@@ -438,7 +438,7 @@ virtual void computeCurrentPositionIntegrationError(...) = 0;
 //This method compute the acceleration given the current velocity, or $g_v^{(t,h)-1}$
 virtual void computeAccelerationFromVelocity(...) = 0;
 ```
-Again, the two first method returning only scalar values, they are the most traightforward method to implement. The two last have to deal with advanced concept of SOFA such as mechanical operation on `VecId`. For an example on how to implement this, see the Euler implicit implementation [here](//TODO, link to cpp file in the master branch once the PR is merged).
+Again, the two first method returning only scalar values, they are the most traightforward method to implement. The two last have to deal with advanced concept of SOFA such as mechanical operation on `VecId`. For an example on how to implement this, see the Euler implicit implementation [here](https://github.com/sofa-framework/sofa/blob/master/Sofa/Component/IntegrationScheme/Backward/src/sofa/component/integrationscheme/backward/EulerImplicitIntegrationScheme.cpp).
 
 > **Note :**\
 > The velocity-base integration schemes offer a possibility to reduce the integration to a _first order_ integration, meaning the velocity is considered as null at the begining of each time step. This feature can help for quasi-static simulation or simulations where the objects dynamic is by nature subject to numerical noise such as very lightwheight objects. \
