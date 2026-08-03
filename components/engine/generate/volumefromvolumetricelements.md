@@ -1,5 +1,5 @@
 <!-- generate_doc -->
-# VolumeFromTetrahedrons
+# VolumeFromVolumetricElements
 
 This component computes the volume of a given volumetric mesh.
 
@@ -123,14 +123,14 @@ If true, will update the volume at each time step of the simulation.
 
 ## Examples 
 
-VolumeFromTetrahedrons.scn
+VolumeFromVolumetricElements.scn
 
 === "XML"
 
     ```xml
     <?xml version="1.0"?>
     <Node name="root" gravity="0 0 0" dt="1"  >
-        <RequiredPlugin pluginName="Sofa.Component.Engine.Generate"/> <!-- Needed to use components [VolumeFromTetrahedrons] -->
+        <RequiredPlugin pluginName="Sofa.Component.Engine.Generate"/> <!-- Needed to use components [VolumeFromVolumetricElements] -->
         <RequiredPlugin pluginName="Sofa.Component.IO.Mesh"/> <!-- Needed to use components [MeshVTKLoader] -->
         <RequiredPlugin pluginName="Sofa.Component.Setting"/> <!-- Needed to use components [BackgroundSetting] -->
         <RequiredPlugin pluginName="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
@@ -144,7 +144,7 @@ VolumeFromTetrahedrons.scn
             <MeshVTKLoader name="mesh" filename="mesh/Bunny.vtk"/>
             <MeshTopology src="@mesh" name="topology"/>
             <MechanicalObject />
-            <VolumeFromTetrahedrons/>
+            <VolumeFromVolumetricElements/>
             <Node name="Visual" >
                 <OglModel src="@../topology" color="0.5 0.5 0.5 0.1"/>
             </Node>
@@ -174,7 +174,7 @@ VolumeFromTetrahedrons.scn
        volume.addObject('MeshVTKLoader', name="mesh", filename="mesh/Bunny.vtk")
        volume.addObject('MeshTopology', src="@mesh", name="topology")
        volume.addObject('MechanicalObject', )
-       volume.addObject('VolumeFromTetrahedrons', )
+       volume.addObject('VolumeFromVolumetricElements', )
 
        visual = Volume.addChild('Visual')
 

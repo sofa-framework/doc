@@ -27,6 +27,7 @@ This means that the SOFA consortium commits to:
 | [SofaCUDA](https://github.com/sofa-framework/sofa/tree/master/applications/plugins/SofaCUDA)* | Plugin that provides a number of SOFA components that have been re-implemented using CUDA.  |
 | [SofaDistanceGrid](https://github.com/sofa-framework/sofa/tree/master/applications/plugins/SofaDistanceGrid)* | Plugin named SofaDistanceGrid. |
 | [SofaGLFW](https://www.github.com/sofa-framework/SofaGLFW.git) | Project containing two plugins: a simple GUI based on GLFW and a user interface based on [Dear ImGui](https://github.com/ocornut/imgui).  |
+| [SofaImplicitField](https://www.github.com/sofa-framework/SofaImplicitField.git) | External Plugin named SofaImplicitField that needs to be fetched. |
 | [SofaMatrix](https://github.com/sofa-framework/sofa/tree/master/applications/plugins/SofaMatrix)* | Plugin containing components used to provide insights on linear system matrices by exporting them of drawing them.  |
 | [SofaPhysicsAPI](https://github.com/sofa-framework/sofa/tree/master/applications/projects/SofaPhysicsAPI)* | Application named SofaPhysicsAPI. |
 | [SofaPython3](https://www.github.com/sofa-framework/SofaPython3.git) | Plugin enabling to write SOFA scenes in Python that also introduce several Python modules that exposes different C++ components used in SOFA.  |
