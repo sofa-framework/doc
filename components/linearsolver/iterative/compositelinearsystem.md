@@ -130,13 +130,11 @@ CompositeLinearSystem.scn
         <RequiredPlugin pluginName="Sofa.Component.Topology.Container.Grid"/> <!-- Needed to use components [RegularGridTopology] -->
         <RequiredPlugin pluginName="Sofa.Component.Visual"/> <!-- Needed to use components [VisualStyle] -->
         <RequiredPlugin pluginName="Sofa.GL.Component.Rendering3D"/> <!-- Needed to use components [OglModel] -->
-        <RequiredPlugin pluginName="SofaMatrix.Qt"/> <!-- Needed to use components [GlobalSystemMatrixImage] -->
+        <RequiredPlugin pluginName="SofaMatrix"/> <!-- Needed to use components [GlobalSystemMatrixImage] -->
     
         <VisualStyle displayFlags="showBehaviorModels showWireframe" />
     
         <DefaultAnimationLoop/>
-        <DefaultVisualManagerLoop/>
-    
         <DefaultVisualManagerLoop/>
     
         <Node name="node">
@@ -240,10 +238,9 @@ CompositeLinearSystem.scn
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Topology.Container.Grid")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Visual")
        root.addObject('RequiredPlugin', pluginName="Sofa.GL.Component.Rendering3D")
-       root.addObject('RequiredPlugin', pluginName="SofaMatrix.Qt")
+       root.addObject('RequiredPlugin', pluginName="SofaMatrix")
        root.addObject('VisualStyle', displayFlags="showBehaviorModels showWireframe")
        root.addObject('DefaultAnimationLoop', )
-       root.addObject('DefaultVisualManagerLoop', )
        root.addObject('DefaultVisualManagerLoop', )
 
        node = root.addChild('node')
