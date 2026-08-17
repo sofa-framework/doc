@@ -174,107 +174,6 @@ Internal edge data
 
 ## Examples 
 
-TetrahedronHyperelasticityFEMForceField_invertedTets.scn
-
-=== "XML"
-
-    ```xml
-    ﻿<?xml version="1.0" ?>
-    <Node name="root" dt="0.00005" showBoundingTree="0" gravity="0 0 0">
-        <Node name="plugins">
-            <RequiredPlugin pluginName="Sofa.Component.Constraint.Projective"/> <!-- Needed to use components [FixedProjectiveConstraint] -->
-            <RequiredPlugin pluginName="Sofa.Component.Engine.Select"/> <!-- Needed to use components [BoxROI] -->
-            <RequiredPlugin pluginName="Sofa.Component.LinearSolver.Direct"/> <!-- Needed to use components [SparseLDLSolver] -->
-            <RequiredPlugin pluginName="Sofa.Component.LinearSystem"/> <!-- Needed to use components [ConstantSparsityPatternSystem] -->
-            <RequiredPlugin pluginName="Sofa.Component.Mass"/> <!-- Needed to use components [MeshMatrixMass] -->
-            <RequiredPlugin pluginName="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
-            <RequiredPlugin pluginName="Sofa.Component.SolidMechanics.FEM.HyperElastic"/> <!-- Needed to use components [TetrahedronHyperelasticityFEMForceField] -->
-            <RequiredPlugin pluginName="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
-            <RequiredPlugin pluginName="Sofa.Component.Topology.Container.Dynamic"/> <!-- Needed to use components [TetrahedronSetGeometryAlgorithms TetrahedronSetTopologyContainer TetrahedronSetTopologyModifier] -->
-            <RequiredPlugin pluginName="Sofa.Component.Topology.Container.Grid"/> <!-- Needed to use components [RegularGridTopology] -->
-            <RequiredPlugin pluginName="Sofa.Component.Topology.Mapping"/> <!-- Needed to use components [Hexa2TetraTopologicalMapping] -->
-            <RequiredPlugin pluginName="Sofa.Component.Visual"/> <!-- Needed to use components [VisualStyle] -->
-        </Node>
-    
-        <VisualStyle displayFlags="showForceFields showBehaviorModels" />
-    
-        <DefaultAnimationLoop/>
-    
-        <Node name="StableNeoHookean">
-            <EulerImplicitSolver name="odesolver"/>
-            <ConstantSparsityPatternSystem template="CompressedRowSparseMatrixd" name="A"/>
-            <SparseLDLSolver template="CompressedRowSparseMatrixd"/>
-    
-            <RegularGridTopology name="hexaGrid"     min="0 0 0" max="1 1 2.7" n="6 6 16" p0="0 0 0"/>
-            <RegularGridTopology name="hexaGridRest" min="0 0 0" max="1 1 -2.7"   n="6 6 16" p0="0 0 0"/>
-    
-            <MechanicalObject name="mechObj" rest_position="@hexaGrid.position" position="@hexaGridRest.position"/>
-            <MeshMatrixMass totalMass="1.0"/>
-    
-            <Node name="tetras">
-                <TetrahedronSetTopologyContainer name="Container"/>
-                <TetrahedronSetTopologyModifier name="Modifier" />
-                <TetrahedronSetGeometryAlgorithms template="Vec3" name="GeomAlgo" />
-                <Hexa2TetraTopologicalMapping name="default28" input="@../hexaGrid" output="@Container" swapping="true"/>
-    
-                <TetrahedronHyperelasticityFEMForceField name="FEM" ParameterSet="1644295.30201342 33557.0469798658" materialName="StableNeoHookean"/>
-            </Node>
-    
-            <BoxROI drawBoxes="1" box="0 0 0 1 1 0.05" name="box"/>
-            <FixedProjectiveConstraint indices="@box.indices"/>
-        </Node>
-    
-    </Node>
-
-    ```
-
-=== "Python"
-
-    ```python
-    def createScene(root_node):
-
-       root = root_node.addChild('root', dt="0.00005", showBoundingTree="0", gravity="0 0 0")
-
-       plugins = root.addChild('plugins')
-
-       plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.Constraint.Projective")
-       plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.Engine.Select")
-       plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.LinearSolver.Direct")
-       plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.LinearSystem")
-       plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.Mass")
-       plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.ODESolver.Backward")
-       plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.SolidMechanics.FEM.HyperElastic")
-       plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.StateContainer")
-       plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.Topology.Container.Dynamic")
-       plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.Topology.Container.Grid")
-       plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.Topology.Mapping")
-       plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.Visual")
-
-       root.addObject('VisualStyle', displayFlags="showForceFields showBehaviorModels")
-       root.addObject('DefaultAnimationLoop', )
-
-       stable_neo_hookean = root.addChild('StableNeoHookean')
-
-       stable_neo_hookean.addObject('EulerImplicitSolver', name="odesolver")
-       stable_neo_hookean.addObject('ConstantSparsityPatternSystem', template="CompressedRowSparseMatrixd", name="A")
-       stable_neo_hookean.addObject('SparseLDLSolver', template="CompressedRowSparseMatrixd")
-       stable_neo_hookean.addObject('RegularGridTopology', name="hexaGrid", min="0 0 0", max="1 1 2.7", n="6 6 16", p0="0 0 0")
-       stable_neo_hookean.addObject('RegularGridTopology', name="hexaGridRest", min="0 0 0", max="1 1 -2.7", n="6 6 16", p0="0 0 0")
-       stable_neo_hookean.addObject('MechanicalObject', name="mechObj", rest_position="@hexaGrid.position", position="@hexaGridRest.position")
-       stable_neo_hookean.addObject('MeshMatrixMass', totalMass="1.0")
-
-       tetras = StableNeoHookean.addChild('tetras')
-
-       tetras.addObject('TetrahedronSetTopologyContainer', name="Container")
-       tetras.addObject('TetrahedronSetTopologyModifier', name="Modifier")
-       tetras.addObject('TetrahedronSetGeometryAlgorithms', template="Vec3", name="GeomAlgo")
-       tetras.addObject('Hexa2TetraTopologicalMapping', name="default28", input="@../hexaGrid", output="@Container", swapping="true")
-       tetras.addObject('TetrahedronHyperelasticityFEMForceField', name="FEM", ParameterSet="1644295.30201342 33557.0469798658", materialName="StableNeoHookean")
-
-       stable_neo_hookean.addObject('BoxROI', drawBoxes="1", box="0 0 0 1 1 0.05", name="box")
-       stable_neo_hookean.addObject('FixedProjectiveConstraint', indices="@box.indices")
-    ```
-
 TetrahedronHyperelasticityFEMForceField.scn
 
 === "XML"
@@ -568,6 +467,107 @@ TetrahedronHyperelasticityFEMForceField.scn
        ogden.addObject('BoxROI', drawBoxes="1", box="10 0 0 11 1 0.05", name="box")
        ogden.addObject('FixedProjectiveConstraint', indices="@box.indices")
        ogden.addObject('Visual3DText', text="Ogden", position="11 0 -0.5", scale="0.2")
+    ```
+
+TetrahedronHyperelasticityFEMForceField_invertedTets.scn
+
+=== "XML"
+
+    ```xml
+    ﻿<?xml version="1.0" ?>
+    <Node name="root" dt="0.00005" showBoundingTree="0" gravity="0 0 0">
+        <Node name="plugins">
+            <RequiredPlugin pluginName="Sofa.Component.Constraint.Projective"/> <!-- Needed to use components [FixedProjectiveConstraint] -->
+            <RequiredPlugin pluginName="Sofa.Component.Engine.Select"/> <!-- Needed to use components [BoxROI] -->
+            <RequiredPlugin pluginName="Sofa.Component.LinearSolver.Direct"/> <!-- Needed to use components [SparseLDLSolver] -->
+            <RequiredPlugin pluginName="Sofa.Component.LinearSystem"/> <!-- Needed to use components [ConstantSparsityPatternSystem] -->
+            <RequiredPlugin pluginName="Sofa.Component.Mass"/> <!-- Needed to use components [MeshMatrixMass] -->
+            <RequiredPlugin pluginName="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+            <RequiredPlugin pluginName="Sofa.Component.SolidMechanics.FEM.HyperElastic"/> <!-- Needed to use components [TetrahedronHyperelasticityFEMForceField] -->
+            <RequiredPlugin pluginName="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
+            <RequiredPlugin pluginName="Sofa.Component.Topology.Container.Dynamic"/> <!-- Needed to use components [TetrahedronSetGeometryAlgorithms TetrahedronSetTopologyContainer TetrahedronSetTopologyModifier] -->
+            <RequiredPlugin pluginName="Sofa.Component.Topology.Container.Grid"/> <!-- Needed to use components [RegularGridTopology] -->
+            <RequiredPlugin pluginName="Sofa.Component.Topology.Mapping"/> <!-- Needed to use components [Hexa2TetraTopologicalMapping] -->
+            <RequiredPlugin pluginName="Sofa.Component.Visual"/> <!-- Needed to use components [VisualStyle] -->
+        </Node>
+    
+        <VisualStyle displayFlags="showForceFields showBehaviorModels" />
+    
+        <DefaultAnimationLoop/>
+    
+        <Node name="StableNeoHookean">
+            <EulerImplicitSolver name="odesolver"/>
+            <ConstantSparsityPatternSystem template="CompressedRowSparseMatrixd" name="A"/>
+            <SparseLDLSolver template="CompressedRowSparseMatrixd"/>
+    
+            <RegularGridTopology name="hexaGrid"     min="0 0 0" max="1 1 2.7" n="6 6 16" p0="0 0 0"/>
+            <RegularGridTopology name="hexaGridRest" min="0 0 0" max="1 1 -2.7"   n="6 6 16" p0="0 0 0"/>
+    
+            <MechanicalObject name="mechObj" rest_position="@hexaGrid.position" position="@hexaGridRest.position"/>
+            <MeshMatrixMass totalMass="1.0"/>
+    
+            <Node name="tetras">
+                <TetrahedronSetTopologyContainer name="Container"/>
+                <TetrahedronSetTopologyModifier name="Modifier" />
+                <TetrahedronSetGeometryAlgorithms template="Vec3" name="GeomAlgo" />
+                <Hexa2TetraTopologicalMapping name="default28" input="@../hexaGrid" output="@Container" swapping="true"/>
+    
+                <TetrahedronHyperelasticityFEMForceField name="FEM" ParameterSet="1644295.30201342 33557.0469798658" materialName="StableNeoHookean"/>
+            </Node>
+    
+            <BoxROI drawBoxes="1" box="0 0 0 1 1 0.05" name="box"/>
+            <FixedProjectiveConstraint indices="@box.indices"/>
+        </Node>
+    
+    </Node>
+
+    ```
+
+=== "Python"
+
+    ```python
+    def createScene(root_node):
+
+       root = root_node.addChild('root', dt="0.00005", showBoundingTree="0", gravity="0 0 0")
+
+       plugins = root.addChild('plugins')
+
+       plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.Constraint.Projective")
+       plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.Engine.Select")
+       plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.LinearSolver.Direct")
+       plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.LinearSystem")
+       plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.Mass")
+       plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.ODESolver.Backward")
+       plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.SolidMechanics.FEM.HyperElastic")
+       plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.StateContainer")
+       plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.Topology.Container.Dynamic")
+       plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.Topology.Container.Grid")
+       plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.Topology.Mapping")
+       plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.Visual")
+
+       root.addObject('VisualStyle', displayFlags="showForceFields showBehaviorModels")
+       root.addObject('DefaultAnimationLoop', )
+
+       stable_neo_hookean = root.addChild('StableNeoHookean')
+
+       stable_neo_hookean.addObject('EulerImplicitSolver', name="odesolver")
+       stable_neo_hookean.addObject('ConstantSparsityPatternSystem', template="CompressedRowSparseMatrixd", name="A")
+       stable_neo_hookean.addObject('SparseLDLSolver', template="CompressedRowSparseMatrixd")
+       stable_neo_hookean.addObject('RegularGridTopology', name="hexaGrid", min="0 0 0", max="1 1 2.7", n="6 6 16", p0="0 0 0")
+       stable_neo_hookean.addObject('RegularGridTopology', name="hexaGridRest", min="0 0 0", max="1 1 -2.7", n="6 6 16", p0="0 0 0")
+       stable_neo_hookean.addObject('MechanicalObject', name="mechObj", rest_position="@hexaGrid.position", position="@hexaGridRest.position")
+       stable_neo_hookean.addObject('MeshMatrixMass', totalMass="1.0")
+
+       tetras = StableNeoHookean.addChild('tetras')
+
+       tetras.addObject('TetrahedronSetTopologyContainer', name="Container")
+       tetras.addObject('TetrahedronSetTopologyModifier', name="Modifier")
+       tetras.addObject('TetrahedronSetGeometryAlgorithms', template="Vec3", name="GeomAlgo")
+       tetras.addObject('Hexa2TetraTopologicalMapping', name="default28", input="@../hexaGrid", output="@Container", swapping="true")
+       tetras.addObject('TetrahedronHyperelasticityFEMForceField', name="FEM", ParameterSet="1644295.30201342 33557.0469798658", materialName="StableNeoHookean")
+
+       stable_neo_hookean.addObject('BoxROI', drawBoxes="1", box="0 0 0 1 1 0.05", name="box")
+       stable_neo_hookean.addObject('FixedProjectiveConstraint', indices="@box.indices")
     ```
 
 

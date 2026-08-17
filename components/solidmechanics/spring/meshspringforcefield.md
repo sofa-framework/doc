@@ -824,6 +824,241 @@ Size of drawed lines
 
 ## Examples 
 
+MeshSpringForceField_beam10x10x40_gpu.scn
+
+=== "XML"
+
+    ```xml
+    <?xml version="1.0"?>
+    <Node name="root" dt="0.01" gravity="0 -9 0">
+        <RequiredPlugin pluginName="Sofa.Component.Collision.Detection.Algorithm"/> <!-- Needed to use components [BVHNarrowPhase BruteForceBroadPhase CollisionPipeline] -->
+        <RequiredPlugin pluginName="Sofa.Component.Collision.Detection.Intersection"/> <!-- Needed to use components [MinProximityIntersection] -->
+        <RequiredPlugin pluginName="Sofa.Component.Collision.Response.Contact"/> <!-- Needed to use components [CollisionResponse] -->
+        <RequiredPlugin pluginName="Sofa.Component.LinearSolver.Iterative"/> <!-- Needed to use components [CGLinearSolver] -->
+        <RequiredPlugin pluginName="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+        <RequiredPlugin pluginName="Sofa.Component.Topology.Container.Dynamic"/> <!-- Needed to use components [TetrahedronSetTopologyContainer TetrahedronSetTopologyModifier] -->
+        <RequiredPlugin pluginName="Sofa.Component.Topology.Container.Grid"/> <!-- Needed to use components [RegularGridTopology] -->
+        <RequiredPlugin pluginName="Sofa.Component.Topology.Mapping"/> <!-- Needed to use components [Hexa2TetraTopologicalMapping] -->
+        <RequiredPlugin pluginName="Sofa.Component.Visual"/> <!-- Needed to use components [VisualStyle] -->
+        <RequiredPlugin pluginName="Sofa.GL.Component.Rendering3D"/> <!-- Needed to use components [OglModel] -->
+        <RequiredPlugin pluginName="SofaCUDA"/> <!-- Needed to use components [BoxROI FixedProjectiveConstraint IdentityMapping MechanicalObject MeshSpringForceField UniformMass] -->
+    
+        <VisualStyle displayFlags="showBehaviorModels" />
+        
+        <DefaultAnimationLoop/>
+    	<DefaultVisualManagerLoop/>
+    	<CollisionPipeline depth="6" verbose="0" draw="0"/>
+    	<BruteForceBroadPhase/>
+        <BVHNarrowPhase/>
+    	<MinProximityIntersection name="Proximity" alarmDistance="0.5" contactDistance="0.3" />
+    	<CollisionResponse name="Response" response="PenalityContactForceField" />
+        
+        <Node name="Beam">
+            <RegularGridTopology name="grid" n="40 10 10" min="0 6 -2" max="16 10 2" />
+            <TetrahedronSetTopologyContainer name="BeamTopo" />
+            <TetrahedronSetTopologyModifier name="Modifier" />
+    
+            <Hexa2TetraTopologicalMapping input="@grid" output="@BeamTopo" />
+        </Node>
+        
+        <Node name="MeshSpringForceField-GPU-Green">
+            <EulerImplicitSolver name="cg_odesolver"  printLog="0" />
+            <CGLinearSolver name="linear solver"  iterations="20"  tolerance="1e-06"  threshold="1e-06" />
+                    
+            <MechanicalObject position="@../Beam/grid.position" name="Volume" template="CudaVec3f"/>
+            <TetrahedronSetTopologyContainer name="Container" src="@../Beam/BeamTopo"/>
+            <TetrahedronSetTopologyModifier name="Modifier" />
+    		        
+            <BoxROI name="ROI1" box="-0.1 5 -3 0.1 11 3" drawBoxes="1" />        
+            <FixedProjectiveConstraint indices="@ROI1.indices" />
+            
+            <UniformMass totalMass="100" />
+            <MeshSpringForceField name="Springs" tetrasStiffness="1200" tetrasDamping="0" template="CudaVec3f"/>
+           
+            <Node name="MeshVisu">
+    			<OglModel name="Visual" topology="@../Container" position="@../Volume.position" color="green"/>
+    			<IdentityMapping input="@../Volume" output="@Visual" />
+    		</Node>
+        </Node>
+    </Node>
+
+    ```
+
+=== "Python"
+
+    ```python
+    def createScene(root_node):
+
+       root = root_node.addChild('root', dt="0.01", gravity="0 -9 0")
+
+       root.addObject('RequiredPlugin', pluginName="Sofa.Component.Collision.Detection.Algorithm")
+       root.addObject('RequiredPlugin', pluginName="Sofa.Component.Collision.Detection.Intersection")
+       root.addObject('RequiredPlugin', pluginName="Sofa.Component.Collision.Response.Contact")
+       root.addObject('RequiredPlugin', pluginName="Sofa.Component.LinearSolver.Iterative")
+       root.addObject('RequiredPlugin', pluginName="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', pluginName="Sofa.Component.Topology.Container.Dynamic")
+       root.addObject('RequiredPlugin', pluginName="Sofa.Component.Topology.Container.Grid")
+       root.addObject('RequiredPlugin', pluginName="Sofa.Component.Topology.Mapping")
+       root.addObject('RequiredPlugin', pluginName="Sofa.Component.Visual")
+       root.addObject('RequiredPlugin', pluginName="Sofa.GL.Component.Rendering3D")
+       root.addObject('RequiredPlugin', pluginName="SofaCUDA")
+       root.addObject('VisualStyle', displayFlags="showBehaviorModels")
+       root.addObject('DefaultAnimationLoop', )
+       root.addObject('DefaultVisualManagerLoop', )
+       root.addObject('CollisionPipeline', depth="6", verbose="0", draw="0")
+       root.addObject('BruteForceBroadPhase', )
+       root.addObject('BVHNarrowPhase', )
+       root.addObject('MinProximityIntersection', name="Proximity", alarmDistance="0.5", contactDistance="0.3")
+       root.addObject('CollisionResponse', name="Response", response="PenalityContactForceField")
+
+       beam = root.addChild('Beam')
+
+       beam.addObject('RegularGridTopology', name="grid", n="40 10 10", min="0 6 -2", max="16 10 2")
+       beam.addObject('TetrahedronSetTopologyContainer', name="BeamTopo")
+       beam.addObject('TetrahedronSetTopologyModifier', name="Modifier")
+       beam.addObject('Hexa2TetraTopologicalMapping', input="@grid", output="@BeamTopo")
+
+       mesh_spring_force_field__gpu__green = root.addChild('MeshSpringForceField-GPU-Green')
+
+       mesh_spring_force_field__gpu__green.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="0")
+       mesh_spring_force_field__gpu__green.addObject('CGLinearSolver', name="linear solver", iterations="20", tolerance="1e-06", threshold="1e-06")
+       mesh_spring_force_field__gpu__green.addObject('MechanicalObject', position="@../Beam/grid.position", name="Volume", template="CudaVec3f")
+       mesh_spring_force_field__gpu__green.addObject('TetrahedronSetTopologyContainer', name="Container", src="@../Beam/BeamTopo")
+       mesh_spring_force_field__gpu__green.addObject('TetrahedronSetTopologyModifier', name="Modifier")
+       mesh_spring_force_field__gpu__green.addObject('BoxROI', name="ROI1", box="-0.1 5 -3 0.1 11 3", drawBoxes="1")
+       mesh_spring_force_field__gpu__green.addObject('FixedProjectiveConstraint', indices="@ROI1.indices")
+       mesh_spring_force_field__gpu__green.addObject('UniformMass', totalMass="100")
+       mesh_spring_force_field__gpu__green.addObject('MeshSpringForceField', name="Springs", tetrasStiffness="1200", tetrasDamping="0", template="CudaVec3f")
+
+       mesh_visu = MeshSpringForceField-GPU-Green.addChild('MeshVisu')
+
+       mesh_visu.addObject('OglModel', name="Visual", topology="@../Container", position="@../Volume.position", color="green")
+       mesh_visu.addObject('IdentityMapping', input="@../Volume", output="@Visual")
+    ```
+
+MeshSpringForceField_beam10x10x40_cpu.scn
+
+=== "XML"
+
+    ```xml
+    <?xml version="1.0"?>
+    <Node name="root" dt="0.01" gravity="0 -9 0">
+        <RequiredPlugin pluginName="Sofa.Component.Collision.Detection.Algorithm"/> <!-- Needed to use components [BVHNarrowPhase BruteForceBroadPhase CollisionPipeline] -->
+        <RequiredPlugin pluginName="Sofa.Component.Collision.Detection.Intersection"/> <!-- Needed to use components [MinProximityIntersection] -->
+        <RequiredPlugin pluginName="Sofa.Component.Collision.Response.Contact"/> <!-- Needed to use components [CollisionResponse] -->
+        <RequiredPlugin pluginName="Sofa.Component.Constraint.Projective"/> <!-- Needed to use components [FixedProjectiveConstraint] -->
+        <RequiredPlugin pluginName="Sofa.Component.Engine.Select"/> <!-- Needed to use components [BoxROI] -->
+        <RequiredPlugin pluginName="Sofa.Component.LinearSolver.Iterative"/> <!-- Needed to use components [CGLinearSolver] -->
+        <RequiredPlugin pluginName="Sofa.Component.Mapping.Linear"/> <!-- Needed to use components [IdentityMapping] -->
+        <RequiredPlugin pluginName="Sofa.Component.Mass"/> <!-- Needed to use components [UniformMass] -->
+        <RequiredPlugin pluginName="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+        <RequiredPlugin pluginName="Sofa.Component.SolidMechanics.Spring"/> <!-- Needed to use components [MeshSpringForceField] -->
+        <RequiredPlugin pluginName="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
+        <RequiredPlugin pluginName="Sofa.Component.Topology.Container.Dynamic"/> <!-- Needed to use components [TetrahedronSetTopologyContainer TetrahedronSetTopologyModifier] -->
+        <RequiredPlugin pluginName="Sofa.Component.Topology.Container.Grid"/> <!-- Needed to use components [RegularGridTopology] -->
+        <RequiredPlugin pluginName="Sofa.Component.Topology.Mapping"/> <!-- Needed to use components [Hexa2TetraTopologicalMapping] -->
+        <RequiredPlugin pluginName="Sofa.Component.Visual"/> <!-- Needed to use components [VisualStyle] -->
+        <RequiredPlugin pluginName="Sofa.GL.Component.Rendering3D"/> <!-- Needed to use components [OglModel] -->
+    
+        <VisualStyle displayFlags="showBehaviorModels" />
+        
+        <DefaultAnimationLoop/>
+    	<DefaultVisualManagerLoop/>
+    	<CollisionPipeline depth="6" verbose="0" draw="0"/>
+    	<BruteForceBroadPhase/>
+        <BVHNarrowPhase/>
+    	<MinProximityIntersection name="Proximity" alarmDistance="0.5" contactDistance="0.3" />
+    	<CollisionResponse name="Response" response="PenalityContactForceField" />
+        
+        <Node name="Beam">
+            <RegularGridTopology name="grid" n="40 10 10" min="0 6 -2" max="16 10 2" />
+            <TetrahedronSetTopologyContainer name="BeamTopo" />
+            <TetrahedronSetTopologyModifier name="Modifier" />
+    
+            <Hexa2TetraTopologicalMapping input="@grid" output="@BeamTopo" />
+        </Node>
+    
+        <Node name="MeshSpringForceField-CPU-Red">
+            <EulerImplicitSolver name="cg_odesolver"  printLog="0" />
+            <CGLinearSolver name="linear solver"  iterations="20"  tolerance="1e-06"  threshold="1e-06" />
+                    
+            <MechanicalObject position="@../Beam/grid.position" name="Volume" template="Vec3"/>
+            <TetrahedronSetTopologyContainer name="Container" src="@../Beam/BeamTopo"/>
+            <TetrahedronSetTopologyModifier name="Modifier" />
+    		        
+            <BoxROI name="ROI1" box="-0.1 5 -3 0.1 11 3" drawBoxes="1" />        
+            <FixedProjectiveConstraint indices="@ROI1.indices" />
+            
+            <UniformMass totalMass="100" />
+            
+            <MeshSpringForceField name="Springs" tetrasStiffness="1200" tetrasDamping="0" template="Vec3"/>
+           
+            <Node name="MeshVisu">
+    			<OglModel name="Visual" topology="@../Container" position="@../Volume.position" color="red"/>
+    			<IdentityMapping input="@../Volume" output="@Visual" />
+    		</Node>
+        </Node>
+    </Node>
+
+    ```
+
+=== "Python"
+
+    ```python
+    def createScene(root_node):
+
+       root = root_node.addChild('root', dt="0.01", gravity="0 -9 0")
+
+       root.addObject('RequiredPlugin', pluginName="Sofa.Component.Collision.Detection.Algorithm")
+       root.addObject('RequiredPlugin', pluginName="Sofa.Component.Collision.Detection.Intersection")
+       root.addObject('RequiredPlugin', pluginName="Sofa.Component.Collision.Response.Contact")
+       root.addObject('RequiredPlugin', pluginName="Sofa.Component.Constraint.Projective")
+       root.addObject('RequiredPlugin', pluginName="Sofa.Component.Engine.Select")
+       root.addObject('RequiredPlugin', pluginName="Sofa.Component.LinearSolver.Iterative")
+       root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mapping.Linear")
+       root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mass")
+       root.addObject('RequiredPlugin', pluginName="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', pluginName="Sofa.Component.SolidMechanics.Spring")
+       root.addObject('RequiredPlugin', pluginName="Sofa.Component.StateContainer")
+       root.addObject('RequiredPlugin', pluginName="Sofa.Component.Topology.Container.Dynamic")
+       root.addObject('RequiredPlugin', pluginName="Sofa.Component.Topology.Container.Grid")
+       root.addObject('RequiredPlugin', pluginName="Sofa.Component.Topology.Mapping")
+       root.addObject('RequiredPlugin', pluginName="Sofa.Component.Visual")
+       root.addObject('RequiredPlugin', pluginName="Sofa.GL.Component.Rendering3D")
+       root.addObject('VisualStyle', displayFlags="showBehaviorModels")
+       root.addObject('DefaultAnimationLoop', )
+       root.addObject('DefaultVisualManagerLoop', )
+       root.addObject('CollisionPipeline', depth="6", verbose="0", draw="0")
+       root.addObject('BruteForceBroadPhase', )
+       root.addObject('BVHNarrowPhase', )
+       root.addObject('MinProximityIntersection', name="Proximity", alarmDistance="0.5", contactDistance="0.3")
+       root.addObject('CollisionResponse', name="Response", response="PenalityContactForceField")
+
+       beam = root.addChild('Beam')
+
+       beam.addObject('RegularGridTopology', name="grid", n="40 10 10", min="0 6 -2", max="16 10 2")
+       beam.addObject('TetrahedronSetTopologyContainer', name="BeamTopo")
+       beam.addObject('TetrahedronSetTopologyModifier', name="Modifier")
+       beam.addObject('Hexa2TetraTopologicalMapping', input="@grid", output="@BeamTopo")
+
+       mesh_spring_force_field__cpu__red = root.addChild('MeshSpringForceField-CPU-Red')
+
+       mesh_spring_force_field__cpu__red.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="0")
+       mesh_spring_force_field__cpu__red.addObject('CGLinearSolver', name="linear solver", iterations="20", tolerance="1e-06", threshold="1e-06")
+       mesh_spring_force_field__cpu__red.addObject('MechanicalObject', position="@../Beam/grid.position", name="Volume", template="Vec3")
+       mesh_spring_force_field__cpu__red.addObject('TetrahedronSetTopologyContainer', name="Container", src="@../Beam/BeamTopo")
+       mesh_spring_force_field__cpu__red.addObject('TetrahedronSetTopologyModifier', name="Modifier")
+       mesh_spring_force_field__cpu__red.addObject('BoxROI', name="ROI1", box="-0.1 5 -3 0.1 11 3", drawBoxes="1")
+       mesh_spring_force_field__cpu__red.addObject('FixedProjectiveConstraint', indices="@ROI1.indices")
+       mesh_spring_force_field__cpu__red.addObject('UniformMass', totalMass="100")
+       mesh_spring_force_field__cpu__red.addObject('MeshSpringForceField', name="Springs", tetrasStiffness="1200", tetrasDamping="0", template="Vec3")
+
+       mesh_visu = MeshSpringForceField-CPU-Red.addChild('MeshVisu')
+
+       mesh_visu.addObject('OglModel', name="Visual", topology="@../Container", position="@../Volume.position", color="red")
+       mesh_visu.addObject('IdentityMapping', input="@../Volume", output="@Visual")
+    ```
+
 MeshSpringForceField.scn
 
 === "XML"
@@ -1081,240 +1316,5 @@ MeshSpringForceField.scn
        surf4.addObject('MechanicalObject', src="@loader")
        surf4.addObject('TriangleCollisionModel', )
        surf4.addObject('BarycentricMapping', )
-    ```
-
-MeshSpringForceField_beam10x10x40_cpu.scn
-
-=== "XML"
-
-    ```xml
-    <?xml version="1.0"?>
-    <Node name="root" dt="0.01" gravity="0 -9 0">
-        <RequiredPlugin pluginName="Sofa.Component.Collision.Detection.Algorithm"/> <!-- Needed to use components [BVHNarrowPhase BruteForceBroadPhase CollisionPipeline] -->
-        <RequiredPlugin pluginName="Sofa.Component.Collision.Detection.Intersection"/> <!-- Needed to use components [MinProximityIntersection] -->
-        <RequiredPlugin pluginName="Sofa.Component.Collision.Response.Contact"/> <!-- Needed to use components [CollisionResponse] -->
-        <RequiredPlugin pluginName="Sofa.Component.Constraint.Projective"/> <!-- Needed to use components [FixedProjectiveConstraint] -->
-        <RequiredPlugin pluginName="Sofa.Component.Engine.Select"/> <!-- Needed to use components [BoxROI] -->
-        <RequiredPlugin pluginName="Sofa.Component.LinearSolver.Iterative"/> <!-- Needed to use components [CGLinearSolver] -->
-        <RequiredPlugin pluginName="Sofa.Component.Mapping.Linear"/> <!-- Needed to use components [IdentityMapping] -->
-        <RequiredPlugin pluginName="Sofa.Component.Mass"/> <!-- Needed to use components [UniformMass] -->
-        <RequiredPlugin pluginName="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
-        <RequiredPlugin pluginName="Sofa.Component.SolidMechanics.Spring"/> <!-- Needed to use components [MeshSpringForceField] -->
-        <RequiredPlugin pluginName="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
-        <RequiredPlugin pluginName="Sofa.Component.Topology.Container.Dynamic"/> <!-- Needed to use components [TetrahedronSetTopologyContainer TetrahedronSetTopologyModifier] -->
-        <RequiredPlugin pluginName="Sofa.Component.Topology.Container.Grid"/> <!-- Needed to use components [RegularGridTopology] -->
-        <RequiredPlugin pluginName="Sofa.Component.Topology.Mapping"/> <!-- Needed to use components [Hexa2TetraTopologicalMapping] -->
-        <RequiredPlugin pluginName="Sofa.Component.Visual"/> <!-- Needed to use components [VisualStyle] -->
-        <RequiredPlugin pluginName="Sofa.GL.Component.Rendering3D"/> <!-- Needed to use components [OglModel] -->
-    
-        <VisualStyle displayFlags="showBehaviorModels" />
-        
-        <DefaultAnimationLoop/>
-    	<DefaultVisualManagerLoop/>
-    	<CollisionPipeline depth="6" verbose="0" draw="0"/>
-    	<BruteForceBroadPhase/>
-        <BVHNarrowPhase/>
-    	<MinProximityIntersection name="Proximity" alarmDistance="0.5" contactDistance="0.3" />
-    	<CollisionResponse name="Response" response="PenalityContactForceField" />
-        
-        <Node name="Beam">
-            <RegularGridTopology name="grid" n="40 10 10" min="0 6 -2" max="16 10 2" />
-            <TetrahedronSetTopologyContainer name="BeamTopo" />
-            <TetrahedronSetTopologyModifier name="Modifier" />
-    
-            <Hexa2TetraTopologicalMapping input="@grid" output="@BeamTopo" />
-        </Node>
-    
-        <Node name="MeshSpringForceField-CPU-Red">
-            <EulerImplicitSolver name="cg_odesolver"  printLog="0" />
-            <CGLinearSolver name="linear solver"  iterations="20"  tolerance="1e-06"  threshold="1e-06" />
-                    
-            <MechanicalObject position="@../Beam/grid.position" name="Volume" template="Vec3"/>
-            <TetrahedronSetTopologyContainer name="Container" src="@../Beam/BeamTopo"/>
-            <TetrahedronSetTopologyModifier name="Modifier" />
-    		        
-            <BoxROI name="ROI1" box="-0.1 5 -3 0.1 11 3" drawBoxes="1" />        
-            <FixedProjectiveConstraint indices="@ROI1.indices" />
-            
-            <UniformMass totalMass="100" />
-            
-            <MeshSpringForceField name="Springs" tetrasStiffness="1200" tetrasDamping="0" template="Vec3"/>
-           
-            <Node name="MeshVisu">
-    			<OglModel name="Visual" topology="@../Container" position="@../Volume.position" color="red"/>
-    			<IdentityMapping input="@../Volume" output="@Visual" />
-    		</Node>
-        </Node>
-    </Node>
-
-    ```
-
-=== "Python"
-
-    ```python
-    def createScene(root_node):
-
-       root = root_node.addChild('root', dt="0.01", gravity="0 -9 0")
-
-       root.addObject('RequiredPlugin', pluginName="Sofa.Component.Collision.Detection.Algorithm")
-       root.addObject('RequiredPlugin', pluginName="Sofa.Component.Collision.Detection.Intersection")
-       root.addObject('RequiredPlugin', pluginName="Sofa.Component.Collision.Response.Contact")
-       root.addObject('RequiredPlugin', pluginName="Sofa.Component.Constraint.Projective")
-       root.addObject('RequiredPlugin', pluginName="Sofa.Component.Engine.Select")
-       root.addObject('RequiredPlugin', pluginName="Sofa.Component.LinearSolver.Iterative")
-       root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mapping.Linear")
-       root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mass")
-       root.addObject('RequiredPlugin', pluginName="Sofa.Component.ODESolver.Backward")
-       root.addObject('RequiredPlugin', pluginName="Sofa.Component.SolidMechanics.Spring")
-       root.addObject('RequiredPlugin', pluginName="Sofa.Component.StateContainer")
-       root.addObject('RequiredPlugin', pluginName="Sofa.Component.Topology.Container.Dynamic")
-       root.addObject('RequiredPlugin', pluginName="Sofa.Component.Topology.Container.Grid")
-       root.addObject('RequiredPlugin', pluginName="Sofa.Component.Topology.Mapping")
-       root.addObject('RequiredPlugin', pluginName="Sofa.Component.Visual")
-       root.addObject('RequiredPlugin', pluginName="Sofa.GL.Component.Rendering3D")
-       root.addObject('VisualStyle', displayFlags="showBehaviorModels")
-       root.addObject('DefaultAnimationLoop', )
-       root.addObject('DefaultVisualManagerLoop', )
-       root.addObject('CollisionPipeline', depth="6", verbose="0", draw="0")
-       root.addObject('BruteForceBroadPhase', )
-       root.addObject('BVHNarrowPhase', )
-       root.addObject('MinProximityIntersection', name="Proximity", alarmDistance="0.5", contactDistance="0.3")
-       root.addObject('CollisionResponse', name="Response", response="PenalityContactForceField")
-
-       beam = root.addChild('Beam')
-
-       beam.addObject('RegularGridTopology', name="grid", n="40 10 10", min="0 6 -2", max="16 10 2")
-       beam.addObject('TetrahedronSetTopologyContainer', name="BeamTopo")
-       beam.addObject('TetrahedronSetTopologyModifier', name="Modifier")
-       beam.addObject('Hexa2TetraTopologicalMapping', input="@grid", output="@BeamTopo")
-
-       mesh_spring_force_field__cpu__red = root.addChild('MeshSpringForceField-CPU-Red')
-
-       mesh_spring_force_field__cpu__red.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="0")
-       mesh_spring_force_field__cpu__red.addObject('CGLinearSolver', name="linear solver", iterations="20", tolerance="1e-06", threshold="1e-06")
-       mesh_spring_force_field__cpu__red.addObject('MechanicalObject', position="@../Beam/grid.position", name="Volume", template="Vec3")
-       mesh_spring_force_field__cpu__red.addObject('TetrahedronSetTopologyContainer', name="Container", src="@../Beam/BeamTopo")
-       mesh_spring_force_field__cpu__red.addObject('TetrahedronSetTopologyModifier', name="Modifier")
-       mesh_spring_force_field__cpu__red.addObject('BoxROI', name="ROI1", box="-0.1 5 -3 0.1 11 3", drawBoxes="1")
-       mesh_spring_force_field__cpu__red.addObject('FixedProjectiveConstraint', indices="@ROI1.indices")
-       mesh_spring_force_field__cpu__red.addObject('UniformMass', totalMass="100")
-       mesh_spring_force_field__cpu__red.addObject('MeshSpringForceField', name="Springs", tetrasStiffness="1200", tetrasDamping="0", template="Vec3")
-
-       mesh_visu = MeshSpringForceField-CPU-Red.addChild('MeshVisu')
-
-       mesh_visu.addObject('OglModel', name="Visual", topology="@../Container", position="@../Volume.position", color="red")
-       mesh_visu.addObject('IdentityMapping', input="@../Volume", output="@Visual")
-    ```
-
-MeshSpringForceField_beam10x10x40_gpu.scn
-
-=== "XML"
-
-    ```xml
-    <?xml version="1.0"?>
-    <Node name="root" dt="0.01" gravity="0 -9 0">
-        <RequiredPlugin pluginName="Sofa.Component.Collision.Detection.Algorithm"/> <!-- Needed to use components [BVHNarrowPhase BruteForceBroadPhase CollisionPipeline] -->
-        <RequiredPlugin pluginName="Sofa.Component.Collision.Detection.Intersection"/> <!-- Needed to use components [MinProximityIntersection] -->
-        <RequiredPlugin pluginName="Sofa.Component.Collision.Response.Contact"/> <!-- Needed to use components [CollisionResponse] -->
-        <RequiredPlugin pluginName="Sofa.Component.LinearSolver.Iterative"/> <!-- Needed to use components [CGLinearSolver] -->
-        <RequiredPlugin pluginName="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
-        <RequiredPlugin pluginName="Sofa.Component.Topology.Container.Dynamic"/> <!-- Needed to use components [TetrahedronSetTopologyContainer TetrahedronSetTopologyModifier] -->
-        <RequiredPlugin pluginName="Sofa.Component.Topology.Container.Grid"/> <!-- Needed to use components [RegularGridTopology] -->
-        <RequiredPlugin pluginName="Sofa.Component.Topology.Mapping"/> <!-- Needed to use components [Hexa2TetraTopologicalMapping] -->
-        <RequiredPlugin pluginName="Sofa.Component.Visual"/> <!-- Needed to use components [VisualStyle] -->
-        <RequiredPlugin pluginName="Sofa.GL.Component.Rendering3D"/> <!-- Needed to use components [OglModel] -->
-        <RequiredPlugin pluginName="SofaCUDA"/> <!-- Needed to use components [BoxROI FixedProjectiveConstraint IdentityMapping MechanicalObject MeshSpringForceField UniformMass] -->
-    
-        <VisualStyle displayFlags="showBehaviorModels" />
-        
-        <DefaultAnimationLoop/>
-    	<DefaultVisualManagerLoop/>
-    	<CollisionPipeline depth="6" verbose="0" draw="0"/>
-    	<BruteForceBroadPhase/>
-        <BVHNarrowPhase/>
-    	<MinProximityIntersection name="Proximity" alarmDistance="0.5" contactDistance="0.3" />
-    	<CollisionResponse name="Response" response="PenalityContactForceField" />
-        
-        <Node name="Beam">
-            <RegularGridTopology name="grid" n="40 10 10" min="0 6 -2" max="16 10 2" />
-            <TetrahedronSetTopologyContainer name="BeamTopo" />
-            <TetrahedronSetTopologyModifier name="Modifier" />
-    
-            <Hexa2TetraTopologicalMapping input="@grid" output="@BeamTopo" />
-        </Node>
-        
-        <Node name="MeshSpringForceField-GPU-Green">
-            <EulerImplicitSolver name="cg_odesolver"  printLog="0" />
-            <CGLinearSolver name="linear solver"  iterations="20"  tolerance="1e-06"  threshold="1e-06" />
-                    
-            <MechanicalObject position="@../Beam/grid.position" name="Volume" template="CudaVec3f"/>
-            <TetrahedronSetTopologyContainer name="Container" src="@../Beam/BeamTopo"/>
-            <TetrahedronSetTopologyModifier name="Modifier" />
-    		        
-            <BoxROI name="ROI1" box="-0.1 5 -3 0.1 11 3" drawBoxes="1" />        
-            <FixedProjectiveConstraint indices="@ROI1.indices" />
-            
-            <UniformMass totalMass="100" />
-            <MeshSpringForceField name="Springs" tetrasStiffness="1200" tetrasDamping="0" template="CudaVec3f"/>
-           
-            <Node name="MeshVisu">
-    			<OglModel name="Visual" topology="@../Container" position="@../Volume.position" color="green"/>
-    			<IdentityMapping input="@../Volume" output="@Visual" />
-    		</Node>
-        </Node>
-    </Node>
-
-    ```
-
-=== "Python"
-
-    ```python
-    def createScene(root_node):
-
-       root = root_node.addChild('root', dt="0.01", gravity="0 -9 0")
-
-       root.addObject('RequiredPlugin', pluginName="Sofa.Component.Collision.Detection.Algorithm")
-       root.addObject('RequiredPlugin', pluginName="Sofa.Component.Collision.Detection.Intersection")
-       root.addObject('RequiredPlugin', pluginName="Sofa.Component.Collision.Response.Contact")
-       root.addObject('RequiredPlugin', pluginName="Sofa.Component.LinearSolver.Iterative")
-       root.addObject('RequiredPlugin', pluginName="Sofa.Component.ODESolver.Backward")
-       root.addObject('RequiredPlugin', pluginName="Sofa.Component.Topology.Container.Dynamic")
-       root.addObject('RequiredPlugin', pluginName="Sofa.Component.Topology.Container.Grid")
-       root.addObject('RequiredPlugin', pluginName="Sofa.Component.Topology.Mapping")
-       root.addObject('RequiredPlugin', pluginName="Sofa.Component.Visual")
-       root.addObject('RequiredPlugin', pluginName="Sofa.GL.Component.Rendering3D")
-       root.addObject('RequiredPlugin', pluginName="SofaCUDA")
-       root.addObject('VisualStyle', displayFlags="showBehaviorModels")
-       root.addObject('DefaultAnimationLoop', )
-       root.addObject('DefaultVisualManagerLoop', )
-       root.addObject('CollisionPipeline', depth="6", verbose="0", draw="0")
-       root.addObject('BruteForceBroadPhase', )
-       root.addObject('BVHNarrowPhase', )
-       root.addObject('MinProximityIntersection', name="Proximity", alarmDistance="0.5", contactDistance="0.3")
-       root.addObject('CollisionResponse', name="Response", response="PenalityContactForceField")
-
-       beam = root.addChild('Beam')
-
-       beam.addObject('RegularGridTopology', name="grid", n="40 10 10", min="0 6 -2", max="16 10 2")
-       beam.addObject('TetrahedronSetTopologyContainer', name="BeamTopo")
-       beam.addObject('TetrahedronSetTopologyModifier', name="Modifier")
-       beam.addObject('Hexa2TetraTopologicalMapping', input="@grid", output="@BeamTopo")
-
-       mesh_spring_force_field__gpu__green = root.addChild('MeshSpringForceField-GPU-Green')
-
-       mesh_spring_force_field__gpu__green.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="0")
-       mesh_spring_force_field__gpu__green.addObject('CGLinearSolver', name="linear solver", iterations="20", tolerance="1e-06", threshold="1e-06")
-       mesh_spring_force_field__gpu__green.addObject('MechanicalObject', position="@../Beam/grid.position", name="Volume", template="CudaVec3f")
-       mesh_spring_force_field__gpu__green.addObject('TetrahedronSetTopologyContainer', name="Container", src="@../Beam/BeamTopo")
-       mesh_spring_force_field__gpu__green.addObject('TetrahedronSetTopologyModifier', name="Modifier")
-       mesh_spring_force_field__gpu__green.addObject('BoxROI', name="ROI1", box="-0.1 5 -3 0.1 11 3", drawBoxes="1")
-       mesh_spring_force_field__gpu__green.addObject('FixedProjectiveConstraint', indices="@ROI1.indices")
-       mesh_spring_force_field__gpu__green.addObject('UniformMass', totalMass="100")
-       mesh_spring_force_field__gpu__green.addObject('MeshSpringForceField', name="Springs", tetrasStiffness="1200", tetrasDamping="0", template="CudaVec3f")
-
-       mesh_visu = MeshSpringForceField-GPU-Green.addChild('MeshVisu')
-
-       mesh_visu.addObject('OglModel', name="Visual", topology="@../Container", position="@../Volume.position", color="green")
-       mesh_visu.addObject('IdentityMapping', input="@../Volume", output="@Visual")
     ```
 
