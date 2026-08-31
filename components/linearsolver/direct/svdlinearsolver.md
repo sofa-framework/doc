@@ -109,7 +109,7 @@ Dump system state at each iteration
 	<tr>
 		<td>minSingularValue</td>
 		<td>
-Thershold under which a singular value is set to 0, for the stabilization of ill-conditioned system.
+Threshold under which a singular value is set to 0, for the stabilization of ill-conditioned system.
 		</td>
 		<td>1e-06</td>
 	</tr>
@@ -240,7 +240,7 @@ Dump system state at each iteration
 	<tr>
 		<td>minSingularValue</td>
 		<td>
-Thershold under which a singular value is set to 0, for the stabilization of ill-conditioned system.
+Threshold under which a singular value is set to 0, for the stabilization of ill-conditioned system.
 		</td>
 		<td>1e-06</td>
 	</tr>
@@ -371,7 +371,7 @@ Dump system state at each iteration
 	<tr>
 		<td>minSingularValue</td>
 		<td>
-Thershold under which a singular value is set to 0, for the stabilization of ill-conditioned system.
+Threshold under which a singular value is set to 0, for the stabilization of ill-conditioned system.
 		</td>
 		<td>1e-06</td>
 	</tr>

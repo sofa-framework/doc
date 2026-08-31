@@ -11,6 +11,7 @@ __namespace__: sofa::component::collision::geometry
 __parents__:
 
 - CollisionModel
+- SingleStateAccessor
 
 ### Data
 
@@ -162,6 +163,8 @@ Number of collision models this collision model is currently attached to
 |context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
 |slaves|Sub-objects used internally by this object|BaseComponent|
 |master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseComponent|
+|mechanicalStates|List of mechanical states to which this component is associated|BaseMechanicalState|
+|mstate|MechanicalState used by this component|MechanicalState&lt;Vec3d&gt;|
 |previous|Previous (coarser / upper / parent level) CollisionModel in the hierarchy.|CollisionModel|
 |next|Next (finer / lower / child level) CollisionModel in the hierarchy.|CollisionModel|
 |collisionElementActiver|CollisionElementActiver component that activates or deactivates collision element(s) during execution|BaseComponent|
