@@ -1697,6 +1697,7 @@ BarycentricMapping_meshtopology.scn
     ```xml
     <?xml version="1.0"?>
     <Node name="root" gravity="0 -10 0" dt="0.01">
+        <RequiredPlugin name="Sofa.Component.Topology.Container.Constant"/>
     
         <Node name="plugins">
             <RequiredPlugin pluginName="Sofa.Component.IO.Mesh"/> <!-- Needed to use components [MeshOBJLoader] -->
@@ -1761,6 +1762,8 @@ BarycentricMapping_meshtopology.scn
     def createScene(root_node):
 
        root = root_node.addChild('root', gravity="0 -10 0", dt="0.01")
+
+       root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Constant")
 
        plugins = root.addChild('plugins')
 

@@ -130,6 +130,17 @@ VisualMesh.scn
     ```xml
     <?xml version="1.0"?>
     <Node name="root" dt="0.01" gravity="0 -9.81 0">
+        <RequiredPlugin name="Sofa.Component.Constraint.Projective"/>
+        <RequiredPlugin name="Sofa.Component.Engine.Select"/>
+        <RequiredPlugin name="Sofa.Component.LinearSolver.Iterative"/>
+        <RequiredPlugin name="Sofa.Component.Mass"/>
+        <RequiredPlugin name="Sofa.Component.ODESolver.Backward"/>
+        <RequiredPlugin name="Sofa.Component.SolidMechanics.FEM.Elastic"/>
+        <RequiredPlugin name="Sofa.Component.StateContainer"/>
+        <RequiredPlugin name="Sofa.Component.Topology.Container.Dynamic"/>
+        <RequiredPlugin name="Sofa.Component.Topology.Container.Grid"/>
+        <RequiredPlugin name="Sofa.Component.Topology.Mapping"/>
+        <RequiredPlugin name="Sofa.Component.Visual"/>
     
         <Node name="tetra">
             <EulerImplicitSolver name="cg_odesolver" printLog="false"  rayleighStiffness="0.1" rayleighMass="0.1" />
@@ -189,6 +200,18 @@ VisualMesh.scn
     def createScene(root_node):
 
        root = root_node.addChild('root', dt="0.01", gravity="0 -9.81 0")
+
+       root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Projective")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Engine.Select")
+       root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Iterative")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Mass")
+       root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.FEM.Elastic")
+       root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Dynamic")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Grid")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Mapping")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Visual")
 
        tetra = root.addChild('tetra')
 

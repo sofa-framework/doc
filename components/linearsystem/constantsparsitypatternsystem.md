@@ -169,8 +169,6 @@ ConstantSparsityPatternSystem.scn
 
     ```xml
     <Node name="root" dt="0.02" gravity="0 -10 0">
-        <VisualStyle displayFlags="showBehaviorModels showWireframe" />
-    
         <RequiredPlugin pluginName="Sofa.Component.Constraint.Projective"/> <!-- Needed to use components [FixedProjectiveConstraint] -->
         <RequiredPlugin pluginName="Sofa.Component.Engine.Select"/> <!-- Needed to use components [BoxROI] -->
         <RequiredPlugin pluginName="Sofa.Component.LinearSolver.Direct"/> <!-- Needed to use components [EigenSimplicialLDLT] -->
@@ -185,6 +183,8 @@ ConstantSparsityPatternSystem.scn
         <RequiredPlugin pluginName="Sofa.Component.Topology.Container.Grid"/> <!-- Needed to use components [RegularGridTopology] -->
         <RequiredPlugin pluginName="Sofa.Component.Visual"/> <!-- Needed to use components [VisualStyle] -->
         <RequiredPlugin pluginName="Sofa.GL.Component.Rendering3D"/> <!-- Needed to use components [OglModel] -->
+        <VisualStyle displayFlags="showBehaviorModels showWireframe" />
+    
     
         <DefaultAnimationLoop/>
         <DefaultVisualManagerLoop/>
@@ -266,7 +266,6 @@ ConstantSparsityPatternSystem.scn
 
        root = root_node.addChild('root', dt="0.02", gravity="0 -10 0")
 
-       root.addObject('VisualStyle', displayFlags="showBehaviorModels showWireframe")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Constraint.Projective")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Engine.Select")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.LinearSolver.Direct")
@@ -281,6 +280,7 @@ ConstantSparsityPatternSystem.scn
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Topology.Container.Grid")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Visual")
        root.addObject('RequiredPlugin', pluginName="Sofa.GL.Component.Rendering3D")
+       root.addObject('VisualStyle', displayFlags="showBehaviorModels showWireframe")
        root.addObject('DefaultAnimationLoop', )
        root.addObject('DefaultVisualManagerLoop', )
 

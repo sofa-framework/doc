@@ -139,6 +139,16 @@ VisualVectorField.scn
 
     ```xml
     <Node name="root" gravity="0 -9.81 0" dt="0.01">
+        <RequiredPlugin name="Sofa.Component.Constraint.Projective"/>
+        <RequiredPlugin name="Sofa.Component.Engine.Select"/>
+        <RequiredPlugin name="Sofa.Component.LinearSolver.Direct"/>
+        <RequiredPlugin name="Sofa.Component.LinearSystem"/>
+        <RequiredPlugin name="Sofa.Component.Mass"/>
+        <RequiredPlugin name="Sofa.Component.ODESolver.Backward"/>
+        <RequiredPlugin name="Sofa.Component.SolidMechanics.FEM.Elastic"/>
+        <RequiredPlugin name="Sofa.Component.StateContainer"/>
+        <RequiredPlugin name="Sofa.Component.Topology.Container.Grid"/>
+        <RequiredPlugin name="Sofa.Component.Visual"/>
         <DefaultAnimationLoop parallelODESolving="true"/>
         <DefaultVisualManagerLoop name="visualLoop"/>
         <VisualStyle displayFlags="showVisual showWireframe showForceFields" />
@@ -173,6 +183,16 @@ VisualVectorField.scn
 
        root = root_node.addChild('root', gravity="0 -9.81 0", dt="0.01")
 
+       root.addObject('RequiredPlugin', name="Sofa.Component.Constraint.Projective")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Engine.Select")
+       root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Direct")
+       root.addObject('RequiredPlugin', name="Sofa.Component.LinearSystem")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Mass")
+       root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.FEM.Elastic")
+       root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Grid")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Visual")
        root.addObject('DefaultAnimationLoop', parallelODESolving="true")
        root.addObject('DefaultVisualManagerLoop', name="visualLoop")
        root.addObject('VisualStyle', displayFlags="showVisual showWireframe showForceFields")

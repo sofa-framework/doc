@@ -136,7 +136,6 @@ ArticulatedHierarchyBVHController.scn
     ```xml
     <?xml version="1.0" ?>
     <Node name="root" gravity="0 -.98 0" dt="0.5">
-        <VisualStyle displayFlags="showVisual showBehaviorModels" />
         <RequiredPlugin pluginName="ArticulatedSystemPlugin"/> <!-- Needed to use components [ArticulatedHierarchyBVHController ArticulatedHierarchyContainer ArticulatedSystemMapping] -->
         <RequiredPlugin pluginName="Sofa.Component.AnimationLoop"/> <!-- Needed to use components [FreeMotionAnimationLoop] -->
         <RequiredPlugin pluginName="Sofa.Component.Collision.Detection.Algorithm"/> <!-- Needed to use components [BVHNarrowPhase BruteForceBroadPhase] -->
@@ -148,6 +147,7 @@ ArticulatedHierarchyBVHController.scn
         <RequiredPlugin pluginName="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
         <RequiredPlugin pluginName="Sofa.Component.Visual"/> <!-- Needed to use components [VisualStyle] -->
         <RequiredPlugin pluginName="Sofa.GL.Component.Rendering3D"/> <!-- Needed to use components [OglModel] -->
+        <VisualStyle displayFlags="showVisual showBehaviorModels" />
     
         <DefaultVisualManagerLoop />
         <FreeMotionAnimationLoop />
@@ -182,7 +182,6 @@ ArticulatedHierarchyBVHController.scn
 
        root = root_node.addChild('root', gravity="0 -.98 0", dt="0.5")
 
-       root.addObject('VisualStyle', displayFlags="showVisual showBehaviorModels")
        root.addObject('RequiredPlugin', pluginName="ArticulatedSystemPlugin")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.AnimationLoop")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Collision.Detection.Algorithm")
@@ -194,6 +193,7 @@ ArticulatedHierarchyBVHController.scn
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.StateContainer")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Visual")
        root.addObject('RequiredPlugin', pluginName="Sofa.GL.Component.Rendering3D")
+       root.addObject('VisualStyle', displayFlags="showVisual showBehaviorModels")
        root.addObject('DefaultVisualManagerLoop', )
        root.addObject('FreeMotionAnimationLoop', )
        root.addObject('BruteForceBroadPhase', )

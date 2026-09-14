@@ -137,6 +137,7 @@ BeamLinearMapping_mt.scn
     ```xml
     <!-- BeamFEMForceField example -->
     <Node name="root" dt="0.01">
+        <RequiredPlugin name="MultiThreading"/>
         <RequiredPlugin pluginName="Sofa.Component.Collision.Detection.Algorithm"/> <!-- Needed to use components [BVHNarrowPhase BruteForceBroadPhase CollisionPipeline] -->
         <RequiredPlugin pluginName="Sofa.Component.Collision.Detection.Intersection"/> <!-- Needed to use components [MinProximityIntersection] -->
         <RequiredPlugin pluginName="Sofa.Component.Collision.Geometry"/> <!-- Needed to use components [TriangleCollisionModel] -->
@@ -207,6 +208,7 @@ BeamLinearMapping_mt.scn
 
        root = root_node.addChild('root', dt="0.01")
 
+       root.addObject('RequiredPlugin', name="MultiThreading")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Collision.Detection.Algorithm")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Collision.Detection.Intersection")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Collision.Geometry")

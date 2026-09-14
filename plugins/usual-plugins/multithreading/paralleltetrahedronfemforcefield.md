@@ -297,6 +297,7 @@ ParallelTetrahedronFEMForceField.scn
     ```xml
     <?xml version="1.0"?>
     <Node name="root" dt="0.01" gravity="0 -9 0">
+        <RequiredPlugin name="MultiThreading"/>
         <RequiredPlugin pluginName="Sofa.Component.Constraint.Projective"/> <!-- Needed to use components [FixedProjectiveConstraint] -->
         <RequiredPlugin pluginName="Sofa.Component.Engine.Select"/> <!-- Needed to use components [BoxROI] -->
         <RequiredPlugin pluginName="Sofa.Component.LinearSolver.Iterative"/> <!-- Needed to use components [CGLinearSolver] -->
@@ -342,6 +343,7 @@ ParallelTetrahedronFEMForceField.scn
 
        root = root_node.addChild('root', dt="0.01", gravity="0 -9 0")
 
+       root.addObject('RequiredPlugin', name="MultiThreading")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Constraint.Projective")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Engine.Select")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.LinearSolver.Iterative")

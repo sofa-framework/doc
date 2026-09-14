@@ -161,6 +161,15 @@ OglVolumetricModel_tetra_clipped_physics.scn
     ```xml
     <?xml version="1.0"?>
     <Node name="root" dt="0.02">
+        <RequiredPlugin name="Sofa.Component.IO.Mesh"/>
+        <RequiredPlugin name="Sofa.Component.LinearSolver.Iterative"/>
+        <RequiredPlugin name="Sofa.Component.Mapping.Linear"/>
+        <RequiredPlugin name="Sofa.Component.ODESolver.Backward"/>
+        <RequiredPlugin name="Sofa.Component.SolidMechanics.FEM.Elastic"/>
+        <RequiredPlugin name="Sofa.Component.StateContainer"/>
+        <RequiredPlugin name="Sofa.Component.Topology.Container.Dynamic"/>
+        <RequiredPlugin name="Sofa.GL.Component.Rendering3D"/>
+        <RequiredPlugin name="Sofa.GL.Component.Shader"/>
         <RequiredPlugin pluginName="VolumetricRendering" />
     
         <Node name="HexaRaptor" >
@@ -199,6 +208,15 @@ OglVolumetricModel_tetra_clipped_physics.scn
 
        root = root_node.addChild('root', dt="0.02")
 
+       root.addObject('RequiredPlugin', name="Sofa.Component.IO.Mesh")
+       root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Iterative")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Mapping.Linear")
+       root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.FEM.Elastic")
+       root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Dynamic")
+       root.addObject('RequiredPlugin', name="Sofa.GL.Component.Rendering3D")
+       root.addObject('RequiredPlugin', name="Sofa.GL.Component.Shader")
        root.addObject('RequiredPlugin', pluginName="VolumetricRendering")
 
        hexa_raptor = root.addChild('HexaRaptor')
@@ -228,6 +246,14 @@ OglVolumetricModel_tetra_physics.scn
     ```xml
     <?xml version="1.0"?>
     <Node name="root" dt="0.02">
+        <RequiredPlugin name="Sofa.Component.IO.Mesh"/>
+        <RequiredPlugin name="Sofa.Component.LinearSolver.Iterative"/>
+        <RequiredPlugin name="Sofa.Component.Mapping.Linear"/>
+        <RequiredPlugin name="Sofa.Component.ODESolver.Backward"/>
+        <RequiredPlugin name="Sofa.Component.SolidMechanics.FEM.Elastic"/>
+        <RequiredPlugin name="Sofa.Component.StateContainer"/>
+        <RequiredPlugin name="Sofa.Component.Topology.Container.Dynamic"/>
+        <RequiredPlugin name="Sofa.GL.Component.Shader"/>
         <RequiredPlugin pluginName="VolumetricRendering" />
     
         <Node name="HexaRaptor" >
@@ -265,6 +291,14 @@ OglVolumetricModel_tetra_physics.scn
 
        root = root_node.addChild('root', dt="0.02")
 
+       root.addObject('RequiredPlugin', name="Sofa.Component.IO.Mesh")
+       root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Iterative")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Mapping.Linear")
+       root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.FEM.Elastic")
+       root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Dynamic")
+       root.addObject('RequiredPlugin', name="Sofa.GL.Component.Shader")
        root.addObject('RequiredPlugin', pluginName="VolumetricRendering")
 
        hexa_raptor = root.addChild('HexaRaptor')
@@ -293,6 +327,14 @@ OglVolumetricModel_physics.scn
     ```xml
     <?xml version="1.0"?>
     <Node name="root" dt="0.02">
+        <RequiredPlugin name="Sofa.Component.LinearSolver.Iterative"/>
+        <RequiredPlugin name="Sofa.Component.Mapping.Linear"/>
+        <RequiredPlugin name="Sofa.Component.ODESolver.Backward"/>
+        <RequiredPlugin name="Sofa.Component.SolidMechanics.FEM.Elastic"/>
+        <RequiredPlugin name="Sofa.Component.StateContainer"/>
+        <RequiredPlugin name="Sofa.Component.Topology.Container.Dynamic"/>
+        <RequiredPlugin name="Sofa.Component.Topology.Container.Grid"/>
+        <RequiredPlugin name="Sofa.GL.Component.Shader"/>
         <RequiredPlugin pluginName="VolumetricRendering" />
     
         <Node name="HexaRaptor" >
@@ -330,6 +372,14 @@ OglVolumetricModel_physics.scn
 
        root = root_node.addChild('root', dt="0.02")
 
+       root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Iterative")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Mapping.Linear")
+       root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.FEM.Elastic")
+       root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Dynamic")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Grid")
+       root.addObject('RequiredPlugin', name="Sofa.GL.Component.Shader")
        root.addObject('RequiredPlugin', pluginName="VolumetricRendering")
 
        hexa_raptor = root.addChild('HexaRaptor')
@@ -359,6 +409,14 @@ OglVolumetricModel_hexa_physics.scn
     ```xml
     <?xml version="1.0"?>
     <Node name="root" dt="0.02">
+        <RequiredPlugin name="Sofa.Component.LinearSolver.Iterative"/>
+        <RequiredPlugin name="Sofa.Component.Mapping.Linear"/>
+        <RequiredPlugin name="Sofa.Component.ODESolver.Backward"/>
+        <RequiredPlugin name="Sofa.Component.SolidMechanics.FEM.Elastic"/>
+        <RequiredPlugin name="Sofa.Component.StateContainer"/>
+        <RequiredPlugin name="Sofa.Component.Topology.Container.Dynamic"/>
+        <RequiredPlugin name="Sofa.Component.Topology.Container.Grid"/>
+        <RequiredPlugin name="Sofa.GL.Component.Shader"/>
         <RequiredPlugin pluginName="VolumetricRendering" />
     
         <Node name="HexaRaptor" >
@@ -396,6 +454,14 @@ OglVolumetricModel_hexa_physics.scn
 
        root = root_node.addChild('root', dt="0.02")
 
+       root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Iterative")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Mapping.Linear")
+       root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.FEM.Elastic")
+       root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Dynamic")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Grid")
+       root.addObject('RequiredPlugin', name="Sofa.GL.Component.Shader")
        root.addObject('RequiredPlugin', pluginName="VolumetricRendering")
 
        hexa_raptor = root.addChild('HexaRaptor')
@@ -425,6 +491,10 @@ OglVolumetricModel_hexa_link.scn
     ```xml
     <?xml version="1.0"?>
     <Node name="root" dt="0.02">
+        <RequiredPlugin name="Sofa.Component.StateContainer"/>
+        <RequiredPlugin name="Sofa.Component.Topology.Container.Dynamic"/>
+        <RequiredPlugin name="Sofa.Component.Topology.Container.Grid"/>
+        <RequiredPlugin name="Sofa.GL.Component.Shader"/>
         <RequiredPlugin pluginName="VolumetricRendering" />
     
         <Node name="Input">
@@ -453,6 +523,10 @@ OglVolumetricModel_hexa_link.scn
 
        root = root_node.addChild('root', dt="0.02")
 
+       root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Dynamic")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Grid")
+       root.addObject('RequiredPlugin', name="Sofa.GL.Component.Shader")
        root.addObject('RequiredPlugin', pluginName="VolumetricRendering")
 
        input = root.addChild('Input')
@@ -476,6 +550,10 @@ OglVolumetricModel_tetra.scn
     ```xml
     <?xml version="1.0"?>
     <Node name="root" dt="0.02">
+        <RequiredPlugin name="Sofa.Component.IO.Mesh"/>
+        <RequiredPlugin name="Sofa.Component.StateContainer"/>
+        <RequiredPlugin name="Sofa.Component.Topology.Container.Dynamic"/>
+        <RequiredPlugin name="Sofa.GL.Component.Shader"/>
         <RequiredPlugin pluginName="VolumetricRendering" />
     
     	<MeshVTKLoader name="loader" filename="mesh/raptorTetra_8418.vtu" />
@@ -502,6 +580,10 @@ OglVolumetricModel_tetra.scn
 
        root = root_node.addChild('root', dt="0.02")
 
+       root.addObject('RequiredPlugin', name="Sofa.Component.IO.Mesh")
+       root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
+       root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Dynamic")
+       root.addObject('RequiredPlugin', name="Sofa.GL.Component.Shader")
        root.addObject('RequiredPlugin', pluginName="VolumetricRendering")
        root.addObject('MeshVTKLoader', name="loader", filename="mesh/raptorTetra_8418.vtu")
        root.addObject('MechanicalObject', src="@loader", template="Vec3d")
