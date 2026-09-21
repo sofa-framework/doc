@@ -434,6 +434,8 @@ HyperelasticityFEMForceField.scn
         <StVenantKirchhoffMaterial name="material" youngModulus="2e6" poissonRatio="0.45"/>
         <HyperelasticityFEMForceField name="FEM" template="Vec3,Hexahedron" topology="@grid"
                                       computeForceStrategy="parallel" computeForceDerivStrategy="parallel"/>
+        <VonMisesStress template="Vec3,Hexahedron" name="stress" topology="@grid" stressEvaluator="@material"
+                        colorMap="green yellow orange red purple #221C35"/>
     </Node>
 
     ```
@@ -451,6 +453,7 @@ HyperelasticityFEMForceField.scn
        root.addObject('SparseLDLSolver', name="linear_solver", template="CompressedRowSparseMatrix")
        root.addObject('StVenantKirchhoffMaterial', name="material", youngModulus="2e6", poissonRatio="0.45")
        root.addObject('HyperelasticityFEMForceField', name="FEM", template="Vec3,Hexahedron", topology="@grid", computeForceStrategy="parallel", computeForceDerivStrategy="parallel")
+       root.addObject('VonMisesStress', template="Vec3,Hexahedron", name="stress", topology="@grid", stressEvaluator="@material", colorMap="green yellow orange red purple #221C35")
     ```
 
 HyperelasticityFEMForceField.scn
@@ -467,6 +470,8 @@ HyperelasticityFEMForceField.scn
         <StVenantKirchhoffMaterial name="material" youngModulus="2e6" poissonRatio="0.45"/>
         <HyperelasticityFEMForceField name="FEM" template="Vec3,Hexahedron" topology="@grid"
                                       computeForceStrategy="parallel" computeForceDerivStrategy="parallel"/>
+        <VonMisesStress template="Vec3,Hexahedron" name="stress" topology="@grid" stressEvaluator="@material"
+                        colorMap="green yellow orange red purple #221C35"/>
     
     </Node>
 
@@ -483,6 +488,7 @@ HyperelasticityFEMForceField.scn
        root.addObject('CGLinearSolver', iterations="250", name="linear_solver", tolerance="1.0e-12", threshold="1.0e-12")
        root.addObject('StVenantKirchhoffMaterial', name="material", youngModulus="2e6", poissonRatio="0.45")
        root.addObject('HyperelasticityFEMForceField', name="FEM", template="Vec3,Hexahedron", topology="@grid", computeForceStrategy="parallel", computeForceDerivStrategy="parallel")
+       root.addObject('VonMisesStress', template="Vec3,Hexahedron", name="stress", topology="@grid", stressEvaluator="@material", colorMap="green yellow orange red purple #221C35")
     ```
 
 HyperelasticityFEMForceField.scn
@@ -501,6 +507,8 @@ HyperelasticityFEMForceField.scn
         <StVenantKirchhoffMaterial name="material" youngModulus="2e6" poissonRatio="0.45"/>
         <HyperelasticityFEMForceField name="FEM" template="Vec3,Hexahedron" topology="@grid"
                                       computeForceStrategy="sequenced" computeForceDerivStrategy="sequenced"/>
+        <VonMisesStress template="Vec3,Hexahedron" name="stress" topology="@grid" stressEvaluator="@material"
+                        colorMap="green yellow orange red purple #221C35"/>
     
     </Node>
 
@@ -519,6 +527,7 @@ HyperelasticityFEMForceField.scn
        root.addObject('SparseLDLSolver', name="linear_solver", template="CompressedRowSparseMatrix")
        root.addObject('StVenantKirchhoffMaterial', name="material", youngModulus="2e6", poissonRatio="0.45")
        root.addObject('HyperelasticityFEMForceField', name="FEM", template="Vec3,Hexahedron", topology="@grid", computeForceStrategy="sequenced", computeForceDerivStrategy="sequenced")
+       root.addObject('VonMisesStress', template="Vec3,Hexahedron", name="stress", topology="@grid", stressEvaluator="@material", colorMap="green yellow orange red purple #221C35")
     ```
 
 HyperelasticityFEMForceField.scn
@@ -535,6 +544,8 @@ HyperelasticityFEMForceField.scn
         <StVenantKirchhoffMaterial name="material" youngModulus="2e6" poissonRatio="0.45"/>
         <HyperelasticityFEMForceField name="FEM" template="Vec3,Hexahedron" topology="@grid"
                                       computeForceStrategy="sequenced" computeForceDerivStrategy="sequenced"/>
+        <VonMisesStress template="Vec3,Hexahedron" name="stress" topology="@grid" stressEvaluator="@material"
+                        colorMap="green yellow orange red purple #221C35"/>
     
     </Node>
 
@@ -551,6 +562,7 @@ HyperelasticityFEMForceField.scn
        root.addObject('CGLinearSolver', iterations="250", name="linear_solver", tolerance="1.0e-12", threshold="1.0e-12")
        root.addObject('StVenantKirchhoffMaterial', name="material", youngModulus="2e6", poissonRatio="0.45")
        root.addObject('HyperelasticityFEMForceField', name="FEM", template="Vec3,Hexahedron", topology="@grid", computeForceStrategy="sequenced", computeForceDerivStrategy="sequenced")
+       root.addObject('VonMisesStress', template="Vec3,Hexahedron", name="stress", topology="@grid", stressEvaluator="@material", colorMap="green yellow orange red purple #221C35")
     ```
 
 HyperelasticityFEMForceField.scn
@@ -575,6 +587,8 @@ HyperelasticityFEMForceField.scn
             <StVenantKirchhoffMaterial name="material" youngModulus="2e6" poissonRatio="0.45"/>
             <HyperelasticityFEMForceField name="FEM" template="Vec3,Tetrahedron" topology="@Tetra_topo"
                                           computeForceStrategy="parallel" computeForceDerivStrategy="parallel"/>
+            <VonMisesStress template="Vec3,Tetrahedron" name="stress" topology="@Tetra_topo" stressEvaluator="@material"
+                            colorMap="green yellow orange red purple #221C35"/>
         </Node>
     
     </Node>
@@ -601,6 +615,7 @@ HyperelasticityFEMForceField.scn
        fem.addObject('Hexa2TetraTopologicalMapping', input="@grid", output="@Tetra_topo", swapping="true")
        fem.addObject('StVenantKirchhoffMaterial', name="material", youngModulus="2e6", poissonRatio="0.45")
        fem.addObject('HyperelasticityFEMForceField', name="FEM", template="Vec3,Tetrahedron", topology="@Tetra_topo", computeForceStrategy="parallel", computeForceDerivStrategy="parallel")
+       fem.addObject('VonMisesStress', template="Vec3,Tetrahedron", name="stress", topology="@Tetra_topo", stressEvaluator="@material", colorMap="green yellow orange red purple #221C35")
     ```
 
 HyperelasticityFEMForceField.scn
@@ -623,6 +638,8 @@ HyperelasticityFEMForceField.scn
             <StVenantKirchhoffMaterial name="material" youngModulus="2e6" poissonRatio="0.45"/>
             <HyperelasticityFEMForceField name="FEM" template="Vec3,Tetrahedron" topology="@Tetra_topo"
                                           computeForceStrategy="parallel" computeForceDerivStrategy="parallel"/>
+            <VonMisesStress template="Vec3,Tetrahedron" name="stress" topology="@Tetra_topo" stressEvaluator="@material"
+                            colorMap="green yellow orange red purple #221C35"/>
         </Node>
     
     </Node>
@@ -647,6 +664,7 @@ HyperelasticityFEMForceField.scn
        fem.addObject('Hexa2TetraTopologicalMapping', input="@grid", output="@Tetra_topo", swapping="true")
        fem.addObject('StVenantKirchhoffMaterial', name="material", youngModulus="2e6", poissonRatio="0.45")
        fem.addObject('HyperelasticityFEMForceField', name="FEM", template="Vec3,Tetrahedron", topology="@Tetra_topo", computeForceStrategy="parallel", computeForceDerivStrategy="parallel")
+       fem.addObject('VonMisesStress', template="Vec3,Tetrahedron", name="stress", topology="@Tetra_topo", stressEvaluator="@material", colorMap="green yellow orange red purple #221C35")
     ```
 
 HyperelasticityFEMForceField.scn
@@ -671,6 +689,8 @@ HyperelasticityFEMForceField.scn
             <StVenantKirchhoffMaterial name="material" youngModulus="2e6" poissonRatio="0.45"/>
             <HyperelasticityFEMForceField name="FEM" template="Vec3,Tetrahedron" topology="@Tetra_topo"
                                           computeForceStrategy="sequenced" computeForceDerivStrategy="sequenced"/>
+            <VonMisesStress template="Vec3,Tetrahedron" name="stress" topology="@Tetra_topo" stressEvaluator="@material"
+                            colorMap="green yellow orange red purple #221C35"/>
         </Node>
     
     
@@ -698,6 +718,7 @@ HyperelasticityFEMForceField.scn
        fem.addObject('Hexa2TetraTopologicalMapping', input="@grid", output="@Tetra_topo", swapping="true")
        fem.addObject('StVenantKirchhoffMaterial', name="material", youngModulus="2e6", poissonRatio="0.45")
        fem.addObject('HyperelasticityFEMForceField', name="FEM", template="Vec3,Tetrahedron", topology="@Tetra_topo", computeForceStrategy="sequenced", computeForceDerivStrategy="sequenced")
+       fem.addObject('VonMisesStress', template="Vec3,Tetrahedron", name="stress", topology="@Tetra_topo", stressEvaluator="@material", colorMap="green yellow orange red purple #221C35")
     ```
 
 HyperelasticityFEMForceField.scn
@@ -720,6 +741,8 @@ HyperelasticityFEMForceField.scn
             <StVenantKirchhoffMaterial name="material" youngModulus="2e6" poissonRatio="0.45"/>
             <HyperelasticityFEMForceField name="FEM" template="Vec3,Tetrahedron" topology="@Tetra_topo"
                                           computeForceStrategy="sequenced" computeForceDerivStrategy="sequenced"/>
+            <VonMisesStress template="Vec3,Tetrahedron" name="stress" topology="@Tetra_topo" stressEvaluator="@material"
+                            colorMap="green yellow orange red purple #221C35"/>
         </Node>
     
     </Node>
@@ -744,5 +767,6 @@ HyperelasticityFEMForceField.scn
        fem.addObject('Hexa2TetraTopologicalMapping', input="@grid", output="@Tetra_topo", swapping="true")
        fem.addObject('StVenantKirchhoffMaterial', name="material", youngModulus="2e6", poissonRatio="0.45")
        fem.addObject('HyperelasticityFEMForceField', name="FEM", template="Vec3,Tetrahedron", topology="@Tetra_topo", computeForceStrategy="sequenced", computeForceDerivStrategy="sequenced")
+       fem.addObject('VonMisesStress', template="Vec3,Tetrahedron", name="stress", topology="@Tetra_topo", stressEvaluator="@material", colorMap="green yellow orange red purple #221C35")
     ```
 

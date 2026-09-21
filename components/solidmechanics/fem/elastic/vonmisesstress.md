@@ -93,6 +93,16 @@ If true, light is simulated on the mesh. Otherwise, no lighting effect.
 		</td>
 		<td>1</td>
 	</tr>
+	<tr>
+		<td colspan="3">Visualization</td>
+	</tr>
+	<tr>
+		<td>elementSpace</td>
+		<td>
+When rendering, the space between elements
+		</td>
+		<td>0.125</td>
+	</tr>
 
 </tbody>
 </table>
@@ -201,6 +211,16 @@ Color map
 If true, light is simulated on the mesh. Otherwise, no lighting effect.
 		</td>
 		<td>1</td>
+	</tr>
+	<tr>
+		<td colspan="3">Visualization</td>
+	</tr>
+	<tr>
+		<td>elementSpace</td>
+		<td>
+When rendering, the space between elements
+		</td>
+		<td>0.125</td>
 	</tr>
 
 </tbody>
@@ -314,6 +334,16 @@ Color map
 If true, light is simulated on the mesh. Otherwise, no lighting effect.
 		</td>
 		<td>1</td>
+	</tr>
+	<tr>
+		<td colspan="3">Visualization</td>
+	</tr>
+	<tr>
+		<td>elementSpace</td>
+		<td>
+When rendering, the space between elements
+		</td>
+		<td>0.125</td>
 	</tr>
 
 </tbody>
