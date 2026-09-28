@@ -690,7 +690,7 @@ LinearVelocityProjectiveConstraint.scn
         <RequiredPlugin pluginName="Sofa.Component.LinearSolver.Direct"/> <!-- Needed to use components [EigenSparseLU] -->
         <RequiredPlugin pluginName="Sofa.Component.Mapping.NonLinear"/> <!-- Needed to use components [RigidMapping] -->
         <RequiredPlugin pluginName="Sofa.Component.Mass"/> <!-- Needed to use components [UniformMass] -->
-        <RequiredPlugin pluginName="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+        <RequiredPlugin pluginName="Sofa.Component.IntegrationScheme.Backward"/> <!-- Needed to use components [EulerImplicitIntegrationScheme] -->
         <RequiredPlugin pluginName="Sofa.Component.Setting"/> <!-- Needed to use components [BackgroundSetting] -->
         <RequiredPlugin pluginName="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
         <RequiredPlugin pluginName="Sofa.Component.Topology.Container.Dynamic"/> <!-- Needed to use components [TriangleSetTopologyContainer] -->
@@ -708,7 +708,7 @@ LinearVelocityProjectiveConstraint.scn
         <BlockGaussSeidelConstraintSolver maxIterations="1000" tolerance="0.001" />
     
         <Node name="Box">
-            <EulerImplicitSolver name="EulerImplicitScheme" />
+            <EulerImplicitIntegrationScheme name="EulerImplicitScheme" />
             <EigenSparseLU name="LUSolver" template="CompressedRowSparseMatrixd" />
             <MechanicalObject name="mstate" template="Rigid3" position="0 0 0 0 0 0 1" />
             <LinearVelocityProjectiveConstraint indices="0" keyTimes="0 2" velocities="0 0 0 0 0 0 0 0 0 0 0 0.3 " continueAfterEnd="true" />
@@ -759,7 +759,7 @@ LinearVelocityProjectiveConstraint.scn
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.LinearSolver.Direct")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mapping.NonLinear")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mass")
-       root.addObject('RequiredPlugin', pluginName="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', pluginName="Sofa.Component.IntegrationScheme.Backward")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Setting")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.StateContainer")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Topology.Container.Dynamic")
@@ -772,7 +772,7 @@ LinearVelocityProjectiveConstraint.scn
 
        box = root.addChild('Box')
 
-       box.addObject('EulerImplicitSolver', name="EulerImplicitScheme")
+       box.addObject('EulerImplicitIntegrationScheme', name="EulerImplicitScheme")
        box.addObject('EigenSparseLU', name="LUSolver", template="CompressedRowSparseMatrixd")
        box.addObject('MechanicalObject', name="mstate", template="Rigid3", position="0 0 0 0 0 0 1")
        box.addObject('LinearVelocityProjectiveConstraint', indices="0", keyTimes="0 2", velocities="0 0 0 0 0 0 0 0 0 0 0 0.3 ", continueAfterEnd="true")

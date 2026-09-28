@@ -172,12 +172,12 @@ VoxelGridLoader.scn
     <Node>
     	<RequiredPlugin pluginName="Sofa.Component.IO.Mesh"/> <!-- Needed to use components [VoxelGridLoader] -->
     	<RequiredPlugin pluginName="Sofa.Component.LinearSolver.Iterative"/> <!-- Needed to use components [CGLinearSolver] -->
-    	<RequiredPlugin pluginName="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+    	<RequiredPlugin pluginName="Sofa.Component.IntegrationScheme.Backward"/> <!-- Needed to use components [EulerImplicitIntegrationScheme] -->
     	<RequiredPlugin pluginName="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
     	<RequiredPlugin pluginName="Sofa.Component.Topology.Container.Dynamic"/> <!-- Needed to use components [HexahedronSetGeometryAlgorithms HexahedronSetTopologyContainer] -->
     
     	<DefaultAnimationLoop/>
-    	<EulerImplicitSolver  rayleighStiffness="0.1" rayleighMass="0.1" />
+    	<EulerImplicitIntegrationScheme  rayleighStiffness="0.1" rayleighMass="0.1" />
     	<CGLinearSolver  iterations="25" tolerance="1e-5" threshold="1e-5"/>
     	<Node>
     		<VoxelGridLoader name="gridloader" filename="textures/Test_64_64_4.raw" voxelSize="0.1 0.1 0.1" resolution="64 64 4" bgValue="0" />
@@ -198,11 +198,11 @@ VoxelGridLoader.scn
 
        node.addObject('RequiredPlugin', pluginName="Sofa.Component.IO.Mesh")
        node.addObject('RequiredPlugin', pluginName="Sofa.Component.LinearSolver.Iterative")
-       node.addObject('RequiredPlugin', pluginName="Sofa.Component.ODESolver.Backward")
+       node.addObject('RequiredPlugin', pluginName="Sofa.Component.IntegrationScheme.Backward")
        node.addObject('RequiredPlugin', pluginName="Sofa.Component.StateContainer")
        node.addObject('RequiredPlugin', pluginName="Sofa.Component.Topology.Container.Dynamic")
        node.addObject('DefaultAnimationLoop', )
-       node.addObject('EulerImplicitSolver', rayleighStiffness="0.1", rayleighMass="0.1")
+       node.addObject('EulerImplicitIntegrationScheme', rayleighStiffness="0.1", rayleighMass="0.1")
        node.addObject('CGLinearSolver', iterations="25", tolerance="1e-5", threshold="1e-5")
 
        node = node.addChild('node')

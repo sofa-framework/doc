@@ -248,14 +248,14 @@ MergeMeshes.scn
         <RequiredPlugin pluginName="Sofa.Component.IO.Mesh"/> <!-- Needed to use components [MeshOBJLoader] -->
         <RequiredPlugin pluginName="Sofa.Component.LinearSolver.Iterative"/> <!-- Needed to use components [CGLinearSolver] -->
         <RequiredPlugin pluginName="Sofa.Component.Mass"/> <!-- Needed to use components [UniformMass] -->
-        <RequiredPlugin pluginName="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+        <RequiredPlugin pluginName="Sofa.Component.IntegrationScheme.Backward"/> <!-- Needed to use components [EulerImplicitIntegrationScheme] -->
         <RequiredPlugin pluginName="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
         <RequiredPlugin pluginName="Sofa.Component.Topology.Container.Constant"/> <!-- Needed to use components [MeshTopology] -->
         <RequiredPlugin pluginName="Sofa.Component.Visual"/> <!-- Needed to use components [VisualStyle] -->
     
         <DefaultAnimationLoop/>
     	<VisualStyle displayFlags="showBehavior" />
-        <EulerImplicitSolver  rayleighStiffness="0.1" rayleighMass="0.1" />
+        <EulerImplicitIntegrationScheme  rayleighStiffness="0.1" rayleighMass="0.1" />
         <CGLinearSolver iterations="25" tolerance="1e-05" threshold="1e-05"/>
         <Node>
             <MeshOBJLoader name="frog" filename="mesh/frog.obj" />
@@ -287,13 +287,13 @@ MergeMeshes.scn
        scene.addObject('RequiredPlugin', pluginName="Sofa.Component.IO.Mesh")
        scene.addObject('RequiredPlugin', pluginName="Sofa.Component.LinearSolver.Iterative")
        scene.addObject('RequiredPlugin', pluginName="Sofa.Component.Mass")
-       scene.addObject('RequiredPlugin', pluginName="Sofa.Component.ODESolver.Backward")
+       scene.addObject('RequiredPlugin', pluginName="Sofa.Component.IntegrationScheme.Backward")
        scene.addObject('RequiredPlugin', pluginName="Sofa.Component.StateContainer")
        scene.addObject('RequiredPlugin', pluginName="Sofa.Component.Topology.Container.Constant")
        scene.addObject('RequiredPlugin', pluginName="Sofa.Component.Visual")
        scene.addObject('DefaultAnimationLoop', )
        scene.addObject('VisualStyle', displayFlags="showBehavior")
-       scene.addObject('EulerImplicitSolver', rayleighStiffness="0.1", rayleighMass="0.1")
+       scene.addObject('EulerImplicitIntegrationScheme', rayleighStiffness="0.1", rayleighMass="0.1")
        scene.addObject('CGLinearSolver', iterations="25", tolerance="1e-05", threshold="1e-05")
 
        node = Scene.addChild('node')

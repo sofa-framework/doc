@@ -184,7 +184,7 @@ MeshTetraStuffing.scn
         <RequiredPlugin pluginName="Sofa.Component.LinearSolver.Iterative"/> <!-- Needed to use components [CGLinearSolver] -->
         <RequiredPlugin pluginName="Sofa.Component.Mapping.Linear"/> <!-- Needed to use components [BarycentricMapping Mesh2PointTopologicalMapping] -->
         <RequiredPlugin pluginName="Sofa.Component.Mass"/> <!-- Needed to use components [DiagonalMass] -->
-        <RequiredPlugin pluginName="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+        <RequiredPlugin pluginName="Sofa.Component.IntegrationScheme.Backward"/> <!-- Needed to use components [EulerImplicitIntegrationScheme] -->
         <RequiredPlugin pluginName="Sofa.Component.SolidMechanics.FEM.Elastic"/> <!-- Needed to use components [TetrahedralCorotationalFEMForceField] -->
         <RequiredPlugin pluginName="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
         <RequiredPlugin pluginName="Sofa.Component.Topology.Container.Constant"/> <!-- Needed to use components [MeshTopology] -->
@@ -206,7 +206,7 @@ MeshTetraStuffing.scn
             <MeshTetraStuffing name="stuffing" snapPoints="true" splitTetras="true" draw="true" size="0.7" alphaLong="0.3" alphaShort="0.4" inputPoints="@surface.points" inputTriangles="@surface.triangles" />
         </Node>
         <Node activated="1" name="output">
-            <EulerImplicitSolver name="odesolver"  rayleighStiffness="0.1" rayleighMass="0.1" />
+            <EulerImplicitIntegrationScheme name="odesolver"  rayleighStiffness="0.1" rayleighMass="0.1" />
             <CGLinearSolver iterations="10" name="linear solver" tolerance="1.0e-9" threshold="1.0e-9" />
             <TetrahedronSetTopologyContainer name="volume" points="@../input/stuffing.outputPoints" tetras="@../input/stuffing.outputTetras" />
             <MechanicalObject />
@@ -240,7 +240,7 @@ MeshTetraStuffing.scn
         </Node>
     <!--
         <Node activated="0" name="output-gpu">
-            <EulerImplicitSolver name="odesolver" />
+            <EulerImplicitIntegrationScheme name="odesolver" />
             <CGLinearSolver iterations="10" name="linear solver" tolerance="1.0e-9" threshold="1.0e-9" />
             <MeshTopology name="volume" points="@../input/stuffing.outputPoints" tetras="@../input/stuffing.outputTetras" />
             <MechanicalObject template="CudaVec3f" />
@@ -271,7 +271,7 @@ MeshTetraStuffing.scn
        node.addObject('RequiredPlugin', pluginName="Sofa.Component.LinearSolver.Iterative")
        node.addObject('RequiredPlugin', pluginName="Sofa.Component.Mapping.Linear")
        node.addObject('RequiredPlugin', pluginName="Sofa.Component.Mass")
-       node.addObject('RequiredPlugin', pluginName="Sofa.Component.ODESolver.Backward")
+       node.addObject('RequiredPlugin', pluginName="Sofa.Component.IntegrationScheme.Backward")
        node.addObject('RequiredPlugin', pluginName="Sofa.Component.SolidMechanics.FEM.Elastic")
        node.addObject('RequiredPlugin', pluginName="Sofa.Component.StateContainer")
        node.addObject('RequiredPlugin', pluginName="Sofa.Component.Topology.Container.Constant")
@@ -288,7 +288,7 @@ MeshTetraStuffing.scn
 
        output = node.addChild('output', activated="1")
 
-       output.addObject('EulerImplicitSolver', name="odesolver", rayleighStiffness="0.1", rayleighMass="0.1")
+       output.addObject('EulerImplicitIntegrationScheme', name="odesolver", rayleighStiffness="0.1", rayleighMass="0.1")
        output.addObject('CGLinearSolver', iterations="10", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
        output.addObject('TetrahedronSetTopologyContainer', name="volume", points="@../input/stuffing.outputPoints", tetras="@../input/stuffing.outputTetras")
        output.addObject('MechanicalObject', )

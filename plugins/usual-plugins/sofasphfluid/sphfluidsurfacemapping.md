@@ -319,7 +319,7 @@ SPHFluidSurfaceMapping.scn
         <RequiredPlugin name="Sofa.Component.LinearSolver.Iterative"/> <!-- Needed to use components [CGLinearSolver] -->
         <RequiredPlugin name="Sofa.Component.Mass"/> <!-- Needed to use components [UniformMass] -->
         <RequiredPlugin name="Sofa.Component.MechanicalLoad"/> <!-- Needed to use components [PlaneForceField] -->
-        <RequiredPlugin name="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+        <RequiredPlugin name="Sofa.Component.IntegrationScheme.Backward"/> <!-- Needed to use components [EulerImplicitIntegrationScheme] -->
         <RequiredPlugin name="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
         <RequiredPlugin name="Sofa.Component.Topology.Container.Grid"/> <!-- Needed to use components [RegularGridTopology] -->
         <RequiredPlugin name="Sofa.Component.Visual"/> <!-- Needed to use components [VisualStyle] -->
@@ -329,7 +329,7 @@ SPHFluidSurfaceMapping.scn
         <VisualStyle displayFlags="hideBehaviorModels showForceFields hideCollisionModels" />
         <DefaultAnimationLoop/>    
         <Node name="SPHSurfaceMapping">
-            <EulerImplicitSolver name="cg_odesolver" printLog="false"  rayleighStiffness="0.1" rayleighMass="0.1" />
+            <EulerImplicitIntegrationScheme name="cg_odesolver" printLog="false"  rayleighStiffness="0.1" rayleighMass="0.1" />
             <CGLinearSolver iterations="25" name="linear solver" tolerance="1.0e-9" threshold="1.0e-9" />
             
             <RegularGridTopology nx="5" ny="40" nz="5" xmin="-1.5" xmax="0" ymin="-3" ymax="12" zmin="-1.5" zmax="0" drawEdges="0"/>
@@ -364,7 +364,7 @@ SPHFluidSurfaceMapping.scn
        node.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Iterative")
        node.addObject('RequiredPlugin', name="Sofa.Component.Mass")
        node.addObject('RequiredPlugin', name="Sofa.Component.MechanicalLoad")
-       node.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
+       node.addObject('RequiredPlugin', name="Sofa.Component.IntegrationScheme.Backward")
        node.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
        node.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Grid")
        node.addObject('RequiredPlugin', name="Sofa.Component.Visual")
@@ -375,7 +375,7 @@ SPHFluidSurfaceMapping.scn
 
        sph_surface_mapping = node.addChild('SPHSurfaceMapping')
 
-       sph_surface_mapping.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
+       sph_surface_mapping.addObject('EulerImplicitIntegrationScheme', name="cg_odesolver", printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
        sph_surface_mapping.addObject('CGLinearSolver', iterations="25", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
        sph_surface_mapping.addObject('RegularGridTopology', nx="5", ny="40", nz="5", xmin="-1.5", xmax="0", ymin="-3", ymax="12", zmin="-1.5", zmax="0", drawEdges="0")
        sph_surface_mapping.addObject('MechanicalObject', name="MModel")

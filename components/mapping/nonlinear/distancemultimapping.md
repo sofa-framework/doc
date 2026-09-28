@@ -355,7 +355,7 @@ DistanceMultiMapping.scn
             <RequiredPlugin pluginName="Sofa.Component.Mapping.NonLinear"/> <!-- Needed to use components [DistanceMapping DistanceMultiMapping] -->
             <RequiredPlugin pluginName="Sofa.Component.Mass"/> <!-- Needed to use components [DiagonalMass] -->
             <RequiredPlugin pluginName="Sofa.Component.MechanicalLoad"/> <!-- Needed to use components [UniformVelocityDampingForceField] -->
-            <RequiredPlugin pluginName="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+            <RequiredPlugin pluginName="Sofa.Component.IntegrationScheme.Backward"/> <!-- Needed to use components [EulerImplicitIntegrationScheme] -->
             <RequiredPlugin pluginName="Sofa.Component.SolidMechanics.Spring"/> <!-- Needed to use components [RestShapeSpringsForceField] -->
             <RequiredPlugin pluginName="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
             <RequiredPlugin pluginName="Sofa.Component.Topology.Container.Dynamic"/> <!-- Needed to use components [EdgeSetGeometryAlgorithms EdgeSetTopologyContainer] -->
@@ -368,7 +368,7 @@ DistanceMultiMapping.scn
         <DefaultAnimationLoop/>
         <StringMeshCreator name="loader" resolution="20" />
     
-        <EulerImplicitSolver rayleighStiffness="0.1" rayleighMass="0.1"/>
+        <EulerImplicitIntegrationScheme rayleighStiffness="0.1" rayleighMass="0.1"/>
         <CGLinearSolver iterations="2500" name="linear solver" tolerance="1.0e-9" threshold="1.0e-9" />
     
         <Node  name="springs0" >
@@ -386,7 +386,7 @@ DistanceMultiMapping.scn
                 <RestShapeSpringsForceField template="Vec1" stiffness="1000"/>
             </Node>
         </Node>
-    
+    zz
         <Node  name="springs1" >
             <TransformEngine name="translate" input_position="@../loader.position" translation="1.2 0 0" />
     
@@ -430,7 +430,7 @@ DistanceMultiMapping.scn
        plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.Mapping.NonLinear")
        plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.Mass")
        plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.MechanicalLoad")
-       plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.ODESolver.Backward")
+       plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.IntegrationScheme.Backward")
        plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.SolidMechanics.Spring")
        plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.StateContainer")
        plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.Topology.Container.Dynamic")
@@ -440,7 +440,7 @@ DistanceMultiMapping.scn
        root.addObject('VisualStyle', displayFlags="showVisualModels showBehaviorModels showMappings showForceFields showMechanicalMappings")
        root.addObject('DefaultAnimationLoop', )
        root.addObject('StringMeshCreator', name="loader", resolution="20")
-       root.addObject('EulerImplicitSolver', rayleighStiffness="0.1", rayleighMass="0.1")
+       root.addObject('EulerImplicitIntegrationScheme', rayleighStiffness="0.1", rayleighMass="0.1")
        root.addObject('CGLinearSolver', iterations="2500", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
 
        springs0 = Root.addChild('springs0')

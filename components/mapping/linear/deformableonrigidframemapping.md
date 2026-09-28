@@ -186,7 +186,7 @@ DeformableOnRigidFrameMappingConstraints.scn
         <RequiredPlugin pluginName="Sofa.Component.LinearSolver.Iterative"/> <!-- Needed to use components [CGLinearSolver] -->
         <RequiredPlugin pluginName="Sofa.Component.Mapping.Linear"/> <!-- Needed to use components [BarycentricMapping DeformableOnRigidFrameMapping] -->
         <RequiredPlugin pluginName="Sofa.Component.Mass"/> <!-- Needed to use components [UniformMass] -->
-        <RequiredPlugin pluginName="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+        <RequiredPlugin pluginName="Sofa.Component.IntegrationScheme.Backward"/> <!-- Needed to use components [EulerImplicitIntegrationScheme] -->
         <RequiredPlugin pluginName="Sofa.Component.SolidMechanics.FEM.Elastic"/> <!-- Needed to use components [TetrahedronFEMForceField] -->
         <RequiredPlugin pluginName="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
         <RequiredPlugin pluginName="Sofa.Component.Topology.Container.Constant"/> <!-- Needed to use components [MeshTopology] -->
@@ -215,14 +215,14 @@ DeformableOnRigidFrameMappingConstraints.scn
                 <OglModel name="Visual" src="@meshLoader_1" color="gray" />
             </Node>
             <Node name="TorusRigid">
-                <EulerImplicitSolver  rayleighStiffness="0.1" rayleighMass="0.1" />
+                <EulerImplicitIntegrationScheme  rayleighStiffness="0.1" rayleighMass="0.1" />
                 <CGLinearSolver iterations="50" threshold="1e-15" tolerance="1e-15" />
                 <MechanicalObject name="rigidframe" template="Rigid3" position="1 2 0 0 0 0.7 0.7" />
                 <UniformMass filename="BehaviorModels/torus.rigid" />
                 <UncoupledConstraintCorrection />
             </Node>
             <Node name="TorusDeformLocal">
-                <EulerImplicitSolver />
+                <EulerImplicitIntegrationScheme />
                 <CGLinearSolver iterations="50" threshold="1e-15" tolerance="1e-15" />
                 <SparseGridTopology filename="mesh/torus_for_collision.obj" n="7 2 4" />
                 <MechanicalObject />
@@ -275,7 +275,7 @@ DeformableOnRigidFrameMappingConstraints.scn
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.LinearSolver.Iterative")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mapping.Linear")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mass")
-       root.addObject('RequiredPlugin', pluginName="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', pluginName="Sofa.Component.IntegrationScheme.Backward")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.SolidMechanics.FEM.Elastic")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.StateContainer")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Topology.Container.Constant")
@@ -307,7 +307,7 @@ DeformableOnRigidFrameMappingConstraints.scn
 
        torus_rigid = ChainRigid.addChild('TorusRigid')
 
-       torus_rigid.addObject('EulerImplicitSolver', rayleighStiffness="0.1", rayleighMass="0.1")
+       torus_rigid.addObject('EulerImplicitIntegrationScheme', rayleighStiffness="0.1", rayleighMass="0.1")
        torus_rigid.addObject('CGLinearSolver', iterations="50", threshold="1e-15", tolerance="1e-15")
        torus_rigid.addObject('MechanicalObject', name="rigidframe", template="Rigid3", position="1 2 0 0 0 0.7 0.7")
        torus_rigid.addObject('UniformMass', filename="BehaviorModels/torus.rigid")
@@ -315,7 +315,7 @@ DeformableOnRigidFrameMappingConstraints.scn
 
        torus_deform_local = ChainRigid.addChild('TorusDeformLocal')
 
-       torus_deform_local.addObject('EulerImplicitSolver', )
+       torus_deform_local.addObject('EulerImplicitIntegrationScheme', )
        torus_deform_local.addObject('CGLinearSolver', iterations="50", threshold="1e-15", tolerance="1e-15")
        torus_deform_local.addObject('SparseGridTopology', filename="mesh/torus_for_collision.obj", n="7 2 4")
        torus_deform_local.addObject('MechanicalObject', )
@@ -365,7 +365,7 @@ DeformableOnRigidFrameMapping.scn
         <RequiredPlugin pluginName="Sofa.Component.Mapping.Linear"/> <!-- Needed to use components [BarycentricMapping DeformableOnRigidFrameMapping] -->
         <RequiredPlugin pluginName="Sofa.Component.Mass"/> <!-- Needed to use components [UniformMass] -->
         <RequiredPlugin pluginName="Sofa.Component.MechanicalLoad"/> <!-- Needed to use components [PlaneForceField] -->
-        <RequiredPlugin pluginName="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+        <RequiredPlugin pluginName="Sofa.Component.IntegrationScheme.Backward"/> <!-- Needed to use components [EulerImplicitIntegrationScheme] -->
         <RequiredPlugin pluginName="Sofa.Component.SolidMechanics.FEM.Elastic"/> <!-- Needed to use components [TetrahedronFEMForceField] -->
         <RequiredPlugin pluginName="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
         <RequiredPlugin pluginName="Sofa.Component.Topology.Container.Constant"/> <!-- Needed to use components [MeshTopology] -->
@@ -391,7 +391,7 @@ DeformableOnRigidFrameMapping.scn
             </Node>
             <!-- 		<Node name="TorusRigid"> -->
             <Node name="Torus">
-                <EulerImplicitSolver  rayleighStiffness="0.1" rayleighMass="0.1" />
+                <EulerImplicitIntegrationScheme  rayleighStiffness="0.1" rayleighMass="0.1" />
                 <CGLinearSolver iterations="50" threshold="1e-15" tolerance="1e-15" />
                 <MechanicalObject name="rigidframe" template="Rigid3" position="1 2 0 0 0 0.7 0.7" />
                 <UniformMass filename="BehaviorModels/torus.rigid" />
@@ -446,7 +446,7 @@ DeformableOnRigidFrameMapping.scn
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mapping.Linear")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mass")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.MechanicalLoad")
-       root.addObject('RequiredPlugin', pluginName="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', pluginName="Sofa.Component.IntegrationScheme.Backward")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.SolidMechanics.FEM.Elastic")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.StateContainer")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Topology.Container.Constant")
@@ -474,7 +474,7 @@ DeformableOnRigidFrameMapping.scn
 
        torus = ChainRigid.addChild('Torus')
 
-       torus.addObject('EulerImplicitSolver', rayleighStiffness="0.1", rayleighMass="0.1")
+       torus.addObject('EulerImplicitIntegrationScheme', rayleighStiffness="0.1", rayleighMass="0.1")
        torus.addObject('CGLinearSolver', iterations="50", threshold="1e-15", tolerance="1e-15")
        torus.addObject('MechanicalObject', name="rigidframe", template="Rigid3", position="1 2 0 0 0 0.7 0.7")
        torus.addObject('UniformMass', filename="BehaviorModels/torus.rigid")

@@ -318,7 +318,7 @@ VisualPointCloud.scn
             <RequiredPlugin pluginName="Sofa.Component.LinearSolver.Direct"/> <!-- Needed to use components [BTDLinearSolver,EigenSimplicialLDLT] -->
             <RequiredPlugin pluginName="Sofa.Component.LinearSystem"/> <!-- Needed to use components [ConstantSparsityPatternSystem] -->
             <RequiredPlugin pluginName="Sofa.Component.Mass"/> <!-- Needed to use components [UniformMass] -->
-            <RequiredPlugin pluginName="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+            <RequiredPlugin pluginName="Sofa.Component.IntegrationScheme.Backward"/> <!-- Needed to use components [EulerImplicitIntegrationScheme] -->
             <RequiredPlugin pluginName="Sofa.Component.SolidMechanics.FEM.Elastic"/> <!-- Needed to use components [BeamFEMForceField,HexahedronFEMForceField] -->
             <RequiredPlugin pluginName="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
             <RequiredPlugin pluginName="Sofa.Component.Topology.Container.Constant"/> <!-- Needed to use components [MeshTopology] -->
@@ -333,7 +333,7 @@ VisualPointCloud.scn
         <LineAxis size="@grid.size"/>
     
         <Node name="3d_point">
-            <EulerImplicitSolver name="odesolver" rayleighStiffness="0.1" rayleighMass="0.1" />
+            <EulerImplicitIntegrationScheme name="odesolver" rayleighStiffness="0.1" rayleighMass="0.1" />
             <ConstantSparsityPatternSystem template="CompressedRowSparseMatrixd" name="A"/>
             <EigenSimplicialLDLT template="CompressedRowSparseMatrixd"/>
             <MechanicalObject name="DoFs" template="Vec3" />
@@ -347,7 +347,7 @@ VisualPointCloud.scn
         </Node>
     
         <Node name="3d_sphere">
-            <EulerImplicitSolver name="odesolver" rayleighStiffness="0.1" rayleighMass="0.1" />
+            <EulerImplicitIntegrationScheme name="odesolver" rayleighStiffness="0.1" rayleighMass="0.1" />
             <ConstantSparsityPatternSystem template="CompressedRowSparseMatrixd" name="A"/>
             <EigenSimplicialLDLT template="CompressedRowSparseMatrixd"/>
             <MechanicalObject name="DoFs" template="Vec3" />
@@ -361,7 +361,7 @@ VisualPointCloud.scn
         </Node>
     
         <Node name="rigid3">
-            <EulerImplicitSolver rayleighStiffness="0" printLog="false" rayleighMass="0.1"/>
+            <EulerImplicitIntegrationScheme rayleighStiffness="0" printLog="false" rayleighMass="0.1"/>
             <BTDLinearSolver template="BTDMatrix6d"/>
     
             <MechanicalObject template="Rigid3" name="DoFs" position="0 0 1 0 0 0 1  1 0 1 0 0 0 1  2 0 1 0 0 0 1  3 0 1 0 0 0 1" />
@@ -390,7 +390,7 @@ VisualPointCloud.scn
        plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.LinearSolver.Direct")
        plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.LinearSystem")
        plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.Mass")
-       plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.ODESolver.Backward")
+       plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.IntegrationScheme.Backward")
        plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.SolidMechanics.FEM.Elastic")
        plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.StateContainer")
        plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.Topology.Container.Constant")
@@ -405,7 +405,7 @@ VisualPointCloud.scn
 
        3d_point = root.addChild('3d_point')
 
-       3d_point.addObject('EulerImplicitSolver', name="odesolver", rayleighStiffness="0.1", rayleighMass="0.1")
+       3d_point.addObject('EulerImplicitIntegrationScheme', name="odesolver", rayleighStiffness="0.1", rayleighMass="0.1")
        3d_point.addObject('ConstantSparsityPatternSystem', template="CompressedRowSparseMatrixd", name="A")
        3d_point.addObject('EigenSimplicialLDLT', template="CompressedRowSparseMatrixd")
        3d_point.addObject('MechanicalObject', name="DoFs", template="Vec3")
@@ -418,7 +418,7 @@ VisualPointCloud.scn
 
        3d_sphere = root.addChild('3d_sphere')
 
-       3d_sphere.addObject('EulerImplicitSolver', name="odesolver", rayleighStiffness="0.1", rayleighMass="0.1")
+       3d_sphere.addObject('EulerImplicitIntegrationScheme', name="odesolver", rayleighStiffness="0.1", rayleighMass="0.1")
        3d_sphere.addObject('ConstantSparsityPatternSystem', template="CompressedRowSparseMatrixd", name="A")
        3d_sphere.addObject('EigenSimplicialLDLT', template="CompressedRowSparseMatrixd")
        3d_sphere.addObject('MechanicalObject', name="DoFs", template="Vec3")
@@ -431,7 +431,7 @@ VisualPointCloud.scn
 
        rigid3 = root.addChild('rigid3')
 
-       rigid3.addObject('EulerImplicitSolver', rayleighStiffness="0", printLog="false", rayleighMass="0.1")
+       rigid3.addObject('EulerImplicitIntegrationScheme', rayleighStiffness="0", printLog="false", rayleighMass="0.1")
        rigid3.addObject('BTDLinearSolver', template="BTDMatrix6d")
        rigid3.addObject('MechanicalObject', template="Rigid3", name="DoFs", position="0 0 1 0 0 0 1  1 0 1 0 0 0 1  2 0 1 0 0 0 1  3 0 1 0 0 0 1")
        rigid3.addObject('MeshTopology', name="lines", lines="0 1 1 2 2 3")

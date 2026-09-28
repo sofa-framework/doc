@@ -162,7 +162,7 @@ OglLabel.scn
         <RequiredPlugin pluginName="Sofa.Component.LinearSolver.Iterative"/> <!-- Needed to use components [CGLinearSolver] -->
         <RequiredPlugin pluginName="Sofa.Component.Mass"/> <!-- Needed to use components [UniformMass] -->
         <RequiredPlugin pluginName="Sofa.Component.MechanicalLoad"/> <!-- Needed to use components [PlaneForceField] -->
-        <RequiredPlugin pluginName="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+        <RequiredPlugin pluginName="Sofa.Component.IntegrationScheme.Backward"/> <!-- Needed to use components [EulerImplicitIntegrationScheme] -->
         <RequiredPlugin pluginName="Sofa.Component.Setting"/> <!-- Needed to use components [BackgroundSetting] -->
         <RequiredPlugin pluginName="Sofa.Component.SolidMechanics.Spring"/> <!-- Needed to use components [MeshSpringForceField] -->
         <RequiredPlugin pluginName="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
@@ -176,7 +176,7 @@ OglLabel.scn
     
     	<VisualGrid size="16" plane="y"/>
     
-    	<EulerImplicitSolver name="EulerImplicit"  rayleighStiffness="0.1" rayleighMass="0.1" />
+    	<EulerImplicitIntegrationScheme name="EulerImplicit"  rayleighStiffness="0.1" rayleighMass="0.1" />
     	<CGLinearSolver name="CG Solver" iterations="100" tolerance="1e-5" threshold="1e-5" />
     
     	<MechanicalObject name="Particles" template="Vec3"
@@ -211,7 +211,7 @@ OglLabel.scn
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.LinearSolver.Iterative")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mass")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.MechanicalLoad")
-       root.addObject('RequiredPlugin', pluginName="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', pluginName="Sofa.Component.IntegrationScheme.Backward")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Setting")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.SolidMechanics.Spring")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.StateContainer")
@@ -222,7 +222,7 @@ OglLabel.scn
        root.addObject('VisualStyle', displayFlags="showForceFields")
        root.addObject('BackgroundSetting', color="0.8 0.4 0.6")
        root.addObject('VisualGrid', size="16", plane="y")
-       root.addObject('EulerImplicitSolver', name="EulerImplicit", rayleighStiffness="0.1", rayleighMass="0.1")
+       root.addObject('EulerImplicitIntegrationScheme', name="EulerImplicit", rayleighStiffness="0.1", rayleighMass="0.1")
        root.addObject('CGLinearSolver', name="CG Solver", iterations="100", tolerance="1e-5", threshold="1e-5")
        root.addObject('MechanicalObject', name="Particles", template="Vec3", position="0 0 1  1 0 1  0 1 1  1 1 1  0 0 2  1 0 2  0 1 2  1 1 2")
        root.addObject('MeshTopology', name="Topology", hexas="0 4 6 2 1 5 7 3")

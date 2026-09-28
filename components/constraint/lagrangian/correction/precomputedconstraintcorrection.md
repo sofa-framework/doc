@@ -135,8 +135,6 @@ If not empty, the compliance will be saved in this repertory
 |mechanicalStates|List of mechanical states to which this component is associated|BaseMechanicalState|
 |mstate|MechanicalState used by this component|MechanicalState&lt;Rigid3d&gt;|
 |constraintSolvers|Constraint solvers using this constraint correction|ConstraintSolver|
-|ODESolver|Link towards the ODE solver used during the compliance precomputation. If unset, the first OdeSolver in the current context is used.|EulerImplicitSolver|
-|linearSolver|Link towards the linear solver used during the compliance precomputation. If unset, the first LinearSolver in the current context is used.|LinearSolver|
 
 <!-- generate_doc -->
 ## Vec1d
@@ -270,8 +268,6 @@ If not empty, the compliance will be saved in this repertory
 |mechanicalStates|List of mechanical states to which this component is associated|BaseMechanicalState|
 |mstate|MechanicalState used by this component|MechanicalState&lt;Vec1d&gt;|
 |constraintSolvers|Constraint solvers using this constraint correction|ConstraintSolver|
-|ODESolver|Link towards the ODE solver used during the compliance precomputation. If unset, the first OdeSolver in the current context is used.|EulerImplicitSolver|
-|linearSolver|Link towards the linear solver used during the compliance precomputation. If unset, the first LinearSolver in the current context is used.|LinearSolver|
 
 <!-- generate_doc -->
 ## Vec3d
@@ -405,8 +401,6 @@ If not empty, the compliance will be saved in this repertory
 |mechanicalStates|List of mechanical states to which this component is associated|BaseMechanicalState|
 |mstate|MechanicalState used by this component|MechanicalState&lt;Vec3d&gt;|
 |constraintSolvers|Constraint solvers using this constraint correction|ConstraintSolver|
-|ODESolver|Link towards the ODE solver used during the compliance precomputation. If unset, the first OdeSolver in the current context is used.|EulerImplicitSolver|
-|linearSolver|Link towards the linear solver used during the compliance precomputation. If unset, the first LinearSolver in the current context is used.|LinearSolver|
 
 ## Examples 
 

@@ -268,7 +268,7 @@ PreconditionedConjugateResidual.scn
         <RequiredPlugin pluginName="Sofa.Component.LinearSolver.Direct"/> <!-- Needed to use components [SparseLDLSolver] -->
         <RequiredPlugin pluginName="Sofa.Component.Mapping.Linear"/> <!-- Needed to use components [IdentityMapping] -->
         <RequiredPlugin pluginName="Sofa.Component.Mass"/> <!-- Needed to use components [UniformMass] -->
-        <RequiredPlugin pluginName="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+        <RequiredPlugin pluginName="Sofa.Component.IntegrationScheme.Backward"/> <!-- Needed to use components [EulerImplicitIntegrationScheme] -->
         <RequiredPlugin pluginName="Sofa.Component.SolidMechanics.FEM.Elastic"/> <!-- Needed to use components [TetrahedronFEMForceField] -->
         <RequiredPlugin pluginName="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
         <RequiredPlugin pluginName="Sofa.Component.Topology.Container.Dynamic"/> <!-- Needed to use components [TetrahedronSetTopologyContainer TetrahedronSetTopologyModifier TriangleSetTopologyContainer TriangleSetTopologyModifier] -->
@@ -293,7 +293,7 @@ PreconditionedConjugateResidual.scn
         </Node>
     
         <Node name="FEM">
-            <EulerImplicitSolver firstOrder="false" rayleighMass="0.1" rayleighStiffness="0.1"/>
+            <EulerImplicitIntegrationScheme firstOrder="false" rayleighMass="0.1" rayleighStiffness="0.1"/>
             <SparseLDLSolver name="precond" template="CompressedRowSparseMatrixMat3x3" parallelInverseProduct="true" />
     
             <TetrahedronSetTopologyContainer name="Container" position="@../BEAMVOLUME/HexaTop.position" tetrahedra="@../BEAMVOLUME/Container.tetrahedra"/>
@@ -347,7 +347,7 @@ PreconditionedConjugateResidual.scn
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.LinearSolver.Direct")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mapping.Linear")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mass")
-       root.addObject('RequiredPlugin', pluginName="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', pluginName="Sofa.Component.IntegrationScheme.Backward")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.SolidMechanics.FEM.Elastic")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.StateContainer")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Topology.Container.Dynamic")
@@ -370,7 +370,7 @@ PreconditionedConjugateResidual.scn
 
        fem = root.addChild('FEM')
 
-       fem.addObject('EulerImplicitSolver', firstOrder="false", rayleighMass="0.1", rayleighStiffness="0.1")
+       fem.addObject('EulerImplicitIntegrationScheme', firstOrder="false", rayleighMass="0.1", rayleighStiffness="0.1")
        fem.addObject('SparseLDLSolver', name="precond", template="CompressedRowSparseMatrixMat3x3", parallelInverseProduct="true")
        fem.addObject('TetrahedronSetTopologyContainer', name="Container", position="@../BEAMVOLUME/HexaTop.position", tetrahedra="@../BEAMVOLUME/Container.tetrahedra")
        fem.addObject('TetrahedronSetTopologyModifier', name="Modifier")

@@ -514,7 +514,7 @@ DistanceFromTargetMapping.scn
         <RequiredPlugin pluginName="Sofa.Component.LinearSolver.Direct"/> <!-- Needed to use components [EigenSimplicialLLT] -->
         <RequiredPlugin pluginName="Sofa.Component.Mapping.NonLinear"/> <!-- Needed to use components [DistanceFromTargetMapping DistanceMapping] -->
         <RequiredPlugin pluginName="Sofa.Component.Mass"/> <!-- Needed to use components [DiagonalMass] -->
-        <RequiredPlugin pluginName="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+        <RequiredPlugin pluginName="Sofa.Component.IntegrationScheme.Backward"/> <!-- Needed to use components [EulerImplicitIntegrationScheme] -->
         <RequiredPlugin pluginName="Sofa.Component.SolidMechanics.Spring"/> <!-- Needed to use components [RestShapeSpringsForceField] -->
         <RequiredPlugin pluginName="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
         <RequiredPlugin pluginName="Sofa.Component.Topology.Container.Dynamic"/> <!-- Needed to use components [EdgeSetGeometryAlgorithms EdgeSetTopologyContainer] -->
@@ -524,7 +524,7 @@ DistanceFromTargetMapping.scn
     
         <StringMeshCreator name="loader" resolution="20" scale3d="1 1 1" />
     
-        <EulerImplicitSolver />
+        <EulerImplicitIntegrationScheme />
         <EigenSimplicialLLT template="CompressedRowSparseMatrixMat3x3d"/>
     
         <EdgeSetTopologyContainer name="topology" position="@loader.position" edges="@loader.edges"/>
@@ -556,14 +556,14 @@ DistanceFromTargetMapping.scn
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.LinearSolver.Direct")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mapping.NonLinear")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mass")
-       root.addObject('RequiredPlugin', pluginName="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', pluginName="Sofa.Component.IntegrationScheme.Backward")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.SolidMechanics.Spring")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.StateContainer")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Topology.Container.Dynamic")
        root.addObject('DefaultAnimationLoop', )
        root.addObject('DefaultVisualManagerLoop', )
        root.addObject('StringMeshCreator', name="loader", resolution="20", scale3d="1 1 1")
-       root.addObject('EulerImplicitSolver', )
+       root.addObject('EulerImplicitIntegrationScheme', )
        root.addObject('EigenSimplicialLLT', template="CompressedRowSparseMatrixMat3x3d")
        root.addObject('EdgeSetTopologyContainer', name="topology", position="@loader.position", edges="@loader.edges")
        root.addObject('MechanicalObject', name="dofs", template="Vec3")

@@ -161,7 +161,7 @@ QuadBendingFEMForceField.scn
         <RequiredPlugin pluginName="Sofa.Component.LinearSolver.Iterative"/> <!-- Needed to use components [CGLinearSolver] -->
         <RequiredPlugin pluginName="Sofa.Component.Mapping.Linear"/> <!-- Needed to use components [IdentityMapping] -->
         <RequiredPlugin pluginName="Sofa.Component.Mass"/> <!-- Needed to use components [DiagonalMass] -->
-        <RequiredPlugin pluginName="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+        <RequiredPlugin pluginName="Sofa.Component.IntegrationScheme.Backward"/> <!-- Needed to use components [EulerImplicitIntegrationScheme] -->
         <RequiredPlugin pluginName="Sofa.Component.SolidMechanics.FEM.Elastic"/> <!-- Needed to use components [QuadBendingFEMForceField] -->
         <RequiredPlugin pluginName="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
         <RequiredPlugin pluginName="Sofa.Component.Topology.Container.Dynamic"/> <!-- Needed to use components [QuadSetGeometryAlgorithms QuadSetTopologyContainer QuadSetTopologyModifier] -->
@@ -177,7 +177,7 @@ QuadBendingFEMForceField.scn
         <MinProximityIntersection name="proximity" alarmDistance="0.5" contactDistance="0.33"/>
     
         <Node name="skin" gravity="0 0 -9.81">
-            <EulerImplicitSolver name="cg_odesolver" />
+            <EulerImplicitIntegrationScheme name="cg_odesolver" />
             <CGLinearSolver iterations="25" name="linear solver" tolerance="1.0e-9" threshold="1.0e-9" />
             <MeshVTKLoader filename="mesh/test_quad.vtk" name="loader" />
             <MechanicalObject template="Vec3" src="@loader" name="DOFs" />
@@ -214,7 +214,7 @@ QuadBendingFEMForceField.scn
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.LinearSolver.Iterative")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mapping.Linear")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mass")
-       root.addObject('RequiredPlugin', pluginName="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', pluginName="Sofa.Component.IntegrationScheme.Backward")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.SolidMechanics.FEM.Elastic")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.StateContainer")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Topology.Container.Dynamic")
@@ -230,7 +230,7 @@ QuadBendingFEMForceField.scn
 
        skin = root.addChild('skin', gravity="0 0 -9.81")
 
-       skin.addObject('EulerImplicitSolver', name="cg_odesolver")
+       skin.addObject('EulerImplicitIntegrationScheme', name="cg_odesolver")
        skin.addObject('CGLinearSolver', iterations="25", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
        skin.addObject('MeshVTKLoader', filename="mesh/test_quad.vtk", name="loader")
        skin.addObject('MechanicalObject', template="Vec3", src="@loader", name="DOFs")

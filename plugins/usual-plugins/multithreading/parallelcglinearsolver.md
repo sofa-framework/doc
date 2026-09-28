@@ -310,7 +310,7 @@ ParallelCGLinearSolver.scn
             <RequiredPlugin pluginName="Sofa.Component.Engine.Select"/> <!-- Needed to use components [BoxROI] -->
             <RequiredPlugin pluginName="Sofa.Component.LinearSolver.Iterative"/> <!-- Needed to use components [CGLinearSolver] -->
             <RequiredPlugin pluginName="Sofa.Component.Mass"/> <!-- Needed to use components [UniformMass] -->
-            <RequiredPlugin pluginName="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+            <RequiredPlugin pluginName="Sofa.Component.IntegrationScheme.Backward"/> <!-- Needed to use components [EulerImplicitIntegrationScheme] -->
             <RequiredPlugin pluginName="Sofa.Component.SolidMechanics.FEM.Elastic"/> <!-- Needed to use components [HexahedronFEMForceField] -->
             <RequiredPlugin pluginName="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
             <RequiredPlugin pluginName="Sofa.Component.Topology.Container.Grid"/> <!-- Needed to use components [RegularGridTopology] -->
@@ -321,7 +321,7 @@ ParallelCGLinearSolver.scn
         <DefaultAnimationLoop/>
     
         <Node>
-            <EulerImplicitSolver name="eulerimplicit_odesolver" printLog="false"  rayleighStiffness="0.1" rayleighMass="0.1" />
+            <EulerImplicitIntegrationScheme name="eulerimplicit_odesolver" printLog="false"  rayleighStiffness="0.1" rayleighMass="0.1" />
             <ParallelCGLinearSolver template="ParallelCompressedRowSparseMatrixMat3x3d" iterations="100" tolerance="1e-20" threshold="1e-20" warmStart="1" />
             <MechanicalObject />
             <UniformMass name="mass" totalMass="320" />
@@ -348,7 +348,7 @@ ParallelCGLinearSolver.scn
        plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.Engine.Select")
        plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.LinearSolver.Iterative")
        plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.Mass")
-       plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.ODESolver.Backward")
+       plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.IntegrationScheme.Backward")
        plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.SolidMechanics.FEM.Elastic")
        plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.StateContainer")
        plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.Topology.Container.Grid")
@@ -359,7 +359,7 @@ ParallelCGLinearSolver.scn
 
        node = root.addChild('node')
 
-       node.addObject('EulerImplicitSolver', name="eulerimplicit_odesolver", printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
+       node.addObject('EulerImplicitIntegrationScheme', name="eulerimplicit_odesolver", printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
        node.addObject('ParallelCGLinearSolver', template="ParallelCompressedRowSparseMatrixMat3x3d", iterations="100", tolerance="1e-20", threshold="1e-20", warmStart="1")
        node.addObject('MechanicalObject', )
        node.addObject('UniformMass', name="mass", totalMass="320")

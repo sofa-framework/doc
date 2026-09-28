@@ -136,7 +136,7 @@ HexahedronCompositeFEMMapping.scn
         <RequiredPlugin pluginName="Sofa.Component.LinearSolver.Iterative"/> <!-- Needed to use components [CGLinearSolver] -->
         <RequiredPlugin pluginName="Sofa.Component.Mapping.Linear"/> <!-- Needed to use components [BarycentricMapping IdentityMapping] -->
         <RequiredPlugin pluginName="Sofa.Component.MechanicalLoad"/> <!-- Needed to use components [ConstantForceField] -->
-        <RequiredPlugin pluginName="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+        <RequiredPlugin pluginName="Sofa.Component.IntegrationScheme.Backward"/> <!-- Needed to use components [EulerImplicitIntegrationScheme] -->
         <RequiredPlugin pluginName="Sofa.Component.SolidMechanics.FEM.NonUniform"/> <!-- Needed to use components [HexahedronCompositeFEMForceFieldAndMass HexahedronCompositeFEMMapping] -->
         <RequiredPlugin pluginName="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
         <RequiredPlugin pluginName="Sofa.Component.Topology.Container.Constant"/> <!-- Needed to use components [MeshTopology] -->
@@ -150,7 +150,7 @@ HexahedronCompositeFEMMapping.scn
         <OglModel name="plan" src="@meshLoader_2" rx="90" rz="90" dy="-10.2" material="Default Diffuse 1 1 0.4 0.4 1 Ambient 1 0.8 0.8 0.8 1 Specular 0 1 1 1 1 Emissive 0 1 1 1 1 Shininess 0 45"/>
         <Node name="HexahedronCompositeFEMMapping">
             <SparseGridMultipleTopology n="2 2 2" fileTopology="mesh/grape_out.obj" fileTopologies="mesh/grape_out.obj mesh/grape_in.obj" stiffnessCoefs="1 1000000" massCoefs="1 1" nbVirtualFinerLevels="4" finestConnectivity="false" />
-            <EulerImplicitSolver rayleighMass="0" rayleighStiffness="0" />
+            <EulerImplicitIntegrationScheme rayleighMass="0" rayleighStiffness="0" />
             <CGLinearSolver iterations="2000" tolerance="1e-5" threshold="1e-5"/>
             <MechanicalObject dx="15" />
             <HexahedronCompositeFEMForceFieldAndMass completeInterpolation="false" nbVirtualFinerLevels="3" youngModulus="100" poissonRatio="0.35" method="large" density="2" updateStiffnessMatrix="false" printLog="0" useMass="false" totalMass="1" drawSize=".5" />
@@ -177,7 +177,7 @@ HexahedronCompositeFEMMapping.scn
         </Node>
         <Node name="BarycentricMapping">
             <SparseGridMultipleTopology n="2 2 2" fileTopology="mesh/grape_out.obj" fileTopologies="mesh/grape_out.obj mesh/grape_in.obj" stiffnessCoefs="1 1000000" massCoefs="1 1" nbVirtualFinerLevels="4" finestConnectivity="false" />
-            <EulerImplicitSolver rayleighMass="0" rayleighStiffness="0" />
+            <EulerImplicitIntegrationScheme rayleighMass="0" rayleighStiffness="0" />
             <CGLinearSolver iterations="2000" tolerance="1e-5" threshold="1e-5"/>
             <MechanicalObject dx="-15" />
             <HexahedronCompositeFEMForceFieldAndMass completeInterpolation="true" nbVirtualFinerLevels="3" youngModulus="100" poissonRatio="0.35" method="large" density="2" updateStiffnessMatrix="false" printLog="0" useMass="false" totalMass="1" drawSize=".5" />
@@ -219,7 +219,7 @@ HexahedronCompositeFEMMapping.scn
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.LinearSolver.Iterative")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mapping.Linear")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.MechanicalLoad")
-       root.addObject('RequiredPlugin', pluginName="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', pluginName="Sofa.Component.IntegrationScheme.Backward")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.SolidMechanics.FEM.NonUniform")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.StateContainer")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Topology.Container.Constant")
@@ -234,7 +234,7 @@ HexahedronCompositeFEMMapping.scn
        hexahedron_composite_fem_mapping = root.addChild('HexahedronCompositeFEMMapping')
 
        hexahedron_composite_fem_mapping.addObject('SparseGridMultipleTopology', n="2 2 2", fileTopology="mesh/grape_out.obj", fileTopologies="mesh/grape_out.obj mesh/grape_in.obj", stiffnessCoefs="1 1000000", massCoefs="1 1", nbVirtualFinerLevels="4", finestConnectivity="false")
-       hexahedron_composite_fem_mapping.addObject('EulerImplicitSolver', rayleighMass="0", rayleighStiffness="0")
+       hexahedron_composite_fem_mapping.addObject('EulerImplicitIntegrationScheme', rayleighMass="0", rayleighStiffness="0")
        hexahedron_composite_fem_mapping.addObject('CGLinearSolver', iterations="2000", tolerance="1e-5", threshold="1e-5")
        hexahedron_composite_fem_mapping.addObject('MechanicalObject', dx="15")
        hexahedron_composite_fem_mapping.addObject('HexahedronCompositeFEMForceFieldAndMass', completeInterpolation="false", nbVirtualFinerLevels="3", youngModulus="100", poissonRatio="0.35", method="large", density="2", updateStiffnessMatrix="false", printLog="0", useMass="false", totalMass="1", drawSize=".5")
@@ -266,7 +266,7 @@ HexahedronCompositeFEMMapping.scn
        barycentric_mapping = root.addChild('BarycentricMapping')
 
        barycentric_mapping.addObject('SparseGridMultipleTopology', n="2 2 2", fileTopology="mesh/grape_out.obj", fileTopologies="mesh/grape_out.obj mesh/grape_in.obj", stiffnessCoefs="1 1000000", massCoefs="1 1", nbVirtualFinerLevels="4", finestConnectivity="false")
-       barycentric_mapping.addObject('EulerImplicitSolver', rayleighMass="0", rayleighStiffness="0")
+       barycentric_mapping.addObject('EulerImplicitIntegrationScheme', rayleighMass="0", rayleighStiffness="0")
        barycentric_mapping.addObject('CGLinearSolver', iterations="2000", tolerance="1e-5", threshold="1e-5")
        barycentric_mapping.addObject('MechanicalObject', dx="-15")
        barycentric_mapping.addObject('HexahedronCompositeFEMForceFieldAndMass', completeInterpolation="true", nbVirtualFinerLevels="3", youngModulus="100", poissonRatio="0.35", method="large", density="2", updateStiffnessMatrix="false", printLog="0", useMass="false", totalMass="1", drawSize=".5")

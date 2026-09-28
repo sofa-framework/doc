@@ -268,7 +268,7 @@ ArticulatedSystemMapping.scn
         <RequiredPlugin pluginName="Sofa.Component.LinearSolver.Iterative"/> <!-- Needed to use components [CGLinearSolver] -->
         <RequiredPlugin pluginName="Sofa.Component.Mapping.NonLinear"/> <!-- Needed to use components [RigidMapping] -->
         <RequiredPlugin pluginName="Sofa.Component.Mass"/> <!-- Needed to use components [UniformMass] -->
-        <RequiredPlugin pluginName="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+        <RequiredPlugin pluginName="Sofa.Component.IntegrationScheme.Backward"/> <!-- Needed to use components [EulerImplicitIntegrationScheme] -->
         <RequiredPlugin pluginName="Sofa.Component.SolidMechanics.FEM.Elastic"/> <!-- Needed to use components [BeamFEMForceField] -->
         <RequiredPlugin pluginName="Sofa.Component.SolidMechanics.Spring"/> <!-- Needed to use components [SpringForceField] -->
         <RequiredPlugin pluginName="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
@@ -282,7 +282,7 @@ ArticulatedSystemMapping.scn
         <CollisionResponse response="PenalityContactForceField"/>
         <MinProximityIntersection alarmDistance="1" contactDistance="0.5"/>
         <Node>
-            <EulerImplicitSolver name="cg odesolver" printLog="false"  rayleighStiffness="0.1" rayleighMass="0.1" />
+            <EulerImplicitIntegrationScheme name="cg odesolver" printLog="false"  rayleighStiffness="0.1" rayleighMass="0.1" />
             <CGLinearSolver iterations="100" name="linear solver" threshold="1e-20" tolerance="1e-20" />
             <Node name="restarticulation">
                 <MechanicalObject name="rest" template="Vec1d" position="0 0 0 0" />
@@ -359,7 +359,7 @@ ArticulatedSystemMapping.scn
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.LinearSolver.Iterative")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mapping.NonLinear")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mass")
-       root.addObject('RequiredPlugin', pluginName="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', pluginName="Sofa.Component.IntegrationScheme.Backward")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.SolidMechanics.FEM.Elastic")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.SolidMechanics.Spring")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.StateContainer")
@@ -375,7 +375,7 @@ ArticulatedSystemMapping.scn
 
        node = root.addChild('node')
 
-       node.addObject('EulerImplicitSolver', name="cg odesolver", printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
+       node.addObject('EulerImplicitIntegrationScheme', name="cg odesolver", printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
        node.addObject('CGLinearSolver', iterations="100", name="linear solver", threshold="1e-20", tolerance="1e-20")
 
        restarticulation = node.addChild('restarticulation')

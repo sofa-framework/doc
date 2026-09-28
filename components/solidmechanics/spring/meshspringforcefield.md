@@ -835,7 +835,7 @@ MeshSpringForceField_beam10x10x40_gpu.scn
         <RequiredPlugin pluginName="Sofa.Component.Collision.Detection.Intersection"/> <!-- Needed to use components [MinProximityIntersection] -->
         <RequiredPlugin pluginName="Sofa.Component.Collision.Response.Contact"/> <!-- Needed to use components [CollisionResponse] -->
         <RequiredPlugin pluginName="Sofa.Component.LinearSolver.Iterative"/> <!-- Needed to use components [CGLinearSolver] -->
-        <RequiredPlugin pluginName="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+        <RequiredPlugin pluginName="Sofa.Component.IntegrationScheme.Backward"/> <!-- Needed to use components [EulerImplicitIntegrationScheme] -->
         <RequiredPlugin pluginName="Sofa.Component.Topology.Container.Dynamic"/> <!-- Needed to use components [TetrahedronSetTopologyContainer TetrahedronSetTopologyModifier] -->
         <RequiredPlugin pluginName="Sofa.Component.Topology.Container.Grid"/> <!-- Needed to use components [RegularGridTopology] -->
         <RequiredPlugin pluginName="Sofa.Component.Topology.Mapping"/> <!-- Needed to use components [Hexa2TetraTopologicalMapping] -->
@@ -862,7 +862,7 @@ MeshSpringForceField_beam10x10x40_gpu.scn
         </Node>
         
         <Node name="MeshSpringForceField-GPU-Green">
-            <EulerImplicitSolver name="cg_odesolver"  printLog="0" />
+            <EulerImplicitIntegrationScheme name="cg_odesolver"  printLog="0" />
             <CGLinearSolver name="linear solver"  iterations="20"  tolerance="1e-06"  threshold="1e-06" />
                     
             <MechanicalObject position="@../Beam/grid.position" name="Volume" template="CudaVec3f"/>
@@ -895,7 +895,7 @@ MeshSpringForceField_beam10x10x40_gpu.scn
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Collision.Detection.Intersection")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Collision.Response.Contact")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.LinearSolver.Iterative")
-       root.addObject('RequiredPlugin', pluginName="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', pluginName="Sofa.Component.IntegrationScheme.Backward")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Topology.Container.Dynamic")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Topology.Container.Grid")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Topology.Mapping")
@@ -920,7 +920,7 @@ MeshSpringForceField_beam10x10x40_gpu.scn
 
        mesh_spring_force_field__gpu__green = root.addChild('MeshSpringForceField-GPU-Green')
 
-       mesh_spring_force_field__gpu__green.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="0")
+       mesh_spring_force_field__gpu__green.addObject('EulerImplicitIntegrationScheme', name="cg_odesolver", printLog="0")
        mesh_spring_force_field__gpu__green.addObject('CGLinearSolver', name="linear solver", iterations="20", tolerance="1e-06", threshold="1e-06")
        mesh_spring_force_field__gpu__green.addObject('MechanicalObject', position="@../Beam/grid.position", name="Volume", template="CudaVec3f")
        mesh_spring_force_field__gpu__green.addObject('TetrahedronSetTopologyContainer', name="Container", src="@../Beam/BeamTopo")
@@ -951,7 +951,7 @@ MeshSpringForceField_beam10x10x40_cpu.scn
         <RequiredPlugin pluginName="Sofa.Component.LinearSolver.Iterative"/> <!-- Needed to use components [CGLinearSolver] -->
         <RequiredPlugin pluginName="Sofa.Component.Mapping.Linear"/> <!-- Needed to use components [IdentityMapping] -->
         <RequiredPlugin pluginName="Sofa.Component.Mass"/> <!-- Needed to use components [UniformMass] -->
-        <RequiredPlugin pluginName="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+        <RequiredPlugin pluginName="Sofa.Component.IntegrationScheme.Backward"/> <!-- Needed to use components [EulerImplicitIntegrationScheme] -->
         <RequiredPlugin pluginName="Sofa.Component.SolidMechanics.Spring"/> <!-- Needed to use components [MeshSpringForceField] -->
         <RequiredPlugin pluginName="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
         <RequiredPlugin pluginName="Sofa.Component.Topology.Container.Dynamic"/> <!-- Needed to use components [TetrahedronSetTopologyContainer TetrahedronSetTopologyModifier] -->
@@ -979,7 +979,7 @@ MeshSpringForceField_beam10x10x40_cpu.scn
         </Node>
     
         <Node name="MeshSpringForceField-CPU-Red">
-            <EulerImplicitSolver name="cg_odesolver"  printLog="0" />
+            <EulerImplicitIntegrationScheme name="cg_odesolver"  printLog="0" />
             <CGLinearSolver name="linear solver"  iterations="20"  tolerance="1e-06"  threshold="1e-06" />
                     
             <MechanicalObject position="@../Beam/grid.position" name="Volume" template="Vec3"/>
@@ -1017,7 +1017,7 @@ MeshSpringForceField_beam10x10x40_cpu.scn
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.LinearSolver.Iterative")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mapping.Linear")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mass")
-       root.addObject('RequiredPlugin', pluginName="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', pluginName="Sofa.Component.IntegrationScheme.Backward")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.SolidMechanics.Spring")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.StateContainer")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Topology.Container.Dynamic")
@@ -1043,7 +1043,7 @@ MeshSpringForceField_beam10x10x40_cpu.scn
 
        mesh_spring_force_field__cpu__red = root.addChild('MeshSpringForceField-CPU-Red')
 
-       mesh_spring_force_field__cpu__red.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="0")
+       mesh_spring_force_field__cpu__red.addObject('EulerImplicitIntegrationScheme', name="cg_odesolver", printLog="0")
        mesh_spring_force_field__cpu__red.addObject('CGLinearSolver', name="linear solver", iterations="20", tolerance="1e-06", threshold="1e-06")
        mesh_spring_force_field__cpu__red.addObject('MechanicalObject', position="@../Beam/grid.position", name="Volume", template="Vec3")
        mesh_spring_force_field__cpu__red.addObject('TetrahedronSetTopologyContainer', name="Container", src="@../Beam/BeamTopo")
@@ -1074,7 +1074,7 @@ MeshSpringForceField.scn
         <RequiredPlugin pluginName="Sofa.Component.LinearSolver.Iterative"/> <!-- Needed to use components [CGLinearSolver] -->
         <RequiredPlugin pluginName="Sofa.Component.Mapping.Linear"/> <!-- Needed to use components [BarycentricMapping] -->
         <RequiredPlugin pluginName="Sofa.Component.Mass"/> <!-- Needed to use components [UniformMass] -->
-        <RequiredPlugin pluginName="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+        <RequiredPlugin pluginName="Sofa.Component.IntegrationScheme.Backward"/> <!-- Needed to use components [EulerImplicitIntegrationScheme] -->
         <RequiredPlugin pluginName="Sofa.Component.SolidMechanics.Spring"/> <!-- Needed to use components [MeshSpringForceField] -->
         <RequiredPlugin pluginName="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
         <RequiredPlugin pluginName="Sofa.Component.Topology.Container.Constant"/> <!-- Needed to use components [MeshTopology] -->
@@ -1095,8 +1095,8 @@ MeshSpringForceField.scn
                 <OglModel name="Visual" src="@meshLoader_3" color="gray" />
             </Node>
             <Node name="TorusSpring1">
-                <EulerImplicitSolver name="cg_odesolver" printLog="false"  rayleighStiffness="0.1" rayleighMass="0.1" />
-                <CGLinearSolver iterations="100" name="linear solver" tolerance="1.0e-9" threshold="1.0e-9" />
+                <EulerImplicitIntegrationScheme name="cg_odesolver" printLog="false"  rayleighStiffness="0.1" rayleighMass="0.1" />
+                <CGLinearSolver iterations="100" name="linear solver" tolerance="1.0e-12" threshold="1.0e-12" />
                 <MeshGmshLoader name="loader" filename="mesh/torus_low_res.msh" translation="2.5 0 0"/>
                 <MeshTopology src="@loader" />
                 <MechanicalObject src="@loader" />
@@ -1116,8 +1116,8 @@ MeshSpringForceField.scn
                 </Node>
             </Node>
             <Node name="TorusSpring2">
-                <EulerImplicitSolver name="cg_odesolver" printLog="false" />
-                <CGLinearSolver iterations="25" name="linear solver" tolerance="1.0e-9" threshold="1.0e-9" />
+                <EulerImplicitIntegrationScheme name="cg_odesolver" printLog="false" />
+                <CGLinearSolver iterations="25" name="linear solver" tolerance="1.0e-12" threshold="1.0e-12" />
                 <MeshGmshLoader name="loader" filename="mesh/torus2_low_res.msh" translation="5 0 0"/>
                 <MeshTopology src="@loader" />
                 <MechanicalObject src="@loader" />
@@ -1137,8 +1137,8 @@ MeshSpringForceField.scn
                 </Node>
             </Node>
             <Node name="TorusSpring3">
-                <EulerImplicitSolver name="cg_odesolver" printLog="false" />
-                <CGLinearSolver iterations="100" name="linear solver" tolerance="1.0e-9" threshold="1.0e-9" />
+                <EulerImplicitIntegrationScheme name="cg_odesolver" printLog="false" />
+                <CGLinearSolver iterations="100" name="linear solver" tolerance="1.0e-12" threshold="1.0e-12" />
                 <MeshGmshLoader name="loader" filename="mesh/torus_low_res.msh" translation="7.5 0 0"/>
                 <MeshTopology src="@loader" />
                 <MechanicalObject src="@loader" />
@@ -1158,8 +1158,8 @@ MeshSpringForceField.scn
                 </Node>
             </Node>
             <Node name="TorusSpring4">
-                <EulerImplicitSolver name="cg_odesolver" printLog="false" />
-                <CGLinearSolver iterations="100" name="linear solver" tolerance="1.0e-9" threshold="1.0e-9" />
+                <EulerImplicitIntegrationScheme name="cg_odesolver" printLog="false" />
+                <CGLinearSolver iterations="100" name="linear solver" tolerance="1.0e-12" threshold="1.0e-12" />
                 <MeshGmshLoader name="loader" filename="mesh/torus2_low_res.msh" translation="10 0 0"/>
                 <MeshTopology src="@loader" />
                 <MechanicalObject src="@loader"  />
@@ -1198,7 +1198,7 @@ MeshSpringForceField.scn
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.LinearSolver.Iterative")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mapping.Linear")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mass")
-       root.addObject('RequiredPlugin', pluginName="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', pluginName="Sofa.Component.IntegrationScheme.Backward")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.SolidMechanics.Spring")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.StateContainer")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Topology.Container.Constant")
@@ -1223,8 +1223,8 @@ MeshSpringForceField.scn
 
        torus_spring1 = ChainSpring.addChild('TorusSpring1')
 
-       torus_spring1.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
-       torus_spring1.addObject('CGLinearSolver', iterations="100", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
+       torus_spring1.addObject('EulerImplicitIntegrationScheme', name="cg_odesolver", printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
+       torus_spring1.addObject('CGLinearSolver', iterations="100", name="linear solver", tolerance="1.0e-12", threshold="1.0e-12")
        torus_spring1.addObject('MeshGmshLoader', name="loader", filename="mesh/torus_low_res.msh", translation="2.5 0 0")
        torus_spring1.addObject('MeshTopology', src="@loader")
        torus_spring1.addObject('MechanicalObject', src="@loader")
@@ -1247,8 +1247,8 @@ MeshSpringForceField.scn
 
        torus_spring2 = ChainSpring.addChild('TorusSpring2')
 
-       torus_spring2.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="false")
-       torus_spring2.addObject('CGLinearSolver', iterations="25", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
+       torus_spring2.addObject('EulerImplicitIntegrationScheme', name="cg_odesolver", printLog="false")
+       torus_spring2.addObject('CGLinearSolver', iterations="25", name="linear solver", tolerance="1.0e-12", threshold="1.0e-12")
        torus_spring2.addObject('MeshGmshLoader', name="loader", filename="mesh/torus2_low_res.msh", translation="5 0 0")
        torus_spring2.addObject('MeshTopology', src="@loader")
        torus_spring2.addObject('MechanicalObject', src="@loader")
@@ -1271,8 +1271,8 @@ MeshSpringForceField.scn
 
        torus_spring3 = ChainSpring.addChild('TorusSpring3')
 
-       torus_spring3.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="false")
-       torus_spring3.addObject('CGLinearSolver', iterations="100", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
+       torus_spring3.addObject('EulerImplicitIntegrationScheme', name="cg_odesolver", printLog="false")
+       torus_spring3.addObject('CGLinearSolver', iterations="100", name="linear solver", tolerance="1.0e-12", threshold="1.0e-12")
        torus_spring3.addObject('MeshGmshLoader', name="loader", filename="mesh/torus_low_res.msh", translation="7.5 0 0")
        torus_spring3.addObject('MeshTopology', src="@loader")
        torus_spring3.addObject('MechanicalObject', src="@loader")
@@ -1295,8 +1295,8 @@ MeshSpringForceField.scn
 
        torus_spring4 = ChainSpring.addChild('TorusSpring4')
 
-       torus_spring4.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="false")
-       torus_spring4.addObject('CGLinearSolver', iterations="100", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
+       torus_spring4.addObject('EulerImplicitIntegrationScheme', name="cg_odesolver", printLog="false")
+       torus_spring4.addObject('CGLinearSolver', iterations="100", name="linear solver", tolerance="1.0e-12", threshold="1.0e-12")
        torus_spring4.addObject('MeshGmshLoader', name="loader", filename="mesh/torus2_low_res.msh", translation="10 0 0")
        torus_spring4.addObject('MeshTopology', src="@loader")
        torus_spring4.addObject('MechanicalObject', src="@loader")

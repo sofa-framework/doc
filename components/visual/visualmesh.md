@@ -143,7 +143,7 @@ VisualMesh.scn
         <RequiredPlugin name="Sofa.Component.Visual"/>
     
         <Node name="tetra">
-            <EulerImplicitSolver name="cg_odesolver" printLog="false"  rayleighStiffness="0.1" rayleighMass="0.1" />
+            <EulerImplicitIntegrationScheme name="cg_odesolver" printLog="false"  rayleighStiffness="0.1" rayleighMass="0.1" />
             <CGLinearSolver iterations="25" name="linear solver" tolerance="1.0e-9" threshold="1.0e-9" />
     
             <RegularGridTopology name="grid" min="-5 -5 0" max="5 5 40" n="5 5 20"/>
@@ -164,7 +164,7 @@ VisualMesh.scn
         </Node>
     
         <Node name="hexa">
-            <EulerImplicitSolver name="cg_odesolver" printLog="false"  rayleighStiffness="0.1" rayleighMass="0.1" />
+            <EulerImplicitIntegrationScheme name="cg_odesolver" printLog="false"  rayleighStiffness="0.1" rayleighMass="0.1" />
             <CGLinearSolver iterations="25" name="linear solver" tolerance="1.0e-9" threshold="1.0e-9" />
     
             <RegularGridTopology name="grid" min="10 -5 0" max="20 5 40" n="5 5 20"/>
@@ -180,7 +180,7 @@ VisualMesh.scn
         </Node>
     
         <Node name="triangles">
-            <EulerImplicitSolver name="cg_odesolver" printLog="false"  rayleighStiffness="0.1" rayleighMass="0.1" />
+            <EulerImplicitIntegrationScheme name="cg_odesolver" printLog="false"  rayleighStiffness="0.1" rayleighMass="0.1" />
             <CGLinearSolver iterations="25" name="linear solver" tolerance="1.0e-9" threshold="1.0e-9" />
             <MechanicalObject name="state"/>
             <MeshMatrixMass totalMass="1000" />
@@ -215,7 +215,7 @@ VisualMesh.scn
 
        tetra = root.addChild('tetra')
 
-       tetra.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
+       tetra.addObject('EulerImplicitIntegrationScheme', name="cg_odesolver", printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
        tetra.addObject('CGLinearSolver', iterations="25", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
        tetra.addObject('RegularGridTopology', name="grid", min="-5 -5 0", max="5 5 40", n="5 5 20")
        tetra.addObject('MechanicalObject', template="Vec3", name="state")
@@ -231,7 +231,7 @@ VisualMesh.scn
 
        hexa = root.addChild('hexa')
 
-       hexa.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
+       hexa.addObject('EulerImplicitIntegrationScheme', name="cg_odesolver", printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
        hexa.addObject('CGLinearSolver', iterations="25", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
        hexa.addObject('RegularGridTopology', name="grid", min="10 -5 0", max="20 5 40", n="5 5 20")
        hexa.addObject('MechanicalObject', template="Vec3", name="state")
@@ -243,7 +243,7 @@ VisualMesh.scn
 
        triangles = root.addChild('triangles')
 
-       triangles.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
+       triangles.addObject('EulerImplicitIntegrationScheme', name="cg_odesolver", printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
        triangles.addObject('CGLinearSolver', iterations="25", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
        triangles.addObject('MechanicalObject', name="state")
        triangles.addObject('MeshMatrixMass', totalMass="1000")

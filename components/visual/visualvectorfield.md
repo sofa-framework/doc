@@ -156,7 +156,7 @@ VisualVectorField.scn
         <LineAxis size="@grid.size"/>
     
         <Node name="beam">
-            <EulerImplicitSolver name="odesolver" rayleighStiffness="0.1" rayleighMass="0.1" />
+            <EulerImplicitIntegrationScheme name="odesolver" rayleighStiffness="0.1" rayleighMass="0.1" />
             <ConstantSparsityPatternSystem template="CompressedRowSparseMatrixd" name="A"/>
             <EigenSimplicialLDLT template="CompressedRowSparseMatrixd"/>
             <MechanicalObject name="DoFs" template="Vec3" />
@@ -201,7 +201,7 @@ VisualVectorField.scn
 
        beam = root.addChild('beam')
 
-       beam.addObject('EulerImplicitSolver', name="odesolver", rayleighStiffness="0.1", rayleighMass="0.1")
+       beam.addObject('EulerImplicitIntegrationScheme', name="odesolver", rayleighStiffness="0.1", rayleighMass="0.1")
        beam.addObject('ConstantSparsityPatternSystem', template="CompressedRowSparseMatrixd", name="A")
        beam.addObject('EigenSimplicialLDLT', template="CompressedRowSparseMatrixd")
        beam.addObject('MechanicalObject', name="DoFs", template="Vec3")

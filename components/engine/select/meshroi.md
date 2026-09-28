@@ -453,7 +453,7 @@ MeshROI.scn
         <RequiredPlugin pluginName="Sofa.Component.IO.Mesh"/> <!-- Needed to use components [MeshOBJLoader MeshVTKLoader] -->
         <RequiredPlugin pluginName="Sofa.Component.LinearSolver.Iterative"/> <!-- Needed to use components [CGLinearSolver] -->
         <RequiredPlugin pluginName="Sofa.Component.Mass"/> <!-- Needed to use components [DiagonalMass] -->
-        <RequiredPlugin pluginName="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+        <RequiredPlugin pluginName="Sofa.Component.IntegrationScheme.Backward"/> <!-- Needed to use components [EulerImplicitIntegrationScheme] -->
         <RequiredPlugin pluginName="Sofa.Component.SolidMechanics.FEM.Elastic"/> <!-- Needed to use components [TetrahedralCorotationalFEMForceField] -->
         <RequiredPlugin pluginName="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
         <RequiredPlugin pluginName="Sofa.Component.Topology.Container.Dynamic"/> <!-- Needed to use components [TetrahedronSetGeometryAlgorithms TetrahedronSetTopologyContainer TetrahedronSetTopologyModifier TriangleSetTopologyModifier] -->
@@ -468,7 +468,7 @@ MeshROI.scn
         <CollisionResponse response="PenalityContactForceField" />
         <MinProximityIntersection  alarmDistance="0.8" contactDistance="0.5" />
         <Node >
-            <EulerImplicitSolver   rayleighStiffness="0.1" rayleighMass="0.1" />
+            <EulerImplicitIntegrationScheme   rayleighStiffness="0.1" rayleighMass="0.1" />
             <CGLinearSolver iterations="25" tolerance="1e-05" threshold="1e-05" />
             <MeshVTKLoader name="loader" filename="mesh/Ossicles.vtu" />
             <MechanicalObject src="@loader"  name="mecaObj" scale3d="1 1 1" restScale="1" />
@@ -507,7 +507,7 @@ MeshROI.scn
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.IO.Mesh")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.LinearSolver.Iterative")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mass")
-       root.addObject('RequiredPlugin', pluginName="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', pluginName="Sofa.Component.IntegrationScheme.Backward")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.SolidMechanics.FEM.Elastic")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.StateContainer")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Topology.Container.Dynamic")
@@ -523,7 +523,7 @@ MeshROI.scn
 
        node = root.addChild('node')
 
-       node.addObject('EulerImplicitSolver', rayleighStiffness="0.1", rayleighMass="0.1")
+       node.addObject('EulerImplicitIntegrationScheme', rayleighStiffness="0.1", rayleighMass="0.1")
        node.addObject('CGLinearSolver', iterations="25", tolerance="1e-05", threshold="1e-05")
        node.addObject('MeshVTKLoader', name="loader", filename="mesh/Ossicles.vtu")
        node.addObject('MechanicalObject', src="@loader", name="mecaObj", scale3d="1 1 1", restScale="1")

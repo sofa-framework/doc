@@ -101,7 +101,7 @@ Add regularization factor times the identity matrix to the compliance W when sol
 |mstate|MechanicalState used by this component|MechanicalState&lt;Rigid3d&gt;|
 |constraintSolvers|Constraint solvers using this constraint correction|ConstraintSolver|
 |linearSolver|Link towards the linear solver used to compute the compliance matrix, requiring the inverse of the linear system matrix|LinearSolver|
-|ODESolver|Link towards the ODE solver used to recover the integration factors|OdeSolver|
+|ODESolver|Link towards the ODE solver used to recover the integration factors|BaseIntegrationScheme|
 
 <!-- generate_doc -->
 ## Vec1d
@@ -201,7 +201,7 @@ Add regularization factor times the identity matrix to the compliance W when sol
 |mstate|MechanicalState used by this component|MechanicalState&lt;Vec1d&gt;|
 |constraintSolvers|Constraint solvers using this constraint correction|ConstraintSolver|
 |linearSolver|Link towards the linear solver used to compute the compliance matrix, requiring the inverse of the linear system matrix|LinearSolver|
-|ODESolver|Link towards the ODE solver used to recover the integration factors|OdeSolver|
+|ODESolver|Link towards the ODE solver used to recover the integration factors|BaseIntegrationScheme|
 
 <!-- generate_doc -->
 ## Vec2d
@@ -301,7 +301,7 @@ Add regularization factor times the identity matrix to the compliance W when sol
 |mstate|MechanicalState used by this component|MechanicalState&lt;Vec2d&gt;|
 |constraintSolvers|Constraint solvers using this constraint correction|ConstraintSolver|
 |linearSolver|Link towards the linear solver used to compute the compliance matrix, requiring the inverse of the linear system matrix|LinearSolver|
-|ODESolver|Link towards the ODE solver used to recover the integration factors|OdeSolver|
+|ODESolver|Link towards the ODE solver used to recover the integration factors|BaseIntegrationScheme|
 
 <!-- generate_doc -->
 ## Vec3d
@@ -401,5 +401,5 @@ Add regularization factor times the identity matrix to the compliance W when sol
 |mstate|MechanicalState used by this component|MechanicalState&lt;Vec3d&gt;|
 |constraintSolvers|Constraint solvers using this constraint correction|ConstraintSolver|
 |linearSolver|Link towards the linear solver used to compute the compliance matrix, requiring the inverse of the linear system matrix|LinearSolver|
-|ODESolver|Link towards the ODE solver used to recover the integration factors|OdeSolver|
+|ODESolver|Link towards the ODE solver used to recover the integration factors|BaseIntegrationScheme|
 

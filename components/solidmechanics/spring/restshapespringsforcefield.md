@@ -493,7 +493,7 @@ RestShapeSpringsForceField2.scn
         <RequiredPlugin pluginName="Sofa.Component.Constraint.Lagrangian.Solver"/> <!-- Needed to use components [GenericConstraintSolver] -->
         <RequiredPlugin pluginName="Sofa.Component.LinearSolver.Direct"/> <!-- Needed to use components [EigenSparseLU] -->
         <RequiredPlugin pluginName="Sofa.Component.Mass"/> <!-- Needed to use components [UniformMass] -->
-        <RequiredPlugin pluginName="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+        <RequiredPlugin pluginName="Sofa.Component.IntegrationScheme.Backward"/> <!-- Needed to use components [EulerImplicitIntegrationScheme] -->
         <RequiredPlugin pluginName="Sofa.Component.SolidMechanics.Spring"/> <!-- Needed to use components [RestShapeSpringsForceField] -->
         <RequiredPlugin pluginName="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
         <RequiredPlugin pluginName="Sofa.Component.Visual"/> <!-- Needed to use components [VisualStyle] -->
@@ -508,7 +508,7 @@ RestShapeSpringsForceField2.scn
         </Node>
     
         <Node name="Object2">
-            <EulerImplicitSolver rayleighMass="0" rayleighStiffness="0"/>
+            <EulerImplicitIntegrationScheme rayleighMass="0" rayleighStiffness="0"/>
             <EigenSparseLU template="CompressedRowSparseMatrix" name="LULinearSolver"/>
             <MechanicalObject name="mstate" template="Rigid3" position="0.1 0 0  0  0 0 0 1" />
             <SphereCollisionModel color="1 0 0 1" radius="0.01" />
@@ -535,7 +535,7 @@ RestShapeSpringsForceField2.scn
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Constraint.Lagrangian.Solver")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.LinearSolver.Direct")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mass")
-       root.addObject('RequiredPlugin', pluginName="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', pluginName="Sofa.Component.IntegrationScheme.Backward")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.SolidMechanics.Spring")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.StateContainer")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Visual")
@@ -550,7 +550,7 @@ RestShapeSpringsForceField2.scn
 
        object2 = root.addChild('Object2')
 
-       object2.addObject('EulerImplicitSolver', rayleighMass="0", rayleighStiffness="0")
+       object2.addObject('EulerImplicitIntegrationScheme', rayleighMass="0", rayleighStiffness="0")
        object2.addObject('EigenSparseLU', template="CompressedRowSparseMatrix", name="LULinearSolver")
        object2.addObject('MechanicalObject', name="mstate", template="Rigid3", position="0.1 0 0  0  0 0 0 1")
        object2.addObject('SphereCollisionModel', color="1 0 0 1", radius="0.01")
@@ -572,7 +572,7 @@ RestShapeSpringsForceField.scn
         <RequiredPlugin pluginName="Sofa.Component.Mapping.Linear"/> <!-- Needed to use components [BarycentricMapping] -->
         <RequiredPlugin pluginName="Sofa.Component.Mapping.NonLinear"/> <!-- Needed to use components [RigidMapping] -->
         <RequiredPlugin pluginName="Sofa.Component.Mass"/> <!-- Needed to use components [UniformMass] -->
-        <RequiredPlugin pluginName="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+        <RequiredPlugin pluginName="Sofa.Component.IntegrationScheme.Backward"/> <!-- Needed to use components [EulerImplicitIntegrationScheme] -->
         <RequiredPlugin pluginName="Sofa.Component.SolidMechanics.Spring"/> <!-- Needed to use components [RestShapeSpringsForceField] -->
         <RequiredPlugin pluginName="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
         <RequiredPlugin pluginName="Sofa.Component.Topology.Container.Constant"/> <!-- Needed to use components [MeshTopology] -->
@@ -581,7 +581,7 @@ RestShapeSpringsForceField.scn
         
         <DefaultAnimationLoop/>
         <Node name="Dragon">
-            <EulerImplicitSolver  rayleighStiffness="0.1" rayleighMass="0.1" />
+            <EulerImplicitIntegrationScheme  rayleighStiffness="0.1" rayleighMass="0.1" />
             <CGLinearSolver iterations="30" tolerance="1e-5" threshold="1e-5"/>
             <SparseGridTopology n="10 5 10" fileTopology="mesh/dragon.obj" />
             <MechanicalObject dx="-12.0" />
@@ -605,7 +605,7 @@ RestShapeSpringsForceField.scn
             </Node>
         </Node>
     	<Node name="Dragon with Damping">
-            <EulerImplicitSolver />
+            <EulerImplicitIntegrationScheme />
             <CGLinearSolver iterations="30" tolerance="1e-5" threshold="1e-5"/>
             <SparseGridTopology n="10 5 10" fileTopology="mesh/dragon.obj" />
             <MechanicalObject dx="12.0" />
@@ -629,7 +629,7 @@ RestShapeSpringsForceField.scn
             </Node>
         </Node>
     	<Node name="CUBE">
-    		<EulerImplicitSolver />
+    		<EulerImplicitIntegrationScheme />
             <CGLinearSolver iterations="30" tolerance="1e-5" threshold="1e-5"/>
     		<MechanicalObject template="Rigid3" dx="-12.0" dy="-20" rx="10" />
     		<UniformMass totalMass="1.0" />
@@ -650,7 +650,7 @@ RestShapeSpringsForceField.scn
     		</Node>
     	</Node>
     	<Node name="CUBE with Damping">
-    		<EulerImplicitSolver />
+    		<EulerImplicitIntegrationScheme />
             <CGLinearSolver iterations="30" tolerance="1e-5" threshold="1e-5"/>
     		<MechanicalObject template="Rigid3" dx="12.0" dy="-20" rx="10" />
     		<UniformMass totalMass="1.0" />
@@ -687,7 +687,7 @@ RestShapeSpringsForceField.scn
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mapping.Linear")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mapping.NonLinear")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mass")
-       root.addObject('RequiredPlugin', pluginName="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', pluginName="Sofa.Component.IntegrationScheme.Backward")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.SolidMechanics.Spring")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.StateContainer")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Topology.Container.Constant")
@@ -697,7 +697,7 @@ RestShapeSpringsForceField.scn
 
        dragon = root.addChild('Dragon')
 
-       dragon.addObject('EulerImplicitSolver', rayleighStiffness="0.1", rayleighMass="0.1")
+       dragon.addObject('EulerImplicitIntegrationScheme', rayleighStiffness="0.1", rayleighMass="0.1")
        dragon.addObject('CGLinearSolver', iterations="30", tolerance="1e-5", threshold="1e-5")
        dragon.addObject('SparseGridTopology', n="10 5 10", fileTopology="mesh/dragon.obj")
        dragon.addObject('MechanicalObject', dx="-12.0")
@@ -722,7 +722,7 @@ RestShapeSpringsForceField.scn
 
        dragon_with__damping = root.addChild('Dragon with Damping')
 
-       dragon_with__damping.addObject('EulerImplicitSolver', )
+       dragon_with__damping.addObject('EulerImplicitIntegrationScheme', )
        dragon_with__damping.addObject('CGLinearSolver', iterations="30", tolerance="1e-5", threshold="1e-5")
        dragon_with__damping.addObject('SparseGridTopology', n="10 5 10", fileTopology="mesh/dragon.obj")
        dragon_with__damping.addObject('MechanicalObject', dx="12.0")
@@ -747,7 +747,7 @@ RestShapeSpringsForceField.scn
 
        cube = root.addChild('CUBE')
 
-       cube.addObject('EulerImplicitSolver', )
+       cube.addObject('EulerImplicitIntegrationScheme', )
        cube.addObject('CGLinearSolver', iterations="30", tolerance="1e-5", threshold="1e-5")
        cube.addObject('MechanicalObject', template="Rigid3", dx="-12.0", dy="-20", rx="10")
        cube.addObject('UniformMass', totalMass="1.0")
@@ -771,7 +771,7 @@ RestShapeSpringsForceField.scn
 
        cube_with__damping = root.addChild('CUBE with Damping')
 
-       cube_with__damping.addObject('EulerImplicitSolver', )
+       cube_with__damping.addObject('EulerImplicitIntegrationScheme', )
        cube_with__damping.addObject('CGLinearSolver', iterations="30", tolerance="1e-5", threshold="1e-5")
        cube_with__damping.addObject('MechanicalObject', template="Rigid3", dx="12.0", dy="-20", rx="10")
        cube_with__damping.addObject('UniformMass', totalMass="1.0")
@@ -804,7 +804,7 @@ RestShapeSpringsForceField3.scn
     <Node name="root" dt="2.0e-3" gravity="0 0 0" >
         <RequiredPlugin pluginName="Sofa.Component.LinearSolver.Direct"/> <!-- Needed to use components [EigenSparseLU] -->
         <RequiredPlugin pluginName="Sofa.Component.Mass"/> <!-- Needed to use components [UniformMass] -->
-        <RequiredPlugin pluginName="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+        <RequiredPlugin pluginName="Sofa.Component.IntegrationScheme.Backward"/> <!-- Needed to use components [EulerImplicitIntegrationScheme] -->
         <RequiredPlugin pluginName="Sofa.Component.SolidMechanics.Spring"/> <!-- Needed to use components [RestShapeSpringsForceField] -->
         <RequiredPlugin pluginName="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
         <RequiredPlugin pluginName="Sofa.Component.Visual"/> <!-- Needed to use components [VisualStyle] -->
@@ -817,7 +817,7 @@ RestShapeSpringsForceField3.scn
         </Node>
     
         <Node name="Object2">
-            <EulerImplicitSolver rayleighMass="0" rayleighStiffness="0"/>
+            <EulerImplicitIntegrationScheme rayleighMass="0" rayleighStiffness="0"/>
             <EigenSparseLU name="LULinearSolver" template="CompressedRowSparseMatrixMat3x3d"/>
             <MechanicalObject name="object2MO" template="Rigid3d" position="0.5 0.5 0 0.2705980500730985 0.2705980500730985 0 0.9238795325112867" showObject="true"/>
             <RestShapeSpringsForceField stiffness="11" angularStiffness="12"
@@ -840,7 +840,7 @@ RestShapeSpringsForceField3.scn
 
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.LinearSolver.Direct")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mass")
-       root.addObject('RequiredPlugin', pluginName="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', pluginName="Sofa.Component.IntegrationScheme.Backward")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.SolidMechanics.Spring")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.StateContainer")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Visual")
@@ -853,7 +853,7 @@ RestShapeSpringsForceField3.scn
 
        object2 = root.addChild('Object2')
 
-       object2.addObject('EulerImplicitSolver', rayleighMass="0", rayleighStiffness="0")
+       object2.addObject('EulerImplicitIntegrationScheme', rayleighMass="0", rayleighStiffness="0")
        object2.addObject('EigenSparseLU', name="LULinearSolver", template="CompressedRowSparseMatrixMat3x3d")
        object2.addObject('MechanicalObject', name="object2MO", template="Rigid3d", position="0.5 0.5 0 0.2705980500730985 0.2705980500730985 0 0.9238795325112867", showObject="true")
        object2.addObject('RestShapeSpringsForceField', stiffness="11", angularStiffness="12", external_rest_shape="@../Object1/object1MO", points="0", external_points="0", drawSpring="true", springColor="1 1 1 1", activeDirections="1 0 1 1 0 1 1")

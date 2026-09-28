@@ -181,7 +181,7 @@ HexahedronFEMForceField_beam10x10x40_gpu.scn
         <RequiredPlugin pluginName="Sofa.Component.Collision.Detection.Intersection"/> <!-- Needed to use components [DiscreteIntersection] -->
         <RequiredPlugin pluginName="Sofa.Component.Collision.Response.Contact"/> <!-- Needed to use components [CollisionResponse] -->
         <RequiredPlugin pluginName="Sofa.Component.LinearSolver.Iterative"/> <!-- Needed to use components [CGLinearSolver] -->
-        <RequiredPlugin pluginName="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+        <RequiredPlugin pluginName="Sofa.Component.IntegrationScheme.Backward"/> <!-- Needed to use components [EulerImplicitIntegrationScheme] -->
         <RequiredPlugin pluginName="Sofa.Component.Topology.Container.Dynamic"/> <!-- Needed to use components [HexahedronSetTopologyContainer HexahedronSetTopologyModifier QuadSetTopologyContainer QuadSetTopologyModifier] -->
         <RequiredPlugin pluginName="Sofa.Component.Topology.Container.Grid"/> <!-- Needed to use components [RegularGridTopology] -->
         <RequiredPlugin pluginName="Sofa.Component.Topology.Mapping"/> <!-- Needed to use components [Hexa2QuadTopologicalMapping] -->
@@ -200,7 +200,7 @@ HexahedronFEMForceField_beam10x10x40_gpu.scn
         <DiscreteIntersection/>
         
         <Node name="HexahedronFEMForceField-GPU-Green">
-            <EulerImplicitSolver name="cg_odesolver" rayleighStiffness="0.1" rayleighMass="0.1" />
+            <EulerImplicitIntegrationScheme name="cg_odesolver" rayleighStiffness="0.1" rayleighMass="0.1" />
             <CGLinearSolver iterations="20" name="linear solver" tolerance="1.0e-6" threshold="1.0e-6" />
             
             <RegularGridTopology name="grid" n="40 10 10" min="0 6 -2" max="16 10 2" />
@@ -241,7 +241,7 @@ HexahedronFEMForceField_beam10x10x40_gpu.scn
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Collision.Detection.Intersection")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Collision.Response.Contact")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.LinearSolver.Iterative")
-       root.addObject('RequiredPlugin', pluginName="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', pluginName="Sofa.Component.IntegrationScheme.Backward")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Topology.Container.Dynamic")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Topology.Container.Grid")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Topology.Mapping")
@@ -259,7 +259,7 @@ HexahedronFEMForceField_beam10x10x40_gpu.scn
 
        hexahedron_fem_force_field__gpu__green = root.addChild('HexahedronFEMForceField-GPU-Green')
 
-       hexahedron_fem_force_field__gpu__green.addObject('EulerImplicitSolver', name="cg_odesolver", rayleighStiffness="0.1", rayleighMass="0.1")
+       hexahedron_fem_force_field__gpu__green.addObject('EulerImplicitIntegrationScheme', name="cg_odesolver", rayleighStiffness="0.1", rayleighMass="0.1")
        hexahedron_fem_force_field__gpu__green.addObject('CGLinearSolver', iterations="20", name="linear solver", tolerance="1.0e-6", threshold="1.0e-6")
        hexahedron_fem_force_field__gpu__green.addObject('RegularGridTopology', name="grid", n="40 10 10", min="0 6 -2", max="16 10 2")
        hexahedron_fem_force_field__gpu__green.addObject('MechanicalObject', name="Volume", template="CudaVec3f")
@@ -297,7 +297,7 @@ HexahedronFEMForceField_beam10x10x40_cpu.scn
         <RequiredPlugin pluginName="Sofa.Component.LinearSolver.Iterative"/> <!-- Needed to use components [CGLinearSolver] -->
         <RequiredPlugin pluginName="Sofa.Component.Mapping.Linear"/> <!-- Needed to use components [IdentityMapping] -->
         <RequiredPlugin pluginName="Sofa.Component.Mass"/> <!-- Needed to use components [DiagonalMass] -->
-        <RequiredPlugin pluginName="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+        <RequiredPlugin pluginName="Sofa.Component.IntegrationScheme.Backward"/> <!-- Needed to use components [EulerImplicitIntegrationScheme] -->
         <RequiredPlugin pluginName="Sofa.Component.SolidMechanics.FEM.Elastic"/> <!-- Needed to use components [HexahedronFEMForceField] -->
         <RequiredPlugin pluginName="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
         <RequiredPlugin pluginName="Sofa.Component.Topology.Container.Dynamic"/> <!-- Needed to use components [HexahedronSetTopologyContainer HexahedronSetTopologyModifier QuadSetTopologyContainer QuadSetTopologyModifier] -->
@@ -317,7 +317,7 @@ HexahedronFEMForceField_beam10x10x40_cpu.scn
         <DiscreteIntersection/>
         
         <Node name="HexahedronFEMForceField-CPU-red">
-            <EulerImplicitSolver name="cg_odesolver" rayleighStiffness="0.1" rayleighMass="0.1" />
+            <EulerImplicitIntegrationScheme name="cg_odesolver" rayleighStiffness="0.1" rayleighMass="0.1" />
             <CGLinearSolver iterations="20" name="linear solver" tolerance="1.0e-6" threshold="1.0e-6" />
             
             <RegularGridTopology name="grid" n="40 10 10" min="0 6 -2" max="16 10 2" />
@@ -362,7 +362,7 @@ HexahedronFEMForceField_beam10x10x40_cpu.scn
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.LinearSolver.Iterative")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mapping.Linear")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mass")
-       root.addObject('RequiredPlugin', pluginName="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', pluginName="Sofa.Component.IntegrationScheme.Backward")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.SolidMechanics.FEM.Elastic")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.StateContainer")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Topology.Container.Dynamic")
@@ -381,7 +381,7 @@ HexahedronFEMForceField_beam10x10x40_cpu.scn
 
        hexahedron_fem_force_field__cpu_red = root.addChild('HexahedronFEMForceField-CPU-red')
 
-       hexahedron_fem_force_field__cpu_red.addObject('EulerImplicitSolver', name="cg_odesolver", rayleighStiffness="0.1", rayleighMass="0.1")
+       hexahedron_fem_force_field__cpu_red.addObject('EulerImplicitIntegrationScheme', name="cg_odesolver", rayleighStiffness="0.1", rayleighMass="0.1")
        hexahedron_fem_force_field__cpu_red.addObject('CGLinearSolver', iterations="20", name="linear solver", tolerance="1.0e-6", threshold="1.0e-6")
        hexahedron_fem_force_field__cpu_red.addObject('RegularGridTopology', name="grid", n="40 10 10", min="0 6 -2", max="16 10 2")
        hexahedron_fem_force_field__cpu_red.addObject('MechanicalObject', name="Volume", template="Vec3")
@@ -420,7 +420,7 @@ HexahedronFEMForceField_beam16x16x76_cpu.scn
         <RequiredPlugin pluginName="Sofa.Component.Mapping.Linear"/> <!-- Needed to use components [IdentityMapping] -->
         <RequiredPlugin pluginName="Sofa.Component.Mass"/> <!-- Needed to use components [DiagonalMass] -->
         <RequiredPlugin pluginName="Sofa.Component.MechanicalLoad"/> <!-- Needed to use components [PlaneForceField] -->
-        <RequiredPlugin pluginName="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+        <RequiredPlugin pluginName="Sofa.Component.IntegrationScheme.Backward"/> <!-- Needed to use components [EulerImplicitIntegrationScheme] -->
         <RequiredPlugin pluginName="Sofa.Component.SolidMechanics.FEM.Elastic"/> <!-- Needed to use components [HexahedronFEMForceField] -->
         <RequiredPlugin pluginName="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
         <RequiredPlugin pluginName="Sofa.Component.Topology.Container.Dynamic"/> <!-- Needed to use components [HexahedronSetTopologyContainer HexahedronSetTopologyModifier QuadSetTopologyContainer QuadSetTopologyModifier] -->
@@ -440,7 +440,7 @@ HexahedronFEMForceField_beam16x16x76_cpu.scn
         <DiscreteIntersection/>
         
         <Node name="HexahedronFEMForceField-CPU-Red">
-            <EulerImplicitSolver name="cg_odesolver" rayleighStiffness="0.1" rayleighMass="0.1" />
+            <EulerImplicitIntegrationScheme name="cg_odesolver" rayleighStiffness="0.1" rayleighMass="0.1" />
             <CGLinearSolver iterations="10" name="linear solver" tolerance="1.0e-6" threshold="1.0e-6" />
             
             <RegularGridTopology name="grid" n="76 16 16" min="0 6 -2" max="19 10 2" />
@@ -501,7 +501,7 @@ HexahedronFEMForceField_beam16x16x76_cpu.scn
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mapping.Linear")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mass")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.MechanicalLoad")
-       root.addObject('RequiredPlugin', pluginName="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', pluginName="Sofa.Component.IntegrationScheme.Backward")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.SolidMechanics.FEM.Elastic")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.StateContainer")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Topology.Container.Dynamic")
@@ -520,7 +520,7 @@ HexahedronFEMForceField_beam16x16x76_cpu.scn
 
        hexahedron_fem_force_field__cpu__red = root.addChild('HexahedronFEMForceField-CPU-Red')
 
-       hexahedron_fem_force_field__cpu__red.addObject('EulerImplicitSolver', name="cg_odesolver", rayleighStiffness="0.1", rayleighMass="0.1")
+       hexahedron_fem_force_field__cpu__red.addObject('EulerImplicitIntegrationScheme', name="cg_odesolver", rayleighStiffness="0.1", rayleighMass="0.1")
        hexahedron_fem_force_field__cpu__red.addObject('CGLinearSolver', iterations="10", name="linear solver", tolerance="1.0e-6", threshold="1.0e-6")
        hexahedron_fem_force_field__cpu__red.addObject('RegularGridTopology', name="grid", n="76 16 16", min="0 6 -2", max="19 10 2")
        hexahedron_fem_force_field__cpu__red.addObject('MechanicalObject', name="Volume", template="Vec3")
@@ -566,7 +566,7 @@ HexahedronFEMForceField_beam16x16x76_gpu.scn
         <RequiredPlugin pluginName="Sofa.Component.Collision.Response.Contact"/> <!-- Needed to use components [CollisionResponse] -->
         <RequiredPlugin pluginName="Sofa.Component.LinearSolver.Iterative"/> <!-- Needed to use components [CGLinearSolver] -->
         <RequiredPlugin pluginName="Sofa.Component.Mapping.Linear"/> <!-- Needed to use components [IdentityMapping] -->
-        <RequiredPlugin pluginName="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+        <RequiredPlugin pluginName="Sofa.Component.IntegrationScheme.Backward"/> <!-- Needed to use components [EulerImplicitIntegrationScheme] -->
         <RequiredPlugin pluginName="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
         <RequiredPlugin pluginName="Sofa.Component.Topology.Container.Dynamic"/> <!-- Needed to use components [HexahedronSetTopologyContainer HexahedronSetTopologyModifier QuadSetTopologyContainer QuadSetTopologyModifier] -->
         <RequiredPlugin pluginName="Sofa.Component.Topology.Container.Grid"/> <!-- Needed to use components [RegularGridTopology] -->
@@ -586,7 +586,7 @@ HexahedronFEMForceField_beam16x16x76_gpu.scn
         <DiscreteIntersection/>
         
         <Node name="HexahedronFEMForceField-GPU-Green">
-            <EulerImplicitSolver name="cg_odesolver" rayleighStiffness="0.1" rayleighMass="0.1" />
+            <EulerImplicitIntegrationScheme name="cg_odesolver" rayleighStiffness="0.1" rayleighMass="0.1" />
             <CGLinearSolver iterations="10" name="linear solver" tolerance="1.0e-6" threshold="1.0e-6" />
             
             <RegularGridTopology name="grid" n="76 16 16" min="0 6 -2" max="19 10 2" />
@@ -643,7 +643,7 @@ HexahedronFEMForceField_beam16x16x76_gpu.scn
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Collision.Response.Contact")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.LinearSolver.Iterative")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mapping.Linear")
-       root.addObject('RequiredPlugin', pluginName="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', pluginName="Sofa.Component.IntegrationScheme.Backward")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.StateContainer")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Topology.Container.Dynamic")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Topology.Container.Grid")
@@ -662,7 +662,7 @@ HexahedronFEMForceField_beam16x16x76_gpu.scn
 
        hexahedron_fem_force_field__gpu__green = root.addChild('HexahedronFEMForceField-GPU-Green')
 
-       hexahedron_fem_force_field__gpu__green.addObject('EulerImplicitSolver', name="cg_odesolver", rayleighStiffness="0.1", rayleighMass="0.1")
+       hexahedron_fem_force_field__gpu__green.addObject('EulerImplicitIntegrationScheme', name="cg_odesolver", rayleighStiffness="0.1", rayleighMass="0.1")
        hexahedron_fem_force_field__gpu__green.addObject('CGLinearSolver', iterations="10", name="linear solver", tolerance="1.0e-6", threshold="1.0e-6")
        hexahedron_fem_force_field__gpu__green.addObject('RegularGridTopology', name="grid", n="76 16 16", min="0 6 -2", max="19 10 2")
        hexahedron_fem_force_field__gpu__green.addObject('MechanicalObject', name="Volume", template="CudaVec3f")
@@ -709,7 +709,7 @@ HexahedronFEMForceFieldAndMass.scn
         <RequiredPlugin pluginName="Sofa.Component.Collision.Response.Contact"/> <!-- Needed to use components [CollisionResponse] -->
         <RequiredPlugin pluginName="Sofa.Component.Constraint.Projective"/> <!-- Needed to use components [FixedProjectiveConstraint] -->
         <RequiredPlugin pluginName="Sofa.Component.LinearSolver.Iterative"/> <!-- Needed to use components [CGLinearSolver] -->
-        <RequiredPlugin pluginName="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+        <RequiredPlugin pluginName="Sofa.Component.IntegrationScheme.Backward"/> <!-- Needed to use components [EulerImplicitIntegrationScheme] -->
         <RequiredPlugin pluginName="Sofa.Component.SolidMechanics.FEM.Elastic"/> <!-- Needed to use components [HexahedronFEMForceFieldAndMass] -->
         <RequiredPlugin pluginName="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
         <RequiredPlugin pluginName="Sofa.Component.Topology.Container.Grid"/> <!-- Needed to use components [RegularGridTopology] -->
@@ -723,7 +723,7 @@ HexahedronFEMForceFieldAndMass.scn
         <MinProximityIntersection name="Proximity" alarmDistance="0.5" contactDistance="0.3" />
         <CollisionResponse name="Response" response="PenalityContactForceField" />
         <Node name="M1">
-            <EulerImplicitSolver name="cg_odesolver" printLog="false"  rayleighStiffness="0.1" rayleighMass="0.1" />
+            <EulerImplicitIntegrationScheme name="cg_odesolver" printLog="false"  rayleighStiffness="0.1" rayleighMass="0.1" />
             <CGLinearSolver iterations="25" name="linear solver" tolerance="1.0e-9" threshold="1.0e-9" />
             <MechanicalObject />
             <RegularGridTopology nx="4" ny="4" nz="20" xmin="-9" xmax="-6" ymin="0" ymax="3" zmin="0" zmax="19" />
@@ -750,7 +750,7 @@ HexahedronFEMForceFieldAndMass.scn
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Collision.Response.Contact")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Constraint.Projective")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.LinearSolver.Iterative")
-       root.addObject('RequiredPlugin', pluginName="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', pluginName="Sofa.Component.IntegrationScheme.Backward")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.SolidMechanics.FEM.Elastic")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.StateContainer")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Topology.Container.Grid")
@@ -765,7 +765,7 @@ HexahedronFEMForceFieldAndMass.scn
 
        m1 = root.addChild('M1')
 
-       m1.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
+       m1.addObject('EulerImplicitIntegrationScheme', name="cg_odesolver", printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
        m1.addObject('CGLinearSolver', iterations="25", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
        m1.addObject('MechanicalObject', )
        m1.addObject('RegularGridTopology', nx="4", ny="4", nz="20", xmin="-9", xmax="-6", ymin="0", ymax="3", zmin="0", zmax="19")
@@ -790,7 +790,7 @@ HexahedronFEMForceField.scn
         <RequiredPlugin pluginName="Sofa.Component.Constraint.Projective"/> <!-- Needed to use components [FixedProjectiveConstraint] -->
         <RequiredPlugin pluginName="Sofa.Component.LinearSolver.Iterative"/> <!-- Needed to use components [CGLinearSolver] -->
         <RequiredPlugin pluginName="Sofa.Component.Mass"/> <!-- Needed to use components [UniformMass] -->
-        <RequiredPlugin pluginName="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+        <RequiredPlugin pluginName="Sofa.Component.IntegrationScheme.Backward"/> <!-- Needed to use components [EulerImplicitIntegrationScheme] -->
         <RequiredPlugin pluginName="Sofa.Component.SolidMechanics.FEM.Elastic"/> <!-- Needed to use components [HexahedronFEMForceField] -->
         <RequiredPlugin pluginName="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
         <RequiredPlugin pluginName="Sofa.Component.Topology.Container.Grid"/> <!-- Needed to use components [RegularGridTopology] -->
@@ -804,7 +804,7 @@ HexahedronFEMForceField.scn
         <MinProximityIntersection name="Proximity" alarmDistance="0.5" contactDistance="0.3" />
         <CollisionResponse name="Response" response="PenalityContactForceField" />
         <Node name="M1">
-            <EulerImplicitSolver name="cg_odesolver" printLog="false"  rayleighStiffness="0.1" rayleighMass="0.1" />
+            <EulerImplicitIntegrationScheme name="cg_odesolver" printLog="false"  rayleighStiffness="0.1" rayleighMass="0.1" />
             <CGLinearSolver iterations="25" name="linear solver" tolerance="1.0e-9" threshold="1.0e-9" template="CompressedRowSparseMatrixMat3x3"/>
             <MechanicalObject />
             <UniformMass vertexMass="1" />
@@ -833,7 +833,7 @@ HexahedronFEMForceField.scn
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Constraint.Projective")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.LinearSolver.Iterative")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mass")
-       root.addObject('RequiredPlugin', pluginName="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', pluginName="Sofa.Component.IntegrationScheme.Backward")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.SolidMechanics.FEM.Elastic")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.StateContainer")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Topology.Container.Grid")
@@ -848,7 +848,7 @@ HexahedronFEMForceField.scn
 
        m1 = root.addChild('M1')
 
-       m1.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
+       m1.addObject('EulerImplicitIntegrationScheme', name="cg_odesolver", printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
        m1.addObject('CGLinearSolver', iterations="25", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9", template="CompressedRowSparseMatrixMat3x3")
        m1.addObject('MechanicalObject', )
        m1.addObject('UniformMass', vertexMass="1")

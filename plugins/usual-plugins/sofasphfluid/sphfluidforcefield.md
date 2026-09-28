@@ -181,9 +181,9 @@ SPHFluidForceFieldCUDA.scn
         <RequiredPlugin pluginName="SofaOpenglVisual"/>
         <RequiredPlugin name="CUDA computing" pluginName="SofaCUDA" />
     	<Node>
-    		<RungeKutta4Solver/>
-    		<!--<CentralDifferenceSolver/>-->
-            <!--<EulerImplicitSolver rayleighStiffness="0.1" rayleighMass="0.1" />
+    		<RungeKutta4IntegrationScheme/>
+    		<!--<CentralDifferenceIntegrationScheme/>-->
+            <!--<EulerImplicitIntegrationScheme rayleighStiffness="0.1" rayleighMass="0.1" />
             <CGLinearSolver iterations="25" tolerance="1e-5" threshold="1e-5"/>-->
     		<MechanicalObject name="MModel" template="CudaVec3f" />
     		<!-- A topology is used here just to set initial particles positions. It is a bad idea because this object has no real topology, but it works... -->
@@ -225,7 +225,7 @@ SPHFluidForceFieldCUDA.scn
 
        node = node.addChild('node')
 
-       node.addObject('RungeKutta4Solver', )
+       node.addObject('RungeKutta4IntegrationScheme', )
        node.addObject('MechanicalObject', name="MModel", template="CudaVec3f")
        node.addObject('RegularGridTopology', nx="5", ny="40", nz="5", xmin="-1.5", xmax="0", ymin="-3", ymax="12", zmin="-1.5", zmax="0")
        node.addObject('UniformMass', name="M1", vertexMass="1")
@@ -247,7 +247,7 @@ SPHFluidForceField.scn
     <Node dt="0.01" gravity="0 -10 0">
         <RequiredPlugin name="Sofa.Component.Mass"/> <!-- Needed to use components [UniformMass] -->
         <RequiredPlugin name="Sofa.Component.MechanicalLoad"/> <!-- Needed to use components [PlaneForceField] -->
-        <RequiredPlugin name="Sofa.Component.ODESolver.Forward"/> <!-- Needed to use components [EulerExplicitSolver] -->
+        <RequiredPlugin name="Sofa.Component.IntegrationScheme.Forward"/> <!-- Needed to use components [EulerExplicitIntegrationScheme] -->
         <RequiredPlugin name="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
         <RequiredPlugin name="Sofa.Component.Topology.Container.Grid"/> <!-- Needed to use components [RegularGridTopology] -->
         <RequiredPlugin name="Sofa.Component.Visual"/> <!-- Needed to use components [VisualStyle] -->
@@ -257,7 +257,7 @@ SPHFluidForceField.scn
     
         <DefaultAnimationLoop/>
         <Node>
-            <EulerExplicitSolver symplectic="1" />
+            <EulerExplicitIntegrationScheme symplectic="1" />
             <MechanicalObject name="MModel" />
             <!-- A topology is used here just to set initial particles positions. It is a bad idea because this object has no real topology, but it works... -->
             <RegularGridTopology nx="5" ny="40" nz="5" xmin="-1.5" xmax="0" ymin="-3" ymax="12" zmin="-1.5" zmax="0"/>
@@ -284,7 +284,7 @@ SPHFluidForceField.scn
 
        node.addObject('RequiredPlugin', name="Sofa.Component.Mass")
        node.addObject('RequiredPlugin', name="Sofa.Component.MechanicalLoad")
-       node.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Forward")
+       node.addObject('RequiredPlugin', name="Sofa.Component.IntegrationScheme.Forward")
        node.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
        node.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Grid")
        node.addObject('RequiredPlugin', name="Sofa.Component.Visual")
@@ -294,7 +294,7 @@ SPHFluidForceField.scn
 
        node = node.addChild('node')
 
-       node.addObject('EulerExplicitSolver', symplectic="1")
+       node.addObject('EulerExplicitIntegrationScheme', symplectic="1")
        node.addObject('MechanicalObject', name="MModel")
        node.addObject('RegularGridTopology', nx="5", ny="40", nz="5", xmin="-1.5", xmax="0", ymin="-3", ymax="12", zmin="-1.5", zmax="0")
        node.addObject('UniformMass', name="M1", vertexMass="1")
@@ -317,7 +317,7 @@ SPHFluidForceField_benchmarks.scn
         <RequiredPlugin name="Sofa.Component.LinearSolver.Iterative"/> <!-- Needed to use components [CGLinearSolver] -->
         <RequiredPlugin name="Sofa.Component.Mass"/> <!-- Needed to use components [UniformMass] -->
         <RequiredPlugin name="Sofa.Component.MechanicalLoad"/> <!-- Needed to use components [PlaneForceField] -->
-        <RequiredPlugin name="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+        <RequiredPlugin name="Sofa.Component.IntegrationScheme.Backward"/> <!-- Needed to use components [EulerImplicitIntegrationScheme] -->
         <RequiredPlugin name="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
         <RequiredPlugin name="Sofa.Component.Topology.Container.Grid"/> <!-- Needed to use components [RegularGridTopology] -->
         <RequiredPlugin name="Sofa.Component.Visual"/> <!-- Needed to use components [VisualStyle] -->
@@ -327,7 +327,7 @@ SPHFluidForceField_benchmarks.scn
     
         <DefaultAnimationLoop/>
         <Node name="Less_pressure">
-            <EulerImplicitSolver name="cg_odesolver" printLog="false"  rayleighStiffness="0.1" rayleighMass="0.1" />
+            <EulerImplicitIntegrationScheme name="cg_odesolver" printLog="false"  rayleighStiffness="0.1" rayleighMass="0.1" />
             <CGLinearSolver iterations="25" name="linear solver" tolerance="1.0e-9" threshold="1.0e-9" />
             
             <MechanicalObject name="Model" />
@@ -344,7 +344,7 @@ SPHFluidForceField_benchmarks.scn
         </Node> 
         
         <Node name="Normal">
-            <EulerImplicitSolver name="cg_odesolver" printLog="false"  rayleighStiffness="0.1" rayleighMass="0.1" />
+            <EulerImplicitIntegrationScheme name="cg_odesolver" printLog="false"  rayleighStiffness="0.1" rayleighMass="0.1" />
             <CGLinearSolver iterations="25" name="linear solver" tolerance="1.0e-9" threshold="1.0e-9" />
             
             <MechanicalObject name="MModel" />
@@ -362,7 +362,7 @@ SPHFluidForceField_benchmarks.scn
         
         
         <Node name="Double">
-            <EulerImplicitSolver name="cg_odesolver" printLog="false"  rayleighStiffness="0.1" rayleighMass="0.1" />
+            <EulerImplicitIntegrationScheme name="cg_odesolver" printLog="false"  rayleighStiffness="0.1" rayleighMass="0.1" />
             <CGLinearSolver iterations="25" name="linear solver" tolerance="1.0e-9" threshold="1.0e-9" />
             
             <MechanicalObject name="MModel" />
@@ -392,7 +392,7 @@ SPHFluidForceField_benchmarks.scn
        node.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Iterative")
        node.addObject('RequiredPlugin', name="Sofa.Component.Mass")
        node.addObject('RequiredPlugin', name="Sofa.Component.MechanicalLoad")
-       node.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
+       node.addObject('RequiredPlugin', name="Sofa.Component.IntegrationScheme.Backward")
        node.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
        node.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Grid")
        node.addObject('RequiredPlugin', name="Sofa.Component.Visual")
@@ -402,7 +402,7 @@ SPHFluidForceField_benchmarks.scn
 
        less_pressure = node.addChild('Less_pressure')
 
-       less_pressure.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
+       less_pressure.addObject('EulerImplicitIntegrationScheme', name="cg_odesolver", printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
        less_pressure.addObject('CGLinearSolver', iterations="25", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
        less_pressure.addObject('MechanicalObject', name="Model")
        less_pressure.addObject('RegularGridTopology', nx="5", ny="40", nz="5", xmin="-1.5", xmax="0", ymin="0", ymax="15", zmin="10", zmax="11.5")
@@ -417,7 +417,7 @@ SPHFluidForceField_benchmarks.scn
 
        normal = node.addChild('Normal')
 
-       normal.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
+       normal.addObject('EulerImplicitIntegrationScheme', name="cg_odesolver", printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
        normal.addObject('CGLinearSolver', iterations="25", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
        normal.addObject('MechanicalObject', name="MModel")
        normal.addObject('RegularGridTopology', nx="5", ny="40", nz="5", xmin="-1.5", xmax="0", ymin="0", ymax="15", zmin="-1.5", zmax="0")
@@ -432,7 +432,7 @@ SPHFluidForceField_benchmarks.scn
 
        double = node.addChild('Double')
 
-       double.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
+       double.addObject('EulerImplicitIntegrationScheme', name="cg_odesolver", printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
        double.addObject('CGLinearSolver', iterations="25", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
        double.addObject('MechanicalObject', name="MModel")
        double.addObject('RegularGridTopology', nx="5", ny="80", nz="5", xmin="-1.5", xmax="0", ymin="0", ymax="15", zmin="-11.5", zmax="-10")

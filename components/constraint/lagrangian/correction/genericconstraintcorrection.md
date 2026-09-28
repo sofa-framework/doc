@@ -92,5 +92,5 @@ Add regularization factor times the identity matrix to the compliance W when sol
 |slaves|Sub-objects used internally by this object|BaseComponent|
 |master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseComponent|
 |linearSolver|Link towards the linear solver used to compute the compliance matrix, requiring the inverse of the linear system matrix|LinearSolver|
-|ODESolver|Link towards the ODE solver used to recover the integration factors|OdeSolver|
+|ODESolver|Link towards the ODE solver used to recover the integration factors|BaseIntegrationScheme|
 

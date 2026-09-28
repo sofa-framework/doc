@@ -101,7 +101,7 @@ GlobalSystemMatrixImage.scn
         <RequiredPlugin pluginName="Sofa.Component.LinearSolver.Direct"/> <!-- Needed to use components [SparseLDLSolver] -->
         <RequiredPlugin pluginName="Sofa.Component.LinearSystem"/> <!-- Needed to use components [MatrixLinearSystem] -->
         <RequiredPlugin pluginName="Sofa.Component.Mass"/> <!-- Needed to use components [UniformMass] -->
-        <RequiredPlugin pluginName="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+        <RequiredPlugin pluginName="Sofa.Component.IntegrationScheme.Backward"/> <!-- Needed to use components [EulerImplicitIntegrationScheme] -->
         <RequiredPlugin pluginName="Sofa.Component.SolidMechanics.FEM.Elastic"/> <!-- Needed to use components [HexahedronFEMForceField] -->
         <RequiredPlugin pluginName="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
         <RequiredPlugin pluginName="Sofa.Component.Topology.Container.Grid"/> <!-- Needed to use components [RegularGridTopology] -->
@@ -113,7 +113,7 @@ GlobalSystemMatrixImage.scn
     
         <!-- Node containing 2 objects under a single linear solver -->
         <Node name="M3">
-            <EulerImplicitSolver name="odesolver"  rayleighStiffness="0.1" rayleighMass="0.1" />
+            <EulerImplicitIntegrationScheme name="odesolver"  rayleighStiffness="0.1" rayleighMass="0.1" />
             <MatrixLinearSystem template="CompressedRowSparseMatrixMat3x3d"/>
             <SparseLDLSolver printLog="false" template="CompressedRowSparseMatrixMat3x3d"/>
             <GlobalSystemMatrixImage/>
@@ -148,7 +148,7 @@ GlobalSystemMatrixImage.scn
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.LinearSolver.Direct")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.LinearSystem")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mass")
-       root.addObject('RequiredPlugin', pluginName="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', pluginName="Sofa.Component.IntegrationScheme.Backward")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.SolidMechanics.FEM.Elastic")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.StateContainer")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Topology.Container.Grid")
@@ -159,7 +159,7 @@ GlobalSystemMatrixImage.scn
 
        m3 = root.addChild('M3')
 
-       m3.addObject('EulerImplicitSolver', name="odesolver", rayleighStiffness="0.1", rayleighMass="0.1")
+       m3.addObject('EulerImplicitIntegrationScheme', name="odesolver", rayleighStiffness="0.1", rayleighMass="0.1")
        m3.addObject('MatrixLinearSystem', template="CompressedRowSparseMatrixMat3x3d")
        m3.addObject('SparseLDLSolver', printLog="false", template="CompressedRowSparseMatrixMat3x3d")
        m3.addObject('GlobalSystemMatrixImage', )

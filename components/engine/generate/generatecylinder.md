@@ -224,7 +224,7 @@ GenerateCylinder.scn
         <RequiredPlugin pluginName="Sofa.Component.LinearSolver.Iterative"/> <!-- Needed to use components [CGLinearSolver] -->
         <RequiredPlugin pluginName="Sofa.Component.Mass"/> <!-- Needed to use components [MeshMatrixMass] -->
         <RequiredPlugin pluginName="Sofa.Component.MechanicalLoad"/> <!-- Needed to use components [TrianglePressureForceField] -->
-        <RequiredPlugin pluginName="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+        <RequiredPlugin pluginName="Sofa.Component.IntegrationScheme.Backward"/> <!-- Needed to use components [EulerImplicitIntegrationScheme] -->
         <RequiredPlugin pluginName="Sofa.Component.SolidMechanics.FEM.Elastic"/> <!-- Needed to use components [FastTetrahedralCorotationalForceField] -->
         <RequiredPlugin pluginName="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
         <RequiredPlugin pluginName="Sofa.Component.Topology.Container.Dynamic"/> <!-- Needed to use components [TetrahedronSetGeometryAlgorithms TetrahedronSetTopologyContainer] -->
@@ -233,7 +233,7 @@ GenerateCylinder.scn
         <GenerateCylinder template="Vec3" name="Cylinder" radius="0.2" height="1" resHeight="7" resCircumferential="7" resRadial="3" />
         <Node name="Tetra" >
             <CGLinearSolver iterations="3000" name="linear solver" tolerance="1.0e-9" threshold="1.0e-9" /> 
-            <EulerImplicitSolver name="default12" rayleighStiffness="0.01"  rayleighMass="0.1" />
+            <EulerImplicitIntegrationScheme name="default12" rayleighStiffness="0.01"  rayleighMass="0.1" />
             <TetrahedronSetTopologyContainer name="Container" tetrahedra="@../Cylinder.tetrahedra" position="@../Cylinder.output_position" createTriangleArray="1" />
             <TetrahedronSetGeometryAlgorithms  drawEdges="1"/>
             <MechanicalObject name="dofs" showObject="1"/>
@@ -263,7 +263,7 @@ GenerateCylinder.scn
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.LinearSolver.Iterative")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mass")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.MechanicalLoad")
-       root.addObject('RequiredPlugin', pluginName="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', pluginName="Sofa.Component.IntegrationScheme.Backward")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.SolidMechanics.FEM.Elastic")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.StateContainer")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Topology.Container.Dynamic")
@@ -273,7 +273,7 @@ GenerateCylinder.scn
        tetra = root.addChild('Tetra')
 
        tetra.addObject('CGLinearSolver', iterations="3000", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
-       tetra.addObject('EulerImplicitSolver', name="default12", rayleighStiffness="0.01", rayleighMass="0.1")
+       tetra.addObject('EulerImplicitIntegrationScheme', name="default12", rayleighStiffness="0.01", rayleighMass="0.1")
        tetra.addObject('TetrahedronSetTopologyContainer', name="Container", tetrahedra="@../Cylinder.tetrahedra", position="@../Cylinder.output_position", createTriangleArray="1")
        tetra.addObject('TetrahedronSetGeometryAlgorithms', drawEdges="1")
        tetra.addObject('MechanicalObject', name="dofs", showObject="1")

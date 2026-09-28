@@ -154,7 +154,7 @@ FillReducingOrdering.scn
         <RequiredPlugin pluginName="Sofa.Component.IO.Mesh"/> <!-- Needed to use components [MeshGmshLoader] -->
         <RequiredPlugin pluginName="Sofa.Component.LinearSolver.Direct"/> <!-- Needed to use components [EigenSparseLU] -->
         <RequiredPlugin pluginName="Sofa.Component.Mass"/> <!-- Needed to use components [MeshMatrixMass] -->
-        <RequiredPlugin pluginName="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+        <RequiredPlugin pluginName="Sofa.Component.IntegrationScheme.Backward"/> <!-- Needed to use components [EulerImplicitIntegrationScheme] -->
         <RequiredPlugin pluginName="Sofa.Component.SolidMechanics.FEM.Elastic"/> <!-- Needed to use components [TetrahedronFEMForceField] -->
         <RequiredPlugin pluginName="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
         <RequiredPlugin pluginName="Sofa.Component.Topology.Container.Dynamic"/> <!-- Needed to use components [TetrahedronSetGeometryAlgorithms TetrahedronSetTopologyContainer] -->
@@ -174,7 +174,7 @@ FillReducingOrdering.scn
         </Node>
     
         <Node name="NoReorder" activated="true">
-            <EulerImplicitSolver name="odeImplicitSolver" />
+            <EulerImplicitIntegrationScheme name="odeImplicitSolver" />
             <MatrixLinearSystem name="system"/>
             <EigenSparseLU name="solver" template="CompressedRowSparseMatrixd"/>
     
@@ -190,7 +190,7 @@ FillReducingOrdering.scn
         </Node>
     
         <Node name="Reorder" activated="true">
-            <EulerImplicitSolver name="odeImplicitSolver" />
+            <EulerImplicitIntegrationScheme name="odeImplicitSolver" />
             <MatrixLinearSystem name="system"/>
             <EigenSparseLU name="solver" template="CompressedRowSparseMatrixd"/>
     
@@ -230,7 +230,7 @@ FillReducingOrdering.scn
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.IO.Mesh")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.LinearSolver.Direct")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mass")
-       root.addObject('RequiredPlugin', pluginName="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', pluginName="Sofa.Component.IntegrationScheme.Backward")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.SolidMechanics.FEM.Elastic")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.StateContainer")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Topology.Container.Dynamic")
@@ -248,7 +248,7 @@ FillReducingOrdering.scn
 
        no_reorder = root.addChild('NoReorder', activated="true")
 
-       no_reorder.addObject('EulerImplicitSolver', name="odeImplicitSolver")
+       no_reorder.addObject('EulerImplicitIntegrationScheme', name="odeImplicitSolver")
        no_reorder.addObject('MatrixLinearSystem', name="system")
        no_reorder.addObject('EigenSparseLU', name="solver", template="CompressedRowSparseMatrixd")
        no_reorder.addObject('GlobalSystemMatrixImage', linearSystem="@system")
@@ -260,7 +260,7 @@ FillReducingOrdering.scn
 
        reorder = root.addChild('Reorder', activated="true")
 
-       reorder.addObject('EulerImplicitSolver', name="odeImplicitSolver")
+       reorder.addObject('EulerImplicitIntegrationScheme', name="odeImplicitSolver")
        reorder.addObject('MatrixLinearSystem', name="system")
        reorder.addObject('EigenSparseLU', name="solver", template="CompressedRowSparseMatrixd")
        reorder.addObject('GlobalSystemMatrixImage', linearSystem="@system")

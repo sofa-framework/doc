@@ -188,7 +188,7 @@ MatrixLinearSystem.scn
             <RequiredPlugin pluginName="Sofa.Component.Mapping.NonLinear"/> <!-- Needed to use components [RigidMapping] -->
             <RequiredPlugin pluginName="Sofa.Component.Mass"/> <!-- Needed to use components [MeshMatrixMass] -->
             <RequiredPlugin pluginName="Sofa.Component.MechanicalLoad"/> <!-- Needed to use components [ConstantForceField] -->
-            <RequiredPlugin pluginName="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+            <RequiredPlugin pluginName="Sofa.Component.IntegrationScheme.Backward"/> <!-- Needed to use components [EulerImplicitIntegrationScheme] -->
             <RequiredPlugin pluginName="Sofa.Component.SolidMechanics.FEM.Elastic"/> <!-- Needed to use components [HexahedronFEMForceField] -->
             <RequiredPlugin pluginName="Sofa.Component.SolidMechanics.Spring"/> <!-- Needed to use components [SpringForceField] -->
             <RequiredPlugin pluginName="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
@@ -206,7 +206,7 @@ MatrixLinearSystem.scn
         <DefaultVisualManagerLoop/>
     
         <Node name="rigidSections">
-            <EulerImplicitSolver name="odesolver" rayleighStiffness="0.1" rayleighMass="0.1" />
+            <EulerImplicitIntegrationScheme name="odesolver" rayleighStiffness="0.1" rayleighMass="0.1" />
     
             <Node name="matrices">
                 <MatrixLinearSystem template="CompressedRowSparseMatrixd" name="system" checkIndices="true" printLog="true"/>
@@ -337,7 +337,7 @@ MatrixLinearSystem.scn
        plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.Mapping.NonLinear")
        plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.Mass")
        plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.MechanicalLoad")
-       plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.ODESolver.Backward")
+       plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.IntegrationScheme.Backward")
        plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.SolidMechanics.FEM.Elastic")
        plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.SolidMechanics.Spring")
        plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.StateContainer")
@@ -353,7 +353,7 @@ MatrixLinearSystem.scn
 
        rigid_sections = root.addChild('rigidSections')
 
-       rigid_sections.addObject('EulerImplicitSolver', name="odesolver", rayleighStiffness="0.1", rayleighMass="0.1")
+       rigid_sections.addObject('EulerImplicitIntegrationScheme', name="odesolver", rayleighStiffness="0.1", rayleighMass="0.1")
 
        matrices = rigidSections.addChild('matrices')
 

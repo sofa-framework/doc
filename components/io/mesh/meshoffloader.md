@@ -345,7 +345,7 @@ MeshOffLoader.scn
         <RequiredPlugin pluginName="Sofa.Component.Collision.Response.Contact"/> <!-- Needed to use components [CollisionResponse] -->
         <RequiredPlugin pluginName="Sofa.Component.IO.Mesh"/> <!-- Needed to use components [MeshOffLoader] -->
         <RequiredPlugin pluginName="Sofa.Component.LinearSolver.Iterative"/> <!-- Needed to use components [CGLinearSolver] -->
-        <RequiredPlugin pluginName="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+        <RequiredPlugin pluginName="Sofa.Component.IntegrationScheme.Backward"/> <!-- Needed to use components [EulerImplicitIntegrationScheme] -->
         <RequiredPlugin pluginName="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
         <RequiredPlugin pluginName="Sofa.Component.Topology.Container.Dynamic"/> <!-- Needed to use components [TriangleSetGeometryAlgorithms TriangleSetTopologyContainer TriangleSetTopologyModifier] -->
         <RequiredPlugin pluginName="Sofa.Component.Visual"/> <!-- Needed to use components [VisualStyle] -->
@@ -359,7 +359,7 @@ MeshOffLoader.scn
         <MinProximityIntersection name="Proximity" alarmDistance="0.3" contactDistance="0.2" />
         <CollisionResponse name="Response" response="PenalityContactForceField" />
         <Node name="Off file">
-            <EulerImplicitSolver name="cg_odesolver" printLog="false"  rayleighStiffness="0.1" rayleighMass="0.1" />
+            <EulerImplicitIntegrationScheme name="cg_odesolver" printLog="false"  rayleighStiffness="0.1" rayleighMass="0.1" />
             <CGLinearSolver iterations="25" name="linear solver" tolerance="1.0e-9" threshold="1.0e-9" />
             <MeshOffLoader name="offLoader" filename="mesh/aneurysm3D_1.off" />
             <MechanicalObject name="dofs" scale="1" src="@offLoader" />
@@ -384,7 +384,7 @@ MeshOffLoader.scn
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Collision.Response.Contact")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.IO.Mesh")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.LinearSolver.Iterative")
-       root.addObject('RequiredPlugin', pluginName="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', pluginName="Sofa.Component.IntegrationScheme.Backward")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.StateContainer")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Topology.Container.Dynamic")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Visual")
@@ -399,7 +399,7 @@ MeshOffLoader.scn
 
        off_file = Root.addChild('Off file')
 
-       off_file.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
+       off_file.addObject('EulerImplicitIntegrationScheme', name="cg_odesolver", printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
        off_file.addObject('CGLinearSolver', iterations="25", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
        off_file.addObject('MeshOffLoader', name="offLoader", filename="mesh/aneurysm3D_1.off")
        off_file.addObject('MechanicalObject', name="dofs", scale="1", src="@offLoader")

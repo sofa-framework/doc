@@ -168,7 +168,7 @@ MeshSplittingEngine.scn
         <RequiredPlugin pluginName="Sofa.Component.Mapping.Linear"/> <!-- Needed to use components [BarycentricMapping SubsetMultiMapping] -->
         <RequiredPlugin pluginName="Sofa.Component.Mapping.NonLinear"/> <!-- Needed to use components [RigidMapping] -->
         <RequiredPlugin pluginName="Sofa.Component.Mass"/> <!-- Needed to use components [UniformMass] -->
-        <RequiredPlugin pluginName="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+        <RequiredPlugin pluginName="Sofa.Component.IntegrationScheme.Backward"/> <!-- Needed to use components [EulerImplicitIntegrationScheme] -->
         <RequiredPlugin pluginName="Sofa.Component.Setting"/> <!-- Needed to use components [BackgroundSetting] -->
         <RequiredPlugin pluginName="Sofa.Component.SolidMechanics.FEM.Elastic"/> <!-- Needed to use components [TetrahedronFEMForceField] -->
         <RequiredPlugin pluginName="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
@@ -187,7 +187,7 @@ MeshSplittingEngine.scn
         <MeshSplittingEngine name="split" src="@loader" nbInputs="1" tetrahedronIndices1="@roi.tetrahedronIndices" printLog="true"/>
     
             <Node name="rigid">
-                <EulerImplicitSolver  rayleighStiffness="0.1" rayleighMass="0.1" />
+                <EulerImplicitIntegrationScheme  rayleighStiffness="0.1" rayleighMass="0.1" />
                 <CGLinearSolver iterations="50" threshold="1e-15" tolerance="1e-15" printLog="0" />
                 
                 <MechanicalObject name="rigidframe" template="Rigid3" position="1 0 1 0 0 0 1" />
@@ -238,7 +238,7 @@ MeshSplittingEngine.scn
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mapping.Linear")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mapping.NonLinear")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mass")
-       root.addObject('RequiredPlugin', pluginName="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', pluginName="Sofa.Component.IntegrationScheme.Backward")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Setting")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.SolidMechanics.FEM.Elastic")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.StateContainer")
@@ -255,7 +255,7 @@ MeshSplittingEngine.scn
 
        rigid = root.addChild('rigid')
 
-       rigid.addObject('EulerImplicitSolver', rayleighStiffness="0.1", rayleighMass="0.1")
+       rigid.addObject('EulerImplicitIntegrationScheme', rayleighStiffness="0.1", rayleighMass="0.1")
        rigid.addObject('CGLinearSolver', iterations="50", threshold="1e-15", tolerance="1e-15", printLog="0")
        rigid.addObject('MechanicalObject', name="rigidframe", template="Rigid3", position="1 0 1 0 0 0 1")
        rigid.addObject('UniformMass', totalMass="1.0")

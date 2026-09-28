@@ -233,7 +233,7 @@ TransformPosition.scn
         <RequiredPlugin pluginName="Sofa.Component.Mapping.Linear"/> <!-- Needed to use components [BarycentricMapping] -->
         <RequiredPlugin pluginName="Sofa.Component.Mass"/> <!-- Needed to use components [UniformMass] -->
         <RequiredPlugin pluginName="Sofa.Component.MechanicalLoad"/> <!-- Needed to use components [PlaneForceField] -->
-        <RequiredPlugin pluginName="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+        <RequiredPlugin pluginName="Sofa.Component.IntegrationScheme.Backward"/> <!-- Needed to use components [EulerImplicitIntegrationScheme] -->
         <RequiredPlugin pluginName="Sofa.Component.SolidMechanics.FEM.Elastic"/> <!-- Needed to use components [HexahedronFEMForceField] -->
         <RequiredPlugin pluginName="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
         <RequiredPlugin pluginName="Sofa.Component.Topology.Container.Grid"/> <!-- Needed to use components [SparseGridTopology] -->
@@ -248,7 +248,7 @@ TransformPosition.scn
         <MinProximityIntersection name="Proximity" alarmDistance="3" contactDistance="2" />
         <CollisionResponse name="Response" response="PenalityContactForceField" />
         <Node name="Object" gravity="0 -9.81 0">
-            <EulerImplicitSolver name="Implicit Euler Solver"  rayleighStiffness="0.1" rayleighMass="0.1" />
+            <EulerImplicitIntegrationScheme name="Implicit Euler Solver"  rayleighStiffness="0.1" rayleighMass="0.1" />
             <CGLinearSolver  name="Conjugate Gradient" tolerance="1e-05" threshold="1e-05" iterations="5"/>
             <SparseGridTopology name="grid" fileTopology="mesh/dragon.obj" n="7 6 5" />
             <TransformPosition name="transfo" method="fromFile" filename="transfo.tfm" input_position="@grid.position"/>
@@ -286,7 +286,7 @@ TransformPosition.scn
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mapping.Linear")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mass")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.MechanicalLoad")
-       root.addObject('RequiredPlugin', pluginName="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', pluginName="Sofa.Component.IntegrationScheme.Backward")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.SolidMechanics.FEM.Elastic")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.StateContainer")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Topology.Container.Grid")
@@ -302,7 +302,7 @@ TransformPosition.scn
 
        object = root.addChild('Object', gravity="0 -9.81 0")
 
-       object.addObject('EulerImplicitSolver', name="Implicit Euler Solver", rayleighStiffness="0.1", rayleighMass="0.1")
+       object.addObject('EulerImplicitIntegrationScheme', name="Implicit Euler Solver", rayleighStiffness="0.1", rayleighMass="0.1")
        object.addObject('CGLinearSolver', name="Conjugate Gradient", tolerance="1e-05", threshold="1e-05", iterations="5")
        object.addObject('SparseGridTopology', name="grid", fileTopology="mesh/dragon.obj", n="7 6 5")
        object.addObject('TransformPosition', name="transfo", method="fromFile", filename="transfo.tfm", input_position="@grid.position")

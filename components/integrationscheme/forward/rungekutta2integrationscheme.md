@@ -1,16 +1,16 @@
 <!-- generate_doc -->
-# RungeKutta2Solver
+# RungeKutta2IntegrationScheme
 
 A popular explicit time integrator.
 
 
-__Target__: Sofa.Component.ODESolver.Forward
+__Target__: Sofa.Component.IntegrationScheme.Forward
 
-__namespace__: sofa::component::odesolver::forward
+__namespace__: sofa::component::integrationscheme::forward
 
 __parents__:
 
-- OdeSolver
+- ExplicitIntegrationScheme
 
 ### Data
 

@@ -290,7 +290,7 @@ HexahedronCompositeFEMForceFieldAndMass.scn
         <RequiredPlugin pluginName="Sofa.Component.IO.Mesh"/> <!-- Needed to use components [MeshOBJLoader] -->
         <RequiredPlugin pluginName="Sofa.Component.LinearSolver.Iterative"/> <!-- Needed to use components [CGLinearSolver] -->
         <RequiredPlugin pluginName="Sofa.Component.Mapping.Linear"/> <!-- Needed to use components [IdentityMapping] -->
-        <RequiredPlugin pluginName="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+        <RequiredPlugin pluginName="Sofa.Component.IntegrationScheme.Backward"/> <!-- Needed to use components [EulerImplicitIntegrationScheme] -->
         <RequiredPlugin pluginName="Sofa.Component.SolidMechanics.FEM.NonUniform"/> <!-- Needed to use components [HexahedronCompositeFEMForceFieldAndMass HexahedronCompositeFEMMapping] -->
         <RequiredPlugin pluginName="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
         <RequiredPlugin pluginName="Sofa.Component.Topology.Container.Constant"/> <!-- Needed to use components [MeshTopology] -->
@@ -314,7 +314,7 @@ HexahedronCompositeFEMForceFieldAndMass.scn
         <CollisionResponse name="Response" response="PenalityContactForceField" />
         <Node name="Composite elements with 3 differents material stiffnesses">
             <SparseGridMultipleTopology n="6 3 3" fileTopology="mesh/bubille_out.obj" fileTopologies="mesh/bubille_out.obj mesh/bubille_in1.obj mesh/bubille_in2.obj" nbVirtualFinerLevels="3" finestConnectivity="false" stiffnessCoefs="1 0.0001 50" massCoefs="1 1 1" />
-            <EulerImplicitSolver vdamping="0" rayleighMass="0" rayleighStiffness="0" />
+            <EulerImplicitIntegrationScheme vdamping="0" rayleighMass="0" rayleighStiffness="0" />
             <CGLinearSolver iterations="100" tolerance="1e-5" threshold="1e-5"/>
     <!--         <SparseLDLSolver printLog="false"/>
      -->        <MechanicalObject />
@@ -363,7 +363,7 @@ HexahedronCompositeFEMForceFieldAndMass.scn
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.IO.Mesh")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.LinearSolver.Iterative")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mapping.Linear")
-       root.addObject('RequiredPlugin', pluginName="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', pluginName="Sofa.Component.IntegrationScheme.Backward")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.SolidMechanics.FEM.NonUniform")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.StateContainer")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Topology.Container.Constant")
@@ -387,7 +387,7 @@ HexahedronCompositeFEMForceFieldAndMass.scn
        composite_elements_with_3_differents_material_stiffnesses = root.addChild('Composite elements with 3 differents material stiffnesses')
 
        composite_elements_with_3_differents_material_stiffnesses.addObject('SparseGridMultipleTopology', n="6 3 3", fileTopology="mesh/bubille_out.obj", fileTopologies="mesh/bubille_out.obj mesh/bubille_in1.obj mesh/bubille_in2.obj", nbVirtualFinerLevels="3", finestConnectivity="false", stiffnessCoefs="1 0.0001 50", massCoefs="1 1 1")
-       composite_elements_with_3_differents_material_stiffnesses.addObject('EulerImplicitSolver', vdamping="0", rayleighMass="0", rayleighStiffness="0")
+       composite_elements_with_3_differents_material_stiffnesses.addObject('EulerImplicitIntegrationScheme', vdamping="0", rayleighMass="0", rayleighStiffness="0")
        composite_elements_with_3_differents_material_stiffnesses.addObject('CGLinearSolver', iterations="100", tolerance="1e-5", threshold="1e-5")
        composite_elements_with_3_differents_material_stiffnesses.addObject('MechanicalObject', )
        composite_elements_with_3_differents_material_stiffnesses.addObject('HexahedronCompositeFEMForceFieldAndMass', drawType="0", lumpedMass="false", nbVirtualFinerLevels="2", youngModulus="600", poissonRatio="0.3", method="polar", density=".1", updateStiffnessMatrix="false", printLog="0")

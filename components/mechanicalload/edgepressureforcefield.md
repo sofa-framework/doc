@@ -192,7 +192,7 @@ EdgePressureForceField.scn
         <RequiredPlugin pluginName="Sofa.Component.Mapping.Linear"/> <!-- Needed to use components [IdentityMapping] -->
         <RequiredPlugin pluginName="Sofa.Component.Mass"/> <!-- Needed to use components [DiagonalMass] -->
         <RequiredPlugin pluginName="Sofa.Component.MechanicalLoad"/> <!-- Needed to use components [EdgePressureForceField] -->
-        <RequiredPlugin pluginName="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+        <RequiredPlugin pluginName="Sofa.Component.IntegrationScheme.Backward"/> <!-- Needed to use components [EulerImplicitIntegrationScheme] -->
         <RequiredPlugin pluginName="Sofa.Component.SolidMechanics.FEM.Elastic"/> <!-- Needed to use components [TriangularFEMForceField] -->
         <RequiredPlugin pluginName="Sofa.Component.SolidMechanics.Spring"/> <!-- Needed to use components [TriangularBendingSprings] -->
         <RequiredPlugin pluginName="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
@@ -207,7 +207,7 @@ EdgePressureForceField.scn
     	<DefaultAnimationLoop/>
     
     	<Node name="SquareGravity" >
-    		<EulerImplicitSolver name="Euler Implicit"  printLog="0"  rayleighStiffness="0.1"  rayleighMass="0.1"  vdamping="0"  />
+    		<EulerImplicitIntegrationScheme name="Euler Implicit"  printLog="0"  rayleighStiffness="0.1"  rayleighMass="0.1"  vdamping="0"  />
     		<CGLinearSolver template="GraphScattered" name="CG Solver"  printLog="0"  iterations="100"  tolerance="1e-06"  threshold="1e-10" />
     		<MeshGmshLoader name="loader"  filename="mesh/square3.msh" createSubelements="true"/>
     		<MechanicalObject template="Vec3" name="mObject1"  position="@loader.position"  velocity="0 0 0"  force="0 0 0"  externalForce="0 0 0"  derivX="0 0 0"  restScale="1"  translation="@loader.translation"  rotation="@loader.rotation"  scale3d="@loader.scale3d" />
@@ -252,7 +252,7 @@ EdgePressureForceField.scn
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mapping.Linear")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mass")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.MechanicalLoad")
-       root.addObject('RequiredPlugin', pluginName="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', pluginName="Sofa.Component.IntegrationScheme.Backward")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.SolidMechanics.FEM.Elastic")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.SolidMechanics.Spring")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.StateContainer")
@@ -268,7 +268,7 @@ EdgePressureForceField.scn
 
        square_gravity = root.addChild('SquareGravity')
 
-       square_gravity.addObject('EulerImplicitSolver', name="Euler Implicit", printLog="0", rayleighStiffness="0.1", rayleighMass="0.1", vdamping="0")
+       square_gravity.addObject('EulerImplicitIntegrationScheme', name="Euler Implicit", printLog="0", rayleighStiffness="0.1", rayleighMass="0.1", vdamping="0")
        square_gravity.addObject('CGLinearSolver', template="GraphScattered", name="CG Solver", printLog="0", iterations="100", tolerance="1e-06", threshold="1e-10")
        square_gravity.addObject('MeshGmshLoader', name="loader", filename="mesh/square3.msh", createSubelements="true")
        square_gravity.addObject('MechanicalObject', template="Vec3", name="mObject1", position="@loader.position", velocity="0 0 0", force="0 0 0", externalForce="0 0 0", derivX="0 0 0", restScale="1", translation="@loader.translation", rotation="@loader.rotation", scale3d="@loader.scale3d")

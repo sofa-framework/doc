@@ -332,7 +332,7 @@ CylinderGridTopology.scn
         <RequiredPlugin pluginName="Sofa.Component.IO.Mesh"/> <!-- Needed to use components [MeshOBJLoader] -->
         <RequiredPlugin pluginName="Sofa.Component.LinearSolver.Iterative"/> <!-- Needed to use components [CGLinearSolver] -->
         <RequiredPlugin pluginName="Sofa.Component.Mass"/> <!-- Needed to use components [UniformMass] -->
-        <RequiredPlugin pluginName="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+        <RequiredPlugin pluginName="Sofa.Component.IntegrationScheme.Backward"/> <!-- Needed to use components [EulerImplicitIntegrationScheme] -->
         <RequiredPlugin pluginName="Sofa.Component.SolidMechanics.FEM.Elastic"/> <!-- Needed to use components [HexahedronFEMForceField TetrahedronFEMForceField] -->
         <RequiredPlugin pluginName="Sofa.Component.SolidMechanics.Spring"/> <!-- Needed to use components [MeshSpringForceField] -->
         <RequiredPlugin pluginName="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
@@ -347,7 +347,7 @@ CylinderGridTopology.scn
             <OglModel src="@meshLoader_0" dx="20" dy="17" dz="0" color="green" />
         </Node>
         <Node name="CylinderFEMTetra">
-            <EulerImplicitSolver  rayleighStiffness="0.1" rayleighMass="0.1" />
+            <EulerImplicitIntegrationScheme  rayleighStiffness="0.1" rayleighMass="0.1" />
             <CGLinearSolver iterations="25" tolerance="0.000001" threshold="1e-5"/>
             <MechanicalObject dx="-10" />
             <UniformMass totalMass="15" />
@@ -356,7 +356,7 @@ CylinderGridTopology.scn
             <TetrahedronFEMForceField name="FEM" youngModulus="1116" poissonRatio="0.3" method="polar" />
         </Node>
         <Node name="CylinderFEM">
-            <EulerImplicitSolver />
+            <EulerImplicitIntegrationScheme />
             <CGLinearSolver iterations="25" tolerance="0.000001" threshold="1e-5"/>
             <MechanicalObject />
             <UniformMass totalMass="15" />
@@ -365,7 +365,7 @@ CylinderGridTopology.scn
             <HexahedronFEMForceField name="FEM" youngModulus="1116" poissonRatio="0.3" method="large" />
         </Node>
         <Node name="CylinderSpring">
-            <EulerImplicitSolver />
+            <EulerImplicitIntegrationScheme />
             <CGLinearSolver iterations="25" tolerance="0.000001" threshold="1e-5"/>
             <MechanicalObject dx="10" />
             <UniformMass totalMass="15" />
@@ -389,7 +389,7 @@ CylinderGridTopology.scn
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.IO.Mesh")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.LinearSolver.Iterative")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mass")
-       root.addObject('RequiredPlugin', pluginName="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', pluginName="Sofa.Component.IntegrationScheme.Backward")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.SolidMechanics.FEM.Elastic")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.SolidMechanics.Spring")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.StateContainer")
@@ -406,7 +406,7 @@ CylinderGridTopology.scn
 
        cylinder_fem_tetra = root.addChild('CylinderFEMTetra')
 
-       cylinder_fem_tetra.addObject('EulerImplicitSolver', rayleighStiffness="0.1", rayleighMass="0.1")
+       cylinder_fem_tetra.addObject('EulerImplicitIntegrationScheme', rayleighStiffness="0.1", rayleighMass="0.1")
        cylinder_fem_tetra.addObject('CGLinearSolver', iterations="25", tolerance="0.000001", threshold="1e-5")
        cylinder_fem_tetra.addObject('MechanicalObject', dx="-10")
        cylinder_fem_tetra.addObject('UniformMass', totalMass="15")
@@ -416,7 +416,7 @@ CylinderGridTopology.scn
 
        cylinder_fem = root.addChild('CylinderFEM')
 
-       cylinder_fem.addObject('EulerImplicitSolver', )
+       cylinder_fem.addObject('EulerImplicitIntegrationScheme', )
        cylinder_fem.addObject('CGLinearSolver', iterations="25", tolerance="0.000001", threshold="1e-5")
        cylinder_fem.addObject('MechanicalObject', )
        cylinder_fem.addObject('UniformMass', totalMass="15")
@@ -426,7 +426,7 @@ CylinderGridTopology.scn
 
        cylinder_spring = root.addChild('CylinderSpring')
 
-       cylinder_spring.addObject('EulerImplicitSolver', )
+       cylinder_spring.addObject('EulerImplicitIntegrationScheme', )
        cylinder_spring.addObject('CGLinearSolver', iterations="25", tolerance="0.000001", threshold="1e-5")
        cylinder_spring.addObject('MechanicalObject', dx="10")
        cylinder_spring.addObject('UniformMass', totalMass="15")

@@ -869,7 +869,7 @@ ConstantForceField.scn
         <RequiredPlugin pluginName="Sofa.Component.Mapping.NonLinear"/> <!-- Needed to use components [RigidMapping] -->
         <RequiredPlugin pluginName="Sofa.Component.Mass"/> <!-- Needed to use components [UniformMass] -->
         <RequiredPlugin pluginName="Sofa.Component.MechanicalLoad"/> <!-- Needed to use components [ConstantForceField] -->
-        <RequiredPlugin pluginName="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+        <RequiredPlugin pluginName="Sofa.Component.IntegrationScheme.Backward"/> <!-- Needed to use components [EulerImplicitIntegrationScheme] -->
         <RequiredPlugin pluginName="Sofa.Component.SolidMechanics.FEM.Elastic"/> <!-- Needed to use components [TriangleFEMForceField] -->
         <RequiredPlugin pluginName="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
         <RequiredPlugin pluginName="Sofa.Component.Topology.Container.Constant"/> <!-- Needed to use components [MeshTopology] -->
@@ -881,7 +881,7 @@ ConstantForceField.scn
         <InteractiveCamera position="1.27 0.48 4.5" orientation="0 0 0 1"  distance="3.86" fieldOfView="45"/>
         
         <Node name="BasicDeformableObject" >
-            <EulerImplicitSolver name="cg_odesolver" printLog="false"  rayleighMass="0.1" />
+            <EulerImplicitIntegrationScheme name="cg_odesolver" printLog="false"  rayleighMass="0.1" />
             <CGLinearSolver iterations="25" name="linear solver" tolerance="1.0e-9" threshold="1.0e-9" />
             <MechanicalObject position="0 0 0  1 0 0  1 1 0  0 1 0" velocity="0 0 0  0 0 0  0 0 0  0 0 0" />
             <UniformMass vertexMass="0.1" />
@@ -895,7 +895,7 @@ ConstantForceField.scn
             </Node>
         </Node>
         <Node name="TorusRigid">
-            <EulerImplicitSolver rayleighStiffness="0.01" />
+            <EulerImplicitIntegrationScheme rayleighStiffness="0.01" />
             <CGLinearSolver iterations="25" threshold="0.00000001" tolerance="1e-5"/>
             <MechanicalObject template="Rigid3" dx="2" dy="0" dz="0" rx="0" ry="0" rz="0" scale="1.0" />
             <UniformMass totalMass="1.0"/>
@@ -924,7 +924,7 @@ ConstantForceField.scn
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mapping.NonLinear")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mass")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.MechanicalLoad")
-       root.addObject('RequiredPlugin', pluginName="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', pluginName="Sofa.Component.IntegrationScheme.Backward")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.SolidMechanics.FEM.Elastic")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.StateContainer")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Topology.Container.Constant")
@@ -936,7 +936,7 @@ ConstantForceField.scn
 
        basic_deformable_object = root.addChild('BasicDeformableObject')
 
-       basic_deformable_object.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="false", rayleighMass="0.1")
+       basic_deformable_object.addObject('EulerImplicitIntegrationScheme', name="cg_odesolver", printLog="false", rayleighMass="0.1")
        basic_deformable_object.addObject('CGLinearSolver', iterations="25", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
        basic_deformable_object.addObject('MechanicalObject', position="0 0 0  1 0 0  1 1 0  0 1 0", velocity="0 0 0  0 0 0  0 0 0  0 0 0")
        basic_deformable_object.addObject('UniformMass', vertexMass="0.1")
@@ -951,7 +951,7 @@ ConstantForceField.scn
 
        torus_rigid = root.addChild('TorusRigid')
 
-       torus_rigid.addObject('EulerImplicitSolver', rayleighStiffness="0.01")
+       torus_rigid.addObject('EulerImplicitIntegrationScheme', rayleighStiffness="0.01")
        torus_rigid.addObject('CGLinearSolver', iterations="25", threshold="0.00000001", tolerance="1e-5")
        torus_rigid.addObject('MechanicalObject', template="Rigid3", dx="2", dy="0", dz="0", rx="0", ry="0", rz="0", scale="1.0")
        torus_rigid.addObject('UniformMass', totalMass="1.0")

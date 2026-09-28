@@ -146,7 +146,7 @@ ComplianceMatrixExporter.scn
         <RequiredPlugin pluginName="Sofa.Component.LinearSolver.Direct"/> <!-- Needed to use components [EigenSimplicialLLT] -->
         <RequiredPlugin pluginName="Sofa.Component.Mapping.NonLinear"/> <!-- Needed to use components [DistanceMapping] -->
         <RequiredPlugin pluginName="Sofa.Component.Mass"/> <!-- Needed to use components [DiagonalMass] -->
-        <RequiredPlugin pluginName="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+        <RequiredPlugin pluginName="Sofa.Component.IntegrationScheme.Backward"/> <!-- Needed to use components [EulerImplicitIntegrationScheme] -->
         <RequiredPlugin pluginName="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
         <RequiredPlugin pluginName="Sofa.Component.Topology.Container.Dynamic"/> <!-- Needed to use components [EdgeSetGeometryAlgorithms EdgeSetTopologyContainer] -->
         <RequiredPlugin pluginName="Sofa.Component.Visual"/> <!-- Needed to use components [VisualStyle] -->
@@ -160,7 +160,7 @@ ComplianceMatrixExporter.scn
         <StringMeshCreator name="loader" resolution="20" scale3d="1 1 1" />
     
         <TransformEngine name="translate" input_position="@loader.position" translation="0 0 0" />
-        <EulerImplicitSolver />
+        <EulerImplicitIntegrationScheme />
         <EigenSimplicialLLT />
         <GenericConstraintCorrection />
     
@@ -196,7 +196,7 @@ ComplianceMatrixExporter.scn
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.LinearSolver.Direct")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mapping.NonLinear")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mass")
-       root.addObject('RequiredPlugin', pluginName="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', pluginName="Sofa.Component.IntegrationScheme.Backward")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.StateContainer")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Topology.Container.Dynamic")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Visual")
@@ -207,7 +207,7 @@ ComplianceMatrixExporter.scn
        root.addObject('ComplianceMatrixExporter', exportEveryNumberOfSteps="1", filename="compliance", printLog="true", format="csv", precision="12")
        root.addObject('StringMeshCreator', name="loader", resolution="20", scale3d="1 1 1")
        root.addObject('TransformEngine', name="translate", input_position="@loader.position", translation="0 0 0")
-       root.addObject('EulerImplicitSolver', )
+       root.addObject('EulerImplicitIntegrationScheme', )
        root.addObject('EigenSimplicialLLT', )
        root.addObject('GenericConstraintCorrection', )
        root.addObject('EdgeSetTopologyContainer', position="@translate.output_position", edges="@loader.edges")

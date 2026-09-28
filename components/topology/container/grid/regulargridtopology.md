@@ -338,7 +338,7 @@ RegularGridTopology_dimension.scn
             <RequiredPlugin pluginName="Sofa.Component.LinearSolver.Iterative"/> <!-- Needed to use components [CGLinearSolver] -->
             <RequiredPlugin pluginName="Sofa.Component.Mapping.Linear"/> <!-- Needed to use components [IdentityMapping] -->
             <RequiredPlugin pluginName="Sofa.Component.Mass"/> <!-- Needed to use components [UniformMass] -->
-            <RequiredPlugin pluginName="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+            <RequiredPlugin pluginName="Sofa.Component.IntegrationScheme.Backward"/> <!-- Needed to use components [EulerImplicitIntegrationScheme] -->
             <RequiredPlugin pluginName="Sofa.Component.SolidMechanics.FEM.Elastic"/> <!-- Needed to use components [HexahedronFEMForceField TriangularFEMForceField] -->
             <RequiredPlugin pluginName="Sofa.Component.SolidMechanics.Spring"/> <!-- Needed to use components [RegularGridSpringForceField TriangularBendingSprings] -->
             <RequiredPlugin pluginName="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
@@ -358,7 +358,7 @@ RegularGridTopology_dimension.scn
         <CollisionResponse name="default22" response="PenalityContactForceField" />
         <MinProximityIntersection name="Proximity" alarmDistance="0.8" contactDistance="0.5" />
     
-        <EulerImplicitSolver name="cg_odesolver" printLog="0"  rayleighStiffness="0.1" rayleighMass="0.1" />
+        <EulerImplicitIntegrationScheme name="cg_odesolver" printLog="0"  rayleighStiffness="0.1" rayleighMass="0.1" />
         <CGLinearSolver template="GraphScattered" name="linear solver" iterations="25" tolerance="1e-09" threshold="1e-09" />
     
     
@@ -439,7 +439,7 @@ RegularGridTopology_dimension.scn
        required_plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.LinearSolver.Iterative")
        required_plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.Mapping.Linear")
        required_plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.Mass")
-       required_plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.ODESolver.Backward")
+       required_plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.IntegrationScheme.Backward")
        required_plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.SolidMechanics.FEM.Elastic")
        required_plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.SolidMechanics.Spring")
        required_plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.StateContainer")
@@ -457,7 +457,7 @@ RegularGridTopology_dimension.scn
        root.addObject('BVHNarrowPhase', )
        root.addObject('CollisionResponse', name="default22", response="PenalityContactForceField")
        root.addObject('MinProximityIntersection', name="Proximity", alarmDistance="0.8", contactDistance="0.5")
-       root.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="0", rayleighStiffness="0.1", rayleighMass="0.1")
+       root.addObject('EulerImplicitIntegrationScheme', name="cg_odesolver", printLog="0", rayleighStiffness="0.1", rayleighMass="0.1")
        root.addObject('CGLinearSolver', template="GraphScattered", name="linear solver", iterations="25", tolerance="1e-09", threshold="1e-09")
 
        cube = root.addChild('Cube', gravity="0 -9.81 0")
@@ -528,7 +528,7 @@ RegularGridTopology_TrianglesMesh.scn
         <RequiredPlugin pluginName="Sofa.Component.LinearSolver.Iterative"/> <!-- Needed to use components [CGLinearSolver] -->
         <RequiredPlugin pluginName="Sofa.Component.Mapping.Linear"/> <!-- Needed to use components [IdentityMapping] -->
         <RequiredPlugin pluginName="Sofa.Component.Mass"/> <!-- Needed to use components [DiagonalMass] -->
-        <RequiredPlugin pluginName="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+        <RequiredPlugin pluginName="Sofa.Component.IntegrationScheme.Backward"/> <!-- Needed to use components [EulerImplicitIntegrationScheme] -->
         <RequiredPlugin pluginName="Sofa.Component.SolidMechanics.FEM.Elastic"/> <!-- Needed to use components [TriangularFEMForceField] -->
         <RequiredPlugin pluginName="Sofa.Component.SolidMechanics.Spring"/> <!-- Needed to use components [TriangularBendingSprings] -->
         <RequiredPlugin pluginName="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
@@ -545,7 +545,7 @@ RegularGridTopology_TrianglesMesh.scn
         <DefaultAnimationLoop/>
     
         <Node name="SquareGravity">
-            <EulerImplicitSolver name="cg_odesolver"/>
+            <EulerImplicitIntegrationScheme name="cg_odesolver"/>
             <CGImplicit iterations="40" tolerance="1e-6" threshold="1e-10" />
                    
             <RegularGridTopology name="grid" nx="10" ny="10" nz="1" xmin="-5" xmax="5" ymin="-5" ymax="5" zmin="0" zmax="0"/>
@@ -590,7 +590,7 @@ RegularGridTopology_TrianglesMesh.scn
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.LinearSolver.Iterative")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mapping.Linear")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mass")
-       root.addObject('RequiredPlugin', pluginName="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', pluginName="Sofa.Component.IntegrationScheme.Backward")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.SolidMechanics.FEM.Elastic")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.SolidMechanics.Spring")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.StateContainer")
@@ -608,7 +608,7 @@ RegularGridTopology_TrianglesMesh.scn
 
        square_gravity = root.addChild('SquareGravity')
 
-       square_gravity.addObject('EulerImplicitSolver', name="cg_odesolver")
+       square_gravity.addObject('EulerImplicitIntegrationScheme', name="cg_odesolver")
        square_gravity.addObject('CGImplicit', iterations="40", tolerance="1e-6", threshold="1e-10")
        square_gravity.addObject('RegularGridTopology', name="grid", nx="10", ny="10", nz="1", xmin="-5", xmax="5", ymin="-5", ymax="5", zmin="0", zmax="0")
        square_gravity.addObject('MechanicalObject', src="@grid", scale="10")
@@ -644,7 +644,7 @@ RegularGridTopology.scn
         <RequiredPlugin pluginName="Sofa.Component.LinearSolver.Iterative"/> <!-- Needed to use components [CGLinearSolver] -->
         <RequiredPlugin pluginName="Sofa.Component.Mapping.Linear"/> <!-- Needed to use components [BarycentricMapping] -->
         <RequiredPlugin pluginName="Sofa.Component.Mass"/> <!-- Needed to use components [UniformMass] -->
-        <RequiredPlugin pluginName="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+        <RequiredPlugin pluginName="Sofa.Component.IntegrationScheme.Backward"/> <!-- Needed to use components [EulerImplicitIntegrationScheme] -->
         <RequiredPlugin pluginName="Sofa.Component.SolidMechanics.Spring"/> <!-- Needed to use components [RegularGridSpringForceField] -->
         <RequiredPlugin pluginName="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
         <RequiredPlugin pluginName="Sofa.Component.Topology.Container.Grid"/> <!-- Needed to use components [RegularGridTopology] -->
@@ -659,7 +659,7 @@ RegularGridTopology.scn
         <DefaultAnimationLoop/>
         
         <Node name="LiverFFD-lowres">
-            <EulerImplicitSolver  />
+            <EulerImplicitIntegrationScheme  />
             <CGLinearSolver iterations="100" tolerance="1e-7" threshold="1e-7"/>
             <MechanicalObject />
             <UniformMass totalMass="100.0" />
@@ -679,7 +679,7 @@ RegularGridTopology.scn
             </Node>
         </Node>
         <Node name="LiverFFD-hires">
-            <EulerImplicitSolver />
+            <EulerImplicitIntegrationScheme />
             <CGLinearSolver iterations="100" tolerance="1e-7" threshold="1e-7"/>
             <MechanicalObject />
             <UniformMass totalMass="100.0" />
@@ -719,7 +719,7 @@ RegularGridTopology.scn
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.LinearSolver.Iterative")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mapping.Linear")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mass")
-       root.addObject('RequiredPlugin', pluginName="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', pluginName="Sofa.Component.IntegrationScheme.Backward")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.SolidMechanics.Spring")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.StateContainer")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Topology.Container.Grid")
@@ -735,7 +735,7 @@ RegularGridTopology.scn
 
        liver_ffd_lowres = root.addChild('LiverFFD-lowres')
 
-       liver_ffd_lowres.addObject('EulerImplicitSolver', )
+       liver_ffd_lowres.addObject('EulerImplicitIntegrationScheme', )
        liver_ffd_lowres.addObject('CGLinearSolver', iterations="100", tolerance="1e-7", threshold="1e-7")
        liver_ffd_lowres.addObject('MechanicalObject', )
        liver_ffd_lowres.addObject('UniformMass', totalMass="100.0")
@@ -758,7 +758,7 @@ RegularGridTopology.scn
 
        liver_ffd_hires = root.addChild('LiverFFD-hires')
 
-       liver_ffd_hires.addObject('EulerImplicitSolver', )
+       liver_ffd_hires.addObject('EulerImplicitIntegrationScheme', )
        liver_ffd_hires.addObject('CGLinearSolver', iterations="100", tolerance="1e-7", threshold="1e-7")
        liver_ffd_hires.addObject('MechanicalObject', )
        liver_ffd_hires.addObject('UniformMass', totalMass="100.0")

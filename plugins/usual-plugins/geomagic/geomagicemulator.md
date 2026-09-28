@@ -232,7 +232,7 @@ GeomagicEmulator-RigidCubes.scn
         <RequiredPlugin pluginName="Sofa.Component.Mapping.Linear"/> <!-- Needed to use components [IdentityMapping] -->
         <RequiredPlugin pluginName="Sofa.Component.Mapping.NonLinear"/> <!-- Needed to use components [RigidMapping] -->
         <RequiredPlugin pluginName="Sofa.Component.Mass"/> <!-- Needed to use components [UniformMass] -->
-        <RequiredPlugin pluginName="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+        <RequiredPlugin pluginName="Sofa.Component.IntegrationScheme.Backward"/> <!-- Needed to use components [EulerImplicitIntegrationScheme] -->
         <RequiredPlugin pluginName="Sofa.Component.SolidMechanics.Spring"/> <!-- Needed to use components [RestShapeSpringsForceField] -->
         <RequiredPlugin pluginName="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
         <RequiredPlugin pluginName="Sofa.Component.Topology.Container.Constant"/> <!-- Needed to use components [MeshTopology] -->
@@ -299,7 +299,7 @@ GeomagicEmulator-RigidCubes.scn
         </Node>
     	
     	<Node name="Instrument" >
-            <EulerImplicitSolver name="ODE solver" rayleighStiffness="0.05" rayleighMass="1.0" />
+            <EulerImplicitIntegrationScheme name="ODE solver" rayleighStiffness="0.05" rayleighMass="1.0" />
             <CGLinearSolver name="linear solver" iterations="25" tolerance="1e-10" threshold="10e-10" /> 
             
     		<MechanicalObject name="instrumentState" template="Rigid3" />
@@ -351,7 +351,7 @@ GeomagicEmulator-RigidCubes.scn
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mapping.Linear")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mapping.NonLinear")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mass")
-       root.addObject('RequiredPlugin', pluginName="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', pluginName="Sofa.Component.IntegrationScheme.Backward")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.SolidMechanics.Spring")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.StateContainer")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Topology.Container.Constant")
@@ -415,7 +415,7 @@ GeomagicEmulator-RigidCubes.scn
 
        instrument = root.addChild('Instrument')
 
-       instrument.addObject('EulerImplicitSolver', name="ODE solver", rayleighStiffness="0.05", rayleighMass="1.0")
+       instrument.addObject('EulerImplicitIntegrationScheme', name="ODE solver", rayleighStiffness="0.05", rayleighMass="1.0")
        instrument.addObject('CGLinearSolver', name="linear solver", iterations="25", tolerance="1e-10", threshold="10e-10")
        instrument.addObject('MechanicalObject', name="instrumentState", template="Rigid3")
        instrument.addObject('UniformMass', name="mass", totalMass="0.5")

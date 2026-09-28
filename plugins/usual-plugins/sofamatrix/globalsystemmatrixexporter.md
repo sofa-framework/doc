@@ -141,7 +141,7 @@ GlobalSystemMatrixExporter.scn
         <RequiredPlugin pluginName="Sofa.Component.LinearSolver.Iterative"/> <!-- Needed to use components [CGLinearSolver] -->
         <RequiredPlugin pluginName="Sofa.Component.LinearSystem"/> <!-- Needed to use components [MatrixLinearSystem] -->
         <RequiredPlugin pluginName="Sofa.Component.Mass"/> <!-- Needed to use components [UniformMass] -->
-        <RequiredPlugin pluginName="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+        <RequiredPlugin pluginName="Sofa.Component.IntegrationScheme.Backward"/> <!-- Needed to use components [EulerImplicitIntegrationScheme] -->
         <RequiredPlugin pluginName="Sofa.Component.SolidMechanics.FEM.Elastic"/> <!-- Needed to use components [HexahedronFEMForceField] -->
         <RequiredPlugin pluginName="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
         <RequiredPlugin pluginName="Sofa.Component.Topology.Container.Grid"/> <!-- Needed to use components [RegularGridTopology] -->
@@ -151,7 +151,7 @@ GlobalSystemMatrixExporter.scn
         <VisualStyle displayFlags="showBehaviorModels showForceFields" />
     
         <Node name="M1">
-            <EulerImplicitSolver name="odesolver" printLog="false"  rayleighStiffness="0.1" rayleighMass="0.1" />
+            <EulerImplicitIntegrationScheme name="odesolver" printLog="false"  rayleighStiffness="0.1" rayleighMass="0.1" />
             <MatrixLinearSystem template="CompressedRowSparseMatrixMat3x3d"/>
             <SparseLDLSolver printLog="false" template="CompressedRowSparseMatrixMat3x3d"/>
             <GlobalSystemMatrixExporter exportEveryNumberOfSteps="1" filename="global_matrix_ldl" printLog="true" format="txt" precision="12"/>
@@ -163,7 +163,7 @@ GlobalSystemMatrixExporter.scn
         </Node>
     
         <Node name="M2">
-            <EulerImplicitSolver name="odesolver" printLog="false"  rayleighStiffness="0.1" rayleighMass="0.1" />
+            <EulerImplicitIntegrationScheme name="odesolver" printLog="false"  rayleighStiffness="0.1" rayleighMass="0.1" />
             <CGLinearSolver template="GraphScattered" iterations="25" tolerance="1e-5" threshold="1e-5"/>
             <!-- The following exporter will warn that the matrix cannot be exported because the matrix is not assembled -->
             <GlobalSystemMatrixExporter exportEveryNumberOfSteps="1" filename="global_matrix_cg" printLog="true"/>
@@ -176,7 +176,7 @@ GlobalSystemMatrixExporter.scn
     
         <!-- Node containing 2 objects under a single linear solver -->
         <Node name="M3">
-            <EulerImplicitSolver name="odesolver" printLog="false"  rayleighStiffness="0.1" rayleighMass="0.1" />
+            <EulerImplicitIntegrationScheme name="odesolver" printLog="false"  rayleighStiffness="0.1" rayleighMass="0.1" />
             <MatrixLinearSystem template="CompressedRowSparseMatrixMat3x3d"/>
             <SparseLDLSolver printLog="false" template="CompressedRowSparseMatrixMat3x3d"/>
             <GlobalSystemMatrixExporter exportEveryNumberOfSteps="1" filename="global_matrix_ldl_2objects" printLog="true" format="jpg"/>
@@ -212,7 +212,7 @@ GlobalSystemMatrixExporter.scn
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.LinearSolver.Iterative")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.LinearSystem")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mass")
-       root.addObject('RequiredPlugin', pluginName="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', pluginName="Sofa.Component.IntegrationScheme.Backward")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.SolidMechanics.FEM.Elastic")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.StateContainer")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Topology.Container.Grid")
@@ -222,7 +222,7 @@ GlobalSystemMatrixExporter.scn
 
        m1 = root.addChild('M1')
 
-       m1.addObject('EulerImplicitSolver', name="odesolver", printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
+       m1.addObject('EulerImplicitIntegrationScheme', name="odesolver", printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
        m1.addObject('MatrixLinearSystem', template="CompressedRowSparseMatrixMat3x3d")
        m1.addObject('SparseLDLSolver', printLog="false", template="CompressedRowSparseMatrixMat3x3d")
        m1.addObject('GlobalSystemMatrixExporter', exportEveryNumberOfSteps="1", filename="global_matrix_ldl", printLog="true", format="txt", precision="12")
@@ -234,7 +234,7 @@ GlobalSystemMatrixExporter.scn
 
        m2 = root.addChild('M2')
 
-       m2.addObject('EulerImplicitSolver', name="odesolver", printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
+       m2.addObject('EulerImplicitIntegrationScheme', name="odesolver", printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
        m2.addObject('CGLinearSolver', template="GraphScattered", iterations="25", tolerance="1e-5", threshold="1e-5")
        m2.addObject('GlobalSystemMatrixExporter', exportEveryNumberOfSteps="1", filename="global_matrix_cg", printLog="true")
        m2.addObject('MechanicalObject', )
@@ -245,7 +245,7 @@ GlobalSystemMatrixExporter.scn
 
        m3 = root.addChild('M3')
 
-       m3.addObject('EulerImplicitSolver', name="odesolver", printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
+       m3.addObject('EulerImplicitIntegrationScheme', name="odesolver", printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
        m3.addObject('MatrixLinearSystem', template="CompressedRowSparseMatrixMat3x3d")
        m3.addObject('SparseLDLSolver', printLog="false", template="CompressedRowSparseMatrixMat3x3d")
        m3.addObject('GlobalSystemMatrixExporter', exportEveryNumberOfSteps="1", filename="global_matrix_ldl_2objects", printLog="true", format="jpg")

@@ -855,7 +855,7 @@ RegularGridSpringForceField.scn
         <RequiredPlugin pluginName="Sofa.Component.LinearSolver.Iterative"/> <!-- Needed to use components [CGLinearSolver] -->
         <RequiredPlugin pluginName="Sofa.Component.Mapping.Linear"/> <!-- Needed to use components [BarycentricMapping] -->
         <RequiredPlugin pluginName="Sofa.Component.Mass"/> <!-- Needed to use components [UniformMass] -->
-        <RequiredPlugin pluginName="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+        <RequiredPlugin pluginName="Sofa.Component.IntegrationScheme.Backward"/> <!-- Needed to use components [EulerImplicitIntegrationScheme] -->
         <RequiredPlugin pluginName="Sofa.Component.SolidMechanics.Spring"/> <!-- Needed to use components [RegularGridSpringForceField] -->
         <RequiredPlugin pluginName="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
         <RequiredPlugin pluginName="Sofa.Component.Topology.Container.Constant"/> <!-- Needed to use components [MeshTopology] -->
@@ -878,7 +878,7 @@ RegularGridSpringForceField.scn
                 <OglModel name="Visual" src="@meshLoader_3" color="gray" />
             </Node>
             <Node name="TorusFFD1">
-                <EulerImplicitSolver name="cg_odesolver" printLog="false"  rayleighStiffness="0.1" rayleighMass="0.1" />
+                <EulerImplicitIntegrationScheme name="cg_odesolver" printLog="false"  rayleighStiffness="0.1" rayleighMass="0.1" />
                 <CGLinearSolver iterations="25" name="linear solver" tolerance="1.0e-9" threshold="1.0e-9" />
                 <MechanicalObject translation="2.5 0 0" />
                 <UniformMass totalMass="5" />
@@ -898,7 +898,7 @@ RegularGridSpringForceField.scn
                 </Node>
             </Node>
             <Node name="TorusFFD2">
-                <EulerImplicitSolver name="cg_odesolver" printLog="false" />
+                <EulerImplicitIntegrationScheme name="cg_odesolver" printLog="false" />
                 <CGLinearSolver iterations="25" name="linear solver" tolerance="1.0e-9" threshold="1.0e-9" />
                 <MechanicalObject dx="5" />
                 <UniformMass totalMass="5" />
@@ -918,7 +918,7 @@ RegularGridSpringForceField.scn
                 </Node>
             </Node>
             <Node name="TorusFFD3">
-                <EulerImplicitSolver name="cg_odesolver" printLog="false" />
+                <EulerImplicitIntegrationScheme name="cg_odesolver" printLog="false" />
                 <CGLinearSolver iterations="25" name="linear solver" tolerance="1.0e-9" threshold="1.0e-9" />
                 <MechanicalObject dx="7.5" />
                 <UniformMass totalMass="5" />
@@ -938,7 +938,7 @@ RegularGridSpringForceField.scn
                 </Node>
             </Node>
             <Node name="TorusFFD4">
-                <EulerImplicitSolver name="cg_odesolver" printLog="false" />
+                <EulerImplicitIntegrationScheme name="cg_odesolver" printLog="false" />
                 <CGLinearSolver iterations="25" name="linear solver" tolerance="1.0e-9" threshold="1.0e-9" />
                 <MechanicalObject dx="10" />
                 <UniformMass totalMass="5" />
@@ -977,7 +977,7 @@ RegularGridSpringForceField.scn
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.LinearSolver.Iterative")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mapping.Linear")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mass")
-       root.addObject('RequiredPlugin', pluginName="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', pluginName="Sofa.Component.IntegrationScheme.Backward")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.SolidMechanics.Spring")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.StateContainer")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Topology.Container.Constant")
@@ -1003,7 +1003,7 @@ RegularGridSpringForceField.scn
 
        torus_ffd1 = Chain.addChild('TorusFFD1')
 
-       torus_ffd1.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
+       torus_ffd1.addObject('EulerImplicitIntegrationScheme', name="cg_odesolver", printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
        torus_ffd1.addObject('CGLinearSolver', iterations="25", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
        torus_ffd1.addObject('MechanicalObject', translation="2.5 0 0")
        torus_ffd1.addObject('UniformMass', totalMass="5")
@@ -1026,7 +1026,7 @@ RegularGridSpringForceField.scn
 
        torus_ffd2 = Chain.addChild('TorusFFD2')
 
-       torus_ffd2.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="false")
+       torus_ffd2.addObject('EulerImplicitIntegrationScheme', name="cg_odesolver", printLog="false")
        torus_ffd2.addObject('CGLinearSolver', iterations="25", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
        torus_ffd2.addObject('MechanicalObject', dx="5")
        torus_ffd2.addObject('UniformMass', totalMass="5")
@@ -1049,7 +1049,7 @@ RegularGridSpringForceField.scn
 
        torus_ffd3 = Chain.addChild('TorusFFD3')
 
-       torus_ffd3.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="false")
+       torus_ffd3.addObject('EulerImplicitIntegrationScheme', name="cg_odesolver", printLog="false")
        torus_ffd3.addObject('CGLinearSolver', iterations="25", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
        torus_ffd3.addObject('MechanicalObject', dx="7.5")
        torus_ffd3.addObject('UniformMass', totalMass="5")
@@ -1072,7 +1072,7 @@ RegularGridSpringForceField.scn
 
        torus_ffd4 = Chain.addChild('TorusFFD4')
 
-       torus_ffd4.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="false")
+       torus_ffd4.addObject('EulerImplicitIntegrationScheme', name="cg_odesolver", printLog="false")
        torus_ffd4.addObject('CGLinearSolver', iterations="25", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
        torus_ffd4.addObject('MechanicalObject', dx="10")
        torus_ffd4.addObject('UniformMass', totalMass="5")

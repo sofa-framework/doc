@@ -351,7 +351,7 @@ SparseGridRamificationTopology.scn
         <RequiredPlugin pluginName="Sofa.Component.IO.Mesh"/> <!-- Needed to use components [MeshOBJLoader] -->
         <RequiredPlugin pluginName="Sofa.Component.LinearSolver.Iterative"/> <!-- Needed to use components [CGLinearSolver] -->
         <RequiredPlugin pluginName="Sofa.Component.Mapping.Linear"/> <!-- Needed to use components [BarycentricMapping] -->
-        <RequiredPlugin pluginName="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+        <RequiredPlugin pluginName="Sofa.Component.IntegrationScheme.Backward"/> <!-- Needed to use components [EulerImplicitIntegrationScheme] -->
         <RequiredPlugin pluginName="Sofa.Component.SolidMechanics.FEM.Elastic"/> <!-- Needed to use components [HexahedronFEMForceFieldAndMass] -->
         <RequiredPlugin pluginName="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
         <RequiredPlugin pluginName="Sofa.Component.Topology.Container.Constant"/> <!-- Needed to use components [MeshTopology] -->
@@ -368,7 +368,7 @@ SparseGridRamificationTopology.scn
         <CollisionResponse name="Response" response="PenalityContactForceField" />
         <Node name="UniformC Rough">
             <SparseGridRamificationTopology n="5 2 2" fileTopology="mesh/c.obj" nbVirtualFinerLevels="3" finestConnectivity="0" />
-            <EulerImplicitSolver rayleighStiffness="0.1" rayleighMass="0.1" />
+            <EulerImplicitIntegrationScheme rayleighStiffness="0.1" rayleighMass="0.1" />
             <CGLinearSolver iterations="10" tolerance="1e-5" threshold="1e-5"/>
             <MechanicalObject />
             <HexahedronFEMForceFieldAndMass youngModulus="100000" poissonRatio="0.3" method="large" density="3" updateStiffnessMatrix="false" printLog="0" />
@@ -390,7 +390,7 @@ SparseGridRamificationTopology.scn
         </Node>
         <Node name="UniformC">
             <SparseGridRamificationTopology n="5 2 2" fileTopology="mesh/c.obj" nbVirtualFinerLevels="3" finestConnectivity="0" />
-            <EulerImplicitSolver rayleighStiffness="0.1" rayleighMass="0.1" />
+            <EulerImplicitIntegrationScheme rayleighStiffness="0.1" rayleighMass="0.1" />
             <CGLinearSolver iterations="10" tolerance="1e-5" threshold="1e-5"/>
             <MechanicalObject dx="40" />
             <HexahedronFEMForceFieldAndMass youngModulus="100000" poissonRatio="0.3" method="large" density="3" updateStiffnessMatrix="false" printLog="0" />
@@ -412,7 +412,7 @@ SparseGridRamificationTopology.scn
         </Node>
         <Node name="UniformC and finestConnectivity">
             <SparseGridRamificationTopology n="5 3 3" fileTopology="mesh/c.obj" nbVirtualFinerLevels="0" finestConnectivity="1" />
-            <EulerImplicitSolver rayleighStiffness="0.1" rayleighMass="0.1" />
+            <EulerImplicitIntegrationScheme rayleighStiffness="0.1" rayleighMass="0.1" />
             <CGLinearSolver iterations="10" tolerance="1e-5" threshold="1e-5"/>
             <MechanicalObject dx="80" />
             <HexahedronFEMForceFieldAndMass youngModulus="100000" poissonRatio="0.3" method="large" density="3" updateStiffnessMatrix="false" printLog="0" />
@@ -452,7 +452,7 @@ SparseGridRamificationTopology.scn
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.IO.Mesh")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.LinearSolver.Iterative")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mapping.Linear")
-       root.addObject('RequiredPlugin', pluginName="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', pluginName="Sofa.Component.IntegrationScheme.Backward")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.SolidMechanics.FEM.Elastic")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.StateContainer")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Topology.Container.Constant")
@@ -470,7 +470,7 @@ SparseGridRamificationTopology.scn
        uniform_c__rough = root.addChild('UniformC Rough')
 
        uniform_c__rough.addObject('SparseGridRamificationTopology', n="5 2 2", fileTopology="mesh/c.obj", nbVirtualFinerLevels="3", finestConnectivity="0")
-       uniform_c__rough.addObject('EulerImplicitSolver', rayleighStiffness="0.1", rayleighMass="0.1")
+       uniform_c__rough.addObject('EulerImplicitIntegrationScheme', rayleighStiffness="0.1", rayleighMass="0.1")
        uniform_c__rough.addObject('CGLinearSolver', iterations="10", tolerance="1e-5", threshold="1e-5")
        uniform_c__rough.addObject('MechanicalObject', )
        uniform_c__rough.addObject('HexahedronFEMForceFieldAndMass', youngModulus="100000", poissonRatio="0.3", method="large", density="3", updateStiffnessMatrix="false", printLog="0")
@@ -495,7 +495,7 @@ SparseGridRamificationTopology.scn
        uniform_c = root.addChild('UniformC')
 
        uniform_c.addObject('SparseGridRamificationTopology', n="5 2 2", fileTopology="mesh/c.obj", nbVirtualFinerLevels="3", finestConnectivity="0")
-       uniform_c.addObject('EulerImplicitSolver', rayleighStiffness="0.1", rayleighMass="0.1")
+       uniform_c.addObject('EulerImplicitIntegrationScheme', rayleighStiffness="0.1", rayleighMass="0.1")
        uniform_c.addObject('CGLinearSolver', iterations="10", tolerance="1e-5", threshold="1e-5")
        uniform_c.addObject('MechanicalObject', dx="40")
        uniform_c.addObject('HexahedronFEMForceFieldAndMass', youngModulus="100000", poissonRatio="0.3", method="large", density="3", updateStiffnessMatrix="false", printLog="0")
@@ -520,7 +520,7 @@ SparseGridRamificationTopology.scn
        uniform_c_and_finest_connectivity = root.addChild('UniformC and finestConnectivity')
 
        uniform_c_and_finest_connectivity.addObject('SparseGridRamificationTopology', n="5 3 3", fileTopology="mesh/c.obj", nbVirtualFinerLevels="0", finestConnectivity="1")
-       uniform_c_and_finest_connectivity.addObject('EulerImplicitSolver', rayleighStiffness="0.1", rayleighMass="0.1")
+       uniform_c_and_finest_connectivity.addObject('EulerImplicitIntegrationScheme', rayleighStiffness="0.1", rayleighMass="0.1")
        uniform_c_and_finest_connectivity.addObject('CGLinearSolver', iterations="10", tolerance="1e-5", threshold="1e-5")
        uniform_c_and_finest_connectivity.addObject('MechanicalObject', dx="80")
        uniform_c_and_finest_connectivity.addObject('HexahedronFEMForceFieldAndMass', youngModulus="100000", poissonRatio="0.3", method="large", density="3", updateStiffnessMatrix="false", printLog="0")

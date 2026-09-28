@@ -102,7 +102,7 @@ Gravity.scn
         <RequiredPlugin pluginName="Sofa.Component.Mapping.Linear"/> <!-- Needed to use components [BarycentricMapping] -->
         <RequiredPlugin pluginName="Sofa.Component.Mass"/> <!-- Needed to use components [UniformMass] -->
         <RequiredPlugin pluginName="Sofa.Component.MechanicalLoad"/> <!-- Needed to use components [Gravity] -->
-        <RequiredPlugin pluginName="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+        <RequiredPlugin pluginName="Sofa.Component.IntegrationScheme.Backward"/> <!-- Needed to use components [EulerImplicitIntegrationScheme] -->
         <RequiredPlugin pluginName="Sofa.Component.SolidMechanics.Spring"/> <!-- Needed to use components [RegularGridSpringForceField] -->
         <RequiredPlugin pluginName="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
         <RequiredPlugin pluginName="Sofa.Component.Topology.Container.Constant"/> <!-- Needed to use components [MeshTopology] -->
@@ -117,7 +117,7 @@ Gravity.scn
         <DefaultAnimationLoop/>
         <Node name="Torus1">
             <Gravity gravity="0 -10 0" />
-            <EulerImplicitSolver name="cg_odesolver" printLog="false"  rayleighStiffness="0.1" rayleighMass="0.1" />
+            <EulerImplicitIntegrationScheme name="cg_odesolver" printLog="false"  rayleighStiffness="0.1" rayleighMass="0.1" />
             <CGLinearSolver iterations="25" name="linear solver" tolerance="1.0e-9" threshold="1.0e-9" />
             <MechanicalObject dx="0" dy="20" dz="0" ry="90" />
             <UniformMass totalMass="10" />
@@ -140,7 +140,7 @@ Gravity.scn
         </Node>
         <Node name="Torus2">
             <Gravity gravity="0 10 0" />
-            <EulerImplicitSolver name="cg_odesolver" printLog="false" />
+            <EulerImplicitIntegrationScheme name="cg_odesolver" printLog="false" />
             <CGLinearSolver iterations="25" name="linear solver" tolerance="1.0e-9" threshold="1.0e-9" />
             <MechanicalObject dx="0" dy="-20" dz="0" />
             <UniformMass totalMass="10" />
@@ -201,7 +201,7 @@ Gravity.scn
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mapping.Linear")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mass")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.MechanicalLoad")
-       root.addObject('RequiredPlugin', pluginName="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', pluginName="Sofa.Component.IntegrationScheme.Backward")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.SolidMechanics.Spring")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.StateContainer")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Topology.Container.Constant")
@@ -217,7 +217,7 @@ Gravity.scn
        torus1 = root.addChild('Torus1')
 
        torus1.addObject('Gravity', gravity="0 -10 0")
-       torus1.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
+       torus1.addObject('EulerImplicitIntegrationScheme', name="cg_odesolver", printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
        torus1.addObject('CGLinearSolver', iterations="25", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
        torus1.addObject('MechanicalObject', dx="0", dy="20", dz="0", ry="90")
        torus1.addObject('UniformMass', totalMass="10")
@@ -243,7 +243,7 @@ Gravity.scn
        torus2 = root.addChild('Torus2')
 
        torus2.addObject('Gravity', gravity="0 10 0")
-       torus2.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="false")
+       torus2.addObject('EulerImplicitIntegrationScheme', name="cg_odesolver", printLog="false")
        torus2.addObject('CGLinearSolver', iterations="25", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
        torus2.addObject('MechanicalObject', dx="0", dy="-20", dz="0")
        torus2.addObject('UniformMass', totalMass="10")

@@ -225,12 +225,12 @@ OscillatorProjectiveConstraint_rigid.scn
     <Node      name="Root"  dt="0.04" bbox="-1 -1 -1 1 1 1" >
         <RequiredPlugin pluginName="Sofa.Component.Constraint.Projective"/> <!-- Needed to use components [OscillatorProjectiveConstraint] -->
         <RequiredPlugin pluginName="Sofa.Component.Mass"/> <!-- Needed to use components [UniformMass] -->
-        <RequiredPlugin pluginName="Sofa.Component.ODESolver.Forward"/> <!-- Needed to use components [EulerExplicitSolver] -->
+        <RequiredPlugin pluginName="Sofa.Component.IntegrationScheme.Forward"/> <!-- Needed to use components [EulerExplicitIntegrationScheme] -->
         <RequiredPlugin pluginName="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
         <RequiredPlugin pluginName="Sofa.Component.Visual"/> <!-- Needed to use components [VisualStyle] -->
         <VisualStyle displayFlags="showBehaviorModels" />
         <DefaultAnimationLoop/>
-        <EulerExplicitSolver name="solver" />
+        <EulerExplicitIntegrationScheme name="solver" />
     
         <Node name="Point Oscillator"  >
             <MechanicalObject template="Vec3" name="mech" position="0 0 0"  velocity="1 0 0"  force="1 0 0" externalForce="1 0 0" derivX="1 0 0"  restScale="1" />
@@ -257,12 +257,12 @@ OscillatorProjectiveConstraint_rigid.scn
 
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Constraint.Projective")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mass")
-       root.addObject('RequiredPlugin', pluginName="Sofa.Component.ODESolver.Forward")
+       root.addObject('RequiredPlugin', pluginName="Sofa.Component.IntegrationScheme.Forward")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.StateContainer")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Visual")
        root.addObject('VisualStyle', displayFlags="showBehaviorModels")
        root.addObject('DefaultAnimationLoop', )
-       root.addObject('EulerExplicitSolver', name="solver")
+       root.addObject('EulerExplicitIntegrationScheme', name="solver")
 
        point__oscillator = Root.addChild('Point Oscillator')
 
@@ -292,7 +292,7 @@ OscillatorProjectiveConstraint.scn
         <RequiredPlugin pluginName="Sofa.Component.LinearSolver.Iterative"/> <!-- Needed to use components [CGLinearSolver] -->
         <RequiredPlugin pluginName="Sofa.Component.Mapping.Linear"/> <!-- Needed to use components [BarycentricMapping] -->
         <RequiredPlugin pluginName="Sofa.Component.Mass"/> <!-- Needed to use components [DiagonalMass] -->
-        <RequiredPlugin pluginName="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+        <RequiredPlugin pluginName="Sofa.Component.IntegrationScheme.Backward"/> <!-- Needed to use components [EulerImplicitIntegrationScheme] -->
         <RequiredPlugin pluginName="Sofa.Component.SolidMechanics.FEM.Elastic"/> <!-- Needed to use components [TetrahedralCorotationalFEMForceField] -->
         <RequiredPlugin pluginName="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
         <RequiredPlugin pluginName="Sofa.Component.Topology.Container.Dynamic"/> <!-- Needed to use components [TetrahedronSetGeometryAlgorithms TetrahedronSetTopologyContainer] -->
@@ -308,7 +308,7 @@ OscillatorProjectiveConstraint.scn
         <Node name="Liver" depend="topo dofs">
             <MeshGmshLoader name="meshLoader0" filename="mesh/liver.msh" />
     
-            <EulerImplicitSolver name="cg_odesolver" printLog="false"  rayleighStiffness="0.1" rayleighMass="0.1" />
+            <EulerImplicitIntegrationScheme name="cg_odesolver" printLog="false"  rayleighStiffness="0.1" rayleighMass="0.1" />
             <CGLinearSolver iterations="25" name="linear solver" tolerance="1.0e-9" threshold="1.0e-9" />
             <MechanicalObject name="dofs" src="@meshLoader0" />
             <!-- Container for the tetrahedra-->
@@ -352,7 +352,7 @@ OscillatorProjectiveConstraint.scn
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.LinearSolver.Iterative")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mapping.Linear")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mass")
-       root.addObject('RequiredPlugin', pluginName="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', pluginName="Sofa.Component.IntegrationScheme.Backward")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.SolidMechanics.FEM.Elastic")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.StateContainer")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Topology.Container.Dynamic")
@@ -367,7 +367,7 @@ OscillatorProjectiveConstraint.scn
        liver = root.addChild('Liver', depend="topo dofs")
 
        liver.addObject('MeshGmshLoader', name="meshLoader0", filename="mesh/liver.msh")
-       liver.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
+       liver.addObject('EulerImplicitIntegrationScheme', name="cg_odesolver", printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
        liver.addObject('CGLinearSolver', iterations="25", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
        liver.addObject('MechanicalObject', name="dofs", src="@meshLoader0")
        liver.addObject('TetrahedronSetTopologyContainer', name="topo", src="@meshLoader0")

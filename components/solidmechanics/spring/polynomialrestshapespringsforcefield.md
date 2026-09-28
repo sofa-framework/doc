@@ -184,7 +184,7 @@ PolynomialRestShapeSpringsForceField.scn
     <Node name="root" dt="0.01" gravity="0 0 0">
         <RequiredPlugin pluginName="Sofa.Component.LinearSolver.Iterative"/> <!-- Needed to use components [CGLinearSolver] -->
         <RequiredPlugin pluginName="Sofa.Component.Mass"/> <!-- Needed to use components [UniformMass] -->
-        <RequiredPlugin pluginName="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+        <RequiredPlugin pluginName="Sofa.Component.IntegrationScheme.Backward"/> <!-- Needed to use components [EulerImplicitIntegrationScheme] -->
         <RequiredPlugin pluginName="Sofa.Component.SolidMechanics.Spring"/> <!-- Needed to use components [PolynomialRestShapeSpringsForceField] -->
         <RequiredPlugin pluginName="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
         <RequiredPlugin pluginName="Sofa.Component.Visual"/> <!-- Needed to use components [VisualStyle] -->
@@ -192,7 +192,7 @@ PolynomialRestShapeSpringsForceField.scn
         <DefaultAnimationLoop/>
     
         <Node name="Particle" bbox="-10 -10 -10 20 20 20" >
-            <EulerImplicitSolver />
+            <EulerImplicitIntegrationScheme />
             <CGLinearSolver iterations="200" tolerance="1e-09" threshold="1e-09"/>
             <MechanicalObject template="Vec3" name="myParticle" rest_position="0 0 0" position="1.1 0 0" showObject="1" showObjectScale="10" />
             <UniformMass totalMass="1" />
@@ -211,7 +211,7 @@ PolynomialRestShapeSpringsForceField.scn
 
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.LinearSolver.Iterative")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mass")
-       root.addObject('RequiredPlugin', pluginName="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', pluginName="Sofa.Component.IntegrationScheme.Backward")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.SolidMechanics.Spring")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.StateContainer")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Visual")
@@ -220,7 +220,7 @@ PolynomialRestShapeSpringsForceField.scn
 
        particle = root.addChild('Particle', bbox="-10 -10 -10 20 20 20")
 
-       particle.addObject('EulerImplicitSolver', )
+       particle.addObject('EulerImplicitIntegrationScheme', )
        particle.addObject('CGLinearSolver', iterations="200", tolerance="1e-09", threshold="1e-09")
        particle.addObject('MechanicalObject', template="Vec3", name="myParticle", rest_position="0 0 0", position="1.1 0 0", showObject="1", showObjectScale="10")
        particle.addObject('UniformMass', totalMass="1")

@@ -141,7 +141,7 @@ Edge2QuadTopologicalMapping.scn
             <RequiredPlugin pluginName="Sofa.Component.LinearSolver.Iterative"/> <!-- Needed to use components [CGLinearSolver] -->
             <RequiredPlugin pluginName="Sofa.Component.Mapping.Linear"/> <!-- Needed to use components [TubularMapping] -->
             <RequiredPlugin pluginName="Sofa.Component.Mass"/> <!-- Needed to use components [UniformMass] -->
-            <RequiredPlugin pluginName="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+            <RequiredPlugin pluginName="Sofa.Component.IntegrationScheme.Backward"/> <!-- Needed to use components [EulerImplicitIntegrationScheme] -->
             <RequiredPlugin pluginName="Sofa.Component.SolidMechanics.FEM.Elastic"/> <!-- Needed to use components [BeamFEMForceField] -->
             <RequiredPlugin pluginName="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
             <RequiredPlugin pluginName="Sofa.Component.Topology.Container.Dynamic"/> <!-- Needed to use components [QuadSetGeometryAlgorithms QuadSetTopologyContainer QuadSetTopologyModifier] -->
@@ -158,7 +158,7 @@ Edge2QuadTopologicalMapping.scn
         <MinProximityIntersection name="Proximity" alarmDistance="0.5" contactDistance="0.02"/>
     
        	<Node name="Beam">
-            <EulerImplicitSolver  rayleighStiffness="0.1" rayleighMass="0.1" />
+            <EulerImplicitIntegrationScheme  rayleighStiffness="0.1" rayleighMass="0.1" />
             <CGLinearSolver iterations="125" tolerance="1e-16" threshold="1e-16" />
     
             <RegularGridTopology name="MeshLines" nx="100" ny="1" nz="1" xmax="100" xmin="0" ymin="0" ymax="0" zmax="0" zmin="0"/>
@@ -199,7 +199,7 @@ Edge2QuadTopologicalMapping.scn
        required_plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.LinearSolver.Iterative")
        required_plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.Mapping.Linear")
        required_plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.Mass")
-       required_plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.ODESolver.Backward")
+       required_plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.IntegrationScheme.Backward")
        required_plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.SolidMechanics.FEM.Elastic")
        required_plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.StateContainer")
        required_plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.Topology.Container.Dynamic")
@@ -216,7 +216,7 @@ Edge2QuadTopologicalMapping.scn
 
        beam = root.addChild('Beam')
 
-       beam.addObject('EulerImplicitSolver', rayleighStiffness="0.1", rayleighMass="0.1")
+       beam.addObject('EulerImplicitIntegrationScheme', rayleighStiffness="0.1", rayleighMass="0.1")
        beam.addObject('CGLinearSolver', iterations="125", tolerance="1e-16", threshold="1e-16")
        beam.addObject('RegularGridTopology', name="MeshLines", nx="100", ny="1", nz="1", xmax="100", xmin="0", ymin="0", ymax="0", zmax="0", zmin="0")
        beam.addObject('MechanicalObject', template="Rigid3", name="BeamDof")

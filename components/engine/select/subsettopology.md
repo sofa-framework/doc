@@ -394,7 +394,7 @@ SubsetTopology_subsetbehaviormodel.scn
         <RequiredPlugin pluginName="Sofa.Component.LinearSolver.Iterative"/> <!-- Needed to use components [CGLinearSolver] -->
         <RequiredPlugin pluginName="Sofa.Component.Mapping.NonLinear"/> <!-- Needed to use components [RigidMapping] -->
         <RequiredPlugin pluginName="Sofa.Component.Mass"/> <!-- Needed to use components [UniformMass] -->
-        <RequiredPlugin pluginName="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+        <RequiredPlugin pluginName="Sofa.Component.IntegrationScheme.Backward"/> <!-- Needed to use components [EulerImplicitIntegrationScheme] -->
         <RequiredPlugin pluginName="Sofa.Component.SolidMechanics.FEM.Elastic"/> <!-- Needed to use components [TetrahedronFEMForceField] -->
         <RequiredPlugin pluginName="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
         <RequiredPlugin pluginName="Sofa.Component.Topology.Container.Constant"/> <!-- Needed to use components [MeshTopology] -->
@@ -411,7 +411,7 @@ SubsetTopology_subsetbehaviormodel.scn
         <MinProximityIntersection name="Proximity" alarmDistance="0.3" contactDistance="0.2" />
         <CollisionResponse name="Response" response="PenalityContactForceField" />
         <Node name="Cylinder" gravity="0 -9.81 0">
-            <EulerImplicitSolver name="cg_odesolver"  rayleighStiffness="0.1" rayleighMass="0.1" />
+            <EulerImplicitIntegrationScheme name="cg_odesolver"  rayleighStiffness="0.1" rayleighMass="0.1" />
             <CGLinearSolver template="GraphScattered" name="default18" iterations="100" tolerance="1e-05" threshold="1e-05"/>
             <MechanicalObject template="Rigid3" name="rigid" position="0 0 0 0 0 0 1" velocity="0 0 0 0 0 0" force="0 0 0 0 0 0" externalForce="0 0 0 0 0 0" derivX="0 0 0 0 0 0" free_position="0 0 0 0 0 0 1" free_velocity="0 0 0 0 0 0" restScale="1" />
             <UniformMass name="default0" totalMass="1.0"/>
@@ -460,7 +460,7 @@ SubsetTopology_subsetbehaviormodel.scn
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.LinearSolver.Iterative")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mapping.NonLinear")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mass")
-       root.addObject('RequiredPlugin', pluginName="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', pluginName="Sofa.Component.IntegrationScheme.Backward")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.SolidMechanics.FEM.Elastic")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.StateContainer")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Topology.Container.Constant")
@@ -478,7 +478,7 @@ SubsetTopology_subsetbehaviormodel.scn
 
        cylinder = Root.addChild('Cylinder', gravity="0 -9.81 0")
 
-       cylinder.addObject('EulerImplicitSolver', name="cg_odesolver", rayleighStiffness="0.1", rayleighMass="0.1")
+       cylinder.addObject('EulerImplicitIntegrationScheme', name="cg_odesolver", rayleighStiffness="0.1", rayleighMass="0.1")
        cylinder.addObject('CGLinearSolver', template="GraphScattered", name="default18", iterations="100", tolerance="1e-05", threshold="1e-05")
        cylinder.addObject('MechanicalObject', template="Rigid3", name="rigid", position="0 0 0 0 0 0 1", velocity="0 0 0 0 0 0", force="0 0 0 0 0 0", externalForce="0 0 0 0 0 0", derivX="0 0 0 0 0 0", free_position="0 0 0 0 0 0 1", free_velocity="0 0 0 0 0 0", restScale="1")
        cylinder.addObject('UniformMass', name="default0", totalMass="1.0")
@@ -527,7 +527,7 @@ SubsetTopology_localIndicesOption.scn
         <RequiredPlugin pluginName="Sofa.Component.LinearSolver.Iterative"/> <!-- Needed to use components [CGLinearSolver] -->
         <RequiredPlugin pluginName="Sofa.Component.Mapping.Linear"/> <!-- Needed to use components [IdentityMapping] -->
         <RequiredPlugin pluginName="Sofa.Component.Mass"/> <!-- Needed to use components [DiagonalMass] -->
-        <RequiredPlugin pluginName="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+        <RequiredPlugin pluginName="Sofa.Component.IntegrationScheme.Backward"/> <!-- Needed to use components [EulerImplicitIntegrationScheme] -->
         <RequiredPlugin pluginName="Sofa.Component.SolidMechanics.FEM.Elastic"/> <!-- Needed to use components [TriangularFEMForceField] -->
         <RequiredPlugin pluginName="Sofa.Component.SolidMechanics.Spring"/> <!-- Needed to use components [TriangularBendingSprings] -->
         <RequiredPlugin pluginName="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
@@ -543,7 +543,7 @@ SubsetTopology_localIndicesOption.scn
         <CollisionResponse name="default1" response="PenalityContactForceField" />
         <MinProximityIntersection name="Proximity" alarmDistance="0.8" contactDistance="0.5" />
         <Node name="SquareGravity">
-            <EulerImplicitSolver name="cg_odesolver"  rayleighStiffness="0.1" rayleighMass="0.1" />
+            <EulerImplicitIntegrationScheme name="cg_odesolver"  rayleighStiffness="0.1" rayleighMass="0.1" />
             <CGLinearSolver iterations="100" tolerance="1e-5" threshold="1e-5"/>
             <MeshGmshLoader name="meshLoader" filename="mesh/square3.msh" />
             <SubsetTopology template="Vec3" box="0.3 0 -0.1 0.6 1 0.1" drawROI="1" src="@meshLoader" rest_position="@meshLoader.position" name="Subset" localIndices="1" />
@@ -599,7 +599,7 @@ SubsetTopology_localIndicesOption.scn
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.LinearSolver.Iterative")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mapping.Linear")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mass")
-       root.addObject('RequiredPlugin', pluginName="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', pluginName="Sofa.Component.IntegrationScheme.Backward")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.SolidMechanics.FEM.Elastic")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.SolidMechanics.Spring")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.StateContainer")
@@ -616,7 +616,7 @@ SubsetTopology_localIndicesOption.scn
 
        square_gravity = root.addChild('SquareGravity')
 
-       square_gravity.addObject('EulerImplicitSolver', name="cg_odesolver", rayleighStiffness="0.1", rayleighMass="0.1")
+       square_gravity.addObject('EulerImplicitIntegrationScheme', name="cg_odesolver", rayleighStiffness="0.1", rayleighMass="0.1")
        square_gravity.addObject('CGLinearSolver', iterations="100", tolerance="1e-5", threshold="1e-5")
        square_gravity.addObject('MeshGmshLoader', name="meshLoader", filename="mesh/square3.msh")
        square_gravity.addObject('SubsetTopology', template="Vec3", box="0.3 0 -0.1 0.6 1 0.1", drawROI="1", src="@meshLoader", rest_position="@meshLoader.position", name="Subset", localIndices="1")
@@ -672,7 +672,7 @@ SubsetTopology_withtetrahedra.scn
         <RequiredPlugin pluginName="Sofa.Component.Mapping.Linear"/> <!-- Needed to use components [IdentityMapping] -->
         <RequiredPlugin pluginName="Sofa.Component.Mass"/> <!-- Needed to use components [DiagonalMass] -->
         <RequiredPlugin pluginName="Sofa.Component.MechanicalLoad"/> <!-- Needed to use components [TrianglePressureForceField] -->
-        <RequiredPlugin pluginName="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+        <RequiredPlugin pluginName="Sofa.Component.IntegrationScheme.Backward"/> <!-- Needed to use components [EulerImplicitIntegrationScheme] -->
         <RequiredPlugin pluginName="Sofa.Component.SolidMechanics.FEM.Elastic"/> <!-- Needed to use components [TetrahedralCorotationalFEMForceField] -->
         <RequiredPlugin pluginName="Sofa.Component.SolidMechanics.Spring"/> <!-- Needed to use components [TriangularBendingSprings] -->
         <RequiredPlugin pluginName="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
@@ -689,7 +689,7 @@ SubsetTopology_withtetrahedra.scn
         <CollisionResponse response="PenalityContactForceField" />
         <MinProximityIntersection name="Proximity" alarmDistance="0.8" contactDistance="0.5" />
         <Node name="TT">
-            <EulerImplicitSolver name="cg_odesolver" printLog="false"  rayleighStiffness="0.1" rayleighMass="0.1" />
+            <EulerImplicitIntegrationScheme name="cg_odesolver" printLog="false"  rayleighStiffness="0.1" rayleighMass="0.1" />
             <CGLinearSolver iterations="25" name="linear solver" tolerance="1.0e-9" threshold="1.0e-9" />
             <MeshGmshLoader name="loader" filename="mesh/cylinder.msh" />
             <MechanicalObject src="@loader" name="Volume" />
@@ -734,7 +734,7 @@ SubsetTopology_withtetrahedra.scn
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mapping.Linear")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mass")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.MechanicalLoad")
-       root.addObject('RequiredPlugin', pluginName="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', pluginName="Sofa.Component.IntegrationScheme.Backward")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.SolidMechanics.FEM.Elastic")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.SolidMechanics.Spring")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.StateContainer")
@@ -752,7 +752,7 @@ SubsetTopology_withtetrahedra.scn
 
        tt = root.addChild('TT')
 
-       tt.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
+       tt.addObject('EulerImplicitIntegrationScheme', name="cg_odesolver", printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
        tt.addObject('CGLinearSolver', iterations="25", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
        tt.addObject('MeshGmshLoader', name="loader", filename="mesh/cylinder.msh")
        tt.addObject('MechanicalObject', src="@loader", name="Volume")
@@ -794,7 +794,7 @@ SubsetTopology.scn
         <RequiredPlugin pluginName="Sofa.Component.LinearSolver.Iterative"/> <!-- Needed to use components [CGLinearSolver] -->
         <RequiredPlugin pluginName="Sofa.Component.Mapping.Linear"/> <!-- Needed to use components [IdentityMapping] -->
         <RequiredPlugin pluginName="Sofa.Component.Mass"/> <!-- Needed to use components [DiagonalMass] -->
-        <RequiredPlugin pluginName="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+        <RequiredPlugin pluginName="Sofa.Component.IntegrationScheme.Backward"/> <!-- Needed to use components [EulerImplicitIntegrationScheme] -->
         <RequiredPlugin pluginName="Sofa.Component.SolidMechanics.FEM.Elastic"/> <!-- Needed to use components [TriangularFEMForceField] -->
         <RequiredPlugin pluginName="Sofa.Component.SolidMechanics.Spring"/> <!-- Needed to use components [TriangularBendingSprings] -->
         <RequiredPlugin pluginName="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
@@ -809,7 +809,7 @@ SubsetTopology.scn
         <MinProximityIntersection name="Proximity" alarmDistance="0.8" contactDistance="0.5" />
         <Node name="SquareGravity">
             <MeshGmshLoader name="meshLoader" filename="mesh/square3.msh" />
-            <EulerImplicitSolver name="cg_odesolver"  rayleighStiffness="0.1" rayleighMass="0.1" />
+            <EulerImplicitIntegrationScheme name="cg_odesolver"  rayleighStiffness="0.1" rayleighMass="0.1" />
             <CGLinearSolver iterations="100" tolerance="1e-05" threshold="1e-05"/>
             <SubsetTopology template="Vec3" box="0.3 0 -0.1 0.6 1 0.1" drawTriangle="0" drawROI="1" src="@meshLoader" rest_position="@meshLoader.position" name="Subset" />
             <Node name="in">
@@ -863,7 +863,7 @@ SubsetTopology.scn
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.LinearSolver.Iterative")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mapping.Linear")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mass")
-       root.addObject('RequiredPlugin', pluginName="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', pluginName="Sofa.Component.IntegrationScheme.Backward")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.SolidMechanics.FEM.Elastic")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.SolidMechanics.Spring")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.StateContainer")
@@ -879,7 +879,7 @@ SubsetTopology.scn
        square_gravity = root.addChild('SquareGravity')
 
        square_gravity.addObject('MeshGmshLoader', name="meshLoader", filename="mesh/square3.msh")
-       square_gravity.addObject('EulerImplicitSolver', name="cg_odesolver", rayleighStiffness="0.1", rayleighMass="0.1")
+       square_gravity.addObject('EulerImplicitIntegrationScheme', name="cg_odesolver", rayleighStiffness="0.1", rayleighMass="0.1")
        square_gravity.addObject('CGLinearSolver', iterations="100", tolerance="1e-05", threshold="1e-05")
        square_gravity.addObject('SubsetTopology', template="Vec3", box="0.3 0 -0.1 0.6 1 0.1", drawTriangle="0", drawROI="1", src="@meshLoader", rest_position="@meshLoader.position", name="Subset")
 
@@ -933,7 +933,7 @@ SubsetTopology_refiningMesh.scn
         <RequiredPlugin pluginName="Sofa.Component.LinearSolver.Iterative"/> <!-- Needed to use components [CGLinearSolver] -->
         <RequiredPlugin pluginName="Sofa.Component.Mapping.Linear"/> <!-- Needed to use components [BarycentricMapping IdentityMapping] -->
         <RequiredPlugin pluginName="Sofa.Component.Mass"/> <!-- Needed to use components [UniformMass] -->
-        <RequiredPlugin pluginName="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+        <RequiredPlugin pluginName="Sofa.Component.IntegrationScheme.Backward"/> <!-- Needed to use components [EulerImplicitIntegrationScheme] -->
         <RequiredPlugin pluginName="Sofa.Component.SolidMechanics.FEM.Elastic"/> <!-- Needed to use components [HexahedronFEMForceField TetrahedronFEMForceField] -->
         <RequiredPlugin pluginName="Sofa.Component.SolidMechanics.Spring"/> <!-- Needed to use components [SpringForceField] -->
         <RequiredPlugin pluginName="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
@@ -951,7 +951,7 @@ SubsetTopology_refiningMesh.scn
         <MinProximityIntersection name="Proximity" alarmDistance="3" contactDistance="2" />
         <CollisionResponse name="Response" response="PenalityContactForceField" />
         <Node name="SquareGravity">
-            <EulerImplicitSolver name="cg_odesolver"  rayleighStiffness="0.1" rayleighMass="0.1" />
+            <EulerImplicitIntegrationScheme name="cg_odesolver"  rayleighStiffness="0.1" rayleighMass="0.1" />
             <CGLinearSolver iterations="100" tolerance="1e-5" threshold="1e-5"/>
             <MeshGmshLoader name="meshLoader" filename="mesh/truthcylinder1.msh" />
             <SubsetTopology template="Vec3" box="-5 -20 -5 5 -10 5" drawROI="0" src="@meshLoader" rest_position="@meshLoader.position" name="Subset" localIndices="1" />
@@ -1018,7 +1018,7 @@ SubsetTopology_refiningMesh.scn
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.LinearSolver.Iterative")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mapping.Linear")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mass")
-       root.addObject('RequiredPlugin', pluginName="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', pluginName="Sofa.Component.IntegrationScheme.Backward")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.SolidMechanics.FEM.Elastic")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.SolidMechanics.Spring")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.StateContainer")
@@ -1037,7 +1037,7 @@ SubsetTopology_refiningMesh.scn
 
        square_gravity = root.addChild('SquareGravity')
 
-       square_gravity.addObject('EulerImplicitSolver', name="cg_odesolver", rayleighStiffness="0.1", rayleighMass="0.1")
+       square_gravity.addObject('EulerImplicitIntegrationScheme', name="cg_odesolver", rayleighStiffness="0.1", rayleighMass="0.1")
        square_gravity.addObject('CGLinearSolver', iterations="100", tolerance="1e-5", threshold="1e-5")
        square_gravity.addObject('MeshGmshLoader', name="meshLoader", filename="mesh/truthcylinder1.msh")
        square_gravity.addObject('SubsetTopology', template="Vec3", box="-5 -20 -5 5 -10 5", drawROI="0", src="@meshLoader", rest_position="@meshLoader.position", name="Subset", localIndices="1")

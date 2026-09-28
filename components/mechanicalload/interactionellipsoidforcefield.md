@@ -185,8 +185,8 @@ InteractionEllipsoidForceField.scn
         <RequiredPlugin pluginName="Sofa.Component.Mapping.Linear"/> <!-- Needed to use components [IdentityMapping] -->
         <RequiredPlugin pluginName="Sofa.Component.Mass"/> <!-- Needed to use components [UniformMass] -->
         <RequiredPlugin pluginName="Sofa.Component.MechanicalLoad"/> <!-- Needed to use components [InteractionEllipsoidForceField] -->
-        <RequiredPlugin pluginName="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
-        <RequiredPlugin pluginName="Sofa.Component.ODESolver.Forward"/> <!-- Needed to use components [EulerExplicitSolver] -->
+        <RequiredPlugin pluginName="Sofa.Component.IntegrationScheme.Backward"/> <!-- Needed to use components [EulerImplicitIntegrationScheme] -->
+        <RequiredPlugin pluginName="Sofa.Component.IntegrationScheme.Forward"/> <!-- Needed to use components [EulerExplicitIntegrationScheme] -->
         <RequiredPlugin pluginName="Sofa.Component.SolidMechanics.Spring"/> <!-- Needed to use components [MeshSpringForceField QuadBendingSprings] -->
         <RequiredPlugin pluginName="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
         <RequiredPlugin pluginName="Sofa.Component.Topology.Container.Grid"/> <!-- Needed to use components [RegularGridTopology] -->
@@ -201,13 +201,13 @@ InteractionEllipsoidForceField.scn
         <CollisionResponse name="Response" response="PenalityContactForceField"/>
         <NewProximityIntersection alarmDistance="0.002" contactDistance="0.001" />
         <Node name="RotatingObstacle">
-            <EulerExplicitSolver name="odesolver" printLog="false" />
+            <EulerExplicitIntegrationScheme name="odesolver" printLog="false" />
             <MechanicalObject name="MS2" template="Rigid3" position="0 5 3 0 0 0 1" velocity="0 0 0 -0.1 0 0" />
             <UniformMass totalMass="1" />
             <PartialFixedProjectiveConstraint indices="0" fixedDirections="1 1 1 0 0 0" />
         </Node>
         <Node name="SquareCloth1">
-            <EulerImplicitSolver name="odesolver" printLog="false"  rayleighStiffness="0.1" rayleighMass="0.1" />
+            <EulerImplicitIntegrationScheme name="odesolver" printLog="false"  rayleighStiffness="0.1" rayleighMass="0.1" />
             <CGLinearSolver iterations="25" name="linear solver" tolerance="1.0e-9" threshold="1.0e-9" />
             <MechanicalObject name="MS1" />
             <UniformMass totalMass="100" />
@@ -245,8 +245,8 @@ InteractionEllipsoidForceField.scn
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mapping.Linear")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mass")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.MechanicalLoad")
-       root.addObject('RequiredPlugin', pluginName="Sofa.Component.ODESolver.Backward")
-       root.addObject('RequiredPlugin', pluginName="Sofa.Component.ODESolver.Forward")
+       root.addObject('RequiredPlugin', pluginName="Sofa.Component.IntegrationScheme.Backward")
+       root.addObject('RequiredPlugin', pluginName="Sofa.Component.IntegrationScheme.Forward")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.SolidMechanics.Spring")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.StateContainer")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Topology.Container.Grid")
@@ -262,14 +262,14 @@ InteractionEllipsoidForceField.scn
 
        rotating_obstacle = root.addChild('RotatingObstacle')
 
-       rotating_obstacle.addObject('EulerExplicitSolver', name="odesolver", printLog="false")
+       rotating_obstacle.addObject('EulerExplicitIntegrationScheme', name="odesolver", printLog="false")
        rotating_obstacle.addObject('MechanicalObject', name="MS2", template="Rigid3", position="0 5 3 0 0 0 1", velocity="0 0 0 -0.1 0 0")
        rotating_obstacle.addObject('UniformMass', totalMass="1")
        rotating_obstacle.addObject('PartialFixedProjectiveConstraint', indices="0", fixedDirections="1 1 1 0 0 0")
 
        square_cloth1 = root.addChild('SquareCloth1')
 
-       square_cloth1.addObject('EulerImplicitSolver', name="odesolver", printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
+       square_cloth1.addObject('EulerImplicitIntegrationScheme', name="odesolver", printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
        square_cloth1.addObject('CGLinearSolver', iterations="25", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
        square_cloth1.addObject('MechanicalObject', name="MS1")
        square_cloth1.addObject('UniformMass', totalMass="100")

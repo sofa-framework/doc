@@ -679,7 +679,7 @@ DistanceToPlaneMapping.scn
         <RequiredPlugin pluginName="Sofa.Component.LinearSolver.Direct"/> <!-- Needed to use components [SparseLDLSolver] -->
         <RequiredPlugin pluginName="Sofa.Component.Mapping.Linear"/> <!-- Needed to use components [DistanceToPlaneMapping] -->
         <RequiredPlugin pluginName="Sofa.Component.Mass"/> <!-- Needed to use components [UniformMass] -->
-        <RequiredPlugin pluginName="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+        <RequiredPlugin pluginName="Sofa.Component.IntegrationScheme.Backward"/> <!-- Needed to use components [EulerImplicitIntegrationScheme] -->
         <RequiredPlugin pluginName="Sofa.Component.SolidMechanics.Spring"/> <!-- Needed to use components [RestShapeSpringsForceField] -->
         <RequiredPlugin pluginName="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
         <RequiredPlugin pluginName="Sofa.Component.Visual"/> <!-- Needed to use components [VisualStyle] -->
@@ -690,7 +690,7 @@ DistanceToPlaneMapping.scn
     
     
         <Node name="Langrangian-Bileateral">
-            <EulerImplicitSolver />
+            <EulerImplicitIntegrationScheme />
             <SparseLDLSolver />
             <MechanicalObject name="mstate" template="Vec3d" position="4 2 5  1 5 -8  0 1 -5  5 6 8" showObject="true" showObjectScale="0.2" drawMode="2" />
             <UniformMass vertexMass="1" />
@@ -702,7 +702,7 @@ DistanceToPlaneMapping.scn
             <UncoupledConstraintCorrection defaultCompliance="1"/>
         </Node>
         <Node name="Springs">
-            <EulerImplicitSolver rayleighMass="0.1" />
+            <EulerImplicitIntegrationScheme rayleighMass="0.1" />
             <SparseLDLSolver />
             <MechanicalObject name="mstate" template="Vec3d" position="4 2 5  1 5 -8  0 1 -5  5 6 8" showColor="0 1 0 1" showObject="true" showObjectScale="0.2" drawMode="1" />
             <UniformMass vertexMass="1" />
@@ -731,7 +731,7 @@ DistanceToPlaneMapping.scn
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.LinearSolver.Direct")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mapping.Linear")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mass")
-       root.addObject('RequiredPlugin', pluginName="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', pluginName="Sofa.Component.IntegrationScheme.Backward")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.SolidMechanics.Spring")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.StateContainer")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Visual")
@@ -741,7 +741,7 @@ DistanceToPlaneMapping.scn
 
        langrangian__bileateral = root.addChild('Langrangian-Bileateral')
 
-       langrangian__bileateral.addObject('EulerImplicitSolver', )
+       langrangian__bileateral.addObject('EulerImplicitIntegrationScheme', )
        langrangian__bileateral.addObject('SparseLDLSolver', )
        langrangian__bileateral.addObject('MechanicalObject', name="mstate", template="Vec3d", position="4 2 5  1 5 -8  0 1 -5  5 6 8", showObject="true", showObjectScale="0.2", drawMode="2")
        langrangian__bileateral.addObject('UniformMass', vertexMass="1")
@@ -756,7 +756,7 @@ DistanceToPlaneMapping.scn
 
        springs = root.addChild('Springs')
 
-       springs.addObject('EulerImplicitSolver', rayleighMass="0.1")
+       springs.addObject('EulerImplicitIntegrationScheme', rayleighMass="0.1")
        springs.addObject('SparseLDLSolver', )
        springs.addObject('MechanicalObject', name="mstate", template="Vec3d", position="4 2 5  1 5 -8  0 1 -5  5 6 8", showColor="0 1 0 1", showObject="true", showObjectScale="0.2", drawMode="1")
        springs.addObject('UniformMass', vertexMass="1")

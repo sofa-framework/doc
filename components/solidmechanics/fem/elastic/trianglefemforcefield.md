@@ -154,7 +154,7 @@ TriangleFEMForceField.scn
         <RequiredPlugin pluginName="Sofa.Component.LinearSolver.Iterative"/> <!-- Needed to use components [CGLinearSolver] -->
         <RequiredPlugin pluginName="Sofa.Component.Mapping.Linear"/> <!-- Needed to use components [IdentityMapping] -->
         <RequiredPlugin pluginName="Sofa.Component.Mass"/> <!-- Needed to use components [UniformMass] -->
-        <RequiredPlugin pluginName="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+        <RequiredPlugin pluginName="Sofa.Component.IntegrationScheme.Backward"/> <!-- Needed to use components [EulerImplicitIntegrationScheme] -->
         <RequiredPlugin pluginName="Sofa.Component.SolidMechanics.FEM.Elastic"/> <!-- Needed to use components [TriangleFEMForceField] -->
         <RequiredPlugin pluginName="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
         <RequiredPlugin pluginName="Sofa.Component.Topology.Container.Grid"/> <!-- Needed to use components [RegularGridTopology] -->
@@ -169,7 +169,7 @@ TriangleFEMForceField.scn
         <DefaultAnimationLoop/>
         
         <Node name="M1">
-            <EulerImplicitSolver name="cg_odesolver" printLog="false"  rayleighStiffness="0.1" rayleighMass="0.1" />
+            <EulerImplicitIntegrationScheme name="cg_odesolver" printLog="false"  rayleighStiffness="0.1" rayleighMass="0.1" />
             <CGLinearSolver iterations="25" name="linear solver" tolerance="1.0e-9" threshold="1.0e-9" />
             <MechanicalObject />
             <UniformMass vertexMass="0.1" />
@@ -183,7 +183,7 @@ TriangleFEMForceField.scn
             </Node>
         </Node>
         <Node name="M2">
-            <EulerImplicitSolver name="cg_odesolver" printLog="false" />
+            <EulerImplicitIntegrationScheme name="cg_odesolver" printLog="false" />
             <CGLinearSolver iterations="25" name="linear solver" tolerance="1.0e-9" threshold="1.0e-9" />
             <MechanicalObject />
             <UniformMass vertexMass="0.1" />
@@ -197,7 +197,7 @@ TriangleFEMForceField.scn
             </Node>
         </Node>
         <Node name="M3">
-            <EulerImplicitSolver name="cg_odesolver" printLog="false" />
+            <EulerImplicitIntegrationScheme name="cg_odesolver" printLog="false" />
             <CGLinearSolver iterations="25" name="linear solver" tolerance="1.0e-9" threshold="1.0e-9" />
             <MechanicalObject />
             <UniformMass vertexMass="0.1" />
@@ -229,7 +229,7 @@ TriangleFEMForceField.scn
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.LinearSolver.Iterative")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mapping.Linear")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mass")
-       root.addObject('RequiredPlugin', pluginName="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', pluginName="Sofa.Component.IntegrationScheme.Backward")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.SolidMechanics.FEM.Elastic")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.StateContainer")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Topology.Container.Grid")
@@ -245,7 +245,7 @@ TriangleFEMForceField.scn
 
        m1 = root.addChild('M1')
 
-       m1.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
+       m1.addObject('EulerImplicitIntegrationScheme', name="cg_odesolver", printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
        m1.addObject('CGLinearSolver', iterations="25", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
        m1.addObject('MechanicalObject', )
        m1.addObject('UniformMass', vertexMass="0.1")
@@ -261,7 +261,7 @@ TriangleFEMForceField.scn
 
        m2 = root.addChild('M2')
 
-       m2.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="false")
+       m2.addObject('EulerImplicitIntegrationScheme', name="cg_odesolver", printLog="false")
        m2.addObject('CGLinearSolver', iterations="25", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
        m2.addObject('MechanicalObject', )
        m2.addObject('UniformMass', vertexMass="0.1")
@@ -277,7 +277,7 @@ TriangleFEMForceField.scn
 
        m3 = root.addChild('M3')
 
-       m3.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="false")
+       m3.addObject('EulerImplicitIntegrationScheme', name="cg_odesolver", printLog="false")
        m3.addObject('CGLinearSolver', iterations="25", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
        m3.addObject('MechanicalObject', )
        m3.addObject('UniformMass', vertexMass="0.1")
@@ -303,7 +303,7 @@ TriangleFEMForceField_compare.scn
         <RequiredPlugin pluginName="Sofa.Component.LinearSolver.Iterative"/> <!-- Needed to use components [CGLinearSolver] -->
         <RequiredPlugin pluginName="Sofa.Component.Mapping.Linear"/> <!-- Needed to use components [IdentityMapping] -->
         <RequiredPlugin pluginName="Sofa.Component.Mass"/> <!-- Needed to use components [DiagonalMass] -->
-        <RequiredPlugin pluginName="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+        <RequiredPlugin pluginName="Sofa.Component.IntegrationScheme.Backward"/> <!-- Needed to use components [EulerImplicitIntegrationScheme] -->
         <RequiredPlugin pluginName="Sofa.Component.SolidMechanics.FEM.Elastic"/> <!-- Needed to use components [TriangleFEMForceField TriangularFEMForceField TriangularFEMForceFieldOptim] -->
         <RequiredPlugin pluginName="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
         <RequiredPlugin pluginName="Sofa.Component.Topology.Container.Dynamic"/> <!-- Needed to use components [QuadSetGeometryAlgorithms QuadSetTopologyContainer QuadSetTopologyModifier TriangleSetGeometryAlgorithms TriangleSetTopologyContainer TriangleSetTopologyModifier] -->
@@ -319,7 +319,7 @@ TriangleFEMForceField_compare.scn
         <RegularGridTopology name="grid" n="40 1 40" min="0 0 0" max="10 0 10" />
         
         <Node name="TriangularFEMForceField">
-            <EulerImplicitSolver name="cg_odesolver" printLog="false"  rayleighStiffness="0.1" rayleighMass="0.1" />
+            <EulerImplicitIntegrationScheme name="cg_odesolver" printLog="false"  rayleighStiffness="0.1" rayleighMass="0.1" />
             <CGLinearSolver iterations="25" name="linear solver" tolerance="1.0e-9" threshold="1.0e-9" />
             
             <QuadSetTopologyContainer name="Quad_topo" src="@../grid" />
@@ -348,7 +348,7 @@ TriangleFEMForceField_compare.scn
         
         
         <Node name="TriangularFEMForceFieldOptim">
-            <EulerImplicitSolver name="cg_odesolver" printLog="false"  rayleighStiffness="0.1" rayleighMass="0.1" />
+            <EulerImplicitIntegrationScheme name="cg_odesolver" printLog="false"  rayleighStiffness="0.1" rayleighMass="0.1" />
             <CGLinearSolver iterations="25" name="linear solver" tolerance="1.0e-9" threshold="1.0e-9" />
             
             <QuadSetTopologyContainer name="Quad_topo" src="@../grid" />
@@ -377,7 +377,7 @@ TriangleFEMForceField_compare.scn
         
         
         <Node name="TriangleFEMForceField">
-            <EulerImplicitSolver name="cg_odesolver" printLog="false"  rayleighStiffness="0.1" rayleighMass="0.1" />
+            <EulerImplicitIntegrationScheme name="cg_odesolver" printLog="false"  rayleighStiffness="0.1" rayleighMass="0.1" />
             <CGLinearSolver iterations="25" name="linear solver" tolerance="1.0e-9" threshold="1.0e-9" />
             
             <QuadSetTopologyContainer name="Quad_topo" src="@../grid" />
@@ -419,7 +419,7 @@ TriangleFEMForceField_compare.scn
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.LinearSolver.Iterative")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mapping.Linear")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mass")
-       root.addObject('RequiredPlugin', pluginName="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', pluginName="Sofa.Component.IntegrationScheme.Backward")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.SolidMechanics.FEM.Elastic")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.StateContainer")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Topology.Container.Dynamic")
@@ -433,7 +433,7 @@ TriangleFEMForceField_compare.scn
 
        triangular_fem_force_field = root.addChild('TriangularFEMForceField')
 
-       triangular_fem_force_field.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
+       triangular_fem_force_field.addObject('EulerImplicitIntegrationScheme', name="cg_odesolver", printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
        triangular_fem_force_field.addObject('CGLinearSolver', iterations="25", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
        triangular_fem_force_field.addObject('QuadSetTopologyContainer', name="Quad_topo", src="@../grid")
        triangular_fem_force_field.addObject('QuadSetTopologyModifier', name="Modifier")
@@ -457,7 +457,7 @@ TriangleFEMForceField_compare.scn
 
        triangular_fem_force_field_optim = root.addChild('TriangularFEMForceFieldOptim')
 
-       triangular_fem_force_field_optim.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
+       triangular_fem_force_field_optim.addObject('EulerImplicitIntegrationScheme', name="cg_odesolver", printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
        triangular_fem_force_field_optim.addObject('CGLinearSolver', iterations="25", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
        triangular_fem_force_field_optim.addObject('QuadSetTopologyContainer', name="Quad_topo", src="@../grid")
        triangular_fem_force_field_optim.addObject('QuadSetTopologyModifier', name="Modifier")
@@ -481,7 +481,7 @@ TriangleFEMForceField_compare.scn
 
        triangle_fem_force_field = root.addChild('TriangleFEMForceField')
 
-       triangle_fem_force_field.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
+       triangle_fem_force_field.addObject('EulerImplicitIntegrationScheme', name="cg_odesolver", printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
        triangle_fem_force_field.addObject('CGLinearSolver', iterations="25", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
        triangle_fem_force_field.addObject('QuadSetTopologyContainer', name="Quad_topo", src="@../grid")
        triangle_fem_force_field.addObject('QuadSetTopologyModifier', name="Modifier")

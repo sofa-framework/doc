@@ -252,7 +252,7 @@ PolynomialSpringsForceField.scn
         <RequiredPlugin pluginName="Sofa.Component.LinearSolver.Iterative"/> <!-- Needed to use components [CGLinearSolver] -->
         <RequiredPlugin pluginName="Sofa.Component.Mapping.Linear"/> <!-- Needed to use components [BarycentricMapping] -->
         <RequiredPlugin pluginName="Sofa.Component.Mass"/> <!-- Needed to use components [DiagonalMass UniformMass] -->
-        <RequiredPlugin pluginName="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+        <RequiredPlugin pluginName="Sofa.Component.IntegrationScheme.Backward"/> <!-- Needed to use components [EulerImplicitIntegrationScheme] -->
         <RequiredPlugin pluginName="Sofa.Component.SolidMechanics.FEM.Elastic"/> <!-- Needed to use components [TetrahedralCorotationalFEMForceField] -->
         <RequiredPlugin pluginName="Sofa.Component.SolidMechanics.Spring"/> <!-- Needed to use components [PolynomialSpringsForceField] -->
         <RequiredPlugin pluginName="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
@@ -265,7 +265,7 @@ PolynomialSpringsForceField.scn
         <MeshOBJLoader name="LiverSurface" filename="mesh/liver-smooth.obj" />
     
         <Node name="Liver" >
-            <EulerImplicitSolver name="cg_odesolver"   rayleighStiffness="0.1" rayleighMass="0.1" />
+            <EulerImplicitIntegrationScheme name="cg_odesolver"   rayleighStiffness="0.1" rayleighMass="0.1" />
             <CGLinearSolver name="linear solver" iterations="25" tolerance="1e-09" threshold="1e-09" />
             <MeshGmshLoader name="meshLoader" filename="mesh/liver.msh" />
             <TetrahedronSetTopologyContainer name="topo" src="@meshLoader" />
@@ -302,7 +302,7 @@ PolynomialSpringsForceField.scn
        lroot.addObject('RequiredPlugin', pluginName="Sofa.Component.LinearSolver.Iterative")
        lroot.addObject('RequiredPlugin', pluginName="Sofa.Component.Mapping.Linear")
        lroot.addObject('RequiredPlugin', pluginName="Sofa.Component.Mass")
-       lroot.addObject('RequiredPlugin', pluginName="Sofa.Component.ODESolver.Backward")
+       lroot.addObject('RequiredPlugin', pluginName="Sofa.Component.IntegrationScheme.Backward")
        lroot.addObject('RequiredPlugin', pluginName="Sofa.Component.SolidMechanics.FEM.Elastic")
        lroot.addObject('RequiredPlugin', pluginName="Sofa.Component.SolidMechanics.Spring")
        lroot.addObject('RequiredPlugin', pluginName="Sofa.Component.StateContainer")
@@ -315,7 +315,7 @@ PolynomialSpringsForceField.scn
 
        liver = lroot.addChild('Liver')
 
-       liver.addObject('EulerImplicitSolver', name="cg_odesolver", rayleighStiffness="0.1", rayleighMass="0.1")
+       liver.addObject('EulerImplicitIntegrationScheme', name="cg_odesolver", rayleighStiffness="0.1", rayleighMass="0.1")
        liver.addObject('CGLinearSolver', name="linear solver", iterations="25", tolerance="1e-09", threshold="1e-09")
        liver.addObject('MeshGmshLoader', name="meshLoader", filename="mesh/liver.msh")
        liver.addObject('TetrahedronSetTopologyContainer', name="topo", src="@meshLoader")

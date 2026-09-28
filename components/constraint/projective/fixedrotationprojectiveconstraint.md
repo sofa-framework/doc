@@ -137,7 +137,7 @@ FixedRotationProjectiveConstraint.scn
         <RequiredPlugin pluginName="Sofa.Component.LinearSolver.Iterative"/> <!-- Needed to use components [CGLinearSolver] -->
         <RequiredPlugin pluginName="Sofa.Component.Mapping.NonLinear"/> <!-- Needed to use components [RigidMapping] -->
         <RequiredPlugin pluginName="Sofa.Component.Mass"/> <!-- Needed to use components [UniformMass] -->
-        <RequiredPlugin pluginName="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+        <RequiredPlugin pluginName="Sofa.Component.IntegrationScheme.Backward"/> <!-- Needed to use components [EulerImplicitIntegrationScheme] -->
         <RequiredPlugin pluginName="Sofa.Component.SolidMechanics.Spring"/> <!-- Needed to use components [JointSpringForceField] -->
         <RequiredPlugin pluginName="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
         <RequiredPlugin pluginName="Sofa.Component.Visual"/> <!-- Needed to use components [VisualStyle] -->
@@ -150,7 +150,7 @@ FixedRotationProjectiveConstraint.scn
         <MinProximityIntersection name="Proximity" alarmDistance="0.3" contactDistance="0.2" />
         <CollisionResponse name="Response" response="PenalityContactForceField" />
         <Node name="scene" gravity="0 -9.81 0">
-            <EulerImplicitSolver name="cg_odesolver" printLog="0"  rayleighStiffness="0.1" rayleighMass="0.1" />
+            <EulerImplicitIntegrationScheme name="cg_odesolver" printLog="0"  rayleighStiffness="0.1" rayleighMass="0.1" />
             <CGLinearSolver template="GraphScattered" name="linear solver" iterations="25" tolerance="1e-12" threshold="1e-09" />
             <Node name="Rotation around Z axis not authorized" gravity="0 -9.81 0">
                 <MechanicalObject template="Rigid3" name="default0" translation="0 0 0" rotation="0 0 0" restScale="1" position="0 0 0 0 0 0 1 1 0 0 0 0 0 1" />
@@ -194,7 +194,7 @@ FixedRotationProjectiveConstraint.scn
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.LinearSolver.Iterative")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mapping.NonLinear")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mass")
-       root.addObject('RequiredPlugin', pluginName="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', pluginName="Sofa.Component.IntegrationScheme.Backward")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.SolidMechanics.Spring")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.StateContainer")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Visual")
@@ -208,7 +208,7 @@ FixedRotationProjectiveConstraint.scn
 
        scene = Root.addChild('scene', gravity="0 -9.81 0")
 
-       scene.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="0", rayleighStiffness="0.1", rayleighMass="0.1")
+       scene.addObject('EulerImplicitIntegrationScheme', name="cg_odesolver", printLog="0", rayleighStiffness="0.1", rayleighMass="0.1")
        scene.addObject('CGLinearSolver', template="GraphScattered", name="linear solver", iterations="25", tolerance="1e-12", threshold="1e-09")
 
        rotation_around__z_axis_not_authorized = scene.addChild('Rotation around Z axis not authorized', gravity="0 -9.81 0")

@@ -138,7 +138,7 @@ MultiStepAnimationLoop.scn
         <RequiredPlugin pluginName="Sofa.Component.LinearSolver.Iterative"/> <!-- Needed to use components [CGLinearSolver] -->
         <RequiredPlugin pluginName="Sofa.Component.Mapping.NonLinear"/> <!-- Needed to use components [RigidMapping] -->
         <RequiredPlugin pluginName="Sofa.Component.Mass"/> <!-- Needed to use components [UniformMass] -->
-        <RequiredPlugin pluginName="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+        <RequiredPlugin pluginName="Sofa.Component.IntegrationScheme.Backward"/> <!-- Needed to use components [EulerImplicitIntegrationScheme] -->
         <RequiredPlugin pluginName="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
         <RequiredPlugin pluginName="Sofa.Component.Topology.Container.Constant"/> <!-- Needed to use components [MeshTopology] -->
         <RequiredPlugin pluginName="Sofa.GL.Component.Rendering3D"/> <!-- Needed to use components [OglModel] -->
@@ -159,7 +159,7 @@ MultiStepAnimationLoop.scn
                 <OglModel name="Visual" src="@meshLoader_4" color="gray" />
             </Node>
             <Node name="TorusRigid-1">
-                <EulerImplicitSolver  rayleighStiffness="0.1" rayleighMass="0.1" />
+                <EulerImplicitIntegrationScheme  rayleighStiffness="0.1" rayleighMass="0.1" />
                 <CGLinearSolver iterations="25" threshold="0.000000000001" tolerance="0.000001" />
                 <MechanicalObject template="Rigid3" dx="2.5" />
                 <UniformMass totalMass="1.0"/>
@@ -177,7 +177,7 @@ MultiStepAnimationLoop.scn
                 </Node>
             </Node>
             <Node name="TorusRigid-2">
-                <EulerImplicitSolver />
+                <EulerImplicitIntegrationScheme />
                 <CGLinearSolver iterations="25" threshold="0.000000000001" tolerance="0.000001" />
                 <MechanicalObject template="Rigid3" dx="5" />
                 <UniformMass totalMass="1.0"/>
@@ -195,7 +195,7 @@ MultiStepAnimationLoop.scn
                 </Node>
             </Node>
             <Node name="TorusRigid-3">
-                <EulerImplicitSolver />
+                <EulerImplicitIntegrationScheme />
                 <CGLinearSolver iterations="25" threshold="0.000000000001" tolerance="0.000001" />
                 <MechanicalObject template="Rigid3" dx="7.5" />
                 <UniformMass totalMass="1.0"/>
@@ -213,7 +213,7 @@ MultiStepAnimationLoop.scn
                 </Node>
             </Node>
             <Node name="TorusRigid-4">
-                <EulerImplicitSolver />
+                <EulerImplicitIntegrationScheme />
                 <CGLinearSolver iterations="25" threshold="0.000000000001" tolerance="0.000001" />
                 <MechanicalObject template="Rigid3" dx="10" />
                 <UniformMass totalMass="1.0"/>
@@ -251,7 +251,7 @@ MultiStepAnimationLoop.scn
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.LinearSolver.Iterative")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mapping.NonLinear")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mass")
-       root.addObject('RequiredPlugin', pluginName="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', pluginName="Sofa.Component.IntegrationScheme.Backward")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.StateContainer")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Topology.Container.Constant")
        root.addObject('RequiredPlugin', pluginName="Sofa.GL.Component.Rendering3D")
@@ -275,7 +275,7 @@ MultiStepAnimationLoop.scn
 
        torus_rigid_1 = ChainRigid.addChild('TorusRigid-1')
 
-       torus_rigid_1.addObject('EulerImplicitSolver', rayleighStiffness="0.1", rayleighMass="0.1")
+       torus_rigid_1.addObject('EulerImplicitIntegrationScheme', rayleighStiffness="0.1", rayleighMass="0.1")
        torus_rigid_1.addObject('CGLinearSolver', iterations="25", threshold="0.000000000001", tolerance="0.000001")
        torus_rigid_1.addObject('MechanicalObject', template="Rigid3", dx="2.5")
        torus_rigid_1.addObject('UniformMass', totalMass="1.0")
@@ -296,7 +296,7 @@ MultiStepAnimationLoop.scn
 
        torus_rigid_2 = ChainRigid.addChild('TorusRigid-2')
 
-       torus_rigid_2.addObject('EulerImplicitSolver', )
+       torus_rigid_2.addObject('EulerImplicitIntegrationScheme', )
        torus_rigid_2.addObject('CGLinearSolver', iterations="25", threshold="0.000000000001", tolerance="0.000001")
        torus_rigid_2.addObject('MechanicalObject', template="Rigid3", dx="5")
        torus_rigid_2.addObject('UniformMass', totalMass="1.0")
@@ -317,7 +317,7 @@ MultiStepAnimationLoop.scn
 
        torus_rigid_3 = ChainRigid.addChild('TorusRigid-3')
 
-       torus_rigid_3.addObject('EulerImplicitSolver', )
+       torus_rigid_3.addObject('EulerImplicitIntegrationScheme', )
        torus_rigid_3.addObject('CGLinearSolver', iterations="25", threshold="0.000000000001", tolerance="0.000001")
        torus_rigid_3.addObject('MechanicalObject', template="Rigid3", dx="7.5")
        torus_rigid_3.addObject('UniformMass', totalMass="1.0")
@@ -338,7 +338,7 @@ MultiStepAnimationLoop.scn
 
        torus_rigid_4 = ChainRigid.addChild('TorusRigid-4')
 
-       torus_rigid_4.addObject('EulerImplicitSolver', )
+       torus_rigid_4.addObject('EulerImplicitIntegrationScheme', )
        torus_rigid_4.addObject('CGLinearSolver', iterations="25", threshold="0.000000000001", tolerance="0.000001")
        torus_rigid_4.addObject('MechanicalObject', template="Rigid3", dx="10")
        torus_rigid_4.addObject('UniformMass', totalMass="1.0")

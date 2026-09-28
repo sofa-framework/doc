@@ -264,7 +264,7 @@ DirectionProjectiveConstraint.scn
         <RequiredPlugin pluginName="Sofa.Component.LinearSolver.Iterative"/> <!-- Needed to use components [CGLinearSolver] -->
         <RequiredPlugin pluginName="Sofa.Component.Mass"/> <!-- Needed to use components [UniformMass] -->
         <RequiredPlugin pluginName="Sofa.Component.MechanicalLoad"/> <!-- Needed to use components [EdgePressureForceField] -->
-        <RequiredPlugin pluginName="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+        <RequiredPlugin pluginName="Sofa.Component.IntegrationScheme.Backward"/> <!-- Needed to use components [EulerImplicitIntegrationScheme] -->
         <RequiredPlugin pluginName="Sofa.Component.SolidMechanics.FEM.Elastic"/> <!-- Needed to use components [TriangularFEMForceField] -->
         <RequiredPlugin pluginName="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
         <RequiredPlugin pluginName="Sofa.Component.Topology.Container.Dynamic"/> <!-- Needed to use components [EdgeSetGeometryAlgorithms EdgeSetTopologyContainer EdgeSetTopologyModifier TriangleSetGeometryAlgorithms TriangleSetTopologyContainer TriangleSetTopologyModifier] -->
@@ -275,7 +275,7 @@ DirectionProjectiveConstraint.scn
         <DefaultVisualManagerLoop />
         
         <Node 	name="Square"  >
-            <EulerImplicitSolver name="Euler Implicit"  printLog="0"  rayleighStiffness="0.5"  rayleighMass="0.5"  vdamping="0"  />
+            <EulerImplicitIntegrationScheme name="Euler Implicit"  printLog="0"  rayleighStiffness="0.5"  rayleighMass="0.5"  vdamping="0"  />
             <CGLinearSolver template="GraphScattered" name="CG Solver"  printLog="0"  iterations="40"  tolerance="1e-06"  threshold="1e-10" />
             <GridMeshCreator name="loader" resolution="5 5" trianglePattern="1" rotation="0 0 0 " scale="1 1 0" />
             <MechanicalObject template="Vec3" name="mObject1" position="@loader.position"    showIndices="false" showIndicesScale="0.001" />
@@ -313,7 +313,7 @@ DirectionProjectiveConstraint.scn
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.LinearSolver.Iterative")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mass")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.MechanicalLoad")
-       root.addObject('RequiredPlugin', pluginName="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', pluginName="Sofa.Component.IntegrationScheme.Backward")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.SolidMechanics.FEM.Elastic")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.StateContainer")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Topology.Container.Dynamic")
@@ -325,7 +325,7 @@ DirectionProjectiveConstraint.scn
 
        square = root.addChild('Square')
 
-       square.addObject('EulerImplicitSolver', name="Euler Implicit", printLog="0", rayleighStiffness="0.5", rayleighMass="0.5", vdamping="0")
+       square.addObject('EulerImplicitIntegrationScheme', name="Euler Implicit", printLog="0", rayleighStiffness="0.5", rayleighMass="0.5", vdamping="0")
        square.addObject('CGLinearSolver', template="GraphScattered", name="CG Solver", printLog="0", iterations="40", tolerance="1e-06", threshold="1e-10")
        square.addObject('GridMeshCreator', name="loader", resolution="5 5", trianglePattern="1", rotation="0 0 0 ", scale="1 1 0")
        square.addObject('MechanicalObject', template="Vec3", name="mObject1", position="@loader.position", showIndices="false", showIndicesScale="0.001")

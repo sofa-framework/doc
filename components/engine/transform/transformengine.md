@@ -166,7 +166,7 @@ TransformEngine.scn
         <RequiredPlugin pluginName="Sofa.Component.LinearSolver.Iterative"/> <!-- Needed to use components [CGLinearSolver] -->
         <RequiredPlugin pluginName="Sofa.Component.Mapping.Linear"/> <!-- Needed to use components [BarycentricMapping] -->
         <RequiredPlugin pluginName="Sofa.Component.Mass"/> <!-- Needed to use components [UniformMass] -->
-        <RequiredPlugin pluginName="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+        <RequiredPlugin pluginName="Sofa.Component.IntegrationScheme.Backward"/> <!-- Needed to use components [EulerImplicitIntegrationScheme] -->
         <RequiredPlugin pluginName="Sofa.Component.SolidMechanics.FEM.Elastic"/> <!-- Needed to use components [HexahedronFEMForceField] -->
         <RequiredPlugin pluginName="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
         <RequiredPlugin pluginName="Sofa.Component.Topology.Container.Constant"/> <!-- Needed to use components [MeshTopology] -->
@@ -183,7 +183,7 @@ TransformEngine.scn
         <CollisionResponse name="Response" response="PenalityContactForceField" />
         <!-- Using the Transform Engine on the independent MechanicalState -->
         <Node name="TransformedState" gravity="0 -9.81 0">
-            <EulerImplicitSolver name="default12" rayleighStiffness="0.01"  rayleighMass="0.1" />
+            <EulerImplicitIntegrationScheme name="default12" rayleighStiffness="0.01"  rayleighMass="0.1" />
             <CGLinearSolver template="GraphScattered" name="default13" iterations="25" threshold="1e-08" tolerance="1e-05"/>
             <SparseGridTopology name="default14" fileTopology="mesh/doubleBall.obj" n="6 6 6" />
             <TransformEngine name="transform" template="Vec3" translation="10 0 0" rotation="0 0 90" scale="0.5 1 2" input_position="@[-1].position" />
@@ -230,7 +230,7 @@ TransformEngine.scn
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.LinearSolver.Iterative")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mapping.Linear")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mass")
-       root.addObject('RequiredPlugin', pluginName="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', pluginName="Sofa.Component.IntegrationScheme.Backward")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.SolidMechanics.FEM.Elastic")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.StateContainer")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Topology.Container.Constant")
@@ -247,7 +247,7 @@ TransformEngine.scn
 
        transformed_state = Root.addChild('TransformedState', gravity="0 -9.81 0")
 
-       transformed_state.addObject('EulerImplicitSolver', name="default12", rayleighStiffness="0.01", rayleighMass="0.1")
+       transformed_state.addObject('EulerImplicitIntegrationScheme', name="default12", rayleighStiffness="0.01", rayleighMass="0.1")
        transformed_state.addObject('CGLinearSolver', template="GraphScattered", name="default13", iterations="25", threshold="1e-08", tolerance="1e-05")
        transformed_state.addObject('SparseGridTopology', name="default14", fileTopology="mesh/doubleBall.obj", n="6 6 6")
        transformed_state.addObject('TransformEngine', name="transform", template="Vec3", translation="10 0 0", rotation="0 0 90", scale="0.5 1 2", input_position="@[-1].position")

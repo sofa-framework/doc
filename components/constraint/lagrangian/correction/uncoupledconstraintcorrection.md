@@ -107,7 +107,7 @@ Factor applied to the constraint forces when correcting the positions
 		<td>1</td>
 	</tr>
 	<tr>
-		<td>useOdeSolverIntegrationFactors</td>
+		<td>useIntegrationSchemeIntegrationFactors</td>
 		<td>
 Use odeSolver integration factors instead of correctionVelocityFactor and correctionPositionFactor
 		</td>
@@ -234,7 +234,7 @@ Factor applied to the constraint forces when correcting the positions
 		<td>1</td>
 	</tr>
 	<tr>
-		<td>useOdeSolverIntegrationFactors</td>
+		<td>useIntegrationSchemeIntegrationFactors</td>
 		<td>
 Use odeSolver integration factors instead of correctionVelocityFactor and correctionPositionFactor
 		</td>
@@ -361,7 +361,7 @@ Factor applied to the constraint forces when correcting the positions
 		<td>1</td>
 	</tr>
 	<tr>
-		<td>useOdeSolverIntegrationFactors</td>
+		<td>useIntegrationSchemeIntegrationFactors</td>
 		<td>
 Use odeSolver integration factors instead of correctionVelocityFactor and correctionPositionFactor
 		</td>
@@ -488,7 +488,7 @@ Factor applied to the constraint forces when correcting the positions
 		<td>1</td>
 	</tr>
 	<tr>
-		<td>useOdeSolverIntegrationFactors</td>
+		<td>useIntegrationSchemeIntegrationFactors</td>
 		<td>
 Use odeSolver integration factors instead of correctionVelocityFactor and correctionPositionFactor
 		</td>

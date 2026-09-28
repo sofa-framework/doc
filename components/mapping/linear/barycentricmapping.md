@@ -279,7 +279,7 @@ BarycentricMappingTrussBeam.scn
         <RequiredPlugin pluginName="Sofa.Component.Mapping.Linear"/> <!-- Needed to use components [BarycentricMapping IdentityMapping TubularMapping] -->
         <RequiredPlugin pluginName="Sofa.Component.Mass"/> <!-- Needed to use components [UniformMass] -->
         <RequiredPlugin pluginName="Sofa.Component.MechanicalLoad"/> <!-- Needed to use components [ConstantForceField] -->
-        <RequiredPlugin pluginName="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+        <RequiredPlugin pluginName="Sofa.Component.IntegrationScheme.Backward"/> <!-- Needed to use components [EulerImplicitIntegrationScheme] -->
         <RequiredPlugin pluginName="Sofa.Component.SolidMechanics.FEM.Elastic"/> <!-- Needed to use components [BeamFEMForceField TetrahedronFEMForceField] -->
         <RequiredPlugin pluginName="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
         <RequiredPlugin pluginName="Sofa.Component.Topology.Container.Constant"/> <!-- Needed to use components [MeshTopology] -->
@@ -297,7 +297,7 @@ BarycentricMappingTrussBeam.scn
         
         <!-- A deformable square mesh -->
         <Node name="Truss" activated="true" gravity="0 0 0">
-            <EulerImplicitSolver  rayleighStiffness="0.1" rayleighMass="0.1" />
+            <EulerImplicitIntegrationScheme  rayleighStiffness="0.1" rayleighMass="0.1" />
             <CGLinearSolver iterations="125" tolerance="1e-16" threshold="1e-16" />
             <MeshGmshLoader name="meshLoader0" filename="mesh/truss_tetra.msh" />
             <TetrahedronSetTopologyContainer name="Container" src="@meshLoader0" />
@@ -364,7 +364,7 @@ BarycentricMappingTrussBeam.scn
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mapping.Linear")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mass")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.MechanicalLoad")
-       root.addObject('RequiredPlugin', pluginName="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', pluginName="Sofa.Component.IntegrationScheme.Backward")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.SolidMechanics.FEM.Elastic")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.StateContainer")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Topology.Container.Constant")
@@ -382,7 +382,7 @@ BarycentricMappingTrussBeam.scn
 
        truss = root.addChild('Truss', activated="true", gravity="0 0 0")
 
-       truss.addObject('EulerImplicitSolver', rayleighStiffness="0.1", rayleighMass="0.1")
+       truss.addObject('EulerImplicitIntegrationScheme', rayleighStiffness="0.1", rayleighMass="0.1")
        truss.addObject('CGLinearSolver', iterations="125", tolerance="1e-16", threshold="1e-16")
        truss.addObject('MeshGmshLoader', name="meshLoader0", filename="mesh/truss_tetra.msh")
        truss.addObject('TetrahedronSetTopologyContainer', name="Container", src="@meshLoader0")
@@ -447,7 +447,7 @@ BarycentricMapping.scn
         <RequiredPlugin pluginName="Sofa.Component.Mapping.Linear"/> <!-- Needed to use components [BarycentricMapping] -->
         <RequiredPlugin pluginName="Sofa.Component.Mapping.NonLinear"/> <!-- Needed to use components [RigidMapping] -->
         <RequiredPlugin pluginName="Sofa.Component.Mass"/> <!-- Needed to use components [UniformMass] -->
-        <RequiredPlugin pluginName="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+        <RequiredPlugin pluginName="Sofa.Component.IntegrationScheme.Backward"/> <!-- Needed to use components [EulerImplicitIntegrationScheme] -->
         <RequiredPlugin pluginName="Sofa.Component.SolidMechanics.FEM.Elastic"/> <!-- Needed to use components [TetrahedronFEMForceField] -->
         <RequiredPlugin pluginName="Sofa.Component.SolidMechanics.Spring"/> <!-- Needed to use components [MeshSpringForceField RegularGridSpringForceField] -->
         <RequiredPlugin pluginName="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
@@ -475,7 +475,7 @@ BarycentricMapping.scn
                 <OglModel name="Visual" src="@meshLoader_19" color="gray" />
             </Node>
             <Node name="TorusFEM">
-                <EulerImplicitSolver rayleighStiffness="0.01"  rayleighMass="0.1" />
+                <EulerImplicitIntegrationScheme rayleighStiffness="0.01"  rayleighMass="0.1" />
                 <CGLinearSolver iterations="100" threshold="0.00000001" tolerance="1e-5"/>
                 <MeshGmshLoader name="loader" filename="mesh/torus_low_res.msh" />
                 <MeshTopology src="@loader" />
@@ -498,7 +498,7 @@ BarycentricMapping.scn
                 </Node>
             </Node>
             <Node name="TorusSpring">
-                <EulerImplicitSolver rayleighStiffness="0.01" />
+                <EulerImplicitIntegrationScheme rayleighStiffness="0.01" />
                 <CGLinearSolver iterations="100" threshold="0.00000001" tolerance="1e-5"/>
                 <MeshGmshLoader name="loader" filename="mesh/torus2_low_res.msh" />
                 <MeshTopology src="@loader" />
@@ -521,7 +521,7 @@ BarycentricMapping.scn
                 </Node>
             </Node>
             <Node name="TorusFFD">
-                <EulerImplicitSolver rayleighStiffness="0.01" />
+                <EulerImplicitIntegrationScheme rayleighStiffness="0.01" />
                 <CGLinearSolver iterations="100" threshold="0.00000001" tolerance="1e-5"/>
                 <MechanicalObject dx="7.5" />
                 <UniformMass totalMass="5" />
@@ -543,7 +543,7 @@ BarycentricMapping.scn
                 </Node>
             </Node>
             <Node name="TorusRigid">
-                <EulerImplicitSolver rayleighStiffness="0.01" />
+                <EulerImplicitIntegrationScheme rayleighStiffness="0.01" />
                 <CGLinearSolver iterations="100" threshold="0.00000001" tolerance="1e-5"/>
                 <MechanicalObject template="Rigid3" dx="10" />
                 <UniformMass filename="BehaviorModels/torus2.rigid" />
@@ -575,7 +575,7 @@ BarycentricMapping.scn
                 <OglModel name="Visual" src="@meshLoader_21" color="gray" dz="6" />
             </Node>
             <Node name="TorusFEM1">
-                <EulerImplicitSolver rayleighStiffness="0.01" />
+                <EulerImplicitIntegrationScheme rayleighStiffness="0.01" />
                 <CGLinearSolver iterations="100" threshold="0.00000001" tolerance="1e-5"/>
                 <MeshGmshLoader name="loader" filename="mesh/torus_low_res.msh" />
                 <MeshTopology src="@loader" />
@@ -598,7 +598,7 @@ BarycentricMapping.scn
                 </Node>
             </Node>
             <Node name="TorusFEM2">
-                <EulerImplicitSolver rayleighStiffness="0.01" />
+                <EulerImplicitIntegrationScheme rayleighStiffness="0.01" />
                 <CGLinearSolver iterations="100" threshold="0.00000001" tolerance="1e-5"/>
                 <MeshGmshLoader name="loader" filename="mesh/torus2_low_res.msh" />
                 <MeshTopology src="@loader" />
@@ -621,7 +621,7 @@ BarycentricMapping.scn
                 </Node>
             </Node>
             <Node name="TorusFEM3">
-                <EulerImplicitSolver rayleighStiffness="0.01" />
+                <EulerImplicitIntegrationScheme rayleighStiffness="0.01" />
                 <CGLinearSolver iterations="100" threshold="0.00000001" tolerance="1e-5"/>
                 <MeshGmshLoader name="loader" filename="mesh/torus_low_res.msh" />
                 <MeshTopology src="@loader" />
@@ -644,7 +644,7 @@ BarycentricMapping.scn
                 </Node>
             </Node>
             <Node name="TorusFEM4">
-                <EulerImplicitSolver rayleighStiffness="0.01" />
+                <EulerImplicitIntegrationScheme rayleighStiffness="0.01" />
                 <CGLinearSolver iterations="100" threshold="0.00000001" tolerance="1e-5"/>
                 <MeshGmshLoader name="loader" filename="mesh/torus2_low_res.msh" />
                 <MeshTopology src="@loader" />
@@ -679,7 +679,7 @@ BarycentricMapping.scn
                 <OglModel name="Visual" src="@meshLoader_14" dz="12" color="gray" />
             </Node>
             <Node name="TorusSpring1">
-                <EulerImplicitSolver rayleighStiffness="0.01" />
+                <EulerImplicitIntegrationScheme rayleighStiffness="0.01" />
                 <CGLinearSolver iterations="100" threshold="0.00000001" tolerance="1e-5"/>
                 <MeshGmshLoader name="loader" filename="mesh/torus_low_res.msh" />
                 <MeshTopology src="@loader" />
@@ -702,7 +702,7 @@ BarycentricMapping.scn
                 </Node>
             </Node>
             <Node name="TorusSpring2">
-                <EulerImplicitSolver rayleighStiffness="0.01" />
+                <EulerImplicitIntegrationScheme rayleighStiffness="0.01" />
                 <CGLinearSolver iterations="100" threshold="0.00000001" tolerance="1e-5"/>
                 <MeshGmshLoader name="loader" filename="mesh/torus2_low_res.msh" />
                 <MeshTopology src="@loader" />
@@ -725,7 +725,7 @@ BarycentricMapping.scn
                 </Node>
             </Node>
             <Node name="TorusSpring3">
-                <EulerImplicitSolver rayleighStiffness="0.01" />
+                <EulerImplicitIntegrationScheme rayleighStiffness="0.01" />
                 <CGLinearSolver iterations="100" threshold="0.00000001" tolerance="1e-5"/>
                 <MeshGmshLoader name="loader" filename="mesh/torus_low_res.msh" />
                 <MeshTopology src="@loader" />
@@ -748,7 +748,7 @@ BarycentricMapping.scn
                 </Node>
             </Node>
             <Node name="TorusSpring4">
-                <EulerImplicitSolver rayleighStiffness="0.01" />
+                <EulerImplicitIntegrationScheme rayleighStiffness="0.01" />
                 <CGLinearSolver iterations="100" threshold="0.00000001" tolerance="1e-5"/>
                 <MeshGmshLoader name="loader" filename="mesh/torus2_low_res.msh" />
                 <MeshTopology src="@loader" />
@@ -783,7 +783,7 @@ BarycentricMapping.scn
                 <OglModel name="Visual" src="@meshLoader_9" dz="18" color="gray" />
             </Node>
             <Node name="TorusFFD1">
-                <EulerImplicitSolver rayleighStiffness="0.01" />
+                <EulerImplicitIntegrationScheme rayleighStiffness="0.01" />
                 <CGLinearSolver iterations="100" threshold="0.00000001" tolerance="1e-5"/>
                 <MechanicalObject dx="2.5" dz="18" />
                 <UniformMass totalMass="5" />
@@ -805,7 +805,7 @@ BarycentricMapping.scn
                 </Node>
             </Node>
             <Node name="TorusFFD2">
-                <EulerImplicitSolver rayleighStiffness="0.01" />
+                <EulerImplicitIntegrationScheme rayleighStiffness="0.01" />
                 <CGLinearSolver iterations="100" threshold="0.00000001" tolerance="1e-5"/>
                 <MechanicalObject dx="5" dz="18" />
                 <UniformMass totalMass="5" />
@@ -827,7 +827,7 @@ BarycentricMapping.scn
                 </Node>
             </Node>
             <Node name="TorusFFD3">
-                <EulerImplicitSolver rayleighStiffness="0.01" />
+                <EulerImplicitIntegrationScheme rayleighStiffness="0.01" />
                 <CGLinearSolver iterations="100" threshold="0.00000001" tolerance="1e-5"/>
                 <MechanicalObject dx="7.5" dz="18" />
                 <UniformMass totalMass="5" />
@@ -849,7 +849,7 @@ BarycentricMapping.scn
                 </Node>
             </Node>
             <Node name="TorusFFD4">
-                <EulerImplicitSolver rayleighStiffness="0.01" />
+                <EulerImplicitIntegrationScheme rayleighStiffness="0.01" />
                 <CGLinearSolver iterations="100" threshold="0.00000001" tolerance="1e-5"/>
                 <MechanicalObject dx="10" dz="18" />
                 <UniformMass totalMass="5" />
@@ -883,7 +883,7 @@ BarycentricMapping.scn
                 <OglModel name="Visual" src="@meshLoader_2" dz="24" color="gray" />
             </Node>
             <Node name="TorusRigid1">
-                <EulerImplicitSolver rayleighStiffness="0" />
+                <EulerImplicitIntegrationScheme rayleighStiffness="0" />
                 <CGLinearSolver iterations="100" threshold="0.00000001" tolerance="1e-5"/>
                 <MechanicalObject template="Rigid3" dx="2.5" dz="24" />
                 <UniformMass filename="BehaviorModels/torus.rigid" />
@@ -903,7 +903,7 @@ BarycentricMapping.scn
                 </Node>
             </Node>
             <Node name="TorusRigid2">
-                <EulerImplicitSolver rayleighStiffness="0" />
+                <EulerImplicitIntegrationScheme rayleighStiffness="0" />
                 <CGLinearSolver iterations="100" threshold="0.00000001" tolerance="1e-5"/>
                 <MechanicalObject template="Rigid3" dx="5" dz="24" />
                 <UniformMass filename="BehaviorModels/torus2.rigid" />
@@ -923,7 +923,7 @@ BarycentricMapping.scn
                 </Node>
             </Node>
             <Node name="TorusRigid3">
-                <EulerImplicitSolver rayleighStiffness="0" />
+                <EulerImplicitIntegrationScheme rayleighStiffness="0" />
                 <CGLinearSolver iterations="100" threshold="0.00000001" tolerance="1e-5"/>
                 <MechanicalObject template="Rigid3" dx="7.5" dz="24" />
                 <UniformMass filename="BehaviorModels/torus.rigid" />
@@ -943,7 +943,7 @@ BarycentricMapping.scn
                 </Node>
             </Node>
             <Node name="TorusRigid4">
-                <EulerImplicitSolver rayleighStiffness="0" />
+                <EulerImplicitIntegrationScheme rayleighStiffness="0" />
                 <CGLinearSolver iterations="100" threshold="0.00000001" tolerance="1e-5"/>
                 <MechanicalObject template="Rigid3" dx="10" dz="24" />
                 <UniformMass filename="BehaviorModels/torus2.rigid" />
@@ -983,7 +983,7 @@ BarycentricMapping.scn
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mapping.Linear")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mapping.NonLinear")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mass")
-       root.addObject('RequiredPlugin', pluginName="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', pluginName="Sofa.Component.IntegrationScheme.Backward")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.SolidMechanics.FEM.Elastic")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.SolidMechanics.Spring")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.StateContainer")
@@ -1014,7 +1014,7 @@ BarycentricMapping.scn
 
        torus_fem = Chain.addChild('TorusFEM')
 
-       torus_fem.addObject('EulerImplicitSolver', rayleighStiffness="0.01", rayleighMass="0.1")
+       torus_fem.addObject('EulerImplicitIntegrationScheme', rayleighStiffness="0.01", rayleighMass="0.1")
        torus_fem.addObject('CGLinearSolver', iterations="100", threshold="0.00000001", tolerance="1e-5")
        torus_fem.addObject('MeshGmshLoader', name="loader", filename="mesh/torus_low_res.msh")
        torus_fem.addObject('MeshTopology', src="@loader")
@@ -1040,7 +1040,7 @@ BarycentricMapping.scn
 
        torus_spring = Chain.addChild('TorusSpring')
 
-       torus_spring.addObject('EulerImplicitSolver', rayleighStiffness="0.01")
+       torus_spring.addObject('EulerImplicitIntegrationScheme', rayleighStiffness="0.01")
        torus_spring.addObject('CGLinearSolver', iterations="100", threshold="0.00000001", tolerance="1e-5")
        torus_spring.addObject('MeshGmshLoader', name="loader", filename="mesh/torus2_low_res.msh")
        torus_spring.addObject('MeshTopology', src="@loader")
@@ -1066,7 +1066,7 @@ BarycentricMapping.scn
 
        torus_ffd = Chain.addChild('TorusFFD')
 
-       torus_ffd.addObject('EulerImplicitSolver', rayleighStiffness="0.01")
+       torus_ffd.addObject('EulerImplicitIntegrationScheme', rayleighStiffness="0.01")
        torus_ffd.addObject('CGLinearSolver', iterations="100", threshold="0.00000001", tolerance="1e-5")
        torus_ffd.addObject('MechanicalObject', dx="7.5")
        torus_ffd.addObject('UniformMass', totalMass="5")
@@ -1091,7 +1091,7 @@ BarycentricMapping.scn
 
        torus_rigid = Chain.addChild('TorusRigid')
 
-       torus_rigid.addObject('EulerImplicitSolver', rayleighStiffness="0.01")
+       torus_rigid.addObject('EulerImplicitIntegrationScheme', rayleighStiffness="0.01")
        torus_rigid.addObject('CGLinearSolver', iterations="100", threshold="0.00000001", tolerance="1e-5")
        torus_rigid.addObject('MechanicalObject', template="Rigid3", dx="10")
        torus_rigid.addObject('UniformMass', filename="BehaviorModels/torus2.rigid")
@@ -1127,7 +1127,7 @@ BarycentricMapping.scn
 
        torus_fem1 = ChainFEM.addChild('TorusFEM1')
 
-       torus_fem1.addObject('EulerImplicitSolver', rayleighStiffness="0.01")
+       torus_fem1.addObject('EulerImplicitIntegrationScheme', rayleighStiffness="0.01")
        torus_fem1.addObject('CGLinearSolver', iterations="100", threshold="0.00000001", tolerance="1e-5")
        torus_fem1.addObject('MeshGmshLoader', name="loader", filename="mesh/torus_low_res.msh")
        torus_fem1.addObject('MeshTopology', src="@loader")
@@ -1153,7 +1153,7 @@ BarycentricMapping.scn
 
        torus_fem2 = ChainFEM.addChild('TorusFEM2')
 
-       torus_fem2.addObject('EulerImplicitSolver', rayleighStiffness="0.01")
+       torus_fem2.addObject('EulerImplicitIntegrationScheme', rayleighStiffness="0.01")
        torus_fem2.addObject('CGLinearSolver', iterations="100", threshold="0.00000001", tolerance="1e-5")
        torus_fem2.addObject('MeshGmshLoader', name="loader", filename="mesh/torus2_low_res.msh")
        torus_fem2.addObject('MeshTopology', src="@loader")
@@ -1179,7 +1179,7 @@ BarycentricMapping.scn
 
        torus_fem3 = ChainFEM.addChild('TorusFEM3')
 
-       torus_fem3.addObject('EulerImplicitSolver', rayleighStiffness="0.01")
+       torus_fem3.addObject('EulerImplicitIntegrationScheme', rayleighStiffness="0.01")
        torus_fem3.addObject('CGLinearSolver', iterations="100", threshold="0.00000001", tolerance="1e-5")
        torus_fem3.addObject('MeshGmshLoader', name="loader", filename="mesh/torus_low_res.msh")
        torus_fem3.addObject('MeshTopology', src="@loader")
@@ -1205,7 +1205,7 @@ BarycentricMapping.scn
 
        torus_fem4 = ChainFEM.addChild('TorusFEM4')
 
-       torus_fem4.addObject('EulerImplicitSolver', rayleighStiffness="0.01")
+       torus_fem4.addObject('EulerImplicitIntegrationScheme', rayleighStiffness="0.01")
        torus_fem4.addObject('CGLinearSolver', iterations="100", threshold="0.00000001", tolerance="1e-5")
        torus_fem4.addObject('MeshGmshLoader', name="loader", filename="mesh/torus2_low_res.msh")
        torus_fem4.addObject('MeshTopology', src="@loader")
@@ -1244,7 +1244,7 @@ BarycentricMapping.scn
 
        torus_spring1 = ChainSpring.addChild('TorusSpring1')
 
-       torus_spring1.addObject('EulerImplicitSolver', rayleighStiffness="0.01")
+       torus_spring1.addObject('EulerImplicitIntegrationScheme', rayleighStiffness="0.01")
        torus_spring1.addObject('CGLinearSolver', iterations="100", threshold="0.00000001", tolerance="1e-5")
        torus_spring1.addObject('MeshGmshLoader', name="loader", filename="mesh/torus_low_res.msh")
        torus_spring1.addObject('MeshTopology', src="@loader")
@@ -1270,7 +1270,7 @@ BarycentricMapping.scn
 
        torus_spring2 = ChainSpring.addChild('TorusSpring2')
 
-       torus_spring2.addObject('EulerImplicitSolver', rayleighStiffness="0.01")
+       torus_spring2.addObject('EulerImplicitIntegrationScheme', rayleighStiffness="0.01")
        torus_spring2.addObject('CGLinearSolver', iterations="100", threshold="0.00000001", tolerance="1e-5")
        torus_spring2.addObject('MeshGmshLoader', name="loader", filename="mesh/torus2_low_res.msh")
        torus_spring2.addObject('MeshTopology', src="@loader")
@@ -1296,7 +1296,7 @@ BarycentricMapping.scn
 
        torus_spring3 = ChainSpring.addChild('TorusSpring3')
 
-       torus_spring3.addObject('EulerImplicitSolver', rayleighStiffness="0.01")
+       torus_spring3.addObject('EulerImplicitIntegrationScheme', rayleighStiffness="0.01")
        torus_spring3.addObject('CGLinearSolver', iterations="100", threshold="0.00000001", tolerance="1e-5")
        torus_spring3.addObject('MeshGmshLoader', name="loader", filename="mesh/torus_low_res.msh")
        torus_spring3.addObject('MeshTopology', src="@loader")
@@ -1322,7 +1322,7 @@ BarycentricMapping.scn
 
        torus_spring4 = ChainSpring.addChild('TorusSpring4')
 
-       torus_spring4.addObject('EulerImplicitSolver', rayleighStiffness="0.01")
+       torus_spring4.addObject('EulerImplicitIntegrationScheme', rayleighStiffness="0.01")
        torus_spring4.addObject('CGLinearSolver', iterations="100", threshold="0.00000001", tolerance="1e-5")
        torus_spring4.addObject('MeshGmshLoader', name="loader", filename="mesh/torus2_low_res.msh")
        torus_spring4.addObject('MeshTopology', src="@loader")
@@ -1361,7 +1361,7 @@ BarycentricMapping.scn
 
        torus_ffd1 = ChainFFD.addChild('TorusFFD1')
 
-       torus_ffd1.addObject('EulerImplicitSolver', rayleighStiffness="0.01")
+       torus_ffd1.addObject('EulerImplicitIntegrationScheme', rayleighStiffness="0.01")
        torus_ffd1.addObject('CGLinearSolver', iterations="100", threshold="0.00000001", tolerance="1e-5")
        torus_ffd1.addObject('MechanicalObject', dx="2.5", dz="18")
        torus_ffd1.addObject('UniformMass', totalMass="5")
@@ -1386,7 +1386,7 @@ BarycentricMapping.scn
 
        torus_ffd2 = ChainFFD.addChild('TorusFFD2')
 
-       torus_ffd2.addObject('EulerImplicitSolver', rayleighStiffness="0.01")
+       torus_ffd2.addObject('EulerImplicitIntegrationScheme', rayleighStiffness="0.01")
        torus_ffd2.addObject('CGLinearSolver', iterations="100", threshold="0.00000001", tolerance="1e-5")
        torus_ffd2.addObject('MechanicalObject', dx="5", dz="18")
        torus_ffd2.addObject('UniformMass', totalMass="5")
@@ -1411,7 +1411,7 @@ BarycentricMapping.scn
 
        torus_ffd3 = ChainFFD.addChild('TorusFFD3')
 
-       torus_ffd3.addObject('EulerImplicitSolver', rayleighStiffness="0.01")
+       torus_ffd3.addObject('EulerImplicitIntegrationScheme', rayleighStiffness="0.01")
        torus_ffd3.addObject('CGLinearSolver', iterations="100", threshold="0.00000001", tolerance="1e-5")
        torus_ffd3.addObject('MechanicalObject', dx="7.5", dz="18")
        torus_ffd3.addObject('UniformMass', totalMass="5")
@@ -1436,7 +1436,7 @@ BarycentricMapping.scn
 
        torus_ffd4 = ChainFFD.addChild('TorusFFD4')
 
-       torus_ffd4.addObject('EulerImplicitSolver', rayleighStiffness="0.01")
+       torus_ffd4.addObject('EulerImplicitIntegrationScheme', rayleighStiffness="0.01")
        torus_ffd4.addObject('CGLinearSolver', iterations="100", threshold="0.00000001", tolerance="1e-5")
        torus_ffd4.addObject('MechanicalObject', dx="10", dz="18")
        torus_ffd4.addObject('UniformMass', totalMass="5")
@@ -1474,7 +1474,7 @@ BarycentricMapping.scn
 
        torus_rigid1 = ChainRigid.addChild('TorusRigid1')
 
-       torus_rigid1.addObject('EulerImplicitSolver', rayleighStiffness="0")
+       torus_rigid1.addObject('EulerImplicitIntegrationScheme', rayleighStiffness="0")
        torus_rigid1.addObject('CGLinearSolver', iterations="100", threshold="0.00000001", tolerance="1e-5")
        torus_rigid1.addObject('MechanicalObject', template="Rigid3", dx="2.5", dz="24")
        torus_rigid1.addObject('UniformMass', filename="BehaviorModels/torus.rigid")
@@ -1497,7 +1497,7 @@ BarycentricMapping.scn
 
        torus_rigid2 = ChainRigid.addChild('TorusRigid2')
 
-       torus_rigid2.addObject('EulerImplicitSolver', rayleighStiffness="0")
+       torus_rigid2.addObject('EulerImplicitIntegrationScheme', rayleighStiffness="0")
        torus_rigid2.addObject('CGLinearSolver', iterations="100", threshold="0.00000001", tolerance="1e-5")
        torus_rigid2.addObject('MechanicalObject', template="Rigid3", dx="5", dz="24")
        torus_rigid2.addObject('UniformMass', filename="BehaviorModels/torus2.rigid")
@@ -1520,7 +1520,7 @@ BarycentricMapping.scn
 
        torus_rigid3 = ChainRigid.addChild('TorusRigid3')
 
-       torus_rigid3.addObject('EulerImplicitSolver', rayleighStiffness="0")
+       torus_rigid3.addObject('EulerImplicitIntegrationScheme', rayleighStiffness="0")
        torus_rigid3.addObject('CGLinearSolver', iterations="100", threshold="0.00000001", tolerance="1e-5")
        torus_rigid3.addObject('MechanicalObject', template="Rigid3", dx="7.5", dz="24")
        torus_rigid3.addObject('UniformMass', filename="BehaviorModels/torus.rigid")
@@ -1543,7 +1543,7 @@ BarycentricMapping.scn
 
        torus_rigid4 = ChainRigid.addChild('TorusRigid4')
 
-       torus_rigid4.addObject('EulerImplicitSolver', rayleighStiffness="0")
+       torus_rigid4.addObject('EulerImplicitIntegrationScheme', rayleighStiffness="0")
        torus_rigid4.addObject('CGLinearSolver', iterations="100", threshold="0.00000001", tolerance="1e-5")
        torus_rigid4.addObject('MechanicalObject', template="Rigid3", dx="10", dz="24")
        torus_rigid4.addObject('UniformMass', filename="BehaviorModels/torus2.rigid")
@@ -1582,7 +1582,7 @@ BarycentricMapping_topologycontainer.scn
             <RequiredPlugin pluginName="Sofa.Component.LinearSolver.Direct"/> <!-- Needed to use components [SparseLDLSolver] -->
             <RequiredPlugin pluginName="Sofa.Component.Mapping.Linear"/> <!-- Needed to use components [BarycentricMapping] -->
             <RequiredPlugin pluginName="Sofa.Component.Mass"/> <!-- Needed to use components [UniformMass] -->
-            <RequiredPlugin pluginName="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+            <RequiredPlugin pluginName="Sofa.Component.IntegrationScheme.Backward"/> <!-- Needed to use components [EulerImplicitIntegrationScheme] -->
             <RequiredPlugin pluginName="Sofa.Component.SolidMechanics.FEM.Elastic"/> <!-- Needed to use components [TetrahedronFEMForceField] -->
             <RequiredPlugin pluginName="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
             <RequiredPlugin pluginName="Sofa.Component.Topology.Container.Dynamic"/> <!-- Needed to use components [TriangleSetTopologyContainer] -->
@@ -1600,7 +1600,7 @@ BarycentricMapping_topologycontainer.scn
         </Node>
     
         <Node name="raptor">
-            <EulerImplicitSolver rayleighStiffness="0.2" rayleighMass="0.2" />
+            <EulerImplicitIntegrationScheme rayleighStiffness="0.2" rayleighMass="0.2" />
             <SparseLDLSolver template="CompressedRowSparseMatrixd"/>
             <HexahedronSetTopologyContainer hexahedra="@../data/topology.hexahedra" />
             <MechanicalObject name="DOFs" template="Vec3" position="@../data/DOFs.position"/>
@@ -1647,7 +1647,7 @@ BarycentricMapping_topologycontainer.scn
        plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.LinearSolver.Direct")
        plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.Mapping.Linear")
        plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.Mass")
-       plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.ODESolver.Backward")
+       plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.IntegrationScheme.Backward")
        plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.SolidMechanics.FEM.Elastic")
        plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.StateContainer")
        plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.Topology.Container.Dynamic")
@@ -1665,7 +1665,7 @@ BarycentricMapping_topologycontainer.scn
 
        raptor = root.addChild('raptor')
 
-       raptor.addObject('EulerImplicitSolver', rayleighStiffness="0.2", rayleighMass="0.2")
+       raptor.addObject('EulerImplicitIntegrationScheme', rayleighStiffness="0.2", rayleighMass="0.2")
        raptor.addObject('SparseLDLSolver', template="CompressedRowSparseMatrixd")
        raptor.addObject('HexahedronSetTopologyContainer', hexahedra="@../data/topology.hexahedra")
        raptor.addObject('MechanicalObject', name="DOFs", template="Vec3", position="@../data/DOFs.position")
@@ -1708,7 +1708,7 @@ BarycentricMapping_meshtopology.scn
             <RequiredPlugin pluginName="Sofa.Component.LinearSolver.Direct"/> <!-- Needed to use components [SparseLDLSolver] -->
             <RequiredPlugin pluginName="Sofa.Component.Mapping.Linear"/> <!-- Needed to use components [BarycentricMapping] -->
             <RequiredPlugin pluginName="Sofa.Component.Mass"/> <!-- Needed to use components [UniformMass] -->
-            <RequiredPlugin pluginName="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+            <RequiredPlugin pluginName="Sofa.Component.IntegrationScheme.Backward"/> <!-- Needed to use components [EulerImplicitIntegrationScheme] -->
             <RequiredPlugin pluginName="Sofa.Component.SolidMechanics.FEM.Elastic"/> <!-- Needed to use components [TetrahedronFEMForceField] -->
             <RequiredPlugin pluginName="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
             <RequiredPlugin pluginName="Sofa.Component.Topology.Container.Dynamic"/> <!-- Needed to use components [TriangleSetTopologyContainer] -->
@@ -1726,7 +1726,7 @@ BarycentricMapping_meshtopology.scn
         </Node>
     
         <Node name="raptor">
-            <EulerImplicitSolver rayleighStiffness="0.2" rayleighMass="0.2" />
+            <EulerImplicitIntegrationScheme rayleighStiffness="0.2" rayleighMass="0.2" />
             <SparseLDLSolver template="CompressedRowSparseMatrixd"/>
             <MeshTopology hexahedra="@../data/topology.hexahedra" />
             <MechanicalObject name="DOFs" template="Vec3" position="@../data/DOFs.position"/>
@@ -1775,7 +1775,7 @@ BarycentricMapping_meshtopology.scn
        plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.LinearSolver.Direct")
        plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.Mapping.Linear")
        plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.Mass")
-       plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.ODESolver.Backward")
+       plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.IntegrationScheme.Backward")
        plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.SolidMechanics.FEM.Elastic")
        plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.StateContainer")
        plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.Topology.Container.Dynamic")
@@ -1793,7 +1793,7 @@ BarycentricMapping_meshtopology.scn
 
        raptor = root.addChild('raptor')
 
-       raptor.addObject('EulerImplicitSolver', rayleighStiffness="0.2", rayleighMass="0.2")
+       raptor.addObject('EulerImplicitIntegrationScheme', rayleighStiffness="0.2", rayleighMass="0.2")
        raptor.addObject('SparseLDLSolver', template="CompressedRowSparseMatrixd")
        raptor.addObject('MeshTopology', hexahedra="@../data/topology.hexahedra")
        raptor.addObject('MechanicalObject', name="DOFs", template="Vec3", position="@../data/DOFs.position")
@@ -1835,7 +1835,7 @@ BarycentricMapping_sparsegrid.scn
             <RequiredPlugin pluginName="Sofa.Component.LinearSolver.Direct"/> <!-- Needed to use components [SparseLDLSolver] -->
             <RequiredPlugin pluginName="Sofa.Component.Mapping.Linear"/> <!-- Needed to use components [BarycentricMapping] -->
             <RequiredPlugin pluginName="Sofa.Component.Mass"/> <!-- Needed to use components [UniformMass] -->
-            <RequiredPlugin pluginName="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+            <RequiredPlugin pluginName="Sofa.Component.IntegrationScheme.Backward"/> <!-- Needed to use components [EulerImplicitIntegrationScheme] -->
             <RequiredPlugin pluginName="Sofa.Component.SolidMechanics.FEM.Elastic"/> <!-- Needed to use components [TetrahedronFEMForceField] -->
             <RequiredPlugin pluginName="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
             <RequiredPlugin pluginName="Sofa.Component.Topology.Container.Dynamic"/> <!-- Needed to use components [TriangleSetTopologyContainer] -->
@@ -1848,7 +1848,7 @@ BarycentricMapping_sparsegrid.scn
         <MeshOBJLoader name="meshLoader" triangulate="true" filename="mesh/raptor_35kp.obj" />
     
         <Node name="raptor">
-            <EulerImplicitSolver rayleighStiffness="0.2" rayleighMass="0.2" />
+            <EulerImplicitIntegrationScheme rayleighStiffness="0.2" rayleighMass="0.2" />
             <SparseLDLSolver template="CompressedRowSparseMatrixd"/>
             <SparseGridTopology n="10 5 10" name="topology" fileTopology="@../meshLoader.filename" />
             <MechanicalObject name="DOFs" template="Vec3" position="@../data/DOFs.position"/>
@@ -1895,7 +1895,7 @@ BarycentricMapping_sparsegrid.scn
        plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.LinearSolver.Direct")
        plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.Mapping.Linear")
        plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.Mass")
-       plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.ODESolver.Backward")
+       plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.IntegrationScheme.Backward")
        plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.SolidMechanics.FEM.Elastic")
        plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.StateContainer")
        plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.Topology.Container.Dynamic")
@@ -1908,7 +1908,7 @@ BarycentricMapping_sparsegrid.scn
 
        raptor = root.addChild('raptor')
 
-       raptor.addObject('EulerImplicitSolver', rayleighStiffness="0.2", rayleighMass="0.2")
+       raptor.addObject('EulerImplicitIntegrationScheme', rayleighStiffness="0.2", rayleighMass="0.2")
        raptor.addObject('SparseLDLSolver', template="CompressedRowSparseMatrixd")
        raptor.addObject('SparseGridTopology', n="10 5 10", name="topology", fileTopology="@../meshLoader.filename")
        raptor.addObject('MechanicalObject', name="DOFs", template="Vec3", position="@../data/DOFs.position")

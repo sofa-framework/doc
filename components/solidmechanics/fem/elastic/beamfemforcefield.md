@@ -164,7 +164,7 @@ BeamFEMForceField.scn
         <RequiredPlugin pluginName="Sofa.Component.LinearSolver.Iterative"/> <!-- Needed to use components [CGLinearSolver] -->
         <RequiredPlugin pluginName="Sofa.Component.Mapping.Linear"/> <!-- Needed to use components [BeamLinearMapping IdentityMapping] -->
         <RequiredPlugin pluginName="Sofa.Component.Mass"/> <!-- Needed to use components [UniformMass] -->
-        <RequiredPlugin pluginName="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+        <RequiredPlugin pluginName="Sofa.Component.IntegrationScheme.Backward"/> <!-- Needed to use components [EulerImplicitIntegrationScheme] -->
         <RequiredPlugin pluginName="Sofa.Component.SolidMechanics.FEM.Elastic"/> <!-- Needed to use components [BeamFEMForceField] -->
         <RequiredPlugin pluginName="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
         <RequiredPlugin pluginName="Sofa.Component.Topology.Container.Constant"/> <!-- Needed to use components [CubeTopology MeshTopology] -->
@@ -179,7 +179,7 @@ BeamFEMForceField.scn
         <CollisionResponse name="Response" response="PenalityContactForceField" />
     
         <Node name="beam-withPointCollision">
-            <EulerImplicitSolver rayleighStiffness="0" printLog="false"  rayleighMass="0.1" />
+            <EulerImplicitIntegrationScheme rayleighStiffness="0" printLog="false"  rayleighMass="0.1" />
             <BTDLinearSolver template="BTDMatrix6d" printLog="false" verbose="false" />
             <MechanicalObject template="Rigid3" name="DOFs" position="0 0 0 0 0 0 1  1 0 0 0 0 0 1  2 0 0 0 0 0 1  3 0 0 0 0 0 1  4 0 0 0 0 0 1  5 0 0 0 0 0 1  6 0 0 0 0 0 1  7 0 0 0 0 0 1" />
             <MeshTopology name="lines" lines="0 1 1 2 2 3 3 4 4 5 5 6 6 7" />
@@ -197,7 +197,7 @@ BeamFEMForceField.scn
         </Node>
     
         <Node name="beam-withTriangulatedCubeCollision">
-            <EulerImplicitSolver rayleighStiffness="0" printLog="false"  rayleighMass="0.1" />
+            <EulerImplicitIntegrationScheme rayleighStiffness="0" printLog="false"  rayleighMass="0.1" />
             <BTDLinearSolver template="BTDMatrix6d" printLog="false" verbose="false" />
             <MechanicalObject template="Rigid3" name="DOFs" position="0 0 -1 0 0 0 1  1 0 -1 0 0 0 1  2 0 -1 0 0 0 1  3 0 -1 0 0 0 1  4 0 -1 0 0 0 1  5 0 -1 0 0 0 1  6 0  -1 0 0 0 1  7 0 -1 0 0 0 1" />
             <MeshTopology name="lines" lines="0 1 1 2 2 3 3 4 4 5 5 6 6 7" />
@@ -217,8 +217,8 @@ BeamFEMForceField.scn
     
     
         <Node name="beam-withSphereCollision">
-            <EulerImplicitSolver rayleighStiffness="0" printLog="false" rayleighMass="0.1"/>
-            <CGLinearSolver threshold="0.000000001" tolerance="0.0000000001" iterations="25" printLog="false" />
+            <EulerImplicitIntegrationScheme rayleighStiffness="0" printLog="false" rayleighMass="0.1"/>
+            <CGLinearSolver threshold="0.000000000001" tolerance="0.0000000000001" iterations="25" printLog="false" />
     
             <MechanicalObject template="Rigid3" name="DOFs" position="0 0 1 0 0 0 1  1 0 1 0 0 0 1  2 0 1 0 0 0 1  3 0 1 0 0 0 1" />
             <MeshTopology name="lines" lines="0 1 1 2 2 3" />
@@ -261,7 +261,7 @@ BeamFEMForceField.scn
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.LinearSolver.Iterative")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mapping.Linear")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mass")
-       root.addObject('RequiredPlugin', pluginName="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', pluginName="Sofa.Component.IntegrationScheme.Backward")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.SolidMechanics.FEM.Elastic")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.StateContainer")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Topology.Container.Constant")
@@ -276,7 +276,7 @@ BeamFEMForceField.scn
 
        beam_with_point_collision = root.addChild('beam-withPointCollision')
 
-       beam_with_point_collision.addObject('EulerImplicitSolver', rayleighStiffness="0", printLog="false", rayleighMass="0.1")
+       beam_with_point_collision.addObject('EulerImplicitIntegrationScheme', rayleighStiffness="0", printLog="false", rayleighMass="0.1")
        beam_with_point_collision.addObject('BTDLinearSolver', template="BTDMatrix6d", printLog="false", verbose="false")
        beam_with_point_collision.addObject('MechanicalObject', template="Rigid3", name="DOFs", position="0 0 0 0 0 0 1  1 0 0 0 0 0 1  2 0 0 0 0 0 1  3 0 0 0 0 0 1  4 0 0 0 0 0 1  5 0 0 0 0 0 1  6 0 0 0 0 0 1  7 0 0 0 0 0 1")
        beam_with_point_collision.addObject('MeshTopology', name="lines", lines="0 1 1 2 2 3 3 4 4 5 5 6 6 7")
@@ -292,7 +292,7 @@ BeamFEMForceField.scn
 
        beam_with_triangulated_cube_collision = root.addChild('beam-withTriangulatedCubeCollision')
 
-       beam_with_triangulated_cube_collision.addObject('EulerImplicitSolver', rayleighStiffness="0", printLog="false", rayleighMass="0.1")
+       beam_with_triangulated_cube_collision.addObject('EulerImplicitIntegrationScheme', rayleighStiffness="0", printLog="false", rayleighMass="0.1")
        beam_with_triangulated_cube_collision.addObject('BTDLinearSolver', template="BTDMatrix6d", printLog="false", verbose="false")
        beam_with_triangulated_cube_collision.addObject('MechanicalObject', template="Rigid3", name="DOFs", position="0 0 -1 0 0 0 1  1 0 -1 0 0 0 1  2 0 -1 0 0 0 1  3 0 -1 0 0 0 1  4 0 -1 0 0 0 1  5 0 -1 0 0 0 1  6 0  -1 0 0 0 1  7 0 -1 0 0 0 1")
        beam_with_triangulated_cube_collision.addObject('MeshTopology', name="lines", lines="0 1 1 2 2 3 3 4 4 5 5 6 6 7")
@@ -311,8 +311,8 @@ BeamFEMForceField.scn
 
        beam_with_sphere_collision = root.addChild('beam-withSphereCollision')
 
-       beam_with_sphere_collision.addObject('EulerImplicitSolver', rayleighStiffness="0", printLog="false", rayleighMass="0.1")
-       beam_with_sphere_collision.addObject('CGLinearSolver', threshold="0.000000001", tolerance="0.0000000001", iterations="25", printLog="false")
+       beam_with_sphere_collision.addObject('EulerImplicitIntegrationScheme', rayleighStiffness="0", printLog="false", rayleighMass="0.1")
+       beam_with_sphere_collision.addObject('CGLinearSolver', threshold="0.000000000001", tolerance="0.0000000000001", iterations="25", printLog="false")
        beam_with_sphere_collision.addObject('MechanicalObject', template="Rigid3", name="DOFs", position="0 0 1 0 0 0 1  1 0 1 0 0 0 1  2 0 1 0 0 0 1  3 0 1 0 0 0 1")
        beam_with_sphere_collision.addObject('MeshTopology', name="lines", lines="0 1 1 2 2 3")
        beam_with_sphere_collision.addObject('FixedProjectiveConstraint', name="FixedProjectiveConstraint", indices="0")

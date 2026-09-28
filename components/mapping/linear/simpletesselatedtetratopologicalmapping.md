@@ -133,7 +133,7 @@ SimpleTesselatedTetraTopologicalMapping.scn
         <RequiredPlugin pluginName="Sofa.Component.LinearSolver.Iterative"/> <!-- Needed to use components [CGLinearSolver] -->
         <RequiredPlugin pluginName="Sofa.Component.Mapping.Linear"/> <!-- Needed to use components [SimpleTesselatedTetraMechanicalMapping SimpleTesselatedTetraTopologicalMapping] -->
         <RequiredPlugin pluginName="Sofa.Component.Mass"/> <!-- Needed to use components [DiagonalMass] -->
-        <RequiredPlugin pluginName="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+        <RequiredPlugin pluginName="Sofa.Component.IntegrationScheme.Backward"/> <!-- Needed to use components [EulerImplicitIntegrationScheme] -->
         <RequiredPlugin pluginName="Sofa.Component.SolidMechanics.FEM.Elastic"/> <!-- Needed to use components [TetrahedralCorotationalFEMForceField] -->
         <RequiredPlugin pluginName="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
         <RequiredPlugin pluginName="Sofa.Component.Topology.Container.Dynamic"/> <!-- Needed to use components [TetrahedronSetGeometryAlgorithms TetrahedronSetTopologyContainer TetrahedronSetTopologyModifier] -->
@@ -147,7 +147,7 @@ SimpleTesselatedTetraTopologicalMapping.scn
         <DefaultAnimationLoop/>
         
         <Node name="TetraTopology1">
-            <EulerImplicitSolver name="cg_odesolver" printLog="false"  rayleighStiffness="0.1" rayleighMass="0.1" />
+            <EulerImplicitIntegrationScheme name="cg_odesolver" printLog="false"  rayleighStiffness="0.1" rayleighMass="0.1" />
             <CGLinearSolver iterations="25" name="linear solver" tolerance="1.0e-9" threshold="1.0e-9" />
             <MeshGmshLoader name="meshLoader0" filename="mesh/liver.msh" />
             <TetrahedronSetTopologyContainer name="Container1" src="@meshLoader0" />
@@ -187,7 +187,7 @@ SimpleTesselatedTetraTopologicalMapping.scn
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.LinearSolver.Iterative")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mapping.Linear")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mass")
-       root.addObject('RequiredPlugin', pluginName="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', pluginName="Sofa.Component.IntegrationScheme.Backward")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.SolidMechanics.FEM.Elastic")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.StateContainer")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Topology.Container.Dynamic")
@@ -202,7 +202,7 @@ SimpleTesselatedTetraTopologicalMapping.scn
 
        tetra_topology1 = root.addChild('TetraTopology1')
 
-       tetra_topology1.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
+       tetra_topology1.addObject('EulerImplicitIntegrationScheme', name="cg_odesolver", printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
        tetra_topology1.addObject('CGLinearSolver', iterations="25", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
        tetra_topology1.addObject('MeshGmshLoader', name="meshLoader0", filename="mesh/liver.msh")
        tetra_topology1.addObject('TetrahedronSetTopologyContainer', name="Container1", src="@meshLoader0")
@@ -239,7 +239,7 @@ SimpleTesselatedTetraTopologicalMapping.scn
             <RequiredPlugin name="Sofa.Component.LinearSolver.Iterative"/> <!-- Needed to use components [CGLinearSolver] -->  
             <RequiredPlugin name="Sofa.Component.Mapping.Linear"/> <!-- Needed to use components [SimpleTesselatedTetraMechanicalMapping, SimpleTesselatedTetraTopologicalMapping] -->  
             <RequiredPlugin name="Sofa.Component.Mass"/> <!-- Needed to use components [DiagonalMass] -->  
-            <RequiredPlugin name="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->  
+            <RequiredPlugin name="Sofa.Component.IntegrationScheme.Backward"/> <!-- Needed to use components [EulerImplicitIntegrationScheme] -->
             <RequiredPlugin name="Sofa.Component.SolidMechanics.FEM.Elastic"/> <!-- Needed to use components [TetrahedralCorotationalFEMForceField] -->  
             <RequiredPlugin name="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->  
             <RequiredPlugin name="Sofa.Component.Topology.Container.Dynamic"/> <!-- Needed to use components [TetrahedronSetGeometryAlgorithms, TetrahedronSetTopologyContainer, TetrahedronSetTopologyModifier] -->  
@@ -250,7 +250,7 @@ SimpleTesselatedTetraTopologicalMapping.scn
         <BVHNarrowPhase/>
         <CollisionResponse response="PenalityContactForceField" name="collision response"/>
         <Node name="TetraTopology1">
-            <EulerImplicitSolver name="cg_odesolver" printLog="false" rayleighStiffness="0.1" rayleighMass="0.1" />
+            <EulerImplicitIntegrationScheme name="cg_odesolver" printLog="false" rayleighStiffness="0.1" rayleighMass="0.1" />
             <CGLinearSolver iterations="25" name="linear solver" tolerance="1.0e-9" threshold="1.0e-9" />
             <MeshGmshLoader name="meshLoader0" filename="mesh/liver.msh" />
             <TetrahedronSetTopologyContainer name="Container1" src="@meshLoader0" />
@@ -292,7 +292,7 @@ SimpleTesselatedTetraTopologicalMapping.scn
        required_plugins.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Iterative")
        required_plugins.addObject('RequiredPlugin', name="Sofa.Component.Mapping.Linear")
        required_plugins.addObject('RequiredPlugin', name="Sofa.Component.Mass")
-       required_plugins.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
+       required_plugins.addObject('RequiredPlugin', name="Sofa.Component.IntegrationScheme.Backward")
        required_plugins.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.FEM.Elastic")
        required_plugins.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
        required_plugins.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Dynamic")
@@ -305,7 +305,7 @@ SimpleTesselatedTetraTopologicalMapping.scn
 
        tetra_topology1 = root.addChild('TetraTopology1')
 
-       tetra_topology1.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
+       tetra_topology1.addObject('EulerImplicitIntegrationScheme', name="cg_odesolver", printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
        tetra_topology1.addObject('CGLinearSolver', iterations="25", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
        tetra_topology1.addObject('MeshGmshLoader', name="meshLoader0", filename="mesh/liver.msh")
        tetra_topology1.addObject('TetrahedronSetTopologyContainer', name="Container1", src="@meshLoader0")

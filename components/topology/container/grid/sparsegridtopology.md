@@ -346,7 +346,7 @@ SparseGridTopology.scn
         <RequiredPlugin pluginName="Sofa.Component.LinearSolver.Iterative"/> <!-- Needed to use components [CGLinearSolver] -->
         <RequiredPlugin pluginName="Sofa.Component.Mapping.Linear"/> <!-- Needed to use components [BarycentricMapping] -->
         <RequiredPlugin pluginName="Sofa.Component.Mass"/> <!-- Needed to use components [UniformMass] -->
-        <RequiredPlugin pluginName="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+        <RequiredPlugin pluginName="Sofa.Component.IntegrationScheme.Backward"/> <!-- Needed to use components [EulerImplicitIntegrationScheme] -->
         <RequiredPlugin pluginName="Sofa.Component.SolidMechanics.Spring"/> <!-- Needed to use components [MeshSpringForceField] -->
         <RequiredPlugin pluginName="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
         <RequiredPlugin pluginName="Sofa.Component.Topology.Container.Grid"/> <!-- Needed to use components [SparseGridTopology] -->
@@ -365,7 +365,7 @@ SparseGridTopology.scn
         
         <Node name="DragonCoarse">
             <SparseGridTopology n="6 5 4" fileTopology="mesh/dragon.obj" />
-            <EulerImplicitSolver rayleighStiffness="0.1" rayleighMass="0.1"/>
+            <EulerImplicitIntegrationScheme rayleighStiffness="0.1" rayleighMass="0.1"/>
             <CGLinearSolver iterations="100" tolerance="1e-5" threshold="1e-5"/>
             <MechanicalObject />
             <UniformMass vertexMass="0.5" />
@@ -384,7 +384,7 @@ SparseGridTopology.scn
         </Node>
         <Node name="DragonMiddle">
             <SparseGridTopology n="12 9 6" fileTopology="mesh/dragon.obj" />
-            <EulerImplicitSolver rayleighStiffness="0.1" rayleighMass="0.1"/>
+            <EulerImplicitIntegrationScheme rayleighStiffness="0.1" rayleighMass="0.1"/>
             <CGLinearSolver iterations="100" tolerance="1e-5" threshold="1e-5"/>
             <MechanicalObject dz="15" />
             <UniformMass vertexMass="0.5" />
@@ -403,7 +403,7 @@ SparseGridTopology.scn
         </Node>
         <Node name="DragonFine">
             <SparseGridTopology n="25 20 9" fileTopology="mesh/dragon.obj" />
-            <EulerImplicitSolver rayleighStiffness="0.1" rayleighMass="0.1"/>
+            <EulerImplicitIntegrationScheme rayleighStiffness="0.1" rayleighMass="0.1"/>
             <CGLinearSolver iterations="100" tolerance="1e-5" threshold="1e-5"/>
             <MechanicalObject dz="30" />
             <UniformMass vertexMass="0.5" />
@@ -441,7 +441,7 @@ SparseGridTopology.scn
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.LinearSolver.Iterative")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mapping.Linear")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mass")
-       root.addObject('RequiredPlugin', pluginName="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', pluginName="Sofa.Component.IntegrationScheme.Backward")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.SolidMechanics.Spring")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.StateContainer")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Topology.Container.Grid")
@@ -459,7 +459,7 @@ SparseGridTopology.scn
        dragon_coarse = root.addChild('DragonCoarse')
 
        dragon_coarse.addObject('SparseGridTopology', n="6 5 4", fileTopology="mesh/dragon.obj")
-       dragon_coarse.addObject('EulerImplicitSolver', rayleighStiffness="0.1", rayleighMass="0.1")
+       dragon_coarse.addObject('EulerImplicitIntegrationScheme', rayleighStiffness="0.1", rayleighMass="0.1")
        dragon_coarse.addObject('CGLinearSolver', iterations="100", tolerance="1e-5", threshold="1e-5")
        dragon_coarse.addObject('MechanicalObject', )
        dragon_coarse.addObject('UniformMass', vertexMass="0.5")
@@ -481,7 +481,7 @@ SparseGridTopology.scn
        dragon_middle = root.addChild('DragonMiddle')
 
        dragon_middle.addObject('SparseGridTopology', n="12 9 6", fileTopology="mesh/dragon.obj")
-       dragon_middle.addObject('EulerImplicitSolver', rayleighStiffness="0.1", rayleighMass="0.1")
+       dragon_middle.addObject('EulerImplicitIntegrationScheme', rayleighStiffness="0.1", rayleighMass="0.1")
        dragon_middle.addObject('CGLinearSolver', iterations="100", tolerance="1e-5", threshold="1e-5")
        dragon_middle.addObject('MechanicalObject', dz="15")
        dragon_middle.addObject('UniformMass', vertexMass="0.5")
@@ -503,7 +503,7 @@ SparseGridTopology.scn
        dragon_fine = root.addChild('DragonFine')
 
        dragon_fine.addObject('SparseGridTopology', n="25 20 9", fileTopology="mesh/dragon.obj")
-       dragon_fine.addObject('EulerImplicitSolver', rayleighStiffness="0.1", rayleighMass="0.1")
+       dragon_fine.addObject('EulerImplicitIntegrationScheme', rayleighStiffness="0.1", rayleighMass="0.1")
        dragon_fine.addObject('CGLinearSolver', iterations="100", tolerance="1e-5", threshold="1e-5")
        dragon_fine.addObject('MechanicalObject', dz="30")
        dragon_fine.addObject('UniformMass', vertexMass="0.5")

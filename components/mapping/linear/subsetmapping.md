@@ -525,7 +525,7 @@ SubsetMapping.scn
         <RequiredPlugin pluginName="Sofa.Component.LinearSolver.Iterative"/> <!-- Needed to use components [CGLinearSolver] -->
         <RequiredPlugin pluginName="Sofa.Component.Mapping.Linear"/> <!-- Needed to use components [IdentityMapping SubsetMapping] -->
         <RequiredPlugin pluginName="Sofa.Component.Mass"/> <!-- Needed to use components [UniformMass] -->
-        <RequiredPlugin pluginName="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+        <RequiredPlugin pluginName="Sofa.Component.IntegrationScheme.Backward"/> <!-- Needed to use components [EulerImplicitIntegrationScheme] -->
         <RequiredPlugin pluginName="Sofa.Component.SolidMechanics.FEM.Elastic"/> <!-- Needed to use components [HexahedronFEMForceField] -->
         <RequiredPlugin pluginName="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
         <RequiredPlugin pluginName="Sofa.Component.Topology.Container.Dynamic"/> <!-- Needed to use components [TetrahedronSetGeometryAlgorithms TetrahedronSetTopologyContainer TetrahedronSetTopologyModifier TriangleSetGeometryAlgorithms TriangleSetTopologyContainer TriangleSetTopologyModifier] -->
@@ -544,7 +544,7 @@ SubsetMapping.scn
     	<DefaultAnimationLoop/>
     
     	<Node name="sutureSoftCubes">
-    		<EulerImplicitSolver name="TissueSolver" printLog="false" rayleighStiffness="0.3" rayleighMass="0.2"/>
+    		<EulerImplicitIntegrationScheme name="TissueSolver" printLog="false" rayleighStiffness="0.3" rayleighMass="0.2"/>
     		<CGLinearSolver iterations="25" name="linear solver" tolerance="1.0e-9" threshold="1.0e-9" />
     		<MechanicalObject template="Vec3"/>
     		<UniformMass vertexMass="0.001"/>
@@ -678,7 +678,7 @@ SubsetMapping.scn
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.LinearSolver.Iterative")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mapping.Linear")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mass")
-       root.addObject('RequiredPlugin', pluginName="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', pluginName="Sofa.Component.IntegrationScheme.Backward")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.SolidMechanics.FEM.Elastic")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.StateContainer")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Topology.Container.Dynamic")
@@ -696,7 +696,7 @@ SubsetMapping.scn
 
        suture_soft_cubes = root.addChild('sutureSoftCubes')
 
-       suture_soft_cubes.addObject('EulerImplicitSolver', name="TissueSolver", printLog="false", rayleighStiffness="0.3", rayleighMass="0.2")
+       suture_soft_cubes.addObject('EulerImplicitIntegrationScheme', name="TissueSolver", printLog="false", rayleighStiffness="0.3", rayleighMass="0.2")
        suture_soft_cubes.addObject('CGLinearSolver', iterations="25", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
        suture_soft_cubes.addObject('MechanicalObject', template="Vec3")
        suture_soft_cubes.addObject('UniformMass', vertexMass="0.001")

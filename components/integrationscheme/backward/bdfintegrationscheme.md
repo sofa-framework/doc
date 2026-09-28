@@ -1,16 +1,16 @@
 <!-- generate_doc -->
-# CentralDifferenceSolver
+# BDFIntegrationScheme
 
-Explicit time integrator using central difference (also known as Verlet of Leap-frog).
+Time integrator using Backward Differential Formula implicit scheme.
 
 
-__Target__: Sofa.Component.ODESolver.Forward
+__Target__: Sofa.Component.IntegrationScheme.Backward
 
-__namespace__: sofa::component::odesolver::forward
+__namespace__: sofa::component::integrationscheme::backward
 
 __parents__:
 
-- OdeSolver
+- LinearMultistepIntegrationScheme
 
 ### Data
 
@@ -66,18 +66,46 @@ if true, handle the events, otherwise ignore the events
 		<td>0</td>
 	</tr>
 	<tr>
-		<td>rayleighMass</td>
+		<td>rayleighStiffness</td>
 		<td>
-Rayleigh damping coefficient related to mass
+Rayleigh damping coefficient related to stiffness, > 0
 		</td>
 		<td>0</td>
 	</tr>
 	<tr>
-		<td>threadSafeVisitor</td>
+		<td>rayleighMass</td>
 		<td>
-If true, do not use realloc and free visitors in fwdInteractionForceField.
+Rayleigh damping coefficient related to mass, > 0
 		</td>
 		<td>0</td>
+	</tr>
+	<tr>
+		<td>firstOrder</td>
+		<td>
+Use this ODE to integrate first order ODE. This will replace the dynamic equation from Ma=f(x,v) to Mv=f(x), meaning that the mass component now acts as capacity.
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>computeFinalAcceleration</td>
+		<td>
+If true the integration scheme will compute the total acceleration of the timestep after updating the positions. If false, the acceleration vector is only a result of an internal computation.
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>impulseBased</td>
+		<td>
+If true the integration scheme will compute the right-hand-side in term of impulse instead of forces.
+		</td>
+		<td>0</td>
+	</tr>
+	<tr>
+		<td>order</td>
+		<td>
+Order of the Backward Differential Formula.
+		</td>
+		<td>2</td>
 	</tr>
 
 </tbody>
@@ -91,4 +119,5 @@ If true, do not use realloc and free visitors in fwdInteractionForceField.
 |context|Graph Node containing this object (or BaseContext::getDefault() if no graph is used)|BaseContext|
 |slaves|Sub-objects used internally by this object|BaseComponent|
 |master|nullptr for regular objects, or master object for which this object is one sub-objects|BaseComponent|
+|linearSolver|Linear solver used by this component|LinearSolver|
 

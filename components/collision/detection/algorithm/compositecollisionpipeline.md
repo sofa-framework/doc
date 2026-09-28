@@ -118,7 +118,7 @@ CompositeCollisionPipeline_none.scn
         <RequiredPlugin pluginName="Sofa.Component.LinearSolver.Iterative"/> <!-- Needed to use components [CGLinearSolver] -->
         <RequiredPlugin pluginName="Sofa.Component.Mapping.Linear"/> <!-- Needed to use components [IdentityMapping] -->
         <RequiredPlugin pluginName="Sofa.Component.Mass"/> <!-- Needed to use components [UniformMass] -->
-        <RequiredPlugin pluginName="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+        <RequiredPlugin pluginName="Sofa.Component.IntegrationScheme.Backward"/> <!-- Needed to use components [EulerImplicitIntegrationScheme] -->
         <RequiredPlugin pluginName="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
         <RequiredPlugin pluginName="Sofa.Component.Topology.Container.Constant"/> <!-- Needed to use components [MeshTopology] -->
         <RequiredPlugin pluginName="Sofa.Component.Visual"/> <!-- Needed to use components [VisualStyle] -->
@@ -136,7 +136,7 @@ CompositeCollisionPipeline_none.scn
         <MeshOBJLoader name="torus_loader" filename="mesh/torus.obj" />
         <Node name="FixedTorusAndFallingSphere_1" >
             <Node name="FallingSphere" >
-                <EulerImplicitSolver name="odesolver" />
+                <EulerImplicitIntegrationScheme name="odesolver" computeFinalAcceleration="true"/>
                 <CGLinearSolver name="linear_solver" iterations="250"  tolerance="1.0e-9" threshold="1.0e-9" />
     
                 <MechanicalObject name="rigid" template="Rigid3d" position="-5 10 0 0 0 0 1" />
@@ -160,7 +160,7 @@ CompositeCollisionPipeline_none.scn
     
         <Node name="FixedTorusAndFallingSphere_2" >
             <Node name="FallingSphere" >
-                <EulerImplicitSolver name="odesolver" />
+                <EulerImplicitIntegrationScheme name="odesolver" computeFinalAcceleration="true"/>
                 <CGLinearSolver name="linear_solver" iterations="250"  tolerance="1.0e-9" threshold="1.0e-9" />
     
                 <MechanicalObject name="rigid" template="Rigid3d" position="5 10 0 0 0 0 1" />
@@ -201,7 +201,7 @@ CompositeCollisionPipeline_none.scn
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.LinearSolver.Iterative")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mapping.Linear")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mass")
-       root.addObject('RequiredPlugin', pluginName="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', pluginName="Sofa.Component.IntegrationScheme.Backward")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.StateContainer")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Topology.Container.Constant")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Visual")
@@ -218,7 +218,7 @@ CompositeCollisionPipeline_none.scn
 
        falling_sphere = FixedTorusAndFallingSphere_1.addChild('FallingSphere')
 
-       falling_sphere.addObject('EulerImplicitSolver', name="odesolver")
+       falling_sphere.addObject('EulerImplicitIntegrationScheme', name="odesolver", computeFinalAcceleration="true")
        falling_sphere.addObject('CGLinearSolver', name="linear_solver", iterations="250", tolerance="1.0e-9", threshold="1.0e-9")
        falling_sphere.addObject('MechanicalObject', name="rigid", template="Rigid3d", position="-5 10 0 0 0 0 1")
        falling_sphere.addObject('UniformMass', totalMass="1.0")
@@ -243,7 +243,7 @@ CompositeCollisionPipeline_none.scn
 
        falling_sphere = FixedTorusAndFallingSphere_2.addChild('FallingSphere')
 
-       falling_sphere.addObject('EulerImplicitSolver', name="odesolver")
+       falling_sphere.addObject('EulerImplicitIntegrationScheme', name="odesolver", computeFinalAcceleration="true")
        falling_sphere.addObject('CGLinearSolver', name="linear_solver", iterations="250", tolerance="1.0e-9", threshold="1.0e-9")
        falling_sphere.addObject('MechanicalObject', name="rigid", template="Rigid3d", position="5 10 0 0 0 0 1")
        falling_sphere.addObject('UniformMass', totalMass="1.0")
@@ -280,7 +280,7 @@ CompositeCollisionPipeline.scn
         <RequiredPlugin pluginName="Sofa.Component.LinearSolver.Iterative"/> <!-- Needed to use components [CGLinearSolver] -->
         <RequiredPlugin pluginName="Sofa.Component.Mapping.Linear"/> <!-- Needed to use components [IdentityMapping] -->
         <RequiredPlugin pluginName="Sofa.Component.Mass"/> <!-- Needed to use components [UniformMass] -->
-        <RequiredPlugin pluginName="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+        <RequiredPlugin pluginName="Sofa.Component.IntegrationScheme.Backward"/> <!-- Needed to use components [EulerImplicitIntegrationScheme] -->
         <RequiredPlugin pluginName="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
         <RequiredPlugin pluginName="Sofa.Component.Topology.Container.Constant"/> <!-- Needed to use components [MeshTopology] -->
         <RequiredPlugin pluginName="Sofa.Component.Visual"/> <!-- Needed to use components [VisualStyle] -->
@@ -292,8 +292,8 @@ CompositeCollisionPipeline.scn
         <MeshOBJLoader name="torus_loader" filename="mesh/torus.obj" />
         <Node name="FixedTorusAndFallingSphere_1" >
             <Node name="FallingSphere" >
-                <EulerImplicitSolver name="odesolver" />
-                <CGLinearSolver name="linear_solver" iterations="250"  tolerance="1.0e-9" threshold="1.0e-9" />
+                <EulerImplicitIntegrationScheme name="odesolver" />
+                <CGLinearSolver name="linear_solver" iterations="250"  tolerance="1.0e-12" threshold="1.0e-12" />
     
                 <MechanicalObject name="rigid" template="Rigid3d" position="-5 10 0 0 0 0 1" />
                 <UniformMass totalMass="1.0" />
@@ -316,8 +316,8 @@ CompositeCollisionPipeline.scn
     
         <Node name="FixedTorusAndFallingSphere_2" >
             <Node name="FallingSphere" >
-                <EulerImplicitSolver name="odesolver" />
-                <CGLinearSolver name="linear_solver" iterations="250"  tolerance="1.0e-9" threshold="1.0e-9" />
+                <EulerImplicitIntegrationScheme name="odesolver" />
+                <CGLinearSolver name="linear_solver" iterations="250"  tolerance="1.0e-12" threshold="1.0e-12" />
     
                 <MechanicalObject name="rigid" template="Rigid3d" position="5 10 0 0 0 0 1" />
                 <UniformMass totalMass="1.0" />
@@ -384,7 +384,7 @@ CompositeCollisionPipeline.scn
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.LinearSolver.Iterative")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mapping.Linear")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mass")
-       root.addObject('RequiredPlugin', pluginName="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', pluginName="Sofa.Component.IntegrationScheme.Backward")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.StateContainer")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Topology.Container.Constant")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Visual")
@@ -396,8 +396,8 @@ CompositeCollisionPipeline.scn
 
        falling_sphere = FixedTorusAndFallingSphere_1.addChild('FallingSphere')
 
-       falling_sphere.addObject('EulerImplicitSolver', name="odesolver")
-       falling_sphere.addObject('CGLinearSolver', name="linear_solver", iterations="250", tolerance="1.0e-9", threshold="1.0e-9")
+       falling_sphere.addObject('EulerImplicitIntegrationScheme', name="odesolver")
+       falling_sphere.addObject('CGLinearSolver', name="linear_solver", iterations="250", tolerance="1.0e-12", threshold="1.0e-12")
        falling_sphere.addObject('MechanicalObject', name="rigid", template="Rigid3d", position="-5 10 0 0 0 0 1")
        falling_sphere.addObject('UniformMass', totalMass="1.0")
 
@@ -421,8 +421,8 @@ CompositeCollisionPipeline.scn
 
        falling_sphere = FixedTorusAndFallingSphere_2.addChild('FallingSphere')
 
-       falling_sphere.addObject('EulerImplicitSolver', name="odesolver")
-       falling_sphere.addObject('CGLinearSolver', name="linear_solver", iterations="250", tolerance="1.0e-9", threshold="1.0e-9")
+       falling_sphere.addObject('EulerImplicitIntegrationScheme', name="odesolver")
+       falling_sphere.addObject('CGLinearSolver', name="linear_solver", iterations="250", tolerance="1.0e-12", threshold="1.0e-12")
        falling_sphere.addObject('MechanicalObject', name="rigid", template="Rigid3d", position="5 10 0 0 0 0 1")
        falling_sphere.addObject('UniformMass', totalMass="1.0")
 

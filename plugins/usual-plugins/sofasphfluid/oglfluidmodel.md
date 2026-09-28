@@ -158,7 +158,7 @@ OglFluidModel_SPH.scn
     <Node dt="0.01" gravity="0 -20 0.0" >
         <RequiredPlugin name="Sofa.Component.Mass"/> <!-- Needed to use components [UniformMass] -->
         <RequiredPlugin name="Sofa.Component.MechanicalLoad"/> <!-- Needed to use components [PlaneForceField] -->
-        <RequiredPlugin name="Sofa.Component.ODESolver.Forward"/> <!-- Needed to use components [EulerExplicitSolver] -->
+        <RequiredPlugin name="Sofa.Component.IntegrationScheme.Forward"/> <!-- Needed to use components [EulerExplicitIntegrationScheme] -->
         <RequiredPlugin name="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
         <RequiredPlugin name="Sofa.Component.Topology.Container.Grid"/> <!-- Needed to use components [RegularGridTopology] -->
         <RequiredPlugin name="Sofa.Component.Visual"/> <!-- Needed to use components [VisualStyle] -->
@@ -167,7 +167,7 @@ OglFluidModel_SPH.scn
     
         <DefaultAnimationLoop/>
         <Node name="SPH" >
-            <EulerExplicitSolver symplectic="1" />
+            <EulerExplicitIntegrationScheme symplectic="1" />
             <RegularGridTopology nx="5" ny="400" nz="5" xmin="-3.0" xmax="0" ymin="-3" ymax="36" zmin="-3.0" zmax="0" />
             <MechanicalObject name="MModel" />
             <!-- A topology is used here just to set initial particles positions. It is a bad idea because this object has no real topology, but it works... -->
@@ -200,7 +200,7 @@ OglFluidModel_SPH.scn
 
        node.addObject('RequiredPlugin', name="Sofa.Component.Mass")
        node.addObject('RequiredPlugin', name="Sofa.Component.MechanicalLoad")
-       node.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Forward")
+       node.addObject('RequiredPlugin', name="Sofa.Component.IntegrationScheme.Forward")
        node.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
        node.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Grid")
        node.addObject('RequiredPlugin', name="Sofa.Component.Visual")
@@ -210,7 +210,7 @@ OglFluidModel_SPH.scn
 
        sph = node.addChild('SPH')
 
-       sph.addObject('EulerExplicitSolver', symplectic="1")
+       sph.addObject('EulerExplicitIntegrationScheme', symplectic="1")
        sph.addObject('RegularGridTopology', nx="5", ny="400", nz="5", xmin="-3.0", xmax="0", ymin="-3", ymax="36", zmin="-3.0", zmax="0")
        sph.addObject('MechanicalObject', name="MModel")
        sph.addObject('UniformMass', name="M1", vertexMass="1")
@@ -235,7 +235,7 @@ OglFluidModel_SPHParticles.scn
     <?xml version="1.0" ?>
     <Node dt="0.01" gravity="0 -10 0" bbox="-6 -6 -6  6 6 6">
         <RequiredPlugin name="Sofa.Component.Mass"/> <!-- Needed to use components [UniformMass] -->
-        <RequiredPlugin name="Sofa.Component.ODESolver.Forward"/> <!-- Needed to use components [EulerExplicitSolver] -->
+        <RequiredPlugin name="Sofa.Component.IntegrationScheme.Forward"/> <!-- Needed to use components [EulerExplicitIntegrationScheme] -->
         <RequiredPlugin name="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
         <RequiredPlugin name="Sofa.Component.Topology.Container.Dynamic"/> <!-- Needed to use components [PointSetTopologyContainer PointSetTopologyModifier] -->
         <RequiredPlugin name="Sofa.Component.Visual"/> <!-- Needed to use components [VisualStyle] -->
@@ -244,7 +244,7 @@ OglFluidModel_SPHParticles.scn
     
         <DefaultAnimationLoop/>
         <Node name="Particles">
-            <EulerExplicitSolver symplectic="1" />
+            <EulerExplicitIntegrationScheme symplectic="1" />
             <MechanicalObject name="MModel"/>
             <ParticleSource name="Source" translation="0 20 0" radius="0.01 0.1 0.01" velocity="0 -10 0" delay="0.02" start="0.0" stop="10" printLog="0"
             center="-0.375 0 -0.75 
@@ -295,7 +295,7 @@ OglFluidModel_SPHParticles.scn
        node = root_node.addChild('node', dt="0.01", gravity="0 -10 0", bbox="-6 -6 -6  6 6 6")
 
        node.addObject('RequiredPlugin', name="Sofa.Component.Mass")
-       node.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Forward")
+       node.addObject('RequiredPlugin', name="Sofa.Component.IntegrationScheme.Forward")
        node.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
        node.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Dynamic")
        node.addObject('RequiredPlugin', name="Sofa.Component.Visual")
@@ -305,7 +305,7 @@ OglFluidModel_SPHParticles.scn
 
        particles = node.addChild('Particles')
 
-       particles.addObject('EulerExplicitSolver', symplectic="1")
+       particles.addObject('EulerExplicitIntegrationScheme', symplectic="1")
        particles.addObject('MechanicalObject', name="MModel")
        particles.addObject('ParticleSource', name="Source", translation="0 20 0", radius="0.01 0.1 0.01", velocity="0 -10 0", delay="0.02", start="0.0", stop="10", printLog="0", center="-0.375 0 -0.75              0.0 0.0 -0.75              0.375 0.0 -0.75              -0.75  0.0 -0.375              -0.375 0.0 -0.375              0.0 0.0 -0.375              0.375 0.0 -0.375              0.75 0.0 -0.375              -0.75 0.0 0.0              -0.375 0.0 0.0              0.0 0.0 0.0              0.375 0.0 0.0              0.75 0.0 0.0              -0.75 0.0 0.375              -0.375 0.0 0.375              0.0 0.0 0.375              0.375 0.0 0.375              0.75 0.0 0.375              -0.375 0.0 0.75              0.0 0.0 0.75              0.375 0.0 0.75")
        particles.addObject('UniformMass', name="M1", vertexMass="1.0")

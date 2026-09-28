@@ -245,7 +245,7 @@ ParticlesRepulsionForceField.scn
         <RequiredPlugin name="Sofa.Component.Mapping.Linear"/> <!-- Needed to use components [IdentityMapping SubsetMapping] -->
         <RequiredPlugin name="Sofa.Component.Mass"/> <!-- Needed to use components [UniformMass] -->
         <RequiredPlugin name="Sofa.Component.MechanicalLoad"/> <!-- Needed to use components [PlaneForceField SphereForceField] -->
-        <RequiredPlugin name="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+        <RequiredPlugin name="Sofa.Component.IntegrationScheme.Backward"/> <!-- Needed to use components [EulerImplicitIntegrationScheme] -->
         <RequiredPlugin name="Sofa.Component.SolidMechanics.Spring"/> <!-- Needed to use components [MeshSpringForceField QuadBendingSprings] -->
         <RequiredPlugin name="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
         <RequiredPlugin name="Sofa.Component.Topology.Container.Grid"/> <!-- Needed to use components [RegularGridTopology] -->
@@ -269,7 +269,7 @@ ParticlesRepulsionForceField.scn
         </Node>
         
         <Node name="SquareCloth1">
-            <EulerImplicitSolver rayleighMass="0.05"  rayleighStiffness="0.1" />
+            <EulerImplicitIntegrationScheme rayleighMass="0.05"  rayleighStiffness="0.1" />
             <CGLinearSolver iterations="10" threshold="0.000001" tolerance="1e-5"/>
             <RegularGridTopology nx="100" ny="1" nz="100" xmin="12" xmax="-12" ymin="7" ymax="7" zmin="-12" zmax="12" />
             <MechanicalObject />
@@ -321,7 +321,7 @@ ParticlesRepulsionForceField.scn
        root.addObject('RequiredPlugin', name="Sofa.Component.Mapping.Linear")
        root.addObject('RequiredPlugin', name="Sofa.Component.Mass")
        root.addObject('RequiredPlugin', name="Sofa.Component.MechanicalLoad")
-       root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', name="Sofa.Component.IntegrationScheme.Backward")
        root.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.Spring")
        root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
        root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Grid")
@@ -346,7 +346,7 @@ ParticlesRepulsionForceField.scn
 
        square_cloth1 = root.addChild('SquareCloth1')
 
-       square_cloth1.addObject('EulerImplicitSolver', rayleighMass="0.05", rayleighStiffness="0.1")
+       square_cloth1.addObject('EulerImplicitIntegrationScheme', rayleighMass="0.05", rayleighStiffness="0.1")
        square_cloth1.addObject('CGLinearSolver', iterations="10", threshold="0.000001", tolerance="1e-5")
        square_cloth1.addObject('RegularGridTopology', nx="100", ny="1", nz="100", xmin="12", xmax="-12", ymin="7", ymax="7", zmin="-12", zmax="12")
        square_cloth1.addObject('MechanicalObject', )

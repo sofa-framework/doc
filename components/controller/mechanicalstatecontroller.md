@@ -135,7 +135,7 @@ MechanicalStateController.scn
         <RequiredPlugin pluginName="Sofa.Component.IO.Mesh"/> <!-- Needed to use components [MeshGmshLoader] -->
         <RequiredPlugin pluginName="Sofa.Component.LinearSolver.Direct"/> <!-- Needed to use components [BTDLinearSolver] -->
         <RequiredPlugin pluginName="Sofa.Component.Mass"/> <!-- Needed to use components [UniformMass] -->
-        <RequiredPlugin pluginName="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+        <RequiredPlugin pluginName="Sofa.Component.IntegrationScheme.Backward"/> <!-- Needed to use components [EulerImplicitIntegrationScheme] -->
         <RequiredPlugin pluginName="Sofa.Component.SolidMechanics.FEM.Elastic"/> <!-- Needed to use components [BeamFEMForceField] -->
         <RequiredPlugin pluginName="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
         <RequiredPlugin pluginName="Sofa.Component.Topology.Container.Dynamic"/> <!-- Needed to use components [EdgeSetGeometryAlgorithms EdgeSetTopologyContainer EdgeSetTopologyModifier] -->
@@ -149,7 +149,7 @@ MechanicalStateController.scn
         <LocalMinDistance name="Proximity" alarmDistance="1.0" contactDistance="0.5" />
         <CollisionResponse name="Response" response="PenalityContactForceField" />
         <Node name="InstrumentEdgeSet">
-            <EulerImplicitSolver rayleighStiffness="0" printLog="false"  rayleighMass="0.1" />
+            <EulerImplicitIntegrationScheme rayleighStiffness="0" printLog="false"  rayleighMass="0.1" />
             <BTDLinearSolver template="BTDMatrix6d" printLog="false" verbose="false" />
             <MeshGmshLoader name="loader" filename="mesh/edgeSet.msh" />
             <MechanicalObject src="@loader" name="MechanicalDOFs" template="Rigid3" position="0 0 0 0 0 0 1  1 0 0 0 0 0 1  2 0 0 0 0 0 1" showObject="1"/>
@@ -179,7 +179,7 @@ MechanicalStateController.scn
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.IO.Mesh")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.LinearSolver.Direct")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mass")
-       root.addObject('RequiredPlugin', pluginName="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', pluginName="Sofa.Component.IntegrationScheme.Backward")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.SolidMechanics.FEM.Elastic")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.StateContainer")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Topology.Container.Dynamic")
@@ -194,7 +194,7 @@ MechanicalStateController.scn
 
        instrument_edge_set = root.addChild('InstrumentEdgeSet')
 
-       instrument_edge_set.addObject('EulerImplicitSolver', rayleighStiffness="0", printLog="false", rayleighMass="0.1")
+       instrument_edge_set.addObject('EulerImplicitIntegrationScheme', rayleighStiffness="0", printLog="false", rayleighMass="0.1")
        instrument_edge_set.addObject('BTDLinearSolver', template="BTDMatrix6d", printLog="false", verbose="false")
        instrument_edge_set.addObject('MeshGmshLoader', name="loader", filename="mesh/edgeSet.msh")
        instrument_edge_set.addObject('MechanicalObject', src="@loader", name="MechanicalDOFs", template="Rigid3", position="0 0 0 0 0 0 1  1 0 0 0 0 0 1  2 0 0 0 0 0 1", showObject="1")
@@ -220,7 +220,7 @@ MechanicalStateControllerTranslation.scn
         <RequiredPlugin pluginName="Sofa.Component.LinearSolver.Iterative"/> <!-- Needed to use components [CGLinearSolver] -->
         <RequiredPlugin pluginName="Sofa.Component.Mapping.NonLinear"/> <!-- Needed to use components [RigidMapping] -->
         <RequiredPlugin pluginName="Sofa.Component.Mass"/> <!-- Needed to use components [UniformMass] -->
-        <RequiredPlugin pluginName="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+        <RequiredPlugin pluginName="Sofa.Component.IntegrationScheme.Backward"/> <!-- Needed to use components [EulerImplicitIntegrationScheme] -->
         <RequiredPlugin pluginName="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
         <RequiredPlugin pluginName="Sofa.Component.Topology.Container.Constant"/> <!-- Needed to use components [MeshTopology] -->
         <RequiredPlugin pluginName="Sofa.Component.Visual"/> <!-- Needed to use components [VisualStyle] -->
@@ -235,7 +235,7 @@ MechanicalStateControllerTranslation.scn
         <LocalMinDistance name="Proximity" alarmDistance="1.0" contactDistance="0.5" />
         <CollisionResponse name="Response" response="PenalityContactForceField" />
         <Node name="InstrumentEdgeSet">
-            <EulerImplicitSolver rayleighStiffness="0" printLog="false"  rayleighMass="0.1" />
+            <EulerImplicitIntegrationScheme rayleighStiffness="0" printLog="false"  rayleighMass="0.1" />
             <CGLinearSolver iterations="100" threshold="0.00000001" tolerance="1e-5"/>
             <MechanicalObject template="Rigid3" />
             <UniformMass totalMass="1" />
@@ -275,7 +275,7 @@ MechanicalStateControllerTranslation.scn
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.LinearSolver.Iterative")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mapping.NonLinear")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mass")
-       root.addObject('RequiredPlugin', pluginName="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', pluginName="Sofa.Component.IntegrationScheme.Backward")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.StateContainer")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Topology.Container.Constant")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Visual")
@@ -290,7 +290,7 @@ MechanicalStateControllerTranslation.scn
 
        instrument_edge_set = root.addChild('InstrumentEdgeSet')
 
-       instrument_edge_set.addObject('EulerImplicitSolver', rayleighStiffness="0", printLog="false", rayleighMass="0.1")
+       instrument_edge_set.addObject('EulerImplicitIntegrationScheme', rayleighStiffness="0", printLog="false", rayleighMass="0.1")
        instrument_edge_set.addObject('CGLinearSolver', iterations="100", threshold="0.00000001", tolerance="1e-5")
        instrument_edge_set.addObject('MechanicalObject', template="Rigid3")
        instrument_edge_set.addObject('UniformMass', totalMass="1")

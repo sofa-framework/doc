@@ -548,14 +548,14 @@ RigidMapping-basic.scn
         <RequiredPlugin pluginName="Sofa.Component.Mapping.NonLinear"/> <!-- Needed to use components [RigidMapping] -->
         <RequiredPlugin pluginName="Sofa.Component.Mass"/> <!-- Needed to use components [UniformMass] -->
         <RequiredPlugin pluginName="Sofa.Component.MechanicalLoad"/> <!-- Needed to use components [ConstantForceField] -->
-        <RequiredPlugin pluginName="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [StaticSolver] -->
+        <RequiredPlugin pluginName="Sofa.Component.IntegrationScheme.Backward"/> <!-- Needed to use components [StaticEquilibriumIntegrationScheme] -->
         <RequiredPlugin pluginName="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
         <RequiredPlugin pluginName="Sofa.Component.Visual"/> <!-- Needed to use components [VisualStyle] -->
         <VisualStyle displayFlags="showBehaviorModels showMapping" />
         <DefaultAnimationLoop/>
     
         <Node name="parent node with independent DOFs">
-            <StaticSolver name="ODE solver" printLog="0" />
+            <StaticEquilibriumIntegrationScheme name="ODE solver" printLog="0" />
             <CGLinearSolver template="GraphScattered" name="linear solver used by implicit ODE solvers" printLog="0" iterations="25" tolerance="1e-5" threshold="1e-5"/>
             <MechanicalObject template="Rigid3" />
             <PartialFixedProjectiveConstraint fixedDirections="1 1 1 0 0 0" />
@@ -582,7 +582,7 @@ RigidMapping-basic.scn
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mapping.NonLinear")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mass")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.MechanicalLoad")
-       root.addObject('RequiredPlugin', pluginName="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', pluginName="Sofa.Component.IntegrationScheme.Backward")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.StateContainer")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Visual")
        root.addObject('VisualStyle', displayFlags="showBehaviorModels showMapping")
@@ -590,7 +590,7 @@ RigidMapping-basic.scn
 
        parent_node_with_independent__do_fs = Root.addChild('parent node with independent DOFs')
 
-       parent_node_with_independent__do_fs.addObject('StaticSolver', name="ODE solver", printLog="0")
+       parent_node_with_independent__do_fs.addObject('StaticEquilibriumIntegrationScheme', name="ODE solver", printLog="0")
        parent_node_with_independent__do_fs.addObject('CGLinearSolver', template="GraphScattered", name="linear solver used by implicit ODE solvers", printLog="0", iterations="25", tolerance="1e-5", threshold="1e-5")
        parent_node_with_independent__do_fs.addObject('MechanicalObject', template="Rigid3")
        parent_node_with_independent__do_fs.addObject('PartialFixedProjectiveConstraint', fixedDirections="1 1 1 0 0 0")
@@ -615,15 +615,15 @@ RigidMapping2d-basic.scn
         <RequiredPlugin pluginName="Sofa.Component.Mapping.NonLinear"/> <!-- Needed to use components [RigidMapping] -->
         <RequiredPlugin pluginName="Sofa.Component.Mass"/> <!-- Needed to use components [UniformMass] -->
         <RequiredPlugin pluginName="Sofa.Component.MechanicalLoad"/> <!-- Needed to use components [ConstantForceField] -->
-        <RequiredPlugin pluginName="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [StaticSolver] -->
+        <RequiredPlugin pluginName="Sofa.Component.IntegrationScheme.Backward"/> <!-- Needed to use components [StaticEquilibriumIntegrationScheme] -->
         <RequiredPlugin pluginName="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
         <RequiredPlugin pluginName="Sofa.Component.Visual"/> <!-- Needed to use components [VisualStyle] -->
         <VisualStyle displayFlags="showBehaviorModels showMapping" />
         <DefaultAnimationLoop/>
     
         <Node name="parent node with independent DOFs">
-            <!-- 		<EulerImplicitSolver name="ODE solver" printLog="0"  verbose="0" rayleighStiffness="0.0" rayleighMass="0"/> -->
-            <StaticSolver name="ODE solver" printLog="0" />
+            <!-- 		<EulerImplicitIntegrationScheme name="ODE solver" printLog="0"  verbose="0" rayleighStiffness="0.0" rayleighMass="0"/> -->
+            <StaticEquilibriumIntegrationScheme name="ODE solver" printLog="0" />
             <CGLinearSolver template="GraphScattered" name="linear solver used by implicit ODE solvers" printLog="0" iterations="25" tolerance="1e-5" threshold="1e-5"/>
             <MechanicalObject template="Rigid2" />
             <PartialFixedProjectiveConstraint fixedDirections="1 1 0" />
@@ -650,7 +650,7 @@ RigidMapping2d-basic.scn
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mapping.NonLinear")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mass")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.MechanicalLoad")
-       root.addObject('RequiredPlugin', pluginName="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', pluginName="Sofa.Component.IntegrationScheme.Backward")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.StateContainer")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Visual")
        root.addObject('VisualStyle', displayFlags="showBehaviorModels showMapping")
@@ -658,7 +658,7 @@ RigidMapping2d-basic.scn
 
        parent_node_with_independent__do_fs = Root.addChild('parent node with independent DOFs')
 
-       parent_node_with_independent__do_fs.addObject('StaticSolver', name="ODE solver", printLog="0")
+       parent_node_with_independent__do_fs.addObject('StaticEquilibriumIntegrationScheme', name="ODE solver", printLog="0")
        parent_node_with_independent__do_fs.addObject('CGLinearSolver', template="GraphScattered", name="linear solver used by implicit ODE solvers", printLog="0", iterations="25", tolerance="1e-5", threshold="1e-5")
        parent_node_with_independent__do_fs.addObject('MechanicalObject', template="Rigid2")
        parent_node_with_independent__do_fs.addObject('PartialFixedProjectiveConstraint', fixedDirections="1 1 0")
@@ -686,7 +686,7 @@ RigidMapping.scn
         <RequiredPlugin pluginName="Sofa.Component.LinearSolver.Iterative"/> <!-- Needed to use components [CGLinearSolver] -->
         <RequiredPlugin pluginName="Sofa.Component.Mapping.NonLinear"/> <!-- Needed to use components [RigidMapping] -->
         <RequiredPlugin pluginName="Sofa.Component.Mass"/> <!-- Needed to use components [UniformMass] -->
-        <RequiredPlugin pluginName="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+        <RequiredPlugin pluginName="Sofa.Component.IntegrationScheme.Backward"/> <!-- Needed to use components [EulerImplicitIntegrationScheme] -->
         <RequiredPlugin pluginName="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
         <RequiredPlugin pluginName="Sofa.Component.Topology.Container.Constant"/> <!-- Needed to use components [MeshTopology] -->
         <RequiredPlugin pluginName="Sofa.GL.Component.Rendering3D"/> <!-- Needed to use components [OglModel] -->
@@ -707,7 +707,7 @@ RigidMapping.scn
                 <OglModel name="Visual" src="@meshLoader_3" color="gray" texturename="textures/brushed_metal.bmp" />
             </Node>
             <Node name="TorusRigid1">
-                <EulerImplicitSolver  rayleighStiffness="0.1" rayleighMass="0.1" />
+                <EulerImplicitIntegrationScheme  rayleighStiffness="0.1" rayleighMass="0.1" />
                 <CGLinearSolver iterations="25" threshold="0.000000000001" tolerance="0.000001" />
                 <MechanicalObject template="Rigid3" dx="2.5" />
                 <UniformMass filename="BehaviorModels/torus.rigid" />
@@ -725,7 +725,7 @@ RigidMapping.scn
                 </Node>
             </Node>
             <Node name="TorusRigid2">
-                <EulerImplicitSolver />
+                <EulerImplicitIntegrationScheme />
                 <CGLinearSolver iterations="25" threshold="0.000000000001" tolerance="0.000001" />
                 <MechanicalObject template="Rigid3" dx="5" />
                 <UniformMass totalMass="1.0"/>
@@ -743,7 +743,7 @@ RigidMapping.scn
                 </Node>
             </Node>
             <Node name="TorusRigid3">
-                <EulerImplicitSolver />
+                <EulerImplicitIntegrationScheme />
                 <CGLinearSolver iterations="25" threshold="0.000000000001" tolerance="0.000001" />
                 <MechanicalObject template="Rigid3" dx="7.5" />
                 <UniformMass totalMass="1.0"/>
@@ -761,7 +761,7 @@ RigidMapping.scn
                 </Node>
             </Node>
             <Node name="TorusRigid4">
-                <EulerImplicitSolver />
+                <EulerImplicitIntegrationScheme />
                 <CGLinearSolver iterations="25" threshold="0.000000000001" tolerance="0.000001" />
                 <MechanicalObject template="Rigid3" dx="10" />
                 <UniformMass totalMass="1.0"/>
@@ -798,7 +798,7 @@ RigidMapping.scn
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.LinearSolver.Iterative")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mapping.NonLinear")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mass")
-       root.addObject('RequiredPlugin', pluginName="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', pluginName="Sofa.Component.IntegrationScheme.Backward")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.StateContainer")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Topology.Container.Constant")
        root.addObject('RequiredPlugin', pluginName="Sofa.GL.Component.Rendering3D")
@@ -822,7 +822,7 @@ RigidMapping.scn
 
        torus_rigid1 = ChainRigid.addChild('TorusRigid1')
 
-       torus_rigid1.addObject('EulerImplicitSolver', rayleighStiffness="0.1", rayleighMass="0.1")
+       torus_rigid1.addObject('EulerImplicitIntegrationScheme', rayleighStiffness="0.1", rayleighMass="0.1")
        torus_rigid1.addObject('CGLinearSolver', iterations="25", threshold="0.000000000001", tolerance="0.000001")
        torus_rigid1.addObject('MechanicalObject', template="Rigid3", dx="2.5")
        torus_rigid1.addObject('UniformMass', filename="BehaviorModels/torus.rigid")
@@ -843,7 +843,7 @@ RigidMapping.scn
 
        torus_rigid2 = ChainRigid.addChild('TorusRigid2')
 
-       torus_rigid2.addObject('EulerImplicitSolver', )
+       torus_rigid2.addObject('EulerImplicitIntegrationScheme', )
        torus_rigid2.addObject('CGLinearSolver', iterations="25", threshold="0.000000000001", tolerance="0.000001")
        torus_rigid2.addObject('MechanicalObject', template="Rigid3", dx="5")
        torus_rigid2.addObject('UniformMass', totalMass="1.0")
@@ -864,7 +864,7 @@ RigidMapping.scn
 
        torus_rigid3 = ChainRigid.addChild('TorusRigid3')
 
-       torus_rigid3.addObject('EulerImplicitSolver', )
+       torus_rigid3.addObject('EulerImplicitIntegrationScheme', )
        torus_rigid3.addObject('CGLinearSolver', iterations="25", threshold="0.000000000001", tolerance="0.000001")
        torus_rigid3.addObject('MechanicalObject', template="Rigid3", dx="7.5")
        torus_rigid3.addObject('UniformMass', totalMass="1.0")
@@ -885,7 +885,7 @@ RigidMapping.scn
 
        torus_rigid4 = ChainRigid.addChild('TorusRigid4')
 
-       torus_rigid4.addObject('EulerImplicitSolver', )
+       torus_rigid4.addObject('EulerImplicitIntegrationScheme', )
        torus_rigid4.addObject('CGLinearSolver', iterations="25", threshold="0.000000000001", tolerance="0.000001")
        torus_rigid4.addObject('MechanicalObject', template="Rigid3", dx="10")
        torus_rigid4.addObject('UniformMass', totalMass="1.0")

@@ -255,7 +255,7 @@ TaitSurfacePressureForceField.scn
         <RequiredPlugin pluginName="Sofa.Component.Mapping.Linear"/> <!-- Needed to use components [IdentityMapping] -->
         <RequiredPlugin pluginName="Sofa.Component.Mass"/> <!-- Needed to use components [DiagonalMass] -->
         <RequiredPlugin pluginName="Sofa.Component.MechanicalLoad"/> <!-- Needed to use components [TaitSurfacePressureForceField] -->
-        <RequiredPlugin pluginName="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+        <RequiredPlugin pluginName="Sofa.Component.IntegrationScheme.Backward"/> <!-- Needed to use components [EulerImplicitIntegrationScheme] -->
         <RequiredPlugin pluginName="Sofa.Component.SolidMechanics.FEM.Elastic"/> <!-- Needed to use components [TriangularFEMForceFieldOptim] -->
         <RequiredPlugin pluginName="Sofa.Component.SolidMechanics.Spring"/> <!-- Needed to use components [FastTriangularBendingSprings] -->
         <RequiredPlugin pluginName="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
@@ -268,7 +268,7 @@ TaitSurfacePressureForceField.scn
         <CollisionResponse response="PenalityContactForceField" />
         <DiscreteIntersection />
         <Node name="sphere">
-            <EulerImplicitSolver name="cg_odesolver" rayleighMass="0.1" rayleighStiffness="0.2" printLog="false" />
+            <EulerImplicitIntegrationScheme name="cg_odesolver" rayleighMass="0.1" rayleighStiffness="0.2" printLog="false" />
             <CGLinearSolver iterations="25" name="linear solver" tolerance="1.0e-9" threshold="1.0e-9" />
             <MeshOBJLoader name="loader" filename="mesh/sphere_02b.obj" scale="0.25 0.25 0.25" rotation="-90 0 0" triangulate="1" />
             <TriangleSetTopologyContainer src="@loader" />
@@ -309,7 +309,7 @@ TaitSurfacePressureForceField.scn
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mapping.Linear")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mass")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.MechanicalLoad")
-       root.addObject('RequiredPlugin', pluginName="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', pluginName="Sofa.Component.IntegrationScheme.Backward")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.SolidMechanics.FEM.Elastic")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.SolidMechanics.Spring")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.StateContainer")
@@ -324,7 +324,7 @@ TaitSurfacePressureForceField.scn
 
        sphere = root.addChild('sphere')
 
-       sphere.addObject('EulerImplicitSolver', name="cg_odesolver", rayleighMass="0.1", rayleighStiffness="0.2", printLog="false")
+       sphere.addObject('EulerImplicitIntegrationScheme', name="cg_odesolver", rayleighMass="0.1", rayleighStiffness="0.2", printLog="false")
        sphere.addObject('CGLinearSolver', iterations="25", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
        sphere.addObject('MeshOBJLoader', name="loader", filename="mesh/sphere_02b.obj", scale="0.25 0.25 0.25", rotation="-90 0 0", triangulate="1")
        sphere.addObject('TriangleSetTopologyContainer', src="@loader")

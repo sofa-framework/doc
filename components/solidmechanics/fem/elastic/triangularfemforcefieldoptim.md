@@ -180,7 +180,7 @@ TriangularFEMForceFieldOptim_tissue100x100_gpu.scn
         <RequiredPlugin pluginName="Sofa.Component.Collision.Detection.Intersection"/> <!-- Needed to use components [DiscreteIntersection] -->
         <RequiredPlugin pluginName="Sofa.Component.Collision.Response.Contact"/> <!-- Needed to use components [CollisionResponse] -->
         <RequiredPlugin pluginName="Sofa.Component.LinearSolver.Iterative"/> <!-- Needed to use components [CGLinearSolver] -->
-        <RequiredPlugin pluginName="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+        <RequiredPlugin pluginName="Sofa.Component.IntegrationScheme.Backward"/> <!-- Needed to use components [EulerImplicitIntegrationScheme] -->
         <RequiredPlugin pluginName="Sofa.Component.Topology.Container.Dynamic"/> <!-- Needed to use components [TriangleSetTopologyContainer TriangleSetTopologyModifier] -->
         <RequiredPlugin pluginName="Sofa.Component.Topology.Container.Grid"/> <!-- Needed to use components [RegularGridTopology] -->
         <RequiredPlugin pluginName="Sofa.Component.Visual"/> <!-- Needed to use components [VisualStyle] -->
@@ -200,7 +200,7 @@ TriangularFEMForceFieldOptim_tissue100x100_gpu.scn
         <RegularGridTopology name="tissue" n="100 100 1" min="0 0 0" max="10 10 0" />
         
         <Node name="TriangularFEMForceFieldOptim-GPU-Green">
-            <EulerImplicitSolver name="cg_odesolver" rayleighStiffness="0.1" rayleighMass="0.1" />
+            <EulerImplicitIntegrationScheme name="cg_odesolver" rayleighStiffness="0.1" rayleighMass="0.1" />
             <CGLinearSolver iterations="20" name="linear solver" tolerance="1.0e-6" threshold="1.0e-6" />
             
             <MechanicalObject position="@../tissue.position" name="dofs" template="CudaVec3f"/>
@@ -233,7 +233,7 @@ TriangularFEMForceFieldOptim_tissue100x100_gpu.scn
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Collision.Detection.Intersection")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Collision.Response.Contact")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.LinearSolver.Iterative")
-       root.addObject('RequiredPlugin', pluginName="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', pluginName="Sofa.Component.IntegrationScheme.Backward")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Topology.Container.Dynamic")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Topology.Container.Grid")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Visual")
@@ -251,7 +251,7 @@ TriangularFEMForceFieldOptim_tissue100x100_gpu.scn
 
        triangular_fem_force_field_optim__gpu__green = root.addChild('TriangularFEMForceFieldOptim-GPU-Green')
 
-       triangular_fem_force_field_optim__gpu__green.addObject('EulerImplicitSolver', name="cg_odesolver", rayleighStiffness="0.1", rayleighMass="0.1")
+       triangular_fem_force_field_optim__gpu__green.addObject('EulerImplicitIntegrationScheme', name="cg_odesolver", rayleighStiffness="0.1", rayleighMass="0.1")
        triangular_fem_force_field_optim__gpu__green.addObject('CGLinearSolver', iterations="20", name="linear solver", tolerance="1.0e-6", threshold="1.0e-6")
        triangular_fem_force_field_optim__gpu__green.addObject('MechanicalObject', position="@../tissue.position", name="dofs", template="CudaVec3f")
        triangular_fem_force_field_optim__gpu__green.addObject('TriangleSetTopologyContainer', name="Container", src="@../tissue")
@@ -281,7 +281,7 @@ TriangularFEMForceFieldOptim_tissue100x100_cpu.scn
         <RequiredPlugin pluginName="Sofa.Component.LinearSolver.Iterative"/> <!-- Needed to use components [CGLinearSolver] -->
         <RequiredPlugin pluginName="Sofa.Component.Mapping.Linear"/> <!-- Needed to use components [IdentityMapping] -->
         <RequiredPlugin pluginName="Sofa.Component.Mass"/> <!-- Needed to use components [DiagonalMass] -->
-        <RequiredPlugin pluginName="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+        <RequiredPlugin pluginName="Sofa.Component.IntegrationScheme.Backward"/> <!-- Needed to use components [EulerImplicitIntegrationScheme] -->
         <RequiredPlugin pluginName="Sofa.Component.SolidMechanics.FEM.Elastic"/> <!-- Needed to use components [TriangularFEMForceFieldOptim] -->
         <RequiredPlugin pluginName="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
         <RequiredPlugin pluginName="Sofa.Component.Topology.Container.Dynamic"/> <!-- Needed to use components [TriangleSetGeometryAlgorithms TriangleSetTopologyContainer TriangleSetTopologyModifier] -->
@@ -301,7 +301,7 @@ TriangularFEMForceFieldOptim_tissue100x100_cpu.scn
         <RegularGridTopology name="tissue" n="100 100 1" min="0 0 0" max="10 10 0" />
        
         <Node name="TriangularFEMForceFieldOptim-CPU-red">
-            <EulerImplicitSolver name="cg_odesolver" rayleighStiffness="0.1" rayleighMass="0.1" />
+            <EulerImplicitIntegrationScheme name="cg_odesolver" rayleighStiffness="0.1" rayleighMass="0.1" />
             <CGLinearSolver iterations="20" name="linear solver" tolerance="1.0e-6" threshold="1.0e-6" />
             
             <MechanicalObject position="@../tissue.position" name="dofs" template="Vec3"/>
@@ -337,7 +337,7 @@ TriangularFEMForceFieldOptim_tissue100x100_cpu.scn
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.LinearSolver.Iterative")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mapping.Linear")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mass")
-       root.addObject('RequiredPlugin', pluginName="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', pluginName="Sofa.Component.IntegrationScheme.Backward")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.SolidMechanics.FEM.Elastic")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.StateContainer")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Topology.Container.Dynamic")
@@ -356,7 +356,7 @@ TriangularFEMForceFieldOptim_tissue100x100_cpu.scn
 
        triangular_fem_force_field_optim__cpu_red = root.addChild('TriangularFEMForceFieldOptim-CPU-red')
 
-       triangular_fem_force_field_optim__cpu_red.addObject('EulerImplicitSolver', name="cg_odesolver", rayleighStiffness="0.1", rayleighMass="0.1")
+       triangular_fem_force_field_optim__cpu_red.addObject('EulerImplicitIntegrationScheme', name="cg_odesolver", rayleighStiffness="0.1", rayleighMass="0.1")
        triangular_fem_force_field_optim__cpu_red.addObject('CGLinearSolver', iterations="20", name="linear solver", tolerance="1.0e-6", threshold="1.0e-6")
        triangular_fem_force_field_optim__cpu_red.addObject('MechanicalObject', position="@../tissue.position", name="dofs", template="Vec3")
        triangular_fem_force_field_optim__cpu_red.addObject('TriangleSetTopologyContainer', name="Container", src="@../tissue")
@@ -384,7 +384,7 @@ TriangularFEMForceFieldOptim.scn
         <RequiredPlugin pluginName="Sofa.Component.LinearSolver.Iterative"/> <!-- Needed to use components [CGLinearSolver] -->
         <RequiredPlugin pluginName="Sofa.Component.Mapping.Linear"/> <!-- Needed to use components [IdentityMapping] -->
         <RequiredPlugin pluginName="Sofa.Component.Mass"/> <!-- Needed to use components [DiagonalMass] -->
-        <RequiredPlugin pluginName="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+        <RequiredPlugin pluginName="Sofa.Component.IntegrationScheme.Backward"/> <!-- Needed to use components [EulerImplicitIntegrationScheme] -->
         <RequiredPlugin pluginName="Sofa.Component.SolidMechanics.FEM.Elastic"/> <!-- Needed to use components [TriangularFEMForceFieldOptim] -->
         <RequiredPlugin pluginName="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
         <RequiredPlugin pluginName="Sofa.Component.Topology.Container.Dynamic"/> <!-- Needed to use components [TriangleSetGeometryAlgorithms TriangleSetTopologyContainer TriangleSetTopologyModifier] -->
@@ -398,8 +398,8 @@ TriangularFEMForceFieldOptim.scn
         <!-- Activate this loader to load a square mesh with many triangles -->
         <MeshGmshLoader filename="mesh/square3.msh" name="loaderSquare" />
         <Node name="SquareGravity1">
-            <EulerImplicitSolver name="odesolver1" printLog="0"  rayleighStiffness="0.1" rayleighMass="0.1" />
-            <CGLinearSolver printLog="0" iterations="25" name="linearsolver1" tolerance="1.0e-9" threshold="1.0e-9" />
+            <EulerImplicitIntegrationScheme name="odesolver1" printLog="0"  rayleighStiffness="0.1" rayleighMass="0.1" />
+            <CGLinearSolver printLog="0" iterations="25" name="linearsolver1" tolerance="1.0e-12" threshold="1.0e-12" />
             <TriangleSetTopologyContainer name="Container" src="@../loaderSquare" />
             <MechanicalObject name="DOFs" src="@../loaderSquare" scale="100"  />
             <TriangleSetTopologyModifier name="Modifier" />
@@ -414,8 +414,8 @@ TriangularFEMForceFieldOptim.scn
         </Node>
         <!-- Activate this version to compare computed stiffness matrix (addKToMatrix) with addDForce -->
         <!--<Node name="SquareGravityTestMatrixConstruction">
-            <EulerImplicitSolver name="odesolver2" printLog="0" />
-            <CGLinearSolver template="SparseMatrix" verbose="0" printLog="1" iterations="25" name="linearsolver2" tolerance="1.0e-9" threshold="1.0e-9" />
+            <EulerImplicitIntegrationScheme name="odesolver2" printLog="0" />
+            <CGLinearSolver template="SparseMatrix" verbose="0" printLog="1" iterations="25" name="linearsolver2" tolerance="1.0e-12" threshold="1.0e-12" />
             <TriangleSetTopologyContainer name="Container" src="@../loaderSquare" />
             <MechanicalObject name="DOFs" src="@../loaderSquare" scale="100"  />
             <TriangleSetTopologyModifier name="Modifier" />
@@ -445,7 +445,7 @@ TriangularFEMForceFieldOptim.scn
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.LinearSolver.Iterative")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mapping.Linear")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mass")
-       root.addObject('RequiredPlugin', pluginName="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', pluginName="Sofa.Component.IntegrationScheme.Backward")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.SolidMechanics.FEM.Elastic")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.StateContainer")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Topology.Container.Dynamic")
@@ -457,8 +457,8 @@ TriangularFEMForceFieldOptim.scn
 
        square_gravity1 = root.addChild('SquareGravity1')
 
-       square_gravity1.addObject('EulerImplicitSolver', name="odesolver1", printLog="0", rayleighStiffness="0.1", rayleighMass="0.1")
-       square_gravity1.addObject('CGLinearSolver', printLog="0", iterations="25", name="linearsolver1", tolerance="1.0e-9", threshold="1.0e-9")
+       square_gravity1.addObject('EulerImplicitIntegrationScheme', name="odesolver1", printLog="0", rayleighStiffness="0.1", rayleighMass="0.1")
+       square_gravity1.addObject('CGLinearSolver', printLog="0", iterations="25", name="linearsolver1", tolerance="1.0e-12", threshold="1.0e-12")
        square_gravity1.addObject('TriangleSetTopologyContainer', name="Container", src="@../loaderSquare")
        square_gravity1.addObject('MechanicalObject', name="DOFs", src="@../loaderSquare", scale="100")
        square_gravity1.addObject('TriangleSetTopologyModifier', name="Modifier")

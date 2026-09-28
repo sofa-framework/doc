@@ -129,7 +129,7 @@ QuadularBendingSprings.scn
             <RequiredPlugin pluginName="Sofa.Component.LinearSolver.Direct"/> <!-- Needed to use components [EigenSimplicialLDLT] -->
             <RequiredPlugin pluginName="Sofa.Component.Mapping.Linear"/> <!-- Needed to use components [IdentityMapping] -->
             <RequiredPlugin pluginName="Sofa.Component.Mass"/> <!-- Needed to use components [DiagonalMass] -->
-            <RequiredPlugin pluginName="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+            <RequiredPlugin pluginName="Sofa.Component.IntegrationScheme.Backward"/> <!-- Needed to use components [EulerImplicitIntegrationScheme] -->
             <RequiredPlugin pluginName="Sofa.Component.SolidMechanics.FEM.Elastic"/> <!-- Needed to use components [TriangularFEMForceField] -->
             <RequiredPlugin pluginName="Sofa.Component.SolidMechanics.Spring"/> <!-- Needed to use components [QuadularBendingSprings] -->
             <RequiredPlugin pluginName="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
@@ -143,7 +143,7 @@ QuadularBendingSprings.scn
         <DefaultAnimationLoop/>
         <VisualStyle displayFlags="showBehaviorModels showWireframe" />
         <Node name="QuadularSprings">
-            <EulerImplicitSolver name="cg_odesolver" printLog="false"  rayleighStiffness="0.1" rayleighMass="0.1" />
+            <EulerImplicitIntegrationScheme name="cg_odesolver" printLog="false"  rayleighStiffness="0.1" rayleighMass="0.1" />
             <EigenSimplicialLDLT name="linearSolver" template="CompressedRowSparseMatrixMat3x3"/>
             <RegularGridTopology min="0 0 0" max="1 0 1" nx="20" ny="1" nz="20" name="grid" />
             <MechanicalObject name="Quads" />
@@ -181,7 +181,7 @@ QuadularBendingSprings.scn
        plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.LinearSolver.Direct")
        plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.Mapping.Linear")
        plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.Mass")
-       plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.ODESolver.Backward")
+       plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.IntegrationScheme.Backward")
        plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.SolidMechanics.FEM.Elastic")
        plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.SolidMechanics.Spring")
        plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.StateContainer")
@@ -196,7 +196,7 @@ QuadularBendingSprings.scn
 
        quadular_springs = root.addChild('QuadularSprings')
 
-       quadular_springs.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
+       quadular_springs.addObject('EulerImplicitIntegrationScheme', name="cg_odesolver", printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
        quadular_springs.addObject('EigenSimplicialLDLT', name="linearSolver", template="CompressedRowSparseMatrixMat3x3")
        quadular_springs.addObject('RegularGridTopology', min="0 0 0", max="1 0 1", nx="20", ny="1", nz="20", name="grid")
        quadular_springs.addObject('MechanicalObject', name="Quads")

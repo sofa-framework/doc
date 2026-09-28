@@ -349,7 +349,7 @@ ParticleSource.scn
     <?xml version="1.0" ?>
     <Node dt="0.005" gravity="0 -10 0" bbox="-4 -4 -4 4 4 4">
         <RequiredPlugin name="Sofa.Component.Mass"/> <!-- Needed to use components [UniformMass] -->
-        <RequiredPlugin name="Sofa.Component.ODESolver.Forward"/> <!-- Needed to use components [EulerExplicitSolver] -->
+        <RequiredPlugin name="Sofa.Component.IntegrationScheme.Forward"/> <!-- Needed to use components [EulerExplicitIntegrationScheme] -->
         <RequiredPlugin name="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
         <RequiredPlugin name="Sofa.Component.Visual"/> <!-- Needed to use components [VisualStyle] -->
         <RequiredPlugin name="SofaSphFluid"/> <!-- Needed to use components [ParticleSource] -->
@@ -357,7 +357,7 @@ ParticleSource.scn
     
         <DefaultAnimationLoop/>
         <Node name="Particles">
-            <EulerExplicitSolver symplectic="1" />
+            <EulerExplicitIntegrationScheme symplectic="1" />
             <MechanicalObject name="MModel" showObject="1"/>        
             <ParticleSource name="Source" translation="0 4 0" radius="0.01 0.1 0.01" velocity="0 -1 0" delay="0.1" start="-0.1" stop="10" printLog="0"
             center="-0.375 0 -0.75 
@@ -395,7 +395,7 @@ ParticleSource.scn
        node = root_node.addChild('node', dt="0.005", gravity="0 -10 0", bbox="-4 -4 -4 4 4 4")
 
        node.addObject('RequiredPlugin', name="Sofa.Component.Mass")
-       node.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Forward")
+       node.addObject('RequiredPlugin', name="Sofa.Component.IntegrationScheme.Forward")
        node.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
        node.addObject('RequiredPlugin', name="Sofa.Component.Visual")
        node.addObject('RequiredPlugin', name="SofaSphFluid")
@@ -404,7 +404,7 @@ ParticleSource.scn
 
        particles = node.addChild('Particles')
 
-       particles.addObject('EulerExplicitSolver', symplectic="1")
+       particles.addObject('EulerExplicitIntegrationScheme', symplectic="1")
        particles.addObject('MechanicalObject', name="MModel", showObject="1")
        particles.addObject('ParticleSource', name="Source", translation="0 4 0", radius="0.01 0.1 0.01", velocity="0 -1 0", delay="0.1", start="-0.1", stop="10", printLog="0", center="-0.375 0 -0.75              0.0 0.0 -0.75              0.375 0.0 -0.75              -0.75  0.0 -0.375              -0.375 0.0 -0.375              0.0 0.0 -0.375              0.375 0.0 -0.375              0.75 0.0 -0.375              -0.75 0.0 0.0              -0.375 0.0 0.0              0.0 0.0 0.0              0.375 0.0 0.0              0.75 0.0 0.0              -0.75 0.0 0.375              -0.375 0.0 0.375              0.0 0.0 0.375              0.375 0.0 0.375              0.75 0.0 0.375              -0.375 0.0 0.75              0.0 0.0 0.75              0.375 0.0 0.75")
        particles.addObject('UniformMass', name="M1", vertexMass="1.0")

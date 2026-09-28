@@ -332,7 +332,7 @@ AffineMovementProjectiveConstraint3D.scn
         <RequiredPlugin pluginName="Sofa.Component.Engine.Select"/> <!-- Needed to use components [BoxROI PairBoxROI] -->
         <RequiredPlugin pluginName="Sofa.Component.LinearSolver.Iterative"/> <!-- Needed to use components [CGLinearSolver] -->
         <RequiredPlugin pluginName="Sofa.Component.Mass"/> <!-- Needed to use components [UniformMass] -->
-        <RequiredPlugin pluginName="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+        <RequiredPlugin pluginName="Sofa.Component.IntegrationScheme.Backward"/> <!-- Needed to use components [EulerImplicitIntegrationScheme] -->
         <RequiredPlugin pluginName="Sofa.Component.SolidMechanics.FEM.Elastic"/> <!-- Needed to use components [TetrahedronFEMForceField] -->
         <RequiredPlugin pluginName="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
         <RequiredPlugin pluginName="Sofa.Component.Topology.Container.Grid"/> <!-- Needed to use components [RegularGridTopology] -->
@@ -341,7 +341,7 @@ AffineMovementProjectiveConstraint3D.scn
         <DefaultAnimationLoop/>
     
         <Node 	name="Square"  >
-            <EulerImplicitSolver name="Euler Implicit"  printLog="0"  rayleighStiffness="0.5"  rayleighMass="0.5"  vdamping="0" />
+            <EulerImplicitIntegrationScheme name="Euler Implicit"  printLog="0"  rayleighStiffness="0.5"  rayleighMass="0.5"  vdamping="0" />
             <CGLinearSolver template="GraphScattered" name="CG Solver"  printLog="0"  iterations="40"  tolerance="1e-06"  threshold="1e-10" />
             <MechanicalObject template="Vec3" name="mObject1" showObject="true" showObjectScale="3"/>
             <RegularGridTopology name ="loader" nx="4" ny="4" nz="4" xmin="0" xmax="1" ymin="0" ymax="1" zmin="0" zmax="1" position="@mObject1.position" drawHexahedra="true"/>
@@ -367,7 +367,7 @@ AffineMovementProjectiveConstraint3D.scn
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Engine.Select")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.LinearSolver.Iterative")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mass")
-       root.addObject('RequiredPlugin', pluginName="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', pluginName="Sofa.Component.IntegrationScheme.Backward")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.SolidMechanics.FEM.Elastic")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.StateContainer")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Topology.Container.Grid")
@@ -377,7 +377,7 @@ AffineMovementProjectiveConstraint3D.scn
 
        square = root.addChild('Square')
 
-       square.addObject('EulerImplicitSolver', name="Euler Implicit", printLog="0", rayleighStiffness="0.5", rayleighMass="0.5", vdamping="0")
+       square.addObject('EulerImplicitIntegrationScheme', name="Euler Implicit", printLog="0", rayleighStiffness="0.5", rayleighMass="0.5", vdamping="0")
        square.addObject('CGLinearSolver', template="GraphScattered", name="CG Solver", printLog="0", iterations="40", tolerance="1e-06", threshold="1e-10")
        square.addObject('MechanicalObject', template="Vec3", name="mObject1", showObject="true", showObjectScale="3")
        square.addObject('RegularGridTopology', name="loader", nx="4", ny="4", nz="4", xmin="0", xmax="1", ymin="0", ymax="1", zmin="0", zmax="1", position="@mObject1.position", drawHexahedra="true")
@@ -399,7 +399,7 @@ AffineMovementProjectiveConstraint.scn
         <RequiredPlugin pluginName="Sofa.Component.Engine.Select"/> <!-- Needed to use components [BoxROI PairBoxROI] -->
         <RequiredPlugin pluginName="Sofa.Component.LinearSolver.Iterative"/> <!-- Needed to use components [CGLinearSolver] -->
         <RequiredPlugin pluginName="Sofa.Component.Mass"/> <!-- Needed to use components [UniformMass] -->
-        <RequiredPlugin pluginName="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+        <RequiredPlugin pluginName="Sofa.Component.IntegrationScheme.Backward"/> <!-- Needed to use components [EulerImplicitIntegrationScheme] -->
         <RequiredPlugin pluginName="Sofa.Component.SolidMechanics.Spring"/> <!-- Needed to use components [MeshSpringForceField] -->
         <RequiredPlugin pluginName="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
         <RequiredPlugin pluginName="Sofa.Component.Topology.Container.Grid"/> <!-- Needed to use components [RegularGridTopology] -->
@@ -408,7 +408,7 @@ AffineMovementProjectiveConstraint.scn
         <VisualStyle displayFlags="hideVisualModels showBehavior" />
         <DefaultAnimationLoop/>
         <Node 	name="Square"  >
-            <EulerImplicitSolver name="Euler Implicit" rayleighStiffness="0.5"  rayleighMass="0.5"  vdamping="0" />
+            <EulerImplicitIntegrationScheme name="Euler Implicit" rayleighStiffness="0.5"  rayleighMass="0.5"  vdamping="0" />
             <CGLinearSolver template="GraphScattered" name="CG Solver" iterations="40"  tolerance="1e-06"  threshold="1e-10"/>
             <MechanicalObject template="Vec3" name="mObject1" showObject="true" showObjectScale="3"/>
             <RegularGridTopology name ="loader" nx="5" ny="5" nz="1" xmin="0" xmax="1" ymin="0" ymax="1" zmin="0" zmax="1" position="@mObject1.position" drawHexahedra="true"/>
@@ -433,7 +433,7 @@ AffineMovementProjectiveConstraint.scn
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Engine.Select")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.LinearSolver.Iterative")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mass")
-       root.addObject('RequiredPlugin', pluginName="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', pluginName="Sofa.Component.IntegrationScheme.Backward")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.SolidMechanics.Spring")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.StateContainer")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Topology.Container.Grid")
@@ -443,7 +443,7 @@ AffineMovementProjectiveConstraint.scn
 
        square = root.addChild('Square')
 
-       square.addObject('EulerImplicitSolver', name="Euler Implicit", rayleighStiffness="0.5", rayleighMass="0.5", vdamping="0")
+       square.addObject('EulerImplicitIntegrationScheme', name="Euler Implicit", rayleighStiffness="0.5", rayleighMass="0.5", vdamping="0")
        square.addObject('CGLinearSolver', template="GraphScattered", name="CG Solver", iterations="40", tolerance="1e-06", threshold="1e-10")
        square.addObject('MechanicalObject', template="Vec3", name="mObject1", showObject="true", showObjectScale="3")
        square.addObject('RegularGridTopology', name="loader", nx="5", ny="5", nz="1", xmin="0", xmax="1", ymin="0", ymax="1", zmin="0", zmax="1", position="@mObject1.position", drawHexahedra="true")

@@ -292,7 +292,7 @@ SlidingLagrangianConstraint.scn
         <RequiredPlugin pluginName="Sofa.Component.LinearSolver.Iterative"/> <!-- Needed to use components [CGLinearSolver] -->
         <RequiredPlugin pluginName="Sofa.Component.Mapping.NonLinear"/> <!-- Needed to use components [RigidMapping] -->
         <RequiredPlugin pluginName="Sofa.Component.Mass"/> <!-- Needed to use components [UniformMass] -->
-        <RequiredPlugin pluginName="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+        <RequiredPlugin pluginName="Sofa.Component.IntegrationScheme.Backward"/> <!-- Needed to use components [EulerImplicitIntegrationScheme] -->
         <RequiredPlugin pluginName="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
         <RequiredPlugin pluginName="Sofa.Component.Topology.Container.Constant"/> <!-- Needed to use components [MeshTopology] -->
         <RequiredPlugin pluginName="Sofa.Component.Visual"/> <!-- Needed to use components [VisualStyle] -->
@@ -310,7 +310,7 @@ SlidingLagrangianConstraint.scn
             <MechanicalObject name="points" template="Vec3" position="1 1.25 -0.2 &#x09;1 1.25 0.2" free_position="1 1.25 -0.2 &#x09;1 1.25 0.2" />
         </Node>
         <Node name="CUBE_1">
-            <EulerImplicitSolver printLog="false"  rayleighStiffness="0.1" rayleighMass="0.1" />
+            <EulerImplicitIntegrationScheme printLog="false"  rayleighStiffness="0.1" rayleighMass="0.1" />
             <CGLinearSolver iterations="25" tolerance="1.0e-9" threshold="1.0e-9" />
             <MechanicalObject template="Rigid3" scale="1.0" dx="0.0" dy="0" dz="0.0" />
             <UniformMass totalMass="10.0" />
@@ -338,7 +338,7 @@ SlidingLagrangianConstraint.scn
             <MechanicalObject name="points" template="Vec3" position="6 1.25 1&#x09;6 1.25 -1" free_position="6 1.25 1&#x09;6 1.25 -1" />
         </Node>
         <Node name="CUBE_2">
-            <EulerImplicitSolver printLog="false" />
+            <EulerImplicitIntegrationScheme printLog="false" />
             <CGLinearSolver iterations="25" tolerance="1.0e-9" threshold="1.0e-9" />
             <MechanicalObject template="Rigid3" scale="1.0" dx="5.0" dy="0" dz="0.0" />
             <UniformMass totalMass="10.0" />
@@ -385,7 +385,7 @@ SlidingLagrangianConstraint.scn
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.LinearSolver.Iterative")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mapping.NonLinear")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mass")
-       root.addObject('RequiredPlugin', pluginName="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', pluginName="Sofa.Component.IntegrationScheme.Backward")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.StateContainer")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Topology.Container.Constant")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Visual")
@@ -405,7 +405,7 @@ SlidingLagrangianConstraint.scn
 
        cube_1 = root.addChild('CUBE_1')
 
-       cube_1.addObject('EulerImplicitSolver', printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
+       cube_1.addObject('EulerImplicitIntegrationScheme', printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
        cube_1.addObject('CGLinearSolver', iterations="25", tolerance="1.0e-9", threshold="1.0e-9")
        cube_1.addObject('MechanicalObject', template="Rigid3", scale="1.0", dx="0.0", dy="0", dz="0.0")
        cube_1.addObject('UniformMass', totalMass="10.0")
@@ -439,7 +439,7 @@ SlidingLagrangianConstraint.scn
 
        cube_2 = root.addChild('CUBE_2')
 
-       cube_2.addObject('EulerImplicitSolver', printLog="false")
+       cube_2.addObject('EulerImplicitIntegrationScheme', printLog="false")
        cube_2.addObject('CGLinearSolver', iterations="25", tolerance="1.0e-9", threshold="1.0e-9")
        cube_2.addObject('MechanicalObject', template="Rigid3", scale="1.0", dx="5.0", dy="0", dz="0.0")
        cube_2.addObject('UniformMass', totalMass="10.0")

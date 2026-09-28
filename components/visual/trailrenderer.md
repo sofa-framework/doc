@@ -133,7 +133,7 @@ TrailRenderer.scn
         <DefaultAnimationLoop/>
         <Node name="plugins">
             <RequiredPlugin pluginName="Sofa.Component.Mass"/> <!-- Needed to use components [UniformMass] -->
-            <RequiredPlugin pluginName="Sofa.Component.ODESolver.Forward"/> <!-- Needed to use components [EulerExplicitSolver] -->
+            <RequiredPlugin pluginName="Sofa.Component.IntegrationScheme.Forward"/> <!-- Needed to use components [EulerExplicitIntegrationScheme] -->
             <RequiredPlugin pluginName="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
             <RequiredPlugin pluginName="Sofa.Component.Visual"/> <!-- Needed to use components [TrailRenderer VisualGrid] -->
         </Node>
@@ -142,7 +142,7 @@ TrailRenderer.scn
     
         <DefaultAnimationLoop/>
     
-        <EulerExplicitSolver/>
+        <EulerExplicitIntegrationScheme/>
         <MechanicalObject template="Vec3" name="particle"
                           position="0 0 0  0 0 0  0 0 0  0 0 0"
                           velocity="5 5 0  -5 5 0  7 7 0  -7 7 0" showObject="true" showObjectScale="10"/>
@@ -164,13 +164,13 @@ TrailRenderer.scn
        plugins = root.addChild('plugins')
 
        plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.Mass")
-       plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.ODESolver.Forward")
+       plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.IntegrationScheme.Forward")
        plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.StateContainer")
        plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.Visual")
 
        root.addObject('VisualGrid', size="20")
        root.addObject('DefaultAnimationLoop', )
-       root.addObject('EulerExplicitSolver', )
+       root.addObject('EulerExplicitIntegrationScheme', )
        root.addObject('MechanicalObject', template="Vec3", name="particle", position="0 0 0  0 0 0  0 0 0  0 0 0", velocity="5 5 0  -5 5 0  7 7 0  -7 7 0", showObject="true", showObjectScale="10")
        root.addObject('UniformMass', totalMass="1.0")
        root.addObject('TrailRenderer', template="Vec3", position="@particle.position", nbSteps="200", color="HSV", thickness="10")

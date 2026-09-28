@@ -170,7 +170,7 @@ WriteState.scn
             <RequiredPlugin pluginName="Sofa.Component.Constraint.Projective"/> <!-- Needed to use components [FixedProjectiveConstraint] -->
             <RequiredPlugin pluginName="Sofa.Component.LinearSolver.Direct"/> <!-- Needed to use components [SparseLDLSolver] -->
             <RequiredPlugin pluginName="Sofa.Component.Mass"/> <!-- Needed to use components [UniformMass] -->
-            <RequiredPlugin pluginName="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+            <RequiredPlugin pluginName="Sofa.Component.IntegrationScheme.Backward"/> <!-- Needed to use components [EulerImplicitIntegrationScheme] -->
             <RequiredPlugin pluginName="Sofa.Component.Playback"/> <!-- Needed to use components [WriteState] -->
             <RequiredPlugin pluginName="Sofa.Component.SolidMechanics.FEM.Elastic"/> <!-- Needed to use components [TetrahedronFEMForceField] -->
             <RequiredPlugin pluginName="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
@@ -183,7 +183,7 @@ WriteState.scn
     
         <!-- Beam under gravity -->
         <Node name="Beam">
-            <EulerImplicitSolver/>                
+            <EulerImplicitIntegrationScheme/>
             <SparseLDLSolver />
             
             <MechanicalObject name="beamMO" template="Vec3" />
@@ -213,7 +213,7 @@ WriteState.scn
        plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.Constraint.Projective")
        plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.LinearSolver.Direct")
        plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.Mass")
-       plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.ODESolver.Backward")
+       plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.IntegrationScheme.Backward")
        plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.Playback")
        plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.SolidMechanics.FEM.Elastic")
        plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.StateContainer")
@@ -225,7 +225,7 @@ WriteState.scn
 
        beam = root.addChild('Beam')
 
-       beam.addObject('EulerImplicitSolver', )
+       beam.addObject('EulerImplicitIntegrationScheme', )
        beam.addObject('SparseLDLSolver', )
        beam.addObject('MechanicalObject', name="beamMO", template="Vec3")
        beam.addObject('RegularGridTopology', nx="3", ny="3", nz="7", xmin="0", xmax="3", ymin="0", ymax="3", zmin="0", zmax="7")

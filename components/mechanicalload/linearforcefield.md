@@ -646,7 +646,7 @@ LinearForceField.scn
         <RequiredPlugin pluginName="Sofa.Component.Mapping.NonLinear"/> <!-- Needed to use components [RigidMapping] -->
         <RequiredPlugin pluginName="Sofa.Component.Mass"/> <!-- Needed to use components [UniformMass] -->
         <RequiredPlugin pluginName="Sofa.Component.MechanicalLoad"/> <!-- Needed to use components [LinearForceField] -->
-        <RequiredPlugin pluginName="Sofa.Component.ODESolver.Forward"/> <!-- Needed to use components [EulerExplicitSolver] -->
+        <RequiredPlugin pluginName="Sofa.Component.IntegrationScheme.Forward"/> <!-- Needed to use components [EulerExplicitIntegrationScheme] -->
         <RequiredPlugin pluginName="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
         <RequiredPlugin pluginName="Sofa.Component.Visual"/> <!-- Needed to use components [VisualStyle] -->
         <RequiredPlugin pluginName="Sofa.GL.Component.Rendering3D"/> <!-- Needed to use components [OglModel] -->
@@ -654,7 +654,7 @@ LinearForceField.scn
         <DefaultAnimationLoop/>
         
         <Node name="TorusRigidX">
-            <EulerExplicitSolver />
+            <EulerExplicitIntegrationScheme />
             <CGLinearSolver iterations="25" threshold="0.00000001" tolerance="1e-5"/>
             <MechanicalObject template="Rigid3" dx="2" dy="0" dz="0" rx="0" ry="0" rz="0" scale="1.0" />
             <UniformMass totalMass="1.0"/>
@@ -667,7 +667,7 @@ LinearForceField.scn
             </Node>
         </Node>
         <Node name="TorusRigidY">
-            <EulerExplicitSolver />
+            <EulerExplicitIntegrationScheme />
             <CGLinearSolver iterations="25" threshold="0.00000001" tolerance="1e-5"/>
             <MechanicalObject template="Rigid3" dx="2" dy="2" dz="0" rx="0" ry="0" rz="0" scale="1.0" />
             <UniformMass totalMass="1.0"/>
@@ -695,7 +695,7 @@ LinearForceField.scn
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mapping.NonLinear")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mass")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.MechanicalLoad")
-       root.addObject('RequiredPlugin', pluginName="Sofa.Component.ODESolver.Forward")
+       root.addObject('RequiredPlugin', pluginName="Sofa.Component.IntegrationScheme.Forward")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.StateContainer")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Visual")
        root.addObject('RequiredPlugin', pluginName="Sofa.GL.Component.Rendering3D")
@@ -704,7 +704,7 @@ LinearForceField.scn
 
        torus_rigid_x = root.addChild('TorusRigidX')
 
-       torus_rigid_x.addObject('EulerExplicitSolver', )
+       torus_rigid_x.addObject('EulerExplicitIntegrationScheme', )
        torus_rigid_x.addObject('CGLinearSolver', iterations="25", threshold="0.00000001", tolerance="1e-5")
        torus_rigid_x.addObject('MechanicalObject', template="Rigid3", dx="2", dy="0", dz="0", rx="0", ry="0", rz="0", scale="1.0")
        torus_rigid_x.addObject('UniformMass', totalMass="1.0")
@@ -718,7 +718,7 @@ LinearForceField.scn
 
        torus_rigid_y = root.addChild('TorusRigidY')
 
-       torus_rigid_y.addObject('EulerExplicitSolver', )
+       torus_rigid_y.addObject('EulerExplicitIntegrationScheme', )
        torus_rigid_y.addObject('CGLinearSolver', iterations="25", threshold="0.00000001", tolerance="1e-5")
        torus_rigid_y.addObject('MechanicalObject', template="Rigid3", dx="2", dy="2", dz="0", rx="0", ry="0", rz="0", scale="1.0")
        torus_rigid_y.addObject('UniformMass', totalMass="1.0")

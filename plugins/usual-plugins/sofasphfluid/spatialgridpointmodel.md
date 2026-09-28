@@ -212,7 +212,7 @@ SpatialGridPointModel.scn
         <RequiredPlugin name="Sofa.Component.Collision.Geometry"/> <!-- Needed to use components [LineCollisionModel PointCollisionModel TriangleCollisionModel] -->
         <RequiredPlugin name="Sofa.Component.Collision.Response.Contact"/> <!-- Needed to use components [CollisionResponse] -->
         <RequiredPlugin name="Sofa.Component.Mass"/> <!-- Needed to use components [UniformMass] -->
-        <RequiredPlugin name="Sofa.Component.ODESolver.Forward"/> <!-- Needed to use components [RungeKutta4Solver] -->
+        <RequiredPlugin name="Sofa.Component.IntegrationScheme.Forward"/> <!-- Needed to use components [RungeKutta4IntegrationScheme] -->
         <RequiredPlugin name="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
         <RequiredPlugin name="Sofa.Component.Topology.Container.Constant"/> <!-- Needed to use components [MeshTopology] -->
         <RequiredPlugin name="Sofa.Component.Topology.Container.Grid"/> <!-- Needed to use components [RegularGridTopology] -->
@@ -229,7 +229,7 @@ SpatialGridPointModel.scn
         <BVHNarrowPhase/>
         <CollisionResponse response="PenalityContactForceField" />
         <Node name="Fluid">
-            <RungeKutta4Solver />        
+            <RungeKutta4IntegrationScheme />
             <RegularGridTopology nx="5" ny="30" nz="5" xmin="-1.5" xmax="0" ymin="-3" ymax="9" zmin="-1.5" zmax="0" drawEdges="0"/>
             <MechanicalObject name="MModel" />
             <UniformMass name="M1" vertexMass="1" />
@@ -265,7 +265,7 @@ SpatialGridPointModel.scn
        node.addObject('RequiredPlugin', name="Sofa.Component.Collision.Geometry")
        node.addObject('RequiredPlugin', name="Sofa.Component.Collision.Response.Contact")
        node.addObject('RequiredPlugin', name="Sofa.Component.Mass")
-       node.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Forward")
+       node.addObject('RequiredPlugin', name="Sofa.Component.IntegrationScheme.Forward")
        node.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
        node.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Constant")
        node.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Grid")
@@ -282,7 +282,7 @@ SpatialGridPointModel.scn
 
        fluid = node.addChild('Fluid')
 
-       fluid.addObject('RungeKutta4Solver', )
+       fluid.addObject('RungeKutta4IntegrationScheme', )
        fluid.addObject('RegularGridTopology', nx="5", ny="30", nz="5", xmin="-1.5", xmax="0", ymin="-3", ymax="9", zmin="-1.5", zmax="0", drawEdges="0")
        fluid.addObject('MechanicalObject', name="MModel")
        fluid.addObject('UniformMass', name="M1", vertexMass="1")

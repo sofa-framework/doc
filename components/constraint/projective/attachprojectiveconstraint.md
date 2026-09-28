@@ -1028,7 +1028,7 @@ AttachProjectiveConstraint.scn
         <RequiredPlugin pluginName="Sofa.Component.Engine.Select"/> <!-- Needed to use components [BoxROI] -->
         <RequiredPlugin pluginName="Sofa.Component.LinearSolver.Iterative"/> <!-- Needed to use components [CGLinearSolver] -->
         <RequiredPlugin pluginName="Sofa.Component.Mass"/> <!-- Needed to use components [UniformMass] -->
-        <RequiredPlugin pluginName="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+        <RequiredPlugin pluginName="Sofa.Component.IntegrationScheme.Backward"/> <!-- Needed to use components [EulerImplicitIntegrationScheme] -->
         <RequiredPlugin pluginName="Sofa.Component.SolidMechanics.FEM.Elastic"/> <!-- Needed to use components [TetrahedronFEMForceField] -->
         <RequiredPlugin pluginName="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
         <RequiredPlugin pluginName="Sofa.Component.Topology.Container.Grid"/> <!-- Needed to use components [RegularGridTopology] -->
@@ -1037,7 +1037,7 @@ AttachProjectiveConstraint.scn
         <VisualStyle displayFlags="showBehaviorModels showForceFields" />
         <DefaultAnimationLoop/>
         <Node name="Single">
-            <EulerImplicitSolver name="cg_odesolver" printLog="false"  rayleighStiffness="0.1" rayleighMass="0.1" />
+            <EulerImplicitIntegrationScheme name="cg_odesolver" printLog="false"  rayleighStiffness="0.1" rayleighMass="0.1" />
             <CGLinearSolver iterations="25" name="linear solver" tolerance="1.0e-9" threshold="1.0e-9" />
             <Node name="M1">
                 <MechanicalObject showObject="1"/>
@@ -1049,7 +1049,7 @@ AttachProjectiveConstraint.scn
             </Node>
         </Node>
         <Node name="AttachOneWay">
-            <EulerImplicitSolver name="cg_odesolver" printLog="false" />
+            <EulerImplicitIntegrationScheme name="cg_odesolver" printLog="false" />
             <CGLinearSolver iterations="25" name="linear solver" tolerance="1.0e-9" threshold="1.0e-9" />
             <Node name="M1">
                 <MechanicalObject />
@@ -1059,7 +1059,7 @@ AttachProjectiveConstraint.scn
                 <TetrahedronFEMForceField name="FEM" youngModulus="4000" poissonRatio="0.3" />
             </Node>
             <Node name="M2">
-                <EulerImplicitSolver name="cg_odesolver" printLog="false" />
+                <EulerImplicitIntegrationScheme name="cg_odesolver" printLog="false" />
                 <CGLinearSolver iterations="25" name="linear solver" tolerance="1.0e-9" threshold="1.0e-9" />
                 <MechanicalObject />
                 <UniformMass vertexMass="1" />
@@ -1067,7 +1067,7 @@ AttachProjectiveConstraint.scn
                 <TetrahedronFEMForceField name="FEM" youngModulus="4000" poissonRatio="0.3" />
             </Node>
             <Node name="M3">
-                <EulerImplicitSolver name="cg_odesolver" printLog="false" />
+                <EulerImplicitIntegrationScheme name="cg_odesolver" printLog="false" />
                 <CGLinearSolver iterations="25" name="linear solver" tolerance="1.0e-9" threshold="1.0e-9" />
                 <MechanicalObject />
                 <UniformMass vertexMass="1" />
@@ -1079,7 +1079,7 @@ AttachProjectiveConstraint.scn
             <AttachProjectiveConstraint object1="@M2" object2="@M3" indices1="144 145 146 147 148 149 150 151 152 153 154 155 156 157 158 159" indices2="0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15" constraintFactor="1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1"/>
         </Node>
         <Node name="AttachTwoWay">
-            <EulerImplicitSolver name="cg_odesolver" printLog="false" />
+            <EulerImplicitIntegrationScheme name="cg_odesolver" printLog="false" />
             <CGLinearSolver iterations="25" name="linear solver" tolerance="1.0e-9" threshold="1.0e-9" />
             <Node name="M1">
                 <MechanicalObject />
@@ -1089,7 +1089,7 @@ AttachProjectiveConstraint.scn
                 <TetrahedronFEMForceField name="FEM" youngModulus="4000" poissonRatio="0.3" />
             </Node>
             <Node name="M2">
-                <EulerImplicitSolver name="cg_odesolver" printLog="false" />
+                <EulerImplicitIntegrationScheme name="cg_odesolver" printLog="false" />
                 <CGLinearSolver iterations="25" name="linear solver" tolerance="1.0e-9" threshold="1.0e-9" />
                 <MechanicalObject />
                 <UniformMass vertexMass="1" />
@@ -1097,7 +1097,7 @@ AttachProjectiveConstraint.scn
                 <TetrahedronFEMForceField name="FEM" youngModulus="4000" poissonRatio="0.3" />
             </Node>
             <Node name="M3">
-                <EulerImplicitSolver name="cg_odesolver" printLog="false" />
+                <EulerImplicitIntegrationScheme name="cg_odesolver" printLog="false" />
                 <CGLinearSolver iterations="25" name="linear solver" tolerance="1.0e-9" threshold="1.0e-9" />
                 <MechanicalObject />
                 <UniformMass vertexMass="1" />
@@ -1123,7 +1123,7 @@ AttachProjectiveConstraint.scn
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Engine.Select")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.LinearSolver.Iterative")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mass")
-       root.addObject('RequiredPlugin', pluginName="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', pluginName="Sofa.Component.IntegrationScheme.Backward")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.SolidMechanics.FEM.Elastic")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.StateContainer")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Topology.Container.Grid")
@@ -1133,7 +1133,7 @@ AttachProjectiveConstraint.scn
 
        single = root.addChild('Single')
 
-       single.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
+       single.addObject('EulerImplicitIntegrationScheme', name="cg_odesolver", printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
        single.addObject('CGLinearSolver', iterations="25", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
 
        m1 = Single.addChild('M1')
@@ -1146,7 +1146,7 @@ AttachProjectiveConstraint.scn
 
        attach_one_way = root.addChild('AttachOneWay')
 
-       attach_one_way.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="false")
+       attach_one_way.addObject('EulerImplicitIntegrationScheme', name="cg_odesolver", printLog="false")
        attach_one_way.addObject('CGLinearSolver', iterations="25", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
 
        m1 = AttachOneWay.addChild('M1')
@@ -1159,7 +1159,7 @@ AttachProjectiveConstraint.scn
 
        m2 = AttachOneWay.addChild('M2')
 
-       m2.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="false")
+       m2.addObject('EulerImplicitIntegrationScheme', name="cg_odesolver", printLog="false")
        m2.addObject('CGLinearSolver', iterations="25", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
        m2.addObject('MechanicalObject', )
        m2.addObject('UniformMass', vertexMass="1")
@@ -1168,7 +1168,7 @@ AttachProjectiveConstraint.scn
 
        m3 = AttachOneWay.addChild('M3')
 
-       m3.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="false")
+       m3.addObject('EulerImplicitIntegrationScheme', name="cg_odesolver", printLog="false")
        m3.addObject('CGLinearSolver', iterations="25", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
        m3.addObject('MechanicalObject', )
        m3.addObject('UniformMass', vertexMass="1")
@@ -1180,7 +1180,7 @@ AttachProjectiveConstraint.scn
 
        attach_two_way = root.addChild('AttachTwoWay')
 
-       attach_two_way.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="false")
+       attach_two_way.addObject('EulerImplicitIntegrationScheme', name="cg_odesolver", printLog="false")
        attach_two_way.addObject('CGLinearSolver', iterations="25", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
 
        m1 = AttachTwoWay.addChild('M1')
@@ -1193,7 +1193,7 @@ AttachProjectiveConstraint.scn
 
        m2 = AttachTwoWay.addChild('M2')
 
-       m2.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="false")
+       m2.addObject('EulerImplicitIntegrationScheme', name="cg_odesolver", printLog="false")
        m2.addObject('CGLinearSolver', iterations="25", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
        m2.addObject('MechanicalObject', )
        m2.addObject('UniformMass', vertexMass="1")
@@ -1202,7 +1202,7 @@ AttachProjectiveConstraint.scn
 
        m3 = AttachTwoWay.addChild('M3')
 
-       m3.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="false")
+       m3.addObject('EulerImplicitIntegrationScheme', name="cg_odesolver", printLog="false")
        m3.addObject('CGLinearSolver', iterations="25", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
        m3.addObject('MechanicalObject', )
        m3.addObject('UniformMass', vertexMass="1")
@@ -1224,7 +1224,7 @@ AttachProjectiveConstraintMatrix.scn
         <RequiredPlugin pluginName="Sofa.Component.LinearSolver.Direct"/> <!-- Needed to use components [EigenSimplicialLDLT] -->
         <RequiredPlugin pluginName="Sofa.Component.LinearSolver.Iterative"/> <!-- Needed to use components [CGLinearSolver] -->
         <RequiredPlugin pluginName="Sofa.Component.Mass"/> <!-- Needed to use components [UniformMass] -->
-        <RequiredPlugin pluginName="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+        <RequiredPlugin pluginName="Sofa.Component.IntegrationScheme.Backward"/> <!-- Needed to use components [EulerImplicitIntegrationScheme] -->
         <RequiredPlugin pluginName="Sofa.Component.SolidMechanics.FEM.Elastic"/> <!-- Needed to use components [TetrahedronFEMForceField] -->
         <RequiredPlugin pluginName="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
         <RequiredPlugin pluginName="Sofa.Component.Topology.Container.Grid"/> <!-- Needed to use components [RegularGridTopology] -->
@@ -1233,7 +1233,7 @@ AttachProjectiveConstraintMatrix.scn
         <VisualStyle displayFlags="showBehaviorModels showForceFields" />
         <DefaultAnimationLoop/>
         <Node name="AttachOneWay">
-            <EulerImplicitSolver name="cg_odesolver" printLog="false"  rayleighStiffness="0.1" rayleighMass="0.1" />
+            <EulerImplicitIntegrationScheme name="cg_odesolver" printLog="false"  rayleighStiffness="0.1" rayleighMass="0.1" />
             <CGLinearSolver iterations="25" name="linear solver" tolerance="1.0e-9" threshold="1.0e-9" />
             <Node name="M1">
                 <MechanicalObject showObject="1"/>
@@ -1250,7 +1250,7 @@ AttachProjectiveConstraintMatrix.scn
             </Node>
             <!--
     		<Node name="M3">
-    			<EulerImplicitSolver name="cg_odesolver" printLog="false"/>
+    			<EulerImplicitIntegrationScheme name="cg_odesolver" printLog="false"/>
     			<CGLinearSolver iterations="25" name="linear solver" tolerance="1.0e-9" threshold="1.0e-9"/>
     			<MechanicalObject/>
     			<UniformMass vertexMass="1"/>
@@ -1262,7 +1262,7 @@ AttachProjectiveConstraintMatrix.scn
             <!--	<AttachProjectiveConstraint object1="@M2" object2="@M3" radius="0.1" indices1="144 145 146 147 148 149 150 151 152 153 154 155 156 157 158 159" indices2="0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15" constraintFactor="1"/>	-->
         </Node>
         <Node name="AttachOneWay2">
-            <EulerImplicitSolver name="cg_odesolver" printLog="false" />
+            <EulerImplicitIntegrationScheme name="cg_odesolver" printLog="false" />
             <EigenSimplicialLDLT template="CompressedRowSparseMatrixMat3x3"/>
             <Node name="M1">
                 <MechanicalObject />
@@ -1279,7 +1279,7 @@ AttachProjectiveConstraintMatrix.scn
             </Node>
             <!--
     		<Node name="M3">
-    			<EulerImplicitSolver name="cg_odesolver" printLog="false"/>
+    			<EulerImplicitIntegrationScheme name="cg_odesolver" printLog="false"/>
     			<CGLinearSolver iterations="25" name="linear solver" tolerance="1.0e-9" threshold="1.0e-9"/>
     			<MechanicalObject/>
     			<UniformMass vertexMass="1"/>
@@ -1306,7 +1306,7 @@ AttachProjectiveConstraintMatrix.scn
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.LinearSolver.Direct")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.LinearSolver.Iterative")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mass")
-       root.addObject('RequiredPlugin', pluginName="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', pluginName="Sofa.Component.IntegrationScheme.Backward")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.SolidMechanics.FEM.Elastic")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.StateContainer")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Topology.Container.Grid")
@@ -1316,7 +1316,7 @@ AttachProjectiveConstraintMatrix.scn
 
        attach_one_way = root.addChild('AttachOneWay')
 
-       attach_one_way.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
+       attach_one_way.addObject('EulerImplicitIntegrationScheme', name="cg_odesolver", printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
        attach_one_way.addObject('CGLinearSolver', iterations="25", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
 
        m1 = AttachOneWay.addChild('M1')
@@ -1338,7 +1338,7 @@ AttachProjectiveConstraintMatrix.scn
 
        attach_one_way2 = root.addChild('AttachOneWay2')
 
-       attach_one_way2.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="false")
+       attach_one_way2.addObject('EulerImplicitIntegrationScheme', name="cg_odesolver", printLog="false")
        attach_one_way2.addObject('EigenSimplicialLDLT', template="CompressedRowSparseMatrixMat3x3")
 
        m1 = AttachOneWay2.addChild('M1')

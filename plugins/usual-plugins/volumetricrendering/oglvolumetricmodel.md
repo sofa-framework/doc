@@ -173,7 +173,7 @@ OglVolumetricModel_tetra_clipped_physics.scn
         <RequiredPlugin pluginName="VolumetricRendering" />
     
         <Node name="HexaRaptor" >
-            <EulerImplicitSolver  rayleighStiffness="0.1" rayleighMass="0.1" />
+            <EulerImplicitIntegrationScheme  rayleighStiffness="0.1" rayleighMass="0.1" />
             <CGLinearSolver iterations="100" tolerance="1.0e-7" threshold="1.0e-7"/>
     
     		<MeshVTKLoader name="loader" filename="mesh/raptorTetra_8418.vtu" />
@@ -221,7 +221,7 @@ OglVolumetricModel_tetra_clipped_physics.scn
 
        hexa_raptor = root.addChild('HexaRaptor')
 
-       hexa_raptor.addObject('EulerImplicitSolver', rayleighStiffness="0.1", rayleighMass="0.1")
+       hexa_raptor.addObject('EulerImplicitIntegrationScheme', rayleighStiffness="0.1", rayleighMass="0.1")
        hexa_raptor.addObject('CGLinearSolver', iterations="100", tolerance="1.0e-7", threshold="1.0e-7")
        hexa_raptor.addObject('MeshVTKLoader', name="loader", filename="mesh/raptorTetra_8418.vtu")
        hexa_raptor.addObject('MechanicalObject', src="@loader", template="Vec3d")
@@ -257,7 +257,7 @@ OglVolumetricModel_tetra_physics.scn
         <RequiredPlugin pluginName="VolumetricRendering" />
     
         <Node name="HexaRaptor" >
-            <EulerImplicitSolver  rayleighStiffness="0.1" rayleighMass="0.1" />
+            <EulerImplicitIntegrationScheme  rayleighStiffness="0.1" rayleighMass="0.1" />
             <CGLinearSolver iterations="100" tolerance="1.0e-7" threshold="1.0e-7"/>
     
     		<MeshVTKLoader name="loader" filename="mesh/raptorTetra_8418.vtu" />
@@ -303,7 +303,7 @@ OglVolumetricModel_tetra_physics.scn
 
        hexa_raptor = root.addChild('HexaRaptor')
 
-       hexa_raptor.addObject('EulerImplicitSolver', rayleighStiffness="0.1", rayleighMass="0.1")
+       hexa_raptor.addObject('EulerImplicitIntegrationScheme', rayleighStiffness="0.1", rayleighMass="0.1")
        hexa_raptor.addObject('CGLinearSolver', iterations="100", tolerance="1.0e-7", threshold="1.0e-7")
        hexa_raptor.addObject('MeshVTKLoader', name="loader", filename="mesh/raptorTetra_8418.vtu")
        hexa_raptor.addObject('MechanicalObject', src="@loader", template="Vec3d")
@@ -338,7 +338,7 @@ OglVolumetricModel_physics.scn
         <RequiredPlugin pluginName="VolumetricRendering" />
     
         <Node name="HexaRaptor" >
-            <EulerImplicitSolver  rayleighStiffness="0.1" rayleighMass="0.1" />
+            <EulerImplicitIntegrationScheme  rayleighStiffness="0.1" rayleighMass="0.1" />
             <CGLinearSolver iterations="100" tolerance="1.0e-7" threshold="1.0e-7"/>
     
     		<SparseGridTopology name="grid" n="21 21 21" fileTopology="mesh/raptor_8kp.obj" />
@@ -384,7 +384,7 @@ OglVolumetricModel_physics.scn
 
        hexa_raptor = root.addChild('HexaRaptor')
 
-       hexa_raptor.addObject('EulerImplicitSolver', rayleighStiffness="0.1", rayleighMass="0.1")
+       hexa_raptor.addObject('EulerImplicitIntegrationScheme', rayleighStiffness="0.1", rayleighMass="0.1")
        hexa_raptor.addObject('CGLinearSolver', iterations="100", tolerance="1.0e-7", threshold="1.0e-7")
        hexa_raptor.addObject('SparseGridTopology', name="grid", n="21 21 21", fileTopology="mesh/raptor_8kp.obj")
        hexa_raptor.addObject('MechanicalObject', name="dofs", template="Vec3d")
@@ -420,7 +420,7 @@ OglVolumetricModel_hexa_physics.scn
         <RequiredPlugin pluginName="VolumetricRendering" />
     
         <Node name="HexaRaptor" >
-            <EulerImplicitSolver  rayleighStiffness="0.1" rayleighMass="0.1" />
+            <EulerImplicitIntegrationScheme  rayleighStiffness="0.1" rayleighMass="0.1" />
             <CGLinearSolver iterations="100" tolerance="1.0e-7" threshold="1.0e-7"/>
     
     		<SparseGridTopology name="grid" n="21 21 21" fileTopology="mesh/raptor_8kp.obj" />
@@ -466,7 +466,7 @@ OglVolumetricModel_hexa_physics.scn
 
        hexa_raptor = root.addChild('HexaRaptor')
 
-       hexa_raptor.addObject('EulerImplicitSolver', rayleighStiffness="0.1", rayleighMass="0.1")
+       hexa_raptor.addObject('EulerImplicitIntegrationScheme', rayleighStiffness="0.1", rayleighMass="0.1")
        hexa_raptor.addObject('CGLinearSolver', iterations="100", tolerance="1.0e-7", threshold="1.0e-7")
        hexa_raptor.addObject('SparseGridTopology', name="grid", n="21 21 21", fileTopology="mesh/raptor_8kp.obj")
        hexa_raptor.addObject('MechanicalObject', name="dofs", template="Vec3d")

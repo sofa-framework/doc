@@ -329,7 +329,7 @@ GIDMeshLoader.scn
         <RequiredPlugin pluginName="Sofa.Component.IO.Mesh"/> <!-- Needed to use components [GIDMeshLoader] -->
         <RequiredPlugin pluginName="Sofa.Component.LinearSolver.Direct"/> <!-- Needed to use components [SparseLDLSolver] -->
         <RequiredPlugin pluginName="Sofa.Component.Mass"/> <!-- Needed to use components [UniformMass] -->
-        <RequiredPlugin pluginName="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+        <RequiredPlugin pluginName="Sofa.Component.IntegrationScheme.Backward"/> <!-- Needed to use components [EulerImplicitIntegrationScheme] -->
         <RequiredPlugin pluginName="Sofa.Component.SolidMechanics.FEM.Elastic"/> <!-- Needed to use components [TetrahedronFEMForceField] -->
         <RequiredPlugin pluginName="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
         <RequiredPlugin pluginName="Sofa.Component.Topology.Container.Constant"/> <!-- Needed to use components [MeshTopology] -->
@@ -338,7 +338,7 @@ GIDMeshLoader.scn
         <VisualStyle displayFlags="showBehavior" />
         <DefaultAnimationLoop/>
         <Node name="Tripod">
-            <EulerImplicitSolver/>
+            <EulerImplicitIntegrationScheme/>
             <SparseLDLSolver/>
             <GIDMeshLoader name="loader" filename="mesh/tripod.gidmsh" />
             <MeshTopology src="@loader"/>
@@ -364,7 +364,7 @@ GIDMeshLoader.scn
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.IO.Mesh")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.LinearSolver.Direct")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mass")
-       root.addObject('RequiredPlugin', pluginName="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', pluginName="Sofa.Component.IntegrationScheme.Backward")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.SolidMechanics.FEM.Elastic")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.StateContainer")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Topology.Container.Constant")
@@ -374,7 +374,7 @@ GIDMeshLoader.scn
 
        tripod = Root.addChild('Tripod')
 
-       tripod.addObject('EulerImplicitSolver', )
+       tripod.addObject('EulerImplicitIntegrationScheme', )
        tripod.addObject('SparseLDLSolver', )
        tripod.addObject('GIDMeshLoader', name="loader", filename="mesh/tripod.gidmsh")
        tripod.addObject('MeshTopology', src="@loader")

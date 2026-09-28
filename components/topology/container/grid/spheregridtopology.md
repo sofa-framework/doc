@@ -326,7 +326,7 @@ SphereGridTopology.scn
         <RequiredPlugin pluginName="Sofa.Component.LinearSolver.Iterative"/> <!-- Needed to use components [CGLinearSolver] -->
         <RequiredPlugin pluginName="Sofa.Component.Mapping.Linear"/> <!-- Needed to use components [IdentityMapping] -->
         <RequiredPlugin pluginName="Sofa.Component.Mass"/> <!-- Needed to use components [UniformMass] -->
-        <RequiredPlugin pluginName="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+        <RequiredPlugin pluginName="Sofa.Component.IntegrationScheme.Backward"/> <!-- Needed to use components [EulerImplicitIntegrationScheme] -->
         <RequiredPlugin pluginName="Sofa.Component.SolidMechanics.FEM.Elastic"/> <!-- Needed to use components [HexahedronFEMForceField TetrahedronFEMForceField] -->
         <RequiredPlugin pluginName="Sofa.Component.SolidMechanics.Spring"/> <!-- Needed to use components [MeshSpringForceField] -->
         <RequiredPlugin pluginName="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
@@ -336,7 +336,7 @@ SphereGridTopology.scn
         <VisualStyle displayFlags="showBehaviorModels showForceFields showVisual" />
         <DefaultAnimationLoop/>
         <Node name="SphereFEMTetra">
-            <EulerImplicitSolver  rayleighStiffness="0.1" rayleighMass="0.1" />
+            <EulerImplicitIntegrationScheme  rayleighStiffness="0.1" rayleighMass="0.1" />
             <CGLinearSolver iterations="25" tolerance="0.000001" threshold="1e-5"/>
             <MechanicalObject dx="-10" />
             <UniformMass totalMass="100" />
@@ -349,7 +349,7 @@ SphereGridTopology.scn
             </Node>
         </Node>
         <Node name="SphereFEM">
-            <EulerImplicitSolver />
+            <EulerImplicitIntegrationScheme />
             <CGLinearSolver iterations="25" tolerance="0.000001" threshold="1e-5"/>
             <MechanicalObject />
             <UniformMass totalMass="100" />
@@ -358,7 +358,7 @@ SphereGridTopology.scn
             <HexahedronFEMForceField name="FEM" youngModulus="1116" poissonRatio="0.3" method="large" />
         </Node>
         <Node name="SphereSpring">
-            <EulerImplicitSolver />
+            <EulerImplicitIntegrationScheme />
             <CGLinearSolver iterations="25" tolerance="0.000001" threshold="1e-5"/>
             <MechanicalObject dx="10" />
             <UniformMass totalMass="100" />
@@ -383,7 +383,7 @@ SphereGridTopology.scn
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.LinearSolver.Iterative")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mapping.Linear")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mass")
-       root.addObject('RequiredPlugin', pluginName="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', pluginName="Sofa.Component.IntegrationScheme.Backward")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.SolidMechanics.FEM.Elastic")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.SolidMechanics.Spring")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.StateContainer")
@@ -395,7 +395,7 @@ SphereGridTopology.scn
 
        sphere_fem_tetra = root.addChild('SphereFEMTetra')
 
-       sphere_fem_tetra.addObject('EulerImplicitSolver', rayleighStiffness="0.1", rayleighMass="0.1")
+       sphere_fem_tetra.addObject('EulerImplicitIntegrationScheme', rayleighStiffness="0.1", rayleighMass="0.1")
        sphere_fem_tetra.addObject('CGLinearSolver', iterations="25", tolerance="0.000001", threshold="1e-5")
        sphere_fem_tetra.addObject('MechanicalObject', dx="-10")
        sphere_fem_tetra.addObject('UniformMass', totalMass="100")
@@ -410,7 +410,7 @@ SphereGridTopology.scn
 
        sphere_fem = root.addChild('SphereFEM')
 
-       sphere_fem.addObject('EulerImplicitSolver', )
+       sphere_fem.addObject('EulerImplicitIntegrationScheme', )
        sphere_fem.addObject('CGLinearSolver', iterations="25", tolerance="0.000001", threshold="1e-5")
        sphere_fem.addObject('MechanicalObject', )
        sphere_fem.addObject('UniformMass', totalMass="100")
@@ -420,7 +420,7 @@ SphereGridTopology.scn
 
        sphere_spring = root.addChild('SphereSpring')
 
-       sphere_spring.addObject('EulerImplicitSolver', )
+       sphere_spring.addObject('EulerImplicitIntegrationScheme', )
        sphere_spring.addObject('CGLinearSolver', iterations="25", tolerance="0.000001", threshold="1e-5")
        sphere_spring.addObject('MechanicalObject', dx="10")
        sphere_spring.addObject('UniformMass', totalMass="100")

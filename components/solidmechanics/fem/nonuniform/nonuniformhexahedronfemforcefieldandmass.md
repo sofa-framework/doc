@@ -238,7 +238,7 @@ NonUniformHexahedronFEMForceFieldAndMass.scn
         <RequiredPlugin pluginName="Sofa.Component.IO.Mesh"/> <!-- Needed to use components [MeshOBJLoader] -->
         <RequiredPlugin pluginName="Sofa.Component.LinearSolver.Iterative"/> <!-- Needed to use components [CGLinearSolver] -->
         <RequiredPlugin pluginName="Sofa.Component.Mapping.Linear"/> <!-- Needed to use components [BarycentricMapping] -->
-        <RequiredPlugin pluginName="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+        <RequiredPlugin pluginName="Sofa.Component.IntegrationScheme.Backward"/> <!-- Needed to use components [EulerImplicitIntegrationScheme] -->
         <RequiredPlugin pluginName="Sofa.Component.SolidMechanics.FEM.Elastic"/> <!-- Needed to use components [HexahedronFEMForceFieldAndMass] -->
         <RequiredPlugin pluginName="Sofa.Component.SolidMechanics.FEM.NonUniform"/> <!-- Needed to use components [NonUniformHexahedronFEMForceFieldAndMass] -->
         <RequiredPlugin pluginName="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
@@ -257,7 +257,7 @@ NonUniformHexahedronFEMForceFieldAndMass.scn
         <include name="Salad Bowl 1" href="Objects/SaladBowl.xml" contactStiffness="10000" dy="-10" dz="-20" scale="100" />
         <include name="Salad Bowl 2" href="Objects/SaladBowl.xml" contactStiffness="10000" dx="70" dy="-10" dz="-20" scale="100" />
         <Node name="uniform">
-            <EulerImplicitSolver name="cg_odesolver" printLog="false"  rayleighStiffness="0.1" rayleighMass="0.1" />
+            <EulerImplicitIntegrationScheme name="cg_odesolver" printLog="false"  rayleighStiffness="0.1" rayleighMass="0.1" />
             <CGLinearSolver iterations="25" name="linear solver" tolerance="1.0e-9" threshold="1.0e-9" />
             <SparseGridTopology n="8 6 7" fileTopology="mesh/Armadillo_verysimplified.obj" />
             <MechanicalObject dx="70" ry="25" />
@@ -278,7 +278,7 @@ NonUniformHexahedronFEMForceFieldAndMass.scn
             </Node>
         </Node>
         <Node name="non uniform">
-            <EulerImplicitSolver name="cg_odesolver" printLog="false" />
+            <EulerImplicitIntegrationScheme name="cg_odesolver" printLog="false" />
             <CGLinearSolver iterations="25" name="linear solver" tolerance="1.0e-9" threshold="1.0e-9" />
             <SparseGridTopology n="8 6 7" fileTopology="mesh/Armadillo_verysimplified.obj" nbVirtualFinerLevels="2" />
             <MechanicalObject ry="25" />
@@ -316,7 +316,7 @@ NonUniformHexahedronFEMForceFieldAndMass.scn
        sand_box.addObject('RequiredPlugin', pluginName="Sofa.Component.IO.Mesh")
        sand_box.addObject('RequiredPlugin', pluginName="Sofa.Component.LinearSolver.Iterative")
        sand_box.addObject('RequiredPlugin', pluginName="Sofa.Component.Mapping.Linear")
-       sand_box.addObject('RequiredPlugin', pluginName="Sofa.Component.ODESolver.Backward")
+       sand_box.addObject('RequiredPlugin', pluginName="Sofa.Component.IntegrationScheme.Backward")
        sand_box.addObject('RequiredPlugin', pluginName="Sofa.Component.SolidMechanics.FEM.Elastic")
        sand_box.addObject('RequiredPlugin', pluginName="Sofa.Component.SolidMechanics.FEM.NonUniform")
        sand_box.addObject('RequiredPlugin', pluginName="Sofa.Component.StateContainer")
@@ -336,7 +336,7 @@ NonUniformHexahedronFEMForceFieldAndMass.scn
 
        uniform = SandBox.addChild('uniform')
 
-       uniform.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
+       uniform.addObject('EulerImplicitIntegrationScheme', name="cg_odesolver", printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
        uniform.addObject('CGLinearSolver', iterations="25", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
        uniform.addObject('SparseGridTopology', n="8 6 7", fileTopology="mesh/Armadillo_verysimplified.obj")
        uniform.addObject('MechanicalObject', dx="70", ry="25")
@@ -360,7 +360,7 @@ NonUniformHexahedronFEMForceFieldAndMass.scn
 
        non_uniform = SandBox.addChild('non uniform')
 
-       non_uniform.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="false")
+       non_uniform.addObject('EulerImplicitIntegrationScheme', name="cg_odesolver", printLog="false")
        non_uniform.addObject('CGLinearSolver', iterations="25", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
        non_uniform.addObject('SparseGridTopology', n="8 6 7", fileTopology="mesh/Armadillo_verysimplified.obj", nbVirtualFinerLevels="2")
        non_uniform.addObject('MechanicalObject', ry="25")

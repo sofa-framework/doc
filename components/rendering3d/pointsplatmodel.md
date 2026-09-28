@@ -136,7 +136,7 @@ PointSplatModel.scn
         <RequiredPlugin pluginName="Sofa.Component.Collision.Response.Contact"/> <!-- Needed to use components [CollisionResponse] -->
         <RequiredPlugin pluginName="Sofa.Component.IO.Mesh"/> <!-- Needed to use components [MeshOBJLoader] -->
         <RequiredPlugin pluginName="Sofa.Component.Mass"/> <!-- Needed to use components [UniformMass] -->
-        <RequiredPlugin pluginName="Sofa.Component.ODESolver.Forward"/> <!-- Needed to use components [RungeKutta4Solver] -->
+        <RequiredPlugin pluginName="Sofa.Component.IntegrationScheme.Forward"/> <!-- Needed to use components [RungeKutta4IntegrationScheme] -->
         <RequiredPlugin pluginName="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
         <RequiredPlugin pluginName="Sofa.Component.Topology.Container.Constant"/> <!-- Needed to use components [MeshTopology] -->
         <RequiredPlugin pluginName="Sofa.Component.Topology.Container.Dynamic"/> <!-- Needed to use components [PointSetTopologyContainer PointSetTopologyModifier] -->
@@ -149,7 +149,7 @@ PointSplatModel.scn
         <BVHNarrowPhase/>
         <CollisionResponse response="PenalityContactForceField" />
         <Node name="Fluid">
-            <RungeKutta4Solver />
+            <RungeKutta4IntegrationScheme />
     		<MeshOBJLoader name="meshLoader" filename="mesh/dragon_clean.obj" scale3d="0.2 0.2 0.2"/>
             <PointSetTopologyContainer />
             <MechanicalObject name="MModel" position="@meshLoader.position"/>
@@ -187,7 +187,7 @@ PointSplatModel.scn
        node.addObject('RequiredPlugin', pluginName="Sofa.Component.Collision.Response.Contact")
        node.addObject('RequiredPlugin', pluginName="Sofa.Component.IO.Mesh")
        node.addObject('RequiredPlugin', pluginName="Sofa.Component.Mass")
-       node.addObject('RequiredPlugin', pluginName="Sofa.Component.ODESolver.Forward")
+       node.addObject('RequiredPlugin', pluginName="Sofa.Component.IntegrationScheme.Forward")
        node.addObject('RequiredPlugin', pluginName="Sofa.Component.StateContainer")
        node.addObject('RequiredPlugin', pluginName="Sofa.Component.Topology.Container.Constant")
        node.addObject('RequiredPlugin', pluginName="Sofa.Component.Topology.Container.Dynamic")
@@ -201,7 +201,7 @@ PointSplatModel.scn
 
        fluid = node.addChild('Fluid')
 
-       fluid.addObject('RungeKutta4Solver', )
+       fluid.addObject('RungeKutta4IntegrationScheme', )
        fluid.addObject('MeshOBJLoader', name="meshLoader", filename="mesh/dragon_clean.obj", scale3d="0.2 0.2 0.2")
        fluid.addObject('PointSetTopologyContainer', )
        fluid.addObject('MechanicalObject', name="MModel", position="@meshLoader.position")
@@ -234,7 +234,7 @@ PointSplatModel.scn
         <RequiredPlugin name="Sofa.Component.Collision.Geometry"/> <!-- Needed to use components [LineCollisionModel PointCollisionModel TriangleCollisionModel] -->
         <RequiredPlugin name="Sofa.Component.Collision.Response.Contact"/> <!-- Needed to use components [CollisionResponse] -->
         <RequiredPlugin name="Sofa.Component.Mass"/> <!-- Needed to use components [UniformMass] -->
-        <RequiredPlugin name="Sofa.Component.ODESolver.Forward"/> <!-- Needed to use components [RungeKutta4Solver] -->
+        <RequiredPlugin name="Sofa.Component.IntegrationScheme.Forward"/> <!-- Needed to use components [RungeKutta4IntegrationScheme] -->
         <RequiredPlugin name="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
         <RequiredPlugin name="Sofa.Component.Topology.Container.Constant"/> <!-- Needed to use components [MeshTopology] -->
         <RequiredPlugin name="Sofa.Component.Topology.Container.Dynamic"/> <!-- Needed to use components [PointSetTopologyContainer PointSetTopologyModifier] -->
@@ -248,7 +248,7 @@ PointSplatModel.scn
         <BVHNarrowPhase/>
         <CollisionResponse response="PenalityContactForceField" />
         <Node name="Fluid">
-            <RungeKutta4Solver />
+            <RungeKutta4IntegrationScheme />
             <PointSetTopologyContainer />
             <MechanicalObject name="MModel" />
     
@@ -310,7 +310,7 @@ PointSplatModel.scn
        node.addObject('RequiredPlugin', name="Sofa.Component.Collision.Geometry")
        node.addObject('RequiredPlugin', name="Sofa.Component.Collision.Response.Contact")
        node.addObject('RequiredPlugin', name="Sofa.Component.Mass")
-       node.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Forward")
+       node.addObject('RequiredPlugin', name="Sofa.Component.IntegrationScheme.Forward")
        node.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
        node.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Constant")
        node.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Dynamic")
@@ -325,7 +325,7 @@ PointSplatModel.scn
 
        fluid = node.addChild('Fluid')
 
-       fluid.addObject('RungeKutta4Solver', )
+       fluid.addObject('RungeKutta4IntegrationScheme', )
        fluid.addObject('PointSetTopologyContainer', )
        fluid.addObject('MechanicalObject', name="MModel")
        fluid.addObject('PointSetTopologyContainer', name="con")

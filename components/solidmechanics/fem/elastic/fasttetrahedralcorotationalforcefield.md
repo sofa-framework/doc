@@ -187,7 +187,7 @@ FastTetrahedralCorotationalForceField.scn
         <RequiredPlugin pluginName="Sofa.Component.Engine.Select"/> <!-- Needed to use components [BoxROI] -->
         <RequiredPlugin pluginName="Sofa.Component.LinearSolver.Direct"/> <!-- Needed to use components [EigenSimplicialLDLT] -->
         <RequiredPlugin pluginName="Sofa.Component.Mass"/> <!-- Needed to use components [DiagonalMass] -->
-        <RequiredPlugin pluginName="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+        <RequiredPlugin pluginName="Sofa.Component.IntegrationScheme.Backward"/> <!-- Needed to use components [EulerImplicitIntegrationScheme] -->
         <RequiredPlugin pluginName="Sofa.Component.SolidMechanics.FEM.Elastic"/> <!-- Needed to use components [FastTetrahedralCorotationalForceField] -->
         <RequiredPlugin pluginName="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
         <RequiredPlugin pluginName="Sofa.Component.Topology.Container.Dynamic"/> <!-- Needed to use components [TetrahedronSetGeometryAlgorithms TetrahedronSetTopologyContainer TetrahedronSetTopologyModifier] -->
@@ -199,7 +199,7 @@ FastTetrahedralCorotationalForceField.scn
         <VisualStyle displayFlags="showBehaviorModels showForceFields" />
     
         <Node name="BeamFEM_SMALL">
-            <EulerImplicitSolver name="cg_odesolver" printLog="false"  rayleighStiffness="0.1" rayleighMass="0.1" />
+            <EulerImplicitIntegrationScheme name="cg_odesolver" printLog="false"  rayleighStiffness="0.1" rayleighMass="0.1" />
             <EigenSimplicialLDLT template="CompressedRowSparseMatrixMat3x3"/>
     
             <RegularGridTopology name="grid" min="-5 -5 0" max="5 5 40" n="5 5 20"/>
@@ -219,7 +219,7 @@ FastTetrahedralCorotationalForceField.scn
     
     
         <Node name="BeamFEM_LARGE">
-            <EulerImplicitSolver name="cg_odesolver" printLog="false"  rayleighStiffness="0.1" rayleighMass="0.1" />
+            <EulerImplicitIntegrationScheme name="cg_odesolver" printLog="false"  rayleighStiffness="0.1" rayleighMass="0.1" />
             <EigenSimplicialLDLT template="CompressedRowSparseMatrixMat3x3"/>
     
             <RegularGridTopology name="grid" min="-5 -5 0" max="5 5 40" n="5 5 20"/>
@@ -238,7 +238,7 @@ FastTetrahedralCorotationalForceField.scn
         </Node>
     
         <Node name="BeamFEM_POLAR">
-            <EulerImplicitSolver name="cg_odesolver" printLog="false"  rayleighStiffness="0.1" rayleighMass="0.1" />
+            <EulerImplicitIntegrationScheme name="cg_odesolver" printLog="false"  rayleighStiffness="0.1" rayleighMass="0.1" />
             <EigenSimplicialLDLT template="CompressedRowSparseMatrixMat3x3"/>
     
             <RegularGridTopology name="grid" min="-5 -5 0" max="5 5 40" n="5 5 20"/>
@@ -257,7 +257,7 @@ FastTetrahedralCorotationalForceField.scn
         </Node>
     
         <Node name="BeamFEM_polar2">
-            <EulerImplicitSolver name="cg_odesolver" printLog="false"  rayleighStiffness="0.1" rayleighMass="0.1" />
+            <EulerImplicitIntegrationScheme name="cg_odesolver" printLog="false"  rayleighStiffness="0.1" rayleighMass="0.1" />
             <EigenSimplicialLDLT template="CompressedRowSparseMatrixMat3x3"/>
     
             <RegularGridTopology name="grid" min="-5 -5 0" max="5 5 40" n="5 5 20"/>
@@ -290,7 +290,7 @@ FastTetrahedralCorotationalForceField.scn
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Engine.Select")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.LinearSolver.Direct")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mass")
-       root.addObject('RequiredPlugin', pluginName="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', pluginName="Sofa.Component.IntegrationScheme.Backward")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.SolidMechanics.FEM.Elastic")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.StateContainer")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Topology.Container.Dynamic")
@@ -302,7 +302,7 @@ FastTetrahedralCorotationalForceField.scn
 
        beam_fem__small = root.addChild('BeamFEM_SMALL')
 
-       beam_fem__small.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
+       beam_fem__small.addObject('EulerImplicitIntegrationScheme', name="cg_odesolver", printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
        beam_fem__small.addObject('EigenSimplicialLDLT', template="CompressedRowSparseMatrixMat3x3")
        beam_fem__small.addObject('RegularGridTopology', name="grid", min="-5 -5 0", max="5 5 40", n="5 5 20")
        beam_fem__small.addObject('MechanicalObject', template="Vec3")
@@ -317,7 +317,7 @@ FastTetrahedralCorotationalForceField.scn
 
        beam_fem__large = root.addChild('BeamFEM_LARGE')
 
-       beam_fem__large.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
+       beam_fem__large.addObject('EulerImplicitIntegrationScheme', name="cg_odesolver", printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
        beam_fem__large.addObject('EigenSimplicialLDLT', template="CompressedRowSparseMatrixMat3x3")
        beam_fem__large.addObject('RegularGridTopology', name="grid", min="-5 -5 0", max="5 5 40", n="5 5 20")
        beam_fem__large.addObject('MechanicalObject', template="Vec3", translation="11 0 0")
@@ -332,7 +332,7 @@ FastTetrahedralCorotationalForceField.scn
 
        beam_fem__polar = root.addChild('BeamFEM_POLAR')
 
-       beam_fem__polar.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
+       beam_fem__polar.addObject('EulerImplicitIntegrationScheme', name="cg_odesolver", printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
        beam_fem__polar.addObject('EigenSimplicialLDLT', template="CompressedRowSparseMatrixMat3x3")
        beam_fem__polar.addObject('RegularGridTopology', name="grid", min="-5 -5 0", max="5 5 40", n="5 5 20")
        beam_fem__polar.addObject('MechanicalObject', template="Vec3", translation="22 0 0")
@@ -347,7 +347,7 @@ FastTetrahedralCorotationalForceField.scn
 
        beam_fem_polar2 = root.addChild('BeamFEM_polar2')
 
-       beam_fem_polar2.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
+       beam_fem_polar2.addObject('EulerImplicitIntegrationScheme', name="cg_odesolver", printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
        beam_fem_polar2.addObject('EigenSimplicialLDLT', template="CompressedRowSparseMatrixMat3x3")
        beam_fem_polar2.addObject('RegularGridTopology', name="grid", min="-5 -5 0", max="5 5 40", n="5 5 20")
        beam_fem_polar2.addObject('MechanicalObject', template="Vec3", translation="33 0 0")

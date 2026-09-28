@@ -365,7 +365,7 @@ AdaptiveBeamMapping.scn
      	<RequiredPlugin pluginName="Sofa.Component.Collision.Geometry"/> <!-- Needed to use components [TriangleCollisionModel] -->
      	<RequiredPlugin pluginName="Sofa.Component.Constraint.Projective"/> <!-- Needed to use components [FixedProjectiveConstraint] -->
      	<RequiredPlugin pluginName="Sofa.Component.LinearSolver.Direct"/> <!-- Needed to use components [BTDLinearSolver] -->
-     	<RequiredPlugin pluginName="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+     	<RequiredPlugin pluginName="Sofa.Component.IntegrationScheme.Backward"/> <!-- Needed to use components [EulerImplicitIntegrationScheme] -->
      	<RequiredPlugin pluginName="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
      	<RequiredPlugin pluginName="Sofa.Component.Topology.Container.Constant"/> <!-- Needed to use components [CubeTopology MeshTopology] -->
      	<RequiredPlugin pluginName="Sofa.Component.Visual"/> <!-- Needed to use components [VisualStyle] -->
@@ -377,7 +377,7 @@ AdaptiveBeamMapping.scn
     	<DefaultVisualManagerLoop />
     
     	<Node name="AdaptiveBeam2">
-    		<EulerImplicitSolver rayleighStiffness="0" rayleighMass="0" printLog="false" />
+    		<EulerImplicitIntegrationScheme rayleighStiffness="0" rayleighMass="0" printLog="false" />
     		<BTDLinearSolver verbose="0"/>
     		<MechanicalObject template="Rigid3d" name="DOFs" position="0 0 2 0 0 0 1  1 0 2 0 0 0 1  2 0 2 0 0 0 1  3 0 2 0 0 0 1"/> 
     		<MeshTopology name="lines" lines="0 1 1 2 2 3" /> 
@@ -406,7 +406,7 @@ AdaptiveBeamMapping.scn
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Collision.Geometry")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Constraint.Projective")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.LinearSolver.Direct")
-       root.addObject('RequiredPlugin', pluginName="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', pluginName="Sofa.Component.IntegrationScheme.Backward")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.StateContainer")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Topology.Container.Constant")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Visual")
@@ -417,7 +417,7 @@ AdaptiveBeamMapping.scn
 
        adaptive_beam2 = root.addChild('AdaptiveBeam2')
 
-       adaptive_beam2.addObject('EulerImplicitSolver', rayleighStiffness="0", rayleighMass="0", printLog="false")
+       adaptive_beam2.addObject('EulerImplicitIntegrationScheme', rayleighStiffness="0", rayleighMass="0", printLog="false")
        adaptive_beam2.addObject('BTDLinearSolver', verbose="0")
        adaptive_beam2.addObject('MechanicalObject', template="Rigid3d", name="DOFs", position="0 0 2 0 0 0 1  1 0 2 0 0 0 1  2 0 2 0 0 0 1  3 0 2 0 0 0 1")
        adaptive_beam2.addObject('MeshTopology', name="lines", lines="0 1 1 2 2 3")

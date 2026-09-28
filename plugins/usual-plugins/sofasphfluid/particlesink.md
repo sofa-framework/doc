@@ -287,14 +287,14 @@ ParticleSink.scn
     <?xml version="1.0" ?>
     <Node dt="0.005" gravity="0 -10 0" bbox="-6 -6 -6  6 6 6">
         <RequiredPlugin name="Sofa.Component.Mass"/> <!-- Needed to use components [UniformMass] -->
-        <RequiredPlugin name="Sofa.Component.ODESolver.Forward"/> <!-- Needed to use components [EulerExplicitSolver] -->
+        <RequiredPlugin name="Sofa.Component.IntegrationScheme.Forward"/> <!-- Needed to use components [EulerExplicitIntegrationScheme] -->
         <RequiredPlugin name="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
         <RequiredPlugin name="Sofa.Component.Visual"/> <!-- Needed to use components [VisualStyle] -->
         <RequiredPlugin name="SofaSphFluid"/> <!-- Needed to use components [ParticleSink ParticleSource] -->
         <VisualStyle displayFlags="showBehaviorModels showForceFields hideWireframe" />
         <DefaultAnimationLoop/>
         <Node name="Fluid">
-            <EulerExplicitSolver symplectic="1" />
+            <EulerExplicitIntegrationScheme symplectic="1" />
             <MechanicalObject name="MModel" showObject="1"/>
             <ParticleSource name="Source" 
                 center="-0.375 0 -0.75    
@@ -334,7 +334,7 @@ ParticleSink.scn
        node = root_node.addChild('node', dt="0.005", gravity="0 -10 0", bbox="-6 -6 -6  6 6 6")
 
        node.addObject('RequiredPlugin', name="Sofa.Component.Mass")
-       node.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Forward")
+       node.addObject('RequiredPlugin', name="Sofa.Component.IntegrationScheme.Forward")
        node.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
        node.addObject('RequiredPlugin', name="Sofa.Component.Visual")
        node.addObject('RequiredPlugin', name="SofaSphFluid")
@@ -343,7 +343,7 @@ ParticleSink.scn
 
        fluid = node.addChild('Fluid')
 
-       fluid.addObject('EulerExplicitSolver', symplectic="1")
+       fluid.addObject('EulerExplicitIntegrationScheme', symplectic="1")
        fluid.addObject('MechanicalObject', name="MModel", showObject="1")
        fluid.addObject('ParticleSource', name="Source", center="-0.375 0 -0.75                 0 0 -0.75                 0.375 0 -0.75                 -0.75  0 -0.375                 -0.375 0 -0.375                 0 0 -0.375                 0.375 0 -0.375                 0.75  0 -0.375                 -0.75  0  0.0                 -0.375 0  0.0                 0 0  0                 0.375 0  0.0                 0.75  0  0.0                 -0.75  0  0.375                 -0.375 0  0.375                 0.0   0  0.375                 0.375 0  0.375                 0.75  0  0.375                 -0.375 0  0.75                 0 0  0.75                 0.375 0  0.75", translation="0 3 0", radius="0.01 0.1 0.01", velocity="0 -20 0", delay="0.01875", start="-0.1", stop="2")
        fluid.addObject('ParticleSink', normal="0 1 0", d0="-10", d1="-11", showPlane="true", printLog="false")

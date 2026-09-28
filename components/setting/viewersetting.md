@@ -184,7 +184,7 @@ ViewerSetting.scn
         <RequiredPlugin pluginName="Sofa.Component.LinearSolver.Iterative"/> <!-- Needed to use components [CGLinearSolver] -->
         <RequiredPlugin pluginName="Sofa.Component.Mapping.Linear"/> <!-- Needed to use components [BarycentricMapping] -->
         <RequiredPlugin pluginName="Sofa.Component.Mass"/> <!-- Needed to use components [UniformMass] -->
-        <RequiredPlugin pluginName="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+        <RequiredPlugin pluginName="Sofa.Component.IntegrationScheme.Backward"/> <!-- Needed to use components [EulerImplicitIntegrationScheme] -->
         <RequiredPlugin pluginName="Sofa.Component.Setting"/> <!-- Needed to use components [ViewerSetting] -->
         <RequiredPlugin pluginName="Sofa.Component.SolidMechanics.FEM.Elastic"/> <!-- Needed to use components [HexahedronFEMForceField] -->
         <RequiredPlugin pluginName="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
@@ -213,7 +213,7 @@ ViewerSetting.scn
         <Node name="Snake" >
             <SparseGridRamificationTopology n="4 12 3" fileTopology="mesh/snake_body.obj" nbVirtualFinerLevels="3" finestConnectivity="0" />
     
-            <EulerImplicitSolver name="cg_odesolver" rayleighMass="1" rayleighStiffness="0.03" />
+            <EulerImplicitIntegrationScheme name="cg_odesolver" rayleighMass="1" rayleighStiffness="0.03" />
             <CGLinearSolver name="linear solver" iterations="20" tolerance="1e-12" threshold="1e-18" />
             <MechanicalObject name="dofs"  scale="1" dy="2"/>
             <UniformMass totalMass="1.0" />
@@ -304,7 +304,7 @@ ViewerSetting.scn
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.LinearSolver.Iterative")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mapping.Linear")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mass")
-       root.addObject('RequiredPlugin', pluginName="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', pluginName="Sofa.Component.IntegrationScheme.Backward")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Setting")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.SolidMechanics.FEM.Elastic")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.StateContainer")
@@ -329,7 +329,7 @@ ViewerSetting.scn
        snake = root.addChild('Snake')
 
        snake.addObject('SparseGridRamificationTopology', n="4 12 3", fileTopology="mesh/snake_body.obj", nbVirtualFinerLevels="3", finestConnectivity="0")
-       snake.addObject('EulerImplicitSolver', name="cg_odesolver", rayleighMass="1", rayleighStiffness="0.03")
+       snake.addObject('EulerImplicitIntegrationScheme', name="cg_odesolver", rayleighMass="1", rayleighStiffness="0.03")
        snake.addObject('CGLinearSolver', name="linear solver", iterations="20", tolerance="1e-12", threshold="1e-18")
        snake.addObject('MechanicalObject', name="dofs", scale="1", dy="2")
        snake.addObject('UniformMass', totalMass="1.0")

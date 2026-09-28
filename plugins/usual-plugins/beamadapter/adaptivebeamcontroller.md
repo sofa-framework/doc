@@ -179,7 +179,7 @@ AdaptiveBeamController.scn
     <Node name="root" gravity="0 -9.81 0" dt="0.01" bbox="0 0 0 10 10 10">
     	<RequiredPlugin pluginName="Sofa.Component.Constraint.Projective"/> <!-- Needed to use components [FixedProjectiveConstraint] -->
     	<RequiredPlugin pluginName="Sofa.Component.LinearSolver.Direct"/> <!-- Needed to use components [EigenSparseLU] -->
-    	<RequiredPlugin pluginName="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+    	<RequiredPlugin pluginName="Sofa.Component.IntegrationScheme.Backward"/> <!-- Needed to use components [EulerImplicitIntegrationScheme] -->
     	<RequiredPlugin pluginName="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
     	<RequiredPlugin pluginName="Sofa.Component.Topology.Container.Constant"/> <!-- Needed to use components [MeshTopology] -->
     	<RequiredPlugin pluginName="Sofa.Component.Visual"/> <!-- Needed to use components [VisualStyle] -->
@@ -189,7 +189,7 @@ AdaptiveBeamController.scn
     	<DefaultAnimationLoop />
         
     	<Node name="AdaptiveBeam1">
-    		<EulerImplicitSolver rayleighStiffness="0" rayleighMass="0" printLog="false" />
+    		<EulerImplicitIntegrationScheme rayleighStiffness="0" rayleighMass="0" printLog="false" />
     		<EigenSparseLU template="CompressedRowSparseMatrixMat3x3d"/>
     		<MechanicalObject template="Rigid3d" name="DOFs" position="0 0 0 0 0 0 1  0.5 0 0 0 0 0 1  1 0 0 0 0 0 1  1.5 0 0 0 0 0 1  2 0 0 0 0 0 1  2.5 0 0 0 0 0 1  3 0 0 0 0 0 1"/> 
     		<MeshTopology name="lines" lines="0 1 1 2 2 3 3 4 4 5 5 6" /> 
@@ -207,7 +207,7 @@ AdaptiveBeamController.scn
     	</Node>
     
     	<Node name="AdaptiveBeam2">
-    		<EulerImplicitSolver rayleighStiffness="0" rayleighMass="0" printLog="false" />
+    		<EulerImplicitIntegrationScheme rayleighStiffness="0" rayleighMass="0" printLog="false" />
     		<EigenSparseLU template="CompressedRowSparseMatrixMat3x3d"/>
     		<MeshTopology name="lines" lines="0 1 1 2 2 3" /> 
     		<MechanicalObject template="Rigid3d" name="DOFs" position="0 0 2 0 0 0 1  1 0 2 0 0 0 1  2 0 2 0 0 0 1  3 0 2 0 0 0 1"/> 
@@ -237,7 +237,7 @@ AdaptiveBeamController.scn
 
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Constraint.Projective")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.LinearSolver.Direct")
-       root.addObject('RequiredPlugin', pluginName="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', pluginName="Sofa.Component.IntegrationScheme.Backward")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.StateContainer")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Topology.Container.Constant")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Visual")
@@ -247,7 +247,7 @@ AdaptiveBeamController.scn
 
        adaptive_beam1 = root.addChild('AdaptiveBeam1')
 
-       adaptive_beam1.addObject('EulerImplicitSolver', rayleighStiffness="0", rayleighMass="0", printLog="false")
+       adaptive_beam1.addObject('EulerImplicitIntegrationScheme', rayleighStiffness="0", rayleighMass="0", printLog="false")
        adaptive_beam1.addObject('EigenSparseLU', template="CompressedRowSparseMatrixMat3x3d")
        adaptive_beam1.addObject('MechanicalObject', template="Rigid3d", name="DOFs", position="0 0 0 0 0 0 1  0.5 0 0 0 0 0 1  1 0 0 0 0 0 1  1.5 0 0 0 0 0 1  2 0 0 0 0 0 1  2.5 0 0 0 0 0 1  3 0 0 0 0 0 1")
        adaptive_beam1.addObject('MeshTopology', name="lines", lines="0 1 1 2 2 3 3 4 4 5 5 6")
@@ -257,7 +257,7 @@ AdaptiveBeamController.scn
 
        adaptive_beam2 = root.addChild('AdaptiveBeam2')
 
-       adaptive_beam2.addObject('EulerImplicitSolver', rayleighStiffness="0", rayleighMass="0", printLog="false")
+       adaptive_beam2.addObject('EulerImplicitIntegrationScheme', rayleighStiffness="0", rayleighMass="0", printLog="false")
        adaptive_beam2.addObject('EigenSparseLU', template="CompressedRowSparseMatrixMat3x3d")
        adaptive_beam2.addObject('MeshTopology', name="lines", lines="0 1 1 2 2 3")
        adaptive_beam2.addObject('MechanicalObject', template="Rigid3d", name="DOFs", position="0 0 2 0 0 0 1  1 0 2 0 0 0 1  2 0 2 0 0 0 1  3 0 2 0 0 0 1")

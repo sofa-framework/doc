@@ -152,7 +152,7 @@ StandardTetrahedralFEMForceFieldCUDA.scn
         <RequiredPlugin pluginName="Sofa.Component.LinearSolver.Iterative"/> <!-- Needed to use components [CGLinearSolver] -->
         <RequiredPlugin pluginName="Sofa.Component.Mapping.Linear"/> <!-- Needed to use components [BarycentricMapping] -->
         <RequiredPlugin pluginName="Sofa.Component.Mass"/> <!-- Needed to use components [UniformMass] -->
-        <RequiredPlugin pluginName="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+        <RequiredPlugin pluginName="Sofa.Component.IntegrationScheme.Backward"/> <!-- Needed to use components [EulerImplicitIntegrationScheme] -->
         <RequiredPlugin pluginName="Sofa.Component.SolidMechanics.FEM.Elastic"/> <!-- Needed to use components [TetrahedronFEMForceField] -->
         <RequiredPlugin pluginName="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
         <RequiredPlugin pluginName="Sofa.Component.Topology.Container.Constant"/> <!-- Needed to use components [MeshTopology] -->
@@ -173,7 +173,7 @@ StandardTetrahedralFEMForceFieldCUDA.scn
                 <OglModel name="Visual" src="@meshLoader_2" color="gray" />
             </Node>
             <Node name="TorusTensorMass">
-                <EulerImplicitSolver name="cg_odesolver" printLog="false"  rayleighStiffness="0.1" rayleighMass="0.1" />
+                <EulerImplicitIntegrationScheme name="cg_odesolver" printLog="false"  rayleighStiffness="0.1" rayleighMass="0.1" />
                 <CGLinearSolver iterations="25" name="linear solver" tolerance="1.0e-9" threshold="1.0e-9" />
                 <MeshGmshLoader name="loader" filename="mesh/torus_low_res.msh" />
                 <MeshTopology src="@loader" />
@@ -194,7 +194,7 @@ StandardTetrahedralFEMForceFieldCUDA.scn
                 </Node>
             </Node>
             <Node name="TorusFEM_POLAR">
-                <EulerImplicitSolver name="cg_odesolver" printLog="false" />
+                <EulerImplicitIntegrationScheme name="cg_odesolver" printLog="false" />
                 <CGLinearSolver iterations="25" name="linear solver" tolerance="1.0e-9" threshold="1.0e-9" />
                 <MeshGmshLoader name="loader" filename="mesh/torus2_low_res.msh" />
                 <MeshTopology src="@loader" />
@@ -215,7 +215,7 @@ StandardTetrahedralFEMForceFieldCUDA.scn
                 </Node>
             </Node>
             <Node name="TorusFEM_SVD">
-                <EulerImplicitSolver name="cg_odesolver" printLog="false" />
+                <EulerImplicitIntegrationScheme name="cg_odesolver" printLog="false" />
                 <CGLinearSolver iterations="25" name="linear solver" tolerance="1.0e-9" threshold="1.0e-9" />
                 <MeshGmshLoader name="loader" filename="mesh/torus_low_res.msh" />
                 <MeshTopology src="@loader" />
@@ -255,7 +255,7 @@ StandardTetrahedralFEMForceFieldCUDA.scn
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.LinearSolver.Iterative")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mapping.Linear")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mass")
-       root.addObject('RequiredPlugin', pluginName="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', pluginName="Sofa.Component.IntegrationScheme.Backward")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.SolidMechanics.FEM.Elastic")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.StateContainer")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Topology.Container.Constant")
@@ -280,7 +280,7 @@ StandardTetrahedralFEMForceFieldCUDA.scn
 
        torus_tensor_mass = ChainFEM.addChild('TorusTensorMass')
 
-       torus_tensor_mass.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
+       torus_tensor_mass.addObject('EulerImplicitIntegrationScheme', name="cg_odesolver", printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
        torus_tensor_mass.addObject('CGLinearSolver', iterations="25", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
        torus_tensor_mass.addObject('MeshGmshLoader', name="loader", filename="mesh/torus_low_res.msh")
        torus_tensor_mass.addObject('MeshTopology', src="@loader")
@@ -304,7 +304,7 @@ StandardTetrahedralFEMForceFieldCUDA.scn
 
        torus_fem__polar = ChainFEM.addChild('TorusFEM_POLAR')
 
-       torus_fem__polar.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="false")
+       torus_fem__polar.addObject('EulerImplicitIntegrationScheme', name="cg_odesolver", printLog="false")
        torus_fem__polar.addObject('CGLinearSolver', iterations="25", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
        torus_fem__polar.addObject('MeshGmshLoader', name="loader", filename="mesh/torus2_low_res.msh")
        torus_fem__polar.addObject('MeshTopology', src="@loader")
@@ -328,7 +328,7 @@ StandardTetrahedralFEMForceFieldCUDA.scn
 
        torus_fem__svd = ChainFEM.addChild('TorusFEM_SVD')
 
-       torus_fem__svd.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="false")
+       torus_fem__svd.addObject('EulerImplicitIntegrationScheme', name="cg_odesolver", printLog="false")
        torus_fem__svd.addObject('CGLinearSolver', iterations="25", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
        torus_fem__svd.addObject('MeshGmshLoader', name="loader", filename="mesh/torus_low_res.msh")
        torus_fem__svd.addObject('MeshTopology', src="@loader")
@@ -365,7 +365,7 @@ StandardTetrahedralFEMForceFieldCPU.scn
         <RequiredPlugin pluginName="Sofa.Component.LinearSolver.Iterative"/> <!-- Needed to use components [CGLinearSolver] -->
         <RequiredPlugin pluginName="Sofa.Component.Mapping.Linear"/> <!-- Needed to use components [BarycentricMapping] -->
         <RequiredPlugin pluginName="Sofa.Component.Mass"/> <!-- Needed to use components [UniformMass] -->
-        <RequiredPlugin pluginName="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+        <RequiredPlugin pluginName="Sofa.Component.IntegrationScheme.Backward"/> <!-- Needed to use components [EulerImplicitIntegrationScheme] -->
         <RequiredPlugin pluginName="Sofa.Component.SolidMechanics.FEM.Elastic"/> <!-- Needed to use components [TetrahedronFEMForceField] -->
         <RequiredPlugin pluginName="Sofa.Component.SolidMechanics.FEM.HyperElastic"/> <!-- Needed to use components [StandardTetrahedralFEMForceField] -->
         <RequiredPlugin pluginName="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
@@ -386,7 +386,7 @@ StandardTetrahedralFEMForceFieldCPU.scn
                 <OglModel name="Visual" src="@meshLoader_3" color="gray" />
             </Node>
             <Node name="TorusTensorMass">
-                <EulerImplicitSolver name="cg_odesolver" printLog="false"  rayleighStiffness="0.1" rayleighMass="0.1" />
+                <EulerImplicitIntegrationScheme name="cg_odesolver" printLog="false"  rayleighStiffness="0.1" rayleighMass="0.1" />
                 <CGLinearSolver iterations="25" name="linear solver" tolerance="1.0e-9" threshold="1.0e-9" />
                 <MeshGmshLoader name="loader" filename="mesh/torus_low_res.msh" createSubelements="true"/>
                 <MeshTopology src="@loader" />
@@ -407,7 +407,7 @@ StandardTetrahedralFEMForceFieldCPU.scn
                 </Node>
             </Node>
             <Node name="TorusFEM_POLAR">
-                <EulerImplicitSolver name="cg_odesolver" printLog="false" />
+                <EulerImplicitIntegrationScheme name="cg_odesolver" printLog="false" />
                 <CGLinearSolver iterations="25" name="linear solver" tolerance="1.0e-9" threshold="1.0e-9" />
                 <MeshGmshLoader name="loader" filename="mesh/torus2_low_res.msh" createSubelements="true"/>
                 <MeshTopology src="@loader" />
@@ -428,7 +428,7 @@ StandardTetrahedralFEMForceFieldCPU.scn
                 </Node>
             </Node>
             <Node name="TorusFEM_SVD">
-                <EulerImplicitSolver name="cg_odesolver" printLog="false" />
+                <EulerImplicitIntegrationScheme name="cg_odesolver" printLog="false" />
                 <CGLinearSolver iterations="25" name="linear solver" tolerance="1.0e-9" threshold="1.0e-9" />
                 <MeshGmshLoader name="loader" filename="mesh/torus_low_res.msh" createSubelements="true"/>
                 <MeshTopology src="@loader" />
@@ -468,7 +468,7 @@ StandardTetrahedralFEMForceFieldCPU.scn
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.LinearSolver.Iterative")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mapping.Linear")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mass")
-       root.addObject('RequiredPlugin', pluginName="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', pluginName="Sofa.Component.IntegrationScheme.Backward")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.SolidMechanics.FEM.Elastic")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.SolidMechanics.FEM.HyperElastic")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.StateContainer")
@@ -493,7 +493,7 @@ StandardTetrahedralFEMForceFieldCPU.scn
 
        torus_tensor_mass = ChainFEM.addChild('TorusTensorMass')
 
-       torus_tensor_mass.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
+       torus_tensor_mass.addObject('EulerImplicitIntegrationScheme', name="cg_odesolver", printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
        torus_tensor_mass.addObject('CGLinearSolver', iterations="25", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
        torus_tensor_mass.addObject('MeshGmshLoader', name="loader", filename="mesh/torus_low_res.msh", createSubelements="true")
        torus_tensor_mass.addObject('MeshTopology', src="@loader")
@@ -517,7 +517,7 @@ StandardTetrahedralFEMForceFieldCPU.scn
 
        torus_fem__polar = ChainFEM.addChild('TorusFEM_POLAR')
 
-       torus_fem__polar.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="false")
+       torus_fem__polar.addObject('EulerImplicitIntegrationScheme', name="cg_odesolver", printLog="false")
        torus_fem__polar.addObject('CGLinearSolver', iterations="25", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
        torus_fem__polar.addObject('MeshGmshLoader', name="loader", filename="mesh/torus2_low_res.msh", createSubelements="true")
        torus_fem__polar.addObject('MeshTopology', src="@loader")
@@ -541,7 +541,7 @@ StandardTetrahedralFEMForceFieldCPU.scn
 
        torus_fem__svd = ChainFEM.addChild('TorusFEM_SVD')
 
-       torus_fem__svd.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="false")
+       torus_fem__svd.addObject('EulerImplicitIntegrationScheme', name="cg_odesolver", printLog="false")
        torus_fem__svd.addObject('CGLinearSolver', iterations="25", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
        torus_fem__svd.addObject('MeshGmshLoader', name="loader", filename="mesh/torus_low_res.msh", createSubelements="true")
        torus_fem__svd.addObject('MeshTopology', src="@loader")
@@ -575,7 +575,7 @@ StandardTetrahedralFEMForceField.scn
         <RequiredPlugin pluginName="Sofa.Component.Engine.Select"/> <!-- Needed to use components [BoxROI] -->
         <RequiredPlugin pluginName="Sofa.Component.LinearSolver.Iterative"/> <!-- Needed to use components [CGLinearSolver] -->
         <RequiredPlugin pluginName="Sofa.Component.Mass"/> <!-- Needed to use components [UniformMass] -->
-        <RequiredPlugin pluginName="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+        <RequiredPlugin pluginName="Sofa.Component.IntegrationScheme.Backward"/> <!-- Needed to use components [EulerImplicitIntegrationScheme] -->
         <RequiredPlugin pluginName="Sofa.Component.SolidMechanics.FEM.Elastic"/> <!-- Needed to use components [TetrahedronFEMForceField] -->
         <RequiredPlugin pluginName="Sofa.Component.SolidMechanics.FEM.HyperElastic"/> <!-- Needed to use components [StandardTetrahedralFEMForceField] -->
         <RequiredPlugin pluginName="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
@@ -588,7 +588,7 @@ StandardTetrahedralFEMForceField.scn
         <VisualStyle displayFlags="showForceFields showBehaviorModels" />
     
         <Node name="Corrotational">
-            <EulerImplicitSolver name="cg_odesolver" printLog="false" />
+            <EulerImplicitIntegrationScheme name="cg_odesolver" printLog="false" />
             <CGLinearSolver iterations="25" name="linear solver" tolerance="1.0e-9" threshold="1.0e-9" />
     
             <RegularGridTopology name="hexaGrid" min="0 0 0" max="1 1 2.7" n="3 3 8" p0="0 0 0"/>
@@ -603,7 +603,7 @@ StandardTetrahedralFEMForceField.scn
         </Node>
     
         <Node name="ArrudaBoyce">
-            <EulerImplicitSolver name="cg_odesolver" printLog="false" />
+            <EulerImplicitIntegrationScheme name="cg_odesolver" printLog="false" />
             <CGLinearSolver iterations="25" name="linear solver" tolerance="1.0e-9" threshold="1.0e-9" />
     
             <RegularGridTopology name="hexaGrid" min="0 0 0" max="1 1 2.7" n="3 3 8" p0="2 0 0"/>
@@ -626,7 +626,7 @@ StandardTetrahedralFEMForceField.scn
         </Node>
     
         <Node name="StVenantKirchhoff">
-            <EulerImplicitSolver name="cg_odesolver" printLog="false" />
+            <EulerImplicitIntegrationScheme name="cg_odesolver" printLog="false" />
             <CGLinearSolver iterations="25" name="linear solver" tolerance="1.0e-9" threshold="1.0e-9" />
     
             <RegularGridTopology name="hexaGrid" min="0 0 0" max="1 1 2.7" n="3 3 8" p0="4 0 0"/>
@@ -650,7 +650,7 @@ StandardTetrahedralFEMForceField.scn
     
     
         <Node name="NeoHookean">
-            <EulerImplicitSolver name="cg_odesolver" printLog="false" />
+            <EulerImplicitIntegrationScheme name="cg_odesolver" printLog="false" />
             <CGLinearSolver iterations="25" name="linear solver" tolerance="1.0e-9" threshold="1.0e-9" />
     
             <RegularGridTopology name="hexaGrid" min="0 0 0" max="1 1 2.7" n="3 3 8" p0="6 0 0"/>
@@ -674,7 +674,7 @@ StandardTetrahedralFEMForceField.scn
     
     
         <Node name="MooneyRivlin">
-            <EulerImplicitSolver name="cg_odesolver" printLog="false" />
+            <EulerImplicitIntegrationScheme name="cg_odesolver" printLog="false" />
             <CGLinearSolver iterations="25" name="linear solver" tolerance="1.0e-9" threshold="1.0e-9" />
     
             <RegularGridTopology name="hexaGrid" min="0 0 0" max="1 1 2.7" n="3 3 8" p0="8 0 0"/>
@@ -710,7 +710,7 @@ StandardTetrahedralFEMForceField.scn
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Engine.Select")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.LinearSolver.Iterative")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mass")
-       root.addObject('RequiredPlugin', pluginName="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', pluginName="Sofa.Component.IntegrationScheme.Backward")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.SolidMechanics.FEM.Elastic")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.SolidMechanics.FEM.HyperElastic")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.StateContainer")
@@ -723,7 +723,7 @@ StandardTetrahedralFEMForceField.scn
 
        corrotational = root.addChild('Corrotational')
 
-       corrotational.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="false")
+       corrotational.addObject('EulerImplicitIntegrationScheme', name="cg_odesolver", printLog="false")
        corrotational.addObject('CGLinearSolver', iterations="25", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
        corrotational.addObject('RegularGridTopology', name="hexaGrid", min="0 0 0", max="1 1 2.7", n="3 3 8", p0="0 0 0")
        corrotational.addObject('MechanicalObject', name="mechObj")
@@ -735,7 +735,7 @@ StandardTetrahedralFEMForceField.scn
 
        arruda_boyce = root.addChild('ArrudaBoyce')
 
-       arruda_boyce.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="false")
+       arruda_boyce.addObject('EulerImplicitIntegrationScheme', name="cg_odesolver", printLog="false")
        arruda_boyce.addObject('CGLinearSolver', iterations="25", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
        arruda_boyce.addObject('RegularGridTopology', name="hexaGrid", min="0 0 0", max="1 1 2.7", n="3 3 8", p0="2 0 0")
        arruda_boyce.addObject('MechanicalObject', name="mechObj")
@@ -755,7 +755,7 @@ StandardTetrahedralFEMForceField.scn
 
        st_venant_kirchhoff = root.addChild('StVenantKirchhoff')
 
-       st_venant_kirchhoff.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="false")
+       st_venant_kirchhoff.addObject('EulerImplicitIntegrationScheme', name="cg_odesolver", printLog="false")
        st_venant_kirchhoff.addObject('CGLinearSolver', iterations="25", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
        st_venant_kirchhoff.addObject('RegularGridTopology', name="hexaGrid", min="0 0 0", max="1 1 2.7", n="3 3 8", p0="4 0 0")
        st_venant_kirchhoff.addObject('MechanicalObject', name="mechObj")
@@ -775,7 +775,7 @@ StandardTetrahedralFEMForceField.scn
 
        neo_hookean = root.addChild('NeoHookean')
 
-       neo_hookean.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="false")
+       neo_hookean.addObject('EulerImplicitIntegrationScheme', name="cg_odesolver", printLog="false")
        neo_hookean.addObject('CGLinearSolver', iterations="25", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
        neo_hookean.addObject('RegularGridTopology', name="hexaGrid", min="0 0 0", max="1 1 2.7", n="3 3 8", p0="6 0 0")
        neo_hookean.addObject('MechanicalObject', name="mechObj")
@@ -795,7 +795,7 @@ StandardTetrahedralFEMForceField.scn
 
        mooney_rivlin = root.addChild('MooneyRivlin')
 
-       mooney_rivlin.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="false")
+       mooney_rivlin.addObject('EulerImplicitIntegrationScheme', name="cg_odesolver", printLog="false")
        mooney_rivlin.addObject('CGLinearSolver', iterations="25", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
        mooney_rivlin.addObject('RegularGridTopology', name="hexaGrid", min="0 0 0", max="1 1 2.7", n="3 3 8", p0="8 0 0")
        mooney_rivlin.addObject('MechanicalObject', name="mechObj")

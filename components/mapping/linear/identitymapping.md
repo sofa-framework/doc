@@ -1125,7 +1125,7 @@ IdentityMapping.scn
         <RequiredPlugin pluginName="Sofa.Component.LinearSolver.Iterative"/> <!-- Needed to use components [CGLinearSolver] -->
         <RequiredPlugin pluginName="Sofa.Component.Mapping.Linear"/> <!-- Needed to use components [IdentityMapping] -->
         <RequiredPlugin pluginName="Sofa.Component.Mass"/> <!-- Needed to use components [UniformMass] -->
-        <RequiredPlugin pluginName="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+        <RequiredPlugin pluginName="Sofa.Component.IntegrationScheme.Backward"/> <!-- Needed to use components [EulerImplicitIntegrationScheme] -->
         <RequiredPlugin pluginName="Sofa.Component.SolidMechanics.FEM.Elastic"/> <!-- Needed to use components [TriangleFEMForceField] -->
         <RequiredPlugin pluginName="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
         <RequiredPlugin pluginName="Sofa.Component.Topology.Container.Constant"/> <!-- Needed to use components [MeshTopology] -->
@@ -1141,7 +1141,7 @@ IdentityMapping.scn
         <CollisionResponse response="PenalityContactForceField" />
         <MinProximityIntersection name="Proximity" alarmDistance="0.8" contactDistance="0.5" />
         <Node name="tshirt">
-            <EulerImplicitSolver  rayleighStiffness="0.1" rayleighMass="0.1" />
+            <EulerImplicitIntegrationScheme  rayleighStiffness="0.1" rayleighMass="0.1" />
             <CGLinearSolver iterations="25" tolerance="1e-5" threshold="1e-5"/>
             <MeshGmshLoader name="loader" filename="mesh/tshirt_0.msh" />
             <MeshTopology src="@loader" />
@@ -1176,7 +1176,7 @@ IdentityMapping.scn
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.LinearSolver.Iterative")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mapping.Linear")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mass")
-       root.addObject('RequiredPlugin', pluginName="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', pluginName="Sofa.Component.IntegrationScheme.Backward")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.SolidMechanics.FEM.Elastic")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.StateContainer")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Topology.Container.Constant")
@@ -1193,7 +1193,7 @@ IdentityMapping.scn
 
        tshirt = root.addChild('tshirt')
 
-       tshirt.addObject('EulerImplicitSolver', rayleighStiffness="0.1", rayleighMass="0.1")
+       tshirt.addObject('EulerImplicitIntegrationScheme', rayleighStiffness="0.1", rayleighMass="0.1")
        tshirt.addObject('CGLinearSolver', iterations="25", tolerance="1e-5", threshold="1e-5")
        tshirt.addObject('MeshGmshLoader', name="loader", filename="mesh/tshirt_0.msh")
        tshirt.addObject('MeshTopology', src="@loader")

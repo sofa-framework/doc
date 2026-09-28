@@ -160,7 +160,7 @@ GenerateGrid.scn
         <RequiredPlugin pluginName="Sofa.Component.LinearSolver.Iterative"/> <!-- Needed to use components [CGLinearSolver] -->
         <RequiredPlugin pluginName="Sofa.Component.Mass"/> <!-- Needed to use components [MeshMatrixMass] -->
         <RequiredPlugin pluginName="Sofa.Component.MechanicalLoad"/> <!-- Needed to use components [QuadPressureForceField TrianglePressureForceField] -->
-        <RequiredPlugin pluginName="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+        <RequiredPlugin pluginName="Sofa.Component.IntegrationScheme.Backward"/> <!-- Needed to use components [EulerImplicitIntegrationScheme] -->
         <RequiredPlugin pluginName="Sofa.Component.SolidMechanics.FEM.Elastic"/> <!-- Needed to use components [FastTetrahedralCorotationalForceField HexahedronFEMForceField] -->
         <RequiredPlugin pluginName="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
         <RequiredPlugin pluginName="Sofa.Component.Topology.Container.Dynamic"/> <!-- Needed to use components [HexahedronSetGeometryAlgorithms HexahedronSetTopologyContainer TetrahedronSetGeometryAlgorithms TetrahedronSetTopologyContainer] -->
@@ -169,7 +169,7 @@ GenerateGrid.scn
         <GenerateGrid template="Vec3" name="Slab" max="0.5 1.5 1" resolution="5 3 4" />
         <Node name="Tetra">
             <CGLinearSolver iterations="3000" name="linear solver" tolerance="1.0e-12" threshold="1.0e-12" /> 
-            <EulerImplicitSolver name="default12" rayleighStiffness="0.01"  rayleighMass="0.1" />
+            <EulerImplicitIntegrationScheme name="default12" rayleighStiffness="0.01"  rayleighMass="0.1" />
             <TetrahedronSetTopologyContainer name="Container1" tetrahedra="@../Slab.tetrahedra" position="@../Slab.output_position" createTriangleArray="1"/>
             <TetrahedronSetGeometryAlgorithms  drawTriangles="1"/>
             <MechanicalObject name="dofs" showObject="1"/>
@@ -184,7 +184,7 @@ GenerateGrid.scn
         </Node>
         <Node name="Hexa">
             <CGLinearSolver iterations="3000" name="linear solver" tolerance="1.0e-12" threshold="1.0e-12" /> 
-            <EulerImplicitSolver name="default12" rayleighStiffness="0.01" />
+            <EulerImplicitIntegrationScheme name="default12" rayleighStiffness="0.01" />
             <HexahedronSetTopologyContainer name="Container1" hexahedra="@../Slab.hexahedra" position="@../Slab.output_position" createQuadArray="1"/>
             <HexahedronSetGeometryAlgorithms  drawQuads="1"/>
             <MechanicalObject name="dofs" translation="5 0 0" showObject="1"/>
@@ -214,7 +214,7 @@ GenerateGrid.scn
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.LinearSolver.Iterative")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mass")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.MechanicalLoad")
-       root.addObject('RequiredPlugin', pluginName="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', pluginName="Sofa.Component.IntegrationScheme.Backward")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.SolidMechanics.FEM.Elastic")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.StateContainer")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Topology.Container.Dynamic")
@@ -224,7 +224,7 @@ GenerateGrid.scn
        tetra = root.addChild('Tetra')
 
        tetra.addObject('CGLinearSolver', iterations="3000", name="linear solver", tolerance="1.0e-12", threshold="1.0e-12")
-       tetra.addObject('EulerImplicitSolver', name="default12", rayleighStiffness="0.01", rayleighMass="0.1")
+       tetra.addObject('EulerImplicitIntegrationScheme', name="default12", rayleighStiffness="0.01", rayleighMass="0.1")
        tetra.addObject('TetrahedronSetTopologyContainer', name="Container1", tetrahedra="@../Slab.tetrahedra", position="@../Slab.output_position", createTriangleArray="1")
        tetra.addObject('TetrahedronSetGeometryAlgorithms', drawTriangles="1")
        tetra.addObject('MechanicalObject', name="dofs", showObject="1")
@@ -240,7 +240,7 @@ GenerateGrid.scn
        hexa = root.addChild('Hexa')
 
        hexa.addObject('CGLinearSolver', iterations="3000", name="linear solver", tolerance="1.0e-12", threshold="1.0e-12")
-       hexa.addObject('EulerImplicitSolver', name="default12", rayleighStiffness="0.01")
+       hexa.addObject('EulerImplicitIntegrationScheme', name="default12", rayleighStiffness="0.01")
        hexa.addObject('HexahedronSetTopologyContainer', name="Container1", hexahedra="@../Slab.hexahedra", position="@../Slab.output_position", createQuadArray="1")
        hexa.addObject('HexahedronSetGeometryAlgorithms', drawQuads="1")
        hexa.addObject('MechanicalObject', name="dofs", translation="5 0 0", showObject="1")

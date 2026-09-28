@@ -188,7 +188,7 @@ TetrahedronHyperelasticityFEMForceField.scn
             <RequiredPlugin pluginName="Sofa.Component.Engine.Select"/> <!-- Needed to use components [BoxROI] -->
             <RequiredPlugin pluginName="Sofa.Component.LinearSolver.Iterative"/> <!-- Needed to use components [CGLinearSolver] -->
             <RequiredPlugin pluginName="Sofa.Component.Mass"/> <!-- Needed to use components [MeshMatrixMass] -->
-            <RequiredPlugin pluginName="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+            <RequiredPlugin pluginName="Sofa.Component.IntegrationScheme.Backward"/> <!-- Needed to use components [EulerImplicitIntegrationScheme] -->
             <RequiredPlugin pluginName="Sofa.Component.SolidMechanics.FEM.Elastic"/> <!-- Needed to use components [TetrahedronFEMForceField] -->
             <RequiredPlugin pluginName="Sofa.Component.SolidMechanics.FEM.HyperElastic"/> <!-- Needed to use components [TetrahedronHyperelasticityFEMForceField] -->
             <RequiredPlugin pluginName="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
@@ -206,7 +206,7 @@ TetrahedronHyperelasticityFEMForceField.scn
             <DefaultAnimationLoop/>
     
             <Node name="Corrotational">
-                    <EulerImplicitSolver name="cg_odesolver" printLog="false" />
+                    <EulerImplicitIntegrationScheme name="cg_odesolver" printLog="false" />
                     <CGLinearSolver iterations="25" name="linear solver" tolerance="1.0e-9" threshold="1.0e-9" />
     
                     <RegularGridTopology name="hexaGrid" min="0 0 0" max="1 1 2.7" n="3 3 8" p0="0 0 0"/>
@@ -222,7 +222,7 @@ TetrahedronHyperelasticityFEMForceField.scn
             </Node>
     
             <Node name="ArrudaBoyce">
-                    <EulerImplicitSolver name="cg_odesolver" printLog="false" />
+                    <EulerImplicitIntegrationScheme name="cg_odesolver" printLog="false" />
                     <CGLinearSolver iterations="25" name="linear solver" tolerance="1.0e-9" threshold="1.0e-9" />
     
                     <RegularGridTopology name="hexaGrid" min="0 0 0" max="1 1 2.7" n="3 3 8" p0="2 0 0"/>
@@ -244,7 +244,7 @@ TetrahedronHyperelasticityFEMForceField.scn
             </Node>
     
             <Node name="StVenantKirchhoff">
-                    <EulerImplicitSolver name="cg_odesolver" printLog="false" />
+                    <EulerImplicitIntegrationScheme name="cg_odesolver" printLog="false" />
                     <CGLinearSolver iterations="25" name="linear solver" tolerance="1.0e-9" threshold="1.0e-9" />
     
                     <RegularGridTopology name="hexaGrid" min="0 0 0" max="1 1 2.7" n="3 3 8" p0="4 0 0"/>
@@ -267,7 +267,7 @@ TetrahedronHyperelasticityFEMForceField.scn
     
     
             <Node name="NeoHookean">
-                    <EulerImplicitSolver name="cg_odesolver" printLog="false" />
+                    <EulerImplicitIntegrationScheme name="cg_odesolver" printLog="false" />
                     <CGLinearSolver iterations="25" name="linear solver" tolerance="1.0e-9" threshold="1.0e-9" />
     
                     <RegularGridTopology name="hexaGrid" min="0 0 0" max="1 1 2.7" n="3 3 8" p0="6 0 0"/>
@@ -290,7 +290,7 @@ TetrahedronHyperelasticityFEMForceField.scn
     
     
             <Node name="MooneyRivlin">
-                    <EulerImplicitSolver name="cg_odesolver" printLog="false" />
+                    <EulerImplicitIntegrationScheme name="cg_odesolver" printLog="false" />
                     <CGLinearSolver iterations="25" name="linear solver" tolerance="1.0e-9" threshold="1.0e-9" />
     
                     <RegularGridTopology name="hexaGrid" min="0 0 0" max="1 1 2.7" n="3 3 8" p0="8 0 0"/>
@@ -312,7 +312,7 @@ TetrahedronHyperelasticityFEMForceField.scn
             </Node>
     
             <Node name="Ogden">
-                    <EulerImplicitSolver name="cg_odesolver" printLog="false" />
+                    <EulerImplicitIntegrationScheme name="cg_odesolver" printLog="false" />
                     <CGLinearSolver iterations="25" name="linear solver" tolerance="1.0e-9" threshold="1.0e-9" />
     
                     <RegularGridTopology name="hexaGrid" min="0 0 0" max="1 1 2.7" n="3 3 8" p0="10 0 0"/>
@@ -350,7 +350,7 @@ TetrahedronHyperelasticityFEMForceField.scn
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Engine.Select")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.LinearSolver.Iterative")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mass")
-       root.addObject('RequiredPlugin', pluginName="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', pluginName="Sofa.Component.IntegrationScheme.Backward")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.SolidMechanics.FEM.Elastic")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.SolidMechanics.FEM.HyperElastic")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.StateContainer")
@@ -368,7 +368,7 @@ TetrahedronHyperelasticityFEMForceField.scn
 
        corrotational = root.addChild('Corrotational')
 
-       corrotational.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="false")
+       corrotational.addObject('EulerImplicitIntegrationScheme', name="cg_odesolver", printLog="false")
        corrotational.addObject('CGLinearSolver', iterations="25", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
        corrotational.addObject('RegularGridTopology', name="hexaGrid", min="0 0 0", max="1 1 2.7", n="3 3 8", p0="0 0 0")
        corrotational.addObject('MechanicalObject', name="mechObj")
@@ -380,7 +380,7 @@ TetrahedronHyperelasticityFEMForceField.scn
 
        arruda_boyce = root.addChild('ArrudaBoyce')
 
-       arruda_boyce.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="false")
+       arruda_boyce.addObject('EulerImplicitIntegrationScheme', name="cg_odesolver", printLog="false")
        arruda_boyce.addObject('CGLinearSolver', iterations="25", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
        arruda_boyce.addObject('RegularGridTopology', name="hexaGrid", min="0 0 0", max="1 1 2.7", n="3 3 8", p0="2 0 0")
        arruda_boyce.addObject('MechanicalObject', name="mechObj")
@@ -398,7 +398,7 @@ TetrahedronHyperelasticityFEMForceField.scn
 
        st_venant_kirchhoff = root.addChild('StVenantKirchhoff')
 
-       st_venant_kirchhoff.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="false")
+       st_venant_kirchhoff.addObject('EulerImplicitIntegrationScheme', name="cg_odesolver", printLog="false")
        st_venant_kirchhoff.addObject('CGLinearSolver', iterations="25", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
        st_venant_kirchhoff.addObject('RegularGridTopology', name="hexaGrid", min="0 0 0", max="1 1 2.7", n="3 3 8", p0="4 0 0")
        st_venant_kirchhoff.addObject('MechanicalObject', name="mechObj")
@@ -416,7 +416,7 @@ TetrahedronHyperelasticityFEMForceField.scn
 
        neo_hookean = root.addChild('NeoHookean')
 
-       neo_hookean.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="false")
+       neo_hookean.addObject('EulerImplicitIntegrationScheme', name="cg_odesolver", printLog="false")
        neo_hookean.addObject('CGLinearSolver', iterations="25", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
        neo_hookean.addObject('RegularGridTopology', name="hexaGrid", min="0 0 0", max="1 1 2.7", n="3 3 8", p0="6 0 0")
        neo_hookean.addObject('MechanicalObject', name="mechObj")
@@ -434,7 +434,7 @@ TetrahedronHyperelasticityFEMForceField.scn
 
        mooney_rivlin = root.addChild('MooneyRivlin')
 
-       mooney_rivlin.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="false")
+       mooney_rivlin.addObject('EulerImplicitIntegrationScheme', name="cg_odesolver", printLog="false")
        mooney_rivlin.addObject('CGLinearSolver', iterations="25", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
        mooney_rivlin.addObject('RegularGridTopology', name="hexaGrid", min="0 0 0", max="1 1 2.7", n="3 3 8", p0="8 0 0")
        mooney_rivlin.addObject('MechanicalObject', name="mechObj")
@@ -452,7 +452,7 @@ TetrahedronHyperelasticityFEMForceField.scn
 
        ogden = root.addChild('Ogden')
 
-       ogden.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="false")
+       ogden.addObject('EulerImplicitIntegrationScheme', name="cg_odesolver", printLog="false")
        ogden.addObject('CGLinearSolver', iterations="25", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
        ogden.addObject('RegularGridTopology', name="hexaGrid", min="0 0 0", max="1 1 2.7", n="3 3 8", p0="10 0 0")
        ogden.addObject('MechanicalObject', name="mechObj")
@@ -482,7 +482,7 @@ TetrahedronHyperelasticityFEMForceField_invertedTets.scn
             <RequiredPlugin pluginName="Sofa.Component.LinearSolver.Direct"/> <!-- Needed to use components [SparseLDLSolver] -->
             <RequiredPlugin pluginName="Sofa.Component.LinearSystem"/> <!-- Needed to use components [ConstantSparsityPatternSystem] -->
             <RequiredPlugin pluginName="Sofa.Component.Mass"/> <!-- Needed to use components [MeshMatrixMass] -->
-            <RequiredPlugin pluginName="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+            <RequiredPlugin pluginName="Sofa.Component.IntegrationScheme.Backward"/> <!-- Needed to use components [EulerImplicitIntegrationScheme] -->
             <RequiredPlugin pluginName="Sofa.Component.SolidMechanics.FEM.HyperElastic"/> <!-- Needed to use components [TetrahedronHyperelasticityFEMForceField] -->
             <RequiredPlugin pluginName="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
             <RequiredPlugin pluginName="Sofa.Component.Topology.Container.Dynamic"/> <!-- Needed to use components [TetrahedronSetGeometryAlgorithms TetrahedronSetTopologyContainer TetrahedronSetTopologyModifier] -->
@@ -496,7 +496,7 @@ TetrahedronHyperelasticityFEMForceField_invertedTets.scn
         <DefaultAnimationLoop/>
     
         <Node name="StableNeoHookean">
-            <EulerImplicitSolver name="odesolver"/>
+            <EulerImplicitIntegrationScheme name="odesolver"/>
             <ConstantSparsityPatternSystem template="CompressedRowSparseMatrixd" name="A"/>
             <SparseLDLSolver template="CompressedRowSparseMatrixd"/>
     
@@ -537,7 +537,7 @@ TetrahedronHyperelasticityFEMForceField_invertedTets.scn
        plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.LinearSolver.Direct")
        plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.LinearSystem")
        plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.Mass")
-       plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.ODESolver.Backward")
+       plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.IntegrationScheme.Backward")
        plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.SolidMechanics.FEM.HyperElastic")
        plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.StateContainer")
        plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.Topology.Container.Dynamic")
@@ -550,7 +550,7 @@ TetrahedronHyperelasticityFEMForceField_invertedTets.scn
 
        stable_neo_hookean = root.addChild('StableNeoHookean')
 
-       stable_neo_hookean.addObject('EulerImplicitSolver', name="odesolver")
+       stable_neo_hookean.addObject('EulerImplicitIntegrationScheme', name="odesolver")
        stable_neo_hookean.addObject('ConstantSparsityPatternSystem', template="CompressedRowSparseMatrixd", name="A")
        stable_neo_hookean.addObject('SparseLDLSolver', template="CompressedRowSparseMatrixd")
        stable_neo_hookean.addObject('RegularGridTopology', name="hexaGrid", min="0 0 0", max="1 1 2.7", n="6 6 16", p0="0 0 0")

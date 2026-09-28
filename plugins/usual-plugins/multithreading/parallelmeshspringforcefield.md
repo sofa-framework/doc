@@ -894,7 +894,7 @@ ParallelMeshSpringForceField.scn
             <RequiredPlugin pluginName="Sofa.GL.Component.Rendering3D"/> <!-- Needed to use components [OglModel] -->
             <RequiredPlugin pluginName="Sofa.Component.Mass"/> <!-- Needed to use components [UniformMass] -->
             <RequiredPlugin pluginName="Sofa.Component.LinearSolver.Iterative"/> <!-- Needed to use components [CGLinearSolver] -->
-            <RequiredPlugin pluginName="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+            <RequiredPlugin pluginName="Sofa.Component.IntegrationScheme.Backward"/> <!-- Needed to use components [EulerImplicitIntegrationScheme] -->
         </Node>
     
     
@@ -903,7 +903,7 @@ ParallelMeshSpringForceField.scn
     
         <Node name="DeformableObject">
     
-            <EulerImplicitSolver name="odeSolver"/>
+            <EulerImplicitIntegrationScheme name="odeSolver"/>
             <CGLinearSolver iterations="25" name="linearSolver" tolerance="1.0e-9" threshold="1.0e-9" />
     
             <MechanicalObject name="dofs"/>
@@ -958,14 +958,14 @@ ParallelMeshSpringForceField.scn
        plugins.addObject('RequiredPlugin', pluginName="Sofa.GL.Component.Rendering3D")
        plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.Mass")
        plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.LinearSolver.Iterative")
-       plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.ODESolver.Backward")
+       plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.IntegrationScheme.Backward")
 
        root.addObject('VisualStyle', displayFlags="showBehaviorModels hideForceFields")
        root.addObject('DefaultAnimationLoop', computeBoundingBox="false")
 
        deformable_object = root.addChild('DeformableObject')
 
-       deformable_object.addObject('EulerImplicitSolver', name="odeSolver")
+       deformable_object.addObject('EulerImplicitIntegrationScheme', name="odeSolver")
        deformable_object.addObject('CGLinearSolver', iterations="25", name="linearSolver", tolerance="1.0e-9", threshold="1.0e-9")
        deformable_object.addObject('MechanicalObject', name="dofs")
        deformable_object.addObject('RegularGridTopology', name="topology", nx="16", ny="16", nz="44", xmin="-1.5", xmax="1.5", ymin="-1.5", ymax="1.5", zmin="0", zmax="10")

@@ -216,7 +216,7 @@ SquareMapping.scn
             <RequiredPlugin pluginName="Sofa.Component.LinearSolver.Iterative"/> <!-- Needed to use components [CGLinearSolver] -->
             <RequiredPlugin pluginName="Sofa.Component.Mapping.NonLinear"/> <!-- Needed to use components [DistanceMapping SquareDistanceMapping SquareMapping] -->
             <RequiredPlugin pluginName="Sofa.Component.Mass"/> <!-- Needed to use components [DiagonalMass] -->
-            <RequiredPlugin pluginName="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+            <RequiredPlugin pluginName="Sofa.Component.IntegrationScheme.Backward"/> <!-- Needed to use components [EulerImplicitIntegrationScheme] -->
             <RequiredPlugin pluginName="Sofa.Component.SolidMechanics.Spring"/> <!-- Needed to use components [RestShapeSpringsForceField] -->
             <RequiredPlugin pluginName="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
             <RequiredPlugin pluginName="Sofa.Component.Topology.Container.Dynamic"/> <!-- Needed to use components [EdgeSetGeometryAlgorithms EdgeSetTopologyContainer] -->
@@ -231,7 +231,7 @@ SquareMapping.scn
     
         <Node name="twoMappings">
     
-            <EulerImplicitSolver name="solverTwoMappings" rayleighStiffness="0.1" rayleighMass="0.1"/>
+            <EulerImplicitIntegrationScheme name="solverTwoMappings" rayleighStiffness="0.1" rayleighMass="0.1"/>
             <CGLinearSolver iterations="1e4" name="linear solver" tolerance="1.0e-9" threshold="1.0e-9" />
     
             <EdgeSetTopologyContainer name="topology" position="@../loader.position" edges="@../loader.edges" />
@@ -253,7 +253,7 @@ SquareMapping.scn
         <Node name="oneMapping">
             <TransformEngine name="transform" template="Vec3" translation="0 0 0" input_position="@../loader.position" />
     
-            <EulerImplicitSolver name="solverOneMapping" rayleighStiffness="0.1" rayleighMass="0.1"/>
+            <EulerImplicitIntegrationScheme name="solverOneMapping" rayleighStiffness="0.1" rayleighMass="0.1"/>
             <CGLinearSolver iterations="1e4" name="linear solver" tolerance="1.0e-9" threshold="1.0e-9" />
     
             <EdgeSetTopologyContainer name="topology" position="@transform.output_position" edges="@../loader.edges" />
@@ -287,7 +287,7 @@ SquareMapping.scn
        plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.LinearSolver.Iterative")
        plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.Mapping.NonLinear")
        plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.Mass")
-       plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.ODESolver.Backward")
+       plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.IntegrationScheme.Backward")
        plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.SolidMechanics.Spring")
        plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.StateContainer")
        plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.Topology.Container.Dynamic")
@@ -300,7 +300,7 @@ SquareMapping.scn
 
        two_mappings = Root.addChild('twoMappings')
 
-       two_mappings.addObject('EulerImplicitSolver', name="solverTwoMappings", rayleighStiffness="0.1", rayleighMass="0.1")
+       two_mappings.addObject('EulerImplicitIntegrationScheme', name="solverTwoMappings", rayleighStiffness="0.1", rayleighMass="0.1")
        two_mappings.addObject('CGLinearSolver', iterations="1e4", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
        two_mappings.addObject('EdgeSetTopologyContainer', name="topology", position="@../loader.position", edges="@../loader.edges")
        two_mappings.addObject('MechanicalObject', name="defoDOF", template="Vec3")
@@ -322,7 +322,7 @@ SquareMapping.scn
        one_mapping = Root.addChild('oneMapping')
 
        one_mapping.addObject('TransformEngine', name="transform", template="Vec3", translation="0 0 0", input_position="@../loader.position")
-       one_mapping.addObject('EulerImplicitSolver', name="solverOneMapping", rayleighStiffness="0.1", rayleighMass="0.1")
+       one_mapping.addObject('EulerImplicitIntegrationScheme', name="solverOneMapping", rayleighStiffness="0.1", rayleighMass="0.1")
        one_mapping.addObject('CGLinearSolver', iterations="1e4", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
        one_mapping.addObject('EdgeSetTopologyContainer', name="topology", position="@transform.output_position", edges="@../loader.edges")
        one_mapping.addObject('MechanicalObject', name="defoDOF", template="Vec3")

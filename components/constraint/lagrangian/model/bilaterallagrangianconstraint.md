@@ -359,7 +359,7 @@ BilateralLagrangianConstraint_with_svd_regularization_solvable.scn
         <RequiredPlugin pluginName="Sofa.Component.LinearSolver.Direct"/> <!-- Needed to use components [SparseLDLSolver] -->
         <RequiredPlugin name="Sofa.Component.Mapping.NonLinear"/>
         <RequiredPlugin pluginName="Sofa.Component.Mass"/> <!-- Needed to use components [UniformMass] -->
-        <RequiredPlugin pluginName="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+        <RequiredPlugin pluginName="Sofa.Component.IntegrationScheme.Backward"/> <!-- Needed to use components [EulerImplicitIntegrationScheme] -->
         <RequiredPlugin pluginName="Sofa.Component.SolidMechanics.FEM.Elastic"/> <!-- Needed to use components [HexahedronFEMForceField] -->
         <RequiredPlugin pluginName="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
         <RequiredPlugin pluginName="Sofa.Component.Topology.Container.Grid"/> <!-- Needed to use components [RegularGridTopology] -->
@@ -394,7 +394,7 @@ BilateralLagrangianConstraint_with_svd_regularization_solvable.scn
         <Node name="DeformableCube0">
     
             <VisualStyle displayFlags="showForceFields" />
-            <EulerImplicitSolver name="odesolver" printLog="false" />
+            <EulerImplicitIntegrationScheme name="odesolver" printLog="false" />
             <SparseLDLSolver name="linearSolver" template="CompressedRowSparseMatrixMat3x3d" />
     
             <RegularGridTopology name="grid" nx="7" ny="2" nz="2" xmin="-1" xmax="1" ymin="-0.16" ymax="0.16" zmin="-0.16" zmax="0.16" />
@@ -446,7 +446,7 @@ BilateralLagrangianConstraint_with_svd_regularization_solvable.scn
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.LinearSolver.Direct")
        root.addObject('RequiredPlugin', name="Sofa.Component.Mapping.NonLinear")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mass")
-       root.addObject('RequiredPlugin', pluginName="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', pluginName="Sofa.Component.IntegrationScheme.Backward")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.SolidMechanics.FEM.Elastic")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.StateContainer")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Topology.Container.Grid")
@@ -482,7 +482,7 @@ BilateralLagrangianConstraint_with_svd_regularization_solvable.scn
        deformable_cube0 = root.addChild('DeformableCube0')
 
        deformable_cube0.addObject('VisualStyle', displayFlags="showForceFields")
-       deformable_cube0.addObject('EulerImplicitSolver', name="odesolver", printLog="false")
+       deformable_cube0.addObject('EulerImplicitIntegrationScheme', name="odesolver", printLog="false")
        deformable_cube0.addObject('SparseLDLSolver', name="linearSolver", template="CompressedRowSparseMatrixMat3x3d")
        deformable_cube0.addObject('RegularGridTopology', name="grid", nx="7", ny="2", nz="2", xmin="-1", xmax="1", ymin="-0.16", ymax="0.16", zmin="-0.16", zmax="0.16")
        deformable_cube0.addObject('MechanicalObject', name="mstate", template="Vec3")
@@ -514,7 +514,7 @@ BilateralLagrangianConstraint_with_regularization_unsolvable.scn
         <RequiredPlugin pluginName="Sofa.Component.Engine.Select"/> <!-- Needed to use components [BoxROI] -->
         <RequiredPlugin pluginName="Sofa.Component.LinearSolver.Direct"/> <!-- Needed to use components [SparseLDLSolver] -->
         <RequiredPlugin pluginName="Sofa.Component.Mass"/> <!-- Needed to use components [UniformMass] -->
-        <RequiredPlugin pluginName="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+        <RequiredPlugin pluginName="Sofa.Component.IntegrationScheme.Backward"/> <!-- Needed to use components [EulerImplicitIntegrationScheme] -->
         <RequiredPlugin pluginName="Sofa.Component.SolidMechanics.FEM.Elastic"/> <!-- Needed to use components [HexahedronFEMForceField] -->
         <RequiredPlugin pluginName="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
         <RequiredPlugin pluginName="Sofa.Component.Topology.Container.Grid"/> <!-- Needed to use components [RegularGridTopology] -->
@@ -540,7 +540,7 @@ BilateralLagrangianConstraint_with_regularization_unsolvable.scn
         <Node name="DeformableCube0">
     
             <VisualStyle displayFlags="showForceFields" />
-            <EulerImplicitSolver name="odesolver" printLog="false" />
+            <EulerImplicitIntegrationScheme name="odesolver" printLog="false" />
             <SparseLDLSolver name="linearSolver" template="CompressedRowSparseMatrixMat3x3d" />
     
             <RegularGridTopology name="grid" nx="4" ny="4" nz="4" xmin="-1" xmax="1" ymin="-1" ymax="1" zmin="-1" zmax="1" />
@@ -575,7 +575,7 @@ BilateralLagrangianConstraint_with_regularization_unsolvable.scn
         <Node name="DeformableCube1">
     
             <VisualStyle displayFlags="showForceFields" />
-            <EulerImplicitSolver name="odesolver" printLog="false" />
+            <EulerImplicitIntegrationScheme name="odesolver" printLog="false" />
             <SparseLDLSolver name="linearSolver" template="CompressedRowSparseMatrixMat3x3d" />
     
             <RegularGridTopology name="grid" nx="4" ny="4" nz="4" xmin="2" xmax="4" ymin="-1" ymax="1" zmin="-1" zmax="1" />
@@ -614,7 +614,7 @@ BilateralLagrangianConstraint_with_regularization_unsolvable.scn
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Engine.Select")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.LinearSolver.Direct")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mass")
-       root.addObject('RequiredPlugin', pluginName="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', pluginName="Sofa.Component.IntegrationScheme.Backward")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.SolidMechanics.FEM.Elastic")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.StateContainer")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Topology.Container.Grid")
@@ -639,7 +639,7 @@ BilateralLagrangianConstraint_with_regularization_unsolvable.scn
        deformable_cube0 = root.addChild('DeformableCube0')
 
        deformable_cube0.addObject('VisualStyle', displayFlags="showForceFields")
-       deformable_cube0.addObject('EulerImplicitSolver', name="odesolver", printLog="false")
+       deformable_cube0.addObject('EulerImplicitIntegrationScheme', name="odesolver", printLog="false")
        deformable_cube0.addObject('SparseLDLSolver', name="linearSolver", template="CompressedRowSparseMatrixMat3x3d")
        deformable_cube0.addObject('RegularGridTopology', name="grid", nx="4", ny="4", nz="4", xmin="-1", xmax="1", ymin="-1", ymax="1", zmin="-1", zmax="1")
        deformable_cube0.addObject('MechanicalObject', name="mstate", template="Vec3")
@@ -667,7 +667,7 @@ BilateralLagrangianConstraint_with_regularization_unsolvable.scn
        deformable_cube1 = root.addChild('DeformableCube1')
 
        deformable_cube1.addObject('VisualStyle', displayFlags="showForceFields")
-       deformable_cube1.addObject('EulerImplicitSolver', name="odesolver", printLog="false")
+       deformable_cube1.addObject('EulerImplicitIntegrationScheme', name="odesolver", printLog="false")
        deformable_cube1.addObject('SparseLDLSolver', name="linearSolver", template="CompressedRowSparseMatrixMat3x3d")
        deformable_cube1.addObject('RegularGridTopology', name="grid", nx="4", ny="4", nz="4", xmin="2", xmax="4", ymin="-1", ymax="1", zmin="-1", zmax="1")
        deformable_cube1.addObject('MechanicalObject', name="mstate", template="Vec3")
@@ -701,7 +701,7 @@ BilateralLagrangianConstraint_NNCG.scn
         <RequiredPlugin pluginName="Sofa.Component.LinearSolver.Iterative"/> <!-- Needed to use components [CGLinearSolver] -->
         <RequiredPlugin pluginName="Sofa.Component.Mapping.NonLinear"/> <!-- Needed to use components [RigidMapping] -->
         <RequiredPlugin pluginName="Sofa.Component.Mass"/> <!-- Needed to use components [UniformMass] -->
-        <RequiredPlugin pluginName="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+        <RequiredPlugin pluginName="Sofa.Component.IntegrationScheme.Backward"/> <!-- Needed to use components [EulerImplicitIntegrationScheme] -->
         <RequiredPlugin pluginName="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
         <RequiredPlugin pluginName="Sofa.Component.Topology.Container.Constant"/> <!-- Needed to use components [MeshTopology] -->
         <RequiredPlugin pluginName="Sofa.Component.Visual"/> <!-- Needed to use components [VisualStyle] -->
@@ -736,7 +736,7 @@ BilateralLagrangianConstraint_NNCG.scn
             </Node>
         </Node>
         <Node name="CUBE_1">
-            <EulerImplicitSolver printLog="false" rayleighStiffness="0.1" rayleighMass="0.1"/>
+            <EulerImplicitIntegrationScheme printLog="false" rayleighStiffness="0.1" rayleighMass="0.1"/>
             <CGLinearSolver iterations="25" tolerance="1.0e-9" threshold="1.0e-9" />
             <MechanicalObject template="Rigid3" scale="1.0" dx="0.0" dy="0" dz="0.0" />
             <UniformMass totalMass="0.1" />
@@ -762,7 +762,7 @@ BilateralLagrangianConstraint_NNCG.scn
         </Node>
         <BilateralLagrangianConstraint template="Vec3" object1="@CUBE_0/Constraints/points" object2="@CUBE_1/Constraints/points" first_point="0" second_point="0" />
         <Node name="CUBE_2">
-            <EulerImplicitSolver printLog="false" rayleighStiffness="0.1" rayleighMass="0.1"/>
+            <EulerImplicitIntegrationScheme printLog="false" rayleighStiffness="0.1" rayleighMass="0.1"/>
             <CGLinearSolver iterations="25" tolerance="1.0e-9" threshold="1.0e-9" />
             <MechanicalObject template="Rigid3" scale="1.0" dx="0.0" dy="-2.5" dz="0.0" />
             <UniformMass totalMass="0.1" />
@@ -788,7 +788,7 @@ BilateralLagrangianConstraint_NNCG.scn
         </Node>
         <BilateralLagrangianConstraint template="Vec3" object1="@CUBE_1/Constraints/points" object2="@CUBE_2/Constraints/points" first_point="1" second_point="0" />
         <Node name="CUBE_3">
-            <EulerImplicitSolver printLog="false" rayleighStiffness="0.1" rayleighMass="0.1"/>
+            <EulerImplicitIntegrationScheme printLog="false" rayleighStiffness="0.1" rayleighMass="0.1"/>
             <CGLinearSolver iterations="25" tolerance="1.0e-9" threshold="1.0e-9" />
             <MechanicalObject template="Rigid3" scale="1.0" dx="0.0" dy="-5.0" dz="0.0" />
             <UniformMass totalMass="0.1" />
@@ -814,7 +814,7 @@ BilateralLagrangianConstraint_NNCG.scn
         </Node>
         <BilateralLagrangianConstraint template="Vec3" object1="@CUBE_2/Constraints/points" object2="@CUBE_3/Constraints/points" first_point="1" second_point="0" />
         <Node name="CUBE_4">
-            <EulerImplicitSolver printLog="false" rayleighStiffness="0.1" rayleighMass="0.1"/>
+            <EulerImplicitIntegrationScheme printLog="false" rayleighStiffness="0.1" rayleighMass="0.1"/>
             <CGLinearSolver iterations="25" tolerance="1.0e-9" threshold="1.0e-9" />
             <MechanicalObject template="Rigid3" scale="1.0" dx="0.0" dy="-2.5" dz="-2.5" />
             <UniformMass totalMass="0.1" />
@@ -862,7 +862,7 @@ BilateralLagrangianConstraint_NNCG.scn
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.LinearSolver.Iterative")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mapping.NonLinear")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mass")
-       root.addObject('RequiredPlugin', pluginName="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', pluginName="Sofa.Component.IntegrationScheme.Backward")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.StateContainer")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Topology.Container.Constant")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Visual")
@@ -901,7 +901,7 @@ BilateralLagrangianConstraint_NNCG.scn
 
        cube_1 = root.addChild('CUBE_1')
 
-       cube_1.addObject('EulerImplicitSolver', printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
+       cube_1.addObject('EulerImplicitIntegrationScheme', printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
        cube_1.addObject('CGLinearSolver', iterations="25", tolerance="1.0e-9", threshold="1.0e-9")
        cube_1.addObject('MechanicalObject', template="Rigid3", scale="1.0", dx="0.0", dy="0", dz="0.0")
        cube_1.addObject('UniformMass', totalMass="0.1")
@@ -932,7 +932,7 @@ BilateralLagrangianConstraint_NNCG.scn
 
        cube_2 = root.addChild('CUBE_2')
 
-       cube_2.addObject('EulerImplicitSolver', printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
+       cube_2.addObject('EulerImplicitIntegrationScheme', printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
        cube_2.addObject('CGLinearSolver', iterations="25", tolerance="1.0e-9", threshold="1.0e-9")
        cube_2.addObject('MechanicalObject', template="Rigid3", scale="1.0", dx="0.0", dy="-2.5", dz="0.0")
        cube_2.addObject('UniformMass', totalMass="0.1")
@@ -963,7 +963,7 @@ BilateralLagrangianConstraint_NNCG.scn
 
        cube_3 = root.addChild('CUBE_3')
 
-       cube_3.addObject('EulerImplicitSolver', printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
+       cube_3.addObject('EulerImplicitIntegrationScheme', printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
        cube_3.addObject('CGLinearSolver', iterations="25", tolerance="1.0e-9", threshold="1.0e-9")
        cube_3.addObject('MechanicalObject', template="Rigid3", scale="1.0", dx="0.0", dy="-5.0", dz="0.0")
        cube_3.addObject('UniformMass', totalMass="0.1")
@@ -994,7 +994,7 @@ BilateralLagrangianConstraint_NNCG.scn
 
        cube_4 = root.addChild('CUBE_4')
 
-       cube_4.addObject('EulerImplicitSolver', printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
+       cube_4.addObject('EulerImplicitIntegrationScheme', printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
        cube_4.addObject('CGLinearSolver', iterations="25", tolerance="1.0e-9", threshold="1.0e-9")
        cube_4.addObject('MechanicalObject', template="Rigid3", scale="1.0", dx="0.0", dy="-2.5", dz="-2.5")
        cube_4.addObject('UniformMass', totalMass="0.1")
@@ -1039,7 +1039,7 @@ BilateralLagrangianConstraint_with_regularization_solvable.scn
         <RequiredPlugin pluginName="Sofa.Component.Engine.Select"/> <!-- Needed to use components [BoxROI] -->
         <RequiredPlugin pluginName="Sofa.Component.LinearSolver.Direct"/> <!-- Needed to use components [SparseLDLSolver] -->
         <RequiredPlugin pluginName="Sofa.Component.Mass"/> <!-- Needed to use components [UniformMass] -->
-        <RequiredPlugin pluginName="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+        <RequiredPlugin pluginName="Sofa.Component.IntegrationScheme.Backward"/> <!-- Needed to use components [EulerImplicitIntegrationScheme] -->
         <RequiredPlugin pluginName="Sofa.Component.SolidMechanics.FEM.Elastic"/> <!-- Needed to use components [HexahedronFEMForceField] -->
         <RequiredPlugin pluginName="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
         <RequiredPlugin pluginName="Sofa.Component.Topology.Container.Grid"/> <!-- Needed to use components [RegularGridTopology] -->
@@ -1061,7 +1061,7 @@ BilateralLagrangianConstraint_with_regularization_solvable.scn
         <Node name="DeformableCube0">
     
             <VisualStyle displayFlags="showForceFields" />
-            <EulerImplicitSolver name="odesolver" printLog="false" />
+            <EulerImplicitIntegrationScheme name="odesolver" printLog="false" />
             <SparseLDLSolver name="linearSolver" template="CompressedRowSparseMatrixMat3x3d" />
     
             <RegularGridTopology name="grid" nx="4" ny="4" nz="4" xmin="-1" xmax="1" ymin="-1" ymax="1" zmin="-1" zmax="1" />
@@ -1092,7 +1092,7 @@ BilateralLagrangianConstraint_with_regularization_solvable.scn
         <Node name="DeformableCube1">
     
             <VisualStyle displayFlags="showForceFields" />
-            <EulerImplicitSolver name="odesolver" printLog="false" />
+            <EulerImplicitIntegrationScheme name="odesolver" printLog="false" />
             <SparseLDLSolver name="linearSolver" template="CompressedRowSparseMatrixMat3x3d" />
     
             <RegularGridTopology name="grid" nx="4" ny="4" nz="4" xmin="2" xmax="4" ymin="-1" ymax="1" zmin="-1" zmax="1" />
@@ -1123,7 +1123,7 @@ BilateralLagrangianConstraint_with_regularization_solvable.scn
         <Node name="DeformableCube2">
     
             <VisualStyle displayFlags="showForceFields" />
-            <EulerImplicitSolver name="odesolver" printLog="false" />
+            <EulerImplicitIntegrationScheme name="odesolver" printLog="false" />
             <SparseLDLSolver name="linearSolver" template="CompressedRowSparseMatrixMat3x3d" />
     
             <RegularGridTopology name="grid" nx="4" ny="4" nz="4" xmin="5" xmax="7" ymin="-1" ymax="1" zmin="-1" zmax="1" />
@@ -1160,7 +1160,7 @@ BilateralLagrangianConstraint_with_regularization_solvable.scn
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Engine.Select")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.LinearSolver.Direct")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mass")
-       root.addObject('RequiredPlugin', pluginName="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', pluginName="Sofa.Component.IntegrationScheme.Backward")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.SolidMechanics.FEM.Elastic")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.StateContainer")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Topology.Container.Grid")
@@ -1180,7 +1180,7 @@ BilateralLagrangianConstraint_with_regularization_solvable.scn
        deformable_cube0 = root.addChild('DeformableCube0')
 
        deformable_cube0.addObject('VisualStyle', displayFlags="showForceFields")
-       deformable_cube0.addObject('EulerImplicitSolver', name="odesolver", printLog="false")
+       deformable_cube0.addObject('EulerImplicitIntegrationScheme', name="odesolver", printLog="false")
        deformable_cube0.addObject('SparseLDLSolver', name="linearSolver", template="CompressedRowSparseMatrixMat3x3d")
        deformable_cube0.addObject('RegularGridTopology', name="grid", nx="4", ny="4", nz="4", xmin="-1", xmax="1", ymin="-1", ymax="1", zmin="-1", zmax="1")
        deformable_cube0.addObject('MechanicalObject', name="mstate", template="Vec3")
@@ -1203,7 +1203,7 @@ BilateralLagrangianConstraint_with_regularization_solvable.scn
        deformable_cube1 = root.addChild('DeformableCube1')
 
        deformable_cube1.addObject('VisualStyle', displayFlags="showForceFields")
-       deformable_cube1.addObject('EulerImplicitSolver', name="odesolver", printLog="false")
+       deformable_cube1.addObject('EulerImplicitIntegrationScheme', name="odesolver", printLog="false")
        deformable_cube1.addObject('SparseLDLSolver', name="linearSolver", template="CompressedRowSparseMatrixMat3x3d")
        deformable_cube1.addObject('RegularGridTopology', name="grid", nx="4", ny="4", nz="4", xmin="2", xmax="4", ymin="-1", ymax="1", zmin="-1", zmax="1")
        deformable_cube1.addObject('MechanicalObject', name="mstate", template="Vec3")
@@ -1226,7 +1226,7 @@ BilateralLagrangianConstraint_with_regularization_solvable.scn
        deformable_cube2 = root.addChild('DeformableCube2')
 
        deformable_cube2.addObject('VisualStyle', displayFlags="showForceFields")
-       deformable_cube2.addObject('EulerImplicitSolver', name="odesolver", printLog="false")
+       deformable_cube2.addObject('EulerImplicitIntegrationScheme', name="odesolver", printLog="false")
        deformable_cube2.addObject('SparseLDLSolver', name="linearSolver", template="CompressedRowSparseMatrixMat3x3d")
        deformable_cube2.addObject('RegularGridTopology', name="grid", nx="4", ny="4", nz="4", xmin="5", xmax="7", ymin="-1", ymax="1", zmin="-1", zmax="1")
        deformable_cube2.addObject('MechanicalObject', name="mstate", template="Vec3")
@@ -1260,7 +1260,7 @@ BilateralLagrangianConstraint_PGS.scn
         <RequiredPlugin pluginName="Sofa.Component.LinearSolver.Iterative"/> <!-- Needed to use components [CGLinearSolver] -->
         <RequiredPlugin pluginName="Sofa.Component.Mapping.NonLinear"/> <!-- Needed to use components [RigidMapping] -->
         <RequiredPlugin pluginName="Sofa.Component.Mass"/> <!-- Needed to use components [UniformMass] -->
-        <RequiredPlugin pluginName="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+        <RequiredPlugin pluginName="Sofa.Component.IntegrationScheme.Backward"/> <!-- Needed to use components [EulerImplicitIntegrationScheme] -->
         <RequiredPlugin pluginName="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
         <RequiredPlugin pluginName="Sofa.Component.Topology.Container.Constant"/> <!-- Needed to use components [MeshTopology] -->
         <RequiredPlugin pluginName="Sofa.Component.Visual"/> <!-- Needed to use components [VisualStyle] -->
@@ -1295,7 +1295,7 @@ BilateralLagrangianConstraint_PGS.scn
             </Node>
         </Node>
         <Node name="CUBE_1">
-            <EulerImplicitSolver printLog="false" rayleighStiffness="0.1" rayleighMass="0.1"/>
+            <EulerImplicitIntegrationScheme printLog="false" rayleighStiffness="0.1" rayleighMass="0.1"/>
             <CGLinearSolver iterations="25" tolerance="1.0e-9" threshold="1.0e-9" />
             <MechanicalObject template="Rigid3" scale="1.0" dx="0.0" dy="0" dz="0.0" />
             <UniformMass totalMass="0.1" />
@@ -1321,7 +1321,7 @@ BilateralLagrangianConstraint_PGS.scn
         </Node>
         <BilateralLagrangianConstraint template="Vec3" object1="@CUBE_0/Constraints/points" object2="@CUBE_1/Constraints/points" first_point="0" second_point="0" />
         <Node name="CUBE_2">
-            <EulerImplicitSolver printLog="false" rayleighStiffness="0.1" rayleighMass="0.1"/>
+            <EulerImplicitIntegrationScheme printLog="false" rayleighStiffness="0.1" rayleighMass="0.1"/>
             <CGLinearSolver iterations="25" tolerance="1.0e-9" threshold="1.0e-9" />
             <MechanicalObject template="Rigid3" scale="1.0" dx="0.0" dy="-2.5" dz="0.0" />
             <UniformMass totalMass="0.1" />
@@ -1347,7 +1347,7 @@ BilateralLagrangianConstraint_PGS.scn
         </Node>
         <BilateralLagrangianConstraint template="Vec3" object1="@CUBE_1/Constraints/points" object2="@CUBE_2/Constraints/points" first_point="1" second_point="0" />
         <Node name="CUBE_3">
-            <EulerImplicitSolver printLog="false" rayleighStiffness="0.1" rayleighMass="0.1"/>
+            <EulerImplicitIntegrationScheme printLog="false" rayleighStiffness="0.1" rayleighMass="0.1"/>
             <CGLinearSolver iterations="25" tolerance="1.0e-9" threshold="1.0e-9" />
             <MechanicalObject template="Rigid3" scale="1.0" dx="0.0" dy="-5.0" dz="0.0" />
             <UniformMass totalMass="0.1" />
@@ -1373,7 +1373,7 @@ BilateralLagrangianConstraint_PGS.scn
         </Node>
         <BilateralLagrangianConstraint template="Vec3" object1="@CUBE_2/Constraints/points" object2="@CUBE_3/Constraints/points" first_point="1" second_point="0" />
         <Node name="CUBE_4">
-            <EulerImplicitSolver printLog="false" rayleighStiffness="0.1" rayleighMass="0.1"/>
+            <EulerImplicitIntegrationScheme printLog="false" rayleighStiffness="0.1" rayleighMass="0.1"/>
             <CGLinearSolver iterations="25" tolerance="1.0e-9" threshold="1.0e-9" />
             <MechanicalObject template="Rigid3" scale="1.0" dx="0.0" dy="-2.5" dz="-2.5" />
             <UniformMass totalMass="0.1" />
@@ -1421,7 +1421,7 @@ BilateralLagrangianConstraint_PGS.scn
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.LinearSolver.Iterative")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mapping.NonLinear")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mass")
-       root.addObject('RequiredPlugin', pluginName="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', pluginName="Sofa.Component.IntegrationScheme.Backward")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.StateContainer")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Topology.Container.Constant")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Visual")
@@ -1460,7 +1460,7 @@ BilateralLagrangianConstraint_PGS.scn
 
        cube_1 = root.addChild('CUBE_1')
 
-       cube_1.addObject('EulerImplicitSolver', printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
+       cube_1.addObject('EulerImplicitIntegrationScheme', printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
        cube_1.addObject('CGLinearSolver', iterations="25", tolerance="1.0e-9", threshold="1.0e-9")
        cube_1.addObject('MechanicalObject', template="Rigid3", scale="1.0", dx="0.0", dy="0", dz="0.0")
        cube_1.addObject('UniformMass', totalMass="0.1")
@@ -1491,7 +1491,7 @@ BilateralLagrangianConstraint_PGS.scn
 
        cube_2 = root.addChild('CUBE_2')
 
-       cube_2.addObject('EulerImplicitSolver', printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
+       cube_2.addObject('EulerImplicitIntegrationScheme', printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
        cube_2.addObject('CGLinearSolver', iterations="25", tolerance="1.0e-9", threshold="1.0e-9")
        cube_2.addObject('MechanicalObject', template="Rigid3", scale="1.0", dx="0.0", dy="-2.5", dz="0.0")
        cube_2.addObject('UniformMass', totalMass="0.1")
@@ -1522,7 +1522,7 @@ BilateralLagrangianConstraint_PGS.scn
 
        cube_3 = root.addChild('CUBE_3')
 
-       cube_3.addObject('EulerImplicitSolver', printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
+       cube_3.addObject('EulerImplicitIntegrationScheme', printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
        cube_3.addObject('CGLinearSolver', iterations="25", tolerance="1.0e-9", threshold="1.0e-9")
        cube_3.addObject('MechanicalObject', template="Rigid3", scale="1.0", dx="0.0", dy="-5.0", dz="0.0")
        cube_3.addObject('UniformMass', totalMass="0.1")
@@ -1553,7 +1553,7 @@ BilateralLagrangianConstraint_PGS.scn
 
        cube_4 = root.addChild('CUBE_4')
 
-       cube_4.addObject('EulerImplicitSolver', printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
+       cube_4.addObject('EulerImplicitIntegrationScheme', printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
        cube_4.addObject('CGLinearSolver', iterations="25", tolerance="1.0e-9", threshold="1.0e-9")
        cube_4.addObject('MechanicalObject', template="Rigid3", scale="1.0", dx="0.0", dy="-2.5", dz="-2.5")
        cube_4.addObject('UniformMass', totalMass="0.1")
@@ -1600,7 +1600,7 @@ BilateralLagrangianConstraint_Rigid.scn
         <RequiredPlugin pluginName="Sofa.Component.LinearSolver.Direct"/> <!-- Needed to use components [BTDLinearSolver] -->
         <RequiredPlugin pluginName="Sofa.Component.Mapping.NonLinear"/> <!-- Needed to use components [RigidMapping] -->
         <RequiredPlugin pluginName="Sofa.Component.Mass"/> <!-- Needed to use components [UniformMass] -->
-        <RequiredPlugin pluginName="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+        <RequiredPlugin pluginName="Sofa.Component.IntegrationScheme.Backward"/> <!-- Needed to use components [EulerImplicitIntegrationScheme] -->
         <RequiredPlugin pluginName="Sofa.Component.SolidMechanics.FEM.Elastic"/> <!-- Needed to use components [BeamFEMForceField] -->
         <RequiredPlugin pluginName="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
         <RequiredPlugin pluginName="Sofa.Component.Topology.Container.Constant"/> <!-- Needed to use components [MeshTopology] -->
@@ -1610,7 +1610,7 @@ BilateralLagrangianConstraint_Rigid.scn
         <FreeMotionAnimationLoop />
         <BlockGaussSeidelConstraintSolver tolerance="0.001" maxIterations="1000"/>
         <Node name="Beam1">
-            <EulerImplicitSolver name="odesolver" printLog="false"  rayleighStiffness="0.1" rayleighMass="0.1" />
+            <EulerImplicitIntegrationScheme name="odesolver" printLog="false"  rayleighStiffness="0.1" rayleighMass="0.1" />
             <BTDLinearSolver printLog="false" verbose="false" />
             <MechanicalObject template="Rigid3" name="DOFs1" position="0 0 0 0 0 0 1  1 0 0 0 0 0 1  2 0 0 0 0 0 1  3 0 0 0 0 0 1  4 0 0 0 0 0 1  5 0 0 0 0 0 1  6 0 0 0 0 0 1  7 0 0 0 0 0 1" />
             <MeshTopology name="lines" lines="0 1 1 2 2 3 3 4 4 5 5 6 6 7" />
@@ -1625,7 +1625,7 @@ BilateralLagrangianConstraint_Rigid.scn
             </Node>
         </Node>
         <Node name="Beam2">
-            <EulerImplicitSolver name="odesolver" printLog="false" />
+            <EulerImplicitIntegrationScheme name="odesolver" printLog="false" />
             <BTDLinearSolver printLog="false" verbose="false" />
             <MechanicalObject template="Rigid3" name="DOFs2" position="0 0 0 0 0 -0.707107 0.707107 0 -1 0 0 0-0.707107 0.707107  0 -2 0 0 0 -0.707107 0.707107  0 -3 0 0 0 -0.707107 0.707107  0 -4 0 0 0 -0.707107 0.707107  0 -5 0 0 0 -0.707107 0.707107  0 -6 0 0 0 -0.707107 0.707107  0 -7 0 0 0 -0.707107 0.707107" />
             <MeshTopology name="lines" lines="0 1 1 2 2 3 3 4 4 5 5 6 6 7" />
@@ -1655,7 +1655,7 @@ BilateralLagrangianConstraint_Rigid.scn
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.LinearSolver.Direct")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mapping.NonLinear")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mass")
-       root.addObject('RequiredPlugin', pluginName="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', pluginName="Sofa.Component.IntegrationScheme.Backward")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.SolidMechanics.FEM.Elastic")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.StateContainer")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Topology.Container.Constant")
@@ -1666,7 +1666,7 @@ BilateralLagrangianConstraint_Rigid.scn
 
        beam1 = root.addChild('Beam1')
 
-       beam1.addObject('EulerImplicitSolver', name="odesolver", printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
+       beam1.addObject('EulerImplicitIntegrationScheme', name="odesolver", printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
        beam1.addObject('BTDLinearSolver', printLog="false", verbose="false")
        beam1.addObject('MechanicalObject', template="Rigid3", name="DOFs1", position="0 0 0 0 0 0 1  1 0 0 0 0 0 1  2 0 0 0 0 0 1  3 0 0 0 0 0 1  4 0 0 0 0 0 1  5 0 0 0 0 0 1  6 0 0 0 0 0 1  7 0 0 0 0 0 1")
        beam1.addObject('MeshTopology', name="lines", lines="0 1 1 2 2 3 3 4 4 5 5 6 6 7")
@@ -1683,7 +1683,7 @@ BilateralLagrangianConstraint_Rigid.scn
 
        beam2 = root.addChild('Beam2')
 
-       beam2.addObject('EulerImplicitSolver', name="odesolver", printLog="false")
+       beam2.addObject('EulerImplicitIntegrationScheme', name="odesolver", printLog="false")
        beam2.addObject('BTDLinearSolver', printLog="false", verbose="false")
        beam2.addObject('MechanicalObject', template="Rigid3", name="DOFs2", position="0 0 0 0 0 -0.707107 0.707107 0 -1 0 0 0-0.707107 0.707107  0 -2 0 0 0 -0.707107 0.707107  0 -3 0 0 0 -0.707107 0.707107  0 -4 0 0 0 -0.707107 0.707107  0 -5 0 0 0 -0.707107 0.707107  0 -6 0 0 0 -0.707107 0.707107  0 -7 0 0 0 -0.707107 0.707107")
        beam2.addObject('MeshTopology', name="lines", lines="0 1 1 2 2 3 3 4 4 5 5 6 6 7")
@@ -1718,7 +1718,7 @@ BilateralLagrangianConstraint_Soft_Rigid_Bodies.scn
             <RequiredPlugin pluginName="Sofa.Component.Mapping.Linear"/> <!-- Needed to use components [BarycentricMapping IdentityMapping] -->
             <RequiredPlugin pluginName="Sofa.Component.Mapping.NonLinear"/> <!-- Needed to use components [RigidMapping] -->
             <RequiredPlugin pluginName="Sofa.Component.Mass"/> <!-- Needed to use components [UniformMass] -->
-            <RequiredPlugin pluginName="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+            <RequiredPlugin pluginName="Sofa.Component.IntegrationScheme.Backward"/> <!-- Needed to use components [EulerImplicitIntegrationScheme] -->
             <RequiredPlugin pluginName="Sofa.Component.SolidMechanics.FEM.Elastic"/> <!-- Needed to use components [TetrahedronFEMForceField] -->
             <RequiredPlugin pluginName="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
             <RequiredPlugin pluginName="Sofa.Component.Topology.Container.Dynamic"/> <!-- Needed to use components [HexahedronSetTopologyContainer TetrahedronSetGeometryAlgorithms TetrahedronSetTopologyContainer TetrahedronSetTopologyModifier TriangleSetGeometryAlgorithms TriangleSetTopologyContainer TriangleSetTopologyModifier] -->
@@ -1746,7 +1746,7 @@ BilateralLagrangianConstraint_Soft_Rigid_Bodies.scn
             <MechanicalObject template="Vec3d" name="gridDofs"/>
     
             <Node name="DeformableCube" bbox="-10 -10 -10 10 10 10" >
-                <EulerImplicitSolver name="cg_odesolver" />
+                <EulerImplicitIntegrationScheme name="cg_odesolver" />
                 <SparseLDLSolver name="linear solver" template="CompressedRowSparseMatrixMat3x3d" />
                 <TetrahedronSetTopologyContainer name="Container" />
                 <TetrahedronSetTopologyModifier name="Modifier" />
@@ -1783,7 +1783,7 @@ BilateralLagrangianConstraint_Soft_Rigid_Bodies.scn
     
         <!-- Rigid body -->
         <Node name="RigidBody" >
-            <EulerImplicitSolver name="EulerImplicit" />
+            <EulerImplicitIntegrationScheme name="EulerImplicit" />
             <CGLinearSolver template="GraphScattered" name="CG-LinearSolver" iterations="25" tolerance="1e-09" threshold="1e-09" />
             <MechanicalObject template="Rigid3d" name="rigidDofs" position="0 -15 0 0 0 0 1" showObject="1" showObjectScale="5"/>
             <UniformMass name="NodalMass" totalMass="1" />
@@ -1833,7 +1833,7 @@ BilateralLagrangianConstraint_Soft_Rigid_Bodies.scn
        plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.Mapping.Linear")
        plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.Mapping.NonLinear")
        plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.Mass")
-       plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.ODESolver.Backward")
+       plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.IntegrationScheme.Backward")
        plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.SolidMechanics.FEM.Elastic")
        plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.StateContainer")
        plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.Topology.Container.Dynamic")
@@ -1859,7 +1859,7 @@ BilateralLagrangianConstraint_Soft_Rigid_Bodies.scn
 
        deformable_cube = DeformableGrid.addChild('DeformableCube', bbox="-10 -10 -10 10 10 10")
 
-       deformable_cube.addObject('EulerImplicitSolver', name="cg_odesolver")
+       deformable_cube.addObject('EulerImplicitIntegrationScheme', name="cg_odesolver")
        deformable_cube.addObject('SparseLDLSolver', name="linear solver", template="CompressedRowSparseMatrixMat3x3d")
        deformable_cube.addObject('TetrahedronSetTopologyContainer', name="Container")
        deformable_cube.addObject('TetrahedronSetTopologyModifier', name="Modifier")
@@ -1890,7 +1890,7 @@ BilateralLagrangianConstraint_Soft_Rigid_Bodies.scn
 
        rigid_body = root.addChild('RigidBody')
 
-       rigid_body.addObject('EulerImplicitSolver', name="EulerImplicit")
+       rigid_body.addObject('EulerImplicitIntegrationScheme', name="EulerImplicit")
        rigid_body.addObject('CGLinearSolver', template="GraphScattered", name="CG-LinearSolver", iterations="25", tolerance="1e-09", threshold="1e-09")
        rigid_body.addObject('MechanicalObject', template="Rigid3d", name="rigidDofs", position="0 -15 0 0 0 0 1", showObject="1", showObjectScale="5")
        rigid_body.addObject('UniformMass', name="NodalMass", totalMass="1")
@@ -1925,7 +1925,7 @@ BilateralLagrangianConstraint_UGS.scn
         <RequiredPlugin pluginName="Sofa.Component.LinearSolver.Iterative"/> <!-- Needed to use components [CGLinearSolver] -->
         <RequiredPlugin pluginName="Sofa.Component.Mapping.NonLinear"/> <!-- Needed to use components [RigidMapping] -->
         <RequiredPlugin pluginName="Sofa.Component.Mass"/> <!-- Needed to use components [UniformMass] -->
-        <RequiredPlugin pluginName="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+        <RequiredPlugin pluginName="Sofa.Component.IntegrationScheme.Backward"/> <!-- Needed to use components [EulerImplicitIntegrationScheme] -->
         <RequiredPlugin pluginName="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
         <RequiredPlugin pluginName="Sofa.Component.Topology.Container.Constant"/> <!-- Needed to use components [MeshTopology] -->
         <RequiredPlugin pluginName="Sofa.Component.Visual"/> <!-- Needed to use components [VisualStyle] -->
@@ -1960,7 +1960,7 @@ BilateralLagrangianConstraint_UGS.scn
             </Node>
         </Node>
         <Node name="CUBE_1">
-            <EulerImplicitSolver printLog="false" rayleighStiffness="0.1" rayleighMass="0.1"/>
+            <EulerImplicitIntegrationScheme printLog="false" rayleighStiffness="0.1" rayleighMass="0.1"/>
             <CGLinearSolver iterations="25" tolerance="1.0e-9" threshold="1.0e-9" />
             <MechanicalObject template="Rigid3" scale="1.0" dx="0.0" dy="0" dz="0.0" />
             <UniformMass totalMass="0.1" />
@@ -1986,7 +1986,7 @@ BilateralLagrangianConstraint_UGS.scn
         </Node>
         <BilateralLagrangianConstraint template="Vec3" object1="@CUBE_0/Constraints/points" object2="@CUBE_1/Constraints/points" first_point="0" second_point="0" />
         <Node name="CUBE_2">
-            <EulerImplicitSolver printLog="false" rayleighStiffness="0.1" rayleighMass="0.1"/>
+            <EulerImplicitIntegrationScheme printLog="false" rayleighStiffness="0.1" rayleighMass="0.1"/>
             <CGLinearSolver iterations="25" tolerance="1.0e-9" threshold="1.0e-9" />
             <MechanicalObject template="Rigid3" scale="1.0" dx="0.0" dy="-2.5" dz="0.0" />
             <UniformMass totalMass="0.1" />
@@ -2012,7 +2012,7 @@ BilateralLagrangianConstraint_UGS.scn
         </Node>
         <BilateralLagrangianConstraint template="Vec3" object1="@CUBE_1/Constraints/points" object2="@CUBE_2/Constraints/points" first_point="1" second_point="0" />
         <Node name="CUBE_3">
-            <EulerImplicitSolver printLog="false" rayleighStiffness="0.1" rayleighMass="0.1"/>
+            <EulerImplicitIntegrationScheme printLog="false" rayleighStiffness="0.1" rayleighMass="0.1"/>
             <CGLinearSolver iterations="25" tolerance="1.0e-9" threshold="1.0e-9" />
             <MechanicalObject template="Rigid3" scale="1.0" dx="0.0" dy="-5.0" dz="0.0" />
             <UniformMass totalMass="0.1" />
@@ -2038,7 +2038,7 @@ BilateralLagrangianConstraint_UGS.scn
         </Node>
         <BilateralLagrangianConstraint template="Vec3" object1="@CUBE_2/Constraints/points" object2="@CUBE_3/Constraints/points" first_point="1" second_point="0" />
         <Node name="CUBE_4">
-            <EulerImplicitSolver printLog="false" rayleighStiffness="0.1" rayleighMass="0.1"/>
+            <EulerImplicitIntegrationScheme printLog="false" rayleighStiffness="0.1" rayleighMass="0.1"/>
             <CGLinearSolver iterations="25" tolerance="1.0e-9" threshold="1.0e-9" />
             <MechanicalObject template="Rigid3" scale="1.0" dx="0.0" dy="-2.5" dz="-2.5" />
             <UniformMass totalMass="0.1" />
@@ -2086,7 +2086,7 @@ BilateralLagrangianConstraint_UGS.scn
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.LinearSolver.Iterative")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mapping.NonLinear")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mass")
-       root.addObject('RequiredPlugin', pluginName="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', pluginName="Sofa.Component.IntegrationScheme.Backward")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.StateContainer")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Topology.Container.Constant")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Visual")
@@ -2125,7 +2125,7 @@ BilateralLagrangianConstraint_UGS.scn
 
        cube_1 = root.addChild('CUBE_1')
 
-       cube_1.addObject('EulerImplicitSolver', printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
+       cube_1.addObject('EulerImplicitIntegrationScheme', printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
        cube_1.addObject('CGLinearSolver', iterations="25", tolerance="1.0e-9", threshold="1.0e-9")
        cube_1.addObject('MechanicalObject', template="Rigid3", scale="1.0", dx="0.0", dy="0", dz="0.0")
        cube_1.addObject('UniformMass', totalMass="0.1")
@@ -2156,7 +2156,7 @@ BilateralLagrangianConstraint_UGS.scn
 
        cube_2 = root.addChild('CUBE_2')
 
-       cube_2.addObject('EulerImplicitSolver', printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
+       cube_2.addObject('EulerImplicitIntegrationScheme', printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
        cube_2.addObject('CGLinearSolver', iterations="25", tolerance="1.0e-9", threshold="1.0e-9")
        cube_2.addObject('MechanicalObject', template="Rigid3", scale="1.0", dx="0.0", dy="-2.5", dz="0.0")
        cube_2.addObject('UniformMass', totalMass="0.1")
@@ -2187,7 +2187,7 @@ BilateralLagrangianConstraint_UGS.scn
 
        cube_3 = root.addChild('CUBE_3')
 
-       cube_3.addObject('EulerImplicitSolver', printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
+       cube_3.addObject('EulerImplicitIntegrationScheme', printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
        cube_3.addObject('CGLinearSolver', iterations="25", tolerance="1.0e-9", threshold="1.0e-9")
        cube_3.addObject('MechanicalObject', template="Rigid3", scale="1.0", dx="0.0", dy="-5.0", dz="0.0")
        cube_3.addObject('UniformMass', totalMass="0.1")
@@ -2218,7 +2218,7 @@ BilateralLagrangianConstraint_UGS.scn
 
        cube_4 = root.addChild('CUBE_4')
 
-       cube_4.addObject('EulerImplicitSolver', printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
+       cube_4.addObject('EulerImplicitIntegrationScheme', printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
        cube_4.addObject('CGLinearSolver', iterations="25", tolerance="1.0e-9", threshold="1.0e-9")
        cube_4.addObject('MechanicalObject', template="Rigid3", scale="1.0", dx="0.0", dy="-2.5", dz="-2.5")
        cube_4.addObject('UniformMass', totalMass="0.1")

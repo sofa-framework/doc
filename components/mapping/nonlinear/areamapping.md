@@ -245,7 +245,7 @@ AreaMapping.scn
             <RequiredPlugin pluginName="Sofa.Component.Mapping.Linear"/> <!-- Needed to use components [IdentityMapping] -->
             <RequiredPlugin pluginName="Sofa.Component.Mapping.NonLinear"/> <!-- Needed to use components [AreaMapping] -->
             <RequiredPlugin pluginName="Sofa.Component.Mass"/> <!-- Needed to use components [MeshMatrixMass] -->
-            <RequiredPlugin pluginName="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+            <RequiredPlugin pluginName="Sofa.Component.IntegrationScheme.Backward"/> <!-- Needed to use components [EulerImplicitIntegrationScheme] -->
             <RequiredPlugin pluginName="Sofa.Component.SolidMechanics.FEM.Elastic"/> <!-- Needed to use components [TriangleFEMForceField] -->
             <RequiredPlugin pluginName="Sofa.Component.SolidMechanics.Spring"/> <!-- Needed to use components [RestShapeSpringsForceField] -->
             <RequiredPlugin pluginName="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
@@ -263,7 +263,7 @@ AreaMapping.scn
         <RegularGridTopology name="grid" nx="10" ny="10" nz="1" xmin="0" xmax="10" ymin="0" ymax="10" zmin="0" zmax="0" />
         
         <Node name="withAreaConstraints">
-            <EulerImplicitSolver name="odeSolver" rayleighStiffness="0.1" rayleighMass="0.1" />
+            <EulerImplicitIntegrationScheme name="odeSolver" rayleighStiffness="0.1" rayleighMass="0.1" />
             <EigenSimplicialLDLT name="linearSolver" template="CompressedRowSparseMatrixMat3x3d"/>
     
             <TriangleSetTopologyContainer src="@../grid" name="topology"/>
@@ -291,7 +291,7 @@ AreaMapping.scn
         </Node>
     
         <Node name="noConstraints">
-            <EulerImplicitSolver name="odeSolver" rayleighStiffness="0.1" rayleighMass="0.1" />
+            <EulerImplicitIntegrationScheme name="odeSolver" rayleighStiffness="0.1" rayleighMass="0.1" />
             <EigenSimplicialLDLT name="linearSolver" template="CompressedRowSparseMatrixMat3x3d"/>
     
             <TriangleSetTopologyContainer src="@../grid" name="topology"/>
@@ -336,7 +336,7 @@ AreaMapping.scn
        plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.Mapping.Linear")
        plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.Mapping.NonLinear")
        plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.Mass")
-       plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.ODESolver.Backward")
+       plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.IntegrationScheme.Backward")
        plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.SolidMechanics.FEM.Elastic")
        plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.SolidMechanics.Spring")
        plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.StateContainer")
@@ -353,7 +353,7 @@ AreaMapping.scn
 
        with_area_constraints = root.addChild('withAreaConstraints')
 
-       with_area_constraints.addObject('EulerImplicitSolver', name="odeSolver", rayleighStiffness="0.1", rayleighMass="0.1")
+       with_area_constraints.addObject('EulerImplicitIntegrationScheme', name="odeSolver", rayleighStiffness="0.1", rayleighMass="0.1")
        with_area_constraints.addObject('EigenSimplicialLDLT', name="linearSolver", template="CompressedRowSparseMatrixMat3x3d")
        with_area_constraints.addObject('TriangleSetTopologyContainer', src="@../grid", name="topology")
        with_area_constraints.addObject('MechanicalObject', template="Vec3", name="DoFs")
@@ -378,7 +378,7 @@ AreaMapping.scn
 
        no_constraints = root.addChild('noConstraints')
 
-       no_constraints.addObject('EulerImplicitSolver', name="odeSolver", rayleighStiffness="0.1", rayleighMass="0.1")
+       no_constraints.addObject('EulerImplicitIntegrationScheme', name="odeSolver", rayleighStiffness="0.1", rayleighMass="0.1")
        no_constraints.addObject('EigenSimplicialLDLT', name="linearSolver", template="CompressedRowSparseMatrixMat3x3d")
        no_constraints.addObject('TriangleSetTopologyContainer', src="@../grid", name="topology")
        no_constraints.addObject('MechanicalObject', template="Vec3", name="DoFs")

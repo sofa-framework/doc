@@ -95,7 +95,7 @@ Hexa2PrismTopologicalMapping.scn
             <RequiredPlugin pluginName="Sofa.Component.Engine.Select"/> <!-- Needed to use components [BoxROI] -->
             <RequiredPlugin pluginName="Sofa.Component.LinearSolver.Direct"/> <!-- Needed to use components [SparseLDLSolver] -->
             <RequiredPlugin pluginName="Sofa.Component.Mass"/> <!-- Needed to use components [NodalMassDensity,PrismFEMMass] -->
-            <RequiredPlugin pluginName="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+            <RequiredPlugin pluginName="Sofa.Component.IntegrationScheme.Backward"/> <!-- Needed to use components [EulerImplicitIntegrationScheme] -->
             <RequiredPlugin pluginName="Sofa.Component.SolidMechanics.FEM.Elastic"/> <!-- Needed to use components [PrismCorotationalFEMForceField] -->
             <RequiredPlugin pluginName="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
             <RequiredPlugin pluginName="Sofa.Component.Topology.Container.Constant"/> <!-- Needed to use components [MeshTopology] -->
@@ -112,8 +112,9 @@ Hexa2PrismTopologicalMapping.scn
         <LineAxis size="0.1"/>
         <OglSceneFrame/>
     
-        <EulerImplicitSolver name="backward_Euler" rayleighStiffness="0.01" rayleighMass="0.01" />
-        <SparseLDLSolver template="CompressedRowSparseMatrixMat3x3d"/>
+    
+        <EulerImplicitIntegrationScheme name="backward Euler" rayleighStiffness="0.01" rayleighMass="0.1" />
+        <SparseLDLSolver/>
     
         <RegularGridTopology name="grid" min="-0.01 -0.01 0" max="0.01 0.01 0.2" n="5 5 30"/>
         <MechanicalObject template="Vec3" name="state" showObject="true"/>
@@ -150,7 +151,7 @@ Hexa2PrismTopologicalMapping.scn
        plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.Engine.Select")
        plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.LinearSolver.Direct")
        plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.Mass")
-       plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.ODESolver.Backward")
+       plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.IntegrationScheme.Backward")
        plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.SolidMechanics.FEM.Elastic")
        plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.StateContainer")
        plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.Topology.Container.Constant")
@@ -164,8 +165,8 @@ Hexa2PrismTopologicalMapping.scn
        root.addObject('VisualGrid', size="0.1")
        root.addObject('LineAxis', size="0.1")
        root.addObject('OglSceneFrame', )
-       root.addObject('EulerImplicitSolver', name="backward_Euler", rayleighStiffness="0.01", rayleighMass="0.01")
-       root.addObject('SparseLDLSolver', template="CompressedRowSparseMatrixMat3x3d")
+       root.addObject('EulerImplicitIntegrationScheme', name="backward Euler", rayleighStiffness="0.01", rayleighMass="0.1")
+       root.addObject('SparseLDLSolver', )
        root.addObject('RegularGridTopology', name="grid", min="-0.01 -0.01 0", max="0.01 0.01 0.2", n="5 5 30")
        root.addObject('MechanicalObject', template="Vec3", name="state", showObject="true")
 

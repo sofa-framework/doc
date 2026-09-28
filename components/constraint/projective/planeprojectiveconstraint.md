@@ -277,7 +277,7 @@ PlaneProjectiveConstraint.scn
         <RequiredPlugin pluginName="Sofa.Component.LinearSolver.Iterative"/> <!-- Needed to use components [CGLinearSolver] -->
         <RequiredPlugin pluginName="Sofa.Component.Mass"/> <!-- Needed to use components [UniformMass] -->
         <RequiredPlugin pluginName="Sofa.Component.MechanicalLoad"/> <!-- Needed to use components [TrianglePressureForceField] -->
-        <RequiredPlugin pluginName="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+        <RequiredPlugin pluginName="Sofa.Component.IntegrationScheme.Backward"/> <!-- Needed to use components [EulerImplicitIntegrationScheme] -->
         <RequiredPlugin pluginName="Sofa.Component.SolidMechanics.FEM.Elastic"/> <!-- Needed to use components [TetrahedronFEMForceField] -->
         <RequiredPlugin pluginName="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
         <RequiredPlugin pluginName="Sofa.Component.Topology.Container.Dynamic"/> <!-- Needed to use components [TetrahedronSetGeometryAlgorithms TetrahedronSetTopologyContainer TetrahedronSetTopologyModifier TriangleSetGeometryAlgorithms TriangleSetTopologyContainer TriangleSetTopologyModifier] -->
@@ -291,7 +291,7 @@ PlaneProjectiveConstraint.scn
         <RegularGridTopology name="grid" nx="3" ny="3" nz="3" xmin="0" xmax="1" ymin="0" ymax="1" zmin="0" zmax="1" />
         
         <Node 	name="Square"  >
-            <EulerImplicitSolver name="Euler Implicit" rayleighStiffness="0.5"  rayleighMass="0.5"  />
+            <EulerImplicitIntegrationScheme name="Euler Implicit" rayleighStiffness="0.5"  rayleighMass="0.5"  />
             <CGLinearSolver template="GraphScattered" name="CG Solver" iterations="40" tolerance="1e-06" threshold="1e-10" />
             
             <MechanicalObject template="Vec3" name="mObject1"  position="@../grid.position" />
@@ -332,7 +332,7 @@ PlaneProjectiveConstraint.scn
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.LinearSolver.Iterative")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mass")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.MechanicalLoad")
-       root.addObject('RequiredPlugin', pluginName="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', pluginName="Sofa.Component.IntegrationScheme.Backward")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.SolidMechanics.FEM.Elastic")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.StateContainer")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Topology.Container.Dynamic")
@@ -345,7 +345,7 @@ PlaneProjectiveConstraint.scn
 
        square = root.addChild('Square')
 
-       square.addObject('EulerImplicitSolver', name="Euler Implicit", rayleighStiffness="0.5", rayleighMass="0.5")
+       square.addObject('EulerImplicitIntegrationScheme', name="Euler Implicit", rayleighStiffness="0.5", rayleighMass="0.5")
        square.addObject('CGLinearSolver', template="GraphScattered", name="CG Solver", iterations="40", tolerance="1e-06", threshold="1e-10")
        square.addObject('MechanicalObject', template="Vec3", name="mObject1", position="@../grid.position")
        square.addObject('TetrahedronSetTopologyContainer', name="Container")

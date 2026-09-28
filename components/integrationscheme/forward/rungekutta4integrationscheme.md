@@ -1,16 +1,16 @@
 <!-- generate_doc -->
-# RungeKutta4Solver
+# RungeKutta4IntegrationScheme
 
 A popular explicit time integrator.
 
 
-__Target__: Sofa.Component.ODESolver.Forward
+__Target__: Sofa.Component.IntegrationScheme.Forward
 
-__namespace__: sofa::component::odesolver::forward
+__namespace__: sofa::component::integrationscheme::forward
 
 __parents__:
 
-- OdeSolver
+- ExplicitIntegrationScheme
 
 ### Data
 
@@ -80,7 +80,7 @@ if true, handle the events, otherwise ignore the events
 
 ## Examples 
 
-RungeKutta4Solver.scn
+RungeKutta4IntegrationScheme.scn
 
 === "XML"
 
@@ -92,7 +92,7 @@ RungeKutta4Solver.scn
         <RequiredPlugin pluginName="Sofa.Component.LinearSolver.Direct"/> <!-- Needed to use components [SparseLDLSolver] -->
         <RequiredPlugin pluginName="Sofa.Component.Mapping.Linear"/> <!-- Needed to use components [BarycentricMapping] -->
         <RequiredPlugin pluginName="Sofa.Component.Mass"/> <!-- Needed to use components [UniformMass] -->
-        <RequiredPlugin pluginName="Sofa.Component.ODESolver.Forward"/> <!-- Needed to use components [RungeKutta4Solver] -->
+        <RequiredPlugin pluginName="Sofa.Component.IntegrationScheme.Forward"/> <!-- Needed to use components [RungeKutta4IntegrationScheme] -->
         <RequiredPlugin pluginName="Sofa.Component.SolidMechanics.FEM.Elastic"/> <!-- Needed to use components [TetrahedronFEMForceField] -->
         <RequiredPlugin pluginName="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
         <RequiredPlugin pluginName="Sofa.Component.Topology.Container.Constant"/> <!-- Needed to use components [MeshTopology] -->
@@ -100,7 +100,7 @@ RungeKutta4Solver.scn
         <DefaultAnimationLoop/>
         
         <Node name="DeformableObject">
-            <RungeKutta4Solver name="odeExplicitSolver" />
+            <RungeKutta4IntegrationScheme name="odeExplicitSolver" />
             <SparseLDLSolver template="CompressedRowSparseMatrixMat3x3d"/>
             <MeshGmshLoader name="loader" filename="mesh/truthcylinder1.msh" />
             <MeshTopology src="@loader" />
@@ -130,7 +130,7 @@ RungeKutta4Solver.scn
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.LinearSolver.Direct")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mapping.Linear")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mass")
-       root.addObject('RequiredPlugin', pluginName="Sofa.Component.ODESolver.Forward")
+       root.addObject('RequiredPlugin', pluginName="Sofa.Component.IntegrationScheme.Forward")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.SolidMechanics.FEM.Elastic")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.StateContainer")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Topology.Container.Constant")
@@ -139,7 +139,7 @@ RungeKutta4Solver.scn
 
        deformable_object = root.addChild('DeformableObject')
 
-       deformable_object.addObject('RungeKutta4Solver', name="odeExplicitSolver")
+       deformable_object.addObject('RungeKutta4IntegrationScheme', name="odeExplicitSolver")
        deformable_object.addObject('SparseLDLSolver', template="CompressedRowSparseMatrixMat3x3d")
        deformable_object.addObject('MeshGmshLoader', name="loader", filename="mesh/truthcylinder1.msh")
        deformable_object.addObject('MeshTopology', src="@loader")

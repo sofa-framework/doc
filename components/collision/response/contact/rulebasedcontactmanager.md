@@ -131,7 +131,7 @@ RuleBasedContactManager.scn
         <RequiredPlugin pluginName="Sofa.Component.LinearSolver.Iterative"/> <!-- Needed to use components [CGLinearSolver] -->
         <RequiredPlugin pluginName="Sofa.Component.Mapping.NonLinear"/> <!-- Needed to use components [RigidMapping] -->
         <RequiredPlugin pluginName="Sofa.Component.Mass"/> <!-- Needed to use components [UniformMass] -->
-        <RequiredPlugin pluginName="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+        <RequiredPlugin pluginName="Sofa.Component.IntegrationScheme.Backward"/> <!-- Needed to use components [EulerImplicitIntegrationScheme] -->
         <RequiredPlugin pluginName="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
         <RequiredPlugin pluginName="Sofa.Component.Topology.Container.Constant"/> <!-- Needed to use components [MeshTopology] -->
         <RequiredPlugin pluginName="Sofa.Component.Visual"/> <!-- Needed to use components [VisualStyle] -->
@@ -158,8 +158,8 @@ RuleBasedContactManager.scn
         </Node>
     
         <Node name="Torus2">
-            <EulerImplicitSolver  rayleighStiffness="0.1" rayleighMass="0.1" />
-            <CGLinearSolver iterations="25" tolerance="1e-5" threshold="1e-5"/>
+            <EulerImplicitIntegrationScheme  rayleighStiffness="0.1" rayleighMass="0.1" />
+            <CGLinearSolver iterations="25" tolerance="1e-8" threshold="1e-8"/>
             <MechanicalObject template="Rigid3" scale="5.0" dx="-12" dy="0" />
             <UniformMass filename="BehaviorModels/torus.rigid"/>
             <UncoupledConstraintCorrection />
@@ -180,8 +180,8 @@ RuleBasedContactManager.scn
         </Node>
     
         <Node name="Torus3">
-            <EulerImplicitSolver rayleighStiffness="0.1" rayleighMass="0.1"/>
-            <CGLinearSolver iterations="25" tolerance="1e-5" threshold="1e-5"/>
+            <EulerImplicitIntegrationScheme rayleighStiffness="0.1" rayleighMass="0.1"/>
+            <CGLinearSolver iterations="25" tolerance="1e-8" threshold="1e-8"/>
             <MechanicalObject template="Rigid3" scale="5.0" dx="-25" dy="0" />
             <UniformMass filename="BehaviorModels/torus2.rigid"/>
             <UncoupledConstraintCorrection />
@@ -202,8 +202,8 @@ RuleBasedContactManager.scn
         </Node>
     	
         <Node name="Torus4">
-            <EulerImplicitSolver rayleighStiffness="0.1" rayleighMass="0.1"/>
-            <CGLinearSolver iterations="25" tolerance="1e-5" threshold="1e-5"/>
+            <EulerImplicitIntegrationScheme rayleighStiffness="0.1" rayleighMass="0.1"/>
+            <CGLinearSolver iterations="25" tolerance="1e-8" threshold="1e-8"/>
             <MechanicalObject template="Rigid3" scale="5.0" dx="-38" dy="0" />
             <UniformMass filename="BehaviorModels/torus.rigid"/>
             <UncoupledConstraintCorrection />
@@ -244,7 +244,7 @@ RuleBasedContactManager.scn
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.LinearSolver.Iterative")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mapping.NonLinear")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mass")
-       root.addObject('RequiredPlugin', pluginName="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', pluginName="Sofa.Component.IntegrationScheme.Backward")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.StateContainer")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Topology.Container.Constant")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Visual")
@@ -271,8 +271,8 @@ RuleBasedContactManager.scn
 
        torus2 = root.addChild('Torus2')
 
-       torus2.addObject('EulerImplicitSolver', rayleighStiffness="0.1", rayleighMass="0.1")
-       torus2.addObject('CGLinearSolver', iterations="25", tolerance="1e-5", threshold="1e-5")
+       torus2.addObject('EulerImplicitIntegrationScheme', rayleighStiffness="0.1", rayleighMass="0.1")
+       torus2.addObject('CGLinearSolver', iterations="25", tolerance="1e-8", threshold="1e-8")
        torus2.addObject('MechanicalObject', template="Rigid3", scale="5.0", dx="-12", dy="0")
        torus2.addObject('UniformMass', filename="BehaviorModels/torus.rigid")
        torus2.addObject('UncoupledConstraintCorrection', )
@@ -295,8 +295,8 @@ RuleBasedContactManager.scn
 
        torus3 = root.addChild('Torus3')
 
-       torus3.addObject('EulerImplicitSolver', rayleighStiffness="0.1", rayleighMass="0.1")
-       torus3.addObject('CGLinearSolver', iterations="25", tolerance="1e-5", threshold="1e-5")
+       torus3.addObject('EulerImplicitIntegrationScheme', rayleighStiffness="0.1", rayleighMass="0.1")
+       torus3.addObject('CGLinearSolver', iterations="25", tolerance="1e-8", threshold="1e-8")
        torus3.addObject('MechanicalObject', template="Rigid3", scale="5.0", dx="-25", dy="0")
        torus3.addObject('UniformMass', filename="BehaviorModels/torus2.rigid")
        torus3.addObject('UncoupledConstraintCorrection', )
@@ -319,8 +319,8 @@ RuleBasedContactManager.scn
 
        torus4 = root.addChild('Torus4')
 
-       torus4.addObject('EulerImplicitSolver', rayleighStiffness="0.1", rayleighMass="0.1")
-       torus4.addObject('CGLinearSolver', iterations="25", tolerance="1e-5", threshold="1e-5")
+       torus4.addObject('EulerImplicitIntegrationScheme', rayleighStiffness="0.1", rayleighMass="0.1")
+       torus4.addObject('CGLinearSolver', iterations="25", tolerance="1e-8", threshold="1e-8")
        torus4.addObject('MechanicalObject', template="Rigid3", scale="5.0", dx="-38", dy="0")
        torus4.addObject('UniformMass', filename="BehaviorModels/torus.rigid")
        torus4.addObject('UncoupledConstraintCorrection', )

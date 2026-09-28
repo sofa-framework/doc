@@ -392,7 +392,7 @@ SurfacePressureForceField.scn
         <RequiredPlugin pluginName="Sofa.Component.Mapping.Linear"/> <!-- Needed to use components [BarycentricMapping] -->
         <RequiredPlugin pluginName="Sofa.Component.Mass"/> <!-- Needed to use components [UniformMass] -->
         <RequiredPlugin pluginName="Sofa.Component.MechanicalLoad"/> <!-- Needed to use components [SurfacePressureForceField] -->
-        <RequiredPlugin pluginName="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+        <RequiredPlugin pluginName="Sofa.Component.IntegrationScheme.Backward"/> <!-- Needed to use components [EulerImplicitIntegrationScheme] -->
         <RequiredPlugin pluginName="Sofa.Component.SolidMechanics.Spring"/> <!-- Needed to use components [MeshSpringForceField] -->
         <RequiredPlugin pluginName="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
         <RequiredPlugin pluginName="Sofa.Component.Topology.Container.Constant"/> <!-- Needed to use components [MeshTopology] -->
@@ -406,7 +406,7 @@ SurfacePressureForceField.scn
         <MinProximityIntersection name="Proximity" usePointPoint="1" alarmDistance="3.5" contactDistance="1.5" />
         <CollisionResponse name="Response" response="PenalityContactForceField" />
         <Node name="Frog">
-            <EulerImplicitSolver  rayleighStiffness="0.1" rayleighMass="0.1" />
+            <EulerImplicitIntegrationScheme  rayleighStiffness="0.1" rayleighMass="0.1" />
             <CGLinearSolver iterations="30" tolerance="1e-5" threshold="1e-5"/>
             <SparseGridTopology n="10 5 10" fileTopology="mesh/frog.obj" />
             <MechanicalObject dx="-10.0" />
@@ -430,7 +430,7 @@ SurfacePressureForceField.scn
             </Node>
         </Node>
         <Node name="Frog2">
-            <EulerImplicitSolver />
+            <EulerImplicitIntegrationScheme />
             <CGLinearSolver iterations="30" tolerance="1e-5" threshold="1e-5"/>
             <SparseGridTopology n="10 5 10" fileTopology="mesh/frog_quads.obj" />
             <MechanicalObject dx="10.0" />
@@ -475,7 +475,7 @@ SurfacePressureForceField.scn
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mapping.Linear")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mass")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.MechanicalLoad")
-       root.addObject('RequiredPlugin', pluginName="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', pluginName="Sofa.Component.IntegrationScheme.Backward")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.SolidMechanics.Spring")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.StateContainer")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Topology.Container.Constant")
@@ -490,7 +490,7 @@ SurfacePressureForceField.scn
 
        frog = root.addChild('Frog')
 
-       frog.addObject('EulerImplicitSolver', rayleighStiffness="0.1", rayleighMass="0.1")
+       frog.addObject('EulerImplicitIntegrationScheme', rayleighStiffness="0.1", rayleighMass="0.1")
        frog.addObject('CGLinearSolver', iterations="30", tolerance="1e-5", threshold="1e-5")
        frog.addObject('SparseGridTopology', n="10 5 10", fileTopology="mesh/frog.obj")
        frog.addObject('MechanicalObject', dx="-10.0")
@@ -517,7 +517,7 @@ SurfacePressureForceField.scn
 
        frog2 = root.addChild('Frog2')
 
-       frog2.addObject('EulerImplicitSolver', )
+       frog2.addObject('EulerImplicitIntegrationScheme', )
        frog2.addObject('CGLinearSolver', iterations="30", tolerance="1e-5", threshold="1e-5")
        frog2.addObject('SparseGridTopology', n="10 5 10", fileTopology="mesh/frog_quads.obj")
        frog2.addObject('MechanicalObject', dx="10.0")

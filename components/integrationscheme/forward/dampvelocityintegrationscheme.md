@@ -1,16 +1,16 @@
 <!-- generate_doc -->
-# DampVelocitySolver
+# DampVelocityIntegrationScheme
 
 Reduce the velocities.
 
 
-__Target__: Sofa.Component.ODESolver.Forward
+__Target__: Sofa.Component.IntegrationScheme.Forward
 
-__namespace__: sofa::component::odesolver::forward
+__namespace__: sofa::component::integrationscheme::forward
 
 __parents__:
 
-- OdeSolver
+- ExplicitIntegrationScheme
 
 ### Data
 
@@ -94,7 +94,7 @@ Threshold under which the velocities are canceled.
 
 ## Examples 
 
-DampVelocitySolver.scn
+DampVelocityIntegrationScheme.scn
 
 === "XML"
 
@@ -103,8 +103,8 @@ DampVelocitySolver.scn
         <RequiredPlugin pluginName="Sofa.Component.LinearSolver.Iterative"/> <!-- Needed to use components [CGLinearSolver] -->
         <RequiredPlugin pluginName="Sofa.Component.Mapping.Linear"/> <!-- Needed to use components [IdentityMapping] -->
         <RequiredPlugin pluginName="Sofa.Component.Mass"/> <!-- Needed to use components [UniformMass] -->
-        <RequiredPlugin pluginName="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
-        <RequiredPlugin pluginName="Sofa.Component.ODESolver.Forward"/> <!-- Needed to use components [DampVelocitySolver] -->
+        <RequiredPlugin pluginName="Sofa.Component.IntegrationScheme.Backward"/> <!-- Needed to use components [EulerImplicitIntegrationScheme] -->
+        <RequiredPlugin pluginName="Sofa.Component.IntegrationScheme.Forward"/> <!-- Needed to use components [DampVelocitySolver] -->
         <RequiredPlugin pluginName="Sofa.Component.SolidMechanics.FEM.Elastic"/> <!-- Needed to use components [TriangleFEMForceField] -->
         <RequiredPlugin pluginName="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
         <RequiredPlugin pluginName="Sofa.Component.Topology.Container.Constant"/> <!-- Needed to use components [MeshTopology] -->
@@ -114,7 +114,7 @@ DampVelocitySolver.scn
         <DefaultAnimationLoop/>
     
         <Node name="M0">
-            <EulerImplicitSolver  rayleighStiffness="0.1" rayleighMass="0.1" />
+            <EulerImplicitIntegrationScheme  rayleighStiffness="0.1" rayleighMass="0.1" />
             <CGLinearSolver iterations="25" tolerance="1e-5" threshold="1e-10"/>
             <DampVelocitySolver rate="0.9" threshold="0.01" printLog="0" name="damp" />
             <MechanicalObject position="0 0 0  1 0 0  1 1 0  0 1 0" velocity="1 0 0  1 0 0  1 0 0  1 0 0" />
@@ -140,8 +140,8 @@ DampVelocitySolver.scn
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.LinearSolver.Iterative")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mapping.Linear")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mass")
-       root.addObject('RequiredPlugin', pluginName="Sofa.Component.ODESolver.Backward")
-       root.addObject('RequiredPlugin', pluginName="Sofa.Component.ODESolver.Forward")
+       root.addObject('RequiredPlugin', pluginName="Sofa.Component.IntegrationScheme.Backward")
+       root.addObject('RequiredPlugin', pluginName="Sofa.Component.IntegrationScheme.Forward")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.SolidMechanics.FEM.Elastic")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.StateContainer")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Topology.Container.Constant")
@@ -152,7 +152,7 @@ DampVelocitySolver.scn
 
        m0 = root.addChild('M0')
 
-       m0.addObject('EulerImplicitSolver', rayleighStiffness="0.1", rayleighMass="0.1")
+       m0.addObject('EulerImplicitIntegrationScheme', rayleighStiffness="0.1", rayleighMass="0.1")
        m0.addObject('CGLinearSolver', iterations="25", tolerance="1e-5", threshold="1e-10")
        m0.addObject('DampVelocitySolver', rate="0.9", threshold="0.01", printLog="0", name="damp")
        m0.addObject('MechanicalObject', position="0 0 0  1 0 0  1 1 0  0 1 0", velocity="1 0 0  1 0 0  1 0 0  1 0 0")

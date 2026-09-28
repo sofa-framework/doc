@@ -702,14 +702,14 @@ LinearMovementProjectiveConstraint.scn
         <RequiredPlugin pluginName="Sofa.Component.IO.Mesh"/> <!-- Needed to use components [MeshOBJLoader] -->
         <RequiredPlugin pluginName="Sofa.Component.LinearSolver.Iterative"/> <!-- Needed to use components [CGLinearSolver] -->
         <RequiredPlugin pluginName="Sofa.Component.Mapping.NonLinear"/> <!-- Needed to use components [RigidMapping] -->
-        <RequiredPlugin pluginName="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+        <RequiredPlugin pluginName="Sofa.Component.IntegrationScheme.Backward"/> <!-- Needed to use components [EulerImplicitIntegrationScheme] -->
         <RequiredPlugin pluginName="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
         <RequiredPlugin pluginName="Sofa.Component.Topology.Container.Constant"/> <!-- Needed to use components [MeshTopology] -->
         <RequiredPlugin pluginName="Sofa.GL.Component.Rendering3D"/> <!-- Needed to use components [OglModel] -->
         <DefaultAnimationLoop/>
     
         <Node name="Spoon1">
-            <EulerImplicitSolver name="cg_odesolver" printLog="false"  rayleighStiffness="0.1" rayleighMass="0.1" />
+            <EulerImplicitIntegrationScheme name="cg_odesolver" printLog="false"  rayleighStiffness="0.1" rayleighMass="0.1" />
             <CGLinearSolver iterations="25" name="linear solver" tolerance="1.0e-9" threshold="1.0e-9" />
             <MechanicalObject template="Rigid3" dx="0" dy="0" dz="0" name="default118" position="0 1.41421 0 0 0 0.382683 0.92388" rest_position="0 1.41421 0 0 0 0.382683 0.92388" />
             <LinearMovementProjectiveConstraint template="Rigid3" keyTimes="0 2 10 40 50" movements="0 0 0   0 0 0
@@ -731,7 +731,7 @@ LinearMovementProjectiveConstraint.scn
             </Node>
         </Node>
         <Node name="Spoon2">
-            <EulerImplicitSolver name="cg_odesolver" printLog="false" />
+            <EulerImplicitIntegrationScheme name="cg_odesolver" printLog="false" />
             <CGLinearSolver iterations="25" name="linear solver" tolerance="1.0e-9" threshold="1.0e-9" />
             <MechanicalObject template="Rigid3" dx="10" dy="0" dz="0" name="default118" position="0 1.41421 0 0 0 0.382683 0.92388" rest_position="0 1.41421 0 0 0 0.382683 0.92388"/>
             <LinearMovementProjectiveConstraint template="Rigid3" keyTimes="0 2 10 40 50" movements="0 0 0   0 0 0
@@ -753,7 +753,7 @@ LinearMovementProjectiveConstraint.scn
             </Node>
         </Node>
         <Node name="Spoon3">
-            <EulerImplicitSolver name="cg_odesolver" printLog="false" />
+            <EulerImplicitIntegrationScheme name="cg_odesolver" printLog="false" />
             <CGLinearSolver iterations="25" name="linear solver" tolerance="1.0e-9" threshold="1.0e-9" />
             <MechanicalObject template="Rigid3" dx="20" dy="0" dz="0" name="default118" position="0 1.41421 0 0 0 0.382683 0.92388" rest_position="0 1.41421 0 0 0 0.382683 0.92388" />
             <LinearMovementProjectiveConstraint template="Rigid3" keyTimes="0 2 10 40 50" movements="0 0 0   0 0 0
@@ -790,7 +790,7 @@ LinearMovementProjectiveConstraint.scn
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.IO.Mesh")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.LinearSolver.Iterative")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mapping.NonLinear")
-       root.addObject('RequiredPlugin', pluginName="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', pluginName="Sofa.Component.IntegrationScheme.Backward")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.StateContainer")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Topology.Container.Constant")
        root.addObject('RequiredPlugin', pluginName="Sofa.GL.Component.Rendering3D")
@@ -798,7 +798,7 @@ LinearMovementProjectiveConstraint.scn
 
        spoon1 = Root.addChild('Spoon1')
 
-       spoon1.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
+       spoon1.addObject('EulerImplicitIntegrationScheme', name="cg_odesolver", printLog="false", rayleighStiffness="0.1", rayleighMass="0.1")
        spoon1.addObject('CGLinearSolver', iterations="25", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
        spoon1.addObject('MechanicalObject', template="Rigid3", dx="0", dy="0", dz="0", name="default118", position="0 1.41421 0 0 0 0.382683 0.92388", rest_position="0 1.41421 0 0 0 0.382683 0.92388")
        spoon1.addObject('LinearMovementProjectiveConstraint', template="Rigid3", keyTimes="0 2 10 40 50", movements="0 0 0   0 0 0                 0 0 0   0 0 0                 0 0 -1  0 0 0                 0 0 -1  0 0 6.3                 0 0 -1   0 0 6.3")
@@ -819,7 +819,7 @@ LinearMovementProjectiveConstraint.scn
 
        spoon2 = Root.addChild('Spoon2')
 
-       spoon2.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="false")
+       spoon2.addObject('EulerImplicitIntegrationScheme', name="cg_odesolver", printLog="false")
        spoon2.addObject('CGLinearSolver', iterations="25", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
        spoon2.addObject('MechanicalObject', template="Rigid3", dx="10", dy="0", dz="0", name="default118", position="0 1.41421 0 0 0 0.382683 0.92388", rest_position="0 1.41421 0 0 0 0.382683 0.92388")
        spoon2.addObject('LinearMovementProjectiveConstraint', template="Rigid3", keyTimes="0 2 10 40 50", movements="0 0 0   0 0 0                 0 0 0   0 0 0                 0 0 -1  0 0 0                 0 0 -1  0 0 6.3                 0 0 0   0 0 6.3")
@@ -840,7 +840,7 @@ LinearMovementProjectiveConstraint.scn
 
        spoon3 = Root.addChild('Spoon3')
 
-       spoon3.addObject('EulerImplicitSolver', name="cg_odesolver", printLog="false")
+       spoon3.addObject('EulerImplicitIntegrationScheme', name="cg_odesolver", printLog="false")
        spoon3.addObject('CGLinearSolver', iterations="25", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
        spoon3.addObject('MechanicalObject', template="Rigid3", dx="20", dy="0", dz="0", name="default118", position="0 1.41421 0 0 0 0.382683 0.92388", rest_position="0 1.41421 0 0 0 0.382683 0.92388")
        spoon3.addObject('LinearMovementProjectiveConstraint', template="Rigid3", keyTimes="0 2 10 40 50", movements="0 0 0   0 0 0                 0 0 0   0 0 0                 0 0 -1  0 0 0                 0 0 -1  0 0 6.3                 0 0 -1   0 0 0")

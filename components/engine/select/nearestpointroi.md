@@ -987,7 +987,7 @@ NearestPointROI.scn
             <RequiredPlugin pluginName="Sofa.Component.LinearSolver.Iterative"/> <!-- Needed to use components [CGLinearSolver] -->
             <RequiredPlugin pluginName="Sofa.Component.Mapping.Linear"/> <!-- Needed to use components [SubsetMultiMapping] -->
             <RequiredPlugin pluginName="Sofa.Component.Mass"/> <!-- Needed to use components [UniformMass] -->
-            <RequiredPlugin pluginName="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+            <RequiredPlugin pluginName="Sofa.Component.IntegrationScheme.Backward"/> <!-- Needed to use components [EulerImplicitIntegrationScheme] -->
             <RequiredPlugin pluginName="Sofa.Component.SolidMechanics.FEM.Elastic"/> <!-- Needed to use components [TetrahedronFEMForceField] -->
             <RequiredPlugin pluginName="Sofa.Component.SolidMechanics.Spring"/> <!-- Needed to use components [MeshSpringForceField] -->
             <RequiredPlugin pluginName="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
@@ -1005,7 +1005,7 @@ NearestPointROI.scn
             This Node shows how NearestPointROI is used to create constraints to link close vertices
         -->
         <Node name="ObjectsAttachedWithConstraints">
-            <EulerImplicitSolver name="cg_odesolver" rayleighStiffness="0.1" rayleighMass="0.1"/>
+            <EulerImplicitIntegrationScheme name="cg_odesolver" rayleighStiffness="0.1" rayleighMass="0.1"/>
             <CGLinearSolver iterations="25" name="linear solver" tolerance="1.0e-9" threshold="1.0e-9" />
             <Node name="M1">
                 <MechanicalObject name="mo"/>
@@ -1014,14 +1014,14 @@ NearestPointROI.scn
                 <BoxROI box="-0.1 -0.1 -0.1 3.1 3.1 0.1" name="box"/>
                 <FixedProjectiveConstraint indices="@box.indices"/>
                 <TetrahedronFEMForceField name="FEM" youngModulus="4000" poissonRatio="0.3" computeVonMisesStress="1" showVonMisesStressPerElement="true"/>
-                <UncoupledConstraintCorrection defaultCompliance="1" useOdeSolverIntegrationFactors="0"/>
+                <UncoupledConstraintCorrection defaultCompliance="1" useIntegrationSchemeIntegrationFactors="0"/>
             </Node>
             <Node name="M2">
                 <MechanicalObject name="mo"/>
                 <UniformMass totalMass="160" />
                 <RegularGridTopology nx="4" ny="4" nz="10" xmin="0" xmax="3" ymin="0" ymax="3" zmin="9" zmax="18" />
                 <TetrahedronFEMForceField name="FEM" youngModulus="20000" poissonRatio="0.3" computeVonMisesStress="1" showVonMisesStressPerElement="true"/>
-                <UncoupledConstraintCorrection defaultCompliance="1" useOdeSolverIntegrationFactors="0"/>
+                <UncoupledConstraintCorrection defaultCompliance="1" useIntegrationSchemeIntegrationFactors="0"/>
             </Node>
             <Node name="M3">
                 <MechanicalObject name="mo"/>
@@ -1030,7 +1030,7 @@ NearestPointROI.scn
                 <BoxROI box="-0.1 -0.1 26.99 3.1 3.1 27.1" name="box"/>
                 <FixedProjectiveConstraint indices="@box.indices"/>
                 <TetrahedronFEMForceField name="FEM" youngModulus="4000" poissonRatio="0.3" computeVonMisesStress="1" showVonMisesStressPerElement="true"/>
-                <UncoupledConstraintCorrection defaultCompliance="1" useOdeSolverIntegrationFactors="0"/>
+                <UncoupledConstraintCorrection defaultCompliance="1" useIntegrationSchemeIntegrationFactors="0"/>
             </Node>
     
             <NearestPointROI template="Vec3" name="np1" object1="@./M1/mo" object2="@./M2/mo" radius="0.1"/>
@@ -1044,7 +1044,7 @@ NearestPointROI.scn
             This Node shows how NearestPointROI is used to create SubsetMultiMapping and EdgeSetTopologyContainer.
         -->
         <Node name="Springs">
-            <EulerImplicitSolver name="cg_odesolver" rayleighStiffness="0.1" rayleighMass="0.1"/>
+            <EulerImplicitIntegrationScheme name="cg_odesolver" rayleighStiffness="0.1" rayleighMass="0.1"/>
             <CGLinearSolver iterations="25" name="linear solver" tolerance="1.0e-9" threshold="1.0e-9" />
             <Node name="M1">
                 <MechanicalObject name="mo"/>
@@ -1053,14 +1053,14 @@ NearestPointROI.scn
                 <BoxROI box="3.9 -0.1 -0.1 7.1 3.1 0.1" name="box"/>
                 <FixedProjectiveConstraint indices="@box.indices"/>
                 <TetrahedronFEMForceField name="FEM" youngModulus="4000" poissonRatio="0.3" computeVonMisesStress="1" showVonMisesStressPerElement="true"/>
-                <UncoupledConstraintCorrection defaultCompliance="1" useOdeSolverIntegrationFactors="0"/>
+                <UncoupledConstraintCorrection defaultCompliance="1" useIntegrationSchemeIntegrationFactors="0"/>
             </Node>
             <Node name="M2"> <!-- This object has a higher resolution than the others -->
                 <MechanicalObject name="mo"/>
                 <UniformMass totalMass="160" />
                 <RegularGridTopology nx="8" ny="8" nz="20" xmin="4" xmax="7" ymin="0" ymax="3" zmin="9" zmax="18" />
                 <TetrahedronFEMForceField name="FEM" youngModulus="20000" poissonRatio="0.3" computeVonMisesStress="1" showVonMisesStressPerElement="true"/>
-                <UncoupledConstraintCorrection defaultCompliance="1" useOdeSolverIntegrationFactors="0"/>
+                <UncoupledConstraintCorrection defaultCompliance="1" useIntegrationSchemeIntegrationFactors="0"/>
             </Node>
             <Node name="M3">
                 <MechanicalObject name="mo"/>
@@ -1069,7 +1069,7 @@ NearestPointROI.scn
                 <BoxROI box="3.9 -0.1 26.99 7.1 3.1 27.1" name="box"/>
                 <FixedProjectiveConstraint indices="@box.indices"/>
                 <TetrahedronFEMForceField name="FEM" youngModulus="4000" poissonRatio="0.3" computeVonMisesStress="1" showVonMisesStressPerElement="true"/>
-                <UncoupledConstraintCorrection defaultCompliance="1" useOdeSolverIntegrationFactors="0"/>
+                <UncoupledConstraintCorrection defaultCompliance="1" useIntegrationSchemeIntegrationFactors="0"/>
             </Node>
     
             <!--
@@ -1121,7 +1121,7 @@ NearestPointROI.scn
        required_plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.LinearSolver.Iterative")
        required_plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.Mapping.Linear")
        required_plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.Mass")
-       required_plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.ODESolver.Backward")
+       required_plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.IntegrationScheme.Backward")
        required_plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.SolidMechanics.FEM.Elastic")
        required_plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.SolidMechanics.Spring")
        required_plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.StateContainer")
@@ -1135,7 +1135,7 @@ NearestPointROI.scn
 
        objects_attached_with_constraints = root.addChild('ObjectsAttachedWithConstraints')
 
-       objects_attached_with_constraints.addObject('EulerImplicitSolver', name="cg_odesolver", rayleighStiffness="0.1", rayleighMass="0.1")
+       objects_attached_with_constraints.addObject('EulerImplicitIntegrationScheme', name="cg_odesolver", rayleighStiffness="0.1", rayleighMass="0.1")
        objects_attached_with_constraints.addObject('CGLinearSolver', iterations="25", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
 
        m1 = ObjectsAttachedWithConstraints.addChild('M1')
@@ -1146,7 +1146,7 @@ NearestPointROI.scn
        m1.addObject('BoxROI', box="-0.1 -0.1 -0.1 3.1 3.1 0.1", name="box")
        m1.addObject('FixedProjectiveConstraint', indices="@box.indices")
        m1.addObject('TetrahedronFEMForceField', name="FEM", youngModulus="4000", poissonRatio="0.3", computeVonMisesStress="1", showVonMisesStressPerElement="true")
-       m1.addObject('UncoupledConstraintCorrection', defaultCompliance="1", useOdeSolverIntegrationFactors="0")
+       m1.addObject('UncoupledConstraintCorrection', defaultCompliance="1", useIntegrationSchemeIntegrationFactors="0")
 
        m2 = ObjectsAttachedWithConstraints.addChild('M2')
 
@@ -1154,7 +1154,7 @@ NearestPointROI.scn
        m2.addObject('UniformMass', totalMass="160")
        m2.addObject('RegularGridTopology', nx="4", ny="4", nz="10", xmin="0", xmax="3", ymin="0", ymax="3", zmin="9", zmax="18")
        m2.addObject('TetrahedronFEMForceField', name="FEM", youngModulus="20000", poissonRatio="0.3", computeVonMisesStress="1", showVonMisesStressPerElement="true")
-       m2.addObject('UncoupledConstraintCorrection', defaultCompliance="1", useOdeSolverIntegrationFactors="0")
+       m2.addObject('UncoupledConstraintCorrection', defaultCompliance="1", useIntegrationSchemeIntegrationFactors="0")
 
        m3 = ObjectsAttachedWithConstraints.addChild('M3')
 
@@ -1164,7 +1164,7 @@ NearestPointROI.scn
        m3.addObject('BoxROI', box="-0.1 -0.1 26.99 3.1 3.1 27.1", name="box")
        m3.addObject('FixedProjectiveConstraint', indices="@box.indices")
        m3.addObject('TetrahedronFEMForceField', name="FEM", youngModulus="4000", poissonRatio="0.3", computeVonMisesStress="1", showVonMisesStressPerElement="true")
-       m3.addObject('UncoupledConstraintCorrection', defaultCompliance="1", useOdeSolverIntegrationFactors="0")
+       m3.addObject('UncoupledConstraintCorrection', defaultCompliance="1", useIntegrationSchemeIntegrationFactors="0")
 
        objects_attached_with_constraints.addObject('NearestPointROI', template="Vec3", name="np1", object1="@./M1/mo", object2="@./M2/mo", radius="0.1")
        objects_attached_with_constraints.addObject('NearestPointROI', template="Vec3", name="np2", object1="@./M2/mo", object2="@./M3/mo", radius="0.1")
@@ -1173,7 +1173,7 @@ NearestPointROI.scn
 
        springs = root.addChild('Springs')
 
-       springs.addObject('EulerImplicitSolver', name="cg_odesolver", rayleighStiffness="0.1", rayleighMass="0.1")
+       springs.addObject('EulerImplicitIntegrationScheme', name="cg_odesolver", rayleighStiffness="0.1", rayleighMass="0.1")
        springs.addObject('CGLinearSolver', iterations="25", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
 
        m1 = Springs.addChild('M1')
@@ -1184,7 +1184,7 @@ NearestPointROI.scn
        m1.addObject('BoxROI', box="3.9 -0.1 -0.1 7.1 3.1 0.1", name="box")
        m1.addObject('FixedProjectiveConstraint', indices="@box.indices")
        m1.addObject('TetrahedronFEMForceField', name="FEM", youngModulus="4000", poissonRatio="0.3", computeVonMisesStress="1", showVonMisesStressPerElement="true")
-       m1.addObject('UncoupledConstraintCorrection', defaultCompliance="1", useOdeSolverIntegrationFactors="0")
+       m1.addObject('UncoupledConstraintCorrection', defaultCompliance="1", useIntegrationSchemeIntegrationFactors="0")
 
        m2 = Springs.addChild('M2')
 
@@ -1192,7 +1192,7 @@ NearestPointROI.scn
        m2.addObject('UniformMass', totalMass="160")
        m2.addObject('RegularGridTopology', nx="8", ny="8", nz="20", xmin="4", xmax="7", ymin="0", ymax="3", zmin="9", zmax="18")
        m2.addObject('TetrahedronFEMForceField', name="FEM", youngModulus="20000", poissonRatio="0.3", computeVonMisesStress="1", showVonMisesStressPerElement="true")
-       m2.addObject('UncoupledConstraintCorrection', defaultCompliance="1", useOdeSolverIntegrationFactors="0")
+       m2.addObject('UncoupledConstraintCorrection', defaultCompliance="1", useIntegrationSchemeIntegrationFactors="0")
 
        m3 = Springs.addChild('M3')
 
@@ -1202,7 +1202,7 @@ NearestPointROI.scn
        m3.addObject('BoxROI', box="3.9 -0.1 26.99 7.1 3.1 27.1", name="box")
        m3.addObject('FixedProjectiveConstraint', indices="@box.indices")
        m3.addObject('TetrahedronFEMForceField', name="FEM", youngModulus="4000", poissonRatio="0.3", computeVonMisesStress="1", showVonMisesStressPerElement="true")
-       m3.addObject('UncoupledConstraintCorrection', defaultCompliance="1", useOdeSolverIntegrationFactors="0")
+       m3.addObject('UncoupledConstraintCorrection', defaultCompliance="1", useIntegrationSchemeIntegrationFactors="0")
 
        merge1 = Springs.addChild('merge1')
 

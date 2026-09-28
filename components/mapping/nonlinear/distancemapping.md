@@ -339,7 +339,7 @@ DistanceMapping.scn
             <RequiredPlugin pluginName="Sofa.Component.LinearSolver.Iterative"/> <!-- Needed to use components [CGLinearSolver] -->
             <RequiredPlugin pluginName="Sofa.Component.Mapping.NonLinear"/> <!-- Needed to use components [DistanceMapping] -->
             <RequiredPlugin pluginName="Sofa.Component.Mass"/> <!-- Needed to use components [DiagonalMass] -->
-            <RequiredPlugin pluginName="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+            <RequiredPlugin pluginName="Sofa.Component.IntegrationScheme.Backward"/> <!-- Needed to use components [EulerImplicitIntegrationScheme] -->
             <RequiredPlugin pluginName="Sofa.Component.SolidMechanics.Spring"/> <!-- Needed to use components [RestShapeSpringsForceField] -->
             <RequiredPlugin pluginName="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
             <RequiredPlugin pluginName="Sofa.Component.Topology.Container.Dynamic"/> <!-- Needed to use components [EdgeSetGeometryAlgorithms EdgeSetTopologyContainer] -->
@@ -352,8 +352,8 @@ DistanceMapping.scn
         <DefaultAnimationLoop/>
         <StringMeshCreator name="loader" resolution="20" />
     
-        <EulerImplicitSolver rayleighStiffness="0.1" rayleighMass="0.1"/>
-        <CGLinearSolver iterations="2500" name="linear solver" tolerance="1.0e-9" threshold="1.0e-9" />
+        <EulerImplicitIntegrationScheme rayleighStiffness="0.1" rayleighMass="0.1"/>
+        <CGLinearSolver iterations="2500" name="linear solver" tolerance="1.0e-12" threshold="1.0e-12" />
     
         <EdgeSetTopologyContainer name="topology" position="@loader.position" edges="@loader.edges" />
         <MechanicalObject name="defoDOF" template="Vec3" />
@@ -384,7 +384,7 @@ DistanceMapping.scn
        plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.LinearSolver.Iterative")
        plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.Mapping.NonLinear")
        plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.Mass")
-       plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.ODESolver.Backward")
+       plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.IntegrationScheme.Backward")
        plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.SolidMechanics.Spring")
        plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.StateContainer")
        plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.Topology.Container.Dynamic")
@@ -394,8 +394,8 @@ DistanceMapping.scn
        root.addObject('VisualStyle', displayFlags="showVisualModels showBehaviorModels showMappings showForceFields showMechanicalMappings")
        root.addObject('DefaultAnimationLoop', )
        root.addObject('StringMeshCreator', name="loader", resolution="20")
-       root.addObject('EulerImplicitSolver', rayleighStiffness="0.1", rayleighMass="0.1")
-       root.addObject('CGLinearSolver', iterations="2500", name="linear solver", tolerance="1.0e-9", threshold="1.0e-9")
+       root.addObject('EulerImplicitIntegrationScheme', rayleighStiffness="0.1", rayleighMass="0.1")
+       root.addObject('CGLinearSolver', iterations="2500", name="linear solver", tolerance="1.0e-12", threshold="1.0e-12")
        root.addObject('EdgeSetTopologyContainer', name="topology", position="@loader.position", edges="@loader.edges")
        root.addObject('MechanicalObject', name="defoDOF", template="Vec3")
        root.addObject('EdgeSetGeometryAlgorithms', drawEdges="false")

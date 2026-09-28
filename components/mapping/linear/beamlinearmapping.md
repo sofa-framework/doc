@@ -145,7 +145,7 @@ BeamLinearMapping_mt.scn
         <RequiredPlugin pluginName="Sofa.Component.Constraint.Projective"/> <!-- Needed to use components [FixedProjectiveConstraint] -->
         <RequiredPlugin pluginName="Sofa.Component.LinearSolver.Direct"/> <!-- Needed to use components [BTDLinearSolver] -->
         <RequiredPlugin pluginName="Sofa.Component.Mass"/> <!-- Needed to use components [UniformMass] -->
-        <RequiredPlugin pluginName="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+        <RequiredPlugin pluginName="Sofa.Component.IntegrationScheme.Backward"/> <!-- Needed to use components [EulerImplicitIntegrationScheme] -->
         <RequiredPlugin pluginName="Sofa.Component.SolidMechanics.FEM.Elastic"/> <!-- Needed to use components [BeamFEMForceField] -->
         <RequiredPlugin pluginName="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
         <RequiredPlugin pluginName="Sofa.Component.Topology.Container.Constant"/> <!-- Needed to use components [CubeTopology MeshTopology] -->
@@ -157,7 +157,7 @@ BeamLinearMapping_mt.scn
         <MinProximityIntersection name="Proximity" alarmDistance="0.03" contactDistance="0.02" />
         <CollisionResponse name="Response" response="PenalityContactForceField" />
         <Node name="beam">
-            <EulerImplicitSolver rayleighStiffness="0" printLog="false"  rayleighMass="0.1" />
+            <EulerImplicitIntegrationScheme rayleighStiffness="0" printLog="false"  rayleighMass="0.1" />
             <BTDLinearSolver bandWidth="11" printLog="false" verbose="false" />
             <MechanicalObject template="Rigid3d" name="DOFs" position="0 0 0 0 0 0 1  1 0 0 0 0 0 1  2 0 0 0 0 0 1  3 0 0 0 0 0 1  4 0 0 0 0 0 1  5 0 0 0 0 0 1  6 0 0 0 0 0 1  7 0 0 0 0 0 1
                               8 0 0 0 0 0 1  9 0 0 0 0 0 1  10 0 0 0 0 0 1  11 0 0 0 0 0 1  12 0 0 0 0 0 1  13 0 0 0 0 0 1  14 0 0 0 0 0 1  15 0 0 0 0 0 1
@@ -216,7 +216,7 @@ BeamLinearMapping_mt.scn
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Constraint.Projective")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.LinearSolver.Direct")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mass")
-       root.addObject('RequiredPlugin', pluginName="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', pluginName="Sofa.Component.IntegrationScheme.Backward")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.SolidMechanics.FEM.Elastic")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.StateContainer")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Topology.Container.Constant")
@@ -230,7 +230,7 @@ BeamLinearMapping_mt.scn
 
        beam = root.addChild('beam')
 
-       beam.addObject('EulerImplicitSolver', rayleighStiffness="0", printLog="false", rayleighMass="0.1")
+       beam.addObject('EulerImplicitIntegrationScheme', rayleighStiffness="0", printLog="false", rayleighMass="0.1")
        beam.addObject('BTDLinearSolver', bandWidth="11", printLog="false", verbose="false")
        beam.addObject('MechanicalObject', template="Rigid3d", name="DOFs", position="0 0 0 0 0 0 1  1 0 0 0 0 0 1  2 0 0 0 0 0 1  3 0 0 0 0 0 1  4 0 0 0 0 0 1  5 0 0 0 0 0 1  6 0 0 0 0 0 1  7 0 0 0 0 0 1                           8 0 0 0 0 0 1  9 0 0 0 0 0 1  10 0 0 0 0 0 1  11 0 0 0 0 0 1  12 0 0 0 0 0 1  13 0 0 0 0 0 1  14 0 0 0 0 0 1  15 0 0 0 0 0 1                           16 0 0 0 0 0 1  17 0 0 0 0 0 1  18 0 0 0 0 0 1  19 0 0 0 0 0 1  20 0 0 0 0 0 1  21 0 0 0 0 0 1  22 0 0 0 0 0 1  23 0 0 0 0 0 1                           24 0 0 0 0 0 1  25 0 0 0 0 0 1  26 0 0 0 0 0 1  27 0 0 0 0 0 1  28 0 0 0 0 0 1  29 0 0 0 0 0 1  30 0 0 0 0 0 1  31 0 0 0 0 0 1")
        beam.addObject('MeshTopology', name="lines", lines="0 1 1 2 2 3 3 4 4 5 5 6 6 7 7 8 8 9 9 10 10 11 11 12 12 13 13 14 14 15 15 16 16 17 17 18 18                19 19 20 20 21 21 22 22 23 23 24 24 25 25 26 26 27 27 28 28 29 29 30 30 31")

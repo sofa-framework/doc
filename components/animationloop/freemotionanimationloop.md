@@ -183,7 +183,7 @@ FreeMotionAnimationLoop.scn
         <RequiredPlugin pluginName="Sofa.Component.Mapping.Linear"/> <!-- Needed to use components [BarycentricMapping] -->
         <RequiredPlugin pluginName="Sofa.Component.Mapping.NonLinear"/> <!-- Needed to use components [RigidMapping] -->
         <RequiredPlugin pluginName="Sofa.Component.Mass"/> <!-- Needed to use components [UniformMass] -->
-        <RequiredPlugin pluginName="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+        <RequiredPlugin pluginName="Sofa.Component.IntegrationScheme.Backward"/> <!-- Needed to use components [EulerImplicitIntegrationScheme] -->
         <RequiredPlugin pluginName="Sofa.Component.SolidMechanics.FEM.Elastic"/> <!-- Needed to use components [TetrahedronFEMForceField] -->
         <RequiredPlugin pluginName="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
         <RequiredPlugin pluginName="Sofa.Component.Topology.Container.Constant"/> <!-- Needed to use components [MeshTopology] -->
@@ -211,7 +211,7 @@ FreeMotionAnimationLoop.scn
         <Node name="TorusFEM">
             <MeshGmshLoader name="loader" filename="mesh/torus_low_res.msh"/>
             <MeshTopology src="@loader"/>
-            <EulerImplicitSolver rayleighMass="0.01" rayleighStiffness="0.001"/>
+            <EulerImplicitIntegrationScheme rayleighMass="0.01" rayleighStiffness="0.001"/>
             <SparseLDLSolver />
             <MechanicalObject src="@loader" dx="-12" dy="0" dz="0" rx="0" ry="0" rz="0" scale="5.0"/>
             <UniformMass totalMass="0.2"/>
@@ -235,7 +235,7 @@ FreeMotionAnimationLoop.scn
             </Node>
         </Node>
         <Node name="Torus3">
-            <EulerImplicitSolver/>
+            <EulerImplicitIntegrationScheme/>
             <CGLinearSolver iterations="25" tolerance="1e-5" threshold="1e-5"/>
             <MechanicalObject template="Rigid3" scale="5.0" dx="-25" dy="0"/>
             <UniformMass filename="BehaviorModels/torus2.rigid" totalMass="0.02"/>
@@ -279,7 +279,7 @@ FreeMotionAnimationLoop.scn
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mapping.Linear")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mapping.NonLinear")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mass")
-       root.addObject('RequiredPlugin', pluginName="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', pluginName="Sofa.Component.IntegrationScheme.Backward")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.SolidMechanics.FEM.Elastic")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.StateContainer")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Topology.Container.Constant")
@@ -309,7 +309,7 @@ FreeMotionAnimationLoop.scn
 
        torus_fem.addObject('MeshGmshLoader', name="loader", filename="mesh/torus_low_res.msh")
        torus_fem.addObject('MeshTopology', src="@loader")
-       torus_fem.addObject('EulerImplicitSolver', rayleighMass="0.01", rayleighStiffness="0.001")
+       torus_fem.addObject('EulerImplicitIntegrationScheme', rayleighMass="0.01", rayleighStiffness="0.001")
        torus_fem.addObject('SparseLDLSolver', )
        torus_fem.addObject('MechanicalObject', src="@loader", dx="-12", dy="0", dz="0", rx="0", ry="0", rz="0", scale="5.0")
        torus_fem.addObject('UniformMass', totalMass="0.2")
@@ -334,7 +334,7 @@ FreeMotionAnimationLoop.scn
 
        torus3 = root.addChild('Torus3')
 
-       torus3.addObject('EulerImplicitSolver', )
+       torus3.addObject('EulerImplicitIntegrationScheme', )
        torus3.addObject('CGLinearSolver', iterations="25", tolerance="1e-5", threshold="1e-5")
        torus3.addObject('MechanicalObject', template="Rigid3", scale="5.0", dx="-25", dy="0")
        torus3.addObject('UniformMass', filename="BehaviorModels/torus2.rigid", totalMass="0.02")

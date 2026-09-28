@@ -384,7 +384,7 @@ SparseGridMultipleTopology.scn
         <RequiredPlugin pluginName="Sofa.Component.LinearSolver.Iterative"/> <!-- Needed to use components [CGLinearSolver] -->
         <RequiredPlugin pluginName="Sofa.Component.Mapping.Linear"/> <!-- Needed to use components [BarycentricMapping] -->
         <RequiredPlugin pluginName="Sofa.Component.Mass"/> <!-- Needed to use components [UniformMass] -->
-        <RequiredPlugin pluginName="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+        <RequiredPlugin pluginName="Sofa.Component.IntegrationScheme.Backward"/> <!-- Needed to use components [EulerImplicitIntegrationScheme] -->
         <RequiredPlugin pluginName="Sofa.Component.SolidMechanics.FEM.Elastic"/> <!-- Needed to use components [HexahedronFEMForceField] -->
         <RequiredPlugin pluginName="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
         <RequiredPlugin pluginName="Sofa.Component.Topology.Container.Constant"/> <!-- Needed to use components [MeshTopology] -->
@@ -401,7 +401,7 @@ SparseGridMultipleTopology.scn
             <SparseGridMultipleTopology n="9 9 7" fileTopology="mesh/frog_body.obj" fileTopologies="mesh/frog_body.obj mesh/frog_eyes.obj mesh/frog_eyebrows.obj mesh/frog_lips.obj" stiffnessCoefs="10 100 100 .2" massCoefs="1 1 1 1" nbVirtualFinerLevels="1" />
             <!-- body=soft, lips=very soft, eyes=very stiff-->
             <!-- the order is important: included elements must appear after (lips is included in boby so it appears after)-->
-            <EulerImplicitSolver  rayleighStiffness="0.1" rayleighMass="0.1" />
+            <EulerImplicitIntegrationScheme  rayleighStiffness="0.1" rayleighMass="0.1" />
             <CGLinearSolver iterations="10" tolerance="1e-5" threshold="1e-5"/>
             <MechanicalObject />
             <UniformMass vertexMass="1" />
@@ -455,7 +455,7 @@ SparseGridMultipleTopology.scn
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.LinearSolver.Iterative")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mapping.Linear")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mass")
-       root.addObject('RequiredPlugin', pluginName="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', pluginName="Sofa.Component.IntegrationScheme.Backward")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.SolidMechanics.FEM.Elastic")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.StateContainer")
        root.addObject('RequiredPlugin', pluginName="Sofa.Component.Topology.Container.Constant")
@@ -471,7 +471,7 @@ SparseGridMultipleTopology.scn
        frog_with_several_stiffnesses = root.addChild('frog with several stiffnesses')
 
        frog_with_several_stiffnesses.addObject('SparseGridMultipleTopology', n="9 9 7", fileTopology="mesh/frog_body.obj", fileTopologies="mesh/frog_body.obj mesh/frog_eyes.obj mesh/frog_eyebrows.obj mesh/frog_lips.obj", stiffnessCoefs="10 100 100 .2", massCoefs="1 1 1 1", nbVirtualFinerLevels="1")
-       frog_with_several_stiffnesses.addObject('EulerImplicitSolver', rayleighStiffness="0.1", rayleighMass="0.1")
+       frog_with_several_stiffnesses.addObject('EulerImplicitIntegrationScheme', rayleighStiffness="0.1", rayleighMass="0.1")
        frog_with_several_stiffnesses.addObject('CGLinearSolver', iterations="10", tolerance="1e-5", threshold="1e-5")
        frog_with_several_stiffnesses.addObject('MechanicalObject', )
        frog_with_several_stiffnesses.addObject('UniformMass', vertexMass="1")
