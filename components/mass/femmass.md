@@ -378,7 +378,7 @@ FEMMass_lumping.scn
             <RequiredPlugin pluginName="Sofa.Component.LinearSolver.Ordering"/> <!-- Needed to use components [NaturalOrderingMethod] -->
             <RequiredPlugin pluginName="Sofa.Component.LinearSystem"/> <!-- Needed to use components [ConstantSparsityPatternSystem] -->
             <RequiredPlugin pluginName="Sofa.Component.Mass"/> <!-- Needed to use components [MeshMatrixMass] -->
-            <RequiredPlugin pluginName="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+            <RequiredPlugin pluginName="Sofa.Component.IntegrationScheme.Backward"/> <!-- Needed to use components [EulerImplicitIntegrationScheme] -->
             <RequiredPlugin pluginName="Sofa.Component.SolidMechanics.FEM.Elastic"/>
             <RequiredPlugin pluginName="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
             <RequiredPlugin pluginName="Sofa.Component.Topology.Container.Dynamic"/> <!-- Needed to use components [TetrahedronSetGeometryAlgorithms,TetrahedronSetTopologyContainer,TetrahedronSetTopologyModifier] -->
@@ -397,7 +397,7 @@ FEMMass_lumping.scn
     
         <Node name="consistent">
             <Visual3DText text="consistent mass" position="-0.09 0.03 0" scale="0.01" color="teal"/>
-            <EulerImplicitSolver name="backward_Euler" rayleighStiffness="0.1" rayleighMass="0.1" />
+            <EulerImplicitIntegrationScheme name="backward_Euler" rayleighStiffness="0.1" rayleighMass="0.1" />
     
             <ConstantSparsityPatternSystem template="CompressedRowSparseMatrix" name="A" checkIndices="false"/>
             <NaturalOrderingMethod/>
@@ -419,7 +419,7 @@ FEMMass_lumping.scn
     
         <Node name="lumped">
             <Visual3DText text="lumped mass" position="0.01 0.03 0" scale="0.01" color="orange"/>
-            <EulerImplicitSolver name="backward_Euler" rayleighStiffness="0.1" rayleighMass="0.1" />
+            <EulerImplicitIntegrationScheme name="backward_Euler" rayleighStiffness="0.1" rayleighMass="0.1" />
     
             <ConstantSparsityPatternSystem template="CompressedRowSparseMatrix" name="A" checkIndices="false"/>
             <NaturalOrderingMethod/>
@@ -458,7 +458,7 @@ FEMMass_lumping.scn
        plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.LinearSolver.Ordering")
        plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.LinearSystem")
        plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.Mass")
-       plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.ODESolver.Backward")
+       plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.IntegrationScheme.Backward")
        plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.SolidMechanics.FEM.Elastic")
        plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.StateContainer")
        plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.Topology.Container.Dynamic")
@@ -476,7 +476,7 @@ FEMMass_lumping.scn
        consistent = root.addChild('consistent')
 
        consistent.addObject('Visual3DText', text="consistent mass", position="-0.09 0.03 0", scale="0.01", color="teal")
-       consistent.addObject('EulerImplicitSolver', name="backward_Euler", rayleighStiffness="0.1", rayleighMass="0.1")
+       consistent.addObject('EulerImplicitIntegrationScheme', name="backward_Euler", rayleighStiffness="0.1", rayleighMass="0.1")
        consistent.addObject('ConstantSparsityPatternSystem', template="CompressedRowSparseMatrix", name="A", checkIndices="false")
        consistent.addObject('NaturalOrderingMethod', )
        consistent.addObject('SparseLDLSolver', name="linear_solver", template="CompressedRowSparseMatrix")
@@ -491,7 +491,7 @@ FEMMass_lumping.scn
        lumped = root.addChild('lumped')
 
        lumped.addObject('Visual3DText', text="lumped mass", position="0.01 0.03 0", scale="0.01", color="orange")
-       lumped.addObject('EulerImplicitSolver', name="backward_Euler", rayleighStiffness="0.1", rayleighMass="0.1")
+       lumped.addObject('EulerImplicitIntegrationScheme', name="backward_Euler", rayleighStiffness="0.1", rayleighMass="0.1")
        lumped.addObject('ConstantSparsityPatternSystem', template="CompressedRowSparseMatrix", name="A", checkIndices="false")
        lumped.addObject('NaturalOrderingMethod', )
        lumped.addObject('SparseLDLSolver', name="linear_solver", template="CompressedRowSparseMatrix")

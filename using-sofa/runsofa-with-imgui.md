@@ -75,6 +75,8 @@ Using the SHIFT + CTRL keys, you will trigger events on key pressed/released.
 * `-a` or `--start`: if true, starts the simulation just after opening. True by default.
 * `-s` or `--fullscreen`: set full screen at startup. False by default.
 * `-l` or `--load`: load given plugins as a comma-separated list. Example: -l SofaPython3
+* `-m` or `--msaa_samples`: set the number of samples for multisample anti-aliasing (MSAA). 0 by default.
+* `-n` or `--nb_iterations`: set the number of iterations to run (batch mode). 0 (unlimited) by default.
 
 ## Dear ImGui
 

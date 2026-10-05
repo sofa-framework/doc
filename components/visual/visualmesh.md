@@ -134,7 +134,7 @@ VisualMesh.scn
         <RequiredPlugin name="Sofa.Component.Engine.Select"/>
         <RequiredPlugin name="Sofa.Component.LinearSolver.Iterative"/>
         <RequiredPlugin name="Sofa.Component.Mass"/>
-        <RequiredPlugin name="Sofa.Component.ODESolver.Backward"/>
+        <RequiredPlugin name="Sofa.Component.IntegrationScheme.Backward"/>
         <RequiredPlugin name="Sofa.Component.SolidMechanics.FEM.Elastic"/>
         <RequiredPlugin name="Sofa.Component.StateContainer"/>
         <RequiredPlugin name="Sofa.Component.Topology.Container.Dynamic"/>
@@ -205,7 +205,7 @@ VisualMesh.scn
        root.addObject('RequiredPlugin', name="Sofa.Component.Engine.Select")
        root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Iterative")
        root.addObject('RequiredPlugin', name="Sofa.Component.Mass")
-       root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', name="Sofa.Component.IntegrationScheme.Backward")
        root.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.FEM.Elastic")
        root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
        root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Dynamic")

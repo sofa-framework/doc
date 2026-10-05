@@ -424,7 +424,7 @@ PrecomputedConstraintCorrection.scn
             <RequiredPlugin pluginName="Sofa.Component.LinearSolver.Iterative"/>
             <RequiredPlugin pluginName="Sofa.Component.Mass"/>
             <RequiredPlugin pluginName="Sofa.Component.MechanicalLoad"/>
-            <RequiredPlugin pluginName="Sofa.Component.ODESolver.Backward"/>
+            <RequiredPlugin pluginName="Sofa.Component.IntegrationScheme.Backward"/>
             <RequiredPlugin pluginName="Sofa.Component.SolidMechanics.FEM.Elastic"/>
             <RequiredPlugin pluginName="Sofa.Component.StateContainer"/>
             <RequiredPlugin pluginName="Sofa.Component.Topology.Container.Grid"/>
@@ -446,7 +446,7 @@ PrecomputedConstraintCorrection.scn
     
         <Node name="BeamPrecomputed">
             <Visual3DText text="PrecomputedConstraintCorrection" position="0 3 6" scale="0.4" color="0.3 0.7 1 1" />
-            <EulerImplicitSolver name="odeSolver" rayleighStiffness="0.01" rayleighMass="0.01" linearSolver="@linearSolver"/>
+            <EulerImplicitIntegrationScheme name="odeSolver" rayleighStiffness="0.01" rayleighMass="0.01" linearSolver="@linearSolver"/>
     
             <MatrixLinearSystem name="precondSystem" template="CompressedRowSparseMatrixd"/>
             <SSORPreconditioner name="precond" linearSystem="@precondSystem"/>
@@ -471,7 +471,7 @@ PrecomputedConstraintCorrection.scn
     
         <Node name="BeamLinearSolver">
             <Visual3DText text="LinearSolverConstraintCorrection" position="0 3 12" scale="0.4" color="0.3 0.7 1 1" />
-            <EulerImplicitSolver name="odeSolver" rayleighStiffness="0.01" rayleighMass="0.01" linearSolver="@linearSolver"/>
+            <EulerImplicitIntegrationScheme name="odeSolver" rayleighStiffness="0.01" rayleighMass="0.01" linearSolver="@linearSolver"/>
     
             <MatrixLinearSystem name="precondSystem" template="CompressedRowSparseMatrixd"/>
             <SSORPreconditioner name="precond" linearSystem="@precondSystem"/>
@@ -525,7 +525,7 @@ PrecomputedConstraintCorrection.scn
        required_plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.LinearSolver.Iterative")
        required_plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.Mass")
        required_plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.MechanicalLoad")
-       required_plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.ODESolver.Backward")
+       required_plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.IntegrationScheme.Backward")
        required_plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.SolidMechanics.FEM.Elastic")
        required_plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.StateContainer")
        required_plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.Topology.Container.Grid")
@@ -545,7 +545,7 @@ PrecomputedConstraintCorrection.scn
        beam_precomputed = root.addChild('BeamPrecomputed')
 
        beam_precomputed.addObject('Visual3DText', text="PrecomputedConstraintCorrection", position="0 3 6", scale="0.4", color="0.3 0.7 1 1")
-       beam_precomputed.addObject('EulerImplicitSolver', name="odeSolver", rayleighStiffness="0.01", rayleighMass="0.01", linearSolver="@linearSolver")
+       beam_precomputed.addObject('EulerImplicitIntegrationScheme', name="odeSolver", rayleighStiffness="0.01", rayleighMass="0.01", linearSolver="@linearSolver")
        beam_precomputed.addObject('MatrixLinearSystem', name="precondSystem", template="CompressedRowSparseMatrixd")
        beam_precomputed.addObject('SSORPreconditioner', name="precond", linearSystem="@precondSystem")
        beam_precomputed.addObject('PreconditionedMatrixFreeSystem', name="solverSystem", preconditionerSystem="@precondSystem")
@@ -563,7 +563,7 @@ PrecomputedConstraintCorrection.scn
        beam_linear_solver = root.addChild('BeamLinearSolver')
 
        beam_linear_solver.addObject('Visual3DText', text="LinearSolverConstraintCorrection", position="0 3 12", scale="0.4", color="0.3 0.7 1 1")
-       beam_linear_solver.addObject('EulerImplicitSolver', name="odeSolver", rayleighStiffness="0.01", rayleighMass="0.01", linearSolver="@linearSolver")
+       beam_linear_solver.addObject('EulerImplicitIntegrationScheme', name="odeSolver", rayleighStiffness="0.01", rayleighMass="0.01", linearSolver="@linearSolver")
        beam_linear_solver.addObject('MatrixLinearSystem', name="precondSystem", template="CompressedRowSparseMatrixd")
        beam_linear_solver.addObject('SSORPreconditioner', name="precond", linearSystem="@precondSystem")
        beam_linear_solver.addObject('PreconditionedMatrixFreeSystem', name="solverSystem", preconditionerSystem="@precondSystem")

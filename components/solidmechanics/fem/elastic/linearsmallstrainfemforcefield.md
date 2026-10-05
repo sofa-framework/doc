@@ -516,7 +516,7 @@ LinearSmallStrainFEMForceField.scn
         <include href="../../../QuadraticTopology.xml"/>
     
         <Node name="simulation">
-            <EulerImplicitSolver name="backward_Euler" rayleighStiffness="0.1" rayleighMass="0.1" />
+            <EulerImplicitIntegrationScheme name="backward_Euler" rayleighStiffness="0.1" rayleighMass="0.1" />
     
             <ConstantSparsityPatternSystem template="CompressedRowSparseMatrix" name="A" checkIndices="false"/>
             <SparseLDLSolver name="linear_solver" template="CompressedRowSparseMatrix"/>
@@ -562,7 +562,7 @@ LinearSmallStrainFEMForceField.scn
 
        simulation = root.addChild('simulation')
 
-       simulation.addObject('EulerImplicitSolver', name="backward_Euler", rayleighStiffness="0.1", rayleighMass="0.1")
+       simulation.addObject('EulerImplicitIntegrationScheme', name="backward_Euler", rayleighStiffness="0.1", rayleighMass="0.1")
        simulation.addObject('ConstantSparsityPatternSystem', template="CompressedRowSparseMatrix", name="A", checkIndices="false")
        simulation.addObject('SparseLDLSolver', name="linear_solver", template="CompressedRowSparseMatrix")
 
@@ -598,7 +598,7 @@ LinearSmallStrainFEMForceField.scn
         <include href="../../../QuadraticTopology.xml"/>
     
         <Node name="simulation">
-            <EulerImplicitSolver name="backward_Euler" rayleighStiffness="0.1" rayleighMass="0.1" />
+            <EulerImplicitIntegrationScheme name="backward_Euler" rayleighStiffness="0.1" rayleighMass="0.1" />
     
             <CGLinearSolver iterations="250" name="linear_solver" tolerance="1.0e-12" threshold="1.0e-12" />
     
@@ -643,7 +643,7 @@ LinearSmallStrainFEMForceField.scn
 
        simulation = root.addChild('simulation')
 
-       simulation.addObject('EulerImplicitSolver', name="backward_Euler", rayleighStiffness="0.1", rayleighMass="0.1")
+       simulation.addObject('EulerImplicitIntegrationScheme', name="backward_Euler", rayleighStiffness="0.1", rayleighMass="0.1")
        simulation.addObject('CGLinearSolver', iterations="250", name="linear_solver", tolerance="1.0e-12", threshold="1.0e-12")
 
        beam = simulation.addChild('beam')
@@ -678,7 +678,7 @@ LinearSmallStrainFEMForceField.scn
         <include href="../../../QuadraticTopology.xml"/>
     
         <Node name="simulation">
-            <EulerImplicitSolver name="backward_Euler" rayleighStiffness="0.1" rayleighMass="0.1" />
+            <EulerImplicitIntegrationScheme name="backward_Euler" rayleighStiffness="0.1" rayleighMass="0.1" />
     
             <ConstantSparsityPatternSystem template="CompressedRowSparseMatrix" name="A" checkIndices="false"/>
             <SparseLDLSolver name="linear_solver" template="CompressedRowSparseMatrix"/>
@@ -724,7 +724,7 @@ LinearSmallStrainFEMForceField.scn
 
        simulation = root.addChild('simulation')
 
-       simulation.addObject('EulerImplicitSolver', name="backward_Euler", rayleighStiffness="0.1", rayleighMass="0.1")
+       simulation.addObject('EulerImplicitIntegrationScheme', name="backward_Euler", rayleighStiffness="0.1", rayleighMass="0.1")
        simulation.addObject('ConstantSparsityPatternSystem', template="CompressedRowSparseMatrix", name="A", checkIndices="false")
        simulation.addObject('SparseLDLSolver', name="linear_solver", template="CompressedRowSparseMatrix")
 
@@ -760,7 +760,7 @@ LinearSmallStrainFEMForceField.scn
         <include href="../../../QuadraticTopology.xml"/>
     
         <Node name="simulation">
-            <EulerImplicitSolver name="backward_Euler" rayleighStiffness="0.1" rayleighMass="0.1" />
+            <EulerImplicitIntegrationScheme name="backward_Euler" rayleighStiffness="0.1" rayleighMass="0.1" />
     
             <CGLinearSolver iterations="250" name="linear_solver" tolerance="1.0e-12" threshold="1.0e-12" />
     
@@ -805,7 +805,7 @@ LinearSmallStrainFEMForceField.scn
 
        simulation = root.addChild('simulation')
 
-       simulation.addObject('EulerImplicitSolver', name="backward_Euler", rayleighStiffness="0.1", rayleighMass="0.1")
+       simulation.addObject('EulerImplicitIntegrationScheme', name="backward_Euler", rayleighStiffness="0.1", rayleighMass="0.1")
        simulation.addObject('CGLinearSolver', iterations="250", name="linear_solver", tolerance="1.0e-12", threshold="1.0e-12")
 
        beam = simulation.addChild('beam')
@@ -840,7 +840,7 @@ LinearSmallStrainFEMForceField.scn
         <include href="../../../QuadraticTopology.xml"/>
     
         <Node name="simulation">
-            <EulerImplicitSolver name="backward_Euler" rayleighStiffness="0.1" rayleighMass="0.1" />
+            <EulerImplicitIntegrationScheme name="backward_Euler" rayleighStiffness="0.1" rayleighMass="0.1" />
     
             <ConstantSparsityPatternSystem template="CompressedRowSparseMatrix" name="A" checkIndices="false"/>
             <SparseLDLSolver name="linear_solver" template="CompressedRowSparseMatrix"/>
@@ -886,7 +886,7 @@ LinearSmallStrainFEMForceField.scn
 
        simulation = root.addChild('simulation')
 
-       simulation.addObject('EulerImplicitSolver', name="backward_Euler", rayleighStiffness="0.1", rayleighMass="0.1")
+       simulation.addObject('EulerImplicitIntegrationScheme', name="backward_Euler", rayleighStiffness="0.1", rayleighMass="0.1")
        simulation.addObject('ConstantSparsityPatternSystem', template="CompressedRowSparseMatrix", name="A", checkIndices="false")
        simulation.addObject('SparseLDLSolver', name="linear_solver", template="CompressedRowSparseMatrix")
 
@@ -922,7 +922,7 @@ LinearSmallStrainFEMForceField.scn
         <include href="../../../QuadraticTopology.xml"/>
     
         <Node name="simulation">
-            <EulerImplicitSolver name="backward_Euler" rayleighStiffness="0.1" rayleighMass="0.1" />
+            <EulerImplicitIntegrationScheme name="backward_Euler" rayleighStiffness="0.1" rayleighMass="0.1" />
     
             <CGLinearSolver iterations="250" name="linear_solver" tolerance="1.0e-12" threshold="1.0e-12" />
     
@@ -967,7 +967,7 @@ LinearSmallStrainFEMForceField.scn
 
        simulation = root.addChild('simulation')
 
-       simulation.addObject('EulerImplicitSolver', name="backward_Euler", rayleighStiffness="0.1", rayleighMass="0.1")
+       simulation.addObject('EulerImplicitIntegrationScheme', name="backward_Euler", rayleighStiffness="0.1", rayleighMass="0.1")
        simulation.addObject('CGLinearSolver', iterations="250", name="linear_solver", tolerance="1.0e-12", threshold="1.0e-12")
 
        beam = simulation.addChild('beam')
@@ -1002,7 +1002,7 @@ LinearSmallStrainFEMForceField.scn
         <include href="../../../QuadraticTopology.xml"/>
     
         <Node name="simulation">
-            <EulerImplicitSolver name="backward_Euler" rayleighStiffness="0.1" rayleighMass="0.1" />
+            <EulerImplicitIntegrationScheme name="backward_Euler" rayleighStiffness="0.1" rayleighMass="0.1" />
     
             <ConstantSparsityPatternSystem template="CompressedRowSparseMatrix" name="A" checkIndices="false"/>
             <SparseLDLSolver name="linear_solver" template="CompressedRowSparseMatrix"/>
@@ -1048,7 +1048,7 @@ LinearSmallStrainFEMForceField.scn
 
        simulation = root.addChild('simulation')
 
-       simulation.addObject('EulerImplicitSolver', name="backward_Euler", rayleighStiffness="0.1", rayleighMass="0.1")
+       simulation.addObject('EulerImplicitIntegrationScheme', name="backward_Euler", rayleighStiffness="0.1", rayleighMass="0.1")
        simulation.addObject('ConstantSparsityPatternSystem', template="CompressedRowSparseMatrix", name="A", checkIndices="false")
        simulation.addObject('SparseLDLSolver', name="linear_solver", template="CompressedRowSparseMatrix")
 
@@ -1084,7 +1084,7 @@ LinearSmallStrainFEMForceField.scn
         <include href="../../../QuadraticTopology.xml"/>
     
         <Node name="simulation">
-            <EulerImplicitSolver name="backward_Euler" rayleighStiffness="0.1" rayleighMass="0.1" />
+            <EulerImplicitIntegrationScheme name="backward_Euler" rayleighStiffness="0.1" rayleighMass="0.1" />
     
             <CGLinearSolver iterations="250" name="linear_solver" tolerance="1.0e-12" threshold="1.0e-12" />
     
@@ -1129,7 +1129,7 @@ LinearSmallStrainFEMForceField.scn
 
        simulation = root.addChild('simulation')
 
-       simulation.addObject('EulerImplicitSolver', name="backward_Euler", rayleighStiffness="0.1", rayleighMass="0.1")
+       simulation.addObject('EulerImplicitIntegrationScheme', name="backward_Euler", rayleighStiffness="0.1", rayleighMass="0.1")
        simulation.addObject('CGLinearSolver', iterations="250", name="linear_solver", tolerance="1.0e-12", threshold="1.0e-12")
 
        beam = simulation.addChild('beam')
@@ -1143,5 +1143,349 @@ LinearSmallStrainFEMForceField.scn
        beam.addObject('BoxROI', template="Vec3", name="box_roi", box="-0.011 -0.011 -0.0001   0.011 0.011 0.0001", drawBoxes="1")
        beam.addObject('FixedProjectiveConstraint', template="Vec3", indices="@box_roi.indices")
        beam.addObject('LinearSmallStrainFEMForceField', name="FEM", template="Vec3,QuadraticHexahedron", youngModulus="2e6", poissonRatio="0.45", topology="@topology", computeForceStrategy="sequenced", computeForceDerivStrategy="sequenced")
+    ```
+
+LinearSmallStrainFEMForceField.scn
+
+=== "XML"
+
+    ```xml
+    <?xml version="1.0"?>
+    <Node name="root" dt="0.01" gravity="0 0 0">
+        <include href="../../../../beam.xml"/>
+    
+        <ConstantSparsityPatternSystem template="CompressedRowSparseMatrix" name="A" checkIndices="false"/>
+        <NaturalOrderingMethod/>
+        <SparseLDLSolver name="linear_solver" template="CompressedRowSparseMatrix"/>
+    
+        <LinearSmallStrainFEMForceField name="FEM" template="Vec3,Hexahedron"
+                                        youngModulus="2e6" poissonRatio="0.45" topology="@grid"
+                                        computeForceStrategy="parallel" computeForceDerivStrategy="parallel"/>
+        <VonMisesStress template="Vec3,Hexahedron" name="stress" topology="@grid" stressEvaluator="@FEM"
+                        colorMap="green yellow orange red purple #221C35"/>
+    
+    </Node>
+
+    ```
+
+=== "Python"
+
+    ```python
+    def createScene(root_node):
+
+       root = root_node.addChild('root', dt="0.01", gravity="0 0 0")
+
+       root.addObject('include', href="../../../../beam.xml")
+       root.addObject('ConstantSparsityPatternSystem', template="CompressedRowSparseMatrix", name="A", checkIndices="false")
+       root.addObject('NaturalOrderingMethod', )
+       root.addObject('SparseLDLSolver', name="linear_solver", template="CompressedRowSparseMatrix")
+       root.addObject('LinearSmallStrainFEMForceField', name="FEM", template="Vec3,Hexahedron", youngModulus="2e6", poissonRatio="0.45", topology="@grid", computeForceStrategy="parallel", computeForceDerivStrategy="parallel")
+       root.addObject('VonMisesStress', template="Vec3,Hexahedron", name="stress", topology="@grid", stressEvaluator="@FEM", colorMap="green yellow orange red purple #221C35")
+    ```
+
+LinearSmallStrainFEMForceField.scn
+
+=== "XML"
+
+    ```xml
+    <?xml version="1.0"?>
+    <Node name="root" dt="0.01" gravity="0 0 0">
+        <include href="../../../../beam.xml"/>
+    
+        <CGLinearSolver iterations="250" name="linear_solver" tolerance="1.0e-12" threshold="1.0e-12" />
+    
+        <LinearSmallStrainFEMForceField name="FEM" template="Vec3,Hexahedron"
+                                               youngModulus="2e6" poissonRatio="0.45" topology="@grid"
+                                               computeForceStrategy="parallel" computeForceDerivStrategy="parallel"/>
+        <VonMisesStress template="Vec3,Hexahedron" name="stress" topology="@grid" stressEvaluator="@FEM"
+                        colorMap="green yellow orange red purple #221C35"/>
+    
+    </Node>
+
+    ```
+
+=== "Python"
+
+    ```python
+    def createScene(root_node):
+
+       root = root_node.addChild('root', dt="0.01", gravity="0 0 0")
+
+       root.addObject('include', href="../../../../beam.xml")
+       root.addObject('CGLinearSolver', iterations="250", name="linear_solver", tolerance="1.0e-12", threshold="1.0e-12")
+       root.addObject('LinearSmallStrainFEMForceField', name="FEM", template="Vec3,Hexahedron", youngModulus="2e6", poissonRatio="0.45", topology="@grid", computeForceStrategy="parallel", computeForceDerivStrategy="parallel")
+       root.addObject('VonMisesStress', template="Vec3,Hexahedron", name="stress", topology="@grid", stressEvaluator="@FEM", colorMap="green yellow orange red purple #221C35")
+    ```
+
+LinearSmallStrainFEMForceField.scn
+
+=== "XML"
+
+    ```xml
+    <?xml version="1.0"?>
+    <Node name="root" dt="0.01" gravity="0 0 0">
+        <include href="../../../../beam.xml"/>
+    
+        <ConstantSparsityPatternSystem template="CompressedRowSparseMatrix" name="A" checkIndices="false"/>
+        <NaturalOrderingMethod/>
+        <SparseLDLSolver name="linear_solver" template="CompressedRowSparseMatrix"/>
+    
+        <LinearSmallStrainFEMForceField name="FEM" template="Vec3,Hexahedron"
+                                               youngModulus="2e6" poissonRatio="0.45" topology="@grid"
+                                               computeForceStrategy="sequenced" computeForceDerivStrategy="sequenced"/>
+        <VonMisesStress template="Vec3,Hexahedron" name="stress" topology="@grid" stressEvaluator="@FEM"
+                        colorMap="green yellow orange red purple #221C35"/>
+    
+    </Node>
+
+    ```
+
+=== "Python"
+
+    ```python
+    def createScene(root_node):
+
+       root = root_node.addChild('root', dt="0.01", gravity="0 0 0")
+
+       root.addObject('include', href="../../../../beam.xml")
+       root.addObject('ConstantSparsityPatternSystem', template="CompressedRowSparseMatrix", name="A", checkIndices="false")
+       root.addObject('NaturalOrderingMethod', )
+       root.addObject('SparseLDLSolver', name="linear_solver", template="CompressedRowSparseMatrix")
+       root.addObject('LinearSmallStrainFEMForceField', name="FEM", template="Vec3,Hexahedron", youngModulus="2e6", poissonRatio="0.45", topology="@grid", computeForceStrategy="sequenced", computeForceDerivStrategy="sequenced")
+       root.addObject('VonMisesStress', template="Vec3,Hexahedron", name="stress", topology="@grid", stressEvaluator="@FEM", colorMap="green yellow orange red purple #221C35")
+    ```
+
+LinearSmallStrainFEMForceField.scn
+
+=== "XML"
+
+    ```xml
+    <?xml version="1.0"?>
+    <Node name="root" dt="0.01" gravity="0 0 0">
+        <include href="../../../../beam.xml"/>
+    
+        <CGLinearSolver iterations="250" name="linear_solver" tolerance="1.0e-12" threshold="1.0e-12" />
+    
+        <LinearSmallStrainFEMForceField name="FEM" template="Vec3,Hexahedron"
+                                               youngModulus="2e6" poissonRatio="0.45" topology="@grid"
+                                               computeForceStrategy="sequenced" computeForceDerivStrategy="sequenced"/>
+        <VonMisesStress template="Vec3,Hexahedron" name="stress" topology="@grid" stressEvaluator="@FEM"
+                        colorMap="green yellow orange red purple #221C35"/>
+    
+    </Node>
+
+    ```
+
+=== "Python"
+
+    ```python
+    def createScene(root_node):
+
+       root = root_node.addChild('root', dt="0.01", gravity="0 0 0")
+
+       root.addObject('include', href="../../../../beam.xml")
+       root.addObject('CGLinearSolver', iterations="250", name="linear_solver", tolerance="1.0e-12", threshold="1.0e-12")
+       root.addObject('LinearSmallStrainFEMForceField', name="FEM", template="Vec3,Hexahedron", youngModulus="2e6", poissonRatio="0.45", topology="@grid", computeForceStrategy="sequenced", computeForceDerivStrategy="sequenced")
+       root.addObject('VonMisesStress', template="Vec3,Hexahedron", name="stress", topology="@grid", stressEvaluator="@FEM", colorMap="green yellow orange red purple #221C35")
+    ```
+
+LinearSmallStrainFEMForceField.scn
+
+=== "XML"
+
+    ```xml
+    <?xml version="1.0"?>
+    <Node name="root" dt="0.01" gravity="0 0 0">
+        <include href="../../../../beam.xml"/>
+    
+        <ConstantSparsityPatternSystem template="CompressedRowSparseMatrix" name="A" checkIndices="false"/>
+        <NaturalOrderingMethod/>
+        <SparseLDLSolver name="linear_solver" template="CompressedRowSparseMatrix"/>
+    
+        <Node name="fem">
+            <TetrahedronSetTopologyContainer name="Tetra_topo"/>
+            <TetrahedronSetTopologyModifier name="Modifier" />
+            <TetrahedronSetGeometryAlgorithms template="Vec3" name="GeomAlgo" drawTetrahedra="false"/>
+            <Hexa2TetraTopologicalMapping input="@grid" output="@Tetra_topo" swapping="true"/>
+    
+            <LinearSmallStrainFEMForceField name="FEM" template="Vec3,Tetrahedron"
+                                                   youngModulus="2e6" poissonRatio="0.45" topology="@Tetra_topo"
+                                                   computeForceStrategy="parallel" computeForceDerivStrategy="parallel"/>
+            <VonMisesStress template="Vec3,Tetrahedron" name="stress" topology="@Tetra_topo" stressEvaluator="@FEM"
+                            colorMap="green yellow orange red purple #221C35"/>
+        </Node>
+    
+    </Node>
+
+    ```
+
+=== "Python"
+
+    ```python
+    def createScene(root_node):
+
+       root = root_node.addChild('root', dt="0.01", gravity="0 0 0")
+
+       root.addObject('include', href="../../../../beam.xml")
+       root.addObject('ConstantSparsityPatternSystem', template="CompressedRowSparseMatrix", name="A", checkIndices="false")
+       root.addObject('NaturalOrderingMethod', )
+       root.addObject('SparseLDLSolver', name="linear_solver", template="CompressedRowSparseMatrix")
+
+       fem = root.addChild('fem')
+
+       fem.addObject('TetrahedronSetTopologyContainer', name="Tetra_topo")
+       fem.addObject('TetrahedronSetTopologyModifier', name="Modifier")
+       fem.addObject('TetrahedronSetGeometryAlgorithms', template="Vec3", name="GeomAlgo", drawTetrahedra="false")
+       fem.addObject('Hexa2TetraTopologicalMapping', input="@grid", output="@Tetra_topo", swapping="true")
+       fem.addObject('LinearSmallStrainFEMForceField', name="FEM", template="Vec3,Tetrahedron", youngModulus="2e6", poissonRatio="0.45", topology="@Tetra_topo", computeForceStrategy="parallel", computeForceDerivStrategy="parallel")
+       fem.addObject('VonMisesStress', template="Vec3,Tetrahedron", name="stress", topology="@Tetra_topo", stressEvaluator="@FEM", colorMap="green yellow orange red purple #221C35")
+    ```
+
+LinearSmallStrainFEMForceField.scn
+
+=== "XML"
+
+    ```xml
+    <?xml version="1.0"?>
+    <Node name="root" dt="0.01" gravity="0 0 0">
+        <include href="../../../../beam.xml"/>
+    
+        <CGLinearSolver iterations="250" name="linear_solver" tolerance="1.0e-12" threshold="1.0e-12" />
+    
+        <Node name="fem">
+            <TetrahedronSetTopologyContainer name="Tetra_topo"/>
+            <TetrahedronSetTopologyModifier name="Modifier" />
+            <TetrahedronSetGeometryAlgorithms template="Vec3" name="GeomAlgo" drawTetrahedra="false"/>
+            <Hexa2TetraTopologicalMapping input="@grid" output="@Tetra_topo" swapping="true"/>
+    
+            <LinearSmallStrainFEMForceField name="FEM" template="Vec3,Tetrahedron"
+                                                   youngModulus="2e6" poissonRatio="0.45" topology="@Tetra_topo"
+                                                   computeForceStrategy="parallel" computeForceDerivStrategy="parallel"/>
+            <VonMisesStress template="Vec3,Tetrahedron" name="stress" topology="@Tetra_topo" stressEvaluator="@FEM"
+                            colorMap="green yellow orange red purple #221C35"/>
+        </Node>
+    
+    </Node>
+
+    ```
+
+=== "Python"
+
+    ```python
+    def createScene(root_node):
+
+       root = root_node.addChild('root', dt="0.01", gravity="0 0 0")
+
+       root.addObject('include', href="../../../../beam.xml")
+       root.addObject('CGLinearSolver', iterations="250", name="linear_solver", tolerance="1.0e-12", threshold="1.0e-12")
+
+       fem = root.addChild('fem')
+
+       fem.addObject('TetrahedronSetTopologyContainer', name="Tetra_topo")
+       fem.addObject('TetrahedronSetTopologyModifier', name="Modifier")
+       fem.addObject('TetrahedronSetGeometryAlgorithms', template="Vec3", name="GeomAlgo", drawTetrahedra="false")
+       fem.addObject('Hexa2TetraTopologicalMapping', input="@grid", output="@Tetra_topo", swapping="true")
+       fem.addObject('LinearSmallStrainFEMForceField', name="FEM", template="Vec3,Tetrahedron", youngModulus="2e6", poissonRatio="0.45", topology="@Tetra_topo", computeForceStrategy="parallel", computeForceDerivStrategy="parallel")
+       fem.addObject('VonMisesStress', template="Vec3,Tetrahedron", name="stress", topology="@Tetra_topo", stressEvaluator="@FEM", colorMap="green yellow orange red purple #221C35")
+    ```
+
+LinearSmallStrainFEMForceField.scn
+
+=== "XML"
+
+    ```xml
+    <?xml version="1.0"?>
+    <Node name="root" dt="0.01" gravity="0 0 0">
+        <include href="../../../../beam.xml"/>
+    
+        <ConstantSparsityPatternSystem template="CompressedRowSparseMatrix" name="A" checkIndices="false"/>
+        <NaturalOrderingMethod/>
+        <SparseLDLSolver name="linear_solver" template="CompressedRowSparseMatrix"/>
+    
+        <Node name="fem">
+            <TetrahedronSetTopologyContainer name="Tetra_topo"/>
+            <TetrahedronSetTopologyModifier name="Modifier" />
+            <TetrahedronSetGeometryAlgorithms template="Vec3" name="GeomAlgo" drawTetrahedra="false"/>
+            <Hexa2TetraTopologicalMapping input="@grid" output="@Tetra_topo" swapping="true"/>
+    
+            <LinearSmallStrainFEMForceField name="FEM" template="Vec3,Tetrahedron"
+                                                   youngModulus="2e6" poissonRatio="0.45" topology="@Tetra_topo"
+                                                   computeForceStrategy="sequenced" computeForceDerivStrategy="sequenced"/>
+            <VonMisesStress template="Vec3,Tetrahedron" name="stress" topology="@Tetra_topo" stressEvaluator="@FEM"
+                            colorMap="green yellow orange red purple #221C35"/>
+        </Node>
+    
+    </Node>
+
+    ```
+
+=== "Python"
+
+    ```python
+    def createScene(root_node):
+
+       root = root_node.addChild('root', dt="0.01", gravity="0 0 0")
+
+       root.addObject('include', href="../../../../beam.xml")
+       root.addObject('ConstantSparsityPatternSystem', template="CompressedRowSparseMatrix", name="A", checkIndices="false")
+       root.addObject('NaturalOrderingMethod', )
+       root.addObject('SparseLDLSolver', name="linear_solver", template="CompressedRowSparseMatrix")
+
+       fem = root.addChild('fem')
+
+       fem.addObject('TetrahedronSetTopologyContainer', name="Tetra_topo")
+       fem.addObject('TetrahedronSetTopologyModifier', name="Modifier")
+       fem.addObject('TetrahedronSetGeometryAlgorithms', template="Vec3", name="GeomAlgo", drawTetrahedra="false")
+       fem.addObject('Hexa2TetraTopologicalMapping', input="@grid", output="@Tetra_topo", swapping="true")
+       fem.addObject('LinearSmallStrainFEMForceField', name="FEM", template="Vec3,Tetrahedron", youngModulus="2e6", poissonRatio="0.45", topology="@Tetra_topo", computeForceStrategy="sequenced", computeForceDerivStrategy="sequenced")
+       fem.addObject('VonMisesStress', template="Vec3,Tetrahedron", name="stress", topology="@Tetra_topo", stressEvaluator="@FEM", colorMap="green yellow orange red purple #221C35")
+    ```
+
+LinearSmallStrainFEMForceField.scn
+
+=== "XML"
+
+    ```xml
+    <?xml version="1.0"?>
+    <Node name="root" dt="0.01" gravity="0 0 0">
+        <include href="../../../../beam.xml"/>
+    
+        <CGLinearSolver iterations="250" name="linear_solver" tolerance="1.0e-12" threshold="1.0e-12" />
+    
+        <Node name="fem">
+            <TetrahedronSetTopologyContainer name="Tetra_topo"/>
+            <TetrahedronSetTopologyModifier name="Modifier" />
+            <TetrahedronSetGeometryAlgorithms template="Vec3" name="GeomAlgo" drawTetrahedra="false"/>
+            <Hexa2TetraTopologicalMapping input="@grid" output="@Tetra_topo" swapping="true"/>
+    
+            <LinearSmallStrainFEMForceField name="FEM" template="Vec3,Tetrahedron"
+                                                   youngModulus="2e6" poissonRatio="0.45" topology="@Tetra_topo"
+                                                   computeForceStrategy="sequenced" computeForceDerivStrategy="sequenced"/>
+            <VonMisesStress template="Vec3,Tetrahedron" name="stress" topology="@Tetra_topo" stressEvaluator="@FEM"
+                            colorMap="green yellow orange red purple #221C35"/>
+        </Node>
+    
+    </Node>
+
+    ```
+
+=== "Python"
+
+    ```python
+    def createScene(root_node):
+
+       root = root_node.addChild('root', dt="0.01", gravity="0 0 0")
+
+       root.addObject('include', href="../../../../beam.xml")
+       root.addObject('CGLinearSolver', iterations="250", name="linear_solver", tolerance="1.0e-12", threshold="1.0e-12")
+
+       fem = root.addChild('fem')
+
+       fem.addObject('TetrahedronSetTopologyContainer', name="Tetra_topo")
+       fem.addObject('TetrahedronSetTopologyModifier', name="Modifier")
+       fem.addObject('TetrahedronSetGeometryAlgorithms', template="Vec3", name="GeomAlgo", drawTetrahedra="false")
+       fem.addObject('Hexa2TetraTopologicalMapping', input="@grid", output="@Tetra_topo", swapping="true")
+       fem.addObject('LinearSmallStrainFEMForceField', name="FEM", template="Vec3,Tetrahedron", youngModulus="2e6", poissonRatio="0.45", topology="@Tetra_topo", computeForceStrategy="sequenced", computeForceDerivStrategy="sequenced")
+       fem.addObject('VonMisesStress', template="Vec3,Tetrahedron", name="stress", topology="@Tetra_topo", stressEvaluator="@FEM", colorMap="green yellow orange red purple #221C35")
     ```
 

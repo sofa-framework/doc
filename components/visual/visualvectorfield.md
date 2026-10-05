@@ -144,7 +144,7 @@ VisualVectorField.scn
         <RequiredPlugin name="Sofa.Component.LinearSolver.Direct"/>
         <RequiredPlugin name="Sofa.Component.LinearSystem"/>
         <RequiredPlugin name="Sofa.Component.Mass"/>
-        <RequiredPlugin name="Sofa.Component.ODESolver.Backward"/>
+        <RequiredPlugin name="Sofa.Component.IntegrationScheme.Backward"/>
         <RequiredPlugin name="Sofa.Component.SolidMechanics.FEM.Elastic"/>
         <RequiredPlugin name="Sofa.Component.StateContainer"/>
         <RequiredPlugin name="Sofa.Component.Topology.Container.Grid"/>
@@ -188,7 +188,7 @@ VisualVectorField.scn
        root.addObject('RequiredPlugin', name="Sofa.Component.LinearSolver.Direct")
        root.addObject('RequiredPlugin', name="Sofa.Component.LinearSystem")
        root.addObject('RequiredPlugin', name="Sofa.Component.Mass")
-       root.addObject('RequiredPlugin', name="Sofa.Component.ODESolver.Backward")
+       root.addObject('RequiredPlugin', name="Sofa.Component.IntegrationScheme.Backward")
        root.addObject('RequiredPlugin', name="Sofa.Component.SolidMechanics.FEM.Elastic")
        root.addObject('RequiredPlugin', name="Sofa.Component.StateContainer")
        root.addObject('RequiredPlugin', name="Sofa.Component.Topology.Container.Grid")

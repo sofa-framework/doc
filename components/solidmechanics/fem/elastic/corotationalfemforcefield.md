@@ -876,7 +876,7 @@ CorotationalFEMForceField.scn
         <include href="../../../QuadraticTopology.xml"/>
     
         <Node name="simulation">
-            <EulerImplicitSolver name="backward_Euler" rayleighStiffness="0.1" rayleighMass="0.1" />
+            <EulerImplicitIntegrationScheme name="backward_Euler" rayleighStiffness="0.1" rayleighMass="0.1" />
     
             <ConstantSparsityPatternSystem template="CompressedRowSparseMatrix" name="A" checkIndices="false"/>
             <SparseLDLSolver name="linear_solver" template="CompressedRowSparseMatrix"/>
@@ -922,7 +922,7 @@ CorotationalFEMForceField.scn
 
        simulation = root.addChild('simulation')
 
-       simulation.addObject('EulerImplicitSolver', name="backward_Euler", rayleighStiffness="0.1", rayleighMass="0.1")
+       simulation.addObject('EulerImplicitIntegrationScheme', name="backward_Euler", rayleighStiffness="0.1", rayleighMass="0.1")
        simulation.addObject('ConstantSparsityPatternSystem', template="CompressedRowSparseMatrix", name="A", checkIndices="false")
        simulation.addObject('SparseLDLSolver', name="linear_solver", template="CompressedRowSparseMatrix")
 
@@ -958,7 +958,7 @@ CorotationalFEMForceField.scn
         <include href="../../../QuadraticTopology.xml"/>
     
         <Node name="simulation">
-            <EulerImplicitSolver name="backward_Euler" rayleighStiffness="0.1" rayleighMass="0.1" />
+            <EulerImplicitIntegrationScheme name="backward_Euler" rayleighStiffness="0.1" rayleighMass="0.1" />
     
             <CGLinearSolver iterations="250" name="linear_solver" tolerance="1.0e-12" threshold="1.0e-12" />
     
@@ -1003,7 +1003,7 @@ CorotationalFEMForceField.scn
 
        simulation = root.addChild('simulation')
 
-       simulation.addObject('EulerImplicitSolver', name="backward_Euler", rayleighStiffness="0.1", rayleighMass="0.1")
+       simulation.addObject('EulerImplicitIntegrationScheme', name="backward_Euler", rayleighStiffness="0.1", rayleighMass="0.1")
        simulation.addObject('CGLinearSolver', iterations="250", name="linear_solver", tolerance="1.0e-12", threshold="1.0e-12")
 
        beam = simulation.addChild('beam')
@@ -1038,7 +1038,7 @@ CorotationalFEMForceField.scn
         <include href="../../../QuadraticTopology.xml"/>
     
         <Node name="simulation">
-            <EulerImplicitSolver name="backward_Euler" rayleighStiffness="0.1" rayleighMass="0.1" />
+            <EulerImplicitIntegrationScheme name="backward_Euler" rayleighStiffness="0.1" rayleighMass="0.1" />
     
             <ConstantSparsityPatternSystem template="CompressedRowSparseMatrix" name="A" checkIndices="false"/>
             <SparseLDLSolver name="linear_solver" template="CompressedRowSparseMatrix"/>
@@ -1084,7 +1084,7 @@ CorotationalFEMForceField.scn
 
        simulation = root.addChild('simulation')
 
-       simulation.addObject('EulerImplicitSolver', name="backward_Euler", rayleighStiffness="0.1", rayleighMass="0.1")
+       simulation.addObject('EulerImplicitIntegrationScheme', name="backward_Euler", rayleighStiffness="0.1", rayleighMass="0.1")
        simulation.addObject('ConstantSparsityPatternSystem', template="CompressedRowSparseMatrix", name="A", checkIndices="false")
        simulation.addObject('SparseLDLSolver', name="linear_solver", template="CompressedRowSparseMatrix")
 
@@ -1120,7 +1120,7 @@ CorotationalFEMForceField.scn
         <include href="../../../QuadraticTopology.xml"/>
     
         <Node name="simulation">
-            <EulerImplicitSolver name="backward_Euler" rayleighStiffness="0.1" rayleighMass="0.1" />
+            <EulerImplicitIntegrationScheme name="backward_Euler" rayleighStiffness="0.1" rayleighMass="0.1" />
     
             <CGLinearSolver iterations="250" name="linear_solver" tolerance="1.0e-12" threshold="1.0e-12" />
     
@@ -1165,7 +1165,7 @@ CorotationalFEMForceField.scn
 
        simulation = root.addChild('simulation')
 
-       simulation.addObject('EulerImplicitSolver', name="backward_Euler", rayleighStiffness="0.1", rayleighMass="0.1")
+       simulation.addObject('EulerImplicitIntegrationScheme', name="backward_Euler", rayleighStiffness="0.1", rayleighMass="0.1")
        simulation.addObject('CGLinearSolver', iterations="250", name="linear_solver", tolerance="1.0e-12", threshold="1.0e-12")
 
        beam = simulation.addChild('beam')
@@ -1200,7 +1200,7 @@ CorotationalFEMForceField.scn
         <include href="../../../QuadraticTopology.xml"/>
     
         <Node name="simulation">
-            <EulerImplicitSolver name="backward_Euler" rayleighStiffness="0.1" rayleighMass="0.1" />
+            <EulerImplicitIntegrationScheme name="backward_Euler" rayleighStiffness="0.1" rayleighMass="0.1" />
     
             <ConstantSparsityPatternSystem template="CompressedRowSparseMatrix" name="A" checkIndices="true"/>
             <SparseLDLSolver name="linear_solver" template="CompressedRowSparseMatrix"/>
@@ -1246,7 +1246,7 @@ CorotationalFEMForceField.scn
 
        simulation = root.addChild('simulation')
 
-       simulation.addObject('EulerImplicitSolver', name="backward_Euler", rayleighStiffness="0.1", rayleighMass="0.1")
+       simulation.addObject('EulerImplicitIntegrationScheme', name="backward_Euler", rayleighStiffness="0.1", rayleighMass="0.1")
        simulation.addObject('ConstantSparsityPatternSystem', template="CompressedRowSparseMatrix", name="A", checkIndices="true")
        simulation.addObject('SparseLDLSolver', name="linear_solver", template="CompressedRowSparseMatrix")
 
@@ -1282,7 +1282,7 @@ CorotationalFEMForceField.scn
         <include href="../../../QuadraticTopology.xml"/>
     
         <Node name="simulation">
-            <EulerImplicitSolver name="backward_Euler" rayleighStiffness="0.1" rayleighMass="0.1" />
+            <EulerImplicitIntegrationScheme name="backward_Euler" rayleighStiffness="0.1" rayleighMass="0.1" />
     
             <CGLinearSolver iterations="250" name="linear_solver" tolerance="1.0e-12" threshold="1.0e-12" />
     
@@ -1327,7 +1327,7 @@ CorotationalFEMForceField.scn
 
        simulation = root.addChild('simulation')
 
-       simulation.addObject('EulerImplicitSolver', name="backward_Euler", rayleighStiffness="0.1", rayleighMass="0.1")
+       simulation.addObject('EulerImplicitIntegrationScheme', name="backward_Euler", rayleighStiffness="0.1", rayleighMass="0.1")
        simulation.addObject('CGLinearSolver', iterations="250", name="linear_solver", tolerance="1.0e-12", threshold="1.0e-12")
 
        beam = simulation.addChild('beam')
@@ -1362,7 +1362,7 @@ CorotationalFEMForceField.scn
         <include href="../../../QuadraticTopology.xml"/>
     
         <Node name="simulation">
-            <EulerImplicitSolver name="backward_Euler" rayleighStiffness="0.1" rayleighMass="0.1" />
+            <EulerImplicitIntegrationScheme name="backward_Euler" rayleighStiffness="0.1" rayleighMass="0.1" />
     
             <ConstantSparsityPatternSystem template="CompressedRowSparseMatrix" name="A" checkIndices="true"/>
             <SparseLDLSolver name="linear_solver" template="CompressedRowSparseMatrix"/>
@@ -1408,7 +1408,7 @@ CorotationalFEMForceField.scn
 
        simulation = root.addChild('simulation')
 
-       simulation.addObject('EulerImplicitSolver', name="backward_Euler", rayleighStiffness="0.1", rayleighMass="0.1")
+       simulation.addObject('EulerImplicitIntegrationScheme', name="backward_Euler", rayleighStiffness="0.1", rayleighMass="0.1")
        simulation.addObject('ConstantSparsityPatternSystem', template="CompressedRowSparseMatrix", name="A", checkIndices="true")
        simulation.addObject('SparseLDLSolver', name="linear_solver", template="CompressedRowSparseMatrix")
 
@@ -1443,7 +1443,7 @@ CorotationalFEMForceField.scn
         <include href="../../../QuadraticTopology.xml"/>
     
         <Node name="simulation">
-            <EulerImplicitSolver name="backward_Euler" rayleighStiffness="0.1" rayleighMass="0.1" />
+            <EulerImplicitIntegrationScheme name="backward_Euler" rayleighStiffness="0.1" rayleighMass="0.1" />
     
             <CGLinearSolver iterations="250" name="linear_solver" tolerance="1.0e-12" threshold="1.0e-12" />
     
@@ -1488,7 +1488,7 @@ CorotationalFEMForceField.scn
 
        simulation = root.addChild('simulation')
 
-       simulation.addObject('EulerImplicitSolver', name="backward_Euler", rayleighStiffness="0.1", rayleighMass="0.1")
+       simulation.addObject('EulerImplicitIntegrationScheme', name="backward_Euler", rayleighStiffness="0.1", rayleighMass="0.1")
        simulation.addObject('CGLinearSolver', iterations="250", name="linear_solver", tolerance="1.0e-12", threshold="1.0e-12")
 
        beam = simulation.addChild('beam')
@@ -1504,105 +1504,25 @@ CorotationalFEMForceField.scn
        beam.addObject('CorotationalFEMForceField', name="FEM", template="Vec3,QuadraticHexahedron", rotationMethod="polar", youngModulus="2e6", poissonRatio="0.45", topology="@topology", computeForceStrategy="sequenced", computeForceDerivStrategy="sequenced")
     ```
 
-CorotationalFEMForceField_tetra_cpu_gpu.scn
+CorotationalFEMForceField.scn
 
 === "XML"
 
     ```xml
-    <?xml version="1.0" ?>
-    <Node name="root" gravity="0 -9 0" dt="0.02">
-        <RequiredPlugin pluginName="Sofa.Component.Constraint.Projective"/> <!-- Needed to use components [FixedProjectiveConstraint] -->  
-        <RequiredPlugin pluginName="Sofa.Component.Engine.Select"/> <!-- Needed to use components [BoxROI] -->  
-        <RequiredPlugin pluginName="Sofa.Component.LinearSolver.Iterative"/> <!-- Needed to use components [CGLinearSolver] -->  
-        <RequiredPlugin pluginName="Sofa.Component.Mapping.Linear"/> <!-- Needed to use components [IdentityMapping] -->  
-        <RequiredPlugin pluginName="Sofa.Component.Mass"/> <!-- Needed to use components [DiagonalMass] -->  
-        <RequiredPlugin pluginName="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->  
-        <RequiredPlugin pluginName="Sofa.Component.SolidMechanics.FEM.Elastic"/> <!-- Needed to use components [TetrahedronCorotationalFEMForceField] -->  
-        <RequiredPlugin pluginName="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->  
-        <RequiredPlugin pluginName="Sofa.Component.Topology.Container.Dynamic"/> <!-- Needed to use components [HexahedronSetTopologyContainer,HexahedronSetTopologyModifier,QuadSetTopologyContainer,QuadSetTopologyModifier] -->  
-        <RequiredPlugin pluginName="Sofa.Component.Topology.Container.Grid"/> <!-- Needed to use components [RegularGridTopology] -->  
-        <RequiredPlugin pluginName="Sofa.Component.Topology.Mapping"/> <!-- Needed to use components [Hexa2QuadTopologicalMapping] -->  
-        <RequiredPlugin pluginName="Sofa.Component.Visual"/> <!-- Needed to use components [VisualStyle] -->  
-        <RequiredPlugin pluginName="Sofa.GL.Component.Rendering3D"/> <!-- Needed to use components [OglModel] -->
-        <RequiredPlugin pluginName="SofaCUDA"/> <!-- Needed to use components [OglModel] -->
-      
-        <VisualStyle displayFlags="showBehaviorModels showVisual" />
-        
-        <DefaultAnimationLoop />
-        <DefaultVisualManagerLoop />
-        
-        <Node name="TetrahedronCorotationalFEMForceField-GPU-Green">
-            <Node name="Beam">
-                <RegularGridTopology name="grid" n="40 10 10" min="0 6 -2" max="16 10 2" />
-                <TetrahedronSetTopologyContainer name="BeamTopo" />
-                <TetrahedronSetTopologyModifier name="Modifier" />
+    <?xml version="1.0"?>
+    <Node name="root" dt="0.01" gravity="0 0 0">
+        <include href="../../../../beam.xml"/>
     
-                <Hexa2TetraTopologicalMapping input="@grid" output="@BeamTopo" />
-            </Node>
-            
-            <Node name="Simulated">
-                <EulerImplicitSolver name="cg_odesolver" rayleighStiffness="0.1" rayleighMass="0.1" />
-                <CGLinearSolver iterations="20" name="linear solver" tolerance="1.0e-12" threshold="1.0e-12" />
-                
-                <MechanicalObject position="@../Beam/grid.position" name="Volume" template="CudaVec3f"/>
+        <ConstantSparsityPatternSystem template="CompressedRowSparseMatrix" name="A" checkIndices="false"/>
+        <NaturalOrderingMethod/>
+        <SparseLDLSolver name="linear_solver" template="CompressedRowSparseMatrix"/>
     
-                <TetrahedronSetTopologyContainer name="Container" src="@../Beam/BeamTopo"/>
+        <CorotationalFEMForceField name="FEM" template="Vec3,Hexahedron"
+                                   youngModulus="2e6" poissonRatio="0.45" topology="@grid"
+                                   computeForceStrategy="parallel" computeForceDerivStrategy="parallel"/>
+        <VonMisesStress template="Vec3,Hexahedron" name="stress" topology="@grid" stressEvaluator="@FEM"
+                        colorMap="green yellow orange red purple #221C35"/>
     
-                <DiagonalMass totalMass="50.0" />
-                <BoxROI name="ROI1" box="-0.1 5 -3 0.1 11 3" drawBoxes="1" />
-                
-                <FixedProjectiveConstraint indices="@ROI1.indices" />
-                <TetrahedronCorotationalFEMForceField name="FEM" template="CudaVec3f" youngModulus="2000" poissonRatio="0.3" />
-                <Node name="surface">
-                    <TriangleSetTopologyContainer name="Container" />
-                    <TriangleSetTopologyModifier name="Modifier" />
-                    <TriangleSetGeometryAlgorithms template="CudaVec3f" name="GeomAlgo" />
-                    
-                    <Tetra2TriangleTopologicalMapping input="@../Container" output="@Container" />
-                    <Node name="Visu">
-                        <OglModel name="Visual" color="green" />
-                        <IdentityMapping input="@../../Volume" output="@Visual" />
-                    </Node>
-                </Node>
-            </Node>  
-        </Node>
-        
-    
-        <Node name="TetrahedronCorotationalFEMForceField-CPU-red">
-            <Node name="Beam">
-                <RegularGridTopology name="grid" n="40 10 10" min="0 6 -2" max="16 10 2" />
-                <TetrahedronSetTopologyContainer name="BeamTopo" />
-                <TetrahedronSetTopologyModifier name="Modifier" />
-    
-                <Hexa2TetraTopologicalMapping input="@grid" output="@BeamTopo" />
-            </Node>
-            
-            <Node name="Simulated">
-                <EulerImplicitSolver name="cg_odesolver" rayleighStiffness="0.1" rayleighMass="0.1" />
-                <CGLinearSolver iterations="20" name="linear solver" tolerance="1.0e-12" threshold="1.0e-12" />
-                
-                <MechanicalObject position="@../Beam/grid.position" name="Volume" template="Vec3d"/>
-    
-                <TetrahedronSetTopologyContainer name="Container" src="@../Beam/BeamTopo"/>
-    
-                <DiagonalMass totalMass="50.0" />
-                <BoxROI name="ROI1" box="-0.1 5 -3 0.1 11 3" drawBoxes="1" />
-                
-                <FixedProjectiveConstraint indices="@ROI1.indices" />
-                <TetrahedronCorotationalFEMForceField name="FEM" youngModulus="2000" poissonRatio="0.3" />
-                <Node name="surface">
-                    <TriangleSetTopologyContainer name="Container" />
-                    <TriangleSetTopologyModifier name="Modifier" />
-                    <TriangleSetGeometryAlgorithms template="Vec3d" name="GeomAlgo" />
-                    
-                    <Tetra2TriangleTopologicalMapping input="@../Container" output="@Container" />
-                    <Node name="Visu">
-                        <OglModel name="Visual" color="red" />
-                        <IdentityMapping input="@../../Volume" output="@Visual" />
-                    </Node>
-                </Node>
-            </Node> 
-        </Node>
     </Node>
 
     ```
@@ -1612,88 +1532,319 @@ CorotationalFEMForceField_tetra_cpu_gpu.scn
     ```python
     def createScene(root_node):
 
-       root = root_node.addChild('root', gravity="0 -9 0", dt="0.02")
+       root = root_node.addChild('root', dt="0.01", gravity="0 0 0")
 
-       root.addObject('RequiredPlugin', pluginName="Sofa.Component.Constraint.Projective")
-       root.addObject('RequiredPlugin', pluginName="Sofa.Component.Engine.Select")
-       root.addObject('RequiredPlugin', pluginName="Sofa.Component.LinearSolver.Iterative")
-       root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mapping.Linear")
-       root.addObject('RequiredPlugin', pluginName="Sofa.Component.Mass")
-       root.addObject('RequiredPlugin', pluginName="Sofa.Component.ODESolver.Backward")
-       root.addObject('RequiredPlugin', pluginName="Sofa.Component.SolidMechanics.FEM.Elastic")
-       root.addObject('RequiredPlugin', pluginName="Sofa.Component.StateContainer")
-       root.addObject('RequiredPlugin', pluginName="Sofa.Component.Topology.Container.Dynamic")
-       root.addObject('RequiredPlugin', pluginName="Sofa.Component.Topology.Container.Grid")
-       root.addObject('RequiredPlugin', pluginName="Sofa.Component.Topology.Mapping")
-       root.addObject('RequiredPlugin', pluginName="Sofa.Component.Visual")
-       root.addObject('RequiredPlugin', pluginName="Sofa.GL.Component.Rendering3D")
-       root.addObject('RequiredPlugin', pluginName="SofaCUDA")
-       root.addObject('VisualStyle', displayFlags="showBehaviorModels showVisual")
-       root.addObject('DefaultAnimationLoop', )
-       root.addObject('DefaultVisualManagerLoop', )
+       root.addObject('include', href="../../../../beam.xml")
+       root.addObject('ConstantSparsityPatternSystem', template="CompressedRowSparseMatrix", name="A", checkIndices="false")
+       root.addObject('NaturalOrderingMethod', )
+       root.addObject('SparseLDLSolver', name="linear_solver", template="CompressedRowSparseMatrix")
+       root.addObject('CorotationalFEMForceField', name="FEM", template="Vec3,Hexahedron", youngModulus="2e6", poissonRatio="0.45", topology="@grid", computeForceStrategy="parallel", computeForceDerivStrategy="parallel")
+       root.addObject('VonMisesStress', template="Vec3,Hexahedron", name="stress", topology="@grid", stressEvaluator="@FEM", colorMap="green yellow orange red purple #221C35")
+    ```
 
-       tetrahedron_corotational_fem_force_field__gpu__green = root.addChild('TetrahedronCorotationalFEMForceField-GPU-Green')
+CorotationalFEMForceField.scn
 
-       beam = TetrahedronCorotationalFEMForceField-GPU-Green.addChild('Beam')
+=== "XML"
 
-       beam.addObject('RegularGridTopology', name="grid", n="40 10 10", min="0 6 -2", max="16 10 2")
-       beam.addObject('TetrahedronSetTopologyContainer', name="BeamTopo")
-       beam.addObject('TetrahedronSetTopologyModifier', name="Modifier")
-       beam.addObject('Hexa2TetraTopologicalMapping', input="@grid", output="@BeamTopo")
+    ```xml
+    <?xml version="1.0"?>
+    <Node name="root" dt="0.01" gravity="0 0 0">
+        <include href="../../../../beam.xml"/>
+    
+        <CGLinearSolver iterations="250" name="linear_solver" tolerance="1.0e-12" threshold="1.0e-12" />
+    
+        <CorotationalFEMForceField name="FEM" template="Vec3,Hexahedron"
+                                   youngModulus="2e6" poissonRatio="0.45" topology="@grid"
+                                   computeForceStrategy="parallel" computeForceDerivStrategy="parallel"/>
+        <VonMisesStress template="Vec3,Hexahedron" name="stress" topology="@grid" stressEvaluator="@FEM"
+                        colorMap="green yellow orange red purple #221C35"/>
+    
+    </Node>
 
-       simulated = TetrahedronCorotationalFEMForceField-GPU-Green.addChild('Simulated')
+    ```
 
-       simulated.addObject('EulerImplicitSolver', name="cg_odesolver", rayleighStiffness="0.1", rayleighMass="0.1")
-       simulated.addObject('CGLinearSolver', iterations="20", name="linear solver", tolerance="1.0e-12", threshold="1.0e-12")
-       simulated.addObject('MechanicalObject', position="@../Beam/grid.position", name="Volume", template="CudaVec3f")
-       simulated.addObject('TetrahedronSetTopologyContainer', name="Container", src="@../Beam/BeamTopo")
-       simulated.addObject('DiagonalMass', totalMass="50.0")
-       simulated.addObject('BoxROI', name="ROI1", box="-0.1 5 -3 0.1 11 3", drawBoxes="1")
-       simulated.addObject('FixedProjectiveConstraint', indices="@ROI1.indices")
-       simulated.addObject('TetrahedronCorotationalFEMForceField', name="FEM", template="CudaVec3f", youngModulus="2000", poissonRatio="0.3")
+=== "Python"
 
-       surface = Simulated.addChild('surface')
+    ```python
+    def createScene(root_node):
 
-       surface.addObject('TriangleSetTopologyContainer', name="Container")
-       surface.addObject('TriangleSetTopologyModifier', name="Modifier")
-       surface.addObject('TriangleSetGeometryAlgorithms', template="CudaVec3f", name="GeomAlgo")
-       surface.addObject('Tetra2TriangleTopologicalMapping', input="@../Container", output="@Container")
+       root = root_node.addChild('root', dt="0.01", gravity="0 0 0")
 
-       visu = surface.addChild('Visu')
+       root.addObject('include', href="../../../../beam.xml")
+       root.addObject('CGLinearSolver', iterations="250", name="linear_solver", tolerance="1.0e-12", threshold="1.0e-12")
+       root.addObject('CorotationalFEMForceField', name="FEM", template="Vec3,Hexahedron", youngModulus="2e6", poissonRatio="0.45", topology="@grid", computeForceStrategy="parallel", computeForceDerivStrategy="parallel")
+       root.addObject('VonMisesStress', template="Vec3,Hexahedron", name="stress", topology="@grid", stressEvaluator="@FEM", colorMap="green yellow orange red purple #221C35")
+    ```
 
-       visu.addObject('OglModel', name="Visual", color="green")
-       visu.addObject('IdentityMapping', input="@../../Volume", output="@Visual")
+CorotationalFEMForceField.scn
 
-       tetrahedron_corotational_fem_force_field__cpu_red = root.addChild('TetrahedronCorotationalFEMForceField-CPU-red')
+=== "XML"
 
-       beam = TetrahedronCorotationalFEMForceField-CPU-red.addChild('Beam')
+    ```xml
+    <?xml version="1.0"?>
+    <Node name="root" dt="0.01" gravity="0 0 0">
+        <include href="../../../../beam.xml"/>
+    
+        <ConstantSparsityPatternSystem template="CompressedRowSparseMatrix" name="A" checkIndices="false"/>
+        <NaturalOrderingMethod/>
+        <SparseLDLSolver name="linear_solver" template="CompressedRowSparseMatrix"/>
+    
+        <CorotationalFEMForceField name="FEM" template="Vec3,Hexahedron"
+                                   youngModulus="2e6" poissonRatio="0.45" topology="@grid"
+                                   computeForceStrategy="sequenced" computeForceDerivStrategy="sequenced"/>
+        <VonMisesStress template="Vec3,Hexahedron" name="stress" topology="@grid" stressEvaluator="@FEM"
+                        colorMap="green yellow orange red purple #221C35"/>
+    
+    </Node>
 
-       beam.addObject('RegularGridTopology', name="grid", n="40 10 10", min="0 6 -2", max="16 10 2")
-       beam.addObject('TetrahedronSetTopologyContainer', name="BeamTopo")
-       beam.addObject('TetrahedronSetTopologyModifier', name="Modifier")
-       beam.addObject('Hexa2TetraTopologicalMapping', input="@grid", output="@BeamTopo")
+    ```
 
-       simulated = TetrahedronCorotationalFEMForceField-CPU-red.addChild('Simulated')
+=== "Python"
 
-       simulated.addObject('EulerImplicitSolver', name="cg_odesolver", rayleighStiffness="0.1", rayleighMass="0.1")
-       simulated.addObject('CGLinearSolver', iterations="20", name="linear solver", tolerance="1.0e-12", threshold="1.0e-12")
-       simulated.addObject('MechanicalObject', position="@../Beam/grid.position", name="Volume", template="Vec3d")
-       simulated.addObject('TetrahedronSetTopologyContainer', name="Container", src="@../Beam/BeamTopo")
-       simulated.addObject('DiagonalMass', totalMass="50.0")
-       simulated.addObject('BoxROI', name="ROI1", box="-0.1 5 -3 0.1 11 3", drawBoxes="1")
-       simulated.addObject('FixedProjectiveConstraint', indices="@ROI1.indices")
-       simulated.addObject('TetrahedronCorotationalFEMForceField', name="FEM", youngModulus="2000", poissonRatio="0.3")
+    ```python
+    def createScene(root_node):
 
-       surface = Simulated.addChild('surface')
+       root = root_node.addChild('root', dt="0.01", gravity="0 0 0")
 
-       surface.addObject('TriangleSetTopologyContainer', name="Container")
-       surface.addObject('TriangleSetTopologyModifier', name="Modifier")
-       surface.addObject('TriangleSetGeometryAlgorithms', template="Vec3d", name="GeomAlgo")
-       surface.addObject('Tetra2TriangleTopologicalMapping', input="@../Container", output="@Container")
+       root.addObject('include', href="../../../../beam.xml")
+       root.addObject('ConstantSparsityPatternSystem', template="CompressedRowSparseMatrix", name="A", checkIndices="false")
+       root.addObject('NaturalOrderingMethod', )
+       root.addObject('SparseLDLSolver', name="linear_solver", template="CompressedRowSparseMatrix")
+       root.addObject('CorotationalFEMForceField', name="FEM", template="Vec3,Hexahedron", youngModulus="2e6", poissonRatio="0.45", topology="@grid", computeForceStrategy="sequenced", computeForceDerivStrategy="sequenced")
+       root.addObject('VonMisesStress', template="Vec3,Hexahedron", name="stress", topology="@grid", stressEvaluator="@FEM", colorMap="green yellow orange red purple #221C35")
+    ```
 
-       visu = surface.addChild('Visu')
+CorotationalFEMForceField.scn
 
-       visu.addObject('OglModel', name="Visual", color="red")
-       visu.addObject('IdentityMapping', input="@../../Volume", output="@Visual")
+=== "XML"
+
+    ```xml
+    <?xml version="1.0"?>
+    <Node name="root" dt="0.01" gravity="0 0 0">
+        <include href="../../../../beam.xml"/>
+    
+        <CGLinearSolver iterations="250" name="linear_solver" tolerance="1.0e-12" threshold="1.0e-12" />
+    
+        <CorotationalFEMForceField name="FEM" template="Vec3,Hexahedron"
+                                   youngModulus="2e6" poissonRatio="0.45" topology="@grid"
+                                   computeForceStrategy="sequenced" computeForceDerivStrategy="sequenced"/>
+        <VonMisesStress template="Vec3,Hexahedron" name="stress" topology="@grid" stressEvaluator="@FEM"
+                        colorMap="green yellow orange red purple #221C35"/>
+    
+    </Node>
+
+    ```
+
+=== "Python"
+
+    ```python
+    def createScene(root_node):
+
+       root = root_node.addChild('root', dt="0.01", gravity="0 0 0")
+
+       root.addObject('include', href="../../../../beam.xml")
+       root.addObject('CGLinearSolver', iterations="250", name="linear_solver", tolerance="1.0e-12", threshold="1.0e-12")
+       root.addObject('CorotationalFEMForceField', name="FEM", template="Vec3,Hexahedron", youngModulus="2e6", poissonRatio="0.45", topology="@grid", computeForceStrategy="sequenced", computeForceDerivStrategy="sequenced")
+       root.addObject('VonMisesStress', template="Vec3,Hexahedron", name="stress", topology="@grid", stressEvaluator="@FEM", colorMap="green yellow orange red purple #221C35")
+    ```
+
+CorotationalFEMForceField.scn
+
+=== "XML"
+
+    ```xml
+    <?xml version="1.0"?>
+    <Node name="root" dt="0.01" gravity="0 0 0">
+        <include href="../../../../beam.xml"/>
+    
+        <ConstantSparsityPatternSystem template="CompressedRowSparseMatrix" name="A" checkIndices="false"/>
+        <NaturalOrderingMethod/>
+        <SparseLDLSolver name="linear_solver" template="CompressedRowSparseMatrix"/>
+    
+        <Node name="fem">
+            <TetrahedronSetTopologyContainer name="Tetra_topo"/>
+            <TetrahedronSetTopologyModifier name="Modifier" />
+            <TetrahedronSetGeometryAlgorithms template="Vec3" name="GeomAlgo" drawTetrahedra="false"/>
+            <Hexa2TetraTopologicalMapping input="@grid" output="@Tetra_topo" swapping="true"/>
+    
+            <CorotationalFEMForceField name="FEM" template="Vec3,Tetrahedron"
+                                       youngModulus="2e6" poissonRatio="0.45" topology="@Tetra_topo"
+                                       computeForceStrategy="parallel" computeForceDerivStrategy="parallel"/>
+            <VonMisesStress template="Vec3,Tetrahedron" name="stress" topology="@Tetra_topo" stressEvaluator="@FEM"
+                            colorMap="green yellow orange red purple #221C35"/>
+        </Node>
+    
+    </Node>
+
+    ```
+
+=== "Python"
+
+    ```python
+    def createScene(root_node):
+
+       root = root_node.addChild('root', dt="0.01", gravity="0 0 0")
+
+       root.addObject('include', href="../../../../beam.xml")
+       root.addObject('ConstantSparsityPatternSystem', template="CompressedRowSparseMatrix", name="A", checkIndices="false")
+       root.addObject('NaturalOrderingMethod', )
+       root.addObject('SparseLDLSolver', name="linear_solver", template="CompressedRowSparseMatrix")
+
+       fem = root.addChild('fem')
+
+       fem.addObject('TetrahedronSetTopologyContainer', name="Tetra_topo")
+       fem.addObject('TetrahedronSetTopologyModifier', name="Modifier")
+       fem.addObject('TetrahedronSetGeometryAlgorithms', template="Vec3", name="GeomAlgo", drawTetrahedra="false")
+       fem.addObject('Hexa2TetraTopologicalMapping', input="@grid", output="@Tetra_topo", swapping="true")
+       fem.addObject('CorotationalFEMForceField', name="FEM", template="Vec3,Tetrahedron", youngModulus="2e6", poissonRatio="0.45", topology="@Tetra_topo", computeForceStrategy="parallel", computeForceDerivStrategy="parallel")
+       fem.addObject('VonMisesStress', template="Vec3,Tetrahedron", name="stress", topology="@Tetra_topo", stressEvaluator="@FEM", colorMap="green yellow orange red purple #221C35")
+    ```
+
+CorotationalFEMForceField.scn
+
+=== "XML"
+
+    ```xml
+    <?xml version="1.0"?>
+    <Node name="root" dt="0.01" gravity="0 0 0">
+        <include href="../../../../beam.xml"/>
+    
+        <CGLinearSolver iterations="250" name="linear_solver" tolerance="1.0e-12" threshold="1.0e-12" />
+    
+        <Node name="fem">
+            <TetrahedronSetTopologyContainer name="Tetra_topo"/>
+            <TetrahedronSetTopologyModifier name="Modifier" />
+            <TetrahedronSetGeometryAlgorithms template="Vec3" name="GeomAlgo" drawTetrahedra="false"/>
+            <Hexa2TetraTopologicalMapping input="@grid" output="@Tetra_topo" swapping="true"/>
+    
+            <CorotationalFEMForceField name="FEM" template="Vec3,Tetrahedron"
+                                       youngModulus="2e6" poissonRatio="0.45" topology="@Tetra_topo"
+                                       computeForceStrategy="parallel" computeForceDerivStrategy="parallel"/>
+            <VonMisesStress template="Vec3,Tetrahedron" name="stress" topology="@Tetra_topo" stressEvaluator="@FEM"
+                            colorMap="green yellow orange red purple #221C35"/>
+        </Node>
+    
+    </Node>
+
+    ```
+
+=== "Python"
+
+    ```python
+    def createScene(root_node):
+
+       root = root_node.addChild('root', dt="0.01", gravity="0 0 0")
+
+       root.addObject('include', href="../../../../beam.xml")
+       root.addObject('CGLinearSolver', iterations="250", name="linear_solver", tolerance="1.0e-12", threshold="1.0e-12")
+
+       fem = root.addChild('fem')
+
+       fem.addObject('TetrahedronSetTopologyContainer', name="Tetra_topo")
+       fem.addObject('TetrahedronSetTopologyModifier', name="Modifier")
+       fem.addObject('TetrahedronSetGeometryAlgorithms', template="Vec3", name="GeomAlgo", drawTetrahedra="false")
+       fem.addObject('Hexa2TetraTopologicalMapping', input="@grid", output="@Tetra_topo", swapping="true")
+       fem.addObject('CorotationalFEMForceField', name="FEM", template="Vec3,Tetrahedron", youngModulus="2e6", poissonRatio="0.45", topology="@Tetra_topo", computeForceStrategy="parallel", computeForceDerivStrategy="parallel")
+       fem.addObject('VonMisesStress', template="Vec3,Tetrahedron", name="stress", topology="@Tetra_topo", stressEvaluator="@FEM", colorMap="green yellow orange red purple #221C35")
+    ```
+
+CorotationalFEMForceField.scn
+
+=== "XML"
+
+    ```xml
+    <?xml version="1.0"?>
+    <Node name="root" dt="0.01" gravity="0 0 0">
+        <include href="../../../../beam.xml"/>
+    
+        <ConstantSparsityPatternSystem template="CompressedRowSparseMatrix" name="A" checkIndices="false"/>
+        <NaturalOrderingMethod/>
+        <SparseLDLSolver name="linear_solver" template="CompressedRowSparseMatrix"/>
+    
+        <Node name="fem">
+            <TetrahedronSetTopologyContainer name="Tetra_topo"/>
+            <TetrahedronSetTopologyModifier name="Modifier" />
+            <TetrahedronSetGeometryAlgorithms template="Vec3" name="GeomAlgo" drawTetrahedra="false"/>
+            <Hexa2TetraTopologicalMapping input="@grid" output="@Tetra_topo" swapping="true"/>
+    
+            <CorotationalFEMForceField name="FEM" template="Vec3,Tetrahedron"
+                                       youngModulus="2e6" poissonRatio="0.45" topology="@Tetra_topo"
+                                       computeForceStrategy="sequenced" computeForceDerivStrategy="sequenced"/>
+            <VonMisesStress template="Vec3,Tetrahedron" name="stress" topology="@Tetra_topo" stressEvaluator="@FEM"
+                            colorMap="green yellow orange red purple #221C35"/>
+        </Node>
+    
+    </Node>
+
+    ```
+
+=== "Python"
+
+    ```python
+    def createScene(root_node):
+
+       root = root_node.addChild('root', dt="0.01", gravity="0 0 0")
+
+       root.addObject('include', href="../../../../beam.xml")
+       root.addObject('ConstantSparsityPatternSystem', template="CompressedRowSparseMatrix", name="A", checkIndices="false")
+       root.addObject('NaturalOrderingMethod', )
+       root.addObject('SparseLDLSolver', name="linear_solver", template="CompressedRowSparseMatrix")
+
+       fem = root.addChild('fem')
+
+       fem.addObject('TetrahedronSetTopologyContainer', name="Tetra_topo")
+       fem.addObject('TetrahedronSetTopologyModifier', name="Modifier")
+       fem.addObject('TetrahedronSetGeometryAlgorithms', template="Vec3", name="GeomAlgo", drawTetrahedra="false")
+       fem.addObject('Hexa2TetraTopologicalMapping', input="@grid", output="@Tetra_topo", swapping="true")
+       fem.addObject('CorotationalFEMForceField', name="FEM", template="Vec3,Tetrahedron", youngModulus="2e6", poissonRatio="0.45", topology="@Tetra_topo", computeForceStrategy="sequenced", computeForceDerivStrategy="sequenced")
+       fem.addObject('VonMisesStress', template="Vec3,Tetrahedron", name="stress", topology="@Tetra_topo", stressEvaluator="@FEM", colorMap="green yellow orange red purple #221C35")
+    ```
+
+CorotationalFEMForceField.scn
+
+=== "XML"
+
+    ```xml
+    <?xml version="1.0"?>
+    <Node name="root" dt="0.01" gravity="0 0 0">
+        <include href="../../../../beam.xml"/>
+    
+        <CGLinearSolver iterations="250" name="linear_solver" tolerance="1.0e-12" threshold="1.0e-12" />
+    
+        <Node name="fem">
+            <TetrahedronSetTopologyContainer name="Tetra_topo"/>
+            <TetrahedronSetTopologyModifier name="Modifier" />
+            <TetrahedronSetGeometryAlgorithms template="Vec3" name="GeomAlgo" drawTetrahedra="false"/>
+            <Hexa2TetraTopologicalMapping input="@grid" output="@Tetra_topo" swapping="true"/>
+    
+            <CorotationalFEMForceField name="FEM" template="Vec3,Tetrahedron"
+                                       youngModulus="2e6" poissonRatio="0.45" topology="@Tetra_topo"
+                                       computeForceStrategy="sequenced" computeForceDerivStrategy="sequenced"/>
+            <VonMisesStress template="Vec3,Tetrahedron" name="stress" topology="@Tetra_topo" stressEvaluator="@FEM"
+                            colorMap="green yellow orange red purple #221C35"/>
+        </Node>
+    
+    </Node>
+
+    ```
+
+=== "Python"
+
+    ```python
+    def createScene(root_node):
+
+       root = root_node.addChild('root', dt="0.01", gravity="0 0 0")
+
+       root.addObject('include', href="../../../../beam.xml")
+       root.addObject('CGLinearSolver', iterations="250", name="linear_solver", tolerance="1.0e-12", threshold="1.0e-12")
+
+       fem = root.addChild('fem')
+
+       fem.addObject('TetrahedronSetTopologyContainer', name="Tetra_topo")
+       fem.addObject('TetrahedronSetTopologyModifier', name="Modifier")
+       fem.addObject('TetrahedronSetGeometryAlgorithms', template="Vec3", name="GeomAlgo", drawTetrahedra="false")
+       fem.addObject('Hexa2TetraTopologicalMapping', input="@grid", output="@Tetra_topo", swapping="true")
+       fem.addObject('CorotationalFEMForceField', name="FEM", template="Vec3,Tetrahedron", youngModulus="2e6", poissonRatio="0.45", topology="@Tetra_topo", computeForceStrategy="sequenced", computeForceDerivStrategy="sequenced")
+       fem.addObject('VonMisesStress', template="Vec3,Tetrahedron", name="stress", topology="@Tetra_topo", stressEvaluator="@FEM", colorMap="green yellow orange red purple #221C35")
     ```
 

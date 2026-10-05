@@ -377,7 +377,7 @@ VonMisesStress.scn
             <RequiredPlugin pluginName="Sofa.Component.Engine.Select"/> <!-- Needed to use components [BoxROI] -->
             <RequiredPlugin pluginName="Sofa.Component.LinearSolver.Direct"/> <!-- Needed to use components [SparseLDLSolver] -->
             <RequiredPlugin pluginName="Sofa.Component.Mass"/> <!-- Needed to use components [FEMMass,NodalMassDensity] -->
-            <RequiredPlugin pluginName="Sofa.Component.ODESolver.Backward"/> <!-- Needed to use components [EulerImplicitSolver] -->
+            <RequiredPlugin pluginName="Sofa.Component.IntegrationScheme.Backward"/> <!-- Needed to use components [EulerImplicitIntegrationScheme] -->
             <RequiredPlugin pluginName="Sofa.Component.SolidMechanics.FEM.Elastic"/> <!-- Needed to use components [LinearSmallStrainFEMForceField,VonMisesStress] -->
             <RequiredPlugin pluginName="Sofa.Component.StateContainer"/> <!-- Needed to use components [MechanicalObject] -->
             <RequiredPlugin pluginName="Sofa.Component.Topology.Container.Grid"/> <!-- Needed to use components [RegularGridTopology] -->
@@ -388,7 +388,7 @@ VonMisesStress.scn
     
         <VisualStyle displayFlags="showBehaviorModels showVisualModels" />
     
-        <EulerImplicitSolver name="ODE_solver" rayleighStiffness="0.01" rayleighMass="0.01" />
+        <EulerImplicitIntegrationScheme name="ODE_solver" rayleighStiffness="0.01" rayleighMass="0.01" />
         <SparseLDLSolver name="linear_solver" template="CompressedRowSparseMatrixMat3x3"/>
     
         <RegularGridTopology name="grid" n="20 5 5" min="0 -0.05 -0.05" max="0.4 0.05 0.05" />
@@ -422,7 +422,7 @@ VonMisesStress.scn
        plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.Engine.Select")
        plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.LinearSolver.Direct")
        plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.Mass")
-       plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.ODESolver.Backward")
+       plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.IntegrationScheme.Backward")
        plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.SolidMechanics.FEM.Elastic")
        plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.StateContainer")
        plugins.addObject('RequiredPlugin', pluginName="Sofa.Component.Topology.Container.Grid")
@@ -430,7 +430,7 @@ VonMisesStress.scn
 
        root.addObject('DefaultAnimationLoop', )
        root.addObject('VisualStyle', displayFlags="showBehaviorModels showVisualModels")
-       root.addObject('EulerImplicitSolver', name="ODE_solver", rayleighStiffness="0.01", rayleighMass="0.01")
+       root.addObject('EulerImplicitIntegrationScheme', name="ODE_solver", rayleighStiffness="0.01", rayleighMass="0.01")
        root.addObject('SparseLDLSolver', name="linear_solver", template="CompressedRowSparseMatrixMat3x3")
        root.addObject('RegularGridTopology', name="grid", n="20 5 5", min="0 -0.05 -0.05", max="0.4 0.05 0.05")
        root.addObject('MechanicalObject', template="Vec3", name="state")
