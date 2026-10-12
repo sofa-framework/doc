@@ -75,20 +75,6 @@ if true, handle the events, otherwise ignore the events
 		<td>0</td>
 	</tr>
 	<tr>
-		<td>restScale</td>
-		<td>
-optional scaling of rest position coordinates (to simulated pre-existing internal tension).(default = 1.0)
-		</td>
-		<td>1</td>
-	</tr>
-	<tr>
-		<td>useTopology</td>
-		<td>
-Shall this object rely on any active topology to initialize its size and positions
-		</td>
-		<td>1</td>
-	</tr>
-	<tr>
 		<td>size</td>
 		<td>
 Size of the vectors
@@ -101,6 +87,20 @@ Size of the vectors
 Size to reserve when creating vectors. (default=0)
 		</td>
 		<td>0</td>
+	</tr>
+	<tr>
+		<td>restScale</td>
+		<td>
+optional scaling of rest position coordinates (to simulated pre-existing internal tension).(default = 1.0)
+		</td>
+		<td>1</td>
+	</tr>
+	<tr>
+		<td>useTopology</td>
+		<td>
+Shall this object rely on any active topology to initialize its size and positions
+		</td>
+		<td>1</td>
 	</tr>
 	<tr>
 		<td colspan="3">States</td>

@@ -77,6 +77,26 @@ Using the SHIFT + CTRL keys, you will trigger events on key pressed/released.
 * `-l` or `--load`: load given plugins as a comma-separated list. Example: -l SofaPython3
 * `-m` or `--msaa_samples`: set the number of samples for multisample anti-aliasing (MSAA). 0 by default.
 * `-n` or `--nb_iterations`: set the number of iterations to run (batch mode). 0 (unlimited) by default.
+* `--hideProgressBar`: hide the progress bar shown during a bounded run. False by default.
+* `--offscreen`: render offscreen. No window is shown, but the graphics functions are still called. False by default.
+  The window and its OpenGL context are created as usual, they are simply never mapped on screen. Combine it with
+  `--nb_iterations` to get a finite run, since there is no window to close.
+
+The `-n`/`--nbIter` option of the batch GUI is also honoured by the `glfw` and `imgui` GUIs:
+`runSofa -g imgui -l SofaImGui -n 100 myScene.scn` stops after 100 iterations, and `infinite`
+(the batch default) keeps running. As in the batch GUI, giving a number of iterations starts the
+animation, `-a` is not needed.
+
+A bounded run shows the same progress bar as the batch GUI, hidden with `--hideProgressBar`, and reports
+the number of iterations, the elapsed time and the average FPS when it ends.
+
+The `--offscreen` option is also available from `runSofa` with the `glfw` GUI:
+`runSofa -g glfw -l SofaGLFW --offscreen myScene.scn`
+(as for any GUI argument coming from a plugin, it is only listed by `runSofa --help` when the plugin is autoloaded,
+but it is taken into account in all cases).
+
+It is ignored, with a warning, by the `imgui` GUI: that GUI is the `glfw` one plus interactive widgets, so
+rendering it offscreen would serve no purpose.
 
 ## Dear ImGui
 
