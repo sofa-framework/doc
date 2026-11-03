@@ -216,14 +216,6 @@ where the weights $\mathbf{w} _k$ depend only on the reference offsets $\mathbf{
 
 Under a uniform deformation, the affine fit estimates $\mathbf{F}$ and $\mathbf{R}$ exactly. The rigid fit amounts to the affine fit with $\mathbf{M}$ taken as $\mathbf{I}$. It is exact under rigid motions, but under a uniform deformation only if $\mathbf{M}$ is a multiple of $\mathbf{I}$, as for a cube or a square element. For irregular shapes, this assumption breaks.
 
-On embedded elements, such as triangles and quadrilaterals in 3D or an edge in 2D, the offsets have no component along the element normal. $\mathbf{H}$ and $\mathbf{M}$ are then singular: the polar decomposition cannot be computed reliably from $\mathbf{H}$, and $\mathbf{M}$ cannot be inverted. To avoid this, the reference normal $\mathbf{n} _0$ is mapped onto the current normal $\mathbf{n}$ as well, by completing the matrices with
-
-$$
-\hat{\mathbf{F}} \leftarrow \hat{\mathbf{F}} + \mathbf{n} \mathbf{n} _0^T, \qquad \mathbf{M} \leftarrow \mathbf{M} + \mathbf{n} _0 \mathbf{n} _0^T
-$$
-
-the latter for the affine fit only. The completion serves only to find $\mathbf{R}$; the Jacobian below uses $\hat{\mathbf{F}}$ and $\bar{\mathbf{S}}$ without it.
-
 The Jacobian follows from varying the decomposition, then subtracting the transpose to remove the symmetric $d\bar{\mathbf{S}}$ [3]:
 
 $$
