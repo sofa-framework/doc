@@ -33,29 +33,6 @@ $$
 $$
 
 
-#### Trapezoidal rule
-
-Activating the trapezoidalScheme option of the Euler implicit scheme will make the scheme less dissipative. This will apply the [trapezoidal rule](https://en.wikipedia.org/wiki/Trapezoidal_rule) to the velocity integration, and thus will increase the order of the time integration, which is known to be less dissipative.
-It is also known to increase robustness and stability to the time integration due to the order 2 in time of this trapezoidal scheme. The modified scheme is the following:
-
-$$
-\begin{aligned}
-g_{\boldsymbol{x}}^{(t,h)} &: \boldsymbol{v}, \boldsymbol{a} \mapsto \boldsymbol{x}_t + \frac{h}{2} \boldsymbol{v}_t + \frac{h}{2} \boldsymbol{v} \\
-g_{\boldsymbol{v}}^{(t,h)} &: \boldsymbol{a} \mapsto \boldsymbol{v}_t + h \boldsymbol{a}
-\end{aligned}
-$$
-
-This results in the updated term: 
-
-$$
-
-\frac{\mathrm{d} \tilde{g}_{\boldsymbol{x}}^{(t,h)}}{\mathrm{d} \boldsymbol{v}} = h/2 
-$$
-
-To activate this trapezoidal rule, you need to use the data `trapezoidalScheme=true`.
-
-
-
 
 Usage  
 -----  
@@ -64,4 +41,3 @@ The EulerImplicitIntegrationScheme **requires**:
 
 - a [LinearSolver](../../../../simulation-principles/system-resolution/linear-solver/) to solve the linear system
 - and a MechanicalObject to store the state vectors.
-
