@@ -3,7 +3,6 @@ Integration Schemes
 
 All dynamic simulations assume to discretize the temporal evolution of the system through small time steps. This time step is usually noted *dt*. An integration scheme is the [numerical method](https://en.wikipedia.org/wiki/Numerical_methods_for_ordinary_differential_equations) describing how to linearly relate the different time derivatives in order to discretize and linearize those ODE.
 
-They are usually called **IntegrationScheme** in SOFA. 
 
 Let's write our ordinary differential equation of a function *y* as follows:
 
@@ -38,7 +37,7 @@ $$
 
 Explicit schemes are usually known as being fast to solve (since the created linear system is lighter) but they require very small time steps, unless they may undergo stability issues. They are known to efficiently solve non-stiff problems.
 
-Explicit IntegrationScheme in SOFA:
+Explicit integration scheme in SOFA:
 
 - [EulerExplicitIntegrationScheme](../../../components/integrationscheme/forward/eulerexplicitintegrationscheme/)
 - [CentralDifferenceIntegrationScheme](../../../components/integrationscheme/forward/centraldifferenceintegrationscheme/)
@@ -65,24 +64,24 @@ Implicit IntegrationScheme in SOFA:
 
 - [EulerImplicitIntegrationScheme](../../../components/integrationscheme/backward/eulerimplicitintegrationscheme/)
 - [NewmarkImplicitIntegrationScheme](../../../components/integrationscheme/backward/newmarkimplicitintegrationscheme/)
-- [BDFIntegrationScheme](../../../components/integrationscheme/backward/variationalsymplecticintegrationscheme/)
+- [BDFIntegrationScheme](../../../components/integrationscheme/backward/bdfintegrationscheme/)
 
 
-Solving for non linearities
+Solving for non-linearities
 ----------------
 
-As it has been seen, integrating through time boils down to building and solving a linear system. What is hidden behind this is that the mechanics needs to be linearized to be summarized in a linear system. While it has no effect for linear elasticity, it can result in pretty bad dynamics in the case of hyperelasticity. 
+As it has been seen, integrating through time boils down to building and solving a series of linear system. What is hidden behind this is that the mechanics needs to be linearized to be summarized in a linear system. While it has no effect for linear elasticity, it can result in pretty bad dynamics in the case of hyperelasticity. 
 
 For explicit integration scheme, there is no strategy other than reducing the timestep to try to improve such non-linearities. But, because of the nature of implicit integration scheme, one can take advantage of using a non-linear solver to compute the integration in order to better take into account the non-linearities.
 
-The current design of Implicit integration scheme is based on this finding to enable the use of Newton-Raphson solver at the level of the simulation to compute dynamics. But to present it let's first dive into what it takes to use a Newton-Raphson solver : we need to express the time step as a root-finding problem. 
+The current design of implicit integration scheme is based on this finding to enable the use of Newton-Raphson solver at the level of the simulation to compute dynamics. But to present it let's first dive into what it takes to use a Newton-Raphson solver : we need to express the time step as a root-finding problem. 
 
 > **Note :**\
 > Currently, SOFA doesn't propose any Newton-Raphson algorithm able to solve for non-linear mechanics. It is an ongoing work that'll be release soon. But the refactoring of the ODE solver has been made in order to enable such new solver to be implemented. It is thus important to explain the design choices at the light of future development. 
 
-### 1) From Dynamic equations to root finding problem
+### 1) From the equations of dynamics to root finding problem
 
-First let's introduce the dynamic equations we wish to solve. 
+First, let's introduce the equations of the dynamics we wish to solve. 
 
 $$
 \boldsymbol{M}\boldsymbol{a} = \mathcal{F}(\boldsymbol{x},\boldsymbol{v}) + \boldsymbol{F_{\text{ext}}}
@@ -90,7 +89,7 @@ $$
 $$
 With $\boldsymbol{a}$ the acceleration, $\boldsymbol{M}$ the mass matrix and $\mathcal{F}(\boldsymbol{x},\boldsymbol{v})$ being a non linear function of the position ($\boldsymbol{x}$) and velocity ($\boldsymbol{v}$).
 
-Now let's consider that we have the solution to this equation at a time $t$. This means having the tensor $\boldsymbol{X}_t = (\boldsymbol{x}_t, \boldsymbol{v}_t, \boldsymbol{a}_t)$ that satisfy @eq:eq-dyn. In order to integrate the unknown along time and know their value at a future timestamp $t + h$, we need to introduce a relationship between the three unknown. Indeed, with only one equation but three unknown (position, velocity and acceleration), we need to introduce more equations to get a solvable system. This set of new equations is exactly the _integration scheme_ and can be defined as the following functions.
+Now let's consider that we have the solution to this equation at a time $t$. This means having the tensor $\boldsymbol{X}_t = (\boldsymbol{x}_t, \boldsymbol{v}_t, \boldsymbol{a}_t)$ that satisfy @eq:eq-dyn. In order to integrate the unknown along time and know their value at a future timestamp $t + h$ (where $h$ is the time step $dt$), we need to introduce a relationship between the three unknown. Indeed, with only one equation but three unknown (position, velocity and acceleration), we need to introduce more equations to get a solvable system. This set of new equations is exactly the _integration scheme_ and can be defined as the following functions.
 
 $$
 
@@ -124,7 +123,7 @@ $$
 \end{cases}
 \tag{1.4}
 $$
-We will see later that using this general form ends up in solving for the difference in acceleration in one timestep. We will call the family of integration scheme using this forme the **_Velocity-based integration schemes_**.
+We will see later that using this general form leads to a Newton iteration whose unknown is the acceleration increment. We call the family of integration schemes using this form the **_Acceleration-based integration schemes_**.
 
 #### 1.2) Simplified form
 To simplify this set of equation, if $g_v^{(t,h)}$ is invertible, one can rewrite the set as : 
@@ -145,6 +144,7 @@ $$
 \end{cases}
 \tag{1.6}
 $$
+When this simplified form is available, the Newton unknown is the velocity increment. We call this family the _**Velocity-based integration schemes**_.
 To find the root of such non-linear function, one way to do it is to use a non-linear root finder, the most common one is the Newton-Raphson algorithm
 
 
@@ -262,7 +262,7 @@ $$
 $$
 
 
-##### 2.2.1) Velocity-based integration scheme
+##### 2.2.2) Velocity-based integration scheme
 In the case of velocity-based equations of motion, we have defined the function for which we want to find the root (1.6). Now we are going to write the recurrence relations resulting for the application of a Newton-Raphson algorithm to this problem. 
 By applying (2.1) to (1.6) we can compute the final linear system to solve:
 $$
@@ -317,7 +317,7 @@ The SOFA implementation
 ----------------
 
 ### Design choices
-In the light of the presented Newton-Raphson algorithm and the associated equations, the design for implicit intergation scheme is now clearer : it needs an API that enable the computation of such iterative algorithm, meaning that we need to be able compute the right-hand-side of the linearized equation independently from the left-hand-side, and also update the solution independently. This choice has lead to the following API interface:
+In the light of the presented Newton-Raphson algorithm and the associated equations, the design for implicit intergation scheme is now clearer. It needs an API that enables the computation of such iterative algorithm, meaning that we need to be able compute the right-hand-side of the linearized equation independently from the left-hand-side, and also update the solution independently. This choice has lead to the following API interface:
 
 #### ImplicitIntegrationScheme
 This base class inherits directly from the class `BaseIntegrationScheme` and proposes the virtual API taht'll be implemented by the different implicit integrations chemes. Here is the list of thoses methods :

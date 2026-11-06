@@ -3,7 +3,7 @@ EulerImplicitIntegrationScheme
 
 This component belongs to the category of [integration schemes](../../../../simulation-principles/system-resolution/integration-scheme/). This scheme builds the system following an implicit scheme: forces are considered based on the state information at the next time step $x(t+dt)$, unknown at the current time step.
 
-This is the most broadly used integration scheme thank's to its unconditional stability and simplicity.  
+This is the most broadly used integration scheme thank's to its unconditional stability (for linear problems) and simplicity.  
 
 It is recommended to read the theoretical part of the [integration schemes](../../../../simulation-principles/system-resolution/integration-scheme/) page to understand the following. 
 
@@ -40,7 +40,7 @@ It is also known to increase robustness and stability to the time integration du
 
 $$
 \begin{aligned}
-g_{\boldsymbol{x}}^{(t,h)} &: \boldsymbol{v}, \boldsymbol{a} \mapsto \boldsymbol{x}_t + \frac{h}{2} \boldsymbol{v_t} + \frac{h}{2} \boldsymbol{v} \\
+g_{\boldsymbol{x}}^{(t,h)} &: \boldsymbol{v}, \boldsymbol{a} \mapsto \boldsymbol{x}_t + \frac{h}{2} \boldsymbol{v}_t + \frac{h}{2} \boldsymbol{v} \\
 g_{\boldsymbol{v}}^{(t,h)} &: \boldsymbol{a} \mapsto \boldsymbol{v}_t + h \boldsymbol{a}
 \end{aligned}
 $$
