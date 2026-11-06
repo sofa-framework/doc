@@ -1,19 +1,23 @@
 Integration Schemes
 ===================
-
-All dynamic simulations assume to discretize the temporal evolution of the system through small time steps. This time step is usually noted *dt*. An integration scheme is the [numerical method](https://en.wikipedia.org/wiki/Numerical_methods_for_ordinary_differential_equations) describing how to linearly relate the different time derivatives in order to discretize and linearize those ODE.
-
-
-Let's write our ordinary differential equation of a function *y* as follows:
-
+In physics, the behavior of a system undergoing a given phenomenon can be characterized by measuring its _states_. Through its measurement, these states are transformed into numerical values that describe the configuration of the system, for instance the temperature of a medium, the motion of a point, or the phase of a signal.
+ 
+One state is rarely sufficient to completely describe a physical phenomenon. In mechanics for instance, if one aims at describing the dynamic motion of a point, its trajectory is not enough: the time at which it passed through a certain point is mandatory to be able to _derive_ any dynamics from the motion. In other words, the time derivatives of the primary state (here the position) are needed when describing the dynamics of a system.
+ 
+Phenomena can sometimes link the states together. The mathematical expression describing this coupling is an ordinary differential equation (ODE), which can be one equation or a set of equations. For instance, the coupling between the acceleration and the position of a mass attached by a spring to a fixed point can be described by Newton's second law of motion:
+ 
 $$
-\frac{dy}{dt}=f\left( t,y(t)\right)
+\frac{d^2y}{dt^2}=f\left( t,y(t)\right)
 $$
-
-IntegrationScheme defines how to go from the current time step (t) to the next (t + dt), which will structure the linear system $\mathbf{A}x=b$. The integration scheme therefore defines which forces impact the left hand side matrix $\mathbf{A}$ and which forces contribute to the right hand side vector *b*:
-
-- explicit contributions depending on the degrees of freedom (DOFs) at the current time step $x(t)$ will contribute to the $b$ vector
-- while implicit contributions depending on the degrees of freedom (DOFs) at the next step $x(t+dt)$ (unknown) will contribute to $\mathbf{A}$. 
+ 
+A numerical simulation aims at reproducing a physical phenomenon with a certain level of precision. When an analytical solution for the ODE exists, the simulation is easy to perform as it only requires evaluating the function that is the solution of the ODE. But most physical behaviors are far too complex to be solved analytically. In those cases, to simulate the phenomenon, its ODE is _integrated_ through time, starting at the so-called _initial conditions_ respecting the ODE.
+ 
+Integrating the ODE from a set of initial states respecting the ODE means finding out the evolution of those states that will still respect the ODE coupling after a time step *dt*. In this case, all state increments are considered as unknowns, whether it is position, velocity, or acceleration. To solve such an equation numerically, one needs to linearize it, leading to a linear system to be solved to advance through time.
+ 
+In mechanics, this linear system usually consists of one equation, leading to an under-constrained problem. Luckily, the states are related: they are time derivatives of the primary state (position in mechanics). An integration scheme fills the gap by describing these integration relationships linearly so that the problem becomes solvable.
+ 
+The integration scheme therefore has a great impact on both the left-hand side matrix $\mathbf{A}$ and the right-hand side vector *b* of the final linear system to solve, $\mathbf{A}x=b$.
+ 
 
 
 Two categories
@@ -460,6 +464,3 @@ This is performed using a mechanism of visitors that will iterate through the sc
 - `addMDx` in mass object will be used to add the gravity term in the right-hand-side
 
 This list is not exhausitve, please refer to the [Forcefield](../../multi-model-representation/forcefield/) and [Mass](../../multi-model-representation/mass/) documentation pages.
-
-
-
