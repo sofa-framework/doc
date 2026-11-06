@@ -386,8 +386,8 @@ For the two famillies a lot of this API can be implemented agnostically from the
 
 For acceleration-based integration scheme, the only parts that are integration dependent are : 
 
-- $\text{DG}^{(i)}_{\boldsymbol{x}} = \left.\frac{\mathrm{d} g_{\boldsymbol{v}}^{(t,h)}}{\mathrm{d} \boldsymbol{a}}\right|_{\boldsymbol{X}^{(i)}} $
-- $\text{DG}^{(i)}_{\boldsymbol{v}} = \left(\left.\frac{\mathrm{d} g_{\boldsymbol{x}}^{(t,h)}}{\mathrm{d} \boldsymbol{v}}\right|_{\boldsymbol{X}^{(i)}} \left.\frac{\mathrm{d} g_{\boldsymbol{v}}^{(t,h)}}{\mathrm{d} \boldsymbol{a}}\right|_{\boldsymbol{X}^{(i)}} + \left.\frac{\mathrm{d} g_{\boldsymbol{x}}^{(t,h)}}{\mathrm{d} \boldsymbol{a}}\right|_{\boldsymbol{X}^{(i)}}\right)$
+- $\text{DG}^{(i)}_{\boldsymbol{v}} = \left.\frac{\mathrm{d} g_{\boldsymbol{v}}^{(t,h)}}{\mathrm{d} \boldsymbol{a}}\right|_{\boldsymbol{X}^{(i)}} $
+- $\text{DG}^{(i)}_{\boldsymbol{x}} = \left(\left.\frac{\mathrm{d} g_{\boldsymbol{x}}^{(t,h)}}{\mathrm{d} \boldsymbol{v}}\right|_{\boldsymbol{X}^{(i)}} \left.\frac{\mathrm{d} g_{\boldsymbol{v}}^{(t,h)}}{\mathrm{d} \boldsymbol{a}}\right|_{\boldsymbol{X}^{(i)}} + \left.\frac{\mathrm{d} g_{\boldsymbol{x}}^{(t,h)}}{\mathrm{d} \boldsymbol{a}}\right|_{\boldsymbol{X}^{(i)}}\right)$
 - $\mathcal{G}_{t}(\boldsymbol{X}^{(i)})_1$
 - $\mathcal{G}_{t}(\boldsymbol{X}^{(i)})_2$
 
